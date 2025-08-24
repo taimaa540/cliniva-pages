@@ -34,6 +34,7 @@ export const NoDataSection = ({
   const { t, i18n } = useTranslation();
   useEffect(() => {
     i18n.changeLanguage(local);
+    
   }, []);
 
   return (
