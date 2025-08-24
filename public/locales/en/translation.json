@@ -1,0 +1,12 @@
+{
+  "roles": {
+    "role": "Role",
+    "admin": "Admin",
+    "user": "User"
+  },
+  "status": {
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive"
+  }
+}
