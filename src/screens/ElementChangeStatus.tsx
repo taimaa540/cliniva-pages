@@ -1,5 +1,4 @@
-import { BellIcon, XIcon } from "lucide-react";
-import React from "react";
+import { BellIcon} from "lucide-react";
 import { Button } from "../components/ui/button";
 import {
   Dialog,
@@ -17,7 +16,7 @@ export const ElementChangeStatus = (): JSX.Element => {
           <DialogHeader className="items-center bg-base-white flex flex-col relative self-stretch w-full flex-[0_0_auto]">
             <div className="flex flex-col items-start gap-4 pt-6 pb-0 px-6 relative self-stretch w-full flex-[0_0_auto] bg-base-white">
               <div className="relative w-14 h-14 mt-[-4.00px] ml-[-4.00px] bg-[#fee3e1] rounded-[28px] border-8 border-solid border-[#fef2f1]">
-                <BellIcon className="absolute w-6 h-6 top-3 left-3 text-[#d92c20]" />
+                <BellIcon className="absolute w-6 h-6 top-2 left-2 text-[#d92c20]" />
               </div>
 
               <div className="flex flex-col items-start gap-1 relative self-stretch w-full flex-[0_0_auto]">
@@ -29,10 +28,6 @@ export const ElementChangeStatus = (): JSX.Element => {
                   Are you sure you want to Change Status this User?
                 </DialogDescription>
               </div>
-            </div>
-
-            <div className="inline-flex items-center justify-center p-2.5 absolute top-4 left-[340px] rounded-lg overflow-hidden">
-              <XIcon className="relative w-6 h-6 text-gray-400" />
             </div>
           </DialogHeader>
 

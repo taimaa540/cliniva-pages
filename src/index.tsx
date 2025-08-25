@@ -9,15 +9,18 @@ import './i18n';
 import { ElementChangeStatus } from "./screens/ElementChangeStatus";
 import { ElementDeleteUser } from "./screens/ElementDeleteUser";
 import { ElementLogOutDialog } from "./screens/ElementLogOutDialog";
+
+
 createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
-    <ElementUsersNoDataTo />
+    {/* <ElementUsersNoDataTo /> */}
     {/* <ElementUsersAddNew/> */}
     {/* <ElementUsersDesktop/> */}
-    {/* <ElementUserDetails/> */}
+    <ElementUserDetails/>
     {/* <ElementEditUserDetails/> */}
     {/* <ElementChangeStatus/> */}
-    {/* <ElementDeleteUser/> */}
+    {/* <ElementDeleteUser title="user"/> */}
     {/* <ElementLogOutDialog/> */}
+    
   </StrictMode>,
 );

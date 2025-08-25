@@ -4,13 +4,10 @@ import {
   CalendarIcon,
   ChevronDownIcon,
   SearchIcon,
-  UploadIcon,
-  ArrowRightIcon
 } from "lucide-react";
 
 import { Button } from "../../../components/ui/button";
 import { Card, CardContent } from "../../../components/ui/card";
-import { Checkbox } from "../../../components/ui/checkbox";
 import { Input } from "../../../components/ui/input";
 import { Label } from "../../../components/ui/label";
 import {
@@ -22,6 +19,7 @@ import DarkModeToggle from "../../ElementUsersNoDataTo/DarkMode";
 import TranslateIcon from "@mui/icons-material/Translate";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
+import FileUpload from "../../fillUpLoad";
 import {
   Select,
   SelectContent,
@@ -29,12 +27,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../../components/ui/select";
+import WorkingDaysList from "../../workDays";
 
 const accountFields = [
   { label: "User Name", value: "Ammar Al Sawwa", type: "input" },
-  { label: "Password", value: "ammarsvu91@gmail.com", type: "input" },
+  { label: "Password", value: "ammarsvu91@gmail.com", type: "text" },
   { label: "Role", value: "Admin", type: "select" },
-  { label: "User Type", value: "Staff", type: "select" },
+  { label: "User Type", value: "Staff", type: "text" },
   { label: "Medical Complex", value: "TCT Complex", type: "select" },
   { label: "Clinic", value: "X-Ray Clinic", type: "select" },
 ];
@@ -54,75 +53,14 @@ const emergencyContact = {
   number: "93 348 151",
 };
 
-const workingDays = [
-  {
-    day: "Sunday",
-    checked: true,
-    startTime: "09:00",
-    endTime: "17:00",
-    nightStart: "19:00",
-    nightEnd: "21:00",
-  },
-  {
-    day: "Monday",
-    checked: true,
-    startTime: "09:00",
-    endTime: "17:00",
-    nightStart: "19:00",
-    nightEnd: "21:00",
-  },
-  {
-    day: "Tuesday",
-    checked: true,
-    startTime: "09:00",
-    endTime: "17:00",
-    nightStart: "19:00",
-    nightEnd: "21:00",
-  },
-  {
-    day: "Wednesday",
-    checked: true,
-    startTime: "09:00",
-    endTime: "17:00",
-    nightStart: "19:00",
-    nightEnd: "21:00",
-  },
-  {
-    day: "Thursday",
-    checked: true,
-    startTime: "09:00",
-    endTime: "17:00",
-    nightStart: "19:00",
-    nightEnd: "21:00",
-  },
-  {
-    day: "Friday",
-    checked: false,
-    startTime: "09:00",
-    endTime: "18:00",
-    nightStart: "00:00",
-    nightEnd: "00:00",
-  },
-  {
-    day: "Saturday",
-    checked: false,
-    startTime: "09:00",
-    endTime: "18:00",
-    nightStart: "00:00",
-    nightEnd: "00:00",
-  },
-];
-
 const documents = [
   { label: "Employment Contract*", effectiveDate: "May 01, 2026" },
   {
     label: "Certifications*",
-    subtitle: '"For doctors only"',
     effectiveDate: "May 30, 2028",
   },
   {
     label: "Work Permit*",
-    subtitle: '"For doctors only"',
     effectiveDate: "Mar 01, 2027",
   },
   { label: "CV / Resume*", effectiveDate: "Mar 01, 2027" },
@@ -217,12 +155,36 @@ export const EmploymentDetailsSection = ({
         </div>
       </header>
 
-      <main className={`flex flex-col w-[1197px] items-start gap-5 p-5 relative ${dark ? "bg-[#272932] border-[white]" : "bg-bg"} rounded-2xl overflow-hidden`}>
+      <main
+        className={`flex flex-col w-[1197px] items-start gap-5 p-5 relative ${
+          dark ? "bg-[#272932] border-[white]" : "bg-bg"
+        } rounded-2xl overflow-hidden`}
+      >
+        <div className="flex gap-[870px] items-center">
+          <div className="w-[92px] h-[40px] bg-[#E2F6EC] text-[#00B48D] rounded-[16px] py-[9px] px-[24px] m-0">
+            Active
+          </div>
+          <div className="flex items-center gap-4 self-end">
+            <Button
+              variant="outline"
+              className="px-4 py-2.5 bg-secondary-light rounded-[20px] border-2 border-[#e4e2dd] h-auto"
+            >
+              <span className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-on-surface-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
+                Cancel
+              </span>
+            </Button>
+            <Button className="px-4 py-2.5 bg-secondary-dark rounded-[20px] h-auto">
+              <span className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
+                Save
+              </span>
+            </Button>
+          </div>
+        </div>
         <Card
           style={{ boxShadow: "0px 20px 24px -4px #0A0D121A" }}
           className="w-full bg-surface-default rounded-[16px] "
         >
-          <CardContent className="px-8 py-[10px]">
+          <CardContent className="relative px-8 py-[10px]">
             <Collapsible defaultOpen className="w-full">
               <CollapsibleTrigger asChild>
                 <Button variant="ghost" className="p-0 hover:bg-[none]">
@@ -234,8 +196,14 @@ export const EmploymentDetailsSection = ({
                   </div>
                 </Button>
               </CollapsibleTrigger>
-
               <CollapsibleContent>
+                <button>
+                  <img
+                    className="absolute w-[24px] h-[25px] top-[90px] right-[50px]"
+                    alt="send email"
+                    src="/email2.svg"
+                  />
+                </button>
                 <div className="grid grid-cols-2 gap-6 w-full mt-[20px] mb-[10px]">
                   {accountFields.map((field, index) => (
                     <div key={index} className="flex items-start gap-8">
@@ -243,7 +211,7 @@ export const EmploymentDetailsSection = ({
                         {t(`${field.label}`)}
                       </Label>
                       <div className="flex-1">
-                        {field.type === "select" ? (
+                        {field.type === "select" && (
                           <Select defaultValue={field.value}>
                             <SelectTrigger className="bg-base-white text-[#717680] w-[340px] border-[#d5d6d9] shadow-shadow-xs">
                               <SelectValue />
@@ -254,12 +222,18 @@ export const EmploymentDetailsSection = ({
                               </SelectItem>
                             </SelectContent>
                           </Select>
-                        ) : (
+                        )}
+                        {field.type === "input" && (
                           <Input
                             defaultValue={field.value}
                             className="bg-base-white border-[#d5d6d9] text-[#717680] shadow-shadow-xs"
+                            disabled={
+                              field.label === "Password" ||
+                              field.label === "User Type"
+                            }
                           />
                         )}
+                        {field.type === "text" && <p>{field.value}</p>}
                       </div>
                     </div>
                   ))}
@@ -292,14 +266,14 @@ export const EmploymentDetailsSection = ({
                 <div className="flex flex-col items-start gap-4 mt-[20px] relative">
                   <div className="flex items-start gap-8 w-full">
                     <Label className="w-40 font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-gray-700 text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
-                      {t("Full Name")} *
+                      {t("Full Name")}
                     </Label>
                     <Input
                       defaultValue="Ammar Mohammed Al Sawwa"
                       className="w-[325px] bg-base-white border-[#d5d6d9] shadow-shadow-xs"
                     />
                     <Label className="w-40 font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-gray-700 text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
-                      {t("Gender")} *
+                      {t("Gender")}
                     </Label>
                     <Select defaultValue="Male">
                       <SelectTrigger className="w-[353px] bg-base-white border-[#d5d6d9] shadow-shadow-xs">
@@ -454,23 +428,12 @@ export const EmploymentDetailsSection = ({
 
                   <div className="flex items-start gap-8 w-full">
                     <Label className="w-40 [font-family:'Lato',Helvetica] font-medium text-on-surface-primary text-base">
-                      {t("Profile Picture")} *
+                      {t("Profile Picture")}
                     </Label>
-                    <div className="w-[480px] flex flex-col items-center justify-center gap-5 p-4 bg-surface-default rounded border border-[#e4e2dd]">
-                      <UploadIcon className="w-8 h-8 text-[#69a3e9]" />
-                      <div className="text-center">
-                        <div className="[font-family:'Lato',Helvetica] font-semibold text-on-surface-primary text-sm">
-                          <span className="text-[#69a3e9]">Click or Drag</span>
-                          <span className="text-[#414651]">
-                            {" "}
-                            file to this area to upload
-                          </span>
-                        </div>
-                        <div className="[font-family:'Inter',Helvetica] font-normal text-on-surface-secondary text-xs mt-2">
-                          SVG, PNG, JPG or GIF , Maximum file size 2MB.
-                        </div>
-                      </div>
-                    </div>
+                    <FileUpload
+                      amount="PDF File , Maximum file size 1MB."
+                      size={1 * 1024 * 1024}
+                    />
                   </div>
                 </div>
               </CollapsibleContent>
@@ -495,14 +458,14 @@ export const EmploymentDetailsSection = ({
                 <div className="flex flex-col items-start gap-4 mt-[20px] relative">
                   <div className="flex items-start gap-8 w-full">
                     <Label className="w-40 font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-gray-700 text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
-                      {t("Job Title")} *
+                      {t("Job Title")}
                     </Label>
                     <Input
                       defaultValue="Manager"
                       className="w-[339px] bg-base-white border-[#d5d6d9] shadow-shadow-xs"
                     />
                     <Label className="w-40 font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-gray-700 text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
-                      {t("Date of Hire")} *
+                      {t("Date of Hire")}
                     </Label>
                     <div className="w-[329px] flex items-center gap-2 px-3.5 py-2.5 bg-base-white rounded-lg border border-[#d5d6d9] shadow-shadow-xs">
                       <span className="font-bold text-on-surface-secondary [font-family:'Lato',Helvetica] text-sm">
@@ -511,126 +474,7 @@ export const EmploymentDetailsSection = ({
                       <CalendarIcon className="w-4 h-4 ml-auto" />
                     </div>
                   </div>
-
-                  <div className="flex flex-col gap-4 w-full">
-                    <div className="flex items-start gap-8">
-                      <Label className="w-40 font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-secondary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
-                        {t("Working Days")} *
-                      </Label>
-                    </div>
-                    <div className="flex flex-col gap-4 mt-4">
-                      {workingDays.map((workDay, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center gap-8 w-full"
-                        >
-                          <div className="flex items-center gap-4 w-[200px]">
-                            <Checkbox className="w-4 h-4" />
-                            <label
-                              className={`${
-                                dark ? "text-white" : "text-[#2a2b2a]"
-                              } tracking-[0.07px] leading-6 [font-family:'Lato',Helvetica] font-normal text-sm whitespace-nowrap`}
-                            >
-                              {t(`${workDay.day}`)}
-                            </label>
-                          </div>
-
-                          <div className="flex items-center gap-4">
-                            <div className="flex flex-col w-[404px] items-center px-[13px] py-[7px] bg-white rounded border border-solid border-[#e4e2dd] shadow-[0px_1px_2px_#0a0d120d]">
-                              <div className="flex items-center self-stretch w-full flex-[0_0_auto]">
-                                <div className="flex items-center flex-1 grow">
-                                  <div className="text-on-surface-secondary tracking-[0] leading-[21px] w-fit mt-[-1.00px] [font-family:'Lato',Helvetica] font-normal text-sm whitespace-nowrap">
-                                    {workDay.startTime}
-                                  </div>
-                                </div>
-                                <div className="inline-flex items-center justify-center gap-2.5 px-2 py-px self-stretch flex-[0_0_auto] bg-[#ffffff00] opacity-[0.87]">
-                                  <ArrowRightIcon className="w-4 h-4" />
-                                </div>
-                                <div className="flex items-center flex-1 grow">
-                                  <div className="text-on-surface-secondary tracking-[0] leading-[21px] w-fit mt-[-1.00px] [font-family:'Lato',Helvetica] font-normal text-sm whitespace-nowrap">
-                                    {workDay.endTime}
-                                  </div>
-                                </div>
-                                <div className="inline-flex flex-col items-center justify-center p-px flex-[0_0_auto] bg-[#ffffff00]">
-                                  <ChevronDownIcon className="w-4 h-4" />
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="flex items-center gap-4">
-                              <div className="flex flex-col w-[404px] items-center px-[13px] py-[7px] bg-white rounded border border-solid border-[#e4e2dd] shadow-[0px_1px_2px_#0a0d120d]">
-                                <div className="flex items-center self-stretch w-full flex-[0_0_auto]">
-                                  <div className="flex items-center flex-1 grow">
-                                    <div className="text-on-surface-secondary tracking-[0] leading-[21px] w-fit mt-[-1.00px] [font-family:'Lato',Helvetica] font-normal text-sm whitespace-nowrap">
-                                      00:00
-                                    </div>
-                                  </div>
-                                  <div className="inline-flex items-center justify-center gap-2.5 px-2 py-px self-stretch flex-[0_0_auto] bg-[#ffffff00] opacity-[0.87]">
-                                    <ArrowRightIcon className="w-4 h-4" />
-                                  </div>
-                                  <div className="flex items-center flex-1 grow">
-                                    <div className="text-on-surface-secondary tracking-[0] leading-[21px] w-fit mt-[-1.00px] [font-family:'Lato',Helvetica] font-normal text-sm whitespace-nowrap">
-                                      00:00
-                                    </div>
-                                  </div>
-                                  <div className="inline-flex flex-col items-center justify-center p-px flex-[0_0_auto] bg-[#ffffff00]">
-                                    <ChevronDownIcon className="w-4 h-4" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* {workingDays.map((day, index) => (
-                      <div
-                        key={index}
-                        className="flex items-center gap-8 w-full"
-                      >
-                        <div className="w-40" />
-                        <div className="flex items-center gap-4">
-                          <div className="flex items-center gap-2.5">
-                            <Checkbox  
-                            />
-                            
-                          </div>
-                          <span className="[font-family:'Lato',Helvetica] font-normal text-on-surface-primary text-sm">
-                            {t(`${day.day}`)}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2 px-3 py-2 bg-white rounded border border-[#e4e2dd] shadow-[0px_1px_2px_#0a0d120d]">
-                          <span className="[font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-sm">
-                            {day.startTime}
-                          </span>
-                          <img
-                            className="w-4 h-4"
-                            alt="Arrow right short"
-                            src="/arrow-right-short.svg"
-                          />
-                          <span className="[font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-sm">
-                            {day.endTime}
-                          </span>
-                          <CalendarIcon className="w-4 h-4" />
-                        </div>
-                        <div className="flex items-center gap-2 px-3 py-2 bg-white rounded border border-[#e4e2dd] shadow-[0px_1px_2px_#0a0d120d]">
-                          <span className="[font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-sm">
-                            {day.nightStart}
-                          </span>
-                          <img
-                            className="w-4 h-4"
-                            alt="Arrow right short"
-                            src="/arrow-right-short.svg"
-                          />
-                          <span className="[font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-sm">
-                            {day.nightEnd}
-                          </span>
-                          <CalendarIcon className="w-4 h-4" />
-                        </div>
-                      </div>
-                    ))} */}
-                  </div>
+                  <WorkingDaysList local={local} dark={dark} />
                 </div>
               </CollapsibleContent>
             </Collapsible>
@@ -656,34 +500,13 @@ export const EmploymentDetailsSection = ({
                     <div key={index} className="flex items-start gap-8 w-full">
                       <Label className="w-[178px] [font-family:'Lato',Helvetica] font-medium text-on-surface-primary text-base">
                         {t(`${doc.label}`)}
-                        {doc.subtitle && (
-                          <>
-                            <br />
-                            <span className="text-[#717680] text-[10px] leading-[10px]">
-                              {doc.subtitle}
-                            </span>
-                          </>
-                        )}
                       </Label>
-                      <div className="w-[339px] flex flex-col items-center justify-center gap-5 p-4 bg-surface-default rounded border border-[#e4e2dd]">
-                        <UploadIcon className="w-8 h-8 text-[#69a3e9]" />
-                        <div className="text-center">
-                          <div className="[font-family:'Lato',Helvetica] font-semibold text-on-surface-primary text-sm">
-                            <span className="text-[#69a3e9]">
-                              Click or Drag
-                            </span>
-                            <span className="text-[#414651]">
-                              {" "}
-                              file to this area to upload
-                            </span>
-                          </div>
-                          <div className="[font-family:'Inter',Helvetica] font-normal text-on-surface-secondary text-xs mt-2">
-                            PDF File , Maximum file size 1MB.
-                          </div>
-                        </div>
-                      </div>
+                      <FileUpload
+                        amount="PDF File , Maximum file size 1MB."
+                        size={1 * 1024 * 1024}
+                      />
                       <Label className="w-40 font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-gray-700 text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
-                        {t("Effective Date")} *
+                        {t("Effective Date")}
                       </Label>
                       <div className="w-[339px] flex items-center gap-2 px-3.5 py-2.5 bg-base-white rounded-lg border border-[#d5d6d9] shadow-shadow-xs">
                         {doc.effectiveDate && (
@@ -700,22 +523,6 @@ export const EmploymentDetailsSection = ({
             </Collapsible>
           </CardContent>
         </Card>
-
-        <div className="flex items-center gap-4 self-end">
-          <Button
-            variant="outline"
-            className="px-4 py-2.5 bg-secondary-light rounded-[20px] border-2 border-[#e4e2dd] h-auto"
-          >
-            <span className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-on-surface-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
-              Cancel
-            </span>
-          </Button>
-          <Button className="px-4 py-2.5 bg-secondary-dark rounded-[20px] h-auto">
-            <span className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
-              Save
-            </span>
-          </Button>
-        </div>
       </main>
     </div>
   );

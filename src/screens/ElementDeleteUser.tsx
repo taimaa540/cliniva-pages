@@ -1,4 +1,4 @@
-import { Trash2Icon, XIcon } from "lucide-react";
+import { Trash2Icon} from "lucide-react";
 import { Button } from "../components/ui/button";
 import {
   Dialog,
@@ -7,8 +7,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../components/ui/dialoge";
-
-export const ElementDeleteUser = (): JSX.Element => {
+interface dialogProps {
+  title: string
+}
+export const ElementDeleteUser = ({title}:dialogProps): JSX.Element => {
   return (
     <div className="flex w-[1440px] h-[1054px] items-center justify-center relative bg-[#b7b1a840]">
       <Dialog open={true}>
@@ -16,12 +18,12 @@ export const ElementDeleteUser = (): JSX.Element => {
           <DialogHeader className="items-center bg-base-white flex flex-col relative self-stretch w-full flex-[0_0_auto]">
             <div className="flex flex-col items-start gap-4 pt-6 pb-0 px-6 relative self-stretch w-full flex-[0_0_auto] bg-base-white">
               <div className="relative w-14 h-14 mt-[-4.00px] ml-[-4.00px] bg-[#fee3e1] rounded-[28px] border-8 border-solid border-[#fef2f1]">
-                <Trash2Icon className="absolute w-6 h-6 top-3 left-3 text-[#d92c20]" />
+                <Trash2Icon className="absolute w-6 h-6 top-2 left-2 text-[#d92c20]" />
               </div>
 
               <div className="flex flex-col items-start gap-1 relative self-stretch w-full flex-[0_0_auto]">
                 <DialogTitle className="relative self-stretch mt-[-1.00px] font-text-lg-semibold font-[number:var(--text-lg-semibold-font-weight)] text-[#181d27] text-[length:var(--text-lg-semibold-font-size)] tracking-[var(--text-lg-semibold-letter-spacing)] leading-[var(--text-lg-semibold-line-height)] [font-style:var(--text-lg-semibold-font-style)]">
-                  Delete User?
+                  Delete {title} ?
                 </DialogTitle>
 
                 <DialogDescription className="relative self-stretch font-text-sm-regular font-[number:var(--text-sm-regular-font-weight)] text-[#535861] text-[length:var(--text-sm-regular-font-size)] tracking-[var(--text-sm-regular-letter-spacing)] leading-[var(--text-sm-regular-line-height)] [font-style:var(--text-sm-regular-font-style)]">
@@ -29,10 +31,6 @@ export const ElementDeleteUser = (): JSX.Element => {
                   be undone.
                 </DialogDescription>
               </div>
-            </div>
-
-            <div className="inline-flex items-center justify-center p-2.5 absolute top-4 left-[340px] rounded-lg overflow-hidden">
-              <XIcon className="relative w-6 h-6" />
             </div>
           </DialogHeader>
 

@@ -4,7 +4,6 @@ import {
   FileTextIcon,
   SearchIcon,
 } from "lucide-react";
-import { Badge } from "../../../components/ui/badge";
 import { Button } from "../../../components/ui/button";
 import { Card, CardContent } from "../../../components/ui/card";
 import { Separator } from "../../../components/ui/separator";
@@ -20,6 +19,7 @@ import {
 } from "../../../components/ui/table";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
+import SwitchWithLabel from "../../SwitchLabel";
 const personalInfoData = [
   { label: "Card ID", value: "02200075921" },
   { label: "Gender", value: "Male" },
@@ -117,10 +117,10 @@ export const AccountInformationSection = ({
   dark,
   handelDarkClick,
 }: NoDataSectionProps): JSX.Element => {
-   const { t, i18n } = useTranslation();
-    useEffect(() => {
-      i18n.changeLanguage(local);
-    }, []);
+  const { t, i18n } = useTranslation();
+  useEffect(() => {
+    i18n.changeLanguage(local);
+  }, []);
   return (
     <div
       className={`flex flex-col w-[1217px] items-start gap-4 py-4 relative ${
@@ -133,14 +133,26 @@ export const AccountInformationSection = ({
             variant="ghost"
             className="inline-flex items-center gap-1.5 relative flex-[0_0_auto] h-auto p-0"
           >
-            <ArrowLeftIcon className={`relative w-4 h-4 ${dark ? 'text-[white]' : 'text-[black]'} `} />
-            <span className={`relative w-fit mt-[-1.00px] font-title-12px-regular font-[number:var(--title-12px-regular-font-weight)] ${dark ? "text-white" : "text-[#2a2b2a]"} text-[length:var(--title-12px-regular-font-size)] tracking-[var(--title-12px-regular-letter-spacing)] leading-[var(--title-12px-regular-line-height)] whitespace-nowrap [font-style:var(--title-12px-regular-font-style)]`}>
-              {t('Back to Users List')}
+            <ArrowLeftIcon
+              className={`relative w-4 h-4 ${
+                dark ? "text-[white]" : "text-[black]"
+              } `}
+            />
+            <span
+              className={`relative w-fit mt-[-1.00px] font-title-12px-regular font-[number:var(--title-12px-regular-font-weight)] ${
+                dark ? "text-white" : "text-[#2a2b2a]"
+              } text-[length:var(--title-12px-regular-font-size)] tracking-[var(--title-12px-regular-letter-spacing)] leading-[var(--title-12px-regular-line-height)] whitespace-nowrap [font-style:var(--title-12px-regular-font-style)]`}
+            >
+              {t("Back to Users List")}
             </span>
           </Button>
 
-          <h1 className={`relative self-stretch font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] ${dark ? "text-white" : "text-[#2a2b2a]"} text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]`}>
-            {t('User Details')}
+          <h1
+            className={`relative self-stretch font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] ${
+              dark ? "text-white" : "text-[#2a2b2a]"
+            } text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]`}
+          >
+            {t("User Details")}
           </h1>
         </div>
 
@@ -199,106 +211,114 @@ export const AccountInformationSection = ({
         </nav>
       </header>
 
-      <main dir="ltr" className={`flex w-[1197px] h-[903px] items-start gap-5 p-[20px] relative ${dark ? "bg-[#272932] border-[white]" : "bg-bg"} rounded-2xl `}>
+      <main
+        dir="ltr"
+        className={`flex w-[1197px] h-[903px] items-start gap-5 p-[20px] relative ${
+          dark ? "bg-[#272932] border-[white]" : "bg-bg"
+        } rounded-2xl `}
+      >
         <aside className="relative w-[277px] h-[863px] bg-[#FFFDFC] rounded-xl [box-shadow:0px_4px_4px_0px_#00000040]">
-          <Card className="relative w-[277px] bg-surface-default rounded-2xl">
-            <CardContent className="flex flex-col w-[245px] items-center gap-6 pt-10 pb-2 px-0 absolute top-4 left-4">
-              <div className="relative w-24 h-24 bg-app-primary rounded-2xl" />
-
-              <div className="flex flex-col items-center gap-1.5 self-stretch w-full relative flex-[0_0_auto]">
-                <h2 className="self-stretch mt-[-1.00px] font-[number:var(--title-18px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-18px-bold-font-size)] text-center leading-[var(--title-18px-bold-line-height)] relative font-title-18px-bold tracking-[var(--title-18px-bold-letter-spacing)] [font-style:var(--title-18px-bold-font-style)]">
-                  Ammar Al Sawwa
-                </h2>
-                <div className="inline-flex items-center gap-1.5 relative flex-[0_0_auto]">
-                  <span className="relative w-fit mt-[-1.00px] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-xs text-center tracking-[0] leading-[15.6px] whitespace-nowrap">
-                    US-001
-                  </span>
-                  <div className="relative w-1 h-1 bg-border-default rounded-sm" />
-                  <span className="relative w-fit mt-[-1.00px] [font-family:'Lato',Helvetica] font-normal text-on-surface-primary text-xs text-center tracking-[0] leading-[15.6px] whitespace-nowrap">
-                    Staff
-                  </span>
+          <Card>
+            
+              <section className="flex flex-col w-[245px] items-center gap-6 pt-10 pb-2 px-0 absolute top-4 left-4">
+                <div className="relative w-24 h-24 bg-app-primary rounded-[100px]" />
+                <div className="flex flex-col items-center gap-1.5 self-stretch w-full relative flex-[0_0_auto]">
+                  <h2 className="self-stretch mt-[-1.00px] font-[number:var(--title-18px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-18px-bold-font-size)] text-center leading-[var(--title-18px-bold-line-height)] relative font-title-18px-bold tracking-[var(--title-18px-bold-letter-spacing)] [font-style:var(--title-18px-bold-font-style)]">
+                    Ammar Al Sawwa
+                  </h2>
+                  <div className="inline-flex items-center gap-1.5 relative flex-[0_0_auto]">
+                    <span className="relative w-fit mt-[-1.00px] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-xs text-center tracking-[0] leading-[15.6px] whitespace-nowrap">
+                      US-001
+                    </span>
+                    <div className="relative w-1 h-1 bg-border-default rounded-sm" />
+                    <span className="relative w-fit mt-[-1.00px] [font-family:'Lato',Helvetica] font-normal text-on-surface-primary text-xs text-center tracking-[0] leading-[15.6px] whitespace-nowrap">
+                      Staff
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </CardContent>
+              </section>
 
-            <Separator className="absolute w-[246px] h-px top-[258px] left-4" />
+              <Separator className="absolute w-[246px] h-px top-[258px] left-4" />
 
-            <section className="flex flex-col w-[245px] items-start absolute top-72 left-4">
-              <div className="flex flex-col w-[245px] items-start gap-4 relative">
-                <h3 className="relative w-fit mt-[-1.00px] font-title-14px-bold font-[number:var(--title-14px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-bold-font-size)] tracking-[var(--title-14px-bold-letter-spacing)] leading-[var(--title-14px-bold-line-height)] whitespace-nowrap [font-style:var(--title-14px-bold-font-style)]">
-                  {t('Personal Info')}
-                </h3>
+              <section className="flex flex-col w-[245px] items-start absolute top-72 left-4">
+                <div className="flex flex-col w-[245px] items-start gap-4 relative">
+                  <h3 className="relative w-fit mt-[-1.00px] font-title-14px-bold font-[number:var(--title-14px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-bold-font-size)] tracking-[var(--title-14px-bold-letter-spacing)] leading-[var(--title-14px-bold-line-height)] whitespace-nowrap [font-style:var(--title-14px-bold-font-style)]">
+                    {t("Personal Info")}
+                  </h3>
 
-                <div className="inline-flex flex-col items-start gap-4 px-4 py-0 relative flex-[0_0_auto]">
-                  {personalInfoData.map((item, index) => (
-                    <div
-                      key={index}
-                      className="inline-flex items-start gap-4 relative flex-[0_0_auto]"
-                    >
-                      <div className="flex w-[110px] items-center justify-center gap-2.5 px-0 py-0.5 relative">
-                        <span className=" text-sm relative w-[108px] mt-[-1.00px] font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-secondary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
-                          {t(`${item.label}`)}
+                  <div className="inline-flex flex-col items-start gap-4 px-4 py-0 relative flex-[0_0_auto]">
+                    {personalInfoData.map((item, index) => (
+                      <div
+                        key={index}
+                        className="inline-flex items-start gap-4 relative flex-[0_0_auto]"
+                      >
+                        <div className="flex w-[110px] items-center justify-center gap-2.5 px-0 py-0.5 relative">
+                          <span className=" text-sm relative w-[108px] mt-[-1.00px] font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-secondary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
+                            {t(`${item.label}`)}
+                          </span>
+                        </div>
+                        <span className=" text-sm relative w-fit mt-[-1.00px] font-p-14px-bold font-[number:var(--p-14px-bold-font-weight)] text-on-surface-primary text-[length:var(--p-14px-bold-font-size)] tracking-[var(--p-14px-bold-letter-spacing)] leading-[var(--p-14px-bold-line-height)] whitespace-nowrap [font-style:var(--p-14px-bold-font-style)]">
+                          {item.value}
                         </span>
                       </div>
-                      <span className=" text-sm relative w-fit mt-[-1.00px] font-p-14px-bold font-[number:var(--p-14px-bold-font-weight)] text-on-surface-primary text-[length:var(--p-14px-bold-font-size)] tracking-[var(--p-14px-bold-letter-spacing)] leading-[var(--p-14px-bold-line-height)] whitespace-nowrap [font-style:var(--p-14px-bold-font-style)]">
-                        {item.value}
-                      </span>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </section>
+              </section>
 
-            <Separator className="absolute w-[246px] h-px top-[595px] left-4" />
+              <Separator className="absolute w-[246px] h-px top-[595px] left-4" />
 
-            <section className="flex flex-col h-[226px] w-[245px] items-start  absolute top-[612px] left-4">
-              <h3 className="relative w-fit mt-[-1.00px] font-title-14px-bold font-[number:var(--title-14px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-bold-font-size)] tracking-[var(--title-14px-bold-letter-spacing)] leading-[var(--title-14px-bold-line-height)] whitespace-nowrap [font-style:var(--title-14px-bold-font-style)]">
-                {t('Contact Info')}
-              </h3>
+              <section className="flex flex-col h-[226px] w-[245px] items-start  absolute top-[612px] left-4">
+                <h3 className="relative w-fit mt-[-1.00px] font-title-14px-bold font-[number:var(--title-14px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-bold-font-size)] tracking-[var(--title-14px-bold-letter-spacing)] leading-[var(--title-14px-bold-line-height)] whitespace-nowrap [font-style:var(--title-14px-bold-font-style)]">
+                  {t("Contact Info")}
+                </h3>
 
-              <div className="inline-flex items-center relative flex-[0_0_auto]">
-                <div className="inline-flex flex-col items-start relative flex-[0_0_auto]">
-                  {contactInfoData.map((item, index) => (
-                    <div
-                      key={index}
-                      className="inline-flex w-[261px] items-center gap-3  py-0 relative flex-[0_0_auto]"
-                    >
-                      <div className="inline-flex items-start gap-2 p-[9px] relative flex-[0_0_auto] bg-primary-light rounded-[20px]">
-                        <img
-                          className="relative w-[36px] h-[36px]"
-                          alt={`Contact ${index}`}
-                          src={item.icon}
-                        />
+                <div className="inline-flex items-center relative flex-[0_0_auto]">
+                  <div className="inline-flex flex-col items-start relative flex-[0_0_auto]">
+                    {contactInfoData.map((item, index) => (
+                      <div
+                        key={index}
+                        className="inline-flex w-[261px] items-center gap-3  py-0 relative flex-[0_0_auto]"
+                      >
+                        <div className="inline-flex items-start gap-2 p-[9px] relative flex-[0_0_auto] bg-primary-light rounded-[20px]">
+                          <img
+                            className="relative w-[36px] h-[36px]"
+                            alt={`Contact ${index}`}
+                            src={item.icon}
+                          />
+                        </div>
+                        <div className="font-[number:var(--title-12px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-12px-bold-font-size)] leading-[var(--title-12px-bold-line-height)] relative font-title-12px-bold tracking-[var(--title-12px-bold-letter-spacing)] [font-style:var(--title-12px-bold-font-style)]">
+                          {item.content.split("\n").map((line, lineIndex) => (
+                            <div key={lineIndex}>{line}</div>
+                          ))}
+                        </div>
+                        {item.hasEdit && (
+                          <button>
+                            <img
+                              className="absolute w-[24px] h-[25px] top-[14px] left-[211px]"
+                              alt="send email"
+                              src="/email2.svg"
+                            />
+                          </button>
+                        )}
                       </div>
-                      <div className="font-[number:var(--title-12px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-12px-bold-font-size)] leading-[var(--title-12px-bold-line-height)] relative font-title-12px-bold tracking-[var(--title-12px-bold-letter-spacing)] [font-style:var(--title-12px-bold-font-style)]">
-                        {item.content.split("\n").map((line, lineIndex) => (
-                          <div key={lineIndex}>{line}</div>
-                        ))}
-                      </div>
-                      {item.hasEdit && (
-                        <img
-                          className="absolute w-[15px] h-[15px] top-[18px] left-[211px]"
-                          alt="Icon notepencil"
-                          src="/icon-notepencil.svg"
-                        />
-                      )}
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            
           </Card>
         </aside>
 
         <section className="flex flex-col w-[865px] items-start relative">
           <div className="relative self-stretch w-full">
-            <Card  className="absolute w-[865px] h-[342px] top-10 -left-1 shadow-[0px_20px_24px_-4px_#0A0D121A] bg-[#FFFDFC] rounded-[16px]">
-              <CardContent  className="flex flex-col w-[795px] items-start justify-center gap-6 p-[24px]">
-                <h2  className="relative text-[14px] font-bold w-fit mt-[-1.00px] font-title-14px-bold font-[number:var(--title-14px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-bold-font-size)] tracking-[var(--title-14px-bold-letter-spacing)] leading-[var(--title-14px-bold-line-height)] whitespace-nowrap [font-style:var(--title-14px-bold-font-style)]">
-                  {t('Account Information')}
+            <Card className="absolute w-[865px] h-[342px] top-10 -left-1 shadow-[0px_20px_24px_-4px_#0A0D121A] bg-[#FFFDFC] rounded-[16px]">
+              <CardContent className="flex flex-col  items-start justify-center gap-6 p-[24px]">
+                <h2 className="relative text-[14px] font-bold w-fit mt-[-1.00px] font-title-14px-bold font-[number:var(--title-14px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-bold-font-size)] tracking-[var(--title-14px-bold-letter-spacing)] leading-[var(--title-14px-bold-line-height)] whitespace-nowrap [font-style:var(--title-14px-bold-font-style)]">
+                  {t("Account Information")}
                 </h2>
 
-                <div className="flex items-center gap-[118px] relative self-stretch w-full">
+                <div className="flex items-center relative self-stretch w-full">
                   <div className="relative w-[398px]">
                     <div className="w-[541px] flex items-start gap-6 px-4 py-0 relative">
                       <div className="inline-flex flex-col items-start justify-center gap-6 relative flex-[0_0_auto]">
@@ -307,10 +327,10 @@ export const AccountInformationSection = ({
                             key={index}
                             className="inline-flex items-center justify-center gap-4 relative flex-[0_0_auto]"
                           >
-                            <span className="w-[108px] text-[14px] font-semibold mt-[-1.00px] font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-secondary text-[length:var(--title-14px-semibold-font-size)] leading-[var(--title-14px-semibold-line-height)] relative font-title-14px-semibold tracking-[var(--title-14px-semibold-letter-spacing)] [font-style:var(--title-14px-semibold-font-style)]">
+                            <span className="w-[108px] text-[14px] font-semibold mt-[-1.00px] font-[number:var(--title-14px-semibold-font-weight)] text-[black] text-[length:var(--title-14px-semibold-font-size)] leading-[var(--title-14px-semibold-line-height)] relative font-title-14px-semibold tracking-[var(--title-14px-semibold-letter-spacing)] [font-style:var(--title-14px-semibold-font-style)]">
                               {t(`${item.label}`)}
                             </span>
-                            <span className="w-fit text-[14px] font-bold mt-[-1.00px] font-[number:var(--title-14px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-bold-font-size)] leading-[var(--title-14px-bold-line-height)] whitespace-nowrap relative font-title-14px-bold tracking-[var(--title-14px-bold-letter-spacing)] [font-style:var(--title-14px-bold-font-style)]">
+                            <span className="w-fit text-[14px] font-regular mt-[-1.00px] font-[number:var(--title-14px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-bold-font-size)] leading-[var(--title-14px-bold-line-height)] whitespace-nowrap relative font-title-14px-bold tracking-[var(--title-14px-bold-letter-spacing)] [font-style:var(--title-14px-bold-font-style)]">
                               {item.value}
                             </span>
                           </div>
@@ -327,17 +347,13 @@ export const AccountInformationSection = ({
                             key={index}
                             className="flex items-center justify-center gap-4 relative flex-[0_0_auto]"
                           >
-                            <span className="w-[108px] text-[14px] font-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-secondary text-[length:var(--title-14px-semibold-font-size)] leading-[var(--title-14px-semibold-line-height)] relative font-title-14px-semibold tracking-[var(--title-14px-semibold-letter-spacing)] [font-style:var(--title-14px-semibold-font-style)]">
+                            <span className="w-[108px] text-[14px] font-semibold font-[number:var(--title-14px-semibold-font-weight)] text-[black] text-[length:var(--title-14px-semibold-font-size)] leading-[var(--title-14px-semibold-line-height)] relative font-title-14px-semibold tracking-[var(--title-14px-semibold-letter-spacing)] [font-style:var(--title-14px-semibold-font-style)]">
                               {t(`${item.label}`)}
                             </span>
                             {item.isBadge ? (
-                              <Badge className="flex w-[58px] h-6 items-center justify-center gap-[5px] px-2.5 py-1 relative bg-app-primary rounded-[14px]">
-                                <span className="relative text-[14px] w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)]">
-                                  {item.value}
-                                </span>
-                              </Badge>
+                              <SwitchWithLabel />
                             ) : (
-                              <span className="w-fit text-[14px] font-bold font-[number:var(--p-14px-bold-font-weight)] text-on-surface-primary text-[length:var(--p-14px-bold-font-size)] leading-[var(--p-14px-bold-line-height)] whitespace-nowrap relative font-p-14px-bold tracking-[var(--p-14px-bold-letter-spacing)] [font-style:var(--p-14px-bold-font-style)]">
+                              <span className="w-fit text-[14px] font-regular font-[number:var(--p-14px-bold-font-weight)] text-on-surface-primary text-[length:var(--p-14px-bold-font-size)] leading-[var(--p-14px-bold-line-height)] whitespace-nowrap relative font-p-14px-bold tracking-[var(--p-14px-bold-letter-spacing)] [font-style:var(--p-14px-bold-font-style)]">
                                 {item.value}
                               </span>
                             )}
@@ -354,30 +370,30 @@ export const AccountInformationSection = ({
               <CardContent className="flex flex-col w-[795px] items-start justify-center gap-6 relative p-[24px]">
                 <div className="relative w-[787px] bg-white">
                   <h2 className="absolute text-[14px] font-bold -top-px left-0 font-text-text-bold-text-sm-bold font-[number:var(--text-text-bold-text-sm-bold-font-weight)] text-on-surface-primary text-[length:var(--text-text-bold-text-sm-bold-font-size)] tracking-[var(--text-text-bold-text-sm-bold-letter-spacing)] leading-[var(--text-text-bold-text-sm-bold-line-height)] whitespace-nowrap [font-style:var(--text-text-bold-text-sm-bold-font-style)]">
-                    {t('Employment information')}
+                    {t("Employment information")}
                   </h2>
 
                   <div className="inline-flex items-center justify-center gap-4 absolute top-[50px] left-0">
-                    <span className="w-[150px] text-[14px] font-semibold mt-[-1.00px] font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-secondary text-[length:var(--title-14px-semibold-font-size)] leading-[var(--title-14px-semibold-line-height)] relative font-title-14px-semibold tracking-[var(--title-14px-semibold-letter-spacing)] [font-style:var(--title-14px-semibold-font-style)]">
-                      {t('Job Title')}
+                    <span className="w-[150px] text-[14px] font-semibold mt-[-1.00px] font-[number:var(--title-14px-semibold-font-weight)] text-[black] text-[length:var(--title-14px-semibold-font-size)] leading-[var(--title-14px-semibold-line-height)] relative font-title-14px-semibold tracking-[var(--title-14px-semibold-letter-spacing)] [font-style:var(--title-14px-semibold-font-style)]">
+                      {t("Job Title")}
                     </span>
-                    <span className="w-fit mt-[-1.00px] text-[14px] font-bold font-[number:var(--title-14px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-bold-font-size)] leading-[var(--title-14px-bold-line-height)] whitespace-nowrap relative font-title-14px-bold tracking-[var(--title-14px-bold-letter-spacing)] [font-style:var(--title-14px-bold-font-style)]">
+                    <span className="w-fit mt-[-1.00px] text-[14px] font-regular font-[number:var(--title-14px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-bold-font-size)] leading-[var(--title-14px-bold-line-height)] whitespace-nowrap relative font-title-14px-bold tracking-[var(--title-14px-bold-letter-spacing)] [font-style:var(--title-14px-bold-font-style)]">
                       Manager
                     </span>
                   </div>
 
                   <div className="inline-flex items-center justify-center gap-4 absolute top-[92px] left-0">
-                    <span className="w-[108px] text-[14px] font-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-secondary text-[length:var(--title-14px-semibold-font-size)] leading-[var(--title-14px-semibold-line-height)] relative font-title-14px-semibold tracking-[var(--title-14px-semibold-letter-spacing)] [font-style:var(--title-14px-semibold-font-style)]">
-                      {t('Date of Hire')}
+                    <span className="w-[108px] text-[14px] font-semibold font-[number:var(--title-14px-semibold-font-weight)] text-[black] text-[length:var(--title-14px-semibold-font-size)] leading-[var(--title-14px-semibold-line-height)] relative font-title-14px-semibold tracking-[var(--title-14px-semibold-letter-spacing)] [font-style:var(--title-14px-semibold-font-style)]">
+                      {t("Date of Hire")}
                     </span>
-                    <span className="w-fit mt-[-1.00px] text-[14px] font-bold  font-[number:var(--p-14px-bold-font-weight)] text-on-surface-primary text-[length:var(--p-14px-bold-font-size)] leading-[var(--p-14px-bold-line-height)] whitespace-nowrap relative font-p-14px-bold tracking-[var(--p-14px-bold-letter-spacing)] [font-style:var(--p-14px-bold-font-style)]">
+                    <span className="w-fit mt-[-1.00px] text-[14px] font-regular  font-[number:var(--p-14px-bold-font-weight)] text-on-surface-primary text-[length:var(--p-14px-bold-font-size)] leading-[var(--p-14px-bold-line-height)] whitespace-nowrap relative font-p-14px-bold tracking-[var(--p-14px-bold-letter-spacing)] [font-style:var(--p-14px-bold-font-style)]">
                       April 27, 2025
                     </span>
                   </div>
 
                   <div className="inline-flex items-start gap-4 absolute top-[138px] left-0">
-                    <span className="w-[108px] text-[14px] font-semibold mt-[-1.00px] font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-secondary text-[length:var(--title-14px-semibold-font-size)] leading-[var(--title-14px-semibold-line-height)] relative font-title-14px-semibold tracking-[var(--title-14px-semibold-letter-spacing)] [font-style:var(--title-14px-semibold-font-style)]">
-                      {t('Working Days')}
+                    <span className="w-[108px] text-[14px] font-semibold mt-[-1.00px] font-[number:var(--title-14px-semibold-font-weight)] text-[black] text-[length:var(--title-14px-semibold-font-size)] leading-[var(--title-14px-semibold-line-height)] relative font-title-14px-semibold tracking-[var(--title-14px-semibold-letter-spacing)] [font-style:var(--title-14px-semibold-font-style)]">
+                      {t("Working Days")}
                     </span>
 
                     <div className="flex flex-col w-[404px] items-start relative bg-surface-default rounded-2xl overflow-hidden">
@@ -398,11 +414,6 @@ export const AccountInformationSection = ({
                               <span className="relative w-fit mt-[-1.00px] font-title-10px-regular font-[number:var(--title-10px-regular-font-weight)] text-on-surface-tertiary text-[length:var(--title-10px-regular-font-size)] tracking-[var(--title-10px-regular-letter-spacing)] leading-[var(--title-10px-regular-line-height)] whitespace-nowrap [font-style:var(--title-10px-regular-font-style)]">
                                 Shift 2
                               </span>
-                              <img
-                                className="relative w-3.5 h-3.5"
-                                alt="Icon sort"
-                                src="/icon-sort.svg"
-                              />
                             </TableHead>
                           </TableRow>
                         </TableHeader>
@@ -436,7 +447,7 @@ export const AccountInformationSection = ({
 
                   <div className="flex flex-col w-[213px] h-[410px] items-end gap-[30px] pt-[37px] pb-[22px] px-[7px] absolute top-[50px] left-[574px]">
                     <h3 className="absolute text-[14px] font-semibold -top-px left-0 font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-secondary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] whitespace-nowrap [font-style:var(--title-14px-semibold-font-style)]">
-                      {t('Documents')}
+                      {t("Documents")}
                     </h3>
 
                     {documentsData.map((doc, index) => (
@@ -472,7 +483,6 @@ export const AccountInformationSection = ({
           </div>
         </section>
       </main>
-
     </div>
   );
 };

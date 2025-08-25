@@ -28,12 +28,8 @@ export const ElementLogOutDialog = (): JSX.Element => {
           </DialogHeader>
 
           <div className="relative w-40 h-40">
-            <div className="relative w-[168px] h-[168px] -top-1 -left-1 bg-error-100 rounded-[80px] border-8 border-solid border-[#fef2f1]">
-              <img
-                className="absolute w-[81px] h-[93px] top-[30px] left-[35px]"
-                alt="Union"
-                src="/union.svg"
-              />
+            <div className="relative w-[168px] h-[168px] -top-1 -left-1 bg-[#A5C8F2] rounded-[80px] border-8 border-solid border-[#fef2f1]">
+              
             </div>
           </div>
 
@@ -43,16 +39,16 @@ export const ElementLogOutDialog = (): JSX.Element => {
                 variant="outline"
                 className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow bg-base-white rounded-[40px] overflow-hidden border border-solid border-[#d5d6d9] shadow-shadow-xs h-auto"
               >
-                <span className="text-gray-700 relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
+                <span className="text-[#414651] relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
                   Cancel
                 </span>
               </Button>
 
               <Button
-                variant="outline"
-                className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow rounded-[40px] overflow-hidden border border-solid border-[#d92c20] shadow-shadow-xs bg-transparent h-auto"
+                variant="destructive"
+                className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow bg-[#d92c20] rounded-[40px] overflow-hidden border border-solid shadow-shadow-xs h-auto"
               >
-                <span className="text-[#d92c20] relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
+                <span className="text-base-white relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
                   Log out
                 </span>
               </Button>
