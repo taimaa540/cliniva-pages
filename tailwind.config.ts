@@ -1,115 +1,185 @@
 import type { Config } from 'tailwindcss'
-import designSystem from './src/lib/design-system'  // 👈 عدّل المسار حسب موقع الملف
+import { designSystem, tailwindConfig as themeConfig } from './src/lib/design-system'
 
 const config: Config = {
   content: [
     './src/**/*.{html,js,ts,jsx,tsx}',
     'app/**/*.{ts,tsx}',
     'components/**/*.{ts,tsx}',
+    './index.html',
   ],
+  // Enable class-based dark mode
+  darkMode: 'class',
   theme: {
     extend: {
+      // Use colors from the theme-aware design system
       colors: {
-        ...designSystem.colors, // ✅ دمج ألوان designSystem
-        'app-primary': 'var(--app-primary)',
-        'app-secondary': 'var(--app-secondary)',
-        bg: 'var(--bg)',
-        black: 'var(--black)',
-        'blue-dark': 'var(--blue-dark)',
-        'gray-10': 'var(--gray-10)',
-        'gray-20': 'var(--gray-20)',
-        'gray-30': 'var(--gray-30)',
-        'gray-bg': 'var(--gray-bg)',
-        'on-surface-primary': 'var(--on-surface-primary)',
-        'on-surface-secondary': 'var(--on-surface-secondary)',
-        'on-surface-tertiary': 'var(--on-surface-tertiary)',
-        'primary-dark': 'var(--primary-dark)',
-        'secondary-dark': 'var(--secondary-dark)',
-        'secondary-light': 'var(--secondary-light)',
-        'surface-default': 'var(--surface-default)',
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        // Static colors that don't change with theme
+        ...designSystem.colors,
+        
+        // Theme-aware colors using CSS variables
+        background: {
+          primary: 'var(--theme-background-primary)',
+          secondary: 'var(--theme-background-secondary)',
+          tertiary: 'var(--theme-background-tertiary)',
+          inverse: 'var(--theme-background-inverse)',
+          overlay: 'var(--theme-background-overlay)',
+          card: 'var(--theme-background-card)',
+          modal: 'var(--theme-background-modal)',
+          popover: 'var(--theme-background-popover)',
+          // Keep backward compatibility
+          DEFAULT: 'var(--theme-background-primary)',
+        },
+        text: {
+          primary: 'var(--theme-text-primary)',
+          secondary: 'var(--theme-text-secondary)',
+          tertiary: 'var(--theme-text-tertiary)',
+          inverse: 'var(--theme-text-inverse)',
+          muted: 'var(--theme-text-muted)',
+          accent: 'var(--theme-text-accent)',
+          // Keep backward compatibility
+          DEFAULT: 'var(--theme-text-primary)',
+        },
+        border: {
+          light: 'var(--theme-border-light)',
+          medium: 'var(--theme-border-medium)',
+          dark: 'var(--theme-border-dark)',
+          focus: 'var(--theme-border-focus)',
+          // Keep backward compatibility
+          DEFAULT: 'var(--theme-border-light)',
+        },
+        surface: {
+          primary: 'var(--theme-surface-primary)',
+          secondary: 'var(--theme-surface-secondary)',
+          tertiary: 'var(--theme-surface-tertiary)',
+          hover: 'var(--theme-surface-hover)',
+          active: 'var(--theme-surface-active)',
+        },
+        
+        // Legacy color variables for backward compatibility
+        'app-primary': 'var(--theme-primary-default)',
+        'app-secondary': 'var(--theme-secondary-default)',
+        bg: 'var(--theme-background-primary)',
+        black: '#000000',
+        'blue-dark': 'var(--theme-primary-dark)',
+        'gray-10': 'var(--theme-text-tertiary)',
+        'gray-20': 'var(--theme-text-secondary)',
+        'gray-30': 'var(--theme-text-primary)',
+        'gray-bg': 'var(--theme-background-secondary)',
+        'on-surface-primary': 'var(--theme-text-primary)',
+        'on-surface-secondary': 'var(--theme-text-secondary)',
+        'on-surface-tertiary': 'var(--theme-text-tertiary)',
+        'primary-dark': 'var(--theme-primary-dark)',
+        'secondary-dark': 'var(--theme-secondary-dark)',
+        'secondary-light': 'var(--theme-secondary-light)',
+        'surface-default': 'var(--theme-surface-primary)',
+        
+        // ShadCN UI compatible colors
+        ring: 'var(--theme-border-focus)',
+        foreground: 'var(--theme-text-primary)',
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
+          DEFAULT: 'var(--theme-primary-default)',
+          foreground: '#FFFFFF',
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
+          DEFAULT: 'var(--theme-secondary-default)',
+          foreground: 'var(--theme-text-primary)',
         },
         destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
+          DEFAULT: '#ef4444',
+          foreground: '#ffffff',
         },
         muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
+          DEFAULT: 'var(--theme-surface-secondary)',
+          foreground: 'var(--theme-text-muted)',
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
+          DEFAULT: 'var(--theme-surface-hover)',
+          foreground: 'var(--theme-text-accent)',
         },
         popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
+          DEFAULT: 'var(--theme-background-popover)',
+          foreground: 'var(--theme-text-primary)',
         },
         card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
+          DEFAULT: 'var(--theme-background-card)',
+          foreground: 'var(--theme-text-primary)',
         },
+        input: 'var(--theme-surface-primary)',
       },
-      fontFamily: {
-  ...Object.fromEntries(
-    Object.entries(designSystem.typography.fontFamily).map(([key, value]) => [
-      key,
-      Array.isArray(value) ? [...value] : value,
-    ])
-  ),
-  // ثم أضف خطوطك اليدوية
-  'btn-11px-medium': 'var(--btn-11px-medium-font-family)',
-  'btn-12px-medium': 'var(--btn-12px-medium-font-family)',
-  'btn-14px-medium': 'var(--btn-14px-medium-font-family)',
-  'h5-22px-bold': 'var(--h5-22px-bold-font-family)',
-  'p-11px-regular': 'var(--p-11px-regular-font-family)',
-  'p-14px-regular': 'var(--p-14px-regular-font-family)',
-  'title-10px-regular': 'var(--title-10px-regular-font-family)',
-  'title-11px-regular': 'var(--title-11px-regular-font-family)',
-  'title-12px-bold': 'var(--title-12px-bold-font-family)',
-  'title-12px-regular': 'var(--title-12px-regular-font-family)',
-  'title-12px-semibold': 'var(--title-12px-semibold-font-family)',
-  'title-16px-bold': 'var(--title-16px-bold-font-family)',
-},
-
+             fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['Merriweather', 'Georgia', 'serif'],
+        mono: ['Fira Code', 'Consolas', 'monospace'],
+      },
       fontSize: {
-        ...designSystem.typography.fontSize, // ✅ دمج أحجام الخطوط
+        xs: '0.75rem',
+        sm: '0.875rem',
+        base: '1rem',
+        lg: '1.125rem',
+        xl: '1.25rem',
+        '2xl': '1.5rem',
+        '3xl': '1.875rem',
+        '4xl': '2.25rem',
+        '5xl': '3rem',
+        '6xl': '3.75rem',
+        '7xl': '4.5rem',
       },
       fontWeight: {
-        ...designSystem.typography.fontWeight, // ✅ دمج أوزان الخطوط
-      },
-      lineHeight: {
-        ...designSystem.typography.lineHeight,
-      },
-      letterSpacing: {
-        ...designSystem.typography.letterSpacing,
+        thin: '100',
+        extralight: '200',
+        light: '300',
+        normal: '400',
+        medium: '500',
+        semibold: '600',
+        bold: '700',
+        extrabold: '800',
+        black: '900',
       },
       spacing: {
-        ...designSystem.spacing,
+        px: '1px',
+        0: '0',
+        0.5: '0.125rem',
+        1: '0.25rem',
+        1.5: '0.375rem',
+        2: '0.5rem',
+        2.5: '0.625rem',
+        3: '0.75rem',
+        3.5: '0.875rem',
+        4: '1rem',
+        5: '1.25rem',
+        6: '1.5rem',
+        7: '1.75rem',
+        8: '2rem',
+        9: '2.25rem',
+        10: '2.5rem',
+        11: '2.75rem',
+        12: '3rem',
+        14: '3.5rem',
+        16: '4rem',
+        20: '5rem',
+        24: '6rem',
+        28: '7rem',
+        32: '8rem',
+        36: '9rem',
+        40: '10rem',
+        44: '11rem',
+        48: '12rem',
+        52: '13rem',
+        56: '14rem',
+        60: '15rem',
+        64: '16rem',
+        72: '18rem',
+        80: '20rem',
+        96: '24rem',
       },
-      borderRadius: {
-        ...designSystem.borderRadius,
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
-      },
-      borderWidth: {
-        ...designSystem.borderWidth,
-      },
-      boxShadow: {
-        ...designSystem.boxShadow,
-        'switch-out-shadow': 'var(--switch-out-shadow)',
+      screens: {
+        xs: '475px',
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1536px',
       },
       keyframes: {
         'accordion-down': {
@@ -125,22 +195,21 @@ const config: Config = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
-      screens: {
-        ...designSystem.breakpoints,
-        '2xl': '1400px', // أو يمكنك الإبقاء على هذا فقط لو كنت تفضل تخصيصه
-      },
     },
-    container: {
-      center: true,
-      padding: '2rem',
-      screens: {
-        ...designSystem.breakpoints,
-        '2xl': '1400px',
-      },
+  },
+  container: {
+    center: true,
+    padding: '2rem',
+    screens: {
+      xs: '475px',
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1400px',
     },
   },
   plugins: [],
-  darkMode: ['class'],
 }
 
 export default config
