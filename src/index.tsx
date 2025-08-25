@@ -12,6 +12,7 @@ import { ElementLogOutDialog } from "./screens/ElementLogOutDialog";
 import { ThemeProvider } from "./lib/theme-context";
 import { ThemeToggle } from "./components/theme/ThemeSwitcher";
 import { ThemeDemo } from "./components/theme/ThemeDemo";
+import { ElementViewCompany } from "./screens/ElementVeiwCompany/ElementViewCompany";
 
 createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
@@ -29,9 +30,12 @@ createRoot(document.getElementById("app") as HTMLElement).render(
         {/* Original app components */}
         {/* <ElementUsersNoDataTo /> */}
         <ElementUsersAddNew />
+    {/*<ElementViewCompany/>/*}
+        {/* <ThemeDemo/> */}
         {/* <ElementUsersDesktop/> */}
+        
         {/* <ElementUserDetails/> */}
-        {/* <ElementEditUserDetails/> */}
+        <ElementEditUserDetails/>
         {/* <ElementChangeStatus/> */}
         {/* <ElementDeleteUser title="user"/> */}
         {/* <ElementLogOutDialog/> */}
