@@ -9,18 +9,33 @@ import { ElementEditUserDetails } from "./screens/ElementEditUserDetails/Element
 import { ElementChangeStatus } from "./screens/ElementChangeStatus";
 import { ElementDeleteUser } from "./screens/ElementDeleteUser";
 import { ElementLogOutDialog } from "./screens/ElementLogOutDialog";
-import { ChoosePlan } from "./screens/choosePlan";
+import { ThemeProvider } from "./lib/theme-context";
+import { ThemeToggle } from "./components/theme/ThemeSwitcher";
+import { ThemeDemo } from "./components/theme/ThemeDemo";
 
 createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
-    {/* <ChoosePlan /> */}
-    {/* <ElementUsersNoDataTo /> */}
-    <ElementUsersAddNew />
-    {/* <ElementUsersDesktop/> */}
-    {/* <ElementUserDetails/> */}
-    {/* <ElementEditUserDetails/> */}
-    {/* <ElementChangeStatus/> */}
-    {/* <ElementDeleteUser title="user"/> */}
-    {/* <ElementLogOutDialog/> */}
+    <ThemeProvider defaultTheme="light" storageKey="cliniva-theme">
+      {/* Theme toggle in top-right corner */}
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
+
+      {/* Main app content with theme transition */}
+      <div className="theme-transition">
+        {/* Theme Demo - Uncomment to see theme system in action */}
+        {/* <ThemeDemo /> */}
+
+        {/* Original app components */}
+        {/* <ElementUsersNoDataTo /> */}
+        <ElementUsersAddNew />
+        {/* <ElementUsersDesktop/> */}
+        {/* <ElementUserDetails/> */}
+        {/* <ElementEditUserDetails/> */}
+        {/* <ElementChangeStatus/> */}
+        {/* <ElementDeleteUser title="user"/> */}
+        {/* <ElementLogOutDialog/> */}
+      </div>
+    </ThemeProvider>
   </StrictMode>
 );

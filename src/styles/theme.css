@@ -1,0 +1,303 @@
+/* Theme Variables for Cliniva SYS */
+/* This file provides base CSS variables that work with the dynamic theme system */
+
+:root {
+  /* Default light theme variables */
+  --theme-primary-light: #E1EDFB;
+  --theme-primary-default: #69A3E9;
+  --theme-primary-dark: #3071BF;
+  
+  --theme-secondary-light: #E2F6EC;
+  --theme-secondary-default: #83DFDF;
+  --theme-secondary-dark: #00B48D;
+  
+  --theme-background-primary: #FFFDFC;
+  --theme-background-secondary: #FAFAF8;
+  --theme-background-tertiary: #FAF6F5;
+  --theme-background-inverse: #080101;
+  --theme-background-overlay: rgba(0, 0, 0, 0.5);
+  --theme-background-card: #FFFDFC;
+  --theme-background-modal: #FFFDFC;
+  --theme-background-popover: #FAFAF8;
+  
+  --theme-text-primary: #414651;
+  --theme-text-secondary: #717680;
+  --theme-text-tertiary: #8B8B8B;
+  --theme-text-inverse: #FCFDFF;
+  --theme-text-muted: #9CA3AF;
+  --theme-text-accent: #2563EB;
+  
+  --theme-border-light: #E4E2DD;
+  --theme-border-medium: #B8B1A9;
+  --theme-border-dark: #717680;
+  --theme-border-focus: #69A3E9;
+  
+  --theme-surface-primary: #FFFDFC;
+  --theme-surface-secondary: #FAFAF8;
+  --theme-surface-tertiary: #FAF6F5;
+  --theme-surface-hover: #F5F3F0;
+  --theme-surface-active: #F0EDE8;
+}
+
+/* Dark theme variables (applied when .dark class is present) */
+.dark {
+  --theme-primary-light: #08101A;
+  --theme-primary-default: #295283;
+  --theme-primary-dark: #3A6B9C;
+  
+  --theme-secondary-light: #0C1A13;
+  --theme-secondary-default: #2E6F6F;
+  --theme-secondary-dark: #66E4C9;
+  
+  --theme-background-primary: #030000;
+  --theme-background-secondary: #080806;
+  --theme-background-tertiary: #0A0707;
+  --theme-background-inverse: #FFFDFC;
+  --theme-background-overlay: rgba(0, 0, 0, 0.8);
+  --theme-background-card: #161616;
+  --theme-background-modal: #161616;
+  --theme-background-popover: #161616;
+  
+  --theme-text-primary: #3d78bd;
+  --theme-text-secondary: #2b9999;
+  --theme-text-tertiary: #9CA3AF;
+  --theme-text-inverse: #030000;
+  --theme-text-muted: #6B7280;
+  --theme-text-accent: #66E4C9;
+  
+  --theme-border-light: #21201C;
+  --theme-border-medium: #55514A;
+  --theme-border-dark: #81858C;
+  --theme-border-focus: #66E4C9;
+  
+  --theme-surface-primary: #161616;
+  --theme-surface-secondary: #1A1A1A;
+  --theme-surface-tertiary: #0A0707;
+  --theme-surface-hover: #202020;
+  --theme-surface-active: #2A2A2A;
+}
+
+/* Base styles that adapt to theme */
+* {
+  border-color: var(--theme-border-light);
+}
+
+body {
+  background-color: var(--theme-background-primary);
+  color: var(--theme-text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme transition animations */
+.theme-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar for dark/light themes */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--theme-surface-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theme-border-medium);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-border-dark);
+}
+
+/* Focus ring that adapts to theme */
+.focus-ring {
+  outline: 2px solid var(--theme-border-focus);
+  outline-offset: 2px;
+}
+
+/* Card component styles */
+.theme-card {
+  background-color: var(--theme-background-card);
+  border: 1px solid var(--theme-border-light);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.theme-card:hover {
+  background-color: var(--theme-surface-hover);
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: var(--theme-primary-default);
+  color: #FFFFFF; /* White text for primary buttons in both themes */
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--theme-primary-dark);
+  color: #FFFFFF; /* Keep white text on hover */
+}
+
+.btn-secondary {
+  background-color: var(--theme-surface-secondary);
+  color: var(--theme-text-primary);
+  border: 1px solid var(--theme-border-light);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--theme-surface-hover);
+  border-color: var(--theme-border-medium);
+}
+
+/* Input styles */
+.input-themed {
+  background-color: var(--theme-surface-primary);
+  color: var(--theme-text-primary);
+  border: 1px solid var(--theme-border-light);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-themed:focus {
+  border-color: var(--theme-border-focus);
+  box-shadow: 0 0 0 3px rgba(105, 163, 233, 0.2);
+}
+
+/* Focus styles for dark mode */
+.dark .input-themed:focus {
+  box-shadow: 0 0 0 3px rgba(102, 228, 201, 0.3);
+}
+
+/* Modal/Dialog overlay */
+.modal-overlay {
+  background-color: var(--theme-background-overlay);
+}
+
+/* Popover styles */
+.popover-themed {
+  background-color: var(--theme-background-popover);
+  color: var(--theme-text-primary);
+  border: 1px solid var(--theme-border-light);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Text color utilities */
+.text-primary {
+  color: var(--theme-text-primary);
+}
+
+.text-secondary {
+  color: var(--theme-text-secondary);
+}
+
+.text-tertiary {
+  color: var(--theme-text-tertiary);
+}
+
+.text-muted {
+  color: var(--theme-text-muted);
+}
+
+.text-accent {
+  color: var(--theme-text-accent);
+}
+
+/* Background color utilities */
+.bg-primary {
+  background-color: var(--theme-background-primary);
+}
+
+.bg-secondary {
+  background-color: var(--theme-background-secondary);
+}
+
+.bg-tertiary {
+  background-color: var(--theme-background-tertiary);
+}
+
+.bg-surface {
+  background-color: var(--theme-surface-primary);
+}
+
+.bg-surface-hover {
+  background-color: var(--theme-surface-hover);
+}
+
+/* Border color utilities */
+.border-light {
+  border-color: var(--theme-border-light);
+}
+
+.border-medium {
+  border-color: var(--theme-border-medium);
+}
+
+.border-dark {
+  border-color: var(--theme-border-dark);
+}
+
+/* Theme-aware shadows */
+.shadow-card {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.dark .shadow-card {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.dark .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+}
+
+/* Smooth transitions for theme switching */
+.theme-transition,
+.theme-transition * {
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Print styles */
+@media print {
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .theme-card {
+    border-width: 2px;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    border-width: 2px;
+    border-style: solid;
+    border-color: currentColor;
+  }
+  
+  .input-themed {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .theme-transition,
+  .theme-transition * {
+    transition: none !important;
+    animation: none !important;
+  }
+} 
