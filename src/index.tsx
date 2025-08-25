@@ -16,8 +16,8 @@ createRoot(document.getElementById("app") as HTMLElement).render(
     {/* <ElementUsersNoDataTo /> */}
     {/* <ElementUsersAddNew/> */}
     {/* <ElementUsersDesktop/> */}
-    <ElementUserDetails/>
-    {/* <ElementEditUserDetails/> */}
+    {/* <ElementUserDetails/> */}
+    <ElementEditUserDetails/>
     {/* <ElementChangeStatus/> */}
     {/* <ElementDeleteUser title="user"/> */}
     {/* <ElementLogOutDialog/> */}
