@@ -1,4 +1,4 @@
-import { ArrowRightIcon, CheckIcon } from "lucide-react";
+import { ArrowRightIcon, CheckIcon, ArrowLeft} from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
 
@@ -12,7 +12,6 @@ const planData = [
       "Multi-location support",
       "Role hierarchy across all levels",
     ],
-    titleColor: "text-[#5a5a5a]",
   },
   {
     title: "Complex Plan",
@@ -23,7 +22,6 @@ const planData = [
       "Department-based control",
       "Full visibility over all clinics",
     ],
-    titleColor: "text-on-surface-primary",
   },
   {
     title: "Single Clinic Plan",
@@ -34,133 +32,102 @@ const planData = [
       "Quick onboarding",
       "Direct management by the clinic owner or manager",
     ],
-    titleColor: "text-[#5a5a5a]",
   },
 ];
 
 export const ChoosePlan = (): JSX.Element => {
   return (
-    <div className="w-[1440px] h-[900px] bg-surface-default overflow-hidden">
-        <img
-            className="absolute top-[19px] left-[180px] "
-            alt="Union"
-            src="/Group.svg"
-          />
-          <img
-            className="absolute top-[19px] right-[102px] "
-            alt="Union"
-            src="/Group2.svg"
-          />
-          <img
-            className="absolute bottom-[19px] left-[180px] "
-            alt="Union"
-            src="/Group3.svg"
-          />
-          <img
-            className="absolute bottom-[19px] right-[102px]"
-            alt="Union"
-            src="/Group4.svg"
-          />
-      {/* <div className="relative top-[-84px] left-[-111px] w-[1833px] h-[1110px]">
-        <div className="absolute top-0 left-0 w-[1833px] h-[1110px]">
-          <div className="w-[654px] h-[654px] top-0 left-0 rounded-[327px] absolute bg-secondary-light blur-[250px] opacity-40" />
+    <div className=" h-[695px] bg-surface-default overflow-hidden">
+      <img
+        className="absolute top-[19px] left-[80px] "
+        alt="Union"
+        src="/Group.svg"
+      />
+      <img
+        className="absolute top-[40px] right-[105px] "
+        alt="Union"
+        src="/Group2.svg"
+      />
+      <img
+        className="absolute bottom-[0px] left-[0px] "
+        alt="Union"
+        src="/Group3.svg"
+      />
+      <img
+        className="absolute bottom-[19px] right-[80px]"
+        alt="Union"
+        src="/Group4.svg"
+      />
+      <div >
+        <button className="group hover:bg-accent flex gap-4 absolute left-[220px] top-[30px] p-2.5 rounded-[16px]" >
+          <ArrowLeft className=" group-hover:animate-arrow-bounce-to-left"/>
+          <h6>Back to Login Page</h6>
+        </button>
+      </div>
+      <div className="relative top-[80px] left-[190px] w-[1134px] h-[537px]">
+        <div className="flex flex-col w-[1134px] h-[537px] items-center gap-10">
+          <header className="flex flex-col items-center gap-4 relative self-stretch w-full flex-[0_0_auto]">
+            <h1 className="text-[48px] font-bold text-primary">
+              Choose Your Operational Structure
+            </h1>
 
-          <div className="w-[692px] h-[669px] top-[441px] left-[1141px] rounded-[346px/334.5px] absolute bg-secondary-light blur-[250px] opacity-40" />
+            <p className="font-lato font-semibold text-on-surface-tertiary text-[20px] text-center tracking-[0] leading-[114%]">
+              This structure will help us customize your system.&nbsp;&nbsp;You
+              can&apos;t change it later
+            </p>
+          </header>
 
-          <div className="absolute w-[110px] h-[110px] top-[107px] left-[197px] rotate-[-165deg]">
-            <img
-              className="absolute w-[135px] h-[110px] -top-3 -left-4 rotate-[165deg]"
-              alt="Union"
-              src="/union-1.svg"
-            />
-          </div>
+          <main className="inline-flex items-center justify-center gap-12 relative flex-[0_0_auto]">
+            {planData.map((plan, index) => (
+              <Card
+                key={index}
+                className="inline-flex hover:shadow-lg hover:-translate-y-2 transition-all duration-300 ease-in-out flex-col h-[400px] items-center justify-center gap-8 px-[24px] py-[30px] relative flex-[0_0_auto] bg-white rounded-[20px] overflow-hidden border border-solid border-[#00b48d]"
+              >
+                <CardContent className="p-0 flex flex-col items-center justify-center gap-8 w-full h-full">
+                  <div className="inline-flex flex-col items-center justify-center gap-5 relative flex-[0_0_auto] mt-[-2.50px]">
+                    <h3
+                      className={`font-lato text-[26px] font-semibold text-on-surface-primary text-center tracking-[0] leading-[114%]`}
+                    >
+                      {plan.title}
+                    </h3>
 
-          <div className="flex flex-col w-[1134px] h-[537px] items-center gap-10 absolute top-[266px] left-[264px]">
-            <header className="flex flex-col items-center gap-4 relative self-stretch w-full flex-[0_0_auto]">
-              <h1 className="relative self-stretch mt-[-1.00px] font-title-page font-[number:var(--title-page-font-weight)] text-primary-dark text-[length:var(--title-page-font-size)] text-center tracking-[var(--title-page-letter-spacing)] leading-[var(--title-page-line-height)] [font-style:var(--title-page-font-style)]">
-                Choose Your Operational Structure
-              </h1>
 
-              <p className="relative w-[852px] [font-family:'Lato',Helvetica] font-semibold text-on-surface-tertiary text-xl text-center tracking-[0] leading-[22.8px]">
-                This structure will help us customize your
-                system.&nbsp;&nbsp;You can&apos;t change it later
-              </p>
-            </header>
+                      <p className="w-[252px] font-lato font-semibold text-on-surface-secondary text-[14px] text-center tracking-[0] leading-[125%]">
+                        {plan.description}
+                      </p>
+                    
+                  </div>
 
-            <main className="inline-flex items-center justify-center gap-12 relative flex-[0_0_auto]">
-              {planData.map((plan, index) => (
-                <Card
-                  key={index}
-                  className="inline-flex flex-col h-[400px] items-center justify-center gap-8 px-[29px] py-[30px] relative flex-[0_0_auto] bg-white rounded-[20px] overflow-hidden border border-solid border-[#00b48d]"
-                >
-                  <CardContent className="p-0 flex flex-col items-center justify-center gap-8 w-full h-full">
-                    <div className="inline-flex flex-col items-center justify-center gap-5 relative flex-[0_0_auto] mt-[-2.50px]">
-                      <h2
-                        className={`relative w-fit mt-[-1.00px] [font-family:'Lato',Helvetica] font-bold ${plan.titleColor} text-3xl text-center tracking-[0] leading-[normal] whitespace-nowrap`}
+                  <hr className="w-[284px] text-on-surface-secondary"/>
+
+                  <div className="flex flex-col items-start gap-5 relative flex-[0_0_auto]">
+                    {plan.features.map((feature, featureIndex) => (
+                      <div
+                        key={featureIndex}
+                        className="inline-flex w-[252px] items-center gap-[7px] relative flex-[0_0_auto]"
                       >
-                        {plan.title}
-                      </h2>
-
-                      <div className="inline-flex items-center justify-end gap-[3px] relative flex-[0_0_auto]">
-                        <p className="relative w-[207px] mt-[-1.00px] [font-family:'Lato',Helvetica] font-medium text-on-surface-secondary text-sm text-center tracking-[0] leading-[normal]">
-                          {plan.description}
-                        </p>
-                      </div>
-                    </div>
-
-                    <img
-                      className="relative w-[248px] h-px object-cover"
-                      alt="Vector"
-                      src="/vector-1.svg"
-                    />
-
-                    <div className="flex flex-col w-[250px] items-start gap-5 relative flex-[0_0_auto]">
-                      {plan.features.map((feature, featureIndex) => (
-                        <div
-                          key={featureIndex}
-                          className="inline-flex items-center gap-[7px] relative flex-[0_0_auto]"
-                        >
-                          <CheckIcon className="relative w-[18px] h-[18px] text-green-500" />
-                          <span className="relative w-fit [font-family:'Lato',Helvetica] font-normal text-on-surface-primary text-[13px] text-center tracking-[0] leading-[normal]">
-                            {feature}
-                          </span>
+                        <div className="w-[18px] h-[18px]">
+                        <CheckIcon className=" w-[18px] h-[18px] text-white bg-secondary-dark rounded-[50%]" />
                         </div>
-                      ))}
-                    </div>
+                        <span className=" font-lato font-bold text-on-surface-primary text-[14px] tracking-[0] leading-[100%]">
+                          {feature}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
 
-                    <Button className="flex w-[248px] h-12 items-center justify-center gap-2 p-[10.5px] relative mb-[-2.50px] bg-secondary-dark rounded-[19px] overflow-hidden h-auto">
-                      <span className="relative w-fit font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-bg-subtle text-[length:var(--title-16px-bold-font-size)] text-center tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]">
-                        Choose this plan
-                      </span>
-                      <ArrowRightIcon className="relative w-[17.75px] h-[11.05px]" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </main>
-          </div>
-
-          <img
-            className="absolute w-[270px] h-60 top-[744px] left-[111px]"
-            alt="Union"
-            src="/union.svg"
-          />
-
-          <img
-            className="absolute w-[165px] h-40 top-[815px] left-[1336px]"
-            alt="Union"
-            src="/union.svg"
-          />
+                  <Button className="group flex w-[248px]  h-12 items-center justify-center gap-2 p-[10.5px] relative mb-[-2.50px] bg-secondary-dark rounded-[19px] overflow-hidden h-auto">
+                    <span className="relative w-fit font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-bg-subtle text-[length:var(--title-16px-bold-font-size)] text-center tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]">
+                      Choose this plan
+                    </span>
+                    <ArrowRightIcon className="relative group-hover:animate-arrow-bounce w-[17.75px] h-[11.05px]" />
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </main>
         </div>
-
-        <div className="absolute w-[50px] h-[50px] top-[172px] left-[1389px] rotate-[120deg]">
-          <img
-            className="absolute w-[47px] h-[69px] top-[-19px] -left-1 rotate-[-120deg]"
-            alt="Union"
-            src="/union-2.svg"
-          />
-        </div>
-      </div> */}
+      </div>
     </div>
   );
 };

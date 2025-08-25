@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./i18n";
+// the default weight 400
 import { ElementUsersNoDataTo } from "./screens/ElementUsersNoDataTo/ElementUsersNoDataTo";
 import { ElementUsersAddNew } from "./screens/ElementUsersAddNew/ElementUseresAddNew";
 import { ElementUsersDesktop } from "./screens/UsersDesktop/ElementUsersDesktop";
@@ -12,6 +13,8 @@ import { ElementLogOutDialog } from "./screens/ElementLogOutDialog";
 import { ThemeProvider } from "./lib/theme-context";
 import { ThemeToggle } from "./components/theme/ThemeSwitcher";
 import { ThemeDemo } from "./components/theme/ThemeDemo";
+import { ChoosePlan } from "./screens/choosePlan";
+import { CompanyPlan } from "./screens/CompanyPlan/CompanyPlan";
 
 createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
@@ -27,8 +30,10 @@ createRoot(document.getElementById("app") as HTMLElement).render(
         {/* <ThemeDemo /> */}
 
         {/* Original app components */}
+        {/* <ChoosePlan /> */}
+        <CompanyPlan/>
         {/* <ElementUsersNoDataTo /> */}
-        <ElementUsersAddNew />
+        {/* <ElementUsersAddNew /> */}
         {/* <ElementUsersDesktop/> */}
         {/* <ElementUserDetails/> */}
         {/* <ElementEditUserDetails/> */}
