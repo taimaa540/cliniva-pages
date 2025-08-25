@@ -13,10 +13,12 @@ import { ChoosePlan } from "./screens/choosePlan";
 
 createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
-    <ChoosePlan/>
+    {/* <ChoosePlan/> */}
     {/* <ElementUsersNoDataTo /> */}
-    {/* <ElementUsersAddNew/> */}
+    <ElementUsersAddNew/>
     {/* <ElementUsersDesktop/> */}
+    {/* <ElementUserDetails/> */}
+    {/* <ElementEditUserDetails/> */}
     {/* <ElementUserDetails/> */}
     {/* <ElementEditUserDetails/> */}
     {/* <ElementChangeStatus/> */}
