@@ -3,7 +3,7 @@ import { CompanyPlanFillIn } from "../CompanyPlanFillIn/CompanyPlanFillIn";
 import { AccountCreationSection } from "./sections/AccountCreationSection";
 import { NavigationSidebarSection } from "./sections/NavigationSidebarSection";
 
-import "react-phone-input-2/lib/style.css";
+// import "react-phone-input-2/lib/style.css";
 
 export const CompanyPlan = (): JSX.Element => {
   

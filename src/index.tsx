@@ -26,20 +26,23 @@ createRoot(document.getElementById("app") as HTMLElement).render(
 
       {/* Main app content with theme transition */}
       <div className="theme-transition">
+        <main className="flex h-screen w-screen overflow-hidden">
+          
         {/* Theme Demo - Uncomment to see theme system in action */}
         {/* <ThemeDemo /> */}
 
         {/* Original app components */}
         {/* <ChoosePlan /> */}
-        <CompanyPlan/>
+        {/* <CompanyPlan/> */}
         {/* <ElementUsersNoDataTo /> */}
-        {/* <ElementUsersAddNew /> */}
+        <ElementUsersAddNew />
         {/* <ElementUsersDesktop/> */}
         {/* <ElementUserDetails/> */}
         {/* <ElementEditUserDetails/> */}
         {/* <ElementChangeStatus/> */}
         {/* <ElementDeleteUser title="user"/> */}
         {/* <ElementLogOutDialog/> */}
+        </main>
       </div>
     </ThemeProvider>
   </StrictMode>

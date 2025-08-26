@@ -126,11 +126,11 @@ export const UserDetailsSection = ({
   }, []);
   return (
     <div
-      className={`flex flex-col w-[1217px] h-[1000px] items-start gap-4  py-4  self-stretch relative ${
-        local === "ar" ? "right-[240px] pr-0 pl-5" : "left-[240px] pl-0 pr-5"
+      className={`flex flex-col w-full overflow-hidden h-full items-start gap-4  py-4  self-stretch relative ${
+        local === "ar" ? "pr-0 pl-5" : "pl-0 pr-5"
       } ${dark ? "bg-[#030711]" : ""}`}
     >
-      <header className="flex h-[50px] justify-between pl-[4px] pr-0 py-0 self-stretch w-[1197px] items-center">
+      <header className="flex h-[50px] justify-between pl-[4px] pr-0 py-0 self-stretch w-full items-center">
         <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5">
           <h1
             className={`self-stretch mt-[-1.00px] font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] ${
@@ -189,12 +189,12 @@ export const UserDetailsSection = ({
       </header>
 
       <Card
-        className={`flex flex-col w-[1197px] h-[866px] items-start gap-5 p-5 mt-[10px] relative self-stretch w-[1197px] flex-[0_0_auto] ${
+        className={`flex flex-col h-full items-start gap-5 p-5 mt-[10px] relative self-stretch w-full flex-[0_0_auto] ${
           dark ? "bg-[#272932] border-[white]" : "bg-bg"
         } rounded-2xl overflow-hidden`}
       >
-        <CardContent className="p-0 w-full">
-          <div className="flex w-[1157px] h-[50px] justify-between pl-1 pr-0 py-0 items-center relative">
+        <CardContent className="p-0 w-full overflow-y-auto scroll-x-hidden h-full">
+          <div className="flex w-full h-[50px] justify-between pl-1 pr-0 py-0 items-center relative">
             <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5 relative mt-[-1.00px] mb-[-1.00px]">
               <Button
                 variant="ghost"
@@ -225,13 +225,13 @@ export const UserDetailsSection = ({
             </div>
           </div>
 
-          <div className=" w-[1197px] h-[866px] ">
+          <div className="w-full h-[866px] ">
             {/* Account Tab */}
             <Tabs
               dir={`${local === "ar" ? "rtl" : "ltr"}`}
               defaultValue="account"
             >
-              <TabsList className="flex items-center w-[1160px] mt-[10px] gap-2 relative top-3 -left-px bg-white rounded-[14px] border border-solid border-[#d1d1d1] shadow-[0px_8px_8px_-4px_#0a0d120a] h-auto">
+              <TabsList className="flex items-center w-full mt-[10px] gap-2 relative top-3 -left-px bg-white rounded-[14px] border border-solid border-[#d1d1d1] shadow-[0px_8px_8px_-4px_#0a0d120a] h-auto">
                 {tabItems.map((tab) => (
                   <TabsTrigger
                     key={tab.value}
@@ -259,7 +259,7 @@ export const UserDetailsSection = ({
                 value="account"
                 className="relative self-stretch w-full h-[576px] mt-[50px]"
               >
-                <div className="flex flex-col w-[1137px] h-[576px] items-start gap-4 relative left-2.5">
+                <div className="flex flex-col w-full h-[576px] items-start gap-4 relative left-2.5">
                   {formFields.map((field) => (
                     <div
                       key={field.id}
@@ -355,7 +355,7 @@ export const UserDetailsSection = ({
                 </div>
                 <div
                   dir={`${local === "ar" ? "ltr" : "rtl"}`}
-                  className={`relative self-stretch w-full h-[58px] top-[40px] ${
+                  className={`relative self-stretch w-full h-[58px] top-[40px] border border-red-500 ${
                     local === "ar" ? "right-[450px]" : "right-[550px]"
                   } `}
                 >
@@ -395,7 +395,7 @@ export const UserDetailsSection = ({
                 className="relative self-stretch w-full h-[576px] mt-[50px]"
               >
                 <div className="relative self-stretch w-full h-[575px]">
-                  <form className="flex flex-col h-[676px] w-[1157px] text-center items-start gap-4 relative left-2.5">
+                  <form className="flex flex-col h-[676px] w-full text-center items-start gap-4 relative left-2.5">
                     <div className="flex items-center gap-8 relative self-stretch w-full flex-[0_0_auto]">
                       <Label
                         className={`relative w-40 h-3.5 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] ${
@@ -724,7 +724,7 @@ text-md-regular-font-style)]"
                 </div>
                 <div
                   dir={`${local === "ar" ? "ltr" : "rtl"}`}
-                  className={`relative self-stretch w-full h-[58px] top-[40px] ${
+                  className={`relative self-stretch w-full h-[58px] top-[40px] border border-red-500 ${
                     local === "ar" ? "right-[450px]" : "right-[550px]"
                   } `}
                 >
@@ -804,7 +804,7 @@ text-md-regular-font-style)]"
                 </div>
                 <div
                   dir={`${local === "ar" ? "ltr" : "rtl"}`}
-                  className={`relative self-stretch w-full h-[58px] top-[40px] ${
+                  className={`relative self-stretch w-full h-[58px] top-[40px] border border-red-500 ${
                     local === "ar" ? "right-[450px]" : "right-[550px]"
                   } `}
                 >
@@ -891,7 +891,7 @@ text-md-regular-font-style)]"
                   </div>
                   <div
                     dir={`${local === "ar" ? "ltr" : "rtl"}`}
-                    className={`relative self-stretch w-full h-[58px] top-[320px] ${
+                    className={`relative self-stretch w-full h-[58px] top-[320px] border border-red-500 ${
                       local === "ar" ? "right-[450px]" : "right-[550px]"
                     } `}
                   >
