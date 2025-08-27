@@ -14,7 +14,7 @@ import { AccountCreationSection } from "./sections/AccountCreationSection";
 import { NavigationSidebarSection } from "./sections/NavigationSidebarSection";
 import { useState } from "react";
 
-import "react-phone-input-2/lib/style.css";
+// import "react-phone-input-2/lib/style.css";
 
 type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 export const CompanyPlan = (): JSX.Element => {

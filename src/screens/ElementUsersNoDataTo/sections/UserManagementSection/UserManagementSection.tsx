@@ -57,7 +57,7 @@ export const UserManagementSection = ({
 
   return (
     <nav
-     className={`h-screen w-[223px] flex flex-col ${
+      className={`fixed top-0 w-[223px] h-full flex flex-col ${
         local === "ar" ? "right-[10px]" : "left-0"
       } ${dark ? "bg-[#030711]" : "bg-surface-default"}`}
     >
