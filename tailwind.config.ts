@@ -18,6 +18,7 @@ const config: Config = {
         ...designSystem.colors,
         
         // Theme-aware colors using CSS variables
+        
         background: {
           primary: 'var(--theme-background-primary)',
           secondary: 'var(--theme-background-secondary)',
@@ -78,7 +79,7 @@ const config: Config = {
         ring: 'var(--theme-border-focus)',
         foreground: 'var(--theme-text-primary)',
         primary: {
-          DEFAULT: 'var(--theme-primary-default)',
+          default: 'var(--theme-primary-default)',
           foreground: '#FFFFFF',
         },
         secondary: {

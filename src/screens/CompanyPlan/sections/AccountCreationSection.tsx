@@ -30,10 +30,13 @@ const formFields = [
     type: "password",
   },
 ];
+interface buttonProps {
+  handleNext : () => void;
+}
 
-export const AccountCreationSection = (): JSX.Element => {
+export const AccountCreationSection = ({handleNext}: buttonProps): JSX.Element => {
   return (
-    <div className="flex flex-col w-[1217px] items-start gap-4 py-4 relative left-[240px] pl-0 pr-5">
+    <div className="flex flex-col w-full h-screen overflow-scroll items-start gap-4 pl-0 pr-4 py-4">
       <div className="flex flex-col items-start justify-center gap-1 relative self-stretch w-full flex-[0_0_auto]">
         <div className="flex items-center justify-between pl-1 pr-0 py-0 relative self-stretch w-full flex-[0_0_auto]">
           <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5 relative">
@@ -51,7 +54,7 @@ export const AccountCreationSection = (): JSX.Element => {
         </div>
       </div>
 
-      <Card className=" w-full h-[924px] min-h-[866px] bg-background-secondary rounded-[16px] overflow-hidden border-0">
+      <Card className=" w-full bg-background-secondary rounded-[16px] overflow-hidden border-0">
         <CardContent className="p-5">
           <div className="grid grid-cols-2 gap-[32px] w-full max-w-[1161px]">
             {formFields.map((field) => (
@@ -72,8 +75,8 @@ export const AccountCreationSection = (): JSX.Element => {
             ))}
           </div>
 
-          <Button className="absolute bottom-[60px] right-9 w-[200px] h-10 bg-secondary-dark hover:bg-secondary-dark/90 rounded-[20px] px-4 py-2.5 h-auto">
-            <span className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
+          <Button onClick={handleNext} className="absolute bottom-[60px] right-9 w-[200px] h-10 bg-secondary-dark hover:bg-secondary-dark/90 rounded-[20px] px-4 py-2.5 h-auto">
+            <span  className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
               Next
             </span>
             <ChevronRightIcon className="w-5 h-5 ml-2" />

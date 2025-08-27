@@ -1,7 +1,4 @@
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-} from "lucide-react";
+import { ArrowLeftIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
@@ -51,57 +48,30 @@ const formFields = {
     },
   ],
 };
-
-export const CompanyDetailsSection = (): JSX.Element => {
+interface buttonProps {
+  handleNext : () => void;
+  prevStep : () => void;
+}
+export const CompanyDetailsSection = ({handleNext, prevStep} : buttonProps): JSX.Element => {
   return (
-    <div className="flex flex-col w-[1217px] items-start gap-4 py-4 relative left-[240px] pl-0 pr-5">
-      <div className="flex flex-col w-full items-start justify-center gap-1 pt-4">
-        <div className="flex items-center justify-between pl-1 pr-0 py-0 w-full">
-          <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5">
-            <div className="inline-flex items-center gap-1.5 cursor-pointer">
-              <ChevronLeftIcon className="w-4 h-4" />
-              <div className="font-title-12px-regular font-[number:var(--title-12px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-12px-regular-font-size)] tracking-[var(--title-12px-regular-letter-spacing)] leading-[var(--title-12px-regular-line-height)] whitespace-nowrap [font-style:var(--title-12px-regular-font-style)]">
-                Back to Choosing Plan Page
-              </div>
-            </div>
-
-            <h1 className="text-[length:var(--h5-22px-bold-font-size)] leading-[var(--h5-22px-bold-line-height)] font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] text-on-surface-primary tracking-[var(--h5-22px-bold-letter-spacing)] [font-style:var(--h5-22px-bold-font-style)]">
-              Fill in Company Details
-            </h1>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2.5 px-1 py-0 w-full">
-          <div className="flex-1 text-[length:var(--title-14px-semibold-font-size)] leading-[var(--title-14px-semibold-line-height)] font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary tracking-[var(--title-14px-semibold-letter-spacing)] [font-style:var(--title-14px-semibold-font-style)]">
-            Company Overview
-          </div>
-        </div>
+    <div className="flex flex-col w-full h-screen overflow-scroll items-start gap-4 pl-0 pr-4 py-4">
+      {/* Header */}
+      <div className="flex flex-col gap-2">
+        <button className="flex items-center gap-2 font-lato text-xs text-text-secondary font-regular leading-[130%] tracking-[0]">
+          <ArrowLeftIcon className="w-4 h-4" />
+          Back to Choosing Plan Page
+        </button>
+        <h2 className="font-lato text-xl text-text-primary font-semibold leading-[116%] tracking-[0]">
+          Fill in Company Details
+        </h2>
+        <p className="font-lato text-sm text-text-primary font-semibold leading-[125%] tracking-[0]">
+          Complex Overview
+        </p>
       </div>
-
-      <div className="w-full mt-[16px] bg-background-secondary rounded-2xl overflow-hidden min-h-[902px] relative">
-        <div className="inline-flex items-center gap-4 absolute bottom-[60px] right-[20px]">
-          <Button
-            variant="outline"
-            className="w-[200px] h-auto bg-white rounded-[20px] border-2 border-solid border-[#e4e2dd] px-4 py-2.5"
-          >
-            <div className="flex w-[82px] items-center gap-1">
-              <ChevronLeftIcon className="w-5 h-5" />
-              <span className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-on-surface-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
-                Previous
-              </span>
-            </div>
-          </Button>
-
-          <Button className="w-[200px] h-10 bg-secondary-dark rounded-[20px] px-4 py-2.5">
-            <span className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
-              Next
-            </span>
-            <ChevronRightIcon className="w-5 h-5 ml-1" />
-          </Button>
-        </div>
-
-        <div className="flex flex-col w-full items-start gap-4 p-5">
-          <Card className="w-[1161px] h-[208px] bg-background-primary rounded-2xl">
+      {/* Content */}
+      <div className="bg-background-secondary p-[24px] min-h-[866px] rounded-[16px] w-full">
+        <div className="flex flex-col w-full items-start gap-4 ">
+          <Card className="w-full h-[208px] bg-background-primary rounded-2xl">
             <CardContent className="p-[16px]">
               <div className="flex w-full items-center justify-between mb-4">
                 <h2 className="text-primary text-[16px] font-lato font-bold leading-[124%] tracking-[0] ">
@@ -128,7 +98,7 @@ export const CompanyDetailsSection = (): JSX.Element => {
                       <input
                         type="date"
                         placeholder={field.placeholder}
-                        className="block w-[360px] px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd]"
+                        className="block w-[360px] px-4 py-2 bg-transparent rounded border border-solid border-[#e4e2dd]"
                       />
                     </div>
                   ))}
@@ -144,7 +114,7 @@ export const CompanyDetailsSection = (): JSX.Element => {
                         {field.fields?.map((inputField, inputIndex) => (
                           <Input
                             key={inputIndex}
-                            className="h-12 px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base"
+                            className="h-12 px-4 py-2 rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base"
                             placeholder={inputField.placeholder}
                           />
                         ))}
@@ -155,8 +125,7 @@ export const CompanyDetailsSection = (): JSX.Element => {
               </div>
             </CardContent>
           </Card>
-
-          <Card className="w-[1161px] h-[248px] bg-background-primary rounded-2xl">
+          <Card className="w-full h-[248px] bg-background-primary rounded-2xl">
             <CardContent className="p-4">
               <div className="flex w-full items-center gap-4 mb-8">
                 <h2 className="text-primary text-[16px] font-lato font-bold leading-[124%] tracking-[0]">
@@ -175,7 +144,7 @@ export const CompanyDetailsSection = (): JSX.Element => {
                         </div>
                         <div className="flex flex-col w-[360px] relative">
                           <Textarea
-                            className="w-fill h-auto px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
+                            className="w-fill h-auto px-4 py-2 rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
                             placeholder={field.placeholder}
                           />
                         </div>
@@ -191,7 +160,7 @@ export const CompanyDetailsSection = (): JSX.Element => {
                         </div>
                         <div className="flex flex-col w-[360px] relative">
                           <Textarea
-                            className="w-fill h-auto px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
+                            className="w-fill h-auto px-4 py-2 rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
                             placeholder={field.placeholder}
                           />
                         </div>
@@ -209,7 +178,7 @@ export const CompanyDetailsSection = (): JSX.Element => {
                         </div>
                         <div className="flex flex-col w-[360px] relative">
                           <Textarea
-                            className="w-fill h-auto px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
+                            className="w-fill h-auto px-4 py-2  rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
                             placeholder={field.placeholder}
                           />
                         </div>
@@ -228,7 +197,7 @@ export const CompanyDetailsSection = (): JSX.Element => {
                         </div>
                         <div className="flex w-[360px] gap-4">
                           <Input
-                            className="flex-1 h-12 px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base"
+                            className="flex-1 h-12 px-4 py-2 rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base"
                             placeholder={field.placeholder}
                           />
                         </div>
@@ -238,6 +207,28 @@ export const CompanyDetailsSection = (): JSX.Element => {
               </div>
             </CardContent>
           </Card>
+
+          <div className="flex items-center justify-end gap-4 w-full ">
+            <Button
+            onClick={prevStep}
+              variant="outline"
+              className="w-[200px] h-auto bg-white rounded-[20px] border-2 border-solid border-[#e4e2dd] px-4 py-2.5"
+            >
+              <div className="flex w-[82px] items-center gap-1">
+                <ChevronLeftIcon className="w-5 h-5" />
+                <span className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-on-surface-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
+                  Previous
+                </span>
+              </div>
+            </Button>
+
+            <Button onClick={handleNext} className="w-[200px] h-10 bg-secondary-dark rounded-[20px] px-4 py-2.5">
+              <span  className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
+                Next
+              </span>
+              <ChevronRightIcon className="w-5 h-5 ml-1" />
+            </Button>
+          </div>
         </div>
       </div>
     </div>

@@ -37,7 +37,7 @@ const stepperData = [
 
 export const NavigationSidebarSection = (): JSX.Element => {
   return (
-    <nav className="fixed top-0 w-[223px] bg-surface-default">
+    <nav className="w-[223px] bg-surface-default">
       <header className="flex flex-col items-start gap-2.5 px-2 py-[9px] mt-4 ml-5 w-full">
         <div className="flex items-center gap-[7px]">
           <svg
