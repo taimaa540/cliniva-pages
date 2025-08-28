@@ -79,7 +79,7 @@ export const ThemeSwitcher: React.FC<{
   return (
     <div className={`${containerClass} ${className || ''}`}>
       {showLabel && (
-        <span className="text-sm font-medium text-primary">
+        <span className="text-sm font-medium text-primary ">
           Theme
         </span>
       )}
@@ -103,6 +103,7 @@ export const ThemeSwitcher: React.FC<{
         <button
           onClick={() => setTheme('dark')}
           className={`
+            
             flex items-center justify-center w-8 h-8 rounded-md transition-all duration-200
             ${isDarkMode 
               ? 'bg-primary text-inverse shadow-sm' 
@@ -182,6 +183,7 @@ export const AdvancedThemeSwitcher: React.FC<{
               key={option.value}
               onClick={() => setTheme(option.value as 'light' | 'dark')}
               className={`
+                
                 flex items-center space-x-3 w-full p-2 rounded-lg text-left transition-all duration-200
                 ${isActive 
                   ? 'bg-primary text-inverse' 
@@ -189,10 +191,10 @@ export const AdvancedThemeSwitcher: React.FC<{
                 }
               `}
             >
-              <IconComponent className="w-4 h-4 flex-shrink-0" />
+              <IconComponent className="w-4 h-4 flex-shrink-0 "  />
               <span className="text-sm">{option.label}</span>
               {option.value === 'system' && (
-                <span className="text-xs opacity-60 ml-auto">
+                <span className="text-xs opacity-60 ml-auto ">
                   ({systemTheme})
                 </span>
               )}

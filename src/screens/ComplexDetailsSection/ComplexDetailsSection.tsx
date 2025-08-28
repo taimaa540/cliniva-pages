@@ -27,10 +27,10 @@ export const ComplexDetailsSection = ({handleNext, prevStep}:buttonProps): JSX.E
       {/* Content */}
       <div className="bg-background-secondary p-[24px] rounded-[16px] w-full">
         <div className="flex flex-col w-full items-start gap-4 ">
-          <Card className="w-full h-[252px] rounded-2xl">
+          <Card className="w-full h-[252px] rounded-2xl bg-background-primary">
             <CardContent className="p-[16px]">
               <div className="flex w-full items-center justify-between mb-4">
-                <h2 className="text-primary text-[16px] font-lato font-bold leading-[124%] tracking-[0] ">
+                <h2 className="text-primary-default text-[16px] font-lato font-bold leading-[124%] tracking-[0] ">
                   Complex Info
                 </h2>
               </div>
@@ -84,10 +84,10 @@ export const ComplexDetailsSection = ({handleNext, prevStep}:buttonProps): JSX.E
               </div>
             </CardContent>
           </Card>
-          <Card className="w-full h-[192px] py-[16px] px-[24px] mb-[16px] ">
+          <Card className="w-full h-[192px] py-[16px] px-[24px] mb-[16px] bg-background-primary">
             <CardContent className="flex flex-col">
               <div className="flex items-center justify-between w-full">
-                <h2 className="text-lg font-semibold text-primary-dark">
+                <h2 className="text-base font-bold text-primary-default font-lato leading-[124%] tracking-[0]">
                   Department
                 </h2>
               </div>
@@ -127,7 +127,7 @@ export const ComplexDetailsSection = ({handleNext, prevStep}:buttonProps): JSX.E
             </Button>
 
             <Button onClick={handleNext} className="w-[200px] h-10 bg-secondary-dark rounded-[20px] px-4 py-2.5">
-              <span  className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-surface-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
+              <span  className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
                 Next
               </span>
               <ChevronRightIcon className="w-5 h-5 ml-1" />

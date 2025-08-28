@@ -83,7 +83,7 @@ const config: Config = {
           foreground: '#FFFFFF',
         },
         secondary: {
-          DEFAULT: 'var(--theme-secondary-default)',
+          default: 'var(--theme-secondary-default)',
           foreground: 'var(--theme-text-primary)',
         },
         destructive: {

@@ -44,7 +44,7 @@ export const ClinicWorkSchedule = ({handleNext, prevStep} : buttonProps): JSX.El
         <Card className=" w-full h-[500px] bg-background-primary py-[16px] px-[24px] mb-[16px]">
           <CardContent className="p-0">
             <div
-              className='mb-[15px] font-lato font-bold text-base text-primary leading-[124%] tracking-[0]'
+              className='mb-[15px] font-lato font-bold text-base text-primary-default leading-[124%] tracking-[0]'
             >
               Working Days
             </div>

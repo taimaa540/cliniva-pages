@@ -3,6 +3,8 @@ import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
+import { ReactNode } from "react";
+
 
 const formFields = {
   companyInfo: [
@@ -49,10 +51,17 @@ const formFields = {
   ],
 };
 interface buttonProps {
-  handleNext : () => void;
-  prevStep : () => void;
+  children?: ReactNode;
+  title: string;
+  handleNext: () => void;
+  prevStep: () => void;
 }
-export const CompanyDetailsSection = ({handleNext, prevStep} : buttonProps): JSX.Element => {
+export const CompanyDetailsSection = ({
+  handleNext,
+  prevStep,
+  title,
+  children,
+}: buttonProps): JSX.Element => {
   return (
     <div className="flex flex-col w-full h-screen overflow-scroll items-start gap-4 pl-0 pr-4 py-4">
       {/* Header */}
@@ -62,10 +71,10 @@ export const CompanyDetailsSection = ({handleNext, prevStep} : buttonProps): JSX
           Back to Choosing Plan Page
         </button>
         <h2 className="font-lato text-xl text-text-primary font-semibold leading-[116%] tracking-[0]">
-          Fill in Company Details
+          Fill in {title} Details
         </h2>
         <p className="font-lato text-sm text-text-primary font-semibold leading-[125%] tracking-[0]">
-          Complex Overview
+          {title} Overview
         </p>
       </div>
       {/* Content */}
@@ -74,7 +83,7 @@ export const CompanyDetailsSection = ({handleNext, prevStep} : buttonProps): JSX
           <Card className="w-full h-[208px] bg-background-primary rounded-2xl">
             <CardContent className="p-[16px]">
               <div className="flex w-full items-center justify-between mb-4">
-                <h2 className="text-primary text-[16px] font-lato font-bold leading-[124%] tracking-[0] ">
+                <h2 className="text-primary-default text-[16px] font-lato font-bold leading-[124%] tracking-[0] ">
                   Company Info
                 </h2>
               </div>
@@ -106,8 +115,8 @@ export const CompanyDetailsSection = ({handleNext, prevStep} : buttonProps): JSX
 
                 <div className="space-y-8">
                   {formFields.companyInfo.slice(1, 2).map((field, index) => (
-                    <div key={index + 1} className="flex items-center gap-8">
-                      <div className="w-40 font-semibold text-[16px] text-text-primary font-lato leading-[124%] tracking-[0]">
+                    <div key={index + 1} className="flex gap-8">
+                      <div className="w-40 mt-[10px] font-semibold text-[16px] text-text-primary font-lato leading-[124%] tracking-[0]">
                         {field.label}
                       </div>
                       <div className="flex flex-col w-[360px] gap-4">
@@ -128,7 +137,7 @@ export const CompanyDetailsSection = ({handleNext, prevStep} : buttonProps): JSX
           <Card className="w-full h-[248px] bg-background-primary rounded-2xl">
             <CardContent className="p-4">
               <div className="flex w-full items-center gap-4 mb-8">
-                <h2 className="text-primary text-[16px] font-lato font-bold leading-[124%] tracking-[0]">
+                <h2 className="text-primary-default text-[16px] font-lato font-bold leading-[124%] tracking-[0]">
                   Company Overview
                 </h2>
               </div>
@@ -207,10 +216,11 @@ export const CompanyDetailsSection = ({handleNext, prevStep} : buttonProps): JSX
               </div>
             </CardContent>
           </Card>
+          {children}
 
           <div className="flex items-center justify-end gap-4 w-full ">
             <Button
-            onClick={prevStep}
+              onClick={prevStep}
               variant="outline"
               className="w-[200px] h-auto bg-white rounded-[20px] border-2 border-solid border-[#e4e2dd] px-4 py-2.5"
             >
@@ -222,8 +232,11 @@ export const CompanyDetailsSection = ({handleNext, prevStep} : buttonProps): JSX
               </div>
             </Button>
 
-            <Button onClick={handleNext} className="w-[200px] h-10 bg-secondary-dark rounded-[20px] px-4 py-2.5">
-              <span  className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
+            <Button
+              onClick={handleNext}
+              className="w-[200px] h-10 bg-secondary-dark rounded-[20px] px-4 py-2.5"
+            >
+              <span className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
                 Next
               </span>
               <ChevronRightIcon className="w-5 h-5 ml-1" />

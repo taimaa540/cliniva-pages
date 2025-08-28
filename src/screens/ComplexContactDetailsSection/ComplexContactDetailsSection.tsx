@@ -41,10 +41,10 @@ export const ComplexContactDetailsSection = ({handleNext, prevStep} :buttonProps
       </div>
       {/* Content */}
       <div className="bg-background-secondary p-[24px] rounded-[16px] w-full">
-        <Card className=" w-full h-[248px] py-[16px] px-[24px] mb-[16px]">
+        <Card className=" w-full h-[248px] py-[16px] px-[24px] mb-[16px] bg-background-primary">
           <CardContent className="p-0">
             <div className="flex w-[1129px] items-center justify-between">
-              <div className="relative w-fit mt-[-1.00px] font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-primary-dark text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]">
+              <div className="text-primary-default text-[16px] font-lato font-bold leading-[124%] tracking-[0]">
                 Contact Info
               </div>
             </div>
@@ -87,7 +87,7 @@ export const ComplexContactDetailsSection = ({handleNext, prevStep} :buttonProps
 
                   <Input
                     placeholder="Enter Email"
-                    className="w-[360px] px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
+                    className="w-[360px] px-4 py-2 rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
                   />
                 </div>
               </div>
@@ -104,7 +104,7 @@ export const ComplexContactDetailsSection = ({handleNext, prevStep} :buttonProps
                     <Input
                       key={index}
                       placeholder={field.placeholder}
-                      className="w-[172px] px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
+                      className="w-[172px] px-4 py-2 rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
                     />
                   ))}
                 </div>
@@ -113,7 +113,7 @@ export const ComplexContactDetailsSection = ({handleNext, prevStep} :buttonProps
                   <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
                     <div className="relative w-6 h-6">
                       <img
-                        className="absolute w-[22px] h-[21px] top-0.5 left-px"
+                        className="absolute w-[22px] h-[21px] top-0.5 left-px text-[red]"
                         alt="Elements"
                         src="/maps-location-02.svg"
                       />
@@ -125,7 +125,7 @@ export const ComplexContactDetailsSection = ({handleNext, prevStep} :buttonProps
 
                   <Input
                     placeholder="Pick Google Maps Location"
-                    className="w-[360px] px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
+                    className="w-[360px] px-4 py-2 rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
                   />
                 </div>
             </div>

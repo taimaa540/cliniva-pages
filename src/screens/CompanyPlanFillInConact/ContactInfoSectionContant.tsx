@@ -5,6 +5,7 @@ import {
   MapPinIcon,
   PhoneIcon,
   PlusIcon,
+  ChevronLeftIcon,
 } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
@@ -43,10 +44,11 @@ const socialMediaAccounts = [
   },
 ];
 interface buttonProps {
+  title : string,
   handleNext : () => void;
   prevStep : () => void;
 }
-export const ContactInfoSection = ({handleNext, prevStep}: buttonProps): JSX.Element => {
+export const ContactInfoSection = ({handleNext, prevStep, title}: buttonProps): JSX.Element => {
   const [phone, setPhone] = useState("");
   return (
     <div className="flex flex-col w-full h-screen overflow-scroll items-start gap-4 pl-0 pr-4 py-4">
@@ -57,7 +59,7 @@ export const ContactInfoSection = ({handleNext, prevStep}: buttonProps): JSX.Ele
           Back to Choosing Plan Page
         </button>
         <h2 className="font-lato text-xl text-text-primary font-semibold leading-[116%] tracking-[0]">
-          Fill in Company Details
+          Fill in {title} Details
         </h2>
         <p className="font-lato text-sm text-text-primary font-semibold leading-[125%] tracking-[0]">
           Contact Details
@@ -65,10 +67,10 @@ export const ContactInfoSection = ({handleNext, prevStep}: buttonProps): JSX.Ele
       </div>
       {/* Content */}
       <div className=" bg-background-secondary p-[24px] rounded-[16px] w-full">
-        <Card className=" w-full h-[312px] py-[16px] px-[24px] mb-[16px]">
+        <Card className=" w-full h-[312px] py-[16px] px-[24px] mb-[16px] bg-background-primary">
           <CardContent className="p-0">
             <div className="flex w-[1129px] items-center justify-between">
-              <div className="relative w-fit mt-[-1.00px] font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-primary-dark text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]">
+              <div className="text-primary-default font-lato font-bold text-base leading-[124%] tracking-[0]">
                 Contact Info
               </div>
             </div>
@@ -174,10 +176,10 @@ export const ContactInfoSection = ({handleNext, prevStep}: buttonProps): JSX.Ele
           </CardContent>
         </Card>
 
-        <Card className="w-full h-[188px] py-[16px] px-[24px]">
+        <Card className="w-full h-[188px] py-[16px] px-[24px] bg-background-primary">
           <CardContent className="p-0">
             <div className="flex w-[1129px] items-center gap-4 ">
-              <div className="relative w-fit mt-[-1.00px] font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-primary-dark text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]">
+              <div className="text-primary-default font-lato font-bold text-base leading-[124%] tracking-[0]">
                 Social Media Accounts
               </div>
             </div>
@@ -213,15 +215,27 @@ export const ContactInfoSection = ({handleNext, prevStep}: buttonProps): JSX.Ele
           </CardContent>
         </Card>
         {/* Actions */}
-        <div className="flex justify-end gap-4">
-          <Button onClick={prevStep} variant="outline">
-            <ChevronRightIcon className="w-4 h-4 mr-1" />
-            Previous
-          </Button>
-          <Button onClick={handleNext} className="bg-secondary-dark text-white rounded-full">
-            Next
-          </Button>
-        </div>
+        <div className="flex items-center justify-end gap-4 w-full mt-[20px] ">
+            <Button
+            onClick={prevStep}
+              variant="outline"
+              className="w-[200px] h-auto bg-white rounded-[20px] border-2 border-solid border-[#e4e2dd] px-4 py-2.5"
+            >
+              <div className="flex w-[82px] items-center gap-1">
+                <ChevronLeftIcon className="w-5 h-5" />
+                <span className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-on-surface-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
+                  Previous
+                </span>
+              </div>
+            </Button>
+
+            <Button onClick={handleNext} className="w-[200px] h-10 bg-secondary-dark rounded-[20px] px-4 py-2.5">
+              <span  className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
+                Next
+              </span>
+              <ChevronRightIcon className="w-5 h-5 ml-1" />
+            </Button>
+          </div>
       </div>
     </div>
   );

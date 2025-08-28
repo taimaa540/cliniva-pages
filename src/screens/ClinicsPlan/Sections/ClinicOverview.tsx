@@ -1,27 +1,13 @@
-import {
-  ArrowLeftIcon,
-  ChevronRightIcon,
-  ChevronLeftIcon,
-  PlusIcon,
-} from "lucide-react";
-import { Button } from "../../components/ui/button";
+import { ArrowLeftIcon, ChevronRightIcon, ChevronLeftIcon } from "lucide-react";
+import { Button } from "../../../components/ui/button";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "../../components/ui/card";
-import { Input } from "../../components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../components/ui/select";
-import { Textarea } from "../../components/ui/textarea";
-import PhoneInput from "react-phone-input-2";
-import { useState } from "react";
+} from "../../../components/ui/card";
+import { Input } from "../../../components/ui/input";
+import { Textarea } from "../../../components/ui/textarea";
 
 const formSections = [
   {
@@ -88,48 +74,15 @@ const formSections = [
       },
     ],
   },
-  {
-    id: "department",
-    title: "Department",
-    fields: [
-      {
-        label: "Department Name",
-        type: "select",
-        placeholder: "Select Department",
-      },
-      {
-        label: "Description",
-        type: "text",
-        value: "----",
-      },
-    ],
-  },
-  {
-    id: "contact",
-    title: "Contact Details",
-    fields: [
-      {
-        label: "Phone Number",
-        type: "phone",
-        placeholder: "+966 50 000-0000",
-      },
-      {
-        label: "Email",
-        type: "input",
-        placeholder: "Enter Email",
-      },
-    ],
-  },
 ];
 interface buttonProps {
   handleNext: () => void;
   prevStep: () => void;
 }
-export const ClinicDetailsSection = ({
+export const ClinicOverview = ({
   handleNext,
   prevStep,
 }: buttonProps): JSX.Element => {
-  const [phone, setPhone] = useState("");
   return (
     <div className="flex flex-col w-full h-screen overflow-scroll items-start gap-4 pl-0 pr-4 py-4">
       {/* Header */}
@@ -149,7 +102,10 @@ export const ClinicDetailsSection = ({
       <div className="bg-background-secondary p-[24px] rounded-[16px] w-full">
         <div className="flex flex-col w-full items-start gap-4 ">
           {formSections.map((section) => (
-            <Card key={section.id} className="w-full rounded-2xl bg-background-primary">
+            <Card
+              key={section.id}
+              className="w-full rounded-2xl bg-background-primary"
+            >
               <CardHeader className="p-[16px]">
                 <CardTitle className="text-primary-default font-lato font-bold text-base leading-[124%] tracking-[0]">
                   {section.title}
@@ -159,6 +115,12 @@ export const ClinicDetailsSection = ({
                 {section.id === "clinic-info" && (
                   <div className="grid grid-cols-2 gap-8">
                     <div className="space-y-4">
+                      <div className="flex items-center gap-8">
+                        <div className="w-40 font-semibold text-[16px] text-text-primary font-lato leading-[124%] tracking-[0]">
+                          Logo
+                        </div>
+                        <img alt="add photo" src="./addImage.svg" />
+                      </div>
                       <div className="flex items-center gap-8">
                         <div className="w-40 font-lato font-medium text-base text-text-primary leading-[100%] tracking-[0]">
                           Clinic Name
@@ -175,29 +137,6 @@ export const ClinicDetailsSection = ({
                         <input
                           type="date"
                           className="block w-[360px] text-text-secondary px-4 py-2 bg-transparent rounded border border-solid border-border-light"
-                        />
-                      </div>
-                      <div className="flex items-center gap-8">
-                        <div className="w-40 font-lato font-medium text-base text-text-primary leading-[100%] tracking-[0]">
-                          PIC Name
-                        </div>
-                        <Select>
-                          <SelectTrigger className="w-[360px] text-text-secondary bg-base-white border-border-light">
-                            <SelectValue placeholder="PIC Name" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="pic1">PIC 1</SelectItem>
-                            <SelectItem value="pic2">PIC 2</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className="flex items-center gap-8">
-                        <div className="w-40 font-lato font-medium text-base text-text-primary leading-[100%] tracking-[0]">
-                          Services Offered
-                        </div>
-                        <Input
-                          className="w-[360px] text-text-secondary placeholder-text-secondary px-4 py-2 bg-transparent rounded border border-border-light"
-                          placeholder="Enter service"
                         />
                       </div>
                     </div>
@@ -257,73 +196,68 @@ export const ClinicDetailsSection = ({
                     </div>
                   </div>
                 )}
-
-                {section.id === "department" && (
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-[69px]">
-                      <div className="w-[360px] font-lato font-semibold text-base text-text-primary leading-[124%] tracking-[0] ">
-                        Department Name
-                      </div>
-                      <div className="font-lato font-semibold text-base text-text-primary leading-[124%] tracking-[0]">
-                        Description
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-[69px]">
-                      <Select>
-                        <SelectTrigger className="w-[360px] h-12 bg-base-white border-[#d5d6d9]">
-                          <SelectValue placeholder="Select Department" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="dept1">Department 1</SelectItem>
-                          <SelectItem value="dept2">Department 2</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <div className="flex h-12 items-center gap-1 flex-1">
-                        <div className="[font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6">
-                          ----
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {section.id === "contact" && (
-                  <div className="flex items-start justify-between">
-                    <div className="flex flex-col w-[552px] items-end gap-2">
-                      <div className="flex items-center gap-8 w-full">
-                        <div className="w-40 font-lato font-medium text-base treacking-[0] leading-[100%] text-text-primary">
-                          Phone Number
-                        </div>
-                        <PhoneInput
-                          country={"sa"} // الدولة الافتراضية
-                          value={phone}
-                          onChange={setPhone}
-                          enableAreaCodes={true}
-                          inputStyle={{
-                            width: "400px",
-                            height: "48px",
-                            borderRadius: "4px",
-                            border: "1px solid #E4E2DD",
-                            backgroundColor: "transparent",
-                          }}
-                        />
-                      </div>
-                      <PlusIcon className="w-8 h-8" />
-                    </div>
-                    <div className="inline-flex items-center gap-8">
-                      <div className="w-40 font-lato font-medium text-base treacking-[0] leading-[100%] text-text-primary">
-                        Email
-                      </div>
-                      <Input
-                        className="w-[360px] px-4 py-2  rounded border border-[#e4e2dd]"
-                        placeholder="Enter Email"
-                      />
-                    </div>
-                  </div>
-                )}
               </CardContent>
             </Card>
           ))}
+          <Card className="w-full h-[248px] bg-background-primary rounded-2xl">
+            <CardContent className="p-4">
+              <div className="flex w-full items-center gap-4 mb-8">
+                <h2 className="text-primary-default text-[16px] font-lato font-bold leading-[124%] tracking-[0]">
+                  Company Overview
+                </h2>
+              </div>
+              <div className="grid grid-cols-2 gap-8 h-full">
+                <div className="space-y-6">
+                  <div className="flex items-start gap-8">
+                    <div className="w-40 font-lato font-semibold text-[16px] text-text-primary leading-[124%] tracking-[0] ">
+                      Overview
+                    </div>
+                    <div className="flex flex-col w-[360px] relative">
+                      <Textarea
+                        className="w-fill h-auto px-4 py-2 rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
+                        placeholder="Enter Overview"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-8">
+                    <div className="w-40 font-lato font-semibold text-[16px] text-text-primary leading-[124%] tracking-[0]">
+                      Goals
+                    </div>
+                    <div className="flex flex-col w-[360px] relative">
+                      <Textarea
+                        className="w-fill h-auto px-4 py-2 rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
+                        placeholder="Enter Goals"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-6">
+                  <div className="flex items-center gap-8">
+                    <div className="w-40 font-lato font-semibold text-[16px] text-text-primary leading-[124%] tracking-[0]">
+                      Vision
+                    </div>
+                    <div className="flex flex-col w-[360px] relative">
+                      <Textarea
+                        className="w-fill h-auto px-4 py-2  rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
+                        placeholder="Enter Vision"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-8 mt-12">
+                    <div className="w-40 font-lato font-semibold text-[16px] text-text-primary leading-[124%] tracking-[0]">
+                      CEO Name
+                    </div>
+                    <div className="flex w-[360px] gap-4">
+                      <Input
+                        className="flex-1 h-12 px-4 py-2 rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base"
+                        placeholder="Enter Name"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
         <div className=" flex items-center justify-end gap-4 mt-[20px]">
           <Button

@@ -128,10 +128,8 @@ export const UserDetailsSection = ({
     <div
       className={`flex flex-col w-full overflow-hidden h-full items-start gap-4  py-4  self-stretch relative ${
         local === "ar" ? "pr-0 pl-5" : "pl-0 pr-5"
-      
       } ${dark ? "bg-[#030711]" : ""}`}
     >
-      
       <header className="flex h-[50px] justify-between pl-[4px] pr-0 py-0 self-stretch w-full items-center">
         <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5">
           <h1
@@ -191,50 +189,18 @@ export const UserDetailsSection = ({
       </header>
 
       <Card
-        className={`flex flex-col w-[1197px] h-[866px] items-start gap-5 p-5 mt-[10px] relative self-stretch w-[1197px] flex-[0_0_auto] ${
+        className={`flex flex-col h-full items-start gap-5 p-5 mt-[10px] relative self-stretch w-full flex-[0_0_auto] ${
           dark ? "bg-[#272932] border-[white]" : "bg-bg"
         } rounded-2xl overflow-hidden`}
       >
-        <CardContent className="p-0 w-full overflow-y-auto scroll-x-hidden h-full">
-          <div className="flex w-full h-[50px] justify-between pl-1 pr-0 py-0 items-center relative">
-        
-            <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5 relative mt-[-1.00px] mb-[-1.00px]">
-              <Button
-                variant="ghost"
-                className="inline-flex items-center gap-1.5 relative flex-[0_0_auto] p-0 h-auto"
-              >
-                <div className="relative w-4 h-4">
-                  <img
-                    className={`absolute w-3 h-2.5 top-[3px] left-0.5 ${
-                      local === "ar" ? "rotate-[180deg]" : ""
-                    } `}
-                    alt="Vector"
-                    src="/Vector.svg"
-                  />
-                </div>
-
-                <div className="relative w-fit mt-[-1.00px] font-title-12px-regular font-[number:var(--title-12px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-12px-regular-font-size)] tracking-[var(--title-12px-regular-letter-spacing)] leading-[var(--title-12px-regular-line-height)] whitespace-nowrap [font-style:var(--title-12px-regular-font-style)]">
-                  {t("Back to Users")}
-                </div>
-              </Button>
-
-              <h2
-                className={`relative self-stretch font-h5-22px-bold ${
-                  dark ? "text-white" : "text-[#2a2b2a]"
-                } font-[number:var(--h5-22px-bold-font-weight)] text-on-surface-primary text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]`}
-              >
-                {t("Add New User")}
-              </h2>
-            </div>
-          </div>
-
+        <CardContent className="px-[20px] w-full overflow-y-auto scroll-x-hidden h-full">
           <div className="w-full h-[866px] ">
             {/* Account Tab */}
             <Tabs
               dir={`${local === "ar" ? "rtl" : "ltr"}`}
               defaultValue="account"
             >
-              <TabsList className="flex items-center w-[1160px] mt-[10px] gap-2 relative top-3 -left-px bg-white rounded-[14px] border border-solid border-[#d1d1d1] shadow-[0px_8px_8px_-4px_#0a0d120a] h-auto">
+              <TabsList className="flex items-center w-full mt-[10px] gap-2 relative top-3 -left-px bg-white rounded-[14px] border border-solid border-[#d1d1d1] shadow-[0px_8px_8px_-4px_#0a0d120a] h-auto">
                 {tabItems.map((tab) => (
                   <TabsTrigger
                     key={tab.value}
@@ -357,40 +323,35 @@ export const UserDetailsSection = ({
                   ))}
                 </div>
                 <div
-                  dir={`${local === "ar" ? "ltr" : "rtl"}`}
-                 className={`relative self-stretch w-full h-[58px] top-[40px] border border-red-500 ${
-                    local === "ar" ? "right-[450px]" : "right-[550px]"
-                  } `}
+                  dir="ltr"
+                  className={`w-[663px] h-10 items-start gap-3 pt-0 pb-6 px-6 top-[0px] ${
+                    local === "ar" ? "right-[494px]" : "left-[494px]"
+                  }  flex relative`}
                 >
-                  <div
-                    dir="ltr"
-                    className="w-[663px] h-10 items-start gap-3 pt-0 pb-6 px-6 top-[0px] left-[494px] flex relative"
+                  <Button
+                    variant="outline"
+                    className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-base-white rounded-[50px] overflow-hidden border border-solid border-[#d5d6d9] shadow-shadow-xs h-auto"
                   >
-                    <Button
-                      variant="outline"
-                      className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-base-white rounded-[50px] overflow-hidden border border-solid border-[#d5d6d9] shadow-shadow-xs h-auto"
+                    <div
+                      className={`relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] ${
+                        dark ? "text-white" : "text-[#2a2b2a]"
+                      } text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]`}
                     >
-                      <div
-                        className={`relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] ${
-                          dark ? "text-white" : "text-[#2a2b2a]"
-                        } text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]`}
-                      >
-                        {t("Cancel")}
-                      </div>
-                    </Button>
+                      {t("Cancel")}
+                    </div>
+                  </Button>
 
-                    <Button className="flex hover:bg-blue-500 items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-secondary-dark rounded-[50px] overflow-hidden border border-solid border-[#00b48d] shadow-shadow-xs h-auto">
-                      <div className="relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-base-white text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
-                        {t("Next")}
-                      </div>
+                  <Button className="flex hover:bg-blue-500 items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-secondary-dark rounded-[50px] overflow-hidden border border-solid border-[#00b48d] shadow-shadow-xs h-auto">
+                    <div className="relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-base-white text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
+                      {t("Next")}
+                    </div>
 
-                      <img
-                        className="absolute w-[5px] h-[9px] top-[15px] left-[173px]"
-                        alt="Vector stroke"
-                        src="/Vector (Stroke).svg"
-                      />
-                    </Button>
-                  </div>
+                    <img
+                      className="absolute w-[5px] h-[9px] top-[15px] left-[173px]"
+                      alt="Vector stroke"
+                      src="/Vector (Stroke).svg"
+                    />
+                  </Button>
                 </div>
               </TabsContent>
               <TabsContent
@@ -398,7 +359,7 @@ export const UserDetailsSection = ({
                 className="relative self-stretch w-full h-[576px] mt-[50px]"
               >
                 <div className="relative self-stretch w-full h-[575px]">
-                   <form className="flex flex-col h-[676px] w-full text-center items-start gap-4 relative left-2.5">
+                  <form className="flex flex-col h-[676px] w-full text-center items-start gap-4 relative left-2.5">
                     <div className="flex items-center gap-8 relative self-stretch w-full flex-[0_0_auto]">
                       <Label
                         className={`relative w-40 h-3.5 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] ${
@@ -725,46 +686,42 @@ text-md-regular-font-style)]"
                     </div>
                   </form>
                 </div>
+
                 <div
-                  dir={`${local === "ar" ? "ltr" : "rtl"}`}
-                   className={`relative self-stretch w-full h-[58px] top-[40px] border border-red-500 ${
-                    local === "ar" ? "right-[450px]" : "right-[550px]"
-                  } `}
+                  dir="ltr"
+                  className={`w-[663px] h-10 items-start gap-3 pt-0 pb-6 px-6 top-[0px]${
+                    local === "ar" ? "right-[494px]" : "left-[494px]"
+                  } flex relative`}
                 >
-                  <div
-                    dir="ltr"
-                    className="w-[663px] h-10 items-start gap-3 pt-0 pb-6 px-6 top-[0px] left-[494px] flex relative"
+                  <Button
+                    variant="outline"
+                    className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-base-white rounded-[50px] overflow-hidden border border-solid border-[#d5d6d9] shadow-shadow-xs h-auto"
                   >
-                    <Button
-                      variant="outline"
-                      className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-base-white rounded-[50px] overflow-hidden border border-solid border-[#d5d6d9] shadow-shadow-xs h-auto"
+                    <div
+                      className={`relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] ${
+                        dark ? "text-white" : "text-[#2a2b2a]"
+                      } text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]`}
                     >
-                      <div
-                        className={`relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] ${
-                          dark ? "text-white" : "text-[#2a2b2a]"
-                        } text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]`}
-                      >
-                        {t("Previous")}
-                      </div>
-                      <img
-                        className="absolute top-[10px] left-[100px] "
-                        alt="Vector stroke"
-                        src="/CaretRight.svg"
-                      />
-                    </Button>
+                      {t("Previous")}
+                    </div>
+                    <img
+                      className="absolute top-[10px] left-[100px] "
+                      alt="Vector stroke"
+                      src="/CaretRight.svg"
+                    />
+                  </Button>
 
-                    <Button className="flex hover:bg-blue-500 items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-secondary-dark rounded-[50px] overflow-hidden border border-solid border-[#00b48d] shadow-shadow-xs h-auto">
-                      <div className="relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-base-white text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
-                        {t("Next")}
-                      </div>
+                  <Button className="flex hover:bg-blue-500 items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-secondary-dark rounded-[50px] overflow-hidden border border-solid border-[#00b48d] shadow-shadow-xs h-auto">
+                    <div className="relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-base-white text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
+                      {t("Next")}
+                    </div>
 
-                      <img
-                        className="absolute w-[5px] h-[9px] top-[15px] left-[173px]"
-                        alt="Vector stroke"
-                        src="/Vector (Stroke).svg"
-                      />
-                    </Button>
-                  </div>
+                    <img
+                      className="absolute w-[5px] h-[9px] top-[15px] left-[173px]"
+                      alt="Vector stroke"
+                      src="/Vector (Stroke).svg"
+                    />
+                  </Button>
                 </div>
               </TabsContent>
               <TabsContent
@@ -805,46 +762,42 @@ text-md-regular-font-style)]"
                     <WorkDays local={local} dark={dark} />
                   </div>
                 </div>
+
                 <div
-                  dir={`${local === "ar" ? "ltr" : "rtl"}`}
-                  className={`relative self-stretch w-full h-[58px] top-[40px] border border-red-500 ${
-                    local === "ar" ? "right-[450px]" : "right-[550px]"
-                  } `}
+                  dir="ltr"
+                  className={`w-[663px] h-10 items-start gap-3 pt-0 pb-6 px-6 top-[0px] ${
+                    local === "ar" ? "right-[494px]" : "left-[494px]"
+                  } flex relative`}
                 >
-                  <div
-                    dir="ltr"
-                    className="w-[663px] h-10 items-start gap-3 pt-0 pb-6 px-6 top-[0px] left-[494px] flex relative"
+                  <Button
+                    variant="outline"
+                    className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-base-white rounded-[50px] overflow-hidden border border-solid border-[#d5d6d9] shadow-shadow-xs h-auto"
                   >
-                    <Button
-                      variant="outline"
-                      className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-base-white rounded-[50px] overflow-hidden border border-solid border-[#d5d6d9] shadow-shadow-xs h-auto"
+                    <div
+                      className={`relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] ${
+                        dark ? "text-white" : "text-[#2a2b2a]"
+                      } text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]`}
                     >
-                      <div
-                        className={`relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] ${
-                          dark ? "text-white" : "text-[#2a2b2a]"
-                        } text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]`}
-                      >
-                        {t("Previous")}
-                      </div>
-                      <img
-                        className="absolute top-[10px] left-[100px] "
-                        alt="Vector stroke"
-                        src="/CaretRight.svg"
-                      />
-                    </Button>
+                      {t("Previous")}
+                    </div>
+                    <img
+                      className="absolute top-[10px] left-[100px] "
+                      alt="Vector stroke"
+                      src="/CaretRight.svg"
+                    />
+                  </Button>
 
-                    <Button className="flex hover:bg-blue-500 items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-secondary-dark rounded-[50px] overflow-hidden border border-solid border-[#00b48d] shadow-shadow-xs h-auto">
-                      <div className="relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-base-white text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
-                        {t("Next")}
-                      </div>
+                  <Button className="flex hover:bg-blue-500 items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-secondary-dark rounded-[50px] overflow-hidden border border-solid border-[#00b48d] shadow-shadow-xs h-auto">
+                    <div className="relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-base-white text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
+                      {t("Next")}
+                    </div>
 
-                      <img
-                        className="absolute w-[5px] h-[9px] top-[15px] left-[173px]"
-                        alt="Vector stroke"
-                        src="/Vector (Stroke).svg"
-                      />
-                    </Button>
-                  </div>
+                    <img
+                      className="absolute w-[5px] h-[9px] top-[15px] left-[173px]"
+                      alt="Vector stroke"
+                      src="/Vector (Stroke).svg"
+                    />
+                  </Button>
                 </div>
               </TabsContent>
               <TabsContent value="documents">
@@ -893,45 +846,40 @@ text-md-regular-font-style)]"
                     ))}
                   </div>
                   <div
-                    dir={`${local === "ar" ? "ltr" : "rtl"}`}
-                    className={`relative self-stretch w-full h-[58px] top-[320px] border border-red-500 ${
-                      local === "ar" ? "right-[450px]" : "right-[550px]"
-                    } `}
+                    dir="ltr"
+                    className={`w-[663px] h-10 items-start gap-3 pt-0 pb-6 px-6 top-[0px] ${
+                      local === "ar" ? "right-[494px]" : "left-[494px]"
+                    } flex relative`}
                   >
-                    <div
-                      dir="ltr"
-                      className="w-[663px] h-10 items-start gap-3 pt-0 pb-6 px-6 top-[0px] left-[494px] flex relative"
+                    <Button
+                      variant="outline"
+                      className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-base-white rounded-[50px] overflow-hidden border border-solid border-[#d5d6d9] shadow-shadow-xs h-auto"
                     >
-                      <Button
-                        variant="outline"
-                        className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-base-white rounded-[50px] overflow-hidden border border-solid border-[#d5d6d9] shadow-shadow-xs h-auto"
+                      <div
+                        className={`relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] ${
+                          dark ? "text-white" : "text-[#414651]"
+                        } text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]`}
                       >
-                        <div
-                          className={`relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] ${
-                            dark ? "text-white" : "text-[#414651]"
-                          } text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]`}
-                        >
-                          {t("Previous")}
-                        </div>
-                        <img
-                          className="absolute top-[10px] left-[100px] "
-                          alt="Vector stroke"
-                          src="/CaretRight.svg"
-                        />
-                      </Button>
+                        {t("Previous")}
+                      </div>
+                      <img
+                        className="absolute top-[10px] left-[100px] "
+                        alt="Vector stroke"
+                        src="/CaretRight.svg"
+                      />
+                    </Button>
 
-                      <Button className="flex hover:bg-blue-500 items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-secondary-dark rounded-[50px] overflow-hidden border border-solid border-[#00b48d] shadow-shadow-xs h-auto">
-                        <div className="relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-base-white text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
-                          {t("Save")}
-                        </div>
+                    <Button className="flex hover:bg-blue-500 items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-secondary-dark rounded-[50px] overflow-hidden border border-solid border-[#00b48d] shadow-shadow-xs h-auto">
+                      <div className="relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-base-white text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
+                        {t("Save")}
+                      </div>
 
-                        <img
-                          className="absolute w-[5px] h-[9px] top-[15px] left-[173px]"
-                          alt="Vector stroke"
-                          src="/Vector (Stroke).svg"
-                        />
-                      </Button>
-                    </div>
+                      <img
+                        className="absolute w-[5px] h-[9px] top-[15px] left-[173px]"
+                        alt="Vector stroke"
+                        src="/Vector (Stroke).svg"
+                      />
+                    </Button>
                   </div>
                 </div>
               </TabsContent>
@@ -939,7 +887,6 @@ text-md-regular-font-style)]"
           </div>
         </CardContent>
       </Card>
-      
     </div>
   );
 };

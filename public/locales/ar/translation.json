@@ -79,5 +79,19 @@
     "Last Modified Date" : "تاريخ آخر تعديل",
     "Last Login Date & Time" : "تاريخ ووقت آخر تسجيل دخول",
     "Documents" : "المستندات",
-    "Edit User Details" : "تعديل تفاصيل المستخدم"
+    "Edit User Details" : "تعديل تفاصيل المستخدم",
+    "Medical Complexes List" : "قائمة المجمعات الطبية",
+    "Complex Name" : "اسم المجمع",
+    "Scheduled Appointments Count" : "عدد المواعيد المجدولة",
+    "Clinics Assigned Count" : "عدد العيادات المخصصة",
+    "Status" : "الحالة",
+    "PIC" : "الشخص المسؤل",
+    "Add New Complex" : "إضافة مجمع جديد",
+    "Search for a Medical Complex" : "البحث عن مجمع طبي",
+    "Active" : "نشط",
+    "Medical clinic List" : "قائمة العيادات الطبية ",
+    "Add New Clinic" : "إضافة عيادة جديدة",
+    "Clinic Name" : "اسم العيادة",
+    "Search for a Medical Clinic" : "البحث عن عيادة طبية"
+
 }
