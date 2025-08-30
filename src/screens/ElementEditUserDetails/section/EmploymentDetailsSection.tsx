@@ -145,41 +145,22 @@ export const EmploymentDetailsSection = ({
     i18n.changeLanguage(local);
   }, []);
   return (
-    <div
-      className={`flex-col w-[1217px] items-start gap-4 pl-0 pr-5 py-4 self-stretch flex relative left-[240px] ${
-        local === "ar" ? "right-[240px] pr-0 pl-5" : "left-[240px] pl-0 pr-5"
+   <div className={`flex flex-col w-full overflow-scroll h-full items-start gap-4  py-4  self-stretch relative ${
+        local === "ar" ? "pr-0 pl-5" : "pl-0 pr-5"
       } ${dark ? "bg-[#030711]" : ""}`}
     >
-      <header className="flex h-[50px] w-[1197px] justify-between pl-1 pr-0 py-0 self-stretch items-center relative">
-        <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5 relative mt-[-1.00px] mb-[-1.00px]">
-          <div className="inline-flex items-center gap-1.5 relative flex-[0_0_auto]">
-           
-           
-         {local === "en" ? (
-  <ArrowLeftIcon/>
-) : (
-  <ArrowForwardIcon  className="relative w-4 h-4" />
-)}
-
-
-            <div className="relative w-fit mt-[-1.00px] font-title-12px-regular font-[number:var(--title-12px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-12px-regular-font-size)] tracking-[var(--title-12px-regular-letter-spacing)] leading-[var(--title-12px-regular-line-height)] whitespace-nowrap [font-style:var(--title-12px-regular-font-style)]">
-              {t("Back to Users List")}
-            </div>
-          </div>
-          <h1 className="relative self-stretch font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] text-on-surface-primary text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]">
-            {t("Edit User Details")}
+      <header className="flex h-[50px] justify-between pl-[4px] pr-0 py-0 self-stretch w-full items-center  ">
+        <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5">
+          <h1
+            className={`self-stretch mt-[-1.00px] font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] 
+              text-primary
+            } text-on-surface-primary text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]`}
+          >
+            {t("Users")}
           </h1>
         </div>
 
-        <div className="inline-flex gap-3 flex-[0_0_auto] rounded-[28px] items-center relative">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-          >
-            <SearchIcon className="w-5 h-5" />
-          </Button>
-
+        <div className="inline-flex gap-3 flex-[0_0_auto] rounded-[28px] items-center">
           <div className="relative">
             <Button
               variant="ghost"
@@ -196,7 +177,9 @@ export const EmploymentDetailsSection = ({
               variant="ghost"
               size="icon"
               className={`p-2.5 bg-secondary-light ${
-                local === "ar" ? "bg-[green]" : "bg-secondary-light"
+                local === "ar"
+                  ? "bg-[green]"
+                  : "bg-secondary-light"
               } rounded-[20px] h-auto transition-all duration-[1000ms]`}
               onClick={handleLanguageClick}
             >
@@ -212,13 +195,13 @@ export const EmploymentDetailsSection = ({
             <div className="inline-flex items-center w-[40px] h-[40px] gap-2.5 flex-[0_0_auto] bg-app-primary rounded-3xl" />
             <div className="flex-col items-start gap-1 inline-flex flex-[0_0_auto]">
               <div
-                className={`w-fit mt-[-1.00px] ${
-                  dark ? "text-white" : "text-[#2a2b2a]"
-                } font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]`}
+                className={`w-fit mt-[-1.00px] 
+                 text-primary
+                } font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]`}
               >
-                Anahera Jones 
+                Anahera Jones
               </div>
-              <div className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-tertiary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)]">
+              <div className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-tertiary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)] border-medium ">
                 Admin
               </div>
             </div>
@@ -226,7 +209,7 @@ export const EmploymentDetailsSection = ({
         </div>
       </header>
 
-      <main className={`flex flex-col w-[1197px] items-start gap-5 p-5 relative ${dark ? "bg-[#272932] border-[white]" : "bg-bg"} rounded-2xl overflow-hidden`}>
+      <main className={`flex flex-col h-full items-start gap-5 p-5 mt-[10px] relative self-stretch w-full flex-[0_0_auto] ${dark ? "bg-[#272932] border-[white]" : "bg-bg"} rounded-2xl overflow-hidden`}>
         <Card
           style={{ boxShadow: "0px 20px 24px -4px #0A0D121A" }}
           className="w-full bg-surface-default rounded-[16px] "

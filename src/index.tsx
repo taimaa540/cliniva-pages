@@ -2,7 +2,8 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./i18n";
 // the default weight 400
-import { ElementUsersNoDataTo } from "./screens/ElementUsersNoDataTo/ElementUsersNoDataTo";
+
+ import { ElementUsersNoDataTo } from "./screens/ElementUsersNoDataTo/ElementUsersNoDataTo";
 import { ElementUsersAddNew } from "./screens/ElementUsersAddNew/ElementUseresAddNew";
 import { ElementUsersDesktop } from "./screens/UsersDesktop/ElementUsersDesktop";
 import { ElementUserDetails } from "./screens/UserDetails/ElementUserDetails";
@@ -15,7 +16,12 @@ import { ThemeToggle } from "./components/theme/ThemeSwitcher";
 import { ThemeDemo } from "./components/theme/ThemeDemo";
 import { ChoosePlan } from "./screens/choosePlan";
 import { CompanyPlan } from "./screens/CompanyPlan/CompanyPlan";
-
+import { ElementViewCompany } from "./screens/ElementVeiwCompany/ElementViewCompany";
+import { ElementViewComplex } from "./screens/ElementViewComplex/ElementViewComplex";
+import { ElementViewClinic } from "./screens/ElementViewClinic/ElementViewClinic";
+import { ElementEditCompany } from "./screens/ElementEditCompany/ElementEditCompany"; 
+import { ElementEditComplex } from "./screens/ElementEditComplax/ElementEditComplax";
+import { EditClinicDetails } from "./screens/EditClinicDetails/EditClinicDetails";
 createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
     <ThemeProvider defaultTheme="light" storageKey="cliniva-theme">
@@ -30,20 +36,33 @@ createRoot(document.getElementById("app") as HTMLElement).render(
           
         {/* Theme Demo - Uncomment to see theme system in action */}
         {/* <ThemeDemo /> */}
-
+{/* <ElementViewCompany/> */}
         {/* Original app components */}
         {/* <ChoosePlan /> */}
         {/* <CompanyPlan/> */}
         {/* <ElementUsersNoDataTo /> */}
-        <ElementUsersAddNew />
+        {/* <ElementUsersAddNew /> */}
         {/* <ElementUsersDesktop/> */}
+
+        <ElementViewClinic/>
+
+        {/* <ElementViewComplex/> */}
+
         {/* <ElementUserDetails/> */}
         {/* <ElementEditUserDetails/> */}
         {/* <ElementChangeStatus/> */}
-        {/* <ElementDeleteUser title="user"/> */}
+        {/* <ElementDeleteUser /> */}
         {/* <ElementLogOutDialog/> */}
+        {/* <ElementEditComplex/> */}
+       {/* <ElementEditCompany/> */}
+        {/* <ElementViewCompany/> */}
+
+        {/* <EditClinicDetails/> */}
+   
         </main>
       </div>
     </ThemeProvider>
   </StrictMode>
 );
+
+

@@ -10,7 +10,7 @@ import { ChevronDownIcon, Edit2Icon, BellIcon, PhoneIcon, MailIcon, MapPinIcon, 
 import TranslateIcon from "@mui/icons-material/Translate";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
-
+import { ArrowLeft, ArrowRight } from "lucide-react";
 const companyInfo = {
   logo: "/vector.svg",
   tradeName: "MedCare Group",
@@ -79,16 +79,36 @@ export const LegalDocumentsSection = ({handleLanguageClick,
         i18n.changeLanguage(local);
       }, []);
   return (
-    
-    <div className="flex flex-col items-start gap-4 p-4 w-full">
-<header className="flex h-[50px] justify-between pl-1 pr-0 py-0 self-stretch w-full items-center">
-        <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5">
+  <div
+
+      className={`flex flex-col w-full overflow-hidden items-start gap-4  py-4  self-stretch relative bg-background-primary
+      } `}
+    >
+      <header className="flex h-[50px] justify-between pl-[4px] bg-background-primary pr-0 py-0 self-stretch w-full items-center">
+          <div className="flex flex-col w-[340px] items-start gap-1.5 ">
           <h1
-            className={`self-stretch mt-[-1.00px] font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] ${
-              dark ? "text-white" : "text-[#2a2b2a]"
+            className={`self-stretch mt-[-1.00px] font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] 
+              text-text-primary 
             } text-on-surface-primary text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]`}
           >
-            {t("Users")}
+           <div className="flex items-center gap-4 rounded-2xl ">
+               
+               
+          {local === "ar" ? (
+          <ArrowRight className="w-6 h-6" />
+        ) : (
+          <ArrowLeft className="w-6 h-6" />
+        )}
+                  <div className="flex flex-col">
+                    <h1 className="font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] text-on-surface-primary text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]">
+                  { t("        Medical Facilities    ")}
+                    </h1>
+                    <p className="font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
+                       { t("        Medical Company Details  ")}
+                    </p>
+                  </div>
+                </div>
+
           </h1>
         </div>
 
@@ -99,7 +119,7 @@ export const LegalDocumentsSection = ({handleLanguageClick,
               size="icon"
               className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
             >
-              <BellIcon className="text-secondary w-5 h-5" />
+              <BellIcon className="w-5 h-5 text-text-primary" />
             </Button>
             <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
           </div>
@@ -108,12 +128,14 @@ export const LegalDocumentsSection = ({handleLanguageClick,
             <Button
               variant="ghost"
               size="icon"
-              className={`p-2.5 ${
-                local === "ar" ? "bg-[green]" : "bg-secondary-light"
+              className={`p-2.5 bg-secondary-light ${
+                local === "ar"
+                  ? "bg-[green]"
+                  : "bg-secondary-light"
               } rounded-[20px] h-auto transition-all duration-[1000ms]`}
               onClick={handleLanguageClick}
             >
-              <TranslateIcon className="text-secondary w-5 h-5" />
+              <TranslateIcon className="w-5 h-5 text-text-primary" />
             </Button>
           </div>
 
@@ -125,14 +147,14 @@ export const LegalDocumentsSection = ({handleLanguageClick,
             <div className="inline-flex items-center w-[40px] h-[40px] gap-2.5 flex-[0_0_auto] bg-app-primary rounded-3xl" />
             <div className="flex-col items-start gap-1 inline-flex flex-[0_0_auto]">
               <div
-                className={`w-fit mt-[-1.00px] ${
-                  dark ? "text-white" : "text-[#2a2b2a]"
+                className={`w-fit mt-[-1.00px] 
+                 text-primary
                 } font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]`}
               >
                 Anahera Jones
               </div>
-              <div className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-tertiary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)]">
-                Admin
+              <div className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-tertiary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)] border-medium ">
+                 { t("      Admin    ")}
               </div>
             </div>
           </div>
@@ -140,40 +162,44 @@ export const LegalDocumentsSection = ({handleLanguageClick,
       </header>
 
 
-<div className="flex flex-col w-full gap-5 p-5 bg-bg rounded-2xl">
-<Button className="w-[200px] h-10 bg-secondary-dark rounded-[20px] text-surface-default font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-[length:var(--btn-14px-medium-font-size)] leading-[var(--btn-14px-medium-line-height)] tracking-[var(--btn-14px-medium-letter-spacing)] [font-style:var(--btn-14px-medium-font-style)] h-auto self-end">
-<Edit2Icon className="text-secondary w-4 h-4 mr-1" />
-Edit
+     
+      <Card className="flex flex-col h-auto items-start gap-6 p-5 mt-[10px] bg-background-tertiary relative self-stretch w-full rounded-2xl overflow-hidden">
+              <CardContent className="p-0 w-full overflow-y-auto gap-5 h-auto">
+      
+<Button className="w-[200px] h-10 bg-secondary-dark rounded-[20px] ml-[1600px] text-surface-default font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-[length:var(--btn-14px-medium-font-size)] leading-[var(--btn-14px-medium-line-height)] tracking-[var(--btn-14px-medium-letter-spacing)] [font-style:var(--btn-14px-medium-font-style)] h-auto self-end">
+<Edit2Icon className={"  w-4 h-4 mr-1 text-text-primary"} />
+     { t("      Edit     ")}
         </Button>
 
 
 
         
-<div className="flex flex-col gap-4 w-full">
-  <Collapsible defaultOpen>
-    <Card className="bg-surface-default rounded-2xl">
-      <CollapsibleTrigger className="w-full">
-        <CardContent className="p-4">
-          <div className="flex items-center justify-between w-full">
-            <div
-              style={{
-              
-                fontWeight: 600,
-                fontStyle: "SemiBold",
-                fontSize: "16px",
-                lineHeight: "124%",
-                letterSpacing: "0%",
-              }}
-              className="tx-text-accent"
-            >
-              Company information
-            </div>
-            <ChevronDownIcon className="text-secondary w-8 h-8" />
-          </div>
-        </CardContent>
-      </CollapsibleTrigger>
 
-      <CollapsibleContent>
+
+
+
+<Collapsible defaultOpen className="w-full mt-5">
+  <Card className="bg-surface-default rounded-2xl">
+    <CollapsibleTrigger className="w-full">
+      <CardContent className="p-4 flex items-center justify-between">
+        <div
+          style={{
+            fontFamily: "Lato",
+            fontWeight: 600,
+            fontStyle: "SemiBold",
+            fontSize: "16px",
+            lineHeight: "124%",
+            letterSpacing: "0%",
+          }}
+          className="text-text-accent"
+        >
+           { t("       Company information     ")}
+        </div>
+        <ChevronDownIcon className=" w-8 h-8 text-text-primary" />
+      </CardContent>
+    </CollapsibleTrigger>
+
+      <CollapsibleContent >
         <CardContent className="px-4 pb-4">
           {/* نستخدم flex أفقياً لتقسيم الأعمدة مع مسافات متساوية */}
           <div className="flex gap-6">
@@ -190,9 +216,9 @@ Edit
                     letterSpacing: "0%",
                   }}
                 >
-                  Logo:
+                { t("          Logo:     ")}
                 </div>
-                <img className="w-12 h-12" alt="Vector" src={companyInfo.logo} />
+                <img className="w-12 h-12"  src="/logo.png" ></img>
               </div>
 
               <div className="grid grid-cols-[200px_1fr] items-start gap-2">
@@ -206,7 +232,7 @@ Edit
                     letterSpacing: "0%",
                   }}
                 >
-                  Trade Name:
+                { t("         Trade Name     ")} :
                 </div>
                 <div
                   style={{
@@ -233,7 +259,7 @@ Edit
                     letterSpacing: "0%",
                   }}
                 >
-                  Year of Establishment:
+                 { t("         Year of Establishmen    ")}:
                 </div>
                 <div
                   style={{
@@ -260,7 +286,7 @@ Edit
                     letterSpacing: "0%",
                   }}
                 >
-                  Overview:
+                     { t("             Overview    ")}:
                 </div>
                 <div
                   style={{
@@ -287,7 +313,7 @@ Edit
                     letterSpacing: "0%",
                   }}
                 >
-                  Goals:
+                 { t("                Goals    ")}:
                 </div>
                 <div
                   style={{
@@ -317,7 +343,7 @@ Edit
                     letterSpacing: "0%",
                   }}
                 >
-                  Legal Name:
+                   { t("                 Legal Name     ")}:
                 </div>
                 <div
                   style={{
@@ -344,7 +370,7 @@ Edit
                     letterSpacing: "0%",
                   }}
                 >
-                  Vision:
+                 { t("                      Vision      ")}:
                 </div>
                 <div
                   style={{
@@ -371,7 +397,7 @@ Edit
                     letterSpacing: "0%",
                   }}
                 >
-                  CEO Name:
+                     { t("                        CEO Name       ")}:
                 </div>
                 <div
                   style={{
@@ -388,17 +414,26 @@ Edit
               </div>
             </div>
           </div>
-        </CardContent>
-      </CollapsibleContent>
-    </Card>
-  </Collapsible>
-</div>
+      </CardContent>
+    </CollapsibleContent>
+  </Card>
+</Collapsible>
 
 
 
 
 
-<Collapsible defaultOpen>
+
+
+
+
+
+
+
+
+
+
+<Collapsible defaultOpen className="w-full mt-5">
   <Card className="bg-surface-default rounded-2xl">
     <CollapsibleTrigger className="w-full">
       <CardContent className="p-4 flex items-center justify-between">
@@ -411,11 +446,11 @@ Edit
             lineHeight: "124%",
             letterSpacing: "0%",
           }}
-          className="text-primary-dark"
+          className="text-text-accent"
         >
-          Company Contact Information
+     { t("        Company Contact Information      ")}
         </div>
-        <ChevronDownIcon className="text-secondary w-8 h-8" />
+        <ChevronDownIcon className="text-text-primary w-8 h-8" />
       </CardContent>
     </CollapsibleTrigger>
 
@@ -425,7 +460,7 @@ Edit
           {/* العمود الأول */}
           <div className="flex flex-col gap-8"> {/* تم زيادة المسافة بين الصفوف */}
             <div className="grid grid-cols-[auto_150px_1fr] items-center gap-3">
-              <PhoneIcon className="text-secondary w-6 h-6" />
+              <PhoneIcon className="text-text-primary w-6 h-6" />
               <div
                 style={{
                   fontFamily: "Lato",
@@ -437,7 +472,7 @@ Edit
                 }}
                 className=""
               >
-                Phone Numbers:
+               { t("        Phone Numbers     ")}:
               </div>
               <div
                 style={{
@@ -455,7 +490,7 @@ Edit
             </div>
 
             <div className="grid grid-cols-[auto_150px_1fr] items-center gap-3">
-              <MapPinIcon className="text-secondary w-6 h-6" />
+              <MapPinIcon className="text-text-primaryw-6 h-6" />
               <div
                 style={{
                   fontFamily: "Lato",
@@ -465,9 +500,9 @@ Edit
                   lineHeight: "124%",
                   letterSpacing: "0%",
                 }}
-                className="text-primary"
+                className="text-text-primary"
               >
-                Physical Address:
+                 { t("      Physical Address       ")}:
               </div>
               <div
                 style={{
@@ -478,14 +513,14 @@ Edit
                   lineHeight: "125%",
                   letterSpacing: "0%",
                 }}
-                className="text-primary"
+                className="text-text-primary"
               >
                 {contactInfo.physicalAddress}
               </div>
             </div>
 
             <div className="grid grid-cols-[auto_150px_1fr] items-center gap-3">
-              <MapOutlinedIcon className="text-secondary w-6 h-6" />
+              <MapOutlinedIcon className="text-text-primary w-6 h-6" />
               <div
                 style={{
                   fontFamily: "Lato",
@@ -495,9 +530,9 @@ Edit
                   lineHeight: "124%",
                   letterSpacing: "0%",
                 }}
-                className="text-primary"
+                className="text-text-primary"
               >
-                Maps Location:
+                { t("       Maps Location      ")}:
               </div>
               <a
                 href="https://maps.google.com/?q=24.7136,46.6753"
@@ -511,7 +546,7 @@ Edit
                   lineHeight: "125%",
                   letterSpacing: "0%",
                 }}
-                className="text-primary"
+                className="text-text-primary"
               >
                 {contactInfo.mapsLocation}
               </a>
@@ -521,7 +556,7 @@ Edit
           {/* العمود الثاني */}
           <div className="flex flex-col gap-8"> {/* تم زيادة المسافة بين الصفوف */}
             <div className="grid grid-cols-[auto_150px_1fr] items-center gap-3">
-              <LocalPostOfficeOutlinedIcon className="text-secondary w-6 h-6" />
+              <LocalPostOfficeOutlinedIcon className="text-text-primary w-6 h-6" />
               <div
                 style={{
                   fontFamily: "Lato",
@@ -533,7 +568,7 @@ Edit
                 }}
                 className="text-on-surface-primary"
               >
-                Email:
+            { t("          Email       ")}:
               </div>
               <div
                 style={{
@@ -551,7 +586,7 @@ Edit
             </div>
 
             <div className="grid grid-cols-[auto_150px_1fr] items-center gap-3">
-              <GlobeIcon className="text-secondary w-6 h-6" />
+              <GlobeIcon className="text-text-primary w-6 h-6" />
               <div
                 style={{
                   fontFamily: "Lato",
@@ -563,7 +598,7 @@ Edit
                 }}
                 className="text-on-surface-primary"
               >
-                Company Website:
+                  { t("            Company Website       ")}  :
               </div>
               <div
                 style={{
@@ -594,7 +629,7 @@ Edit
 
 
 
-<Collapsible defaultOpen>
+<Collapsible defaultOpen className="w-full mt-5">
   <Card className="bg-surface-default rounded-2xl">
     <CollapsibleTrigger className="w-full">
       <CardContent className="p-4 flex items-center justify-between">
@@ -607,11 +642,11 @@ Edit
             lineHeight: "124%",
             letterSpacing: "0%",
           }}
-          className="text-primary-dark"
+          className="text-text-accent"
         >
-          Social Media Accounts
+          { t("            Social Media Accounts     ")} 
         </div>
-        <ChevronDownIcon className="text-secondary w-8 h-8" />
+        <ChevronDownIcon className="text-text-primary w-8 h-8" />
       </CardContent>
     </CollapsibleTrigger>
 
@@ -622,7 +657,7 @@ Edit
           {/* العمود الأول */}
           <div className="flex flex-col gap-8">
             <div className="grid grid-cols-[auto_150px_1fr] items-center gap-3">
-              <LinkedinIcon className="text-secondary w-6 h-6" />
+              <LinkedinIcon className="text-text-primary w-6 h-6" />
               <div
                 style={{
                   fontFamily: "Lato",
@@ -634,7 +669,7 @@ Edit
                 }}
                 className="text-on-surface-primary"
               >
-                LinkedIn:
+                 { t("  LinkedIn  ")} :
               </div>
               <a
                 href={socialMedia.linkedin}
@@ -655,7 +690,7 @@ Edit
             </div>
 
             <div className="grid grid-cols-[auto_150px_1fr] items-center gap-3">
-              <FacebookIcon className="text-secondary w-6 h-6" />
+              <FacebookIcon className="text-text-primary w-6 h-6" />
               <div
                 style={{
                   fontFamily: "Lato",
@@ -667,7 +702,7 @@ Edit
                 }}
                 className="text-on-surface-primary"
               >
-                Facebook:
+                { t("     Facebook  ")}:
               </div>
               <div
                 style={{
@@ -686,7 +721,8 @@ Edit
           </div>
 
           {/* العمود الثاني */}
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-8 items-start text-center">
+            {/* Twitter فوق */}
             <div className="grid grid-cols-[auto_150px_1fr] items-center gap-3">
               <div className="w-6 h-6 bg-[url(/subtract.svg)] bg-contain bg-no-repeat" />
               <div
@@ -700,8 +736,8 @@ Edit
                 }}
                 className="text-on-surface-primary flex items-center gap-1"
               >
-                <XIcon className="text-secondary w-4 h-4" />
-                Twitter:
+                <XIcon className="text-text-primary w-4 h-4 text-center" />
+                 { t("       Twitter   ")}:
               </div>
               <div
                 style={{
@@ -718,8 +754,11 @@ Edit
               </div>
             </div>
 
-            <div className="grid grid-cols-[auto_150px_1fr] items-center gap-3">
-              <InstagramIcon className="text-secondary w-6 h-6" />
+            {/* Instagram تحت */}
+            <div className="grid grid-cols-[auto_100px_1fr] items-center gap-2">
+             <InstagramIcon
+  className={`text-text-primary w-6 h-6 text-center ${local === 'en' ? 'ml-10' : 'mr-10'}`}
+/>
               <div
                 style={{
                   fontFamily: "Lato",
@@ -731,7 +770,7 @@ Edit
                 }}
                 className="text-on-surface-primary"
               >
-                Instagram:
+                  { t("       Instagram   ")}:
               </div>
               <div
                 style={{
@@ -759,25 +798,46 @@ Edit
 
 
 
-<Card className="bg-surface-default rounded-2xl p-4 flex flex-col gap-8">
-  {/* Legal Details */}
-  <div className="flex flex-col gap-4">
-    <div className="font-title-16px-bold text-primary-dark">
-      Legal Details
+
+
+
+
+<Collapsible defaultOpen className="w-full mt-5">
+  <Card className="bg-surface-default rounded-2xl">
+    <CollapsibleTrigger className="w-full">
+      <CardContent className="p-4 flex items-center justify-between">
+          <div style={{
+            fontFamily: "Lato",
+            fontWeight: 600,
+            fontStyle: "SemiBold",
+            fontSize: "16px",
+            lineHeight: "124%",
+            letterSpacing: "0%",
+          }}
+          className="text-text-accent">
+  { t("             Legal Details    ")}
     </div>
+        <ChevronDownIcon className="text-text-primary w-8 h-8" />
+      </CardContent>
+    </CollapsibleTrigger>
+
+      <CollapsibleContent>
+        <CardContent className="px-4 pb-4">
+          <div className="flex flex-col gap-4">
+  
 
     {/* جدولة VAT و CR */}
-    <div className="grid grid-cols-4 gap-x-4">
-  <div className="font-lato font-semibold text-[16px] leading-[124%] tx-text-primary">
-    VAT:
+    <div className="grid grid-cols-4 gap-x-2">
+  <div className="font-lato font-semibold text-[16px] leading-[124%] text-text-primary">
+     { t("    VAT   ")}:
   </div>
-  <div className="font-lato font-normal text-[14px] leading-[125%] text-primary">
+  <div className="font-lato font-normal text-[14px] leading-[125%] text-text-primary">
     {legalDetails.vat}
   </div>
-  <div className="font-lato font-semibold text-[16px] leading-[124%] tx-text-primary">
-    CR:
+  <div className="font-lato font-semibold  leading-[124%] text-text-primary">
+   { t("     CR    ")}:
   </div>
-  <div className="font-lato font-normal text-[14px] leading-[125%] text-primary">
+  <div className="font-lato font-normal text-[14px] leading-[125%] text-text-primary">
     {legalDetails.cr}
   </div>
 </div>
@@ -785,20 +845,23 @@ Edit
   </div>
 
   {/* Divider */}
-  <div className="border-t border-gray-200" />
+  <div className="border-t border-gray-200 mt-5" />
 {/* Terms & Conditions */}
-<div className="flex flex-col gap-4">
-  <div className="font-lato font-semibold text-[16px] leading-[124%] text-secondary-dark">
-    Terms & Conditions
+<div className="flex flex-col gap-4 ">
+  <div className="font-lato font-semibold text-[16px] leading-[124%] text-secondary-dark mt-5">
+{ t("         Terms & Conditions    ")}
   </div>
-
-  <div className="grid grid-cols-[200px,1fr] gap-x-16 gap-y-8">
+  <div className="flex  gap-x-[620px]  ">
+<div className="font-semibold"> Title  </div>
+<div> Descration</div>
+</div>
+  <div className="grid grid-cols-[200px,1fr] gap-x-[453px] gap-y-8">
     {termsConditions.map((term, index) => (
       <React.Fragment key={index}>
-        <div className="font-lato font-semibold text-[16px] leading-[124%] tx-secondary">
+        <div className="font-lato font-normal text-[16px] text-start leading-[124%] secondary ">
           {term.title}
         </div>
-        <div className="font-lato font-normal text-[14px] leading-[125%] align-middle tx-secondary break-words">
+        <div className="font-lato font-normal text-[14px] text-start leading-[125%] align-middle secondary break-words  ">
           {term.description}
         </div>
       </React.Fragment>
@@ -806,42 +869,76 @@ Edit
   </div>
 </div>
   {/* Divider */}
-  <div className="border-t border-gray-200" />
+ 
 
   
     
 
    {/* Privacy Policy */}
 <div className="flex flex-col gap-4">
-  <div className="font-lato font-semibold text-[16px] leading-[124%] text-secondary-dark">
-    Privacy Policy
+  <div className="font-lato font-semibold text-[16px] leading-[124%] text-secondary-dark mt-5">
+   { t("         Privacy Policy   ")}
   </div>
-
-  <div className="grid grid-cols-[200px,1fr] gap-x-16 gap-y-8">
+  <div className="flex  gap-x-[620px]  ">
+<div className="font-semibold"> Title  </div>
+<div> Descration</div>
+</div>
+  <div className="grid grid-cols-[200px,1fr] gap-x-[455px] gap-y-8 ">
     {privacyPolicy.map((policy, index) => (
+      
       <React.Fragment key={index}>
-        <div className="font-lato font-semibold text-[16px] leading-[124%] text-primary">
+        <div className="font-lato font-normal text-[16px] leading-[124%] text-start text-text-primary">
           {policy.title}
         </div>
-        <div className="font-lato font-normal text-[14px] leading-[125%] align-middle text-primary break-words">
+        <div className="font-lato font-normal text-[14px] leading-[125%] align-middle text-start text-text-primary break-words    ">
           {policy.description}
         </div>
       </React.Fragment>
+
     ))}
   </div>
 </div>
-  
+      </CardContent>
+    </CollapsibleContent>
+  </Card>
+</Collapsible>
+
+
+
+
+<Collapsible defaultOpen className="w-full mt-5">
+  <Card className="bg-surface-default rounded-2xl">
+    <CollapsibleTrigger className="w-full">
+      <CardContent className="p-4 flex items-center justify-between">
+          <div style={{
+            fontFamily: "Lato",
+            fontWeight: 600,
+            fontStyle: "SemiBold",
+            fontSize: "16px",
+            lineHeight: "124%",
+            letterSpacing: "0%",
+          }}
+          className="text-text-accent">
+<h2>   { t("      Map Location   ")}</h2></div>
+        <ChevronDownIcon className=" text-text-primary w-8 h-8" />
+      </CardContent>
+    </CollapsibleTrigger>
+
+      <CollapsibleContent>
+        <CardContent className="px-4 pb-4">
+   
+      </CardContent>
+    </CollapsibleContent>
+  </Card>
+</Collapsible>
+
+
+
+</CardContent>
 </Card>
-
-
-
-<Card className="bg-surface-default rounded-2xl p-4 flex flex-col gap-8">
-<h2> Map Location</h2>
-</Card>
-
 </div>
 
-</div>
+
 
   )
 }

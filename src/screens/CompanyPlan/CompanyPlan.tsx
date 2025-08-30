@@ -8,7 +8,7 @@ import { NavigationSidebarSection } from "./sections/NavigationSidebarSection";
 export const CompanyPlan = (): JSX.Element => {
   
   return (
-    <div className="flex min-h-screen w-full items-start bg-surface-default">
+    <div className="p-0 w-full overflow-y-auto scroll-x-hidden h-full">
       {/* <NavigationSidebarSection /> */}
       {/* <AccountCreationSection /> */}
       {/* <CompanyDetailsSection/> */}

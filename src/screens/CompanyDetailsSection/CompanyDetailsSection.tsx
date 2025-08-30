@@ -128,7 +128,7 @@ export const CompanyDetailsSection = (): JSX.Element => {
                       <input
                         type="date"
                         placeholder={field.placeholder}
-                        className="block w-[360px] px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd]"
+                        className="block w-[360px] px-4 py-2 "
                       />
                     </div>
                   ))}

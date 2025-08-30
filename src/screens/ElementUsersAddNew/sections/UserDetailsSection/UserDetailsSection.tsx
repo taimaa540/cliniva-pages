@@ -136,7 +136,7 @@ export const UserDetailsSection = ({
         <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5">
           <h1
             className={`self-stretch mt-[-1.00px] font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] 
-              tx-text-primary
+              text-primary
             } text-on-surface-primary text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]`}
           >
             {t("Users")}
@@ -179,12 +179,12 @@ export const UserDetailsSection = ({
             <div className="flex-col items-start gap-1 inline-flex flex-[0_0_auto]">
               <div
                 className={`w-fit mt-[-1.00px] 
-                 tx-text-primary
+                 text-primary
                 } font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]`}
               >
                 Anahera Jones
               </div>
-              <div className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-tertiary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)] tx-border-medium ">
+              <div className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-tertiary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)] border-medium ">
                 Admin
               </div>
             </div>
@@ -212,12 +212,12 @@ export const UserDetailsSection = ({
                   />
                 </div>
 
-                <div className="relative w-fit mt-[-1.00px] font-title-12px-regular  font-[number:var(--title-12px-regular-font-weight)] tx-text-secondary text-on-surface-secondary text-[length:var(--title-12px-regular-font-size)] tracking-[var(--title-12px-regular-letter-spacing)] leading-[var(--title-12px-regular-line-height)] whitespace-nowrap [font-style:var(--title-12px-regular-font-style)]">
+                <div className="relative w-fit mt-[-1.00px] font-title-12px-regular  font-[number:var(--title-12px-regular-font-weight)] text-secondary text-on-surface-secondary text-[length:var(--title-12px-regular-font-size)] tracking-[var(--title-12px-regular-letter-spacing)] leading-[var(--title-12px-regular-line-height)] whitespace-nowrap [font-style:var(--title-12px-regular-font-style)]">
                   {t('Back to Users')}
                 </div>
               </Button>
 
-              <h2 className={`relative self-stretch font-h5-22px-bold tx-text-primary font-[number:var(--h5-22px-bold-font-weight)] text-on-surface-primary text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]`}>
+              <h2 className={`relative self-stretch font-h5-22px-bold text-primary font-[number:var(--h5-22px-bold-font-weight)] text-on-surface-primary text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]`}>
                 {t('Add New User')}
               </h2>
             </div>
@@ -253,7 +253,7 @@ export const UserDetailsSection = ({
                       key={field.id}
                       className="flex items-center justify-center text-center  gap-8 relative self-stretch w-full flex-[0_0_auto]"
                     >
-                      <Label className={`relative w-40 h-3.5 mt-[-1.00px] tx-text-primary font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)]  text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] whitespace-nowrap [font-style:var(--btn-14px-medium-font-style)]`}>
+                      <Label className={`relative w-40 h-3.5 mt-[-1.00px] text-primary font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)]  text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] whitespace-nowrap [font-style:var(--btn-14px-medium-font-style)]`}>
                         {t(`${field.label}`)}
                       </Label>
 
@@ -262,14 +262,14 @@ export const UserDetailsSection = ({
                           {field.type === "input" ? (
                             <Input
                               placeholder={t(`${field.placeholder}`)}
-                              className="flex items-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-border-light  font-[number:var(--title-16px-regular-font-weight)] tx-text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
+                              className="flex items-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-border-light  font-[number:var(--title-16px-regular-font-weight)] text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
                             />
                           ) : (
                             <Select  >
-                              <SelectTrigger  style={{ direction: local === 'ar' ? "rtl" : 'ltr' }} className=" bg-border-light  flex items-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto]  rounded-lg overflow-hidden border border-solid border-[#d5d6d9] shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] tx-text-secondary  tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]">
+                              <SelectTrigger  style={{ direction: local === 'ar' ? "rtl" : 'ltr' }} className=" bg-border-light  flex items-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto]  rounded-lg overflow-hidden border border-solid border-[#d5d6d9] shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-secondary  tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]">
                                <SelectValue 
       placeholder={
-        <span className="tx-text-secondary">
+        <span className="text-secondary">
           {t(`${field.placeholder}`)}
         </span>
       } 
@@ -277,10 +277,10 @@ export const UserDetailsSection = ({
                               </SelectTrigger>
                               <SelectContent >
                                 <SelectItem value="option1">
-                                  <p className="tx-text-secondary" >Option 1</p>
+                                  <p className="text-secondary" >Option 1</p>
                                 </SelectItem>
                                 <SelectItem value="option2">
-                                  <p className="tx-text-secondary" >Option 1</p>
+                                  <p className="text-secondary" >Option 1</p>
                                 </SelectItem>
                               </SelectContent>
                             </Select>
@@ -330,7 +330,7 @@ export const UserDetailsSection = ({
                 <div className="relative self-stretch w-full h-[575px]">
                   <form className="flex flex-col h-[676px] w-full text-center items-start gap-4 relative left-2.5">
                     <div className="flex items-center gap-8 relative self-stretch w-full flex-[0_0_auto]">
-                      <Label className={`relative w-40 h-3.5 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)]  tx-text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] whitespace-nowrap [font-style:var(--btn-14px-medium-font-style)]`}>
+                      <Label className={`relative w-40 h-3.5 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)]  text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] whitespace-nowrap [font-style:var(--btn-14px-medium-font-style)]`}>
                         {t('Full Name')} *
                       </Label>
 
@@ -338,24 +338,24 @@ export const UserDetailsSection = ({
                         <div className="bg-border-light flex flex-col items-start gap-1.5 relative self-stretch w-full flex-[0_0_auto]">
                           <Input
                             placeholder={t("Enter User Name")}
-                            className="   flex items-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden border border-solid border- shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight) tx-text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
+                            className="   flex items-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden border border-solid border- shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight) text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
                           />
                         </div>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-8 relative self-stretch w-full flex-[0_0_auto]">
-                      <Label className={`relative w-40 mt-[-1.00px] font-btn-14px-medium  font-[number:var(--btn-14px-medium-font-weight)] tx-text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
+                      <Label className={`relative w-40 mt-[-1.00px] font-btn-14px-medium  font-[number:var(--btn-14px-medium-font-weight)] text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
                         {t('Gender')} *
                       </Label>
 
                       <div className="flex flex-col w-[370.5px] items-start gap-1.5 relative">
                         <div className="flex flex-col items-start gap-1.5 relative self-stretch w-full flex-[0_0_auto]">
                           <Select>
-                            <SelectTrigger style={{ direction: local === 'ar' ? "rtl" : 'ltr' }} className="bg-border-light  flex items-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto]  rounded-lg overflow-hidden border border-solid bg-border-light  shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] tx-text-primary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]">
+                            <SelectTrigger style={{ direction: local === 'ar' ? "rtl" : 'ltr' }} className="bg-border-light  flex items-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto]  rounded-lg overflow-hidden border border-solid bg-border-light  shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-primary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]">
                               <SelectValue
                                 placeholder={t('Select Gender ')} 
-                                className="  bg-border-light font-title-16px-regular  font-[number:var(--title-16px-regular-font-weight)] tx-text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
+                                className="  bg-border-light font-title-16px-regular  font-[number:var(--title-16px-regular-font-weight)] text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
                               />
                             </SelectTrigger>
                             <SelectContent>
@@ -367,7 +367,7 @@ export const UserDetailsSection = ({
                         </div>
                       </div>
 
-                      <Label className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] tx-text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
+                      <Label className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
                         {t('Date of Birth')} *
                       </Label>
 
@@ -376,14 +376,14 @@ export const UserDetailsSection = ({
                           <Input
                             type="date"
                             placeholder="Select Date"
-                            className="block px-3.5 py-2.5 relative self-stretch w-full bg-base-white rounded-lg overflow-hidden bg-border-light shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] tx-text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
+                            className="block px-3.5 py-2.5 relative self-stretch w-full bg-base-white rounded-lg overflow-hidden bg-border-light shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
                           />
                         </div>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-8 relative self-stretch w-full flex-[0_0_auto]">
-                      <Label className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] tx-text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
+                      <Label className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
                         {t('Card Number')} *
                       </Label>
 
@@ -391,12 +391,12 @@ export const UserDetailsSection = ({
                         <div className="flex flex-col items-start gap-1.5 relative self-stretch w-full flex-[0_0_auto]">
                           <Input
                             placeholder=  {t('Enter Card Number')}
-                            className="flex items-center justify-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden bg-border-light shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] tx-text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
+                            className="flex items-center justify-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden bg-border-light shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
                           />
                         </div>
                       </div>
 
-                      <Label className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] tx-text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
+                      <Label className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
                         {t('Nationality')} *
                       </Label>
 
@@ -406,7 +406,7 @@ export const UserDetailsSection = ({
                             <SelectTrigger  style={{ direction: local === 'ar' ? "rtl" : 'ltr' }} className="bg-border-light flex items-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto]  rounded-lg overflow-hidden bg-border-light shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-gray-500 text-[length:var(--title-16px-regular-font-size)] tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]">
                               <SelectValue
                                 placeholder= {t('Select Nationality')}
-                                className="font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] bg-border-light  tx-text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
+                                className="font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] bg-border-light  text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
                               />
                             </SelectTrigger>
                             <SelectContent>
@@ -420,7 +420,7 @@ export const UserDetailsSection = ({
                     </div>
 
                     <div className="flex items-center gap-8 relative self-stretch w-full flex-[0_0_auto]">
-                      <Label className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] tx-text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
+                      <Label className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
                         {t('Marital Status')} *
                       </Label>
 
@@ -430,7 +430,7 @@ export const UserDetailsSection = ({
                             <SelectTrigger style={{ direction: local === 'ar' ? "rtl" : 'ltr' }} className="bg-border-light flex items-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto]  rounded-lg overflow-hidden border border-solid border-[#d5d6d9] shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-gray-500 text-[length:var(--title-16px-regular-font-size)] tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]">
                               <SelectValue
                                 placeholder= {t('Select Marital Status')}
-                                className="font-title-16px-regularbg-border-light font-[number:var(--title-16px-regular-font-weight)] tx-text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
+                                className="font-title-16px-regularbg-border-light font-[number:var(--title-16px-regular-font-weight)] text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
                               />
                             </SelectTrigger>
                             <SelectContent >
@@ -443,7 +443,7 @@ export const UserDetailsSection = ({
                         </div>
                       </div>
 
-                      <Label className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] tx-text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
+                      <Label className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
                         {t('Number of children')} *
                       </Label>
 
@@ -451,14 +451,14 @@ export const UserDetailsSection = ({
                         <div className="flex flex-col items-start gap-1.5 relative self-stretch w-full flex-[0_0_auto]">
                           <Input
                             placeholder={t('Enter Number of children')} 
-                            className="flex items-center justify-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden bg-border-light shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] tx-text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
+                            className="flex items-center justify-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden bg-border-light shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
                           />
                         </div>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-8 relative self-stretch w-full flex-[0_0_auto]">
-                      <Label  className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] tx-text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
+                      <Label  className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
                         {t('Phone Number')} *
                       </Label>
 
@@ -473,13 +473,13 @@ export const UserDetailsSection = ({
 
                             <Input
                               placeholder="XX XXX XXXX"
-                              className="flex h-[44px] items-center gap-2 px-3.5 py-2.5 relative flex-1 self-stretch grow bg-base-white rounded-[0px_8px_8px_0px] tx-text-secondary overflow-hidden border border-solid border-[#d5d6d9] font-text-md-regular font-[number:var(--text-md-regular-font-weight)] text-on-surface-primary text-[length:var(--text-md-regular-font-size)] tracking-[var(--text-md-regular-letter-spacing)] leading-[var(--text-md-regular-line-height)] [font-style:var(--text-md-regular-font-style)]"
+                              className="flex h-[44px] items-center gap-2 px-3.5 py-2.5 relative flex-1 self-stretch grow bg-base-white rounded-[0px_8px_8px_0px] text-secondary overflow-hidden border border-solid border-[#d5d6d9] font-text-md-regular font-[number:var(--text-md-regular-font-weight)] text-on-surface-primary text-[length:var(--text-md-regular-font-size)] tracking-[var(--text-md-regular-letter-spacing)] leading-[var(--text-md-regular-line-height)] [font-style:var(--text-md-regular-font-style)]"
                             />
                           </div>
                         </div>
                       </div>
 
-                      <Label className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] tx-text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
+                      <Label className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
                         {t('Phone Number')} *
                       </Label>
 
@@ -497,7 +497,7 @@ text-md-regular-font-style)]"
 
                             <Input
                               placeholder="XX XXX XXXX"
-                              className="flex h-[44px] items-center gap-2 px-3.5 py-2.5 relative flex-1 self-stretch grow bg-base-white rounded-[0px_8px_8px_0px] overflow-hidden border border-solid bg-border-light font-text-md-regular font-[number:var(--text-md-regular-font-weight)] text-on-surface-primary text-[length:var(--text-md-regular-font-size)] tracking-[var(--text-md-regular-letter-spacing)] leading-[var(--text-md-regular-line-height)] tx-text-secondary [font-style:var(--text-md-regular-font-style)]"
+                              className="flex h-[44px] items-center gap-2 px-3.5 py-2.5 relative flex-1 self-stretch grow bg-base-white rounded-[0px_8px_8px_0px] overflow-hidden border border-solid bg-border-light font-text-md-regular font-[number:var(--text-md-regular-font-weight)] text-on-surface-primary text-[length:var(--text-md-regular-font-size)] tracking-[var(--text-md-regular-letter-spacing)] leading-[var(--text-md-regular-line-height)] text-secondary [font-style:var(--text-md-regular-font-style)]"
                             />
                           </div>
                         </div>
@@ -505,7 +505,7 @@ text-md-regular-font-style)]"
                     </div>
 
                     <div className="flex items-center gap-8 relative self-stretch w-full flex-[0_0_auto]">
-                      <Label className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] tx-text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
+                      <Label className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
                         {t('Email')} *
                       </Label>
 
@@ -513,14 +513,14 @@ text-md-regular-font-style)]"
                         <div className="flex flex-col items-start gap-1.5 relative self-stretch w-full flex-[0_0_auto]">
                           <Input
                             placeholder={t('Enter Email')} 
-                            className="tx-text-primary flex items-center justify-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden border border-solid bg-border-light shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)]  tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
+                            className="text-primary flex items-center justify-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden border border-solid bg-border-light shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)]  tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
                           />
                         </div>
                       </div>
                     </div>
 
                     <div className="flex items-center justify-between relative self-stretch w-full flex-[0_0_auto]">
-                      <Label className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] tx-text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
+                      <Label className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
                         {t('Address')} *
                       </Label>
 
@@ -532,7 +532,7 @@ text-md-regular-font-style)]"
                           <div className="flex flex-col items-start gap-1.5 relative flex-1 grow">
                             <Input
                               placeholder={t(field.placeholder)}
-                              className="tx-text-secondary flex items-center justify-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden border border-solid bg-border-light shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)]  tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
+                              className="text-secondary flex items-center justify-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden border border-solid bg-border-light shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)]  tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
                             />
                           </div>
                         </div>
@@ -540,7 +540,7 @@ text-md-regular-font-style)]"
                     </div>
 
                     <div  dir={local === 'en' ? 'rtl'  :  'ltr '} className="flex items-center gap-8 relative self-stretch w-full flex-[0_0_auto]">
-                      <Label  className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] tx-text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
+                      <Label  className={`relative w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
                         {t('Emergency Contact')} *
                       </Label>
 
@@ -548,12 +548,12 @@ text-md-regular-font-style)]"
                         <div className="flex  flex-col items-start gap-1.5 relative self-stretch w-full flex-[0_0_auto]">
                           <Input
                             placeholder= {t('Full Name')}
-                            className="flex items-center justify-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden border border-solid bg-border-light shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] tx-text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
+                            className="flex items-center justify-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden border border-solid bg-border-light shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
                           />
                         </div>
                       </div>
 
-                      <Label className={`relative w-fit mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] tx-text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] whitespace-nowrap [font-style:var(--btn-14px-medium-font-style)]`}>
+                      <Label className={`relative w-fit mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] whitespace-nowrap [font-style:var(--btn-14px-medium-font-style)]`}>
                         {t('Relationship')} *
                       </Label>
 
@@ -561,12 +561,12 @@ text-md-regular-font-style)]"
                         <div  className="flex flex-col items-start gap-1.5 relative self-stretch w-full flex-[0_0_auto]">
                           <Input
                             placeholder={t('Relationship')}
-                            className=" tx-text-primary flex items-center justify-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden border border-soli bg-border-light shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] tx-text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
+                            className=" text-primary flex items-center justify-center gap-2 px-3.5 py-2.5 relative self-stretch w-full flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden border border-soli bg-border-light shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
                           />
                         </div>
                       </div>
 
-                      <Label  className={`relative w-fit mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] tx-text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] whitespace-nowrap [font-style:var(--btn-14px-medium-font-style)]`}>
+                      <Label  className={`relative w-fit mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] whitespace-nowrap [font-style:var(--btn-14px-medium-font-style)]`}>
                         {t('Emergency Number')} *
                       </Label>
 
@@ -579,13 +579,13 @@ text-md-regular-font-style)]"
 
                         <Input
                           placeholder="XX XXX XXXX"
-                          className="  tx-text-secondary flex h-[44px] items-center gap-2 px-3.5 py-2.5 relative flex-1 self-stretch grow bg-base-white rounded-[0px_8px_8px_0px] overflow-hidden border border-solid bg-border-light font-text-md-regular font-[number:var(--text-md-regular-font-weight)] text-on-surface-primary text-[length:var(--text-md-regular-font-size)] tracking-[var(--text-md-regular-letter-spacing)] leading-[var(--text-md-regular-line-height)] [font-style:var(--text-md-regular-font-style)]"
+                          className="  text-secondary flex h-[44px] items-center gap-2 px-3.5 py-2.5 relative flex-1 self-stretch grow bg-base-white rounded-[0px_8px_8px_0px] overflow-hidden border border-solid bg-border-light font-text-md-regular font-[number:var(--text-md-regular-font-weight)] text-on-surface-primary text-[length:var(--text-md-regular-font-size)] tracking-[var(--text-md-regular-letter-spacing)] leading-[var(--text-md-regular-line-height)] [font-style:var(--text-md-regular-font-style)]"
                         />
                       </div>
                     </div>
 
                     <div className="flex items-center gap-8 relative self-stretch w-full flex-[0_0_auto]">
-                      <Label className={`relative w-40 mt-[-1.00px] [font-family:'Lato',Helvetica] font-medium tx-text-primary text-base tracking-[0] leading-4`}>
+                      <Label className={`relative w-40 mt-[-1.00px] [font-family:'Lato',Helvetica] font-medium text-primary text-base tracking-[0] leading-4`}>
                         {t('Profile Picture')} *
                       </Label>
 
@@ -605,7 +605,7 @@ text-md-regular-font-style)]"
                                      {t(' Click or Drag')}
                                   </span>
 
-                                  <span className="tx-text-secondary">
+                                  <span className="text-secondary">
                                     {"  "}
                                    {t('    file to this area to upload')} 
                                   </span>
@@ -662,7 +662,7 @@ text-md-regular-font-style)]"
                 <div className="self-stretch w-[1137px] h-[578px]">
                   <div className="flex flex-col w-full h-[578px] items-start gap-4 left-2.5">
                     <div className="gap-8 self-stretch w-full flex-[0_0_auto] flex items-start">
-                      <label className={`w-40 h-3.5 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] tx-text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] whitespace-nowrap [font-style:var(--btn-14px-medium-font-style)]`}>
+                      <label className={`w-40 h-3.5 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] whitespace-nowrap [font-style:var(--btn-14px-medium-font-style)]`}>
                         {t('Job Title')} *
                       </label>
                       <div className="flex flex-col items-start gap-1.5 flex-1 grow">
@@ -671,14 +671,14 @@ text-md-regular-font-style)]"
                           className="flex items-center gap-2 px-3.5 py-2.5 self-stretch w-full flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden border border-solid bg-border-light shadow-shadow-xs"
                         />
                       </div>
-                      <label className={`w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] tx-text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
+                      <label className={`w-40 mt-[-1.00px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
                         {t('Date of Hire')} *
                       </label>
                       <div className="flex flex-col h-10 items-center justify-center gap-2  top-0 left-[885px] bg-base-white rounded-lg overflow-hidden  shadow-shadow-xs">
                         <Input
                           type="date"
                           placeholder= {t('Select Date')}
-                          className=" block  items-center w-[252px] gap-2 px-3.5 py-2.5 relative self-stretch  flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden border border-solid bg-border-light shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] tx-text-primary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
+                          className=" block  items-center w-[252px] gap-2 px-3.5 py-2.5 relative self-stretch  flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden border border-solid bg-border-light shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-primary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
                         />
                       </div>
                     </div>
@@ -687,7 +687,7 @@ text-md-regular-font-style)]"
                       <div className="flex-col gap-4 flex-1 grow flex items-start">
                         <div className="flex flex-col w-full items-start gap-8">
                           <div className="self-stretch w-full">
-                            <div className={`w-40 top-2 left-0 font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)]tx-text-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]`}>
+                            <div className={`w-40 top-2 left-0 font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)]text-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]`}>
                               {t('Working Days')} *
                             </div>
 
@@ -701,7 +701,7 @@ text-md-regular-font-style)]"
                                     <Checkbox
                                       className="w-4 h-4"
                                     />
-                                    <label className={`tx-text-primary tracking-[0.07px] leading-6 [font-family:'Lato',Helvetica] font-normal text-sm whitespace-nowrap`}>
+                                    <label className={`text-primary tracking-[0.07px] leading-6 [font-family:'Lato',Helvetica] font-normal text-sm whitespace-nowrap`}>
                                       {t(`${workDay.day}`)}
                                     </label>
                                   </div>
@@ -710,7 +710,7 @@ text-md-regular-font-style)]"
                                     <div className="flex flex-col w-[404px] items-center px-[13px] py-[7px] bg-white rounded border border-solid bg-border-light shadow-[0px_1px_2px_#0a0d120d]">
                                       <div className="flex items-center self-stretch w-full flex-[0_0_auto]">
                                         <div className="flex items-center flex-1 grow">
-                                          <div className="tx-text-primary tracking-[0] leading-[21px] w-fit mt-[-1.00px] [font-family:'Lato',Helvetica] font-normal text-sm whitespace-nowrap">
+                                          <div className="text-primary tracking-[0] leading-[21px] w-fit mt-[-1.00px] [font-family:'Lato',Helvetica] font-normal text-sm whitespace-nowrap">
                                             {workDay.startTime}
                                           </div>
                                         </div>
@@ -718,7 +718,7 @@ text-md-regular-font-style)]"
                                           <ArrowRightIcon className="w-4 h-4" />
                                         </div>
                                         <div className="flex items-center flex-1 grow">
-                                          <div className="tx-text-primary tracking-[0] leading-[21px] w-fit mt-[-1.00px] [font-family:'Lato',Helvetica] font-normal text-sm whitespace-nowrap">
+                                          <div className="text-primary tracking-[0] leading-[21px] w-fit mt-[-1.00px] [font-family:'Lato',Helvetica] font-normal text-sm whitespace-nowrap">
                                             {workDay.endTime}
                                           </div>
                                         </div>
@@ -732,7 +732,7 @@ text-md-regular-font-style)]"
                                       <div className="flex flex-col w-[404px] items-center px-[13px] py-[7px] bg-white rounded border border-solid bg-border-light shadow-[0px_1px_2px_#0a0d120d]">
                                         <div className="flex items-center self-stretch w-full flex-[0_0_auto]">
                                           <div className="flex items-center flex-1 grow">
-                                            <div className="tx-text-primary tracking-[0] leading-[21px] w-fit mt-[-1.00px] [font-family:'Lato',Helvetica] font-normal text-sm whitespace-nowrap">
+                                            <div className="text-primary tracking-[0] leading-[21px] w-fit mt-[-1.00px] [font-family:'Lato',Helvetica] font-normal text-sm whitespace-nowrap">
                                               00:00
                                             </div>
                                           </div>
@@ -740,7 +740,7 @@ text-md-regular-font-style)]"
                                             <ArrowRightIcon className="w-4 h-4" />
                                           </div>
                                           <div className="flex items-center flex-1 grow">
-                                            <div className="tx-text-primary tracking-[0] leading-[21px] w-fit mt-[-1.00px] [font-family:'Lato',Helvetica] font-normal text-sm whitespace-nowrap">
+                                            <div className="text-primary tracking-[0] leading-[21px] w-fit mt-[-1.00px] [font-family:'Lato',Helvetica] font-normal text-sm whitespace-nowrap">
                                               00:00
                                             </div>
                                           </div>
@@ -802,7 +802,7 @@ text-md-regular-font-style)]"
                         className="self-stretch w-full h-[61.42px] relative"
                       >
                         <div className="absolute w-[178px] -top-px left-0 [font-family:'Lato',Helvetica] font-medium text-on-surface-primary text-base tracking-[0] leading-4">
-                          <span className={` tx-text-primary`}>
+                          <span className={` text-primary`}>
                             {t(`${field.label}`)}
                             {field.subtitle && <br />}
                           </span>
@@ -827,7 +827,7 @@ text-md-regular-font-style)]"
                                     <span className="text-[#69a3e9]">
                                       Click or Drag
                                     </span>
-                                    <span className="tx-text-secondary">
+                                    <span className="text-secondary">
                                       {" "}
                                       file to this area to upload
                                     </span>
@@ -841,7 +841,7 @@ text-md-regular-font-style)]"
                           </div>
                         </div>
 
-                        <div className={`absolute w-40 -top-px left-[722px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] tx-text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
+                        <div className={`absolute w-40 -top-px left-[722px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]`}>
                           {t('Effective Date')} *
                         </div>
 
@@ -849,7 +849,7 @@ text-md-regular-font-style)]"
                           <Input
                             type="date"
                             placeholder="Select Date"
-                            className=" block  items-center w-[252px] gap-2 px-3.5 py-2.5 relative self-stretch  flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden border border-solid border-[#d5d6d9] shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] tx-text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
+                            className=" block  items-center w-[252px] gap-2 px-3.5 py-2.5 relative self-stretch  flex-[0_0_auto] bg-base-white rounded-lg overflow-hidden border border-solid border-[#d5d6d9] shadow-shadow-xs font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-secondary tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] [font-style:var(--title-16px-regular-font-style)]"
                           />
                         </div>
                       </div>

@@ -4,7 +4,7 @@ import { SocialMediaAccountsSection } from "./sections/SocialMediaAccountsSectio
 
 export const CompanyPlanFillIn = (): JSX.Element => {
   return (
-    <div className="flex w-full min-h-screen items-start bg-surface-default">
+    <div className="p-0 w-full overflow-y-auto scroll-x-hidden h-full">
       {/* <SocialMediaAccountsSection /> */}
       <ContactInfoSection />
     </div>

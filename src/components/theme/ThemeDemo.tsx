@@ -14,7 +14,7 @@ export const ThemeDemo: React.FC = () => {
   const { theme, colors, isDarkMode } = useTheme();
 
   return (
-    <div className="min-h-screen bg-primary p-8 space-y-8 theme-transition">
+    <div className="p-0 w-full overflow-y-auto scroll-x-hidden h-full">
       {/* Header */}
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-8">
