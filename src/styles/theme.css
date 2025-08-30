@@ -6,11 +6,11 @@
   --theme-primary-light: #E1EDFB;
   --theme-primary-default: #69A3E9;
   --theme-primary-dark: #3071BF;
-  
+ 
   --theme-secondary-light: #E2F6EC;
   --theme-secondary-default: #83DFDF;
   --theme-secondary-dark: #00B48D;
-  
+
   --theme-background-primary: #FFFDFC;
   --theme-background-secondary: #FAFAF8;
   --theme-background-tertiary: #FAF6F5;
@@ -19,7 +19,8 @@
   --theme-background-card: #FFFDFC;
   --theme-background-modal: #FFFDFC;
   --theme-background-popover: #FAFAF8;
-  
+
+
   --theme-text-primary: #414651;
   --theme-text-secondary: #717680;
   --theme-text-tertiary: #8B8B8B;
@@ -48,7 +49,9 @@
   --theme-secondary-light: #0C1A13;
   --theme-secondary-default: #2E6F6F;
   --theme-secondary-dark: #66E4C9;
-  
+
+
+
   --theme-background-primary: #030000;
   --theme-background-secondary: #080806;
   --theme-background-tertiary: #0A0707;

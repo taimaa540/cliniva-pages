@@ -53,6 +53,7 @@ const navigationItems = [
 
 export const ContactInformationSection = (): JSX.Element => {
   return (
+    <>
     <div className="flex h-screen">
       {/* السايد بار */}
       <aside className="w-56 bg-surface-default flex flex-col h-full">
@@ -199,9 +200,10 @@ export const ContactInformationSection = (): JSX.Element => {
       </aside>
 
       {/* الكونتنت */}
-      <main className="flex-1 bg-white p-4 overflow-y-auto">
+      <main className="flex-1 p-4 overflow-y-auto">
         {/* محتوى الصفحة هون */}
       </main>
     </div>
+    </>
   );
 };
