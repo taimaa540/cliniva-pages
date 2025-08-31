@@ -24,6 +24,7 @@ import {
   TableHeader,
   TableRow,
 } from "../../../components/ui/table";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import DarkModeToggle from "../../ElementUsersNoDataTo/DarkMode";
 import TranslateIcon from "@mui/icons-material/Translate";
@@ -133,23 +134,28 @@ export const UserListSection = ({
   }, []);
 
   return (
-    <div className={`flex flex-col w-full overflow-scroll h-full items-start gap-4  py-4  self-stretch relative ${
-        local === "ar" ? "pr-0 pl-5" : "pl-0 pr-5"
-      } ${dark ? "bg-[#030711]" : ""}`}
-    >
-      <header className="flex h-[50px] justify-between pl-[4px] pr-0 py-0 self-stretch w-full items-center  ">
-        <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5">
-          <h1
-            className={`self-stretch mt-[-1.00px] font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] 
-              text-primary
-            } text-on-surface-primary text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]`}
-          >
-            {t("Users")}
-          </h1>
+      <div className="flex flex-col w-full overflow-hidden h-full items-start gap-4  py-4  pb-8 self-stretch relative bg-background-primary">
+      <header className="flex h-[50px] justify-between pl-[4px] pr-0 py-0 self-stretch w-full items-center bg-background-primary">
+        <div className="flex items-center gap-4 rounded-2xl ">
+
+
+          {local === "ar" ? (
+            <ArrowRight className="w-6 h-6" />
+          ) : (
+            <ArrowLeft className="w-6 h-6" />
+          )}
+          <div className="flex flex-col">
+            <h1 className="font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] text-on-surface-primary text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]">
+              {t("        Medical Facilities    ")}
+            </h1>
+            <p className="font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
+              {t("        Edit Clinic Details   ")}
+            </p>
+          </div>
         </div>
 
-        <div className="inline-flex gap-3 flex-[0_0_auto] rounded-[28px] items-center">
-          <div className="relative">
+        <div className="inline-flex gap-3 flex-[0_0_auto] rounded-[28px] items-center " style={{ borderRadius: '16px', padding: '16px' }}>
+          <div className="relative  ">
             <Button
               variant="ghost"
               size="icon"
@@ -164,11 +170,10 @@ export const UserListSection = ({
             <Button
               variant="ghost"
               size="icon"
-              className={`p-2.5 bg-secondary-light ${
-                local === "ar"
+              className={`p-2.5 bg-secondary-light ${local === "ar"
                   ? "bg-[green]"
                   : "bg-secondary-light"
-              } rounded-[20px] h-auto transition-all duration-[1000ms]`}
+                } rounded-[20px] h-auto transition-all duration-[1000ms]`}
               onClick={handleLanguageClick}
             >
               <TranslateIcon className="w-5 h-5" />
@@ -190,7 +195,7 @@ export const UserListSection = ({
                 Anahera Jones
               </div>
               <div className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-tertiary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)] border-medium ">
-                Admin
+                {t("   Admin   ")}
               </div>
             </div>
           </div>
@@ -198,14 +203,15 @@ export const UserListSection = ({
       </header>
 
 
-
       
-      <Card
-        className={`flex flex-col h-full items-start gap-5 p-5 mt-[10px] relative self-stretch w-full flex-[0_0_auto] ${
-          dark ? "bg-[#272932] border-[white]" : "bg-bg"
+     <Card
+        className={`flex flex-col h-full items-start   pb-8  gap-6 p-5 mt-[10px] bg-background-tertiary  relative self-stretch w-full flex-[0_0_auto] 
         } rounded-2xl overflow-hidden`}
       >
-        <CardContent className="p-0 w-full h-[2000px] ">
+        <CardContent className="p-0 w-full   pb-8  overflow-y-auto scroll-x-hidden gap-5 h-full">
+
+
+          
           <div className="flex justify-between self-stretch w-full flex-[0_0_auto] items-center mb-5">
             <div className="inline-flex items-center gap-2.5 self-stretch flex-[0_0_auto]">
               <form className="relative">

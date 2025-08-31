@@ -1,35 +1,75 @@
 import {
   ArrowLeftIcon,
+  ArrowRightIcon,
   BellIcon,
-  CalendarIcon,
   ChevronDownIcon,
-  Container,
-  Edit2Icon,
   MapPinIcon,
+  MinusIcon,
   PhoneIcon,
-  StethoscopeIcon,
-  UserCheckIcon,
-  UsersIcon,
+  PlusIcon,
 } from "lucide-react";
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '../../../../components/ui/collapsible';
+const linkedClinicsData = [
+    {
+      number: 1,
+      name: "Internal Medicine",
+      pic: "Hessa AlMutairi",
+      appointments: 10,
+      doctors: 5,
+      status: "Active",
+    },
+    {
+      number: 2,
+      name: "Internal Medicine",
+      pic: "Hessa AlMutairi",
+      appointments: 10,
+      doctors: 5,
+      status: "Active",
+    },
+    {
+      number: 3,
+      name: "Internal Medicine",
+      pic: "Hessa AlMutairi",
+      appointments: 10,
+      doctors: 5,
+      status: "Active",
+    },
+    {
+      number: 4,
+      name: "Internal Medicine",
+      pic: "Hessa AlMutairi",
+      appointments: 10,
+      doctors: 5,
+      status: "Active",
+    },
+  ];
 
 
-import { Button } from "../../../../components/ui/button";
-import { Card, CardContent } from "../../../../components/ui/card";
+import { Tabs, TabsList, TabsTrigger } from "../../../components/ui/tabs";
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import { Badge } from "../../../components/ui/badge";
+import { Button } from "../../../components/ui/button";
+import { Card, CardContent, CardHeader } from "../../../components/ui/card";
+
+import { Input } from "../../../components/ui/input";
 import {
   Pagination,
   PaginationContent,
   PaginationItem,
-} from "../../../../components/ui/pagination";
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "../../../components/ui/pagination";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../../../../components/ui/select";
-/*import { Switch } from "../../../../components/ui/switch";*/
-import Switch from '@mui/material/Switch';
+} from "../../../components/ui/select";
+import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import TranslateIcon from "@mui/icons-material/Translate";
+import DarkModeToggle from "../../ElementUsersNoDataTo/DarkMode";
 import {
   Table,
   TableBody,
@@ -37,24 +77,85 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../../../../components/ui/table";
+} from "../../../components/ui/table";
+import Toggle from "../../../components/ui/SwitchToggel";
+import { Textarea } from "../../../components/ui/textarea";
+import Switch from '@mui/material/Switch';
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import { useState } from "react";
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '../../../components/ui/collapsible'
+import Checkbox from '@mui/material/Checkbox';
 import Avatar from "@mui/material/Avatar";
-import Toggle from "../../../../components/ui/SwitchToggel";
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Tabs, TabsList, TabsTrigger } from "../../../../components/ui/tabs";
-import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
-import TranslateIcon from "@mui/icons-material/Translate";
-import DarkModeToggle from "../../../ElementUsersNoDataTo/DarkMode";
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import { Badge } from "../../../../components/ui/badge";
-
 import {
 
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-}from "../../../../components/ui/pagination";
+  Container,
+  Edit2Icon,
+
+  StethoscopeIcon,
+  UserCheckIcon,
+  UsersIcon,
+}from "lucide-react";
+    import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+const complexInformation = {
+  name: "AlTadawi Medical Complex",
+  description:
+    "A modern multi-specialty healthcare complex offering outpatient and diagnostic services in Riyadh.",
+  establishmentYear: "2011",
+  pic: "Hessa AlMutairi",
+  staffCapacity: "2150",
+  doctorsCapacity: "1780",
+  patientCapacity: "250",
+};
+ 
+const doctorsStaffData = [
+    {
+      no: 1,
+      userId: "444",
+      name: "Dr. Ahmed Hassan",
+      clinic: "Cardiology Clinic",
+      userType: "Doctor",
+      status: "Active",
+    },
+    {
+      no: 2,
+      userId: "6666",
+      name: "Dr. Ahmed Hassan",
+      clinic: "Cardiology Clinic",
+      userType: "Doctor",
+      status: "Active",
+    },
+    {
+      no: 3,
+      userId: "1234",
+      name: "Dr. Ahmed Hassan",
+      clinic: "Cardiology Clinic",
+      userType: "Doctor",
+      status: "Active",
+    },
+    {
+      no: 4,
+      userId: "5667",
+      name: "Dr. Ahmed Hassan",
+      clinic: "Cardiology Clinic",
+      userType: "Doctor",
+      status: "Active",
+    },
+  ];
+
+
+
+  const workingScheduleData = [
+    { day: "Sunday", startTime: "09:00", endTime: "16:00" },
+    { day: "Monday", startTime: "09:00", endTime: "16:00" },
+    { day: "Tuesday", startTime: "09:00", endTime: "16:00" },
+    { day: "Wednesday", startTime: "09:00", endTime: "16:00" },
+    { day: "Thursday", startTime: "09:00", endTime: "16:00" },
+    { day: "Friday", startTime: "09:00", endTime: "16:00" },
+    { day: "Saturday", startTime: "09:00", endTime: "16:00" },
+  ];
+
+
 const capacityData = [
   {
     title: "Staff Capacity",
@@ -94,42 +195,21 @@ const capacityData = [
   },
 ];
 
-  const linkedClinicsData = [
-    {
-      number: 1,
-      name: "Internal Medicine",
-      pic: "Hessa AlMutairi",
-      appointments: 10,
-      doctors: 5,
-      status: "Active",
-    },
-    {
-      number: 2,
-      name: "Internal Medicine",
-      pic: "Hessa AlMutairi",
-      appointments: 10,
-      doctors: 5,
-      status: "Active",
-    },
-    {
-      number: 3,
-      name: "Internal Medicine",
-      pic: "Hessa AlMutairi",
-      appointments: 10,
-      doctors: 5,
-      status: "Active",
-    },
-    {
-      number: 4,
-      name: "Internal Medicine",
-      pic: "Hessa AlMutairi",
-      appointments: 10,
-      doctors: 5,
-      status: "Active",
-    },
-  ];
 
-  const departmentsData = [
+const contactInfo = {
+  phoneNumbers: "+966 50 000-0000",
+  email: "info@medcaregroup.com",
+  physicalAddress: {
+    buildingNumber: "Building Number",
+    streetName: "Street Name",
+    region: "Region",
+    country: "Country",
+    nation: "Nation",
+  },
+  mapsLocation: "www.medcaregroup.com",
+};
+
+ const departmentsData = [
     {
       no: 1,
       name: "Internal Medicine",
@@ -150,85 +230,138 @@ const capacityData = [
     },
   ];
 
-  const doctorsStaffData = [
-    {
-      no: 1,
-      userId: "444",
-      name: "Dr. Ahmed Hassan",
-      clinic: "Cardiology Clinic",
-      userType: "Doctor",
-      status: "Active",
-    },
-    {
-      no: 2,
-      userId: "6666",
-      name: "Dr. Ahmed Hassan",
-      clinic: "Cardiology Clinic",
-      userType: "Doctor",
-      status: "Active",
-    },
-    {
-      no: 3,
-      userId: "1234",
-      name: "Dr. Ahmed Hassan",
-      clinic: "Cardiology Clinic",
-      userType: "Doctor",
-      status: "Active",
-    },
-    {
-      no: 4,
-      userId: "5667",
-      name: "Dr. Ahmed Hassan",
-      clinic: "Cardiology Clinic",
-      userType: "Doctor",
-      status: "Active",
-    },
-  ];
 
-  const workingScheduleData = [
-    { day: "Sunday", startTime: "09:00", endTime: "16:00" },
-    { day: "Monday", startTime: "09:00", endTime: "16:00" },
-    { day: "Tuesday", startTime: "09:00", endTime: "16:00" },
-    { day: "Wednesday", startTime: "09:00", endTime: "16:00" },
-    { day: "Thursday", startTime: "09:00", endTime: "16:00" },
-    { day: "Friday", startTime: "09:00", endTime: "16:00" },
-    { day: "Saturday", startTime: "09:00", endTime: "16:00" },
-  ];
+const linkedClinics = [
+  {
+    number: 1,
+    name: "Internal Medicine",
+    pic: "Hessa AlMutairi",
+    appointmentsCount: 10,
+    doctors: 5,
+    status: "Active",
+  },
+  {
+    number: 2,
+    name: "Internal Medicine",
+    pic: "Hessa AlMutairi",
+    appointmentsCount: 10,
+    doctors: 5,
+    status: "Active",
+  },
+  {
+    number: 3,
+    name: "Internal Medicine",
+    pic: "Hessa AlMutairi",
+    appointmentsCount: 10,
+    doctors: 5,
+    status: "Active",
+  },
+  {
+    number: 4,
+    name: "Internal Medicine",
+    pic: "Hessa AlMutairi",
+    appointmentsCount: 10,
+    doctors: 5,
+    status: "Active",
+  },
+];
 
-  const paginationItems = [
-    { type: "first", icon: "/icon---pagination---first.svg" },
+const departments = [
+  {
+    number: 1,
+    name: "Internal Medicine",
+    description:
+      "Handles the diagnosis and nonsurgical treatment of diseases in adults, including chronic conditions such as hypertension and diabetes.",
+  },
+  {
+    number: 2,
+    name: "Internal Medicine",
+    description:
+      "Handles the diagnosis and nonsurgical treatment of diseases in adults, including chronic conditions such as hypertension and diabetes.",
+  },
+  {
+    number: 3,
+    name: "Internal Medicine",
+    description:
+      "Handles the diagnosis and nonsurgical treatment of diseases in adults, including chronic conditions such as hypertension and diabetes.",
+  },
+];
 
-    { type: "current", value: "1", active: true },
-    { type: "page", value: "2" },
-    { type: "page", value: "3" },
-    { type: "ellipsis", value: "..." },
-    { type: "page", value: "10" },
-    { type: "next", icon: "/icon---pagination---next.svg" },
-    { type: "last", icon: "/icon---pagination---last.svg" },
-  ];
+const doctorsAndStaff = [
+  {
+    number: 1,
+    userId: "444",
+    name: "Dr. Ahmed Hassan",
+    clinic: "Cardiology Clinic",
+    userType: "Doctor",
+    status: "Active",
+  },
+  {
+    number: 2,
+    userId: "6666",
+    name: "Dr. Ahmed Hassan",
+    clinic: "Cardiology Clinic",
+    userType: "Doctor",
+    status: "Active",
+  },
+  {
+    number: 3,
+    userId: "1234",
+    name: "Dr. Ahmed Hassan",
+    clinic: "Cardiology Clinic",
+    userType: "Doctor",
+    status: "Active",
+  },
+  {
+    number: 4,
+    userId: "5667",
+    name: "Dr. Ahmed Hassan",
+    clinic: "Cardiology Clinic",
+    userType: "Doctor",
+    status: "Active",
+  },
+];
+
+const workingDays = [
+  { day: "Sunday", startTime: "09:00", endTime: "18:00", isActive: true },
+  { day: "Monday", startTime: "09:00", endTime: "18:00", isActive: true },
+  { day: "Tuesday", startTime: "09:00", endTime: "18:00", isActive: true },
+  { day: "Wednesday", startTime: "09:00", endTime: "18:00", isActive: true },
+  { day: "Thursday", startTime: "09:00", endTime: "18:00", isActive: true },
+  { day: "Friday", startTime: "09:00", endTime: "18:00", isActive: false },
+  { day: "Saturday", startTime: "09:00", endTime: "18:00", isActive: true },
+];
+
+
+
 
 
 
 interface NoDataSectionProps {
     dark: boolean;
   local: string;
+  
   handelDarkClick : () => void;
   handleLanguageClick: () => void;
 }
 
-export const MedicalComplexDetailsSection = ({local, dark, handelDarkClick, handleLanguageClick } :NoDataSectionProps): JSX.Element => {
+export const ElementViewComplexPlan2 = ({local, dark, handelDarkClick, handleLanguageClick } :NoDataSectionProps): JSX.Element => {
 const {t, i18n} = useTranslation('en')
  useEffect(() => {
       i18n.changeLanguage(local);
     }, []);
-  return (
-<div
 
-      className={`flex flex-col w-full overflow-hidden items-start gap-4  py-4  self-stretch relative 
-      } ${dark ? "bg-[#030711]" : ""}`}
-    >
-      
-      <header className="flex h-[50px] justify-between pl-[4px] pr-0 py-0 self-stretch w-full items-center">
+
+
+
+
+  return (
+  <div
+
+      className={`flex flex-col w-full overflow-hidden items-start gap-4  py-4  self-stretch relative bg-background-primary
+      } `}
+    >      
+     <header className="flex h-[50px] justify-between pl-[4px] pr-0 py-0 bg-background-primary self-stretch w-full items-center">
        <div className="flex items-center gap-4 rounded-2xl ">
        
      {local === "ar" ? (
@@ -240,8 +373,8 @@ const {t, i18n} = useTranslation('en')
             <h1 className="font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] text-on-surface-primary text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]">
               { t("Medical Complex Details")} 
             </h1>
-            <p className="font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
-              { t(" View Medical Facilities")}
+            <p className="font-title-14px-semibold  font-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
+              { t(" View Complex Details")}
             </p>
           </div>
         </div>
@@ -285,38 +418,55 @@ const {t, i18n} = useTranslation('en')
                  text-primary
                 } font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]`}
               >
-                Anahera Jones
+                Anahera Jones 
               </div>
               <div className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-tertiary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)] border-medium ">
-                Admin
+                { t(" Admin")}
               </div>
             </div>
           </div>
         </div>
       </header>
 
-
-
       <Card className="flex flex-col h-auto items-start gap-6 p-5 mt-[10px] bg-background-tertiary relative self-stretch w-full rounded-2xl overflow-hidden">
 
-        <CardContent className="p-0 w-full overflow-y-auto gap-5 h-auto">
-
-
+          <CardContent className="p-0 w-full overflow-y-auto gap-5 h-auto">
 <div className="flex justify-between items-center w-full">
   <Toggle />
-  <Button className="w-[200px] rounded-[20px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
-    Edit
-  </Button>
+ <div className=" items-center flex justify-end gap-4 relative flex-[0_0_auto] mt-5  ">
+            <Button
+              variant="outline"
+              className="flex rounded-[20px] w-[200px] items-center h-10 justify-center px-4 py-2.5 relative bg-background-tertiary -[20px] border-2 border-solid- border-light"
+            >
+              <div className="flex w-[82px] items-center justify-center gap-1 relative">
+                <div className="inline-flex h-5 items-center gap-2.5 px-0 py-0.5 relative flex-[0_0_auto]">
+                  <div className="font-[number:var(--btn-14px-medium-font-weight)] text-on-surface-primary text-[length:var(--btn-14px-medium-font-size)] leading-[var(--btn-14px-medium-line-height)] relative w-fit font-btn-14px-medium text-center tracking-[var(--btn-14px-medium-letter-spacing)] whitespace-nowrap [font-style:var(--btn-14px-medium-font-style)]">
+                   { t("  Cancel")}
+                  </div>
+                </div>
+              </div>
+            </Button>
+
+            <Button variant="outline"  className="flex w-[200px] h-10 items-center  justify-center gap-1 pl-4 pr-3.5 py-2.5 relative bg-secondary-dark rounded-[20px] ">
+              <div className="inline-flex items-center  gap-2.5 p-0.5 relative flex-[0_0_auto] ">
+                <div className="mt-[-1.00px] font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] leading-[var(--btn-14px-medium-line-height)] relative w-fit font-btn-14px-medium text-center tracking-[var(--btn-14px-medium-letter-spacing)] whitespace-nowrap [font-style:var(--btn-14px-medium-font-style)]">
+                   { t("  Save")}
+                </div>
+              </div>
+            </Button>
+          </div>
 </div>
 
 
 
+
         
+      
+     
 
-   
 
-
-<Collapsible defaultOpen  className="w-full mt-5">
+     
+<Collapsible defaultOpen  className="w-full bg-background-primary mt-5 rounded-2xl">
   <Card className="bg-surface-default rounded-2xl">
     <CollapsibleTrigger className="w-full">
       <CardContent className="p-4 flex items-center justify-between">
@@ -328,9 +478,9 @@ const {t, i18n} = useTranslation('en')
             lineHeight: "124%",
             letterSpacing: "0%",
           }}
-          className="text-text-accent font-bold size-16 w-56 text-start" >
-<h2>              Capacity:</h2></div>
-        <ChevronDownIcon className="text-secondary w-8 h-8" />
+          className="text-text-accent font-bold size-16 w-56 text-start " >
+<h2>                   { t("  Capacity")}: </h2></div>
+        <ChevronDownIcon className="text-text-primary font-semibold w-8 h-8" />
       </CardContent>
     </CollapsibleTrigger>
 
@@ -339,27 +489,26 @@ const {t, i18n} = useTranslation('en')
            
    
 
-    {/* بدل flex العادي، نستخدم grid responsive */}
-   <div className="flex flex-col md:flex-row gap-4 md:gap-[38px]">
-       {capacityData.map((item, index) => (
-         <Card 
-           key={index}
-           className={`flex-1 h-[100px] ${item.bgColor} rounded-[25px]  shadow-[0px_2px_8px_#e2f6ec]`}
-         >
-           <CardContent className="relative p-0 h-full">
-             <div className="absolute w-12 h-12 top-[26px] right-[40px]">
-               {item.icon}
-             </div>
-             <div className="absolute top-3.5 left-10 font-h3-26px-font-semibold text-text-primary text-[18px]">
-               {item.title}
-             </div>
-             <div className="absolute top-[52px] left-10 font-h3-26px-font-semibold text-text-primary text-[18px]">
-               {item.value}
-             </div>
-           </CardContent>
-         </Card>
-       ))}
-     </div>
+ <div className="flex flex-col md:flex-row gap-4 md:gap-[38px]">
+      {capacityData.map((item, index) => (
+        <Card 
+          key={index}
+          className={`flex-1 h-[100px] ${item.bgColor} rounded-[25px] shadow-[0px_2px_8px_#e2f6ec]`}
+        >
+          <CardContent className="relative p-0 h-full">
+            <div className="absolute w-12 h-12 top-[26px] right-[40px]">
+              {item.icon}
+            </div>
+            <div className="absolute top-3.5 left-10 font-semibold text-text-primary text-[18px]   ">
+              {item.title}
+            </div>
+            <div className="absolute top-[52px] left-10 font-h3-26px-font-semibold text-text-primary text-[18px]">
+              {item.value}
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
           
            
       </CardContent>
@@ -369,191 +518,189 @@ const {t, i18n} = useTranslation('en')
 
 
 
-
-<Collapsible defaultOpen  className="w-full mt-5">
-  <Card className="bg-surface-default rounded-2xl">
-    <CollapsibleTrigger className="w-full">
-      <CardContent className="p-4 flex items-center justify-between">
-          <div style={{
-            fontFamily: "Lato",
-            fontWeight: 600,
-            fontStyle: "SemiBold",
-            fontSize: "16px",
-            lineHeight: "124%",
-            letterSpacing: "0%",
-          }}
-          className="text-text-accent font-bold size-16 w-56 text-start">
-<h2>              Complex Information:</h2></div>
-        <ChevronDownIcon className="text-secondary w-8 h-8" />
-      </CardContent>
-    </CollapsibleTrigger>
-
-      <CollapsibleContent>
-        <CardContent className="px-4 pb-4">
-           
-   
-
-            <div className="grid grid-cols-2 gap-8 mb-6">
-              <div className="flex gap-2">
-                <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
-                  Complex Name
-                </span>
-                <span className="w-[330px] text-text-primary font-regular text-[14px] leading-[1.25] tracking-[0] font-[Lato]">
-                  AlTadawi Medical Complex
-                </span>
-              </div>
-              <div className="flex gap-2">
-                <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
-                  Year of Establishment
-                </span>
-                <span className="w-[330px] text-text-primary font-regular text-[14px] leading-[1.25] tracking-[0] font-[Lato]">
-                  3 April 2011
-                </span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-8 mb-6">
-
-
-
-              
-              <div className="flex gap-2">
-                <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
-                  Description
-                </span>
-                <span className="w-[330px] text-text-primary font-regular text-[14px] leading-[1.25] tracking-[0] font-[Lato]">
-                  A modern multi-specialty healthcare complex offering
-                  outpatient and diagnostic services in Riyadh.
-                </span>
-              </div>
-              <div className="flex gap-2">
-                <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
-                  PIC
-                </span>
-                <span className="w-[330px] text-text-primary font-regular text-[14px] leading-[1.25] tracking-[0] font-[Lato]">
-                  Hessa AlMutairi
-                </span>
-              </div>
-            </div>
-
-            <div className="flex gap-2">
-              <div className="flex items-center gap-2.5 w-[162px]">
-                <CalendarIcon className="w-6 h-6" />
-                <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
-                  Created on:
-                </span>
-              </div>
-              <span className="w-[330px] text-text-primary font-regular text-[14px] leading-[1.25] tracking-[0] font-[Lato]">
-                12 March 2023
-              </span>
-            </div>
-           
-      </CardContent>
-    </CollapsibleContent>
-  </Card>
-</Collapsible>
-
-
-
-
-
-
-
-<Collapsible defaultOpen  className="w-full mt-5">
-  <Card className="bg-surface-default rounded-2xl">
-    <CollapsibleTrigger className="w-full">
-      <CardContent className="p-4 flex items-center justify-between">
-          <div style={{
-            fontFamily: "Lato",
-            fontWeight: 600,
-            fontStyle: "SemiBold",
-            fontSize: "16px",
-            lineHeight: "124%",
-            letterSpacing: "0%",
-          }}
-          className="text-text-accent font-bold size-16 w-96 text-start">
-<h2>           Complex Contact Informations:</h2></div>
-        <ChevronDownIcon className="text-secondary w-8 h-8" />
-      </CardContent>
-    </CollapsibleTrigger>
-
-      <CollapsibleContent>
-        <CardContent className="px-4 pb-4">
-           
-    {/* الصف الأول: الهاتف والبريد الإلكتروني */}
-    <div className="grid grid-cols-2 gap-8 mb-6">
-      <div className="flex items-start gap-3">
-        <PhoneIcon className="w-6 h-6" /> {/* 24x24px */}
-        <div className="flex  gap-7">
-          <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
-            Phone Numbers:
-          </span>
-          <span className="w-[330px] text-text-primary font-regular text-[14px] leading-[1.25] tracking-[0] font-[Lato]">
-            +966 55 123 4567, +966 11 987 6543
-          </span>
-        </div>
-      </div>
-
-      <div className="flex items-start gap-3">
-        <div className="text-text-primary">
-       <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.07923 0.787497C10.0441 0.737503 11.9541 0.737499 13.9191 0.787497C17.157 0.869496 18.9413 0.915255 20.2843 2.25625C21.6291 3.61122 21.6655 5.3485 21.7325 8.50136C21.7535 9.50833 21.7535 10.4866 21.7325 11.4936C21.6656 14.6461 21.6288 16.3819 20.2872 17.7348C18.9422 19.0788 17.158 19.1244 13.92 19.2064C12.9381 19.2314 11.9691 19.2445 11.0001 19.2445C10.0312 19.2445 9.06212 19.2314 8.0802 19.2064C4.84234 19.1244 3.05795 19.0785 1.71497 17.7377C0.370009 16.3827 0.332745 14.6454 0.265749 11.4926C0.24475 10.4856 0.244751 9.50735 0.265749 8.50039C0.332749 5.34739 0.370038 3.6112 1.71204 2.2582C3.05703 0.914271 4.84128 0.869495 8.07923 0.787497ZM13.881 2.28554C11.9421 2.23555 10.0572 2.23555 8.11731 2.28554C5.07934 2.36254 3.69256 2.39684 2.77356 3.31582C1.85556 4.24182 1.82677 5.58664 1.76477 8.53164C1.74378 9.5165 1.74378 10.4745 1.76477 11.4603C1.82677 14.4053 1.85648 15.7502 2.77747 16.6771C3.69447 17.593 5.08048 17.6294 8.11829 17.7064C10.0572 17.7564 11.9421 17.7564 13.882 17.7064C16.9199 17.6294 18.3057 17.5941 19.2247 16.6752C20.1427 15.7492 20.1715 14.4053 20.2335 11.4603C20.2545 10.4755 20.2545 9.5175 20.2335 8.53164C20.1715 5.58664 20.1428 4.24086 19.2218 3.31386C18.3048 2.39817 16.9186 2.36253 13.881 2.28554ZM5.35462 6.11074C5.56562 5.75474 6.02596 5.63509 6.38196 5.84609L9.32337 7.58633C10.7954 8.45333 11.2039 8.45333 12.6779 7.58633L15.6183 5.84707C15.9753 5.63607 16.4356 5.75472 16.6456 6.11172C16.8564 6.46859 16.7387 6.92802 16.382 7.13808L13.4396 8.87832C12.4588 9.45619 11.73 9.74442 11.0001 9.74453C10.2711 9.74453 9.54165 9.45532 8.56165 8.87832L5.61829 7.13711C5.26276 6.92603 5.14393 6.46654 5.35462 6.11074Z" fill="CurrentColor"/>
-</svg>
-</div>
-        <div className="flex  gap-7 items-center">
-          <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
-            Email:
-          </span>
-          <span className="w-[330px] text-text-primary font-regular text-[14px] leading-[1.25] tracking-[0] font-[Lato]">
-            info@medcaregroup.com
-          </span>
-        </div>
-      </div>
-    </div>
-
-    {/* الصف الثاني: العنوان والموقع على الخريطة */}
-    <div className="  grid grid-cols-2 gap-8 mb-6">
-      <div className="flex items-start gap-3">
-        <div className="text-text-primary">
-        <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M9.5 6.5C9.5 6.20333 9.58797 5.91332 9.7528 5.66665C9.91762 5.41997 10.1519 5.22771 10.426 5.11418C10.7001 5.00065 11.0017 4.97094 11.2926 5.02882C11.5836 5.0867 11.8509 5.22956 12.0607 5.43934C12.2704 5.64912 12.4133 5.91639 12.4712 6.20736C12.5291 6.49834 12.4994 6.79994 12.3858 7.07403C12.2723 7.34811 12.08 7.58238 11.8334 7.7472C11.5867 7.91203 11.2967 8 11 8C10.6022 8 10.2206 7.84196 9.93934 7.56066C9.65804 7.27936 9.5 6.89782 9.5 6.5ZM5 6.5C5 4.9087 5.63214 3.38258 6.75736 2.25736C7.88258 1.13214 9.4087 0.5 11 0.5C12.5913 0.5 14.1174 1.13214 15.2426 2.25736C16.3679 3.38258 17 4.9087 17 6.5C17 12.1203 11.6019 15.2694 11.375 15.4016C11.2617 15.4663 11.1334 15.5004 11.0028 15.5004C10.8723 15.5004 10.744 15.4663 10.6306 15.4016C10.3981 15.2694 5 12.125 5 6.5ZM6.5 6.5C6.5 10.4563 9.86 13.0822 11 13.8594C12.1391 13.0831 15.5 10.4563 15.5 6.5C15.5 5.30653 15.0259 4.16193 14.182 3.31802C13.3381 2.47411 12.1935 2 11 2C9.80653 2 8.66193 2.47411 7.81802 3.31802C6.97411 4.16193 6.5 5.30653 6.5 6.5ZM18.0097 12.8403C17.8251 12.7793 17.624 12.7924 17.4489 12.8768C17.2738 12.9612 17.1382 13.1102 17.0709 13.2926C17.0035 13.475 17.0096 13.6764 17.0879 13.8543C17.1661 14.0323 17.3104 14.1729 17.4903 14.2466C19.0381 14.8194 20 15.5863 20 16.25C20 17.5025 16.5763 19.25 11 19.25C5.42375 19.25 2 17.5025 2 16.25C2 15.5863 2.96187 14.8194 4.50969 14.2475C4.6896 14.1739 4.8339 14.0332 4.91215 13.8553C4.99039 13.6773 4.99648 13.4759 4.92913 13.2935C4.86178 13.1112 4.72624 12.9621 4.5511 12.8777C4.37596 12.7933 4.17491 12.7803 3.99031 12.8412C1.73937 13.6709 0.5 14.8822 0.5 16.25C0.5 19.1731 5.91031 20.75 11 20.75C16.0897 20.75 21.5 19.1731 21.5 16.25C21.5 14.8822 20.2606 13.6709 18.0097 12.8403Z" fill="CurrentColor"/>
+<Collapsible defaultOpen>
+          <Card className="bg-surface-default rounded-2xl mt-5">
+            <CardContent className="p-4">
+              <CollapsibleTrigger className="flex items-center justify-between w-full mb-4">
+                <h3 className="font-title-16px-bold  font-[number:var(--title-16px-bold-font-weight)] text-primary-dark text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] [font-style:var(--title-16px-bold-font-style)]">
+                  Complex Information
+                </h3>
+                <ChevronDownIcon className="w-8 h-8" />
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <div className="grid grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <div className="flex gap-2">
+                               <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
+       Complex Name
+</span>
+                     
+                      <span className="font-title-14px-regular text-text-primary font-[number:var(--title-14px-regular-font-weight)] text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
+                        AlTadawi Medical Complex
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+        <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
+  Description
+</span>
+                      <span className="w-[330px] font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-text-primary  text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
+                        A modern multi-specialty healthcare complex offering
+                        outpatient and diagnostic services in Riyadh.
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <div className="text-text-primary">
+                  <svg width="24" height="26" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 4C0 2.89543 0.89543 2 2 2H22C23.1046 2 24 2.89543 24 4V24C24 25.1046 23.1046 26 22 26H2C0.89543 26 0 25.1046 0 24V4ZM22 4H2V24H22V4Z" fill="CurrentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M18 0C18.5523 0 19 0.447715 19 1V5C19 5.55228 18.5523 6 18 6C17.4477 6 17 5.55228 17 5V1C17 0.447715 17.4477 0 18 0Z" fill="CurrentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M6 0C6.55228 0 7 0.447715 7 1V5C7 5.55228 6.55228 6 6 6C5.44772 6 5 5.55228 5 5V1C5 0.447715 5.44772 0 6 0Z" fill="CorrentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 9C0 8.44771 0.447715 8 1 8H23C23.5523 8 24 8.44771 24 9C24 9.55228 23.5523 10 23 10H1C0.447715 10 0 9.55228 0 9Z" fill="CurrentColor"/>
 </svg></div>
 
-        <div className="gap-3 ">
-          <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
-            Physical Address:
-          </span>
-          <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
-            245, King Fahd Road, Al Olaya, Saudi Arabia, KSA
-          </span>
-        </div>
-      </div>
+                      <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-text-primary  text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
+                        Created on:
+                      </span>
+                      <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-text-primary  text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
+                        12 March 2023
+                      </span>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex gap-2">
+                               <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
+               Year of Establishment
+</span>
+                 
+                      <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-text-primary  text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
+                        3 April 2011
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      
+                                                  <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
+                 PIC
+</span>
+                      <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-text-primary  text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
+                        Hessa AlMutairi
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </CollapsibleContent>
+            </CardContent>
+          </Card>
+        </Collapsible>
 
-      <div className="flex items-start gap-3 ">
-       <div className="text-text-primary"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M16.5 10.2506C19.3402 10.2506 21.75 12.5936 21.75 15.4635C21.7499 16.934 21.125 18.158 20.2783 19.1461C19.4378 20.127 18.3524 20.9075 17.3545 21.5182L17.3438 21.525L17.332 21.5318C17.0781 21.6751 16.7914 21.7506 16.5 21.7506C16.2086 21.7506 15.9219 21.6751 15.668 21.5318L15.6543 21.524L15.6416 21.5162C14.649 20.9017 13.5644 20.1239 12.7236 19.1461C11.876 18.1602 11.2501 16.9387 11.25 15.4635C11.25 12.5936 13.6598 10.2506 16.5 10.2506ZM16.5 11.7506C14.4697 11.7506 12.75 13.4405 12.75 15.4635C12.7501 16.4816 13.1747 17.3689 13.8613 18.1676C14.5508 18.9694 15.4773 19.6494 16.4131 20.2301C16.4395 20.2433 16.4696 20.2506 16.5 20.2506C16.5308 20.2506 16.5612 20.2427 16.5879 20.2291C17.5226 19.6559 18.4494 18.9747 19.1387 18.1705C19.8255 17.3689 20.2499 16.4779 20.25 15.4635C20.25 13.4405 18.5303 11.7506 16.5 11.7506ZM6.98828 0.751558C7.49476 0.735089 7.95906 0.850344 8.4541 1.04257C8.92734 1.22637 9.47582 1.49992 10.1445 1.83457L13.5068 3.51816C13.7443 3.63698 13.8895 3.70636 13.9902 3.75058C13.9935 3.75054 13.9967 3.75058 14 3.75058C14.1285 3.75058 14.2478 3.78545 14.3535 3.84238C14.4629 3.84963 14.6273 3.85312 14.9209 3.85312H17.0527C17.9499 3.85309 18.7008 3.85276 19.2969 3.93515C19.9286 4.02252 20.4976 4.21564 20.9522 4.6832C21.4036 5.14772 21.5873 5.72345 21.6709 6.36289C21.7505 6.97187 21.75 7.74029 21.75 8.6666V9.50058C21.7498 9.91462 21.4141 10.2506 21 10.2506C20.5859 10.2506 20.2502 9.91462 20.25 9.50058V8.71738C20.25 7.72711 20.248 7.05747 20.1826 6.55722C20.1198 6.07661 20.0101 5.86605 19.876 5.72812C19.7447 5.59331 19.5488 5.48469 19.0918 5.42148C18.6105 5.35491 17.9646 5.35312 17 5.35312H14.8594C14.8223 5.35314 14.7858 5.35121 14.75 5.35117V8.50058C14.7498 8.91462 14.4141 9.25058 14 9.25058C13.5859 9.25058 13.2502 8.91462 13.25 8.50058V5.05918C13.1373 5.00639 13.0183 4.95079 12.8916 4.8873C12.8732 4.87808 12.8547 4.86839 12.8359 4.85898L9.50391 3.19199C8.79625 2.83786 8.31111 2.59536 7.91113 2.44003C7.85496 2.41822 7.80094 2.40003 7.75 2.38242V15.8199C8.25305 15.9102 8.71472 16.1023 9.11914 16.3014C9.34178 16.4109 9.55891 16.5281 9.75977 16.6373L9.78906 16.6539C9.98276 16.7592 10.1613 16.8556 10.3359 16.943C10.7063 17.1284 10.8562 17.5794 10.6709 17.9498C10.4855 18.3202 10.0345 18.4701 9.66406 18.2848C9.46575 18.1855 9.26674 18.0772 9.0791 17.9752L9.04297 17.9557C8.84013 17.8454 8.64784 17.7414 8.45606 17.6471C8.06955 17.4569 7.72722 17.3275 7.40235 17.2828C6.65872 17.1807 6.05177 17.5352 5.11914 18.0797L5.0625 18.1119C4.44356 18.4733 3.92893 18.7738 3.50293 18.9674C3.07219 19.1631 2.60392 19.313 2.10938 19.2242C1.57481 19.1282 1.09595 18.839 0.756837 18.4156C0.446329 18.0279 0.342688 17.5482 0.2959 17.0699C0.249543 16.5959 0.249986 15.9896 0.250001 15.2555V6.96445C0.249985 6.40957 0.249692 5.94068 0.287111 5.55234C0.32684 5.14027 0.413207 4.75989 0.619142 4.39609C0.825692 4.03132 1.10707 3.7646 1.43945 3.52304C1.75106 3.29661 2.14922 3.06381 2.61719 2.79062C2.62723 2.78476 2.63735 2.77894 2.64746 2.77304L3.90527 2.03867C4.55205 1.66105 5.08217 1.35153 5.54297 1.1373C6.02501 0.913242 6.48175 0.768094 6.98828 0.751558ZM6.17578 2.49765C5.78602 2.67883 5.3162 2.95162 4.63184 3.35117L3.40332 4.06796C2.89687 4.36364 2.56483 4.559 2.32129 4.73593C2.09187 4.90266 1.98989 5.02043 1.92481 5.13535C1.8591 5.25142 1.80846 5.40366 1.78027 5.69589C1.75059 6.00379 1.75 6.40011 1.75 6.99863V15.2164C1.75 15.9999 1.75071 16.5323 1.78906 16.9244C1.82785 17.3205 1.89603 17.4385 1.92774 17.4781C2.0441 17.6234 2.20391 17.7169 2.375 17.7477C2.41122 17.754 2.53316 17.761 2.88281 17.6021C3.23043 17.4442 3.67832 17.1838 4.3418 16.7965C4.39461 16.7656 4.44886 16.7332 4.50391 16.7008C4.99631 16.4105 5.57792 16.0673 6.25 15.8883V2.46543C6.22602 2.4761 6.20084 2.486 6.17578 2.49765ZM16.5088 14.5006C17.0611 14.5006 17.5088 14.9483 17.5088 15.5006C17.5086 16.0527 17.0609 16.5006 16.5088 16.5006H16.5C15.9478 16.5006 15.5002 16.0527 15.5 15.5006C15.5 14.9483 15.9477 14.5006 16.5 14.5006H16.5088Z" fill="CurrentColor"/>
+
+
+
+
+ <Collapsible defaultOpen>
+          <Card className="bg-surface-default rounded-2xl mt-5">
+            <CardContent className="p-4">
+              <CollapsibleTrigger className="flex items-center justify-between w-full mb-4">
+                <h3 className="font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-primary-dark text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] [font-style:var(--title-16px-bold-font-style)]">
+                  Complex Contact Information
+                </h3>
+                <ChevronDownIcon className="w-8 h-8" />
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <div className="grid grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2">
+                  <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M4.77089 1.7914C4.74396 1.7897 4.69757 1.79107 4.62528 1.80329C3.77857 1.94638 3.00486 2.37623 2.43547 3.02308C1.97218 3.5494 1.66854 4.19168 1.55287 4.87501C1.48516 5.27504 1.49216 5.71047 1.52066 6.19911C1.69143 9.12669 2.92996 11.9001 5.01501 13.9851C7.18212 16.1522 10.0928 17.4049 13.1473 17.4946C13.5053 17.5052 13.8283 17.4975 14.1251 17.4472C14.8084 17.3316 15.4507 17.0279 15.977 16.5646C16.6598 15.9637 17.1008 15.1351 17.218 14.2332L17.2168 14.2327L17.2168 14.2327L12.8295 12.3484L12.8294 12.3485L12.8294 12.3485L10.4887 13.912C10.4881 13.9125 10.4874 13.9129 10.4868 13.9134C10.2713 14.0583 10.0219 14.1449 9.76298 14.1645C9.50325 14.1843 9.24287 14.136 9.00745 14.0245L9.00328 14.0226C7.25484 13.1814 5.84277 11.773 4.99715 10.0267L4.99564 10.0236L4.99565 10.0236C4.88489 9.79214 4.83535 9.53616 4.85176 9.28011C4.86817 9.02405 4.94999 8.77649 5.0894 8.56108L5.09234 8.55653L5.09236 8.55654L6.65297 6.18292L6.65155 6.17964L6.65156 6.17964L4.77089 1.7914ZM17.2189 14.2261L17.2189 14.2264L17.2189 14.2261ZM4.37532 0.324261C4.70725 0.268164 5.26379 0.235978 5.73387 0.632501C5.91326 0.783819 6.05538 0.976218 6.14718 1.19487L8.02884 5.58542C8.02911 5.58605 8.02938 5.58667 8.02965 5.5873C8.12707 5.81244 8.16779 6.05805 8.14822 6.3026C8.1286 6.54783 8.04897 6.78447 7.91634 6.99167L7.9114 6.99939L7.91135 6.99935L6.3487 9.37608C7.04612 10.8145 8.20932 11.9749 9.6494 12.6688L9.65244 12.6668L9.65244 12.6668L11.9944 11.1024C12.2022 10.9621 12.4421 10.8764 12.6918 10.8534C12.9415 10.8304 13.193 10.8708 13.423 10.9708C13.4239 10.9712 13.4249 10.9716 13.4258 10.972L17.8056 12.8531C18.1054 12.979 18.3558 13.1995 18.5186 13.4811C18.6822 13.764 18.7483 14.0929 18.7067 14.417C18.5445 15.6833 17.9264 16.8471 16.9681 17.6906C16.2313 18.3392 15.3321 18.7643 14.3755 18.9262C13.9356 19.0007 13.4989 19.0056 13.1033 18.994C9.66683 18.893 6.39236 17.4838 3.95435 15.0458C1.60865 12.7001 0.215328 9.58005 0.0232104 6.28646C-0.00635157 5.77966 -0.0237603 5.20168 0.0739086 4.62467C0.235831 3.66806 0.660897 2.76886 1.30954 2.03198C2.1067 1.12638 3.18988 0.524605 4.37532 0.324261Z" fill="CurrentColor"/>
 </svg>
+
+                     
+                                                     <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
+       Phone Numbers:
+</span>
+                      <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
+                        +966 55 123 4567, +966 11 987 6543
+                      </span>
+                    </div >
+                
+    <div className="flex items-center gap-2">
+  {/* الأيقونة */}
+  <div className="text-text-primary">
+    <svg
+      width="22"
+      height="21"
+      viewBox="0 0 22 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9.49999 6.49999C9.49999 6.20332 9.58796 5.91331 9.75278 5.66664C9.91761 5.41997 10.1519 5.22771 10.426 5.11417C10.7001 5.00064 11.0017 4.97094 11.2926 5.02882C11.5836 5.08669 11.8509 5.22956 12.0606 5.43933C12.2704 5.64911 12.4133 5.91639 12.4712 6.20736C12.529 6.49833 12.4993 6.79993 12.3858 7.07402C12.2723 7.34811 12.08 7.58237 11.8333 7.7472C11.5867 7.91202 11.2967 7.99999 11 7.99999C10.6022 7.99999 10.2206 7.84196 9.93933 7.56065C9.65802 7.27935 9.49999 6.89782 9.49999 6.49999ZM4.99999 6.49999C4.99999 4.9087 5.63213 3.38257 6.75735 2.25736C7.88257 1.13214 9.40869 0.5 11 0.5C12.5913 0.5 14.1174 1.13214 15.2426 2.25736C16.3678 3.38257 17 4.9087 17 6.49999C17 12.1203 11.6019 15.2694 11.375 15.4015C11.2616 15.4663 11.1334 15.5004 11.0028 15.5004C10.8722 15.5004 10.744 15.4663 10.6306 15.4015C10.3981 15.2694 4.99999 12.125 4.99999 6.49999ZM6.49999 6.49999C6.49999 10.4562 9.85999 13.0822 11 13.8594C12.139 13.0831 15.5 10.4562 15.5 6.49999C15.5 5.30652 15.0259 4.16193 14.182 3.31802C13.3381 2.4741 12.1935 2 11 2C9.80651 2 8.66192 2.4741 7.81801 3.31802C6.9741 4.16193 6.49999 5.30652 6.49999 6.49999ZM18.0097 12.8403C17.8251 12.7793 17.624 12.7924 17.4489 12.8768C17.2737 12.9611 17.1382 13.1102 17.0709 13.2926C17.0035 13.475 17.0096 13.6764 17.0878 13.8543C17.1661 14.0323 17.3104 14.1729 17.4903 14.2465C19.0381 14.8194 20 15.5862 20 16.25C20 17.5025 16.5762 19.25 11 19.25C5.42374 19.25 2 17.5025 2 16.25C2 15.5862 2.96187 14.8194 4.50968 14.2475C4.6896 14.1738 4.83389 14.0332 4.91214 13.8553C4.99039 13.6773 4.99648 13.4759 4.92912 13.2935C4.86177 13.1112 4.72624 12.9621 4.5511 12.8777C4.37596 12.7933 4.1749 12.7803 3.99031 12.8412C1.73937 13.6709 0.5 14.8822 0.5 16.25C0.5 19.1731 5.91031 20.75 11 20.75C16.0897 20.75 21.5 19.1731 21.5 16.25C21.5 14.8822 20.2606 13.6709 18.0097 12.8403Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+
+  {/* النصوص */}
+  <div className="flex items-center gap-3">
+    <span className="w-[160px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
+      Physical Address:
+    </span>
+
+    <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
+      245, King Fahd Road, Al Olaya, Saudi Arabia, KSA
+    </span>
+  </div>
 </div>
-        <div className="flex  gap-2 ">
-          <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
-            Maps Location:
-          </span>
-          <a
-            href="https://maps.google.com/?q=24.7136,46.6753"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)] underline"
-          >
-            www.medcaregroup.com
-          </a>
-        </div>
-      </div>
-    </div>
-           
-      </CardContent>
-    </CollapsibleContent>
-  </Card>
-</Collapsible>
+
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2">
+                          <div className="text-text-primary">
+                    <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.07923 0.787497C10.0441 0.737503 11.9541 0.737499 13.9191 0.787497C17.157 0.869496 18.9413 0.915255 20.2843 2.25625C21.6291 3.61122 21.6655 5.3485 21.7325 8.50136C21.7535 9.50833 21.7535 10.4866 21.7325 11.4936C21.6656 14.6461 21.6288 16.3819 20.2872 17.7348C18.9422 19.0788 17.158 19.1244 13.92 19.2064C12.9381 19.2314 11.9691 19.2445 11.0001 19.2445C10.0312 19.2445 9.06212 19.2314 8.0802 19.2064C4.84234 19.1244 3.05795 19.0785 1.71497 17.7377C0.370009 16.3827 0.332745 14.6454 0.265749 11.4926C0.24475 10.4856 0.244751 9.50735 0.265749 8.50039C0.332749 5.34739 0.370038 3.6112 1.71204 2.2582C3.05703 0.914271 4.84128 0.869495 8.07923 0.787497ZM13.881 2.28554C11.9421 2.23555 10.0572 2.23555 8.11731 2.28554C5.07934 2.36254 3.69256 2.39684 2.77356 3.31582C1.85556 4.24182 1.82677 5.58664 1.76477 8.53164C1.74378 9.5165 1.74378 10.4745 1.76477 11.4603C1.82677 14.4053 1.85648 15.7502 2.77747 16.6771C3.69447 17.593 5.08048 17.6294 8.11829 17.7064C10.0572 17.7564 11.9421 17.7564 13.882 17.7064C16.9199 17.6294 18.3057 17.5941 19.2247 16.6752C20.1427 15.7492 20.1715 14.4053 20.2335 11.4603C20.2545 10.4755 20.2545 9.5175 20.2335 8.53164C20.1715 5.58664 20.1428 4.24086 19.2218 3.31386C18.3048 2.39817 16.9186 2.36253 13.881 2.28554ZM5.35462 6.11074C5.56562 5.75474 6.02596 5.63509 6.38196 5.84609L9.32337 7.58633C10.7954 8.45333 11.2039 8.45333 12.6779 7.58633L15.6183 5.84707C15.9753 5.63607 16.4356 5.75472 16.6456 6.11172C16.8564 6.46859 16.7387 6.92802 16.382 7.13808L13.4396 8.87832C12.4588 9.45619 11.73 9.74442 11.0001 9.74453C10.2711 9.74453 9.54165 9.45532 8.56165 8.87832L5.61829 7.13711C5.26276 6.92603 5.14393 6.46654 5.35462 6.11074Z" fill="CurrentColor"/>
+</svg></div>
+
+                                                                                               <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
+         Email:
+</span>
+               
+                      <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
+                        info@medcaregroup.com
+                      </span>
+                    </div>
+                     
+                    <div className="flex items-center gap-2">
+                          <div className="text-text-primary">
+                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.5 11.2506C20.3402 11.2506 22.75 13.5936 22.75 16.4635C22.7499 17.934 22.125 19.158 21.2783 20.1461C20.4378 21.127 19.3524 21.9075 18.3545 22.5182L18.3438 22.525L18.332 22.5318C18.0781 22.6751 17.7914 22.7506 17.5 22.7506C17.2086 22.7506 16.9219 22.6751 16.668 22.5318L16.6543 22.524L16.6416 22.5162C15.649 21.9017 14.5644 21.1239 13.7236 20.1461C12.876 19.1602 12.2501 17.9387 12.25 16.4635C12.25 13.5936 14.6598 11.2506 17.5 11.2506ZM17.5 12.7506C15.4697 12.7506 13.75 14.4405 13.75 16.4635C13.7501 17.4816 14.1747 18.3689 14.8613 19.1676C15.5508 19.9694 16.4773 20.6494 17.4131 21.2301C17.4395 21.2433 17.4696 21.2506 17.5 21.2506C17.5308 21.2506 17.5612 21.2427 17.5879 21.2291C18.5226 20.6559 19.4494 19.9747 20.1387 19.1705C20.8255 18.3689 21.2499 17.4779 21.25 16.4635C21.25 14.4405 19.5303 12.7506 17.5 12.7506ZM7.98828 1.75156C8.49476 1.73509 8.95906 1.85034 9.4541 2.04257C9.92734 2.22637 10.4758 2.49992 11.1445 2.83457L14.5068 4.51816C14.7443 4.63698 14.8895 4.70636 14.9902 4.75058C14.9935 4.75054 14.9967 4.75058 15 4.75058C15.1285 4.75058 15.2478 4.78545 15.3535 4.84238C15.4629 4.84963 15.6273 4.85312 15.9209 4.85312H18.0527C18.9499 4.85309 19.7008 4.85276 20.2969 4.93515C20.9286 5.02252 21.4976 5.21564 21.9522 5.6832C22.4036 6.14772 22.5873 6.72345 22.6709 7.36289C22.7505 7.97187 22.75 8.74029 22.75 9.6666V10.5006C22.7498 10.9146 22.4141 11.2506 22 11.2506C21.5859 11.2506 21.2502 10.9146 21.25 10.5006V9.71738C21.25 8.72711 21.248 8.05747 21.1826 7.55722C21.1198 7.07661 21.0101 6.86605 20.876 6.72812C20.7447 6.59331 20.5488 6.48469 20.0918 6.42148C19.6105 6.35491 18.9646 6.35312 18 6.35312H15.8594C15.8223 6.35314 15.7858 6.35121 15.75 6.35117V9.50058C15.7498 9.91462 15.4141 10.2506 15 10.2506C14.5859 10.2506 14.2502 9.91462 14.25 9.50058V6.05918C14.1373 6.00639 14.0183 5.95079 13.8916 5.8873C13.8732 5.87808 13.8547 5.86839 13.8359 5.85898L10.5039 4.19199C9.79625 3.83786 9.31111 3.59536 8.91113 3.44003C8.85496 3.41822 8.80094 3.40003 8.75 3.38242V16.8199C9.25305 16.9102 9.71472 17.1023 10.1191 17.3014C10.3418 17.4109 10.5589 17.5281 10.7598 17.6373L10.7891 17.6539C10.9828 17.7592 11.1613 17.8556 11.3359 17.943C11.7063 18.1284 11.8562 18.5794 11.6709 18.9498C11.4855 19.3202 11.0345 19.4701 10.6641 19.2848C10.4657 19.1855 10.2667 19.0772 10.0791 18.9752L10.043 18.9557C9.84013 18.8454 9.64784 18.7414 9.45606 18.6471C9.06955 18.4569 8.72722 18.3275 8.40235 18.2828C7.65872 18.1807 7.05177 18.5352 6.11914 19.0797L6.0625 19.1119C5.44356 19.4733 4.92893 19.7738 4.50293 19.9674C4.07219 20.1631 3.60392 20.313 3.10938 20.2242C2.57481 20.1282 2.09595 19.839 1.75684 19.4156C1.44633 19.0279 1.34269 18.5482 1.2959 18.0699C1.24954 17.5959 1.24999 16.9896 1.25 16.2555V7.96445C1.24999 7.40957 1.24969 6.94068 1.28711 6.55234C1.32684 6.14027 1.41321 5.75989 1.61914 5.39609C1.82569 5.03132 2.10707 4.7646 2.43945 4.52304C2.75106 4.29661 3.14922 4.06381 3.61719 3.79062C3.62723 3.78476 3.63735 3.77894 3.64746 3.77304L4.90527 3.03867C5.55205 2.66105 6.08217 2.35153 6.54297 2.1373C7.02501 1.91324 7.48175 1.76809 7.98828 1.75156ZM7.17578 3.49765C6.78602 3.67883 6.3162 3.95162 5.63184 4.35117L4.40332 5.06796C3.89687 5.36364 3.56483 5.559 3.32129 5.73593C3.09187 5.90266 2.98989 6.02043 2.92481 6.13535C2.8591 6.25142 2.80846 6.40366 2.78027 6.69589C2.75059 7.00379 2.75 7.40011 2.75 7.99863V16.2164C2.75 16.9999 2.75071 17.5323 2.78906 17.9244C2.82785 18.3205 2.89603 18.4385 2.92774 18.4781C3.0441 18.6234 3.20391 18.7169 3.375 18.7477C3.41122 18.754 3.53316 18.761 3.88281 18.6021C4.23043 18.4442 4.67832 18.1838 5.3418 17.7965C5.39461 17.7656 5.44886 17.7332 5.50391 17.7008C5.99631 17.4105 6.57792 17.0673 7.25 16.8883V3.46543C7.22602 3.4761 7.20084 3.486 7.17578 3.49765ZM17.5088 15.5006C18.0611 15.5006 18.5088 15.9483 18.5088 16.5006C18.5086 17.0527 18.0609 17.5006 17.5088 17.5006H17.5C16.9478 17.5006 16.5002 17.0527 16.5 16.5006C16.5 15.9483 16.9477 15.5006 17.5 15.5006H17.5088Z" fill="CurrentColor"/>
+</svg></div>
+
+
+                                                                                                      <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
+      Maps Location:
+</span>
+                      <a
+                        href="https://maps.google.com/?q=24.7136,46.6753"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)] underline"
+                      >
+                        www.medcaregroup.com
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </CollapsibleContent>
+            </CardContent>
+          </Card>
+        </Collapsible>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1174,13 +1321,13 @@ const {t, i18n} = useTranslation('en')
               <Table>
                 <TableHeader className="">
                   <TableRow>
-                    <TableHead className="items-start">
+                    <TableHead className="items-start font-[number:var(--title-16px-semibold-font-weight)] text-text-primary">
                       Working Days
                     </TableHead>
                     <TableHead className="text-center font-title-16px-semibold font-[number:var(--title-16px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-16px-semibold-font-size)] tracking-[var(--title-16px-semibold-letter-spacing)] leading-[var(--title-16px-semibold-line-height)] [font-style:var(--title-16px-semibold-font-style)]">
                       Start Time
                     </TableHead>
-                    <TableHead className=" text-end ">
+                    <TableHead className=" text-end font-[number:var(--title-16px-semibold-font-weight)] text-text-primary ">
                       End Time
                     </TableHead>
                   </TableRow>
@@ -1239,12 +1386,9 @@ const {t, i18n} = useTranslation('en')
 </Collapsible>
 
 
-
 </CardContent>
-       </Card>
-  
-      </div>
-     
-  
+
+    </Card>
+     </div>
   );
 };

@@ -59,7 +59,7 @@ export const UserManagementSection = ({
     <nav
       className={`h-screen w-[223px] flex flex-col ${
         local === "ar" ? "right-[10px]" : "left-0"
-      } ${dark ? "bg-[#030711]" : "bg-surface-default"}`}
+      } bg-background-primary`}
     >
       {/* Header */}
       <header className="flex flex-col items-start gap-2.5 px-2 py-[9px] mt-4 ml-5 w-full">

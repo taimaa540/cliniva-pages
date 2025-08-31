@@ -145,11 +145,9 @@ export const EmploymentDetailsSection = ({
     i18n.changeLanguage(local);
   }, []);
   return (
-   <div className={`flex flex-col w-full overflow-scroll h-full items-start gap-4  py-4  self-stretch relative ${
-        local === "ar" ? "pr-0 pl-5" : "pl-0 pr-5"
-      } ${dark ? "bg-[#030711]" : ""}`}
-    >
-      <header className="flex h-[50px] justify-between pl-[4px] pr-0 py-0 self-stretch w-full items-center  ">
+      <div className="flex flex-col w-full overflow-hidden h-full items-start gap-4  py-4  pb-8 self-stretch relative bg-background-primary">
+
+      <header className="flex h-[50px] justify-between pl-[4px] pr-0 py-0 self-stretch w-full items-center bg-background-primary">
         <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5">
           <h1
             className={`self-stretch mt-[-1.00px] font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] 
@@ -209,26 +207,36 @@ export const EmploymentDetailsSection = ({
         </div>
       </header>
 
-      <main className={`flex flex-col h-full items-start gap-5 p-5 mt-[10px] relative self-stretch w-full flex-[0_0_auto] ${dark ? "bg-[#272932] border-[white]" : "bg-bg"} rounded-2xl overflow-hidden`}>
-        <Card
-          style={{ boxShadow: "0px 20px 24px -4px #0A0D121A" }}
-          className="w-full bg-surface-default rounded-[16px] "
-        >
-          <CardContent className="px-8 py-[10px]">
-            <Collapsible defaultOpen className="w-full">
-              <CollapsibleTrigger asChild>
-                <Button variant="ghost" className="p-0 hover:bg-[none]">
-                  <div className="flex items-center justify-between w-[1099px] ">
-                    <h2 className="text-[14px] font-600 font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
-                      {t("Account Information")}
-                    </h2>
-                    <ChevronDownIcon className="relative w-[14.4px] h-[8px] " />
-                  </div>
-                </Button>
+<Card
+        className={`flex flex-col h-full items-start   pb-8  gap-6 p-5 mt-[10px] bg-background-tertiary  relative self-stretch w-full flex-[0_0_auto] 
+        } rounded-2xl overflow-hidden`}
+      >
+
+        <CardContent className="p-0 w-full   pb-8  overflow-y-auto scroll-x-hidden gap-5 h-full">
+
+
+
+ <Collapsible defaultOpen className="w-full bg-background-primary  mt-5 rounded-2xl ">
+            <Card className="bg-surface-default rounded-2xl p-5">
+              <CollapsibleTrigger className="w-full">
+                <CardContent className="p-4 flex items-center justify-between">
+                  <div style={{
+                    fontFamily: "Lato",
+                    fontWeight: 600,
+                    fontStyle: "SemiBold",
+                    fontSize: "16px",
+                    lineHeight: "124%",
+                    letterSpacing: "0%",
+                  }}
+                    className="text-text-accent font-bold size-16 w-56 text-start ">
+                    <h2 className="mt-6">    {t("Account Information")}:</h2></div>
+                  <ChevronDownIcon className="text-text-primary font-semiboldy w-8 h-8" />
+                </CardContent>
               </CollapsibleTrigger>
 
               <CollapsibleContent>
-                <div className="grid grid-cols-2 gap-6 w-full mt-[20px] mb-[10px]">
+                <CardContent className="flex flex-col gap-4">
+                   <div className="grid grid-cols-2 gap-6 w-full mt-[20px] mb-[10px]">
                   {accountFields.map((field, index) => (
                     <div key={index} className="flex items-start gap-8">
                       <Label className="w-40 text-[14px] font-500 font-[number:var(--btn-14px-medium-font-weight)] text-gray-700 text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
@@ -256,32 +264,36 @@ export const EmploymentDetailsSection = ({
                     </div>
                   ))}
                 </div>
-              </CollapsibleContent>
-            </Collapsible>
-          </CardContent>
-        </Card>
 
-        <Card
-          style={{
-            boxShadow:
-              "0px 20px 24px var(--sds-size-depth-negative-100) #0A0D121A",
-          }}
-          className="w-full bg-surface-default rounded-[16px] "
-        >
-          <CardContent className="p-8">
-            <Collapsible defaultOpen className="w-full">
-              <CollapsibleTrigger asChild>
-                <Button variant="ghost" className="p-0 hover:bg-[none]">
-                  <div className="flex items-center justify-between w-[1099px] ">
-                    <h2 className="text-[14px] font-600 font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
-                      {t("Personal information")}
-                    </h2>
-                    <ChevronDownIcon className="relative w-[14.4px] h-[8px] " />
-                  </div>
-                </Button>
+                </CardContent>
+              </CollapsibleContent>
+            </Card>
+          </Collapsible>
+
+
+
+
+ <Collapsible defaultOpen className="w-full bg-background-primary  mt-5 rounded-2xl ">
+            <Card className="bg-surface-default rounded-2xl p-5">
+              <CollapsibleTrigger className="w-full">
+                <CardContent className="p-4 flex items-center justify-between">
+                  <div style={{
+                    fontFamily: "Lato",
+                    fontWeight: 600,
+                    fontStyle: "SemiBold",
+                    fontSize: "16px",
+                    lineHeight: "124%",
+                    letterSpacing: "0%",
+                  }}
+                    className="text-text-accent font-bold size-16 w-56 text-start ">
+                    <h2 className="mt-6">        {t("Personal information")}:</h2></div>
+                  <ChevronDownIcon className="text-text-primary font-semiboldy w-8 h-8" />
+                </CardContent>
               </CollapsibleTrigger>
+
               <CollapsibleContent>
-                <div className="flex flex-col items-start gap-4 mt-[20px] relative">
+                <CardContent className="flex flex-col gap-4">
+                 <div className="flex flex-col items-start gap-4 mt-[20px] relative">
                   <div className="flex items-start gap-8 w-full">
                     <Label className="w-40 font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-gray-700 text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
                       {t("Full Name")} *
@@ -466,26 +478,36 @@ export const EmploymentDetailsSection = ({
                     </div>
                   </div>
                 </div>
-              </CollapsibleContent>
-            </Collapsible>
-          </CardContent>
-        </Card>
 
-        <Card className="w-full bg-surface-default rounded-2xl shadow-[0px_20px_24px_#0a0d121a]">
-          <CardContent className="p-8">
-            <Collapsible defaultOpen className="w-full">
-              <CollapsibleTrigger asChild>
-                <Button variant="ghost" className="p-0 hover:bg-[none]">
-                  <div className="flex items-center justify-between w-[1099px] ">
-                    <h2 className="text-[14px] font-600 font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
-                      {t("Employment Details")}
-                    </h2>
-                    <ChevronDownIcon className="relative w-[14.4px] h-[8px] " />
-                  </div>
-                </Button>
+                </CardContent>
+              </CollapsibleContent>
+            </Card>
+          </Collapsible>
+
+
+
+
+ <Collapsible defaultOpen className="w-full bg-background-primary  mt-5 rounded-2xl ">
+            <Card className="bg-surface-default rounded-2xl p-5">
+              <CollapsibleTrigger className="w-full">
+                <CardContent className="p-4 flex items-center justify-between">
+                  <div style={{
+                    fontFamily: "Lato",
+                    fontWeight: 600,
+                    fontStyle: "SemiBold",
+                    fontSize: "16px",
+                    lineHeight: "124%",
+                    letterSpacing: "0%",
+                  }}
+                    className="text-text-accent font-bold size-16 w-56 text-start ">
+                    <h2 className="mt-6">          {t("Employment Details")}:</h2></div>
+                  <ChevronDownIcon className="text-text-primary font-semiboldy w-8 h-8" />
+                </CardContent>
               </CollapsibleTrigger>
+
               <CollapsibleContent>
-                <div className="flex flex-col items-start gap-4 mt-[20px] relative">
+                <CardContent className="flex flex-col gap-4">
+<div className="flex flex-col items-start gap-4 mt-[20px] relative">
                   <div className="flex items-start gap-8 w-full">
                     <Label className="w-40 font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-gray-700 text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
                       {t("Job Title")} *
@@ -581,74 +603,36 @@ export const EmploymentDetailsSection = ({
                       ))}
                     </div>
                      </div>
-                    {/* {workingDays.map((day, index) => (
-                      <div
-                        key={index}
-                        className="flex items-center gap-8 w-full"
-                      >
-                        <div className="w-40" />
-                        <div className="flex items-center gap-4">
-                          <div className="flex items-center gap-2.5">
-                            <Checkbox  
-                            />
-                            
-                          </div>
-                          <span className="[font-family:'Lato',Helvetica] font-normal text-on-surface-primary text-sm">
-                            {t(`${day.day}`)}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2 px-3 py-2 bg-white rounded border border-[#e4e2dd] shadow-[0px_1px_2px_#0a0d120d]">
-                          <span className="[font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-sm">
-                            {day.startTime}
-                          </span>
-                          <img
-                            className="w-4 h-4"
-                            alt="Arrow right short"
-                            src="/arrow-right-short.svg"
-                          />
-                          <span className="[font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-sm">
-                            {day.endTime}
-                          </span>
-                          <CalendarIcon className="w-4 h-4" />
-                        </div>
-                        <div className="flex items-center gap-2 px-3 py-2 bg-white rounded border border-[#e4e2dd] shadow-[0px_1px_2px_#0a0d120d]">
-                          <span className="[font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-sm">
-                            {day.nightStart}
-                          </span>
-                          <img
-                            className="w-4 h-4"
-                            alt="Arrow right short"
-                            src="/arrow-right-short.svg"
-                          />
-                          <span className="[font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-sm">
-                            {day.nightEnd}
-                          </span>
-                          <CalendarIcon className="w-4 h-4" />
-                        </div>
-                      </div>
-                    ))} */}
-               
-                </div>
+</div>
+                </CardContent>
               </CollapsibleContent>
-            </Collapsible>
-          </CardContent>
-        </Card>
+            </Card>
+          </Collapsible>
 
-        <Card className="w-full bg-surface-default rounded-2xl shadow-[0px_20px_24px_#0a0d121a]">
-          <CardContent className="p-8">
-            <Collapsible defaultOpen className="w-full">
-              <CollapsibleTrigger asChild>
-                <Button variant="ghost" className="p-0 hover:bg-[none]">
-                  <div className="flex items-center justify-between w-[1099px] ">
-                    <h2 className="text-[14px] font-600 font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
-                      {t("Document")}
-                    </h2>
-                    <ChevronDownIcon className="relative w-[14.4px] h-[8px] " />
-                  </div>
-                </Button>
+
+
+
+ <Collapsible defaultOpen className="w-full bg-background-primary  mt-5 rounded-2xl ">
+            <Card className="bg-surface-default rounded-2xl p-5">
+              <CollapsibleTrigger className="w-full">
+                <CardContent className="p-4 flex items-center justify-between">
+                  <div style={{
+                    fontFamily: "Lato",
+                    fontWeight: 600,
+                    fontStyle: "SemiBold",
+                    fontSize: "16px",
+                    lineHeight: "124%",
+                    letterSpacing: "0%",
+                  }}
+                    className="text-text-accent font-bold size-16 w-56 text-start ">
+                    <h2 className="mt-6">            {t("Document")}:</h2></div>
+                  <ChevronDownIcon className="text-text-primary font-semiboldy w-8 h-8" />
+                </CardContent>
               </CollapsibleTrigger>
+
               <CollapsibleContent>
-                <div className="flex flex-col items-start gap-4 mt-[20px] relative">
+                <CardContent className="flex flex-col gap-4">
+<div className="flex flex-col items-start gap-4 mt-[20px] relative">
                   {documents.map((doc, index) => (
                     <div key={index} className="flex items-start gap-8 w-full">
                       <Label className="w-[178px] [font-family:'Lato',Helvetica] font-medium text-on-surface-primary text-base">
@@ -693,12 +677,16 @@ export const EmploymentDetailsSection = ({
                     </div>
                   ))}
                 </div>
+                </CardContent>
               </CollapsibleContent>
-            </Collapsible>
-          </CardContent>
-        </Card>
+            </Card>
+          </Collapsible>
 
-        <div className="flex items-center gap-4 self-end">
+
+
+
+
+        <div className="flex items-center gap-4 self-end mt-5">
           <Button
             variant="outline"
             className="px-4 py-2.5 bg-secondary-light rounded-[20px] border-2 border-[#e4e2dd] h-auto"
@@ -713,7 +701,8 @@ export const EmploymentDetailsSection = ({
             </span>
           </Button>
         </div>
-      </main>
+        </CardContent>
+      </Card>
     </div>
   );
 };

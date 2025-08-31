@@ -38,10 +38,7 @@ export const ElementUserDetails = (): JSX.Element => {
   ];
 
   return (
-    <div
-      dir={`${local === "ar" ? "rtl" : "ltr"}`}
-      className={`flex ${darkMode ? "bg-[#030711]" : "bg-[white]"}`}
-    >
+    <div className="flex w-full bg-surface-default " dir={`${local === "ar" ? "rtl" : "ltr"}`}>
       <UserManagementSection local={local} dark={darkMode} />
       <AccountInformationSection
         handleLanguageClick={handleLanguageClick}

@@ -27,6 +27,7 @@ import { ElementViewClinic } from "./screens/ElementViewClinic/ElementViewClinic
 import { ElementEditCompany } from "./screens/ElementEditCompany/ElementEditCompany"; 
 import { ElementEditComplex } from "./screens/ElementEditComplax/ElementEditComplax";
 import { EditClinicDetails } from "./screens/EditClinicDetails/EditClinicDetails";
+import { ElementEditComplexPlan2} from "./screens/ElementEditComplexPlan2/ElementEditComplexPlan2";
 createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
     
@@ -48,7 +49,7 @@ createRoot(document.getElementById("app") as HTMLElement).render(
             {/* <ChoosePlan /> */}
             {/* <ElementUsersNoDataTo /> */}
             {/* <ElementUsersAddNew /> */}
-            {/* <ElementUsersDesktop/> */}
+            <ElementUsersDesktop/>
             {/* <ElementUserDetails/> */}
             {/* <ElementEditUserDetails/> */}
             {/* <ElementChangeStatus/> */}
@@ -57,10 +58,7 @@ createRoot(document.getElementById("app") as HTMLElement).render(
             {/* <UserManagementSection local="test" dark={false} /> */}
             {/* <ComplexList/> */}
             {/* <ClinicList/> */}
-          </main>
-        </div>
-      </ThemeProvider>
-    </BrowserRouter>
+       
         {/* Theme Demo - Uncomment to see theme system in action */}
         {/* <ThemeDemo /> */}
 {/* <ElementViewCompany/> */}
@@ -71,10 +69,10 @@ createRoot(document.getElementById("app") as HTMLElement).render(
         {/* <ElementUsersAddNew /> */}
         {/* <ElementUsersDesktop/> */}
 
-        <ElementViewClinic/>
+        {/* <ElementViewClinic/> */}
 
         {/* <ElementViewComplex/> */}
-
+          
         {/* <ElementUserDetails/> */}
         {/* <ElementEditUserDetails/> */}
         {/* <ElementChangeStatus/> */}
@@ -83,13 +81,15 @@ createRoot(document.getElementById("app") as HTMLElement).render(
         {/* <ElementEditComplex/> */}
        {/* <ElementEditCompany/> */}
         {/* <ElementViewCompany/> */}
-
+             {/* <ElementEditComplexPlan2/> */}
         {/* <EditClinicDetails/> */}
    
         </main>
       </div>
     </ThemeProvider>
+     </BrowserRouter>
   </StrictMode>
+ 
 );
 
 
