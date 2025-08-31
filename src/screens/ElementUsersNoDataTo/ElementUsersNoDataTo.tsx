@@ -23,9 +23,9 @@ export const ElementUsersNoDataTo = (): JSX.Element => {
   };
 
   return (
-    <div dir={`${local === 'ar' ? 'rtl' : 'ltr'}`} className={`flex ${darkMode ? 'bg-[#030711]' : 'bg-[white]'}`}>
-      <UserManagementSection local={local}  dark={darkMode} />
-      <NoDataSection handleLanguageClick={handleLanguageClick} local={local} dark={darkMode} handelDarkClick={toggleDarkMode} />
+    <div dir={`${local === 'ar' ? 'rtl' : 'ltr'}`} className="flex w-full">
+      <UserManagementSection local={local} />
+      <NoDataSection handleLanguageClick={handleLanguageClick} local={local} handelDarkClick={toggleDarkMode} />
     </div>
   );
 };
