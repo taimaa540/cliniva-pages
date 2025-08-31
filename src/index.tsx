@@ -16,6 +16,11 @@ import { ThemeToggle } from "./components/theme/ThemeSwitcher";
 import { ThemeDemo } from "./components/theme/ThemeDemo";
 import { ChoosePlan } from "./screens/choosePlan";
 import { CompanyPlan } from "./screens/CompanyPlan/CompanyPlan";
+import { BrowserRouter } from "react-router-dom";
+import { ComplexList } from "./screens/ComplexList";
+import { UserManagementSection } from "./screens/ElementUsersNoDataTo/sections/UserManagementSection/UserManagementSection";
+import { ClinicList } from "./screens/ClinicList";
+
 import { ElementViewCompany } from "./screens/ElementVeiwCompany/ElementViewCompany";
 import { ElementViewComplex } from "./screens/ElementViewComplex/ElementViewComplex";
 import { ElementViewClinic } from "./screens/ElementViewClinic/ElementViewClinic";
@@ -24,16 +29,38 @@ import { ElementEditComplex } from "./screens/ElementEditComplax/ElementEditComp
 import { EditClinicDetails } from "./screens/EditClinicDetails/EditClinicDetails";
 createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
-    <ThemeProvider defaultTheme="light" storageKey="cliniva-theme">
-      {/* Theme toggle in top-right corner */}
-      <div className="fixed top-4 right-4 z-50">
-        <ThemeToggle />
-      </div>
+    
+    <BrowserRouter>
+      <ThemeProvider defaultTheme="light" storageKey="cliniva-theme">
+        {/* Theme toggle in top-right corner */}
+        <div className="fixed top-[40px] right-[205px] z-50">
+          <ThemeToggle />
+        </div>
 
-      {/* Main app content with theme transition */}
-      <div className="theme-transition">
-        <main className="flex h-screen w-screen overflow-hidden">
+        {/* Main app content with theme transition */}
+        <div className="theme-transition">
           
+          <main className="flex h-screen w-screen overflow-hidden">
+            {/* Theme Demo - Uncomment to see theme system in action */}
+            {/* <ThemeDemo /> */}
+
+            {/* Original app components */}
+            {/* <ChoosePlan /> */}
+            {/* <ElementUsersNoDataTo /> */}
+            {/* <ElementUsersAddNew /> */}
+            {/* <ElementUsersDesktop/> */}
+            {/* <ElementUserDetails/> */}
+            {/* <ElementEditUserDetails/> */}
+            {/* <ElementChangeStatus/> */}
+            {/* <ElementDeleteUser title="user"/> */}
+            {/* <ElementLogOutDialog/> */}
+            {/* <UserManagementSection local="test" dark={false} /> */}
+            {/* <ComplexList/> */}
+            {/* <ClinicList/> */}
+          </main>
+        </div>
+      </ThemeProvider>
+    </BrowserRouter>
         {/* Theme Demo - Uncomment to see theme system in action */}
         {/* <ThemeDemo /> */}
 {/* <ElementViewCompany/> */}

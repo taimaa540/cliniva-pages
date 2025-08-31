@@ -85,9 +85,7 @@ export const UserManagementSection = ({
             />
           </svg>
           <h1
-            className={`text-xl leading-[22px] tracking-[0] whitespace-nowrap ${
-              dark ? "text-white" : "text-black"
-            } font-normal`}
+          className="font-lato font-regular text-xl leading-[110%] text-text-primary tracking-[0] "
           >
             Cliniva SYS
           </h1>
@@ -98,9 +96,9 @@ export const UserManagementSection = ({
       <main className="flex flex-col flex-1 items-center mt-5 px-2">
         <section className="w-full space-y-2">
           {/* Users Management button - active state */}
-          <button className="flex items-center w-full h-10 gap-2 px-2 py-2 bg-app-secondary rounded justify-start">
+          <button className="flex items-center w-full h-10 gap-2 px-2 py-2 bg-secondary-default rounded justify-start">
             <UsersIcon className="w-5 h-5 text-white" />
-            <span className="font-btn-14px-medium text-surface-default">
+            <span className="font-btn-14px-medium text-background-primary">
               {t("Users Management")}
             </span>
           </button>
@@ -115,7 +113,7 @@ export const UserManagementSection = ({
               >
                 <div className="flex items-center gap-2">
                   <item.icon
-                    className={`w-5 h-5 ${dark ? "text-white" : "text-black"}`}
+                    className='w-5 h-5 text-text-secondary'
                   />
                   <span className="font-title-12px-semibold text-on-surface-secondary">
                     {t(item.label)}
@@ -138,7 +136,7 @@ export const UserManagementSection = ({
           <span className="font-btn-14px-medium text-on-surface-secondary">
             {t("Logout")}
           </span>
-          <ChevronDownIcon className="w-3.5 h-3.5" />
+          <ChevronDownIcon className="w-3.5 h-3.5 ml-[30px]" />
         </Button>
       </main>
     </nav>

@@ -1,26 +1,26 @@
 "use client";
-import { UserCircleIcon } from "lucide-react";
+import { UserCircleIcon, PlusIcon } from "lucide-react";
 import { ClinicDetailsSection } from "../ClinicDetailsSection/ClinicDetailsSection";
 import { ClinicWorkSchedule } from "../ClinicWorkingSchedule/ClinicWorkingScheduleSection";
 import { CompanyDetailsSection } from "../CompanyDetailsSection/CompanyDetailsSection";
 import { ContactInfoSection } from "../CompanyPlanFillInConact/ContactInfoSectionContant";
 import { LegalDetailsSection } from "../CompanyPlanFillInLegal/LegalDetailsSection";
-import { ComplexContactDetailsSection } from "../ComplexContactDetailsSection/ComplexContactDetailsSection";
-import { ComplexDetailsSection } from "../ComplexDetailsSection/ComplexDetailsSection";
 import { ComplexWorkSchedule } from "../ComplexWorkingSchedule/ComplexWorkingScheduleSection";
-import { AccountCreationSection } from "./sections/AccountCreationSection";
+import { AccountCreationSection } from "../CompanyPlan/sections/AccountCreationSection";
+import { Input } from "../../components/ui/input";
+import { Card, CardContent } from "../../components/ui/card";
 import { useState } from "react";
 
 import "react-phone-input-2/lib/style.css";
 
-type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
-export const CompanyPlan = (): JSX.Element => {
+type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+export const ComplexPlane = (): JSX.Element => {
   const [currentStep, setCurrentStep] = useState<Step>(1);
   const [showDialog, setShowDialog] = useState(false);
 
   const handleNext = () => {
-    if (currentStep < 9) setCurrentStep((prev) => (prev + 1) as Step);
-    else if (currentStep === 9) {
+    if (currentStep < 7) setCurrentStep((prev) => (prev + 1) as Step);
+    else if (currentStep === 7) {
       setShowDialog(true); // آخر خطوة → إظهار الـ Dialog
     }
   };
@@ -81,28 +81,27 @@ export const CompanyPlan = (): JSX.Element => {
               Account Setup
             </span>
           </div>
-          <div
-            className="bg-background-tertiary w-[33px] h-[409px] rounded-[109px] absolute top-[145px] left-[17px] z-0"
-          ></div>
-
+          <div className="bg-background-tertiary w-[33px] h-[275px] rounded-[109px] absolute top-[145px] left-[17px] z-0"></div>
           {/* Step 1 */}
-          <div className="mb-2 relative z-1" >
-            <div
-              className="flex items-center gap-[8px] mb-3 relative z-1"
-            >
+          <div className="mb-2 relative z-1">
+            <div className="flex items-center gap-[8px] mb-3 relative z-1">
               <div
                 className={`w-[26px] h-[26px] rounded-full flex items-center justify-center text-sm font-medium ${
                   currentStep === 2
                     ? "bg-[#A5C8F2] text-white"
                     : currentStep === 3
                     ? "bg-[#A5C8F2] text-white"
-                    : currentStep > 3 ? "bg-[#83DFDF] text-white" : "bg-primary-foreground text-text-primary"
+                    : currentStep === 4
+                    ? "bg-[#A5C8F2] text-white"
+                    : currentStep > 4
+                    ? "bg-[#83DFDF] text-white"
+                    : "bg-primary-foreground text-text-primary"
                 }`}
               >
                 1
               </div>
               <span className={`font-medium text--text-primary`}>
-                Fill in Company Details
+                Fill in Complex Details
               </span>
             </div>
             <div className="ml-2 space-y-2">
@@ -126,7 +125,7 @@ export const CompanyPlan = (): JSX.Element => {
                       : "text-text-secondary"
                   }`}
                 >
-                  Company Overview
+                  Complex Overview
                 </span>
               </div>
               <div className="flex items-center gap-[20px]">
@@ -154,7 +153,7 @@ export const CompanyPlan = (): JSX.Element => {
               <div className="flex items-center gap-[20px]">
                 <div
                   className={`w-[10px] h-[10px] rounded-full flex items-center justify-center text-xs font-medium text-white ${
-                   currentStep === 4
+                    currentStep === 4
                       ? "bg-primary-default"
                       : currentStep > 4
                       ? "bg-secondary-dark"
@@ -174,39 +173,15 @@ export const CompanyPlan = (): JSX.Element => {
                   Legal Details
                 </span>
               </div>
-            </div>
-          </div>
-
-          {/* Step 2  */}
-          <div className="mb-2 relative z-1" >
-            <div
-              className="flex items-center gap-[8px] mb-3 relative z-1"
-            >
-              <div
-                className={`w-[26px] h-[26px] rounded-full flex items-center justify-center text-sm font-medium ${
-                  currentStep === 5
-                    ? "bg-[#A5C8F2] text-white"
-                    : currentStep === 6
-                    ? "bg-[#A5C8F2] text-white"
-                    : currentStep > 6 ? "bg-[#83DFDF] text-white" : "bg-primary-foreground text-text-primary"
-                }`}
-              >
-                2
-              </div>
-              <span className={`font-medium text--text-primary`}>
-               Fill in Complex Details
-              </span>
-            </div>
-            <div className="ml-2 space-y-2">
               <div className="flex items-center gap-[20px]">
                 <div
-                  className={`w-[10px] h-[10px] rounded-full ${
+                  className={`w-[10px] h-[10px] rounded-full flex items-center justify-center text-xs font-medium text-white ${
                     currentStep === 5
                       ? "bg-primary-default"
-                      : currentStep >5 
+                      : currentStep > 5
                       ? "bg-secondary-dark"
                       : "bg-border-medium"
-                  } flex items-center justify-center text-xs font-medium text-white
+                  }
                    `}
                 ></div>
                 <span
@@ -218,18 +193,42 @@ export const CompanyPlan = (): JSX.Element => {
                       : "text-text-secondary"
                   }`}
                 >
-                  Complex Overview
+                  Working Schedule
                 </span>
               </div>
+            </div>
+          </div>
+          {/* Step 2 */}
+          <div className="mb-2 relative z-1">
+            <div className="flex items-center gap-[8px] mb-3 relative z-1">
+              <div
+                className={`w-[26px] h-[26px] rounded-full flex items-center justify-center text-sm font-medium ${
+                  currentStep === 6
+                    ? "bg-[#A5C8F2] text-white"
+                    : currentStep === 7
+                    ? "bg-[#A5C8F2] text-white"
+                    : currentStep > 7
+                    ? "bg-[#83DFDF] text-white"
+                    : "bg-primary-foreground text-text-primary"
+                }`}
+              >
+                2
+              </div>
+              <span className={`font-medium text--text-primary`}>
+                Fill in Clinic Details
+              </span>
+            </div>
+            <div className="ml-2 space-y-2">
               <div className="flex items-center gap-[20px]">
                 <div
-                  className={`w-[10px] h-[10px] rounded-full flex items-center justify-center text-xs font-medium text-white ${
+                  className={`w-[10px] h-[10px] rounded-full ${
                     currentStep === 6
                       ? "bg-primary-default"
                       : currentStep > 6
                       ? "bg-secondary-dark"
                       : "bg-border-medium"
-                  }`}
+                  } flex items-center justify-center text-xs font-medium text-white
+                   `}
                 ></div>
                 <span
                   className={`text-sm font-medium ${
@@ -238,15 +237,16 @@ export const CompanyPlan = (): JSX.Element => {
                       : currentStep > 6
                       ? "text-secondary-dark"
                       : "text-text-secondary"
-                  } `}
+                  }`}
                 >
-                  Contact Details
+                  Clinic Overview
                 </span>
               </div>
+
               <div className="flex items-center gap-[20px]">
                 <div
                   className={`w-[10px] h-[10px] rounded-full flex items-center justify-center text-xs font-medium text-white ${
-                   currentStep === 7
+                    currentStep === 7
                       ? "bg-primary-default"
                       : currentStep > 7
                       ? "bg-secondary-dark"
@@ -268,105 +268,78 @@ export const CompanyPlan = (): JSX.Element => {
               </div>
             </div>
           </div>
-          {/* Step 3 */}
-          <div className="mb-2 relative z-1" >
-            <div
-              className="flex items-center gap-[8px] mb-3 relative z-1"
-            >
-              <div
-                className={`w-[26px] h-[26px] rounded-full flex items-center justify-center text-sm font-medium ${
-                  currentStep === 8
-                    ? "bg-[#A5C8F2] text-white"
-                    : currentStep === 9
-                    ? "bg-[#A5C8F2] text-white"
-                    : currentStep > 9 ? "bg-[#83DFDF] text-white" : "bg-primary-foreground text-text-primary"
-                }`}
-              >
-                2
-              </div>
-              <span className={`font-medium text--text-primary`}>
-               Fill in Clinic Details
-              </span>
-            </div>
-            <div className="ml-2 space-y-2">
-              <div className="flex items-center gap-[20px]">
-                <div
-                  className={`w-[10px] h-[10px] rounded-full ${
-                    currentStep === 8
-                      ? "bg-primary-default"
-                      : currentStep > 8
-                      ? "bg-secondary-dark"
-                      : "bg-border-medium"
-                  } flex items-center justify-center text-xs font-medium text-white
-                   `}
-                ></div>
-                <span
-                  className={`text-sm font-medium ${
-                    currentStep === 8
-                      ? "text-primary-default"
-                      : currentStep > 8
-                      ? "text-secondary-dark"
-                      : "text-text-secondary"
-                  }`}
-                >
-                  Clinic Overview
-                </span>
-              </div>
-              
-              <div className="flex items-center gap-[20px]">
-                <div
-                  className={`w-[10px] h-[10px] rounded-full flex items-center justify-center text-xs font-medium text-white ${
-                   currentStep === 9
-                      ? "bg-primary-default"
-                      : currentStep > 9
-                      ? "bg-secondary-dark"
-                      : "bg-border-medium"
-                  }
-                   `}
-                ></div>
-                <span
-                  className={`text-sm font-medium ${
-                    currentStep === 9
-                      ? "text-primary-default"
-                      : currentStep > 9
-                      ? "text-secondary-dark"
-                      : "text-text-secondary"
-                  }`}
-                >
-                  Working Schedule
-                </span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       {/* Main Content */}
       {currentStep === 1 && <AccountCreationSection handleNext={handleNext} />}
-      {currentStep === 2 && <CompanyDetailsSection title="Company" handleNext={handleNext} prevStep={prevStep} />}
-      {currentStep === 3 && <ContactInfoSection title="Company" handleNext={handleNext} prevStep={prevStep}/>}
-      {currentStep === 4 && <LegalDetailsSection title="Company" handleNext={handleNext} prevStep={prevStep}/>}
-      {currentStep === 5 && <ComplexDetailsSection handleNext={handleNext} prevStep={prevStep}/>}
-      {currentStep === 6 && (
-        <ComplexContactDetailsSection handleNext={handleNext} prevStep={prevStep}/>
+      {currentStep === 2 && (
+        <CompanyDetailsSection
+          title="complex"
+          handleNext={handleNext}
+          prevStep={prevStep}
+        >
+          <Card className="w-full h-[192px] bg-background-primary rounded-2xl ">
+            <CardContent className="flex flex-col p-[16px]">
+              <div className="flex items-center justify-between w-full">
+                <h2 className="text-base font-bold text-primary-default font-lato leading-[124%] tracking-[0]">
+                  Department
+                </h2>
+              </div>
+
+              <div className="flex md:flex-row gap-8 items-start w-full mt-[16px]">
+                <div>
+                  <label className="block w-[160px] mb-[8px] ">Department Name</label>
+                  <Input
+                    className=" bolck w-[360px] h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light "
+                    placeholder="Enter Title"
+                  />
+                </div>
+                <div className="flex flex-col gap-2 w-full">
+                  <label className="block w-[160px] ">Description</label>
+                  <Input
+                    placeholder="Enter Content"
+                    className=" bolck w-full h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light "
+                  />
+                  <PlusIcon className="w-6 h-6 text-secondary-dark cursor-pointer relative left-[750px]" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </CompanyDetailsSection>
       )}
-      {currentStep === 7 && <ComplexWorkSchedule handleNext={handleNext} prevStep={prevStep}/>}
-      {currentStep === 8 && <ClinicDetailsSection handleNext={handleNext} prevStep={prevStep}/>}
-      {currentStep === 9 && <ClinicWorkSchedule handleNext={handleNext} prevStep={prevStep}/>}
+      {currentStep === 3 && (
+        <ContactInfoSection title="complex" handleNext={handleNext} prevStep={prevStep} />
+      )}
+      {currentStep === 4 && (
+        <LegalDetailsSection title="complex" handleNext={handleNext} prevStep={prevStep} />
+      )}
+      {currentStep === 5 && (
+        <ComplexWorkSchedule handleNext={handleNext} prevStep={prevStep} />
+      )}
+      {currentStep === 6 && (
+        <ClinicDetailsSection
+          handleNext={handleNext}
+          prevStep={prevStep}
+        />
+      )}
+      {currentStep === 7 && (
+        <ClinicWorkSchedule handleNext={handleNext} prevStep={prevStep} />
+      )}
       {/* Next Button */}
 
       {showDialog && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className=" bg-white rounded-lg shadow-lg w-[500px] h-[144px] ">
-              <button className="ml-[450px] mt-[16px] p-[5px] rounded-[16px] hover:bg-surface-hover transiton duration-300">
-                <img alt="" src="x-close.svg" />
-              </button>
-              <img alt="" src="./FeaturedIcon.svg" className="m-auto" />
-              <p className=" text-center font-lato font-semibold text-xl leading-[118%] tracking-[0] text-[#181D27] ">
-                Company plan has been successfully set up.
-              </p>
-            </div>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className=" bg-white rounded-lg shadow-lg w-[500px] h-[144px] ">
+            <button className="ml-[450px] mt-[16px] p-[5px] rounded-[16px] hover:bg-surface-hover transiton duration-300">
+              <img alt="" src="x-close.svg" />
+            </button>
+            <img alt="" src="./FeaturedIcon.svg" className="m-auto" />
+            <p className=" text-center font-lato font-semibold text-xl leading-[118%] tracking-[0] text-[#181D27] ">
+              Complex plan has been successfully set up.
+            </p>
           </div>
-        )}
+        </div>
+      )}
     </div>
   );
 };

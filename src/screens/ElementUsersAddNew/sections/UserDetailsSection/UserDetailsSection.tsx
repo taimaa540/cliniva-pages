@@ -304,23 +304,26 @@ export const UserDetailsSection = ({
                       variant="outline"
                       className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-base-white rounded-[50px] overflow-hidden border border-solid border-[#d5d6d9] shadow-shadow-xs h-auto"
                     >
-                      <div className={`relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] ${dark ? "text-white" : "text-[#2a2b2a]"} text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]`}>
-                        {t('Cancel')}
+                      <div
+                        className={`relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] ${
+                          dark ? "text-white" : "text-[#2a2b2a]"
+                        } text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]`}
+                      >
+                        {t("Cancel")}
                       </div>
                     </Button>
 
-                    <Button className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-secondary-dark rounded-[50px] overflow-hidden border border-solid border-[#00b48d] shadow-shadow-xs h-auto">
+                    <Button className="flex hover:bg-blue-500 items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-secondary-dark rounded-[50px] overflow-hidden border border-solid border-[#00b48d] shadow-shadow-xs h-auto">
                       <div className="relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-base-white text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
-                        {t('Next')}
+                        {t("Next")}
                       </div>
 
-                      <img
-                        className="absolute w-[5px] h-[9px] top-[15px] left-[173px]"
-                        alt="Vector stroke"
-                        src="/Vector (Stroke).svg"
-                      />
-                    </Button>
-                  </div>
+                    <img
+                      className="absolute w-[5px] h-[9px] top-[15px] left-[173px]"
+                      alt="Vector stroke"
+                      src="/Vector (Stroke).svg"
+                    />
+                  </Button>
                 </div>
               </TabsContent>
               <TabsContent
@@ -634,25 +637,33 @@ text-md-regular-font-style)]"
                   >
                     <Button
                       variant="outline"
-                      className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-base-white rounded-[50px] overflow-hidden border border-solid bg-border-light shadow-shadow-xs h-auto"
+                      className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-base-white rounded-[50px] overflow-hidden border border-solid border-[#d5d6d9] shadow-shadow-xs h-auto"
                     >
-                      <div className={`relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] ${dark ? "text-white" : "text-[#2a2b2a]"} text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]`}>
-                        {t('Cancel')}
+                      <div
+                        className={`relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] ${
+                          dark ? "text-white" : "text-[#2a2b2a]"
+                        } text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]`}
+                      >
+                        {t("Previous")}
                       </div>
-                    </Button>
-
-                    <Button className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-secondary-dark rounded-[50px] overflow-hidden border border-solid border-[#00b48d] shadow-shadow-xs h-auto">
-                      <div className="relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-base-white text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
-                        {t('Next')}
-                      </div>
-
                       <img
-                        className="absolute w-[5px] h-[9px] top-[15px] left-[173px]"
+                        className="absolute top-[10px] left-[100px] "
                         alt="Vector stroke"
-                        src="/Vector (Stroke).svg"
+                        src="/CaretRight.svg"
                       />
                     </Button>
-                  </div>
+
+                    <Button className="flex hover:bg-blue-500 items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-secondary-dark rounded-[50px] overflow-hidden border border-solid border-[#00b48d] shadow-shadow-xs h-auto">
+                      <div className="relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-base-white text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
+                        {t("Next")}
+                      </div>
+
+                    <img
+                      className="absolute w-[5px] h-[9px] top-[15px] left-[173px]"
+                      alt="Vector stroke"
+                      src="/Vector (Stroke).svg"
+                    />
+                  </Button>
                 </div>
               </TabsContent>
               <TabsContent
@@ -774,23 +785,31 @@ text-md-regular-font-style)]"
                       variant="outline"
                       className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-base-white rounded-[50px] overflow-hidden border border-solid border-[#d5d6d9] shadow-shadow-xs h-auto"
                     >
-                      <div className={`relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] ${dark ? "text-white" : "text-[#2a2b2a]"} text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]`}>
-                        {t('Cancel')}
+                      <div
+                        className={`relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] ${
+                          dark ? "text-white" : "text-[#2a2b2a]"
+                        } text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]`}
+                      >
+                        {t("Previous")}
                       </div>
-                    </Button>
-
-                    <Button className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-secondary-dark rounded-[50px] overflow-hidden border border-solid border-[#00b48d] shadow-shadow-xs h-auto">
-                      <div className="relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-base-white text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
-                        {t('Next')}
-                      </div>
-
                       <img
-                        className="absolute w-[5px] h-[9px] top-[15px] left-[173px]"
+                        className="absolute top-[10px] left-[100px] "
                         alt="Vector stroke"
-                        src="/Vector (Stroke).svg"
+                        src="/CaretRight.svg"
                       />
                     </Button>
-                  </div>
+
+                    <Button className="flex hover:bg-blue-500 items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-secondary-dark rounded-[50px] overflow-hidden border border-solid border-[#00b48d] shadow-shadow-xs h-auto">
+                      <div className="relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-base-white text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
+                        {t("Next")}
+                      </div>
+
+                    <img
+                      className="absolute w-[5px] h-[9px] top-[15px] left-[173px]"
+                      alt="Vector stroke"
+                      src="/Vector (Stroke).svg"
+                    />
+                  </Button>
                 </div>
               </TabsContent>
               <TabsContent value="documents">
@@ -869,23 +888,31 @@ text-md-regular-font-style)]"
                         variant="outline"
                         className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-base-white rounded-[50px] overflow-hidden border border-solid border-[#d5d6d9] shadow-shadow-xs h-auto"
                       >
-                        <div className={`relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] ${dark ? "text-white" : "text-[#414651]"} text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]`}>
-                          {t('Cancel')}
+                        <div
+                          className={`relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] ${
+                            dark ? "text-white" : "text-[#414651]"
+                          } text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]`}
+                        >
+                          {t("Previous")}
                         </div>
-                      </Button>
-
-                      <Button className="flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-secondary-dark rounded-[50px] overflow-hidden border border-solid border-[#00b48d] shadow-shadow-xs h-auto">
-                        <div className="relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-base-white text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
-                          {t('Save')}
-                        </div>
-
                         <img
-                          className="absolute w-[5px] h-[9px] top-[15px] left-[173px]"
+                          className="absolute top-[10px] left-[100px] "
                           alt="Vector stroke"
-                          src="/Vector (Stroke).svg"
+                          src="/CaretRight.svg"
                         />
                       </Button>
-                    </div>
+
+                      <Button className="flex hover:bg-blue-500 items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow mb-[-28.00px] bg-secondary-dark rounded-[50px] overflow-hidden border border-solid border-[#00b48d] shadow-shadow-xs h-auto">
+                        <div className="relative w-fit mt-[-1.00px] font-text-md-semibold font-[number:var(--text-md-semibold-font-weight)] text-base-white text-[length:var(--text-md-semibold-font-size)] tracking-[var(--text-md-semibold-letter-spacing)] leading-[var(--text-md-semibold-line-height)] whitespace-nowrap [font-style:var(--text-md-semibold-font-style)]">
+                          {t("Save")}
+                        </div>
+
+                      <img
+                        className="absolute w-[5px] h-[9px] top-[15px] left-[173px]"
+                        alt="Vector stroke"
+                        src="/Vector (Stroke).svg"
+                      />
+                    </Button>
                   </div>
                 </div>
               </TabsContent>
