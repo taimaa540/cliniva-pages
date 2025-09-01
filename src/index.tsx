@@ -22,7 +22,14 @@ import { ClinicList } from "./screens/ClinicList";
 import PhoneNumberInput from "./screens/test";
 import { AddNewComplex } from "./screens/AddNewComplex";
 import { AddNewClinic } from "./screens/AddNewClinic";
-import WeatherCard from './test'
+import WeatherCard from "./test";
+import { ElementViewCompany } from "./screens/ElementVeiwCompany/ElementViewCompany";
+import { ElementViewComplex } from "./screens/ElementViewComplex/ElementViewComplex";
+import { ElementViewClinic } from "./screens/ElementViewClinic/ElementViewClinic";
+import { ElementEditCompany } from "./screens/ElementEditCompany/ElementEditCompany";
+import { ElementEditComplex } from "./screens/ElementEditComplax/ElementEditComplax";
+import { EditClinicDetails } from "./screens/EditClinicDetails/EditClinicDetails";
+import { ElementEditComplexPlan2 } from "./screens/ElementEditComplexPlan2/ElementEditComplexPlan2";
 
 // ✨ مكون رئيسي يحتوي state
 function MainApp() {
@@ -54,6 +61,15 @@ function MainApp() {
             {/* <AddNewClinic/> */}
             {/* <PhoneNumberInput/> */}
             {/* <WeatherCard/> */}
+            {/* <ElementViewCompany/> */}
+            {/* <ElementViewClinic/> */}
+
+            {/* <ElementViewComplex/> */}
+            {/* <ElementEditComplex/> */}
+            {/* <ElementEditCompany/> */}
+            {/* <ElementViewCompany/> */}
+            {/* <ElementEditComplexPlan2/> */}
+            {/* <EditClinicDetails/> */}
           </main>
         </div>
       </ThemeProvider>

@@ -39,7 +39,7 @@ export default function SwitchWithLabel({ initialState = false, local }: SwitchW
 
       {/* النص */}
       <span className={`font-medium ${isActive ? "text-green-600" : "text-gray-500"}`}>
-        {isActive ? t("Active") : t("Inactive")}
+        {isActive ? "Active" : "Inactive"}
       </span>
     </div>
   );

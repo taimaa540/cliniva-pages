@@ -1,9 +1,11 @@
 import {
   BellIcon,
+  EditIcon,
   PlusIcon,
   SearchIcon,
   Trash2Icon,
 } from "lucide-react";
+import { Badge } from "../../../components/ui/badge";
 import { Button } from "../../../components/ui/button";
 import { Card, CardContent } from "../../../components/ui/card";
 import Pagination from "@mui/material/Pagination";
@@ -22,12 +24,12 @@ import {
   TableHeader,
   TableRow,
 } from "../../../components/ui/table";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import DarkModeToggle from "../../ElementUsersNoDataTo/DarkMode";
 import TranslateIcon from "@mui/icons-material/Translate";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
-import SwitchWithLabel from "../../SwitchLabel";
 const userData = [
   {
     id: "001",
@@ -132,37 +134,46 @@ export const UserListSection = ({
   }, []);
 
   return (
-    <div
-      className={`flex flex-col w-[1217px] h-[1086px] items-start gap-4  py-4  self-stretch relative ${
-        local === "ar" ? "right-[240px] pr-0 pl-5" : "left-[240px] pl-0 pr-5"
-      } ${dark ? "bg-[#030711]" : ""}`}
-    >
-      <header className="flex h-[50px] justify-between pl-1 pr-0 py-0 self-stretch w-full items-center">
-        <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5">
-          <h1
-            className={`self-stretch mt-[-1.00px] font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] ${
-              dark ? "text-white" : "text-[#2a2b2a]"
-            } text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]`}
-          >
-            {t("Users")}
-          </h1>
+      <div className="flex flex-col w-full overflow-hidden h-full items-start gap-4  py-4  pb-8 self-stretch relative bg-background-primary">
+      <header className="flex h-[50px] justify-between pl-[4px] pr-0 py-0 self-stretch w-full items-center bg-background-primary">
+        <div className="flex items-center gap-4 rounded-2xl ">
+
+
+          {local === "ar" ? (
+            <ArrowRight className="w-6 h-6" />
+          ) : (
+            <ArrowLeft className="w-6 h-6" />
+          )}
+          <div className="flex flex-col">
+            <h1 className="font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] text-on-surface-primary text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]">
+              {t("        Medical Facilities    ")}
+            </h1>
+            <p className="font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
+              {t("        Edit Clinic Details   ")}
+            </p>
+          </div>
         </div>
 
-        <div className="inline-flex gap-3 flex-[0_0_auto] rounded-[28px] items-center">
-          <button className="inline-flex items-start gap-2 p-2.5 flex-[0_0_auto] bg-secondary-light rounded-[20px] relative">
-            <BellIcon className="w-5 h-5" />
-            <div className="flex flex-col w-5 h-5 items-center justify-center gap-2.5 p-1 absolute top-1 left-4">
-              <div className="w-2 h-2 bg-[#fa812d] rounded-[14px]" />
-            </div>
-          </button>
+        <div className="inline-flex gap-3 flex-[0_0_auto] rounded-[28px] items-center " style={{ borderRadius: '16px', padding: '16px' }}>
+          <div className="relative  ">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
+            >
+              <BellIcon className="w-5 h-5" />
+            </Button>
+            <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
+          </div>
 
           <div className="relative">
             <Button
               variant="ghost"
               size="icon"
-              className={`p-2.5 bg-secondary-light ${
-                local === "ar" ? "bg-[green]" : "bg-secondary-light"
-              } rounded-[20px] h-auto transition-all duration-[1000ms]`}
+              className={`p-2.5 bg-secondary-light ${local === "ar"
+                  ? "bg-[green]"
+                  : "bg-secondary-light"
+                } rounded-[20px] h-auto transition-all duration-[1000ms]`}
               onClick={handleLanguageClick}
             >
               <TranslateIcon className="w-5 h-5" />
@@ -177,26 +188,30 @@ export const UserListSection = ({
             <div className="inline-flex items-center w-[40px] h-[40px] gap-2.5 flex-[0_0_auto] bg-app-primary rounded-3xl" />
             <div className="flex-col items-start gap-1 inline-flex flex-[0_0_auto]">
               <div
-                className={`w-fit mt-[-1.00px] ${
-                  dark ? "text-white" : "text-[#2a2b2a]"
-                } font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]`}
+                className={`w-fit mt-[-1.00px] 
+                 text-primary
+                } font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]`}
               >
                 Anahera Jones
               </div>
-              <div className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-tertiary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)]">
-                Admin
+              <div className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-tertiary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)] border-medium ">
+                {t("   Admin   ")}
               </div>
             </div>
           </div>
         </div>
       </header>
 
-      <Card
-        className={`flex flex-col w-full h-[1036px] items-start gap-5 p-5 flex-1 grow ${
-          dark ? "bg-[#272932] border-[white]" : "bg-bg"
+
+      
+     <Card
+        className={`flex flex-col h-full items-start   pb-8  gap-6 p-5 mt-[10px] bg-background-tertiary  relative self-stretch w-full flex-[0_0_auto] 
         } rounded-2xl overflow-hidden`}
       >
-        <CardContent className="p-0 w-full h-[2000px] ">
+        <CardContent className="p-0 w-full   pb-8  overflow-y-auto scroll-x-hidden gap-5 h-full">
+
+
+          
           <div className="flex justify-between self-stretch w-full flex-[0_0_auto] items-center mb-5">
             <div className="inline-flex items-center gap-2.5 self-stretch flex-[0_0_auto]">
               <form className="relative">
@@ -209,7 +224,7 @@ export const UserListSection = ({
               </form>
 
               <Select value={role} onValueChange={(value) => setRole(value)}>
-                <SelectTrigger className="inline-flex items-center gap-0.5 pl-2.5 pr-2 py-1.5 flex-[0_0_auto] bg-secondary-light rounded-[20px] border-0 h-auto">
+                <SelectTrigger style={{ direction: local === 'en' ? 'ltr' : 'rtl' }} className="inline-flex items-center gap-0.5 pl-2.5 pr-2 py-1.5 flex-[0_0_auto] bg-secondary-light rounded-[20px] border-0 h-auto">
                   <SelectValue>
                     <span className="w-fit font-[number:var(--btn-11px-medium-font-weight)] text-on-surface-primary text-[length:var(--btn-11px-medium-font-size)] text-center leading-[var(--btn-11px-medium-line-height)] whitespace-nowrap mt-[-1.00px] font-btn-11px-medium tracking-[var(--btn-11px-medium-letter-spacing)] [font-style:var(--btn-11px-medium-font-style)]">
                       {t(`roles.${role}`)}
@@ -229,7 +244,7 @@ export const UserListSection = ({
                 value={status}
                 onValueChange={(value) => setStatus(value)}
               >
-                <SelectTrigger className="inline-flex items-center gap-0.5 pl-2.5 pr-2 py-1.5 flex-[0_0_auto] bg-secondary-light rounded-[20px] border-0 h-auto">
+                <SelectTrigger   style={{ direction: local === 'en' ? 'ltr' : 'rtl' }} className="inline-flex items-center gap-0.5 pl-2.5 pr-2 py-1.5 flex-[0_0_auto] bg-secondary-light rounded-[20px] border-0 h-auto">
                   <SelectValue>
                     <span className="w-fit font-[number:var(--btn-11px-medium-font-weight)] text-on-surface-primary text-[length:var(--btn-11px-medium-font-size)] text-center leading-[var(--btn-11px-medium-line-height)] whitespace-nowrap mt-[-1.00px] font-btn-11px-medium tracking-[var(--btn-11px-medium-letter-spacing)] [font-style:var(--btn-11px-medium-font-style)]">
                       {t(`status.${status}`)}
@@ -258,57 +273,60 @@ export const UserListSection = ({
             </div>
           </div>
 
-          <div className="w-full rounded-2xl h-[850px] bg-[white] ">
+          <div
+        dir={local === 'en' ? 'ltr' : 'rtl'}
+          
+          className="w-full rounded-2xl h-[899px] ">
             <Table>
               <TableHeader>
-                <TableRow className=" h-[56px] [&:hover]:bg-surface-default bg-surface-default  border-b border-[#e4e2dd]">
-                  <TableHead
-                    className={`w-[106px] ${
-                      local === "ar" ? "text-right" : "text-left"
-                    } font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]`}
-                  >
-                    No.
+                <TableRow className="h-14 bg-surface-default border-b border-[#e4e2dd]">
+                  <TableHead className="w-[106px] font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]">
+                      {t(" No. ")}
                   </TableHead>
-                  <TableHead
-                    className={`w-[109px] ${
-                      local === "ar" ? "text-right" : "text-left"
-                    } font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]`}
-                  >
-                    User ID
+                  <TableHead className="w-[109px] font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]">
+                    {t("User ID")}
                   </TableHead>
-                  <TableHead
-                    className={`w-[177px] ${
-                      local === "ar" ? "text-right" : "text-left"
-                    } font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]`}
-                  >
-                    User Name
+                  <TableHead className="w-[177px] font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]">
+                    <div className="flex items-center gap-1">
+                      {t(" User Name ")}
+                      <img
+                        className="w-3.5 h-3.5"
+                        alt="Icon sort"
+                        src="/icon-sort.svg"
+                      />
+                    </div>
                   </TableHead>
-                  <TableHead
-                    className={`w-[178px] ${
-                      local === "ar" ? "text-right" : "text-left"
-                    } font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]`}
-                  >
-                    Role
+                  <TableHead className="w-[178px] font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]">
+                    <div className="flex items-center gap-1">
+                               {t('  Role ')}
+                      <img
+                        className="w-3.5 h-3.5"
+                        alt="Icon sort"
+                        src="/icon-sort.svg"
+                      />
+                    </div>
                   </TableHead>
-                  <TableHead
-                    className={`w-[173px] ${
-                      local === "ar" ? "text-right" : "text-left"
-                    } font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]`}
-                  >
-                    User Type
+                  <TableHead className="w-[173px] font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]">
+                    <div className="flex items-center gap-1">
+                       {t('    User Type ')}
+                      <img
+                        className="w-3.5 h-3.5"
+                        alt="Icon sort"
+                        src="/icon-sort.svg"
+                      />
+                    </div>
                   </TableHead>
-                  <TableHead
-                    className={`w-[93px] ${
-                      local === "ar" ? "text-right" : "text-left"
-                    } font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]`}
-                  >
-                    Status
+                  <TableHead className="w-[93px] font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]">
+                    <div className="flex items-center gap-1">
+                      Status
+                      <img
+                        className="w-3.5 h-3.5"
+                        alt="Icon sort"
+                        src="/icon-sort.svg"
+                      />
+                    </div>
                   </TableHead>
-                  <TableHead
-                    className={`w-[106px] ${
-                      local === "ar" ? "text-right" : "text-left"
-                    } font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]`}
-                  >
+                  <TableHead className="w-[106px] font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]">
                     Action
                   </TableHead>
                 </TableRow>
@@ -319,43 +337,31 @@ export const UserListSection = ({
                     key={user.id}
                     className="h-[78px] bg-bg-subtle border-b border-[#e4e2dd]"
                   >
-                    <TableCell
-                      className={`font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] ${
-                        dark ? "text-white" : "text-on-surface-primary"
-                      } text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]`}
-                    >
+                    <TableCell className={`font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] ${dark ? 'text-white' : 'text-on-surface-primary'} text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]`}>
                       {user.id}
                     </TableCell>
-                    <TableCell
-                      className={`font-title-12px-regular font-[number:var(--title-12px-regular-font-weight)] ${
-                        dark ? "text-white" : "text-on-surface-primary"
-                      } text-[length:var(--title-12px-regular-font-size)] tracking-[var(--title-12px-regular-letter-spacing)] leading-[var(--title-12px-regular-line-height)] [font-style:var(--title-12px-regular-font-style)]`}
-                    >
+                    <TableCell className={`font-title-12px-regular font-[number:var(--title-12px-regular-font-weight)] ${dark ? 'text-white' : 'text-on-surface-primary'} text-[length:var(--title-12px-regular-font-size)] tracking-[var(--title-12px-regular-letter-spacing)] leading-[var(--title-12px-regular-line-height)] [font-style:var(--title-12px-regular-font-style)]`}>
                       {user.userId}
                     </TableCell>
-                    <TableCell
-                      className={`font-title-12px-regular font-[number:var(--title-12px-regular-font-weight)] ${
-                        dark ? "text-white" : "text-on-surface-primary"
-                      } text-[length:var(--title-12px-regular-font-size)] tracking-[var(--title-12px-regular-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]`}
-                    >
+                    <TableCell className={`font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] ${dark ? 'text-white' : 'text-on-surface-primary'} text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]`}>
                       {user.userName}
                     </TableCell>
-                    <TableCell
-                      className={`font-title-12px-regular font-[number:var(--title-12px-regular-font-weight)] ${
-                        dark ? "text-white" : "text-on-surface-primary"
-                      } text-[length:var(--title-12px-regular-font-size)] tracking-[var(--title-12px-regular-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]`}
-                    >
+                    <TableCell className={`font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] ${dark ? 'text-white' : 'text-on-surface-primary'} text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]`}>
                       {user.role}
                     </TableCell>
-                    <TableCell
-                      className={`font-title-12px-regular font-[number:var(--title-12px-regular-font-weight)] ${
-                        dark ? "text-white" : "text-on-surface-primary"
-                      } text-[length:var(--title-12px-regular-font-size)] tracking-[var(--title-12px-regular-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]`}
-                    >
+                    <TableCell className={`font-title-12px-semibold font-[number:var(--title-12px-semibold-font-weight)] ${dark ? 'text-white' : 'text-on-surface-primary'} text-[length:var(--title-12px-semibold-font-size)] tracking-[var(--title-12px-semibold-letter-spacing)] leading-[var(--title-12px-semibold-line-height)] [font-style:var(--title-12px-semibold-font-style)]`}>
                       {user.userType}
                     </TableCell>
-                    <TableCell className="w-[150px]">
-                      <SwitchWithLabel />
+                    <TableCell>
+                      <Badge
+                        className={`flex w-[58px] h-6 items-center justify-center gap-[5px] px-2.5 py-1 rounded-[14px] font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)] ${
+                          user.status === "Active"
+                            ? "bg-app-primary text-on-surface-primary"
+                            : "bg-[#fcb98a] text-on-surface-primary"
+                        }`}
+                      >
+                        {user.status}
+                      </Badge>
                     </TableCell>
                     <TableCell>
                       <div className="inline-flex flex-col justify-center gap-1 flex-[0_0_auto] items-start">
@@ -365,24 +371,14 @@ export const UserListSection = ({
                             size="sm"
                             className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
                           >
-                            <img
-                              className={`w-[15px] h-[15px] ${
-                                dark ? "text-white" : "text-on-surface-primary"
-                              }`}
-                              alt="edit"
-                              src="./edit-01.svg"
-                            />
+                            <EditIcon className={`w-5 h-5 ${dark ? 'text-white' : 'text-on-surface-primary'}`} />
                           </Button>
                           <Button
                             variant="ghost"
                             size="sm"
                             className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
                           >
-                            <Trash2Icon
-                              className={`w-[20px] h-[20px] ${
-                                dark ? "text-white" : "text-on-surface-primary"
-                              }`}
-                            />
+                            <Trash2Icon className={`w-5 h-5 ${dark ? 'text-white' : 'text-on-surface-primary'}`} />
                           </Button>
                         </div>
                       </div>
@@ -395,7 +391,7 @@ export const UserListSection = ({
 
           <footer
             dir="ltr"
-            className="flex items-center justify-between self-stretch w-full flex-[0_0_auto] bg-transparent mt-[10px]"
+            className="flex items-center justify-between self-stretch w-full flex-[0_0_auto] bg-transparent"
           >
             <div
               dir={`${local === "ar" ? "rtl" : "ltr"}`}
