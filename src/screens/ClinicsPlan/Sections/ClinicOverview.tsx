@@ -8,6 +8,7 @@ import {
 } from "../../../components/ui/card";
 import { Input } from "../../../components/ui/input";
 import { Textarea } from "../../../components/ui/textarea";
+import DateInput from "../../DateInput";
 
 const formSections = [
   {
@@ -126,7 +127,7 @@ export const ClinicOverview = ({
                           Clinic Name
                         </div>
                         <Input
-                          className="w-[360px] text-text-secondary placeholder-text-secondary px-4 py-2 bg-transparent rounded border border-border-light"
+                          className="w-[360px] h-[48px] text-text-secondary bg-surface-primary  placeholder-text-secondary px-4 py-2 rounded border border-border-light"
                           placeholder="Enter Clinic Name"
                         />
                       </div>
@@ -134,10 +135,7 @@ export const ClinicOverview = ({
                         <div className="w-40 font-lato font-medium text-base text-text-primary leading-[100%] tracking-[0]">
                           Year of Establishment
                         </div>
-                        <input
-                          type="date"
-                          className="block w-[360px] text-text-secondary px-4 py-2 bg-transparent rounded border border-solid border-border-light"
-                        />
+                        <DateInput />
                       </div>
                     </div>
                     <div className="space-y-4">
@@ -147,7 +145,7 @@ export const ClinicOverview = ({
                         </div>
                         <div className="relative">
                           <Textarea
-                            className="w-[360px] text-text-secondary placeholder-text-secondary h-28 px-4 py-2 bg-transparent rounded border border-border-light resize-none"
+                            className="w-[360px] text-text-secondary placeholder-text-secondary h-28 px-4 py-2 bg-surface-primary rounded border border-border-light resize-none"
                             placeholder="Enter Description"
                           />
                         </div>
@@ -158,7 +156,7 @@ export const ClinicOverview = ({
                         </div>
                         <input
                           type="time"
-                          className="block text-text-secondary w-[360px] px-4 py-2 bg-transparent rounded border border-solid border-border-light"
+                          className="block text-text-secondary w-[360px] px-4 py-2 bg-surface-primary rounded border border-solid border-border-light"
                         />
                       </div>
                     </div>
@@ -172,7 +170,7 @@ export const ClinicOverview = ({
                         Staff Capacity
                       </div>
                       <Input
-                        className="w-[220px] h-12 px-4 py-2  rounded border border-[#e4e2dd]"
+                        className="w-[220px] h-12 px-4 py-2 bg-surface-primary rounded border border-[#e4e2dd]"
                         placeholder="Staff Capacity"
                       />
                     </div>
@@ -181,7 +179,7 @@ export const ClinicOverview = ({
                         Doctors Capacity
                       </div>
                       <Input
-                        className="w-[220px] h-12 px-4 py-2  rounded border border-[#e4e2dd]"
+                        className="w-[220px] h-12 px-4 py-2 bg-surface-primary rounded border border-[#e4e2dd]"
                         placeholder="Doctors Capacity"
                       />
                     </div>
@@ -190,7 +188,7 @@ export const ClinicOverview = ({
                         Patients Capacity
                       </div>
                       <Input
-                        className="w-[220px] h-12 px-4 py-2  rounded border border-[#e4e2dd]"
+                        className="w-[220px] h-12 px-4 py-2 bg-surface-primary rounded border border-[#e4e2dd]"
                         placeholder="Patient Capacity"
                       />
                     </div>
@@ -214,7 +212,7 @@ export const ClinicOverview = ({
                     </div>
                     <div className="flex flex-col w-[360px] relative">
                       <Textarea
-                        className="w-fill h-auto px-4 py-2 rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
+                        className="w-fill h-auto px-4 py-2 bg-surface-primary rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
                         placeholder="Enter Overview"
                       />
                     </div>
@@ -225,7 +223,7 @@ export const ClinicOverview = ({
                     </div>
                     <div className="flex flex-col w-[360px] relative">
                       <Textarea
-                        className="w-fill h-auto px-4 py-2 rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
+                        className="w-fill h-auto px-4 py-2 bg-surface-primary rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
                         placeholder="Enter Goals"
                       />
                     </div>
@@ -238,7 +236,7 @@ export const ClinicOverview = ({
                     </div>
                     <div className="flex flex-col w-[360px] relative">
                       <Textarea
-                        className="w-fill h-auto px-4 py-2  rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
+                        className="w-fill h-auto px-4 py-2 bg-surface-primary  rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
                         placeholder="Enter Vision"
                       />
                     </div>
@@ -249,7 +247,7 @@ export const ClinicOverview = ({
                     </div>
                     <div className="flex w-[360px] gap-4">
                       <Input
-                        className="flex-1 h-12 px-4 py-2 rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base"
+                        className="flex-1 h-12 px-4 py-2 bg-surface-primary rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base"
                         placeholder="Enter Name"
                       />
                     </div>

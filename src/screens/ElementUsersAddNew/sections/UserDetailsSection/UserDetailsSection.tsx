@@ -128,7 +128,7 @@ export const UserDetailsSection = ({
     <div
       className={`flex flex-col w-full overflow-hidden h-full items-start gap-4  py-4  self-stretch relative ${
         local === "ar" ? "pr-0 pl-5" : "pl-0 pr-5"
-      } ${dark ? "bg-[#030711]" : ""}`}
+      }`}
     >
       <header className="flex h-[50px] justify-between pl-[4px] pr-0 py-0 self-stretch w-full items-center">
         <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5">
@@ -189,9 +189,7 @@ export const UserDetailsSection = ({
       </header>
 
       <Card
-        className={`flex flex-col h-full items-start gap-5 p-5 mt-[10px] relative self-stretch w-full flex-[0_0_auto] ${
-          dark ? "bg-[#272932] border-[white]" : "bg-bg"
-        } rounded-2xl overflow-hidden`}
+        className="flex flex-col h-full items-start gap-5 p-5 mt-[10px] relative self-stretch w-full flex-[0_0_auto] rounded-2xl overflow-hidden"
       >
         <CardContent className="px-[20px] w-full overflow-y-auto scroll-x-hidden h-full">
           <div className="w-full h-[866px] ">

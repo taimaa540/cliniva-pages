@@ -1,0 +1,497 @@
+import {
+  BellIcon,
+  PlusIcon,
+  PhoneIcon,
+  MapPinIcon,
+  ChevronDownIcon,
+} from "lucide-react";
+import { Button } from "../components/ui/button";
+import { Card, CardContent } from "../components/ui/card";
+import { Input } from "../components/ui/input";
+import { Textarea } from "../components/ui/textarea";
+import DateInput from "./DateInput";
+import { useTranslation } from "react-i18next";
+import { useState } from "react";
+import TranslateIcon from "@mui/icons-material/Translate";
+import PhoneInput from "react-phone-input-2";
+import CustomCheckbox from "./customCheckbox";
+import TimeRangePicker from "./UsersDesktop/timeRangePicker";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "../components/ui/collapsible";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../components/ui/select";
+const addressFields = [
+  { placeholder: "Building number", width: "w-[167px]" },
+  { placeholder: "Street Name", width: "w-[167px]" },
+  { placeholder: "Region", width: "w-[167px]" },
+  { placeholder: "Country", width: "w-[167px]" },
+  { placeholder: "Nation", width: "w-[167px]" },
+];
+
+const workingDays = [
+  { day: "Sunday", checked: true, startTime: "09:00", endTime: "18:00" },
+  { day: "Monday", checked: true, startTime: "09:00", endTime: "18:00" },
+  { day: "Tuesday", checked: true, startTime: "09:00", endTime: "18:00" },
+  { day: "Wednesday", checked: true, startTime: "09:00", endTime: "18:00" },
+  { day: "Thursday", checked: true, startTime: "09:00", endTime: "18:00" },
+  { day: "Friday", checked: false, startTime: "09:00", endTime: "18:00" },
+  { day: "Saturday", checked: false, startTime: "09:00", endTime: "18:00" },
+];
+
+export const AddNewComplex = (): JSX.Element => {
+  const [open, setOpen] = useState({
+    info: true,
+    department: true,
+    contact: true,
+    days: true,
+  });
+  const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
+  const toggleDay = (index: number) => {
+    setActiveDays((prev) => prev.map((val, i) => (i === index ? !val : val)));
+  };
+  const [phone, setPhone] = useState("");
+  const { t, i18n } = useTranslation();
+  const [local, setLocal] = useState("en");
+  function handleLanguageClick() {
+    if (local === "en") {
+      setLocal("ar");
+      i18n.changeLanguage("ar");
+    } else {
+      setLocal("en");
+      i18n.changeLanguage("en");
+    }
+  }
+
+  return (
+    <div
+      dir={`${local === "ar" ? "rtl" : "ltr"}`}
+      className="flex flex-col w-full h-full overflow-heddin items-start gap-4 pl-0 pr-4 py-4"
+    >
+      {/* Header */}
+      <header className="flex h-[66px] justify-between pl-1 pr-0 py-0 w-full items-center">
+        <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5">
+          <h2 className="font-lato text-xl text-text-primary font-semibold leading-[116%] tracking-[0]">
+            {t("Medical Facilities")}
+          </h2>
+          <p className="font-lato text-sm text-text-primary font-semibold leading-[125%] tracking-[0]">
+            {t("Add New Medical Complex")}
+          </p>
+        </div>
+
+        <div className="inline-flex gap-3 flex-[0_0_auto] rounded-[28px] items-center">
+          <div className="relative">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
+            >
+              <BellIcon className="w-5 h-5" />
+            </Button>
+            <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
+          </div>
+
+          <div className="relative">
+            <Button
+              variant="ghost"
+              size="icon"
+              className={`p-2.5 ${
+                local === "ar" ? "bg-secondary-dark" : "bg-secondary-light"
+              } rounded-[20px] h-auto`}
+              onClick={handleLanguageClick}
+            >
+              <TranslateIcon className="w-5 h-5" />
+            </Button>
+          </div>
+
+          <div className="w-10 h-[17.5px] relative"></div>
+
+          <div className="items-center gap-3 inline-flex ">
+            <div className="inline-flex items-center w-[40px] h-[40px] gap-2.5 bg-app-primary rounded-3xl" />
+            <div className="flex-col items-start gap-1 inline-flex ">
+              <div className="font-lato font-bold text-base leading-[124%] tracking-[0] text-text-primary">
+                Anahera Jones
+              </div>
+              <div className="font-lato font-regular text-xs leading-[124%] tracking-[0] text-border-medium">
+                Admin
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      {/* Content */}
+      <div className="bg-background-tertiary p-[20px]  rounded-[16px] w-full overflow-hidden">
+        <div className="flex flex-col w-full items-start gap-4 overflow-y-auto scroll-x-hidden h-full ">
+          <Card className="w-full rounded-2xl bg-background-primary">
+            <CardContent className="p-[16px]">
+              <Collapsible
+                open={open.info}
+                onOpenChange={() => setOpen({ ...open, info: !open.info })}
+                className="w-full"
+              >
+                <CollapsibleTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="p-0 hover:bg-[none] w-full"
+                  >
+                    <div className="flex w-full items-center justify-between mb-4 ">
+                      <h2 className="text-primary-default text-[16px] font-lato font-bold leading-[124%] tracking-[0] ">
+                        {t("Complex information")}
+                      </h2>
+                      <ChevronDownIcon
+                        style={{ width: "24px", height: "24px" }}
+                        className={`transition-transform duration-200 ${
+                          open.info ? "rotate-180" : "rotate-0"
+                        }`}
+                      />
+                    </div>
+                  </Button>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <div className="flex gap-[25px] ">
+                    <div>
+                      <div className="flex items-center gap-8">
+                        <div className="w-40 font-semibold text-[16px] text-text-primary font-lato leading-[124%] tracking-[0]">
+                          {t("Complex Name")}
+                        </div>
+                        <div className="flex flex-col w-[360px] gap-4">
+                          <Input
+                            className="h-[48px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary"
+                            placeholder={`${t("Enter")} ${t("Complex Name")}`}
+                          />
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-8 mt-[24px]">
+                        <div className="w-40 font-lato font-semibold text-[16px] text-text-primary leading-[124%] tracking-[0] ">
+                          {t("Description")}
+                        </div>
+                        <div className="flex flex-col w-[360px] relative">
+                          <Textarea
+                            className="w-fill h-[112px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light [font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary"
+                            placeholder={`${t("Enter")} ${t("Description")}`}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-8">
+                        <div className="w-40 font-semibold text-[16px] text-text-primary font-lato leading-[124%] tracking-[0]">
+                          {t("Year of Establishment")}
+                        </div>
+                        <DateInput lang={local} />
+                      </div>
+
+                      <div className="flex items-center gap-8 mt-[24px]">
+                        <div className="w-40 font-lato font-medium text-base text-text-primary leading-[100%] tracking-[0]">
+                          {t("PIC Name")}
+                        </div>
+                        <Select>
+                          <SelectTrigger
+                            dir={`${local === "ar" ? "rtl" : "ltr"}`}
+                            className="w-[360px] h-[48px] text-text-secondary bg-surface-default border-border-light"
+                          >
+                            <SelectValue placeholder={t("PIC Name")} />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="pic1">{t("PIC")} 1</SelectItem>
+                            <SelectItem value="pic2">{t("PIC")} 2</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+            </CardContent>
+          </Card>
+          <Card className="w-full rounded-2xl bg-background-primary">
+            <CardContent className="p-[16px]">
+              <Collapsible
+                open={open.department}
+                onOpenChange={() =>
+                  setOpen({ ...open, department: !open.department })
+                }
+                className="w-full"
+              >
+                <CollapsibleTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="p-0 hover:bg-[none] w-full"
+                  >
+                    <div className="flex w-full items-center justify-between mb-4">
+                      <h2 className="text-base font-bold text-primary-default font-lato leading-[124%] tracking-[0]">
+                        {t("Department")}
+                      </h2>
+                      <ChevronDownIcon
+                        style={{ width: "24px", height: "24px" }}
+                        className={`transition-transform duration-200 ${
+                          open.department ? "rotate-180" : "rotate-0"
+                        }`}
+                      />
+                    </div>
+                  </Button>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <div className="flex md:flex-row gap-8 items-start w-full mt-[16px]">
+                    <div>
+                      <label className="block w-[160px] mb-[8px] ">
+                        {t("Department Name")}
+                      </label>
+                      <Input
+                        className=" bolck w-[360px] h-[48px] font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary rounded-[4px] py-[8px] px-[16px] border border-border-light bg-surface-default "
+                        placeholder={`${t("Enter")} ${t("Name")}`}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2 w-full">
+                      <label className="block w-[160px] ">
+                        {t("Description")}
+                      </label>
+                      <Input
+                        placeholder={`${t("Enter")} ${t("Description")}`}
+                        className=" bolck w-full h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light bg-surface-default font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary "
+                      />
+                      <PlusIcon className="w-6 h-6 text-secondary-dark cursor-pointer relative left-[750px] " />
+                    </div>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+            </CardContent>
+          </Card>
+          <Card className="w-full rounded-2xl bg-background-primary">
+            <CardContent className="p-[16px]">
+              <Collapsible
+                open={open.contact}
+                onOpenChange={() =>
+                  setOpen({ ...open, contact: !open.contact })
+                }
+                className="w-full"
+              >
+                <CollapsibleTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="p-0 hover:bg-[none] w-full"
+                  >
+                    <div className="flex w-full items-center justify-between mb-4">
+                      <div className="text-primary-default text-[16px] font-lato font-bold leading-[124%] tracking-[0]">
+                        {t("Complex Contact Information")}
+                      </div>
+                      <ChevronDownIcon
+                        style={{ width: "24px", height: "24px" }}
+                        className={`transition-transform duration-200 ${
+                          open.contact ? "rotate-180" : "rotate-0"
+                        }`}
+                      />
+                    </div>
+                  </Button>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <div className="flex flex-col w-[1129px] items-start gap-[16px] mt-[24px]">
+                    <div className="flex items-start gap-[110px] w-full">
+                      <div className="flex flex-col w-[552px] items-end gap-2 ">
+                        <div className="flex items-center gap-6 w-full">
+                          <div className="flex items-center">
+                            <PhoneIcon className=" w-6 h-6 " />
+                            <div className=" w-[162px] font-title-16px-semibold font-[number:var(--title-16px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-16px-semibold-font-size)] tracking-[var(--title-16px-semibold-letter-spacing)] leading-[var(--title-16px-semibold-line-height)] [font-style:var(--title-16px-semibold-font-style)]">
+                              {t("Phone Number")}
+                            </div>
+                          </div>
+                          <div dir="ltr">
+                            <PhoneInput
+                              country={"sa"} // الدولة الافتراضية
+                              value={phone}
+                              onChange={setPhone}
+                              enableAreaCodes={true}
+                              inputStyle={{
+                                width: "360px",
+                                height: "48px",
+                                borderRadius: "4px",
+                                backgroundColor: "#FFFDFC",
+                                border: "1px solid #E4E2DD",
+                              }}
+                              buttonStyle={{
+                                backgroundColor: "#FFFDFC", // خلفية زر اختيار الدولة
+                                borderRight: "1px solid #E4E2DD",
+                                borderRadius: "4px 0 0 4px",
+                              }}
+                              dropdownStyle={{
+                                backgroundColor: "white", // خلفية القائمة عند الفتح
+                                color: "black",
+                              }}
+                            />
+                          </div>
+                        </div>
+                        <button>
+                          <PlusIcon className=" w-8 h-8 text-[green]" />
+                        </button>
+                      </div>
+
+                      <div className="inline-flex justify-center h-12 items-center gap-[8]">
+                        <div className="flex w-[162px] h-6 gap-[8px]">
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="text-red"
+                          >
+                            <path
+                              d="M8.74955 2.7875C10.6434 2.7375 12.4846 2.7375 14.3785 2.7875C17.4992 2.86949 19.2188 2.91529 20.5132 4.25625C21.8095 5.61123 21.8451 7.34844 21.9097 10.5014C21.9299 11.5083 21.93 12.4866 21.9097 13.4936C21.8451 16.6461 21.8093 18.3819 20.5162 19.7348C19.2198 21.0787 17.5002 21.1244 14.3794 21.2064C13.433 21.2314 12.4988 21.2445 11.565 21.2445C10.6311 21.2445 9.69691 21.2314 8.75053 21.2064C5.62991 21.1245 3.91017 21.0783 2.61577 19.7377C1.31943 18.3827 1.28288 16.6454 1.2183 13.4926C1.19806 12.4856 1.19807 11.5073 1.2183 10.5004C1.28288 7.34739 1.31935 5.6112 2.61284 4.2582C3.90919 2.91445 5.6288 2.86949 8.74955 2.7875ZM14.3414 4.28554C12.4725 4.23555 10.6555 4.23554 8.78569 4.28554C5.85803 4.36253 4.52204 4.3972 3.63627 5.31582C2.75146 6.24182 2.72338 7.58664 2.66362 10.5316C2.64338 11.5165 2.64338 12.4745 2.66362 13.4603C2.72337 16.4053 2.75151 17.7502 3.6392 18.6771C4.52303 19.593 5.85872 19.6294 8.78666 19.7064C10.6555 19.7564 12.4725 19.7564 14.3423 19.7064C17.2705 19.6294 18.6069 19.5942 19.4927 18.6752C20.3773 17.7492 20.4046 16.405 20.4644 13.4603C20.4846 12.4755 20.4846 11.5175 20.4644 10.5316C20.4046 7.58664 20.3775 6.24086 19.4898 5.31386C18.6059 4.39792 17.2695 4.36254 14.3414 4.28554ZM6.12358 8.11074C6.32695 7.75474 6.77068 7.63509 7.11381 7.84609L9.94877 9.58632C11.3676 10.4533 11.7615 10.4533 13.1822 9.58632L16.0162 7.84707C16.3603 7.63607 16.804 7.75471 17.0064 8.11171C17.2096 8.46868 17.0955 8.92813 16.7515 9.13808L13.9165 10.8783C12.971 11.4563 12.2676 11.7445 11.564 11.7445C10.8615 11.7444 10.1588 11.4552 9.2144 10.8783L6.37748 9.13711C6.03479 8.92601 5.92045 8.46654 6.12358 8.11074Z"
+                              fill="currentColor"
+                            />
+                          </svg>
+
+                          <div className=" w-[129px]  text-[length:var(--title-16px-semibold-font-size)] leading-[var(--title-16px-semibold-line-height)] whitespace-nowrap font-title-16px-semibold font-[number:var(--title-16px-semibold-font-weight)] text-on-surface-primary tracking-[var(--title-16px-semibold-letter-spacing)] [font-style:var(--title-16px-semibold-font-style)]">
+                            {t("Email")} :
+                          </div>
+                        </div>
+
+                        <Input
+                          placeholder={`${t("Enter")} ${t("Email")}`}
+                          className="w-[360px] h-[48px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary"
+                        />
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-12 w-full">
+                      <div className="flex w-40 items-start gap-2 ">
+                        <MapPinIcon className=" w-6 h-6" />
+                        <div className="relative w-[145px] mt-[-1.00px] mr-[-6.00px] text-[length:var(--title-16px-semibold-font-size)] leading-[var(--title-16px-semibold-line-height)] font-title-16px-semibold font-[number:var(--title-16px-semibold-font-weight)] text-on-surface-primary tracking-[var(--title-16px-semibold-letter-spacing)] [font-style:var(--title-16px-semibold-font-style)]">
+                          {t("Physical Address")} :
+                        </div>
+                      </div>
+
+                      <div className="w-[937px]  items-start  flex gap-[30px]">
+                        {addressFields.map((field, index) => (
+                          <Input
+                            key={index}
+                            placeholder={t(`${field.placeholder}`)}
+                            className="w-[172px] h-[48px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary"
+                          />
+                        ))}
+                      </div>
+                    </div>
+                    <div className="inline-flex justify-center flex-[0_0_auto] h-12 items-center gap-8">
+                      <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
+                        <div className=" w-6 h-6">
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M17.5 11.2506C20.3402 11.2506 22.75 13.5936 22.75 16.4635C22.7499 17.934 22.125 19.158 21.2783 20.1461C20.4378 21.127 19.3524 21.9075 18.3545 22.5182L18.3438 22.525L18.332 22.5318C18.0781 22.6751 17.7914 22.7506 17.5 22.7506C17.2086 22.7506 16.9219 22.6751 16.668 22.5318L16.6543 22.524L16.6416 22.5162C15.649 21.9017 14.5644 21.1239 13.7236 20.1461C12.876 19.1602 12.2501 17.9387 12.25 16.4635C12.25 13.5936 14.6598 11.2506 17.5 11.2506ZM17.5 12.7506C15.4697 12.7506 13.75 14.4405 13.75 16.4635C13.7501 17.4816 14.1747 18.3689 14.8613 19.1676C15.5508 19.9694 16.4773 20.6494 17.4131 21.2301C17.4395 21.2433 17.4696 21.2506 17.5 21.2506C17.5308 21.2506 17.5612 21.2427 17.5879 21.2291C18.5226 20.6559 19.4494 19.9747 20.1387 19.1705C20.8255 18.3689 21.2499 17.4779 21.25 16.4635C21.25 14.4405 19.5303 12.7506 17.5 12.7506ZM7.98828 1.75156C8.49476 1.73509 8.95906 1.85034 9.4541 2.04257C9.92734 2.22637 10.4758 2.49992 11.1445 2.83457L14.5068 4.51816C14.7443 4.63698 14.8895 4.70636 14.9902 4.75058C14.9935 4.75054 14.9967 4.75058 15 4.75058C15.1285 4.75058 15.2478 4.78545 15.3535 4.84238C15.4629 4.84963 15.6273 4.85312 15.9209 4.85312H18.0527C18.9499 4.85309 19.7008 4.85276 20.2969 4.93515C20.9286 5.02252 21.4976 5.21564 21.9522 5.6832C22.4036 6.14772 22.5873 6.72345 22.6709 7.36289C22.7505 7.97187 22.75 8.74029 22.75 9.6666V10.5006C22.7498 10.9146 22.4141 11.2506 22 11.2506C21.5859 11.2506 21.2502 10.9146 21.25 10.5006V9.71738C21.25 8.72711 21.248 8.05747 21.1826 7.55722C21.1198 7.07661 21.0101 6.86605 20.876 6.72812C20.7447 6.59331 20.5488 6.48469 20.0918 6.42148C19.6105 6.35491 18.9646 6.35312 18 6.35312H15.8594C15.8223 6.35314 15.7858 6.35121 15.75 6.35117V9.50058C15.7498 9.91462 15.4141 10.2506 15 10.2506C14.5859 10.2506 14.2502 9.91462 14.25 9.50058V6.05918C14.1373 6.00639 14.0183 5.95079 13.8916 5.8873C13.8732 5.87808 13.8547 5.86839 13.8359 5.85898L10.5039 4.19199C9.79625 3.83786 9.31111 3.59536 8.91113 3.44003C8.85496 3.41822 8.80094 3.40003 8.75 3.38242V16.8199C9.25305 16.9102 9.71472 17.1023 10.1191 17.3014C10.3418 17.4109 10.5589 17.5281 10.7598 17.6373L10.7891 17.6539C10.9828 17.7592 11.1613 17.8556 11.3359 17.943C11.7063 18.1284 11.8562 18.5794 11.6709 18.9498C11.4855 19.3202 11.0345 19.4701 10.6641 19.2848C10.4657 19.1855 10.2667 19.0772 10.0791 18.9752L10.043 18.9557C9.84013 18.8454 9.64784 18.7414 9.45606 18.6471C9.06955 18.4569 8.72722 18.3275 8.40235 18.2828C7.65872 18.1807 7.05177 18.5352 6.11914 19.0797L6.0625 19.1119C5.44356 19.4733 4.92893 19.7738 4.50293 19.9674C4.07219 20.1631 3.60392 20.313 3.10938 20.2242C2.57481 20.1282 2.09595 19.839 1.75684 19.4156C1.44633 19.0279 1.34269 18.5482 1.2959 18.0699C1.24954 17.5959 1.24999 16.9896 1.25 16.2555V7.96445C1.24999 7.40957 1.24969 6.94068 1.28711 6.55234C1.32684 6.14027 1.41321 5.75989 1.61914 5.39609C1.82569 5.03132 2.10707 4.7646 2.43945 4.52304C2.75106 4.29661 3.14922 4.06381 3.61719 3.79062C3.62723 3.78476 3.63735 3.77894 3.64746 3.77304L4.90527 3.03867C5.55205 2.66105 6.08217 2.35153 6.54297 2.1373C7.02501 1.91324 7.48175 1.76809 7.98828 1.75156ZM7.17578 3.49765C6.78602 3.67883 6.3162 3.95162 5.63184 4.35117L4.40332 5.06796C3.89687 5.36364 3.56483 5.559 3.32129 5.73593C3.09187 5.90266 2.98989 6.02043 2.92481 6.13535C2.8591 6.25142 2.80846 6.40366 2.78027 6.69589C2.75059 7.00379 2.75 7.40011 2.75 7.99863V16.2164C2.75 16.9999 2.75071 17.5323 2.78906 17.9244C2.82785 18.3205 2.89603 18.4385 2.92774 18.4781C3.0441 18.6234 3.20391 18.7169 3.375 18.7477C3.41122 18.754 3.53316 18.761 3.88281 18.6021C4.23043 18.4442 4.67832 18.1838 5.3418 17.7965C5.39461 17.7656 5.44886 17.7332 5.50391 17.7008C5.99631 17.4105 6.57792 17.0673 7.25 16.8883V3.46543C7.22602 3.4761 7.20084 3.486 7.17578 3.49765ZM17.5088 15.5006C18.0611 15.5006 18.5088 15.9483 18.5088 16.5006C18.5086 17.0527 18.0609 17.5006 17.5088 17.5006H17.5C16.9478 17.5006 16.5002 17.0527 16.5 16.5006C16.5 15.9483 16.9477 15.5006 17.5 15.5006H17.5088Z"
+                              fill="currentColor"
+                            />
+                          </svg>
+                        </div>
+                        <div className="relative w-[145px] text-[length:var(--title-16px-semibold-font-size)] leading-[var(--title-16px-semibold-line-height)] font-title-16px-semibold font-[number:var(--title-16px-semibold-font-weight)] text-on-surface-primary tracking-[var(--title-16px-semibold-letter-spacing)] [font-style:var(--title-16px-semibold-font-style)]">
+                          {t("Maps Location")} :
+                        </div>
+                      </div>
+
+                      <Input
+                        placeholder={t("Pick Google Maps Location")}
+                        className="w-[360px] h-[48px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary"
+                      />
+                    </div>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+            </CardContent>
+          </Card>
+          <Card className="w-full rounded-2xl bg-background-primary">
+            <CardContent className="p-[16px]">
+              <Collapsible
+                open={open.days}
+                onOpenChange={() => setOpen({ ...open, days: !open.days })}
+                className="w-full"
+              >
+                <CollapsibleTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="p-0 hover:bg-[none] w-full"
+                  >
+                    <div className="flex w-full items-center justify-between mb-4">
+                      <div className="mb-[15px] font-lato font-bold text-base text-primary-default leading-[124%] tracking-[0]">
+                        {t("Working Days")}
+                      </div>
+                      <ChevronDownIcon
+                        style={{ width: "24px", height: "24px" }}
+                        className={`transition-transform duration-200 ${
+                          open.days ? "rotate-180" : "rotate-0"
+                        }`}
+                      />
+                    </div>
+                  </Button>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <div className="flex flex-col gap-4 mt-[50px]">
+                    {workingDays.map((workDay, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-8 w-full"
+                      >
+                        <div className="flex items-center gap-5 w-[120px] ">
+                          {/* Checkbox */}
+                          <CustomCheckbox
+                            checked={activeDays[index]}
+                            onChange={() => toggleDay(index)}
+                          />
+                          <label
+                            className={`${"text-[#2a2b2a]"} tracking-[0.07px] leading-6 [font-family:'Lato',Helvetica] font-normal text-sm whitespace-nowrap`}
+                          >
+                            {t(`${workDay.day}`)}
+                          </label>
+                        </div>
+
+                        <div className="flex items-center gap-4 w-[810px]">
+                          {/* أوقات العمل */}
+                          <div
+                            className={`flex items-center w-[404px] py-[7px] px-[13px] border rounded transition transition
+                                  ${
+                                    activeDays[index]
+                                      ? ""
+                                      : "bg-background-tertiary"
+                                  }`}
+                          >
+                            <TimeRangePicker />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+            </CardContent>
+          </Card>
+          <div className="flex items-center justify-end w-full ">
+            <div dir="ltr" className="flex gap-[20px]">
+              <Button
+                variant="outline"
+                className="w-[200px] h-[40px] bg-white border-2 border-border-light rounded-[20px] px-4 py-2.5"
+              >
+                <span className="font-lato font-medium text-sm leading-[100%] tracking-[0] text-text-primary">
+                  {t("Cancel")}
+                </span>
+              </Button>
+              <Button className="w-[200px] h-[40px] bg-secondary-dark rounded-[20px] px-4 py-2.5">
+                <span className="font-lato font-medium text-[sm] leading-[100%] tracking-[0] text-surface-primary">
+                  {t("Save")}
+                </span>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

@@ -22,9 +22,9 @@ export const ElementUsersAddNew = (): JSX.Element => {
   return (
     <div
       dir={`${local === "ar" ? "rtl" : "ltr"}`}
-      className={`flex w-full ${darkMode ? "bg-[#030711]" : "bg-[white]"}`}
+      className="flex w-full"
     >
-      <UserManagementSection local={local} dark={darkMode} />
+      <UserManagementSection local={local} />
       <UserDetailsSection
         handleLanguageClick={handleLanguageClick}
         local={local}

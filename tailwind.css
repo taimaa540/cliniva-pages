@@ -292,3 +292,12 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+.react-tel-input .flag {
+  border-radius: 50% !important;
+  overflow: hidden;    
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(47%) sepia(4%) saturate(300%) hue-rotate(180deg);
+  cursor: pointer;
+}

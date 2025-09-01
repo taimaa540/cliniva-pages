@@ -1,14 +1,23 @@
-import { ArrowLeftIcon, ChevronLeftIcon, ChevronRightIcon, PlusIcon } from "lucide-react";
+import {
+  ArrowLeftIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  PlusIcon,
+} from "lucide-react";
 
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
+import DateInput from "../DateInput";
 interface buttonProps {
-  handleNext : () => void;
-  prevStep : () => void;
+  handleNext: () => void;
+  prevStep: () => void;
 }
-export const ComplexDetailsSection = ({handleNext, prevStep}:buttonProps): JSX.Element => {
+export const ComplexDetailsSection = ({
+  handleNext,
+  prevStep,
+}: buttonProps): JSX.Element => {
   return (
     <div className="flex flex-col w-full h-screen overflow-scroll items-start gap-4 pl-0 pr-4 py-4">
       {/* Header */}
@@ -64,10 +73,7 @@ export const ComplexDetailsSection = ({handleNext, prevStep}:buttonProps): JSX.E
                     <div className="w-40 font-semibold text-[16px] text-text-primary font-lato leading-[124%] tracking-[0]">
                       Year of Establishment
                     </div>
-                    <input
-                      type="date"
-                      className="block w-[360px] px-4 py-2 bg-transparent rounded border border-solid border-border-light"
-                    />
+                    <DateInput />
                   </div>
                   <div className="flex items-center gap-8 mt-[24px]">
                     <div className="w-40 font-semibold text-[16px] text-text-primary font-lato leading-[124%] tracking-[0]">
@@ -94,19 +100,21 @@ export const ComplexDetailsSection = ({handleNext, prevStep}:buttonProps): JSX.E
 
               <div className="flex md:flex-row gap-8 items-start w-full mt-[16px]">
                 <div>
-                  <label className="block w-[160px] mb-[8px] ">Department Name</label>
+                  <label className="block w-[160px] mb-[8px] ">
+                    Department Name
+                  </label>
                   <Input
                     className=" bolck w-[360px] h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light "
-                    placeholder="Enter Title"
+                    placeholder="Enter Name"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-full">
                   <label className="block w-[160px] ">Description</label>
                   <Input
-                    placeholder="Enter Content"
+                    placeholder="Enter Description"
                     className=" bolck w-full h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light "
                   />
-                  <PlusIcon className="w-6 h-6 text-secondary-dark cursor-pointer relative left-[750px]" />
+                  <PlusIcon className="w-6 h-6 text-secondary-dark cursor-pointer relative left-[750px] " />
                 </div>
               </div>
             </CardContent>
@@ -114,7 +122,7 @@ export const ComplexDetailsSection = ({handleNext, prevStep}:buttonProps): JSX.E
 
           <div className="flex items-center justify-end gap-4 w-full ">
             <Button
-            onClick={prevStep}
+              onClick={prevStep}
               variant="outline"
               className="w-[200px] h-auto bg-white rounded-[20px] border-2 border-solid border-[#e4e2dd] px-4 py-2.5"
             >
@@ -126,8 +134,11 @@ export const ComplexDetailsSection = ({handleNext, prevStep}:buttonProps): JSX.E
               </div>
             </Button>
 
-            <Button onClick={handleNext} className="w-[200px] h-10 bg-secondary-dark rounded-[20px] px-4 py-2.5">
-              <span  className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
+            <Button
+              onClick={handleNext}
+              className="w-[200px] h-10 bg-secondary-dark rounded-[20px] px-4 py-2.5"
+            >
+              <span className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
                 Next
               </span>
               <ChevronRightIcon className="w-5 h-5 ml-1" />

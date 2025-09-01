@@ -45,7 +45,7 @@ export const ChoosePlan = (): JSX.Element => {
 
               <div className="flex flex-col w-[1134px] h-[537px] items-center gap-10 mt-[100px] ml-auto mr-auto">
                 <header className="flex flex-col items-center gap-4 relative self-stretch w-full flex-[0_0_auto]">
-                  <h1 className="text-[48px] font-bold text-primary">
+                  <h1 className="text-[48px] font-bold text-primary-default">
                     Choose Your Operational Structure
                   </h1>
 

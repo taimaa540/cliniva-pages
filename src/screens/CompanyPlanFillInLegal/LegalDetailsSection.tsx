@@ -82,10 +82,10 @@ export const LegalDetailsSection = ({handleNext, prevStep, title}:buttonProps): 
               <div className="flex flex-col gap-2 w-full">
                 <label className="block w-[160px]  ">Description</label>
                 <Input
-                  placeholder="Enter Content"
+                  placeholder="Enter Description"
                   className=" bolck w-full h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light "
                 />
-                <PlusIcon className="w-6 h-6 text-gray-600 cursor-pointer relative left-[750px]" />
+                <PlusIcon className="w-6 h-6 text-gray-600 cursor-pointer relative left-[750px] text-secondary-dark" />
               </div>
             </div>
           </CardContent>
@@ -108,7 +108,7 @@ export const LegalDetailsSection = ({handleNext, prevStep, title}:buttonProps): 
               <div className="flex flex-col gap-2 w-full">
                 <label className="block w-[160px]  ">Description</label>
                 <Input
-                  placeholder="Enter Content"
+                  placeholder="Enter Description"
                   className=" bolck w-full h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light "
                 />
               </div>
@@ -123,11 +123,11 @@ export const LegalDetailsSection = ({handleNext, prevStep, title}:buttonProps): 
               </div>
               <div className="relative flex flex-col items-end gap-2 w-full">
                 <Input
-                  placeholder="Enter Content"
+                  placeholder="Enter Description"
                   className=" bolck w-full h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light "
                 />
-                <MinusIcon className="absolute right-[-40px] top-[10px] "/>
-                <PlusIcon/>
+                <MinusIcon className="absolute right-[-40px] top-[10px] text-secondary-dark "/>
+                <PlusIcon className="text-secondary-dark"/>
               </div>
             </div>
           </CardContent>
@@ -149,8 +149,8 @@ export const LegalDetailsSection = ({handleNext, prevStep, title}:buttonProps): 
             </Button>
 
             <Button onClick={handleNext} className="w-[200px] h-10 bg-secondary-dark rounded-[20px] px-4 py-2.5">
-              <span  className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
-                Next
+              <span  className="font-lato font-medium text-xs leading-[100%] tracking-[0] text-surface-primary">
+                Save & Continue
               </span>
               <ChevronRightIcon className="w-5 h-5 ml-1" />
             </Button>

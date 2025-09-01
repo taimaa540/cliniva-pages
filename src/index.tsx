@@ -1,7 +1,7 @@
-import { StrictMode } from "react";
+import { StrictMode, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./i18n";
-// the default weight 400
+import "react-phone-input-2/lib/style.css";
 import { ElementUsersNoDataTo } from "./screens/ElementUsersNoDataTo/ElementUsersNoDataTo";
 import { ElementUsersAddNew } from "./screens/ElementUsersAddNew/ElementUseresAddNew";
 import { ElementUsersDesktop } from "./screens/UsersDesktop/ElementUsersDesktop";
@@ -19,25 +19,25 @@ import { BrowserRouter } from "react-router-dom";
 import { ComplexList } from "./screens/ComplexList";
 import { UserManagementSection } from "./screens/ElementUsersNoDataTo/sections/UserManagementSection/UserManagementSection";
 import { ClinicList } from "./screens/ClinicList";
+import PhoneNumberInput from "./screens/test";
+import { AddNewComplex } from "./screens/AddNewComplex";
+import { AddNewClinic } from "./screens/AddNewClinic";
+import WeatherCard from './test'
 
-createRoot(document.getElementById("app") as HTMLElement).render(
-  <StrictMode>
-    
+// ✨ مكون رئيسي يحتوي state
+function MainApp() {
+  return (
     <BrowserRouter>
       <ThemeProvider defaultTheme="light" storageKey="cliniva-theme">
         {/* Theme toggle in top-right corner */}
-        <div className="fixed top-[40px] right-[205px] z-50">
+        <div className="fixed top-[35px] right-[195px] z-50">
           <ThemeToggle />
         </div>
 
         {/* Main app content with theme transition */}
         <div className="theme-transition">
-          
           <main className="flex h-screen w-screen overflow-hidden">
-            {/* Theme Demo - Uncomment to see theme system in action */}
-            {/* <ThemeDemo /> */}
-
-            {/* Original app components */}
+            {/* هنا باقي شاشاتك (ممكن تفعّل أي واحدة) */}
             {/* <ChoosePlan /> */}
             {/* <ElementUsersNoDataTo /> */}
             {/* <ElementUsersAddNew /> */}
@@ -47,12 +47,22 @@ createRoot(document.getElementById("app") as HTMLElement).render(
             {/* <ElementChangeStatus/> */}
             {/* <ElementDeleteUser title="user"/> */}
             {/* <ElementLogOutDialog/> */}
-            {/* <UserManagementSection local="test" dark={false} /> */}
+            <UserManagementSection local="test" />
             {/* <ComplexList/> */}
             {/* <ClinicList/> */}
+            {/* <AddNewComplex /> */}
+            {/* <AddNewClinic/> */}
+            {/* <PhoneNumberInput/> */}
+            {/* <WeatherCard/> */}
           </main>
         </div>
       </ThemeProvider>
     </BrowserRouter>
+  );
+}
+
+createRoot(document.getElementById("app") as HTMLElement).render(
+  <StrictMode>
+    <MainApp />
   </StrictMode>
 );

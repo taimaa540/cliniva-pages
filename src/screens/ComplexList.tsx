@@ -12,11 +12,7 @@ import {
   SelectValue,
 } from "../components/ui/select";
 import {
-  Table,
-  TableBody,
   TableCell,
-  TableHead,
-  TableHeader,
   TableRow,
 } from "../components/ui/table";
 import TranslateIcon from "@mui/icons-material/Translate";
@@ -210,62 +206,48 @@ export const ComplexList = (): JSX.Element => {
             </div>
           </div>
 
-          <div className="w-full rounded-2xl h-screen  ">
-            <Table className="bg-surface-default">
-              <TableHeader>
-                <TableRow className=" h-[56px] hover:bg-surface-default bg-surface-default  border-b border-border-light">
-                  <TableHead
-                    className={`w-[106px] ${
-                      local === "ar" ? "text-right" : "text-left"
-                    } font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary `}
+          <div className="w-full rounded-2xl h-screen ">
+            <table className="bg-surface-default text-center w-full">
+              <thead>
+                <tr className=" h-[56px] bg-surface-default  border-b border-border-light w-full">
+                  <td
+                    className={` font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary `}
                   >
                     No.
-                  </TableHead>
-                  <TableHead
-                    className={`w-[109px] ${
-                      local === "ar" ? "text-right" : "text-left"
-                    } font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary`}
+                  </td>
+                  <td
+                    className={`font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary`}
                   >
                     {t('Complex Name')}
-                  </TableHead>
-                  <TableHead
-                    className={`w-[177px] ${
-                      local === "ar" ? "text-right" : "text-left"
-                    } font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary`}
+                  </td>
+                  <td
+                    className={` font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary`}
                   >
                     {t('Scheduled Appointments Count')}
-                  </TableHead>
-                  <TableHead
-                    className={`w-[178px] ${
-                      local === "ar" ? "text-right" : "text-left"
-                    } font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary`}
+                  </td>
+                  <td
+                    className={` font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary`}
                   >
                     {t('Clinics Assigned Count')}
-                  </TableHead>
-                  <TableHead
-                    className={`w-[173px] ${
-                      local === "ar" ? "text-right" : "text-left"
-                    } font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary`}
+                  </td>
+                  <td
+                    className={` font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary`}
                   >
                     {t('PIC')}
-                  </TableHead>
-                  <TableHead
-                    className={`w-[93px] ${
-                      local === "ar" ? "text-right" : "text-left"
-                    } font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary`}
+                  </td>
+                  <td
+                    className={` font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary`}
                   >
                     {t('Status')}
-                  </TableHead>
-                  <TableHead
-                    className={`w-[106px] ${
-                      local === "ar" ? "text-right" : "text-left"
-                    } font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary`}
+                  </td>
+                  <td
+                    className={` font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary`}
                   >
                     {t('Action')}
-                  </TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
                 {complexData.map((complex) => (
                   <TableRow
                     key={complex.id}
@@ -328,8 +310,8 @@ export const ComplexList = (): JSX.Element => {
                     </TableCell>
                   </TableRow>
                 ))}
-              </TableBody>
-            </Table>
+              </tbody>
+            </table>
           </div>
 
           <footer

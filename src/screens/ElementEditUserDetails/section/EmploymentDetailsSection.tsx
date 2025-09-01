@@ -5,7 +5,7 @@ import {
   ChevronDownIcon,
   SearchIcon,
 } from "lucide-react";
-
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Button } from "../../../components/ui/button";
 import { Card, CardContent } from "../../../components/ui/card";
 import { Input } from "../../../components/ui/input";
@@ -90,7 +90,11 @@ export const EmploymentDetailsSection = ({
       <header className="flex h-[50px] w-[1197px] justify-between pl-1 pr-0 py-0 self-stretch items-center relative">
         <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5 relative mt-[-1.00px] mb-[-1.00px]">
           <div className="inline-flex items-center gap-1.5 relative flex-[0_0_auto]">
-            <ArrowLeftIcon className="relative w-4 h-4" />
+            {local === "en" ? (
+              <ArrowLeftIcon />
+            ) : (
+              <ArrowForwardIcon className="relative w-4 h-4" />
+            )}
             <div className="relative w-fit mt-[-1.00px] font-title-12px-regular font-[number:var(--title-12px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-12px-regular-font-size)] tracking-[var(--title-12px-regular-letter-spacing)] leading-[var(--title-12px-regular-line-height)] whitespace-nowrap [font-style:var(--title-12px-regular-font-style)]">
               {t("Back to Users List")}
             </div>

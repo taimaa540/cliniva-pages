@@ -7,10 +7,10 @@ export default function TimeRangePicker() {
   const [showPicker, setShowPicker] = useState(false);
 
   return (
-    <div className="relative w-[404px] max-w-md">
+    <div className="relative w-[360px] max-w-md">
       {/* Display row */}
-      <div className="flex items-center gap-[80px] w-[404px] ">
-        <span className="text-gray-600 text-sm">{startTime}</span>
+      <div className="flex items-center gap-[80px] w-[360px] ">
+        <span className="text-gray-600 text-sm mr-[10px]">{startTime}</span>
         <span className="px-3 text-gray-500 ">→</span>
         <span className="text-gray-600 text-sm ">{endTime}</span>
 

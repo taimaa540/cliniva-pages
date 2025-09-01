@@ -23,7 +23,7 @@ export const ElementEditUserDetails = (): JSX.Element => {
       dir={`${local === "ar" ? "rtl" : "ltr"}`}
       className={`flex ${darkMode ? "bg-[#030711]" : "bg-[white]"}`}
     >
-      <UserManagementSection local={local} dark={darkMode} />
+      <UserManagementSection local={local}  />
       <EmploymentDetailsSection
         handleLanguageClick={handleLanguageClick}
         local={local}

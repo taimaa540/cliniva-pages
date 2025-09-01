@@ -291,13 +291,13 @@ export const ComplexPlane = (): JSX.Element => {
                   <label className="block w-[160px] mb-[8px] ">Department Name</label>
                   <Input
                     className=" bolck w-[360px] h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light "
-                    placeholder="Enter Title"
+                    placeholder="Enter Name"
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-full">
                   <label className="block w-[160px] ">Description</label>
                   <Input
-                    placeholder="Enter Content"
+                    placeholder="Enter Description"
                     className=" bolck w-full h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light "
                   />
                   <PlusIcon className="w-6 h-6 text-secondary-dark cursor-pointer relative left-[750px]" />

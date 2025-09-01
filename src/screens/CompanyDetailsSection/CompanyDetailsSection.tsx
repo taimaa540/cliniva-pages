@@ -4,7 +4,7 @@ import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
 import { ReactNode } from "react";
-
+import DateInput from "../DateInput";
 
 const formFields = {
   companyInfo: [
@@ -78,7 +78,7 @@ export const CompanyDetailsSection = ({
         </p>
       </div>
       {/* Content */}
-      <div className="bg-background-secondary p-[24px] min-h-[866px] rounded-[16px] w-full">
+      <div className="bg-background-secondary p-[24px] rounded-[16px] w-full">
         <div className="flex flex-col w-full items-start gap-4 ">
           <Card className="w-full h-[208px] bg-background-primary rounded-2xl">
             <CardContent className="p-[16px]">
@@ -103,12 +103,7 @@ export const CompanyDetailsSection = ({
                       <div className="w-40 font-semibold text-[16px] text-text-primary font-lato leading-[124%] tracking-[0]">
                         {field.label}
                       </div>
-
-                      <input
-                        type="date"
-                        placeholder={field.placeholder}
-                        className="block w-[360px] px-4 py-2 bg-transparent rounded border border-solid border-[#e4e2dd]"
-                      />
+                      <DateInput/>
                     </div>
                   ))}
                 </div>

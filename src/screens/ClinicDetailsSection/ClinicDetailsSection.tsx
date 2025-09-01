@@ -22,6 +22,7 @@ import {
 import { Textarea } from "../../components/ui/textarea";
 import PhoneInput from "react-phone-input-2";
 import { useState } from "react";
+import DateInput from "../DateInput";
 
 const formSections = [
   {
@@ -149,7 +150,10 @@ export const ClinicDetailsSection = ({
       <div className="bg-background-secondary p-[24px] rounded-[16px] w-full">
         <div className="flex flex-col w-full items-start gap-4 ">
           {formSections.map((section) => (
-            <Card key={section.id} className="w-full rounded-2xl bg-background-primary">
+            <Card
+              key={section.id}
+              className="w-full rounded-2xl bg-background-primary"
+            >
               <CardHeader className="p-[16px]">
                 <CardTitle className="text-primary-default font-lato font-bold text-base leading-[124%] tracking-[0]">
                   {section.title}
@@ -172,10 +176,7 @@ export const ClinicDetailsSection = ({
                         <div className="w-40 font-lato font-medium text-base text-text-primary leading-[100%] tracking-[0]">
                           Year of Establishment
                         </div>
-                        <input
-                          type="date"
-                          className="block w-[360px] text-text-secondary px-4 py-2 bg-transparent rounded border border-solid border-border-light"
-                        />
+                        <DateInput />
                       </div>
                       <div className="flex items-center gap-8">
                         <div className="w-40 font-lato font-medium text-base text-text-primary leading-[100%] tracking-[0]">
@@ -308,7 +309,7 @@ export const ClinicDetailsSection = ({
                           }}
                         />
                       </div>
-                      <PlusIcon className="w-8 h-8" />
+                      <PlusIcon className="w-8 h-8 text-secondary-dark" />
                     </div>
                     <div className="inline-flex items-center gap-8">
                       <div className="w-40 font-lato font-medium text-base treacking-[0] leading-[100%] text-text-primary">

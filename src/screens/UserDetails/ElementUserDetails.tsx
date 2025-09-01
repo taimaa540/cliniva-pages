@@ -42,7 +42,7 @@ export const ElementUserDetails = (): JSX.Element => {
       dir={`${local === "ar" ? "rtl" : "ltr"}`}
       className={`flex ${darkMode ? "bg-[#030711]" : "bg-[white]"}`}
     >
-      <UserManagementSection local={local} dark={darkMode} />
+      <UserManagementSection local={local}  />
       <AccountInformationSection
         handleLanguageClick={handleLanguageClick}
         local={local}
