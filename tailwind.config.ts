@@ -12,6 +12,7 @@ const config: Config = {
   darkMode: 'class',
   theme: {
     extend: {
+
       // Use colors from the theme-aware design system
       colors: {
         // Static colors that don't change with theme
@@ -108,10 +109,11 @@ const config: Config = {
         },
         input: 'var(--theme-surface-primary)',
       },
-             fontFamily: {
+      fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         serif: ['Merriweather', 'Georgia', 'serif'],
         mono: ['Fira Code', 'Consolas', 'monospace'],
+        lato: ["Lato", "sans-serif"],
       },
       fontSize: {
         xs: '0.75rem',

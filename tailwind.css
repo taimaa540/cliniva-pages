@@ -292,12 +292,46 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
-.react-tel-input .flag {
-  border-radius: 50% !important;
-  overflow: hidden;    
-}
+
 
 input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(47%) sepia(4%) saturate(300%) hue-rotate(180deg);
   cursor: pointer;
 }
+
+
+
+/* .PhoneInputCountryIcon {
+  @apply rounded-full overflow-hidden w-6 h-5;
+} */
+
+.PhoneInput {
+  @apply flex items-center border-2 border-gray-300 rounded-lg px-2 py-1 w-80;
+}
+
+/* عنصر اختيار الدولة */
+.PhoneInputCountry {
+  @apply flex items-center gap-2 mr-2;
+}
+
+/* العلم */
+.PhoneInputCountryIcon {
+  @apply w-6 h-6 rounded-full overflow-hidden;
+}
+
+/* كود الدولة */
+.PhoneInputCountrySelect {
+  @apply flex items-center gap-1 cursor-pointer font-semibold text-gray-700;
+}
+
+/* السهم */
+.PhoneInputCountrySelectArrow {
+  @apply ml-1 text-gray-500;
+}
+
+/* حقل إدخال الرقم */
+.PhoneInputInput {
+  @apply flex-1 outline-none px-2 text-gray-800;
+}
+
+
