@@ -13,6 +13,8 @@ import { UserListSection } from "../M1/userListSection";
 import { AddNewUser } from "../M1/AddNewUser";
 import { UserDetails } from "../M1/UserDetails";
 import { EditUserDetails } from "../M1/EditUserDetails";
+import { ServicesList } from "../M4/ServicesList";
+import { AddNewService } from "../M4/AddNewService";
 
 export const SideBarPlan1 = (): JSX.Element => {
   const { local } = useLanguage();
@@ -278,40 +280,42 @@ export const SideBarPlan1 = (): JSX.Element => {
                 </div>
               </CollapsibleContent>
             </Collapsible>
-            <button
-              onClick={() => setActive("Services Management")}
-              className={`flex items-center w-full h-[40px] gap-2 py-[10px] pl-[4px] ${
-                active === "Services Management"
-                  ? "text-background-primary bg-secondary-default"
-                  : ""
-              } rounded justify-start`}
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16.1802 13.0943C19.4727 8.9193 18.5835 4.7793 16.2185 3.32847C13.9835 1.95763 12.0327 2.51013 10.861 3.39013L9.99933 4.03513M16.1802 13.0943C15.3902 14.0968 14.3593 15.1001 13.0493 16.0693C11.7618 17.0235 11.1177 17.5001 9.99933 17.5001C8.881 17.5001 8.23767 17.0235 6.94933 16.0693C0.184333 11.0626 0.847667 5.12763 3.78017 3.32847C6.01517 1.95763 7.966 2.51013 9.13767 3.39013L9.99933 4.03513M16.1802 13.0943L11.576 7.87097C11.4846 7.76762 11.3595 7.70002 11.2229 7.68018C11.0864 7.66035 10.9472 7.68956 10.8302 7.76263L9.0085 8.90097C8.65126 9.12697 8.22046 9.20606 7.80624 9.1217C7.39202 9.03734 7.02647 8.79605 6.78608 8.44833C6.5457 8.10061 6.44909 7.6734 6.51648 7.25608C6.58388 6.83876 6.81004 6.46368 7.14767 6.2093L9.99933 4.03513"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-
-              <span
-                className={`font-lato font-semibold text-xs leading-[130%] tracking-[0] ${
+            <Link to="/ServicesList">
+              <button
+                onClick={() => setActive("Services Management")}
+                className={`flex items-center w-full h-[40px] gap-2 py-[10px] pl-[4px] ${
                   active === "Services Management"
-                    ? "text-background-primary font-bold"
-                    : "text-text-secondary"
-                }`}
+                    ? "text-background-primary bg-secondary-default"
+                    : ""
+                } rounded justify-start`}
               >
-                {t("Services Management")}
-              </span>
-            </button>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16.1802 13.0943C19.4727 8.9193 18.5835 4.7793 16.2185 3.32847C13.9835 1.95763 12.0327 2.51013 10.861 3.39013L9.99933 4.03513M16.1802 13.0943C15.3902 14.0968 14.3593 15.1001 13.0493 16.0693C11.7618 17.0235 11.1177 17.5001 9.99933 17.5001C8.881 17.5001 8.23767 17.0235 6.94933 16.0693C0.184333 11.0626 0.847667 5.12763 3.78017 3.32847C6.01517 1.95763 7.966 2.51013 9.13767 3.39013L9.99933 4.03513M16.1802 13.0943L11.576 7.87097C11.4846 7.76762 11.3595 7.70002 11.2229 7.68018C11.0864 7.66035 10.9472 7.68956 10.8302 7.76263L9.0085 8.90097C8.65126 9.12697 8.22046 9.20606 7.80624 9.1217C7.39202 9.03734 7.02647 8.79605 6.78608 8.44833C6.5457 8.10061 6.44909 7.6734 6.51648 7.25608C6.58388 6.83876 6.81004 6.46368 7.14767 6.2093L9.99933 4.03513"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+
+                <span
+                  className={`font-lato font-semibold text-xs leading-[130%] tracking-[0] ${
+                    active === "Services Management"
+                      ? "text-background-primary font-bold"
+                      : "text-text-secondary"
+                  }`}
+                >
+                  {t("Services Management")}
+                </span>
+              </button>
+            </Link>
             <button
               onClick={() => setActive("Paitients Management")}
               className={`flex items-center w-full h-[40px] gap-2 py-[10px] pl-[4px] ${
@@ -390,9 +394,11 @@ export const SideBarPlan1 = (): JSX.Element => {
       </nav>
       <Routes>
         <Route path="/" element={<UserListSection />} />
-        <Route path="/AddNewUser" element={<AddNewUser/>} />
-        <Route path="/UserDetails" element={<UserDetails/>}/>
-        <Route path="/EditUserDEtails" element={<EditUserDetails/>}/>
+        <Route path="/AddNewUser" element={<AddNewUser />} />
+        <Route path="/UserDetails" element={<UserDetails />} />
+        <Route path="/EditUserDEtails" element={<EditUserDetails />} />
+        <Route path="/ServicesList" element={<ServicesList/>} />
+        <Route path="/AddNewService" element={<AddNewService/>} />
       </Routes>
     </>
   );

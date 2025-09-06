@@ -1,4 +1,4 @@
-import { BellIcon, CalendarIcon } from "lucide-react";
+import { BellIcon } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
@@ -11,7 +11,6 @@ import { useState } from "react";
 import WorkingDaysList from "../CommonComponents/workDays";
 import ImageUploader from "../CommonComponents/ImageUpload";
 import { CountryDropdown } from "react-country-region-selector";
-import PhoneInput from "react-phone-number-input";
 import en from "react-phone-number-input/locale/en.json";
 import {
   Select,
@@ -26,11 +25,10 @@ import {
   TabsList,
   TabsTrigger,
 } from "../../components/ui/tabs";
-import WorkDays from "../CommonComponents/workDays";
 import FileUpload from "../CommonComponents/fillUpLoad";
 import { useLanguage } from "../../lib/LanguageContext";
-import CardHeader from "@mui/material/CardHeader";
 import DateInput from "../CommonComponents/DateInput";
+import PhoneInputCustom from "../CommonComponents/PhoneInput";
 
 const tabItems = [
   { value: "account", label: "Account information" },
@@ -44,58 +42,6 @@ const addressFields = [
   { placeholder: "Region", width: "w-[165px]" },
   { placeholder: "Country", width: "w-[165px]" },
   { placeholder: "Nation", width: "w-[165px]" },
-];
-
-const formFields = [
-  {
-    id: "username",
-    label: "User Name",
-    placeholder: "Enter User Name",
-    type: "input",
-    inputType: "username",
-  },
-  {
-    id: "password",
-    label: "Password",
-    placeholder: "Enter Password",
-    type: "input",
-    inputType: "password",
-  },
-  {
-    id: "confirmPassword",
-    label: "Confirm Password",
-    placeholder: "Enter Password",
-    type: "input",
-    inputType: "password",
-  },
-  {
-    id: "role",
-    label: "Role",
-    placeholder: "Assign Roles to User",
-    type: "select",
-    inputType: "Role",
-  },
-  {
-    id: "userType",
-    label: "User Type",
-    placeholder: "Select User Type",
-    type: "select",
-    inputType: "UserType",
-  },
-  {
-    id: "medicalComplex",
-    label: "Medical Complex",
-    placeholder: "Select Medical Complex",
-    type: "select",
-    inputType: "complex",
-  },
-  {
-    id: "clinics",
-    label: "Clinic",
-    placeholder: "Select Clinic",
-    type: "select",
-    inputType: "clinics",
-  },
 ];
 
 const documents = [
@@ -112,7 +58,6 @@ const documents = [
 ];
 
 export const AddNewUser = (): JSX.Element => {
-  const [value, setValue] = useState<string | undefined>("");
   const shortLabels: Record<string, string> = {};
   Object.keys(en).forEach((key) => {
     shortLabels[key] = key; // يظهر SY, US, EG بدل اسم الدولة
@@ -407,18 +352,18 @@ export const AddNewUser = (): JSX.Element => {
                         </Label>
                         <input className="w-5 h-5" type="radio" name="Gender" />
                         <label className="font-lato font-regular text-sm leading-[154%] tracking-[0] text-text-primary">
-                          {t('Male')}
+                          {t("Male")}
                         </label>
                         <input className="w-5 h-5" type="radio" name="Gender" />
                         <label className="font-lato font-regular text-sm leading-[154%] tracking-[0] text-text-primary">
-                          {t('Female')}
+                          {t("Female")}
                         </label>
                       </div>
                       <div className="flex items-center gap-[32px] w-full">
                         <Label className="w-40 font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-gray-700 text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
                           {t("Date of Birth")} *
                         </Label>
-                        <DateInput lang={local}/>
+                        <DateInput lang={local} />
                       </div>
                       <div className="flex items-center gap-[32px] w-full">
                         <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
@@ -449,8 +394,12 @@ export const AddNewUser = (): JSX.Element => {
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="Married">{t('Married')}</SelectItem>
-                            <SelectItem value="Single">{t('Single')}</SelectItem>
+                            <SelectItem value="Married">
+                              {t("Married")}
+                            </SelectItem>
+                            <SelectItem value="Single">
+                              {t("Single")}
+                            </SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
@@ -473,19 +422,14 @@ export const AddNewUser = (): JSX.Element => {
                     {t("Contact Info")}
                   </h3>
                   <div className="flex flex-col gap-[16px]">
-                    <div className="grid grid-cols-2 gap-[22px]">
+                    <div className="grid grid-cols-2 gap-[22px] w-full">
                       <div className="flex items-center gap-[32px] w-full">
                         <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
-                          {t("Phone Number")} *
+                          {t("Phone Number")}
                         </Label>
-                        <PhoneInput
-                          defaultCountry="SY"
-                          value={value}
-                          onChange={setValue}
-                          labels={{ ...en, ...shortLabels }} // القائمة = en, الحقل = shortLabels
-                          className="flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
-                          placeholder="أدخل رقم الهاتف"
-                        />
+                        <div className="flex-1 min-w-0">
+                          <PhoneInputCustom />
+                        </div>
                       </div>
                       <div className="flex items-center gap-[32px] w-full">
                         <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
@@ -503,7 +447,7 @@ export const AddNewUser = (): JSX.Element => {
                       </Label>
                       {addressFields.map((field, index) => (
                         <Input
-                        placeholder={t(`${field.placeholder}`)}
+                          placeholder={t(`${field.placeholder}`)}
                           key={index}
                           className={`${field.width} flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary`}
                         />
@@ -523,27 +467,30 @@ export const AddNewUser = (): JSX.Element => {
                         <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Emergency Contact")}
                         </Label>
-                        <Input placeholder={t("Enter Name")} className="flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary" />
+                        <Input
+                          placeholder={t("Enter Name")}
+                          className="flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
+                        />
                       </div>
                       <div className="flex items-center gap-[32px] w-full">
                         <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Relationship")}
                         </Label>
-                        <Input placeholder={t("Enter Relationship")} className="flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary" />
+                        <Input
+                          placeholder={t("Enter Relationship")}
+                          className="flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
+                        />
                       </div>
                     </div>
-                    <div className="flex items-center gap-[32px] w-full">
-                      <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
-                        {t("Emergency Number")}
-                      </Label>
-                      <PhoneInput
-                        defaultCountry="SY"
-                        value={value}
-                        onChange={setValue}
-                        labels={{ ...en, ...shortLabels }} // القائمة = en, الحقل = shortLabels
-                        className="flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
-                        placeholder="أدخل رقم الهاتف"
-                      />
+                    <div className="grid grid-cols-2 gap-[22px]">
+                      <div className="flex items-center gap-[32px] w-full">
+                        <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                          {t("Emergency Number")}
+                        </Label>
+                        <div className="flex-1 min-w-0">
+                          <PhoneInputCustom />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
@@ -620,7 +567,7 @@ export const AddNewUser = (): JSX.Element => {
                         <Label className="w-[170px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Date of Hire")}
                         </Label>
-                        <DateInput lang={local}/>
+                        <DateInput lang={local} />
                       </div>
                     </div>
                   </div>
