@@ -1,15 +1,19 @@
-// FileUpload.tsx
-import { useCallback } from "react";
+import React, { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { useDropzone, FileRejection } from "react-dropzone";
 interface fileuploadProps {
   amount: string;
-  size : number
+  size: number;
+  width?: string;  // العرض اختياري
+  label?: string; // عبارة مخصصة للرفع
 }
-export default function FileUpload({ amount, size }: fileuploadProps) {
+
+export default function FileUpload({ amount, size, width = "360px", label }: fileuploadProps) {
+  const { t } = useTranslation();
   const onDrop = useCallback(
     (acceptedFiles: File[], fileRejections: FileRejection[]) => {
       if (fileRejections.length > 0) {
-        alert("الملف غير مقبول. يُسمح فقط بـ SVG, PNG, JPG, GIF بحد أقصى 2MB.");
+        alert(t("File not accepted. Only SVG, PNG, JPG, GIF up to 2MB allowed."));
         return;
       }
 
@@ -31,20 +35,24 @@ export default function FileUpload({ amount, size }: fileuploadProps) {
   return (
     <div
       {...getRootProps()}
-      className={`w-[360px] h-[48px] border border-gray-300 rounded-md text-center cursor-pointer transition ${
+      className={`h-[48px] border border-gray-300 rounded-md text-center items-center justify-center cursor-pointer transition ${
         isDragActive ? "bg-blue-50 shadow-md" : "hover:shadow-md"
       }`}
+      style={{ width }}  // هنا يستخدم العرض الافتراضي أو الممر ر
     >
       <input {...getInputProps()} />
-      <div className="flex items-center justify-evenly mt-[5px] ">
-        <img alt="pdf photo" src="./pdfIcon.svg" />
-        <div>
-          <p className="text-gray-700 text-[12px]">
-            <span className="text-blue-500 text-[12px]">Click or Drag</span>{" "}
-            file to this area to upload
-          </p>
-          <p className="text-[11px] text-gray-500">{amount}</p>
-        </div>
+      <div className="flex items-center justify-center gap-2 h-full mt-[2px]">
+        <img alt={t("pdf photo")} src="./pdfIcon.svg" className="w-5 h-5 self-center" style={{ marginTop: '2px' }} />
+        <p className="text-[12px] flex items-center gap-1 m-0 p-0">
+          {label ? (
+            label
+          ) : (
+            <>
+              <span className="text-primary-default">{t("Click or Drag")}</span>{" "}
+              <span className="text-text-primary">{t("file to this area to upload")}</span>
+            </>
+          )}
+        </p>
       </div>
     </div>
   );

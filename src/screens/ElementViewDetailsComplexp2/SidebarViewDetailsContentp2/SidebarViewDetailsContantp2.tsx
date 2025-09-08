@@ -1,12 +1,12 @@
 import React from "react";
-import { Button } from "../../../../components/ui/button";
+import { Button } from "../../../components/ui/button";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../../../../components/ui/collapsible";
+} from "../../../components/ui/collapsible";
 
-export const SideComplex = (): JSX.Element => {
+export const SidebarviewDetailsContentp2= (): JSX.Element => {
   return (
     <div className="flex h-screen bg-background-primary" style={{  padding: "10px" }}>
       {/* السايدبار */}

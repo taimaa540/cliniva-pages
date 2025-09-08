@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ImagePlus } from "lucide-react";
 
-export default function ImageUploader() {
-  const defaultImage = "/userLogo.png"; // رابط الصورة الافتراضية
-  const [image, setImage] = useState<string | null>(defaultImage);
+interface ImageUploaderProps {
+  initialImage?: string; // الصورة الافتراضية كـ prop
+}
+
+export default function ImageUploader({ initialImage }: ImageUploaderProps) {
+  const [image, setImage] = useState<string | null>(null);
+
+  // استخدم الصورة الممررة في البداية فقط
+  useEffect(() => {
+    if (initialImage) {
+      setImage(initialImage);
+    }
+  }, [initialImage]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -13,7 +23,7 @@ export default function ImageUploader() {
   };
 
   const handleRemoveImage = () => {
-    setImage(null); // إزالة الصورة لإظهار أيقونة رفع
+    setImage(null); // ترجع للأيقونة
   };
 
   return (
@@ -33,7 +43,7 @@ export default function ImageUploader() {
           </button>
         </div>
       ) : (
-        <label className="w-16 h-16 border border-gray-300 rounded-full flex items-center justify-center cursor-pointer">
+        <label className="w-16 h-16 border border-dashed border-gray-300 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-100">
           <ImagePlus className="w-6 h-6 text-gray-500" />
           <input
             type="file"
