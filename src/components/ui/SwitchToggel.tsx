@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "../../lib/LanguageContext";
 
 type ToggleProps = {
   checked?: boolean;
@@ -21,6 +23,11 @@ const Toggle: React.FC<ToggleProps> = ({
   const [internalChecked, setInternalChecked] = useState<boolean>(defaultChecked);
   const checked = isControlled ? (controlledChecked as boolean) : internalChecked;
 
+  // دعم الترجمة والاتجاه
+  const { t, i18n } = useTranslation();
+  const { local } = useLanguage();
+  const dir = i18n.dir(local);
+
   useEffect(() => {
     if (isControlled) setInternalChecked(controlledChecked as boolean);
   }, [controlledChecked]);
@@ -32,7 +39,7 @@ const Toggle: React.FC<ToggleProps> = ({
   }
 
   return (
-    <div className={`inline-flex items-center gap-3 ${className}`}>
+    <div className={`inline-flex items-center gap-3 ${className}`} dir={dir}>
       {/* Switch */}
       <button
         id={id}
@@ -47,30 +54,35 @@ const Toggle: React.FC<ToggleProps> = ({
             ? 'var(--secondary-dark, #065f46)' // Active
             : 'var(--background-tertiary, #e5e7eb)', // Inactive
         }}
+        dir={dir}
       >
         {/* Knob */}
-       <span
+     <span
   className={`pointer-events-none absolute left-0.4 top-0.4 inline-block h-4 w-4 transform rounded-full bg-white shadow-md ring-0 transition-transform duration-200 ease-in-out ${
-    checked ? 'translate-x-4' : 'translate-x-0'
+    checked
+      ? dir === "rtl"
+        ? "-translate-x-4"
+        : "translate-x-4"
+      : "translate-x-0"
   }`}
   aria-hidden
 />
       </button>
 
       {/* Label */}
-<span
-  style={{
-    fontFamily: 'Lato, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
-    fontWeight: 400,
-    fontStyle: 'normal',
-    fontSize: '12px',
-    lineHeight: '150%',
-    letterSpacing: '0%',
-  }}
-  className="select-none text-text-primary"
->
-  {checked ? 'Active' : 'UnActive'}
-</span>
+      <span
+        style={{
+          fontFamily: 'Lato, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+          fontWeight: 400,
+          fontStyle: 'normal',
+          fontSize: '12px',
+          lineHeight: '150%',
+          letterSpacing: '0%',
+        }}
+        className="select-none text-text-primary"
+      >
+        {checked ? t("status.active") : t("status.inactive")}
+      </span>
     </div>
   );
 };

@@ -25,7 +25,7 @@ export const EditClinicDetails = (): JSX.Element => {
 
 
   return (
-      <div className="flex w-full bg-surface-default " dir={`${local === "ar" ? "rtl" : "ltr"}`}>
+      <div className="flex w-full bg-surface-default ">
    
       <ClinicInfoSection />
       <CapacitySection  handleLanguageClick={handleLanguageClick}

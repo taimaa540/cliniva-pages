@@ -227,7 +227,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
             <div className="grid ">
               {t("Medical Clinic Details")}
           <div className="font-semibold text-[14px] text-text-primary  ">
-    {t("  Medical Facilities ")}
+    {t("Medical Facilities")}
     </div>
             </div>
           </h1>
@@ -294,8 +294,8 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
             <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M10.834 2.00004C11.0091 1.82494 11.2169 1.68605 11.4457 1.59129C11.6745 1.49653 11.9197 1.44775 12.1673 1.44775C12.4149 1.44775 12.6601 1.49653 12.8889 1.59129C13.1177 1.68605 13.3256 1.82494 13.5007 2.00004C13.6757 2.17513 13.8146 2.383 13.9094 2.61178C14.0042 2.84055 14.0529 3.08575 14.0529 3.33337C14.0529 3.58099 14.0042 3.82619 13.9094 4.05497C13.8146 4.28374 13.6757 4.49161 13.5007 4.66671L4.50065 13.6667L0.833984 14.6667L1.83398 11L10.834 2.00004Z" stroke="#FFFDFC" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
-
-              Edit
+{t("Edit")}
+              
             </Button>
           </div>
 
@@ -304,9 +304,9 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
 
 
 
-        <Card className="bg-surface-default rounded-2xl w-full mt-5 ">
+        <Card className="bg-surface-default rounded-2xl w-full mt-5 " dir={`${local === "ar" ? "rtl" : "ltr"}`}>
                     <div style={{
-            fontFamily: "Lato",
+       
             fontWeight: 600,
             fontStyle: "SemiBold",
             fontSize: "16px",
@@ -314,8 +314,8 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
             letterSpacing: "0%",
           }}
           className="text-text-accent font-bold size-16 p-5 w-56 text-start" >
-<h2>              Capacity:</h2></div>
- 
+<h2>              {t("Capacity")}:</h2></div>
+
  <div className="px-4 pb-4">
                   <div className="flex flex-col md:flex-row gap-4 md:gap-[38px]">
        {capacityData.map((item, index) => (
@@ -348,7 +348,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
        {/* Clinic Information Collapsible */}
 
 
-     <ReusableCollapsible
+     <ReusableCollapsible dir={`${local === "ar" ? "rtl" : "ltr"}`}
             title={t("Clinic Information")}
             initiallyOpen={isOpen.clinicInfo}
             onOpenChange={(open) => handleToggle("clinicInfo", open)}
@@ -361,7 +361,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
               <div className="grid grid-cols-[200px_1fr] items-start gap-2">
                 <div
                   style={{
-                    fontFamily: "Lato",
+                 
                     fontWeight: 600,
                     fontStyle: "SemiBold",
                     fontSize: "16px",
@@ -377,7 +377,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
               <div className="grid grid-cols-[200px_1fr] items-start gap-2">
                 <div
                   style={{
-                    fontFamily: "Lato",
+                   
                     fontWeight: 600,
                     fontStyle: "SemiBold",
                     fontSize: "16px",
@@ -385,11 +385,11 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                     letterSpacing: "0%",
                   }}
                 >
-                { t("        Clinic Name     ")} :
+                { t("Clinic Name")} :
                 </div>
                 <div
                   style={{
-                    fontFamily: "Lato",
+                  
                     fontWeight: 400,
                     fontStyle: "Regular",
                     fontSize: "14px",
@@ -404,7 +404,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
               <div className="grid grid-cols-[200px_1fr] items-start gap-2">
                 <div
                   style={{
-                    fontFamily: "Lato",
+                
                     fontWeight: 600,
                     fontStyle: "SemiBold",
                     fontSize: "16px",
@@ -412,13 +412,13 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                     letterSpacing: "0%",
                   }}
                 >
-                 { t("     Session Slot  ")}:
+                 { t("Session Slot")}:
                 </div>
                 <div
                   style={{
-                    fontFamily: "Lato",
+             
                     fontWeight: 400,
-                    fontStyle: "Regular",
+                    fontStyle: "SemiBold",
                     fontSize: "14px",
                     lineHeight: "125%",
                     letterSpacing: "0%",
@@ -431,7 +431,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
               <div className="grid grid-cols-[200px_1fr] items-start gap-2">
                 <div
                   style={{
-                    fontFamily: "Lato",
+                   
                     fontWeight: 600,
                     fontStyle: "SemiBold",
                     fontSize: "16px",
@@ -439,11 +439,11 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                     letterSpacing: "0%",
                   }}
                 >
-                     { t("             Services Offered    ")}:
+                     { t("Services Offered")}:
                 </div>
                 <div
                   style={{
-                    fontFamily: "Lato",
+               
                     fontWeight: 400,
                     fontStyle: "Regular",
                     fontSize: "14px",
@@ -462,7 +462,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                 <div className="grid grid-cols-[200px_1fr] items-start gap-2">
                 <div
                   style={{
-                    fontFamily: "Lato",
+                  
                     fontWeight: 600,
                     fontStyle: "SemiBold",
                     fontSize: "16px",
@@ -470,11 +470,11 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                     letterSpacing: "0%",
                   }}
                 >
-                 { t("         Year of Establishmen    ")}:
+                 { t("Year of Establishment")}:
                 </div>
                 <div
                   style={{
-                    fontFamily: "Lato",
+            
                     fontWeight: 400,
                     fontStyle: "Regular",
                     fontSize: "14px",
@@ -489,7 +489,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
               <div className="grid grid-cols-[200px_1fr] items-start gap-2">
                 <div
                   style={{
-                    fontFamily: "Lato",
+           
                     fontWeight: 600,
                     fontStyle: "SemiBold",
                     fontSize: "16px",
@@ -497,11 +497,11 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                     letterSpacing: "0%",
                   }}
                 >
-                 { t("                      Vision      ")}:
+                 { t("Vision")}:
                 </div>
                 <div
                   style={{
-                    fontFamily: "Lato",
+                  
                     fontWeight: 400,
                     fontStyle: "Regular",
                     fontSize: "14px",
@@ -516,7 +516,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
               <div className="grid grid-cols-[200px_1fr] items-start gap-2">
                 <div
                   style={{
-                    fontFamily: "Lato",
+                  
                     fontWeight: 600,
                     fontStyle: "SemiBold",
                     fontSize: "16px",
@@ -524,13 +524,13 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                     letterSpacing: "0%",
                   }}
                 >
-                     { t("                       Description       ")}:
+                     { t("Description")}:
                 </div>
                 <div
                   style={{
-                    fontFamily: "Lato",
+               
                     fontWeight: 400,
-                    fontStyle: "Regular",
+                    fontStyle: "semibold",
                     fontSize: "14px",
                     lineHeight: "125%",
                     letterSpacing: "0%",
@@ -546,13 +546,13 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
           </div>
            </div>
             <div className="mt-8 flex  items-center">
-              <div className="flex items-center gap-2.5 w-[125px]">
+              <div className="flex items-center gap-2.5 w-[135px]">
                             <CalendarIcon className="w-6 h-6" />
-                            <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
-                              Created on:
+                            <span className=" text-text-primary  font-semibold text-[16px]  ">
+                          { t("Created on")}:
                             </span>
                           </div>
-                          <span className="w-[330px] text-text-primary font-regular text-[14px] leading-[1.25] tracking-[0] font-[Lato]">
+                          <span className="w-[330px] text-text-primary font-semibold text-[14px] leading-[1.25] tracking-[0] font-[SemiBold]">
                             12 March 2023
                           </span>
                         </div>
@@ -568,7 +568,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
 
 
               {/* clinic Contact Information Collapsible */}
-        <ReusableCollapsible
+        <ReusableCollapsible dir={`${local === "ar" ? "rtl" : "ltr"}`}
             title= {t("Clinic Contact Information")}
             initiallyOpen={isOpen.contactInfo}
             onOpenChange={(open) => handleToggle("contactInfo", open)}
@@ -584,7 +584,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                         </div>
                         <div
                           style={{
-                            fontFamily: "Lato",
+                          
                             fontWeight: 600,
                             fontStyle: "SemiBold",
                             fontSize: "16px",
@@ -596,7 +596,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                         </div>
                         <div
                           style={{
-                            fontFamily: "Lato",
+                     
                             fontWeight: 400,
                             fontStyle: "Regular",
                             fontSize: "14px",
@@ -617,7 +617,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                         </div>
                         <div
                           style={{
-                            fontFamily: "Lato",
+                    
                             fontWeight: 600,
                             fontStyle: "SemiBold",
                             fontSize: "16px",
@@ -629,7 +629,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                         </div>
                         <div
                           style={{
-                            fontFamily: "Lato",
+                        
                             fontWeight: 400,
                             fontStyle: "Regular",
                             fontSize: "14px",
@@ -651,7 +651,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                         </div>
                         <div
                           style={{
-                            fontFamily: "Lato",
+                          
                             fontWeight: 600,
                             fontStyle: "SemiBold",
                             fontSize: "16px",
@@ -666,7 +666,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{
-                            fontFamily: "Lato",
+                           
                             fontWeight: 400,
                             fontStyle: "Regular",
                             fontSize: "14px",
@@ -691,7 +691,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                         </div>
                         <div
                           style={{
-                            fontFamily: "Lato",
+                          
                             fontWeight: 600,
                             fontStyle: "SemiBold",
                             fontSize: "16px",
@@ -703,7 +703,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                         </div>
                         <div
                           style={{
-                            fontFamily: "Lato",
+                          
                             fontWeight: 400,
                             fontStyle: "Regular",
                             fontSize: "14px",
@@ -725,7 +725,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                         </div>
                         <div
                           style={{
-                            fontFamily: "Lato",
+                        
                             fontWeight: 600,
                             fontStyle: "SemiBold",
                             fontSize: "16px",
@@ -737,7 +737,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                         </div>
                         <div
                           style={{
-                            fontFamily: "Lato",
+                          
                             fontWeight: 400,
                             fontStyle: "Regular",
                             fontSize: "14px",
@@ -761,7 +761,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
 
 
 
-     <ReusableCollapsible
+     <ReusableCollapsible dir={`${local === "ar" ? "rtl" : "ltr"}`}
             title= {t("Social media Accounts")}
             initiallyOpen={isOpen.social}
             onOpenChange={(open) => handleToggle("social", open)}
@@ -779,7 +779,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
 
                         <div
                           style={{
-                            fontFamily: "Lato",
+                          
                             fontWeight: 600,
                             fontStyle: "SemiBold",
                             fontSize: "16px",
@@ -788,14 +788,14 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                           }}
                           className="text-on-surface-primary"
                         >
-                          {t("  LinkedIn  ")} :
+                          {t("LinkedIn")} :
                         </div>
                         <a
                           href={socialMedia.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{
-                            fontFamily: "Lato",
+                            fontFamily: "SemiBold",
                             fontWeight: 400,
                             fontStyle: "Regular",
                             fontSize: "14px",
@@ -817,7 +817,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
 
                         <div
                           style={{
-                            fontFamily: "Lato",
+                           
                             fontWeight: 600,
                             fontStyle: "SemiBold",
                             fontSize: "16px",
@@ -826,11 +826,11 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                           }}
                           className="text-on-surface-primary"
                         >
-                          {t("     Facebook  ")}:
+                          {t("Facebook")}:
                         </div>
                         <div
                           style={{
-                            fontFamily: "Lato",
+                       
                             fontWeight: 400,
                             fontStyle: "Regular",
                             fontSize: "14px",
@@ -851,7 +851,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                         <div className="w-6 h-6 bg-[url(/subtract.svg)] bg-contain bg-no-repeat" />
                         <div
                           style={{
-                            fontFamily: "Lato",
+                            
                             fontWeight: 600,
                             fontStyle: "SemiBold",
                             fontSize: "16px",
@@ -868,7 +868,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                         </div>
                         <div
                           style={{
-                            fontFamily: "Lato",
+                        
                             fontWeight: 400,
                             fontStyle: "Regular",
                             fontSize: "14px",
@@ -888,7 +888,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                         <div className="w-6 h-6 bg-[url(/subtract.svg)] bg-contain bg-no-repeat" />
                         <div
                           style={{
-                            fontFamily: "Lato",
+                          
                             fontWeight: 600,
                             fontStyle: "SemiBold",
                             fontSize: "16px",
@@ -906,7 +906,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                         </div>
                         <div
                           style={{
-                            fontFamily: "Lato",
+                          
                             fontWeight: 400,
                             fontStyle: "Regular",
                             fontSize: "14px",
@@ -932,7 +932,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
 
     {/* Working Days Collapsible */}
 
-      <ReusableCollapsible
+      <ReusableCollapsible dir={`${local === "ar" ? "rtl" : "ltr"}`}
             title={t("Working Days")}
             initiallyOpen={isOpen.mapsLocation}
             onOpenChange={(open) => handleToggle("mapsLocation", open)}
@@ -940,14 +940,14 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
               <Table>
                 <TableHeader className="">
                   <TableRow>
-                    <TableHead className="items-start text-text-primary">
-                      Working Days
+                    <TableHead className="text-center text-text-primary">
+                      {t("Working Days")}
                     </TableHead>
                     <TableHead className="text-center text-text-primary ">
-                      Start Time
+                      {t("Start Time")}
                     </TableHead>
                     <TableHead className=" text-end text-text-primary">
-                      End Time
+                       {t("End Time")}
                     </TableHead>
                   </TableRow>
                 </TableHeader>
@@ -982,10 +982,10 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
 
 
 
-          <ReusableCollapsible
+          <ReusableCollapsible dir={`${local === "ar" ? "rtl" : "ltr"}`}
             title= {<div>      
                  <div style={{
-                fontFamily: "Lato",
+               
                 fontWeight: 600,
                 fontStyle: "SemiBold",
                 fontSize: "16px",
@@ -1088,7 +1088,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                   <div className="flex items-center justify-between p-4">
                     <div className="flex items-center gap-2.5">
                       <span className="font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">
-                        {t("                           Showing ")}
+                        {t("Showing")}
                       </span>
                       <Select defaultValue="1">
                         <SelectTrigger className="w-[43px] h-[30px] bg-secondary-light rounded-[20px] border-0 px-2 py-1.5">
@@ -1102,7 +1102,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                         </SelectContent>
                       </Select>
                       <span className="font-title-11px-regular w-40 font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">
-                        {t("out of 14 ")}
+                        {t("out of 14")}
                       </span>
                     </div>
 
@@ -1253,7 +1253,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
  
 
         {/* Maps Location Collapsible */}
-          <ReusableCollapsible
+          <ReusableCollapsible dir={`${local === "ar" ? "rtl" : "ltr"}`}
             title={t("Maps Location")}
             initiallyOpen={isOpen.mapsLocation}
             onOpenChange={(open) => handleToggle("mapsLocation", open)}

@@ -56,6 +56,7 @@ import TimeRangePicker from '../../../../CommonComponents/timeRangePicker';
 import CustomCheckbox from '../../../../CommonComponents/customCheckbox';
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import DatePicker from "../../../../../components/ui/DatePicker";
 const contactInfo = {
   phoneNumbers: "026 540589898",
   email: "info@medcaregroup.com",
@@ -135,6 +136,7 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
 
     const [isOpen, setIsOpen] = useState({
       clinicInfo: true,
+      contactInfo:true,
       Capacity: true,
       departments:true,
       workingDays: true,
@@ -166,10 +168,10 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
        
           <div className="flex flex-col">
             <h1 className="font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] text-on-surface-primary text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]">
-              {t("        Medical Facilities    ")}
+              {t("Medical Facilities")}
             </h1>
             <p className="font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
-              {t("        Edit Clinic Details   ")}
+              {t("Edit Clinic Details")}
             </p>
           </div>
         </div>
@@ -232,38 +234,36 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
 
 
 
-          <div className="flex items-start justify-between w-full mb-4">
+          <div className="flex items-start justify-between w-full mb-4"dir={local === 'ar' ? 'rtl' : 'ltr'}>
             <Badge
               variant="secondary"
               className="bg-secondary-light text-secondary-dark rounded-[20px] px-4 py-2.5"
             >
-              {t("    Active    ")}
+              {t("Active")}
             </Badge>
 
-            <div className="flex items-end justify-end gap-4">
-              <Button
-                variant="outline"
-                className="w-[200px] h-10 bg-white rounded-[20px] border-2 border-[#e4e2dd] px-4 py-2.5"
-              >
-                {t("    Cancel    ")}
-              </Button>
-              <Button className="w-[200px] h-10 bg-secondary-dark text-white rounded-[20px] px-4 py-2.5">
+               <div className="flex gap-[16px] items-end justify-end ">
+              <button className=" w-[200px] h-[40px] rounded-[20px] border border-border-light bg-surface-primary  font-lato font-medium text-sm leading-[100%] tracking-[0] text-text-primary">
+                {t("Cancel")}
+              </button>
+              <button className=" w-[200px] h-[40px] rounded-[20px] bg-secondary-dark font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
                 {t("Save")}
-              </Button>
-            </div>
+              </button>
+        
+          </div>
           </div>
 
 
 
-        <ReusableCollapsible
-            title= {t("     Clinic Info     ")}
+        <ReusableCollapsible  dir={`${local === "ar" ? "rtl" : "ltr"}`}
+            title= {t("Clinic Info")}
             initiallyOpen={isOpen.clinicInfo}
             onOpenChange={(open) => handleToggle("clinicInfo", open)}
             content={<div className="p-4 pt-0">       <div className="grid grid-cols-2 gap-8">
                     <div className="space-y-4">
                       <div className="flex items-center gap-8">
                         <label className="w-40 [font-family:'Lato',Helvetica]  text-text-primary font-semibold text-base">
-                          {t("     Clinic Name     ")}
+                          {t("Clinic Name")}
                         </label>
                         <Input
                           defaultValue="Al Noor Clinic"
@@ -271,23 +271,13 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
                         />
                       </div>
 
-                      <div className="flex items-center gap-8">
-                        <label className="w-40 [font-family:'Lato',Helvetica]  text-text-primary font-semibold text-gray-700 text-base">
-                          {t("      Year of Establishment     ")}
-                        </label>
-                        <div className="relative w-[360px]">
-                          {/* حقل الإدخال */}
-                        <DateInput 
-                        />
-                          
-                        </div>
-                      </div>
+                    <DatePicker/>
                     </div>
 
 
                     <div className="flex  gap-8 items-center">
                       <div className="w-40 text-text-primary font-semibold ">
-                        {t("       Description        ")}:
+                        {t("Description")}:
                       </div>
                       <div className="relative  w-[360px]">
                         <Textarea
@@ -305,7 +295,7 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
                   <div className="grid grid-cols-2 gap-8 mt-8 items-center">
                     <div className="flex items-center gap-8">
                       <label className="w-40  h-12 [font-family:'Lato',Helvetica] text-text-primary  font-semibold text-base">
-                        {t("     PIC Name        ")}
+                        {t("PIC Name")}
                       </label>
 <Select>
   <SelectTrigger className="w-[360px] h-12 bg-background-secondary  border-border-light">
@@ -329,7 +319,7 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
 
                   <div className="flex items-center gap-8 mt-4">
                     <label className="w-40 [font-family:'Lato',Helvetica] text-text-primary font-semibold  text-base">
-                      {t("                     Services Offered      ")}
+                      {t("Services Offered")}
                     </label>
                     <Input
                       defaultValue="General Consultation"
@@ -347,14 +337,14 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
 
 
 
-      <ReusableCollapsible
-            title=  {t(" Capacity      ")}
+      <ReusableCollapsible  dir={`${local === "ar" ? "rtl" : "ltr"}`}
+            title=  {t("Capacity")}
             initiallyOpen={isOpen.Capacity}
             onOpenChange={(open) => handleToggle("Capacity", open)}
             content={<div className="p-4 pt-0">         <div className="grid grid-cols-3 gap-4">
                     <div className="flex items-center justify-between">
                       <label className="font-title-16px-semibold text-text-primary  font-[number:var(--title-16px-semibold-font-weight)]  text-[length:var(--title-16px-semibold-font-size)]">
-                        {t("                      Staff Capacity      ")}
+                        {t("Staff Capacity")}
                       </label>
                       <Input
                         defaultValue="2150"
@@ -364,7 +354,7 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
 
                     <div className="flex items-center justify-between">
                       <label className="font-title-16px-semibold  text-text-primary font-semibold  text-[length:var(--title-16px-semibold-font-size)]">
-                        {t("                            Doctors Capacity      ")}
+                        {t("Doctors Capacity")}
                       </label>
                       <Input
                         defaultValue="1780"
@@ -374,7 +364,7 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
 
                     <div className="flex items-center justify-between">
                       <label className="font-title-16px-semibold  text-text-primary font-semibold  text-[length:var(--title-16px-semibold-font-size)]">
-                        {t("             Patients Capacity      ")}
+                        {t("Patients Capacity")}
                       </label>
                       <Input
                         defaultValue="250"
@@ -397,7 +387,7 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
 
 
 
-         <ReusableCollapsible
+         <ReusableCollapsible  dir={`${local === "ar" ? "rtl" : "ltr"}`}
             title=       {t("Department")}
             initiallyOpen={isOpen.departments}
             onOpenChange={(open) => handleToggle("departments", open)}
@@ -420,7 +410,7 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
 
                     <div className="mb-3">
                       <div className="p-3">
-                        Description
+                            {t('Description')}
                       </div>
                       <div className="w-[656px]">
                         Al Noor Clinic is a multi-specialty clinic offering high-quality care with modern facilities
@@ -438,8 +428,8 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
 
 
 
-         <ReusableCollapsible
-            title=       {t("            Contact Information     ")}
+         <ReusableCollapsible  dir={`${local === "ar" ? "rtl" : "ltr"}`}
+            title=       {t("Contact Information")}
             initiallyOpen={isOpen.contactInfo}
             onOpenChange={(open) => handleToggle("contactInfo", open)}
             content={<div className="flex flex-col gap-6">       <div className="flex  gap-10 ">
@@ -459,7 +449,7 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
                             </svg></div>
 
                             <div className="text-text-primary font-semibold">
-                              {t("            Phone Number     ")}
+                              {t("Phone Number")}
                             </div>
                           </div>
 
@@ -507,7 +497,7 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
                         </div>
 
                         <span className="text-text-primary font-semibold">
-                          {t("         Email      ")}:
+                          {t("Email")}:
                         </span>
 
                       </div>
@@ -528,8 +518,8 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
 
 
    {/* Working Days Collapsible */}
-          <ReusableCollapsible
-            title={t("Working Days:")}
+          <ReusableCollapsible  dir={`${local === "ar" ? "rtl" : "ltr"}`}
+            title={t("Working Days")}
             initiallyOpen={isOpen.workingDays}
             onOpenChange={(open) => handleToggle("workingDays", open)}
             content={<div><div className="flex flex-col gap-4 ">
@@ -574,33 +564,33 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
 
           {/* Doctors & Staff Collapsible */}
 
-          <ReusableCollapsible
+          <ReusableCollapsible  dir={`${local === "ar" ? "rtl" : "ltr"}`}
             title={<div>
               <div className="flex items-center gap-4">
                 <h2 className="font-title-16px-bold   w-96 font-[number:var(--title-16px-bold-font-weight)] text-primary-dark text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] [font-style:var(--title-16px-bold-font-style)]">
-                  {t("Doctors ")}
+                  {t("Doctors")}
                 </h2>
                 <h2 className="font-title-16px-bold   w-96 font-[number:var(--title-16px-bold-font-weight)] text-primary-dark text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] [font-style:var(--title-16px-bold-font-style)]">
-                  {t("& ")}
+                  {t("&")}
                 </h2>
                 <h2 className="font-title-16px-bold   w-96 font-[number:var(--title-16px-bold-font-weight)] text-primary-dark text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] [font-style:var(--title-16px-bold-font-style)]">
                   {t("Staff")}
                 </h2>
                 <div className="flex gap-2">
                   <Badge className="bg-secondary-light text-on-surface-primary rounded-[20px] px-2.5 py-1.5">
-                    {t("                     All ")}
+                    {t("All")}
                   </Badge>
                   <Badge
                     variant="outline"
                     className="bg-bg text-on-surface-primary rounded-[20px] px-2.5 py-1.5"
                   >
-                    {t("                     Doctors ")}
+                    {t("Doctors")}
                   </Badge>
                   <Badge
                     variant="outline"
                     className="bg-bg text-on-surface-primary rounded-[20px] px-2.5 py-1.5"
                   >
-                    {t("                     Staff ")}
+                    {t("Staff")}
                   </Badge>
                 </div>
               </div></div>}
@@ -610,20 +600,20 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
               <TableHeader className="">
                 <TableRow>
                   <TableHead className="w-[58px] text-center  text-text-praimary  font-semibold">
-                    {t("                     No ")}
+                    {t("No")}
                   </TableHead>
                   <TableHead className="text-center w-[278px] text-text-praimary  font-semibold">
-                    {t("                      User-ID ")}
+                    {t("User-ID")}
                   </TableHead>
                   <TableHead className="text-center  text-text-praimary  font-semibold">
-                    {t("                      Name ")}
+                    {t("Name")}
                   </TableHead>
                 
                   <TableHead className="text-center  text-text-praimary  font-semibold">
-                    {t("                     User Type ")}
+                    {t("User Type")}
                   </TableHead>
                   <TableHead className="text-center  text-text-praimary  font-semibold">
-                    {t("                     Status ")}
+                    {t("Status")}
                   </TableHead>
                 </TableRow>
               </TableHeader>
@@ -663,7 +653,7 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
                       <div className="flex items-center justify-center gap-2">
 
                         <Badge className="bg-secondary-light text-secondary-dark rounded-[20px] w-[92px] y-[24px] justify-center">
-                          Active
+                         {t("Active")}
                         </Badge>
 
 
@@ -685,7 +675,7 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
               <div className="flex items-center justify-between p-4">
                 <div className="flex items-center gap-2.5">
                   <span className="font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">
-                    {t("                           Showing ")}
+                    {t("Showing")}
                   </span>
                   <Select defaultValue="1">
                     <SelectTrigger className="w-auto bg-secondary-light rounded-[20px] border-0 px-2 py-1.5">
@@ -696,7 +686,7 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
                     </SelectContent>
                   </Select>
                   <span className="font-title-11px-regular w-96 font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">
-                    {t("                             out of 14 ")}
+                    {t("out of 14")}
                   </span>
                 </div>
 
@@ -845,7 +835,7 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
        
 
           {/* Maps Location Collapsible */}
-          <ReusableCollapsible
+          <ReusableCollapsible  dir={`${local === "ar" ? "rtl" : "ltr"}`}
             title={t("Maps Location")}
             initiallyOpen={isOpen.mapsLocation}
             onOpenChange={(open) => handleToggle("mapsLocation", open)}

@@ -66,6 +66,8 @@ import {
   UsersIcon,
 } from "lucide-react";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import DatePicker from "../../../../../components/ui/DatePicker";
+
 const complexInformation = {
   name: "AlTadawi Medical Complex",
   description:
@@ -350,29 +352,18 @@ export const MedicalDetailsSection = ({ local, dark, handelDarkClick, handleLang
       <Card className="flex flex-col h-auto items-start gap-6 p-5 mt-[10px] bg-background-tertiary relative self-stretch w-full rounded-2xl overflow-hidden">
 
         <CardContent className="p-0 w-full overflow-y-auto gap-5 h-auto">
-          <div className="flex justify-between items-center w-full">
+          <div className="flex justify-between items-center w-full" dir={local === 'ar' ? 'rtl' : 'ltr'}>
             <Toggle />
             <div className=" items-center flex justify-end gap-4 relative flex-[0_0_auto] mt-5  ">
-              <Button
-                variant="outline"
-                className="flex rounded-[20px] w-[200px] items-center h-10 justify-center px-4 py-2.5 relative bg-background-tertiary -[20px] border-2 border-solid- border-light"
-              >
-                <div className="flex w-[82px] items-center justify-center gap-1 relative">
-                  <div className="inline-flex h-5 items-center gap-2.5 px-0 py-0.5 relative flex-[0_0_auto]">
-                    <div className="font-[number:var(--btn-14px-medium-font-weight)] text-on-surface-primary text-[length:var(--btn-14px-medium-font-size)] leading-[var(--btn-14px-medium-line-height)] relative w-fit font-btn-14px-medium text-center tracking-[var(--btn-14px-medium-letter-spacing)] whitespace-nowrap [font-style:var(--btn-14px-medium-font-style)]">
-                      {t("  Cancel")}
-                    </div>
-                  </div>
-                </div>
-              </Button>
-
-              <Button variant="outline" className="flex w-[200px] h-10 items-center  justify-center gap-1 pl-4 pr-3.5 py-2.5 relative bg-secondary-dark rounded-[20px] ">
-                <div className="inline-flex items-center  gap-2.5 p-0.5 relative flex-[0_0_auto] ">
-                  <div className="mt-[-1.00px] font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] leading-[var(--btn-14px-medium-line-height)] relative w-fit font-btn-14px-medium text-center tracking-[var(--btn-14px-medium-letter-spacing)] whitespace-nowrap [font-style:var(--btn-14px-medium-font-style)]">
-                    {t("  Save")}
-                  </div>
-                </div>
-              </Button>
+    <div className="flex gap-[16px] justify-end " >
+              <button className=" w-[200px] h-[40px] rounded-[20px] border border-border-light bg-surface-primary  font-lato font-medium text-sm leading-[100%] tracking-[0] text-text-primary">
+                {t("Cancel")}
+              </button>
+              <button className=" w-[200px] h-[40px] rounded-[20px] bg-secondary-dark font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
+                {t("Save")}
+              </button>
+        
+          </div>
             </div>
           </div>
 
@@ -384,7 +375,7 @@ export const MedicalDetailsSection = ({ local, dark, handelDarkClick, handleLang
 
 
 
-        <Card className="bg-surface-default rounded-2xl w-full mt-5 ">
+        <Card className="bg-surface-default rounded-2xl w-full mt-5 "   dir={local === 'ar' ? 'rtl' : 'ltr'}>
                     <div style={{
             fontFamily: "Lato",
             fontWeight: 600,
@@ -424,15 +415,15 @@ export const MedicalDetailsSection = ({ local, dark, handelDarkClick, handleLang
         </Card>
 
 
-        <ReusableCollapsible
-            title=   {t("   Complax Information")}
+        <ReusableCollapsible   dir={local === 'ar' ? 'rtl' : 'ltr'}
+            title=   {t("Complax Information")}
             initiallyOpen={isOpen.mapsLocation}
             onOpenChange={(open) => handleToggle("mapsLocation", open)}
             content={<div className="flex flex-row items-center justify-between">         <div className="flex gap-x-10 flex-1">
                     <div className="grid gap-y-7">
                       <div className="flex items-center gap-2">
                         <label className="w-[162px] text-text-primary font-semibold   text-[length:var(--title-16px-semibold-font-size)] tracking-[var(--title-16px-semibold-letter-spacing)] leading-[var(--title-16px-semibold-line-height)] [font-style:var(--title-16px-semibold-font-style)]">
-                          {t("        Complex Name")}:
+                          {t("Complex Name")}:
                         </label>
                         <Input
                           defaultValue={complexInformation.name}
@@ -442,7 +433,7 @@ export const MedicalDetailsSection = ({ local, dark, handelDarkClick, handleLang
 
                       <div className="flex items-start gap-2">
                         <div className="w-[162px] text-text-primary font-semibold ">
-                          {t("             Description")}      :
+                          {t("Description")}      :
                         </div>
                         <div className="relative  w-[350px]">
                           <Textarea
@@ -454,16 +445,16 @@ export const MedicalDetailsSection = ({ local, dark, handelDarkClick, handleLang
                       </div>
                     </div>
                     <div className="grid gap-5">
-                      <div className="flex items-center gap-2">
-                        <label className="w-[162px]  text-text-primary font-semibold">
-                          {t("              Establishment Year")}:
+                      <div className="flex items-center">
+                        <label className="  text-text-primary font-semibold">
+                         
                         </label>
-                      <DateInput/>
+                      <DatePicker/>
                       </div>
 
                       <div className="flex items-center gap-2">
-                        <label className="w-[162px]  text-text-primary font-semibold">
-                          {t("             PIC")}:
+                        <label className="w-[182px]  text-text-primary font-semibold">
+                          {t("PIC")}:
                         </label>
                         <Input
                           defaultValue={complexInformation.pic}
@@ -481,21 +472,21 @@ export const MedicalDetailsSection = ({ local, dark, handelDarkClick, handleLang
 
 
 
-          <ReusableCollapsible
-            title= { t("             Department List")}
+          <ReusableCollapsible   dir={local === 'ar' ? 'rtl' : 'ltr'}
+            title= { t("Department List")}
             initiallyOpen={isOpen.departments }
             onOpenChange={(open) => handleToggle("departments", open)}
             content={<div className="p-0">    <Table className="table-fixed w-full border-collapse">
           <TableHeader className="">
             <TableRow>
               <TableHead className="w-[10%]   text-text-praimary  font-semibold  text-center">
-                  { t("             No")}
+                  { t("No")}
               </TableHead>
-              <TableHead className="w-[40%] text-center    text-text-praimary  font-semiboldd">
-                 { t("             Department Name")}
+              <TableHead className="w-[40%] text-center    text-text-praimary  font-semibold">
+                 { t("Department Name")}
               </TableHead>
-              <TableHead className="w-[50%] text-center    text-text-praimary  font-semibold ">
-                     { t("             Description")}
+              <TableHead className="w-[50%] text-center    text-text-praimary  font-semibold">
+                     { t("Description")}
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -558,8 +549,8 @@ export const MedicalDetailsSection = ({ local, dark, handelDarkClick, handleLang
 
 
 
-     <ReusableCollapsible
-            title=   { t("                Contact Information ")}
+     <ReusableCollapsible   dir={local === 'ar' ? 'rtl' : 'ltr'}
+            title=   { t("Contact Information")}
             initiallyOpen={isOpen.contactInfo}
             onOpenChange={(open) => handleToggle("contactInfo", open)}
             content={<div className="flex flex-col gap-6 p-5">    <div className="flex ">
@@ -686,30 +677,30 @@ export const MedicalDetailsSection = ({ local, dark, handelDarkClick, handleLang
 
 
 
-         <ReusableCollapsible
-            title=  { t("  Linked Clinics ")}
+         <ReusableCollapsible   dir={local === 'ar' ? 'rtl' : 'ltr'}
+            title=  { t("Linked Clinics")}
             initiallyOpen={isOpen.mapsLocation}
             onOpenChange={(open) => handleToggle("mapsLocation", open)}
             content={<div className="p-0">      <Table>
               <TableHeader className="">
                 <TableRow>
                   <TableHead className="w-[58px] text-text-primary text-center font-semibold">
-              { t("                   NO ")}
+              { t("NO")}
                   </TableHead>
-                  <TableHead className="text-center  text-text-primary font-semiboldI">
-                       { t("                   Name ")}
+                  <TableHead className="text-center  text-text-primary font-semibold">
+                       { t("Name")}
                   </TableHead>
-                  <TableHead className="text-center  text-text-praimary  font-semibold">
-                     { t("                   PIC ")}
+                  <TableHead className="text-center  text-text-primary  font-semibold">
+                     { t("PIC")}
                   </TableHead>
-                  <TableHead className="w-[225px] text-center  text-text-praimary  font-semibold">
-                    { t("                    Scheduled Appointments Count ")}
+                  <TableHead className="w-[225px] text-center  text-text-primary  font-semibold">
+                    { t("Scheduled Appointments Count")}
                   </TableHead>
-                  <TableHead className="text-center  text-text-praimary  font-semibold">
-                     { t("                   Doctors ")}
+                  <TableHead className="text-center  text-text-primary  font-semibold">
+                     { t("Doctors")}
                   </TableHead>
-                  <TableHead className="text-center  text-text-praimary  font-semibold">
-                       { t("                   Status ")}
+                  <TableHead className="text-center  text-text-primary  font-semibold">
+                       { t("Status")}
                   </TableHead>
                 </TableRow>
               </TableHeader>
@@ -757,7 +748,7 @@ export const MedicalDetailsSection = ({ local, dark, handelDarkClick, handleLang
           <div className="flex items-center justify-between p-4">
               <div className="flex items-center gap-2.5"> 
                 <span className="font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">
-                    { t("                   Showing ")}
+                    { t("Showing")}
                 </span>
                 <Select defaultValue="1">
                   <SelectTrigger className="w-auto bg-secondary-light rounded-[20px] border-0 px-2 py-1.5">
@@ -768,7 +759,7 @@ export const MedicalDetailsSection = ({ local, dark, handelDarkClick, handleLang
                   </SelectContent>
                 </Select>
                 <span className="font-title-11px-regular w-96 font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">
-                   { t("                    out of 14 ")}
+                   { t("out of 14")}
                 </span>
               </div>
               
@@ -939,7 +930,7 @@ export const MedicalDetailsSection = ({ local, dark, handelDarkClick, handleLang
 
 
 
-          <ReusableCollapsible
+          <ReusableCollapsible   dir={local === 'ar' ? 'rtl' : 'ltr'}
             title={<div>
               <div className="flex items-center gap-4">
                 <h2 className="font-title-16px-bold   w-96 font-[number:var(--title-16px-bold-font-weight)] text-primary-dark text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] [font-style:var(--title-16px-bold-font-style)]">
@@ -953,20 +944,20 @@ export const MedicalDetailsSection = ({ local, dark, handelDarkClick, handleLang
                 </h2>
                 <div className="flex gap-2">
                   <Badge className="bg-secondary-light text-on-surface-primary rounded-[20px] px-2.5 py-1.5">
-                    {t("                     All ")}
+                    {t("All")}
                   </Badge>
                   <Badge
                     variant="outline"
                     className="bg-bg text-on-surface-primary rounded-[20px] px-2.5 py-1.5"
                   >
-                    {t("                     Doctors ")}
+                    {t("Doctors")}
                   </Badge>
                   <Badge
                     variant="outline"
                     className="bg-bg text-on-surface-primary rounded-[20px] px-2.5 py-1.5"
                   >
-                    {t("                     Staff ")}
-                  </Badge>
+                    {t("Staff")}
+                  </Badge>               
                 </div>
               </div></div>}
             initiallyOpen={isOpen.doctorsStaff}
@@ -974,23 +965,23 @@ export const MedicalDetailsSection = ({ local, dark, handelDarkClick, handleLang
             content={<div> <Table>
               <TableHeader className="">
                 <TableRow>
-                  <TableHead className="w-[58px] text-left  text-text-praimary  font-semibold">
-                    {t("                     Number ")}
+                  <TableHead className="w-[58px] text-left  text-text-primary  font-semibold">
+                    {t("Number")}
                   </TableHead>
                   <TableHead className="text-center  text-text-praimary  font-semibold">
-                    {t("                      User-ID ")}
+                    {t(" User-ID")}
+                  </TableHead>
+                  <TableHead className="text-center  text-text-primary  font-semibold">
+                    {t("Name")}
+                  </TableHead>
+                  <TableHead className="w-[225px] text-center  text-text-primary  font-semibold">
+                    {t("Clinic")}
                   </TableHead>
                   <TableHead className="text-center  text-text-praimary  font-semibold">
-                    {t("                      Name ")}
-                  </TableHead>
-                  <TableHead className="w-[225px] text-center  text-text-praimary  font-semibold">
-                    {t("                      Clinic ")}
+                    {t("User Type")}
                   </TableHead>
                   <TableHead className="text-center  text-text-praimary  font-semibold">
-                    {t("                     User Type ")}
-                  </TableHead>
-                  <TableHead className="text-center  text-text-praimary  font-semibold">
-                    {t("                     Status ")}
+                    {t("Status")}
                   </TableHead>
                 </TableRow>
               </TableHeader>
@@ -1215,8 +1206,8 @@ export const MedicalDetailsSection = ({ local, dark, handelDarkClick, handleLang
 
 
       {/* Working Days Collapsible */}
-          <ReusableCollapsible
-            title={t("Working Days:")}
+          <ReusableCollapsible   dir={local === 'ar' ? 'rtl' : 'ltr'}
+            title={t("Working Days")}
             initiallyOpen={isOpen.workingDays}
             onOpenChange={(open) => handleToggle("workingDays", open)}
             content={<div><div className="flex flex-col gap-4 ">
@@ -1261,7 +1252,7 @@ export const MedicalDetailsSection = ({ local, dark, handelDarkClick, handleLang
 
 
         {/* Maps Location Collapsible */}
-          <ReusableCollapsible
+          <ReusableCollapsible   dir={local === 'ar' ? 'rtl' : 'ltr'}
             title={t("Maps Location")}
             initiallyOpen={isOpen.mapsLocation}
             onOpenChange={(open) => handleToggle("mapsLocation", open)}

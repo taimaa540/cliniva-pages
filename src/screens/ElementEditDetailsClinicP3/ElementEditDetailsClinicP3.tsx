@@ -24,7 +24,7 @@ export const ElementEditeDetalisCinicP3 = (): JSX.Element => {
   };
 
   return (
-    <div className="flex w-full bg-surface-default " dir={`${local === "ar" ? "rtl" : "ltr"}`}>
+    <div className="flex w-full bg-surface-default " >
       <SidebarEditDetails />
       <ContentEditDetails handleLanguageClick={handleLanguageClick}
         local={local}

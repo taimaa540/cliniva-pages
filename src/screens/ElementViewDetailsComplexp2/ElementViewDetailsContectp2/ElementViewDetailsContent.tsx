@@ -450,12 +450,12 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
         <CardContent className="p-0 w-full overflow-y-auto gap-5 h-auto">
 
 
-          <div className=" items-center flex justify-end gap-4 relative flex-[0_0_auto]  ">
+          <div className=" items-center flex justify-end gap-4 relative flex-[0_0_auto]  "dir={`${local === "ar" ? "rtl" : "ltr"}`}>
             <Button className="w-[200px] rounded-[20px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
            <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M10.834 2.00004C11.0091 1.82494 11.2169 1.68605 11.4457 1.59129C11.6745 1.49653 11.9197 1.44775 12.1673 1.44775C12.4149 1.44775 12.6601 1.49653 12.8889 1.59129C13.1177 1.68605 13.3256 1.82494 13.5007 2.00004C13.6757 2.17513 13.8146 2.383 13.9094 2.61178C14.0042 2.84055 14.0529 3.08575 14.0529 3.33337C14.0529 3.58099 14.0042 3.82619 13.9094 4.05497C13.8146 4.28374 13.6757 4.49161 13.5007 4.66671L4.50065 13.6667L0.833984 14.6667L1.83398 11L10.834 2.00004Z" stroke="#FFFDFC" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
-   Edit
+    {t("Edit")}
             </Button>
           </div>
 
@@ -471,8 +471,8 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
 
   
 
-        <Card className="bg-surface-default rounded-2xl w-full mt-5 ">
-                    <div style={{
+        <Card className="bg-surface-default rounded-2xl w-full mt-5 " dir={`${local === "ar" ? "rtl" : "ltr"}`}>
+          <div style={{
             fontFamily: "Lato",
             fontWeight: 600,
             fontStyle: "SemiBold",
@@ -481,7 +481,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
             letterSpacing: "0%",
           }}
           className="text-text-accent font-bold size-16 p-5 w-56 text-start" >
-<h2>              Capacity:</h2></div>
+<h2>               {t("Capacity")}:</h2></div>
  
  <div className="px-4 pb-4">
                   <div className="flex flex-col md:flex-row gap-4 md:gap-[38px]">
@@ -512,13 +512,13 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
 
 
 
-          <Collapsible open={collapsibleStates.companyInfo}
+          <Collapsible open={collapsibleStates.companyInfo} dir={`${local === "ar" ? "rtl" : "ltr"}`}
             onOpenChange={() => toggleCollapsible('companyInfo')}>
             <Card className="bg-surface-default rounded-2xl mt-5">
               <CardContent className="p-4">
                 <CollapsibleTrigger className="flex items-center justify-between w-full  space-y-6  mb-7">
                   <h3 className="font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-primary-dark text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] [font-style:var(--title-16px-bold-font-style)]">
-                    Complex Information
+                     {t("Complex Information")}
                   </h3>
                   {collapsibleStates.companyInfo ? (
                     <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -533,7 +533,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                     <div className="space-y-6">
                       <div className="flex gap-2">
                         <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
-                          Complex Name
+                              {t("Complex Name")}
                         </span>
 
                         <span className="font-title-14px-regular text-text-primary font-[number:var(--title-14px-regular-font-weight)] text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
@@ -542,7 +542,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                       </div>
                       <div className="flex gap-2">
                         <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
-                          Description
+                          {t("Description")}
                         </span>
                         <span className="w-[330px] font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-text-primary  text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
                           A modern multi-specialty healthcare complex offering
@@ -559,7 +559,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                           </svg></div>
 
                         <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-text-primary  text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
-                          Created on:
+                            {t("Created on")}:
                         </span>
                         <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-text-primary  text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
                           12 March 2023
@@ -569,7 +569,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                     <div className="space-y-4">
                       <div className="flex gap-2">
                         <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
-                          Year of Establishment
+                        {t("Year of Establishment")}
                         </span>
 
                         <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-text-primary  text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
@@ -579,7 +579,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                       <div className="flex gap-2">
 
                         <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
-                          PIC
+                          {t("PIC")}
                         </span>
                         <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-text-primary  text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
                           Hessa AlMutairi
@@ -596,13 +596,13 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
 
 
 
-          <Collapsible open={collapsibleStates.contactInfo}
+          <Collapsible open={collapsibleStates.contactInfo} dir={`${local === "ar" ? "rtl" : "ltr"}`}
             onOpenChange={() => toggleCollapsible('contactInfo')}>
             <Card className="bg-surface-default rounded-2xl mt-8 p-2 ">
               <CardContent className="p-4">
                 <CollapsibleTrigger className="flex items-center justify-between w-full mb-8">
                   <h3 className="font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-primary-dark text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] [font-style:var(--title-16px-bold-font-style)]">
-                    Complex Contact Information
+                      {t("Complex Contact Information")}
                   </h3>
                   {collapsibleStates.contactInfo ? (
                     <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -622,7 +622,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
 
 
                         <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
-                          Phone Numbers:
+                            {t("Phone Numbers")}: 
                         </span>
                         <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
                           +966 55 123 4567, +966 11 987 6543
@@ -649,7 +649,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                         {/* النصوص */}
                         <div className="flex items-center gap-3">
                           <span className="w-[160px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
-                            Physical Address:
+                          {t("Physical Address")}:
                           </span>
 
                           <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
@@ -667,7 +667,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                           </svg></div>
 
                         <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
-                          Email:
+                            {t("Email")}:
                         </span>
 
                         <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
@@ -683,7 +683,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
 
 
                         <span className="w-[162px] font-semibold text-text-primary text-[16px] leading-[124%] tracking-[0] font-lato">
-                          Maps Location:
+                            {t("Maps Location")}:
                         </span>
                         <a
                           href="https://maps.google.com/?q=24.7136,46.6753"
@@ -717,7 +717,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
 
 
 
-          <Collapsible open={collapsibleStates.Department}
+          <Collapsible open={collapsibleStates.Department} dir={`${local === "ar" ? "rtl" : "ltr"}`}
             onOpenChange={() => toggleCollapsible('Department')}
             className="w-full mt-5">
             <Card className="bg-surface-default rounded-2xl">
@@ -732,7 +732,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                     letterSpacing: "0%",
                   }}
                     className="text-text-accent font-bold size-16  w-56 text-start">
-                    <h2>          Department List:</h2></div>
+                    <h2>        {t("Department List")}:</h2></div>
                   {collapsibleStates.Department ? (
                     <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fillRule="evenodd" clipRule="evenodd" d="M17.7071 9.70711C17.3166 10.0976 16.6834 10.0976 16.2929 9.70711L9 2.41421L1.70711 9.70711C1.31658 10.0976 0.683416 10.0976 0.292892 9.70711C-0.0976315 9.31658 -0.0976315 8.68342 0.292892 8.29289L8.29289 0.292893C8.68342 -0.0976315 9.31658 -0.0976315 9.70711 0.292893L17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711Z" fill="#414651" />
@@ -750,13 +750,13 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                       <TableHeader className="">
                         <TableRow>
                           <TableHead className="w-[10%] p-2  text-text-praimary  font-semibold  text-center">
-                            No
+                             {t("No")}
                           </TableHead>
                           <TableHead className="w-[50%]  p-2 text-text-praimary  font-semibold  text-center">
-                            Department Name
+                             {t("Department Name")}
                           </TableHead>
                           <TableHead className="w-[40%] p-2  text-text-praimary  font-semibold  text-center">
-                            Description
+                               {t("Description")}
                           </TableHead>
                         </TableRow>
                       </TableHeader>
@@ -788,7 +788,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
 
 
 
-          <Collapsible open={collapsibleStates.linked}
+          <Collapsible open={collapsibleStates.linked} dir={`${local === "ar" ? "rtl" : "ltr"}`}
             onOpenChange={() => toggleCollapsible('linked')}
             className="w-full mt-5">
             <Card className="bg-surface-default rounded-2xl">
@@ -803,7 +803,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                     letterSpacing: "0%",
                   }}
                     className="text-text-accent font-bold size-16 w-56 text-start">
-                    <h2>          linked Clinics:</h2></div>
+                    <h2>            {t("linked Clinics")}:</h2></div>
                   {collapsibleStates.linked ? (
                     <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fillRule="evenodd" clipRule="evenodd" d="M17.7071 9.70711C17.3166 10.0976 16.6834 10.0976 16.2929 9.70711L9 2.41421L1.70711 9.70711C1.31658 10.0976 0.683416 10.0976 0.292892 9.70711C-0.0976315 9.31658 -0.0976315 8.68342 0.292892 8.29289L8.29289 0.292893C8.68342 -0.0976315 9.31658 -0.0976315 9.70711 0.292893L17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711Z" fill="#414651" />
@@ -821,22 +821,22 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                       <TableHeader className="">
                         <TableRow>
                           <TableHead className=" text-text-primary pl-3 text-center  font-semibold">
-                            NO
+                             {t("NO")}
                           </TableHead>
                           <TableHead className="text-center  text-text-primary font-semiboldI">
-                            Name
+                             {t("Name")}
                           </TableHead>
                           <TableHead className="text-center  text-text-praimary  font-semibold">
-                            Pic
+                             {t("Pic")}
                           </TableHead>
                           <TableHead className="text-center  text-text-praimary  font-semibold">
-                            appointments
+                              {t("appointments")}
                           </TableHead>
                           <TableHead className="text-center  text-text-praimary  font-semibold">
-                            doctors
+                              {t("doctors")}
                           </TableHead>
-                          <TableHead className="text-center  text-text-praimary  font-semibold">
-                            status
+                        <TableHead className="text-center  text-text-praimary  font-semibold">
+                              {t("Status")}
                           </TableHead>
                         </TableRow>
                       </TableHeader>
@@ -861,7 +861,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
 
                             <TableCell className="text-center text-text-primary font-title-14px-semibold">
                               <Badge className="bg-secondary-light text-secondary-dark rounded-[20px] w-[92px] y-[24px]  items-start">
-                                Active
+                                    {t("Active")}
                               </Badge>            </TableCell>
 
 
@@ -876,7 +876,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
               <div className="flex items-center justify-between p-4">
                 <div className="flex items-center gap-2.5">
                   <span className="font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">
-                    {t("                           Showing ")}
+                    {t("Showing")}
                   </span>
                   <Select defaultValue="1">
                     <SelectTrigger className="w-auto bg-secondary-light rounded-[20px] border-0 px-2 py-1.5">
@@ -887,7 +887,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                     </SelectContent>
                   </Select>
                   <span className="font-title-11px-regular w-96 font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">
-                    {t(" out of 14 ")}
+                    {t("out of 14")}
                   </span>
                 </div>
 
@@ -1035,7 +1035,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
 
 
 
-          <Collapsible open={collapsibleStates.Doctors}
+          <Collapsible open={collapsibleStates.Doctors} dir={`${local === "ar" ? "rtl" : "ltr"}`}
             onOpenChange={() => toggleCollapsible('Doctors')}
             className="w-full mt-5">
             <Card className="bg-surface-default rounded-2xl">
@@ -1051,7 +1051,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                     letterSpacing: "0%",
                   }}
                     className="text-text-accent font-bold size-16 w-56 text-start">
-                    <h2>        Doctors & Staff:</h2></div>
+                    <h2>          {t("Doctors & Staff")}:</h2></div>
                   {collapsibleStates.Doctors ? (
                     <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fillRule="evenodd" clipRule="evenodd" d="M17.7071 9.70711C17.3166 10.0976 16.6834 10.0976 16.2929 9.70711L9 2.41421L1.70711 9.70711C1.31658 10.0976 0.683416 10.0976 0.292892 9.70711C-0.0976315 9.31658 -0.0976315 8.68342 0.292892 8.29289L8.29289 0.292893C8.68342 -0.0976315 9.31658 -0.0976315 9.70711 0.292893L17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711Z" fill="#414651" />
@@ -1073,19 +1073,19 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                             value="all"
                             className="bg-secondary-light rounded-[20px] px-2.5 py-1.5 data-[state=active]:bg-secondary-light font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]"
                           >
-                            All
+                              {t("All")}
                           </TabsTrigger>
                           <TabsTrigger
                             value="doctors"
                             className="bg-bg rounded-[20px] px-2.5 py-1.5 data-[state=active]:bg-secondary-light font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]"
                           >
-                            Doctors
+                             {t("Doctors")}
                           </TabsTrigger>
                           <TabsTrigger
                             value="staff"
                             className="bg-bg rounded-[20px] px-2.5 py-1.5 data-[state=active]:bg-secondary-light font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]"
                           >
-                            Staff
+                              {t("Staff")}
                           </TabsTrigger>
                         </TabsList>
                       </Tabs>
@@ -1098,22 +1098,22 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                       <TableHeader className="  ">
                         <TableRow>
                           <TableHead className="w-[58px] text-center  text-text-praimary  font-semibold">
-                            No
+                                 {t("No")}
                           </TableHead>
                           <TableHead className="text-center  text-text-praimary  font-semibold">
-                            UserID
+                                {t("UserID")}
                           </TableHead>
                           <TableHead className="text-center  text-text-praimary  font-semibold">
-                            Name
+                                {t("Name")}
                           </TableHead>
                           <TableHead className="text-center  text-text-praimary  font-semibold">
-                            Clinic
+                              {t("Clinic")}
                           </TableHead>
                           <TableHead className="text-center  text-text-praimary  font-semibold">
-                            User Type
+                               {t("User Type")}
                           </TableHead>
                           <TableHead className="text-center  text-text-praimary  font-semibold">
-                            Status
+                              {t("Status")}
                           </TableHead>
                         </TableRow>
                       </TableHeader>
@@ -1153,7 +1153,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                               <div className="flex items-center justify-center gap-2">
 
                                 <Badge className="bg-secondary-light text-secondary-dark rounded-[20px] w-[92px] y-[24px] justify-center">
-                                  Active
+                                  {t("Active")}
                                 </Badge>
 
 
@@ -1329,7 +1329,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
 
 
 
-          <Collapsible open={collapsibleStates.work}
+          <Collapsible open={collapsibleStates.work} dir={`${local === "ar" ? "rtl" : "ltr"}`}
             onOpenChange={() => toggleCollapsible('work')}
             className="w-full mt-5">
             <Card className="bg-surface-default rounded-2xl">
@@ -1344,7 +1344,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                     letterSpacing: "0%",
                   }}
                     className="text-text-accent font-bold size-16 w-56 text-start">
-                    <h2>        Working Schedule:</h2></div>
+                    <h2>            {t("Working Schedule")}:</h2></div>
                   {collapsibleStates.work ? (
                     <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fillRule="evenodd" clipRule="evenodd" d="M17.7071 9.70711C17.3166 10.0976 16.6834 10.0976 16.2929 9.70711L9 2.41421L1.70711 9.70711C1.31658 10.0976 0.683416 10.0976 0.292892 9.70711C-0.0976315 9.31658 -0.0976315 8.68342 0.292892 8.29289L8.29289 0.292893C8.68342 -0.0976315 9.31658 -0.0976315 9.70711 0.292893L17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711Z" fill="#414651" />
@@ -1361,14 +1361,14 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                     <Table>
                       <TableHeader className="">
                         <TableRow>
-                          <TableHead className="items-start font-semibold   text-text-primary">
-                            Working Days
+                          <TableHead className="text-start font-semibold   text-text-primary">
+                            {t("Working Days")}
                           </TableHead>
                           <TableHead className="text-center font-title-16px-semibold font-semibold text-on-surface-primary text-[length:var(--title-16px-semibold-font-size)] tracking-[var(--title-16px-semibold-letter-spacing)] leading-[var(--title-16px-semibold-line-height)] [font-style:var(--title-16px-semibold-font-style)]">
-                            Start Time
+                              {t("Start Time")}
                           </TableHead>
                           <TableHead className=" text-end font-semibold text-text-primary ">
-                            End Time
+                                {t("End Time")}
                           </TableHead>
                         </TableRow>
                       </TableHeader>
@@ -1396,7 +1396,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
 
 
 
-          <Collapsible
+          <Collapsible dir={`${local === "ar" ? "rtl" : "ltr"}`}
             open={collapsibleStates.mapsLocation}
             onOpenChange={() => toggleCollapsible('mapsLocation')}
             className="w-full bg-background-primary mt-5 rounded-2xl"

@@ -40,16 +40,17 @@ export default function PhoneInputCustom() {
         <span className="text-gray-600">+{getCountryCallingCode(country)}</span>
 
         {/* حقل إدخال الرقم */}
-        <PhoneInput
-          defaultCountry={country}
-          value={phone}
-          onChange={setPhone}
-          onCountryChange={(c) => c && setCountry(c)} // تغيير الدولة
-          international
-          countryCallingCodeEditable={false}
-          placeholder="أدخل رقمك"
-          className="flex-1 outline-none"
-        />
+           <PhoneInput
+             defaultCountry={country}
+             value={phone}
+             onChange={setPhone}
+             onCountryChange={(c) => c && setCountry(c)} // تغيير الدولة
+             international
+             countryCallingCodeEditable={false}
+             placeholder="أدخل رقمك"
+             className="flex-1 outline-none bg-background-secondary"
+             style={{ direction: i18n.language === 'ar' ? 'rtl' : 'ltr', background: 'var(--background-secondary, #f5f6fa)' }}
+           />
       </div>
       <p className="mt-2">الرقم الكامل: {phone}</p>
     </div>

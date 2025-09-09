@@ -1,9 +1,13 @@
-
-
+import React from "react";
+import { ContantEditSpaicialityDetails } from "./Section/contantEditSpecialityDetalis/ContentEditSpicialityDetails";
+import { SidebarEditSpecialityDetails } from "./Section/SidebarEditSpecialityDetalis/SidebarEditSpaicialityDetails";
 import { useTranslation } from "react-i18next";
 import { useState } from "react"
 
-export const EditClinicDetails = (): JSX.Element => {
+
+
+export const ElementEditSpicialityDetails = (): JSX.Element => {
+
       const { i18n } = useTranslation();
       const [local, setLocal] = useState("en");
       const [darkMode, setDarkMode] = useState(false);
@@ -19,19 +23,22 @@ export const EditClinicDetails = (): JSX.Element => {
       const toggleDarkMode = () => {
         setDarkMode(!darkMode);
       };
-
-
-
-
   return (
-      <div className="flex w-full bg-surface-default " dir={`${local === "ar" ? "rtl" : "ltr"}`}>
+    <div 
+
+
+
+      className={`flex w-full` }>
+    <SidebarEditSpecialityDetails/>
+
    
-      <SidebarEditDetailsClinicP3 />
-      <ContentEditDetalisClinicP3  handleLanguageClick={handleLanguageClick}
+      <ContantEditSpaicialityDetails 
+      
+              handleLanguageClick={handleLanguageClick}
               local={local}
               dark={darkMode}
-              handelDarkClick={toggleDarkMode}/>
-    
+              handelDarkClick={toggleDarkMode}
+            />
     </div>
   );
 };

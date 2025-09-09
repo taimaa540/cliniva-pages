@@ -24,7 +24,7 @@ export const ElementViewDetalisComplexp2 = (): JSX.Element => {
   };
 
   return (
-    <div className="flex w-full bg-surface-default " dir={`${local === "ar" ? "rtl" : "ltr"}`}>
+    <div className="flex w-full bg-surface-default " >
       <SidebarviewDetailsContentp2 />
       <ElementViewComplexPlan2 handleLanguageClick={handleLanguageClick}
         local={local}

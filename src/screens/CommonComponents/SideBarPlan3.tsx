@@ -1,12 +1,12 @@
 import { ChevronDownIcon, LogOutIcon } from "lucide-react";
-import { Button } from "../components/ui/button";
+import { Button } from "../../components/ui/button";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../components/ui/collapsible";
+} from "../../components/ui/collapsible";
 
 interface SideBarPlan3Props {
   local: string;

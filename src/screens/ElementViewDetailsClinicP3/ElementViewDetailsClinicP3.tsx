@@ -24,7 +24,7 @@ export const ElementViewDetailsClinicP3 = (): JSX.Element => {
     };
   return (
 
-    <div className="flex w-full min-h-screen items-start bg-surface-default   "        dir={`${local === "ar" ? "rtl" : "ltr"}`}
+    <div className="flex w-full min-h-screen items-start bg-surface-default   "        
      >
         
       <SidebarViewDetailsClinicP3 />

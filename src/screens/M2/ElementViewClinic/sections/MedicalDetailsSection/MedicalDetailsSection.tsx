@@ -16,19 +16,21 @@ import {
   ArrowLeftIcon,
 } from "lucide-react";
 import React from "react";
+import ReusableCollapsible from "../../../../../components/ui/Collapsibles";
+import { useState } from "react";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../../../../components/ui/select";
+} from "../../../../../components/ui/select";
 import Avatar from "@mui/material/Avatar";
-import DarkModeToggle from "../../../ElementUsersNoDataTo/DarkMode";
 
-import { Badge } from "../../../../components/ui/badge";
-import { Button } from "../../../../components/ui/button";
-import { Card, CardContent } from "../../../../components/ui/card";
+
+import { Badge } from "../../../../../components/ui/badge";
+import { Button } from "../../../../../components/ui/button";
+import { Card, CardContent } from "../../../../../components/ui/card";
 import TranslateIcon from "@mui/icons-material/Translate";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
@@ -36,7 +38,7 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../../../../components/ui/collapsible";
+} from "../../../../../components/ui/collapsible";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import {
   Pagination,
@@ -45,8 +47,8 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "../../../../components/ui/pagination";
-import Toggle from "../../../../components/ui/SwitchToggel";
+} from "../../../../../components/ui/pagination";
+import Toggle from "../../../../../components/ui/SwitchToggel";
 import {
   Table,
   TableBody,
@@ -54,8 +56,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../../../../components/ui/table";
-import { Tabs, TabsList, TabsTrigger } from "../../../../components/ui/tabs";
+} from "../../../../../components/ui/table";
+import { Tabs, TabsList, TabsTrigger } from "../../../../../components/ui/tabs";
 import Checkbox from '@mui/material/Checkbox';
 const capacityData = [
   {
@@ -209,7 +211,29 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
     i18n.changeLanguage(local);
   }, []);
 
+ const [isOpen, setIsOpen] = useState({
+    clinicInfo: true,
+    contactInfo: true,
+    workingDays: true,
+    departments:true,
+    doctorsStaff: true,
+    mapsLocation: true
+  });
+  const handleToggle = (key: keyof typeof isOpen, open: boolean) => {
+    setIsOpen(prev => ({
+      ...prev,
+      [key]: open
+    }))
+  };
+const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
+  
+  const toggleDay = (index: number) => {
+    setActiveDays((prev) => prev.map((val, i) => (i === index ? !val : val)));
+  };
+  const handleDateChange = (date: Date) => {
 
+    // يمكنك هنا إجراء أي عمل تريده مع التاريخ المحدد
+  };
 
   return (
     <div
@@ -225,7 +249,13 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
               text-primary
             } text-on-surface-primary text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]`}
           >
-            {t("Users")}
+            <div className=" font-semibold text-[22px]  text-text-primary"   >
+               {t("Medical Facilities")}
+            </div>
+
+            <div className=" font-semibold text-[14px] text-text-primary">
+            {t("View Clinic Details")}
+            </div>
           </h1>
         </div>
 
@@ -256,7 +286,7 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
           </div>
 
           <div className="w-10 h-[17.5px] relative">
-            <DarkModeToggle dark={dark} handelDarkClick={handelDarkClick} />
+          
           </div>
 
           <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
@@ -284,73 +314,67 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
 
       <Card className="flex flex-col h-auto items-start gap-6 p-5 mt-[10px] bg-background-tertiary relative self-stretch w-full rounded-2xl overflow-hidden">
         <CardContent className="p-0 w-full overflow-y-auto gap-5 h-auto">
-  <div className="flex justify-between items-center w-full">
-  <Toggle />
+  <div className="flex justify-end items-center w-full">
+
   <Button className="w-[200px] rounded-[20px] font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
-    Edit
+    <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.834 1.99955C11.0091 1.82445 11.2169 1.68556 11.4457 1.5908C11.6745 1.49604 11.9197 1.44727 12.1673 1.44727C12.4149 1.44727 12.6601 1.49604 12.8889 1.5908C13.1177 1.68556 13.3256 1.82445 13.5007 1.99955C13.6757 2.17465 13.8146 2.38252 13.9094 2.61129C14.0042 2.84006 14.0529 3.08526 14.0529 3.33288C14.0529 3.58051 14.0042 3.8257 13.9094 4.05448C13.8146 4.28325 13.6757 4.49112 13.5007 4.66622L4.50065 13.6662L0.833984 14.6662L1.83398 10.9995L10.834 1.99955Z" stroke="#FFFDFC" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+  {t("Edit")}
   </Button>
 </div>
-        <Card className="w-full mt-5 rounded-2xl">
-  <CardContent className="p-4">
-    <h2 className="font-title-16px-bold text-primary-dark mb-4">
-      Capacity
-    </h2>
-    <div className="flex flex-col md:flex-row gap-4 md:gap-[38px]">
-      {capacityData.map((item, index) => (
-        <Card 
-          key={index}
-          className={`flex-1 h-[100px] ${item.bgColor} rounded-[25px] shadow-[0px_2px_8px_#e2f6ec]`}
-        >
-          <CardContent className="relative p-0 h-full">
-            <div className="absolute w-12 h-12 top-[26px] right-[40px]">
-              {item.icon}
-            </div>
-            <div className="absolute top-3.5 left-10 font-title-18px-semibold text-on-surface-primary">
-              {item.title}
-            </div>
-            <div className="absolute top-[52px] left-10 font-h3-26px-semibold text-on-surface-primary">
-              {item.value}
-            </div>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  </CardContent>
-</Card>
 
 
 
-
-
-
-
-
-
-
-          <Collapsible defaultOpen className="w-full bg-background-primary mt-5 rounded-2xl">
-  <Card className="bg-surface-default rounded-2xl">
-    <CollapsibleTrigger className="w-full">
-      <CardContent className="p-6 flex items-center justify-between">
-        <div
-          style={{
-            fontFamily: "Lato",
-            fontWeight: 600,
-            fontStyle: "SemiBold",
-            fontSize: "16px",
-            lineHeight: "124%",
-            letterSpacing: "0%",
-          }}
-          className="text-text-accent font-bold size-16 w-56 text-start"
-        >
-          <h2>{t("Clinic Info")}:</h2>
+   
+           <Card className="bg-surface-default rounded-2xl w-full mt-5 "  dir={local === 'ar' ? 'rtl' : 'ltr'}>
+                       <div style={{
+               fontFamily: "Lato",
+               fontWeight: 600,
+               fontStyle: "SemiBold",
+               fontSize: "16px",
+               lineHeight: "124%",
+               letterSpacing: "0%",
+             }}
+             className="text-text-accent font-bold size-16 p-5 w-56 text-start" >
+   <h2>               {t("Capacity")}:</h2></div>
+    
+    <div className="px-4 pb-4">
+                     <div className="flex flex-col md:flex-row gap-4 md:gap-[38px]">
+          {capacityData.map((item, index) => (
+            <Card 
+              key={index}
+              className={`flex-1 h-[100px] ${item.bgColor} rounded-[25px]  w-[350px] shadow-[0px_2px_8px_#e2f6ec]`}
+            >
+              <CardContent className="  flex items-center justify-center p-7 gap-24 h-full">
+             
+                <div className="grid">
+                <div className="   top-3.5 left-10 font-semibold text-text-primary text-[22px]">
+                  {item.title}
+                </div>
+                <div className=" top-[52px] left-10 font-semibold text-text-primary text-[18px]">
+                  {item.value}
+                </div>
+                </div>
+                     <div className="  w-12 h-12 top-[26px] right-[40px]">
+                  {item.icon}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
-        <ChevronDownIcon className="text-text-primary w-8 h-8" />
-      </CardContent>
-    </CollapsibleTrigger>
+        </div>
+           </Card>
+   
 
-    <CollapsibleContent className="w-full mt-5 rounded-2xl">
-      <CardContent className="p-4 pt-0">
-        {/* الأعمدة الرئيسية */}
+
+
+
+    <ReusableCollapsible   dir={local === 'ar' ? 'rtl' : 'ltr'}
+            title={t("Clinic Info")}
+            initiallyOpen={isOpen.contactInfo}
+            onOpenChange={(open) => handleToggle("contactInfo", open)}
+            content={<div className="p-4 pt-0">         {/* الأعمدة الرئيسية */}
         <div className="grid grid-cols-2 gap-8">
           {/* العمود الأول */}
           <div className="space-y-4">
@@ -363,7 +387,7 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
 
             <div className="flex items-center gap-8">
               <label className="w-40 text-text-primary font-semibold text-base">
-               Session Slot:
+                    {t("Session Slot")}: 
                
               </label>
               30 minutes
@@ -371,7 +395,7 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
 
             <div className="flex items-center gap-8">
               <label className="w-40 text-text-primary font-semibold text-base">
-               Services Offered:
+               {t("Services Offered")}:
              
               </label>
               General Consultation
@@ -407,12 +431,12 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
 
         {/* Assigned Departments */}
         <div className="mt-6">
-          <h2 className="mb-4 text-text-primary font-semibold">{t("Assigned Departments")}</h2>
+          <h2 className="mb-4 text-text-accent font-semibold">{t("Assigned Departments")}</h2>
           <div className="grid grid-cols-2 gap-8">
             {/* عمود الاسم */}
             <div className="space-y-4">
               <div className="flex gap-4">
-                <label className="w-40 text-text-primary font-semibold">{t("Department Name")}</label>
+                <label className="w-44 text-text-primary font-semibold">{t("Department Name")}</label>
                 Al Razi Department
               </div>
             </div>
@@ -420,18 +444,16 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
             {/* عمود الوصف */}
             <div className="space-y-4">
               <div className="flex gap-4">
-                <label className="w-40 text-text-primary font-semibold">{t("Description")}</label>
+                <label className="w-44 text-text-primary font-semibold">{t("Description")}</label>
                 <div className="w-[360px]">
                   Al Noor Clinic is a multi-specialty clinic offering high-quality care with modern facilities.
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </CardContent>
-    </CollapsibleContent>
-  </Card>
-</Collapsible>
+        </div></div>}
+
+          />
 
 
 
@@ -442,27 +464,12 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
 
 
 
-          <Collapsible defaultOpen className="w-full bg-background-primary  mt-5 rounded-2xl">
-            <Card className="bg-surface-default rounded-2xl">
-              <CollapsibleTrigger className="w-full">
-                <CardContent className="p-4 flex items-center justify-between">
-                  <div style={{
-                    fontFamily: "Lato",
-                    fontWeight: 600,
-                    fontStyle: "SemiBold",
-                    fontSize: "16px",
-                    lineHeight: "124%",
-                    letterSpacing: "0%",
-                  }}
-                    className="text-text-accent font-bold size-16 w-56 text-start ">
-                    <h2 className="mt-6">                      {t("Company Contact Information")}:</h2></div>
-                  <ChevronDownIcon className="text-text-primary font-semiboldy w-8 h-8" />
-                </CardContent>
-              </CollapsibleTrigger>
 
-              <CollapsibleContent>
-                <CardContent className="flex flex-col gap-4">
-                  <div className="grid grid-cols-2 gap-8">
+    <ReusableCollapsible   dir={local === 'ar' ? 'rtl' : 'ltr'}
+            title={t("Company Contact Information")}
+            initiallyOpen={isOpen.clinicInfo}
+            onOpenChange={(open) => handleToggle("clinicInfo", open)}
+            content={<div className="flex flex-col gap-4">      <div className="grid grid-cols-2 gap-8">
                     <div className="flex items-center gap-2">
                       <div className="flex items-center gap-2">
                         <div className="text-text-primary"><svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -470,7 +477,7 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
                         </svg></div>
 
                         <span className="font-[number:var(--title-16px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-16px-semibold-font-size)] leading-[var(--title-16px-semibold-line-height)] font-title-16px-semibold tracking-[var(--title-16px-semibold-letter-spacing)] [font-style:var(--title-16px-semibold-font-style)]">
-                          PhoneIcon Numbers:
+                              {t("PhoneIcon Numbers")}:
                         </span>
                       </div>
                       <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
@@ -485,155 +492,79 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
                         </svg></div>
 
                         <span className="font-[number:var(--title-16px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-16px-semibold-font-size)] leading-[var(--title-16px-semibold-line-height)] font-title-16px-semibold tracking-[var(--title-16px-semibold-letter-spacing)] [font-style:var(--title-16px-semibold-font-style)]">
-                          Email:
+                            {t("Email")}:
                         </span>
                       </div>
                       <span className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
                         info@medcaregroup.com
                       </span>
                     </div>
-                  </div>
+                  </div></div>}
 
-                </CardContent>
-              </CollapsibleContent>
-            </Card>
-          </Collapsible>
+          />
 
 
 
 
 
 
-          <Collapsible defaultOpen className="w-full bg-background-primary  mt-5 rounded-2xl">
-            <Card className="bg-surface-default rounded-2xl">
-              <CollapsibleTrigger className="w-full rounded-2xl">
-                <CardContent className="flex flex-row items-center rounded-2xl  justify-between">
-                  <div style={{
-                    fontFamily: "Lato",
-                    fontWeight: 600,
-                    fontStyle: "SemiBold",
-                    fontSize: "16px",
-                    lineHeight: "124%",
-                    letterSpacing: "0%",
-                  }}
-                    className="text-text-accent font-bold size-16 w-56 text-start">
-                    <h2>                        {t("                               working Days   ")}:</h2></div>
-                  <ChevronDownIcon className=" w-8 h-8 text-text-primary font-semibold" />
-                </CardContent>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <CardContent className="flex flex-col gap-4">
-                  {workingDays.map((day) => (
-                    <div key={day.day} className="flex items-center gap-8 text-text-primary font-semibold" >
-                      <div className="flex items-center gap-4 w-40">
-                        <Checkbox
-
-                          className="w-4 h-4 bg-primary-dark border-primary-dark data-[state=checked]:bg-primary-dark"
-                        />
-                        <span className="[font-family:'Lato',Helvetica] text-text-primary font-semibold text-sm tracking-[0.07px] leading-6">
-                          {day.day}
-                        </span>
-                      </div>
-                      <div
-                        className={`flex items-center justify-between w-[360px] h-12 px-4 py-2 rounded border border-[#e4e2dd] shadow-[0px_1px_2px_#0a0d120d] ${day.isActive ? "bg-background-secondar" : "bg-border-light"}`}
-                      >
-                        <span className="[font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-sm tracking-[0] leading-[21px]">
-                          {day.startTime}
-                        </span>
-
-                        <div className="flex items-center">
+        
 
 
-                          {local === "en" ? (
-                            <ArrowForwardIcon className="w-6 h-6" />
-                          ) : (
-                            <ArrowLeftIcon className="w-6 h-6" />
-                          )}
 
 
-                        </div>
 
-                        <span className="[font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-sm tracking-[0] leading-[21px]">
-                          {day.endTime}
-                        </span>
-                        <div className="w-5 h-5 bg-[url(/union.svg)] bg-[100%_100%]" />
-                      </div>
-                    </div>
-                  ))}
-
-                </CardContent>
-              </CollapsibleContent>
-            </Card>
-          </Collapsible>
-
- <Collapsible
-      defaultOpen
-      className="w-full bg-background-primary  mt-5 rounded-2xl"
-    >
-      <Card className="bg-surface-default rounded-2xl">
-        <CollapsibleTrigger className="w-full">
-          <CardContent className="p-4 flex items-center justify-between">
-            <div
-              style={{
-                fontFamily: "Lato",
-                fontWeight: 600,
-                fontStyle: "SemiBold",
-                fontSize: "16px",
-                lineHeight: "124%",
-                letterSpacing: "0%",
-              }}
-              className="text-text-accent"
-            >
-              <h2>
-                <div className="flex items-center gap-4">
-                  <h2 className="font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-primary-dark text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] [font-style:var(--title-16px-bold-font-style)]">
-                    {t("Doctors & Staff")}
-                  </h2>
-                  <div className="flex gap-2">
-                    <Badge className="bg-secondary-light text-on-surface-primary rounded-[20px] px-2.5 py-1.5">
-                      {t("All")}
-                    </Badge>
-                    <Badge
-                      variant="outline"
-                      className="bg-bg text-on-surface-primary rounded-[20px] px-2.5 py-1.5"
-                    >
-                      {t("Doctors")}
-                    </Badge>
-                    <Badge
-                      variant="outline"
-                      className="bg-bg text-on-surface-primary rounded-[20px] px-2.5 py-1.5"
-                    >
-                      {t("Staff")}
-                    </Badge>
-                  </div>
+     <ReusableCollapsible   dir={local === 'ar' ? 'rtl' : 'ltr'}
+            title={<div>
+              <div className="flex items-center gap-4">
+                <h2 className="font-title-16px-bold   w-96 font-[number:var(--title-16px-bold-font-weight)] text-primary-dark text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] [font-style:var(--title-16px-bold-font-style)]">
+                  {t("Doctors")}
+                </h2>
+                <h2 className="font-title-16px-bold   w-96 font-[number:var(--title-16px-bold-font-weight)] text-primary-dark text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] [font-style:var(--title-16px-bold-font-style)]">
+                  {t("&")}
+                </h2>
+                <h2 className="font-title-16px-bold   w-96 font-[number:var(--title-16px-bold-font-weight)] text-primary-dark text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] [font-style:var(--title-16px-bold-font-style)]">
+                  {t("Staff")}
+                </h2>
+                <div className="flex gap-2">
+                  <Badge className="bg-secondary-light text-on-surface-primary rounded-[20px] px-2.5 py-1.5">
+                    {t("All")}
+                  </Badge>
+                  <Badge
+                    variant="outline"
+                    className="bg-bg text-on-surface-primary rounded-[20px] px-2.5 py-1.5"
+                  >
+                    {t("Doctors")}
+                  </Badge>
+                  <Badge
+                    variant="outline"
+                    className="bg-bg text-on-surface-primary rounded-[20px] px-2.5 py-1.5"
+                  >
+                    {t("Staff")}
+                  </Badge>
                 </div>
-              </h2>
-            </div>
-            <ChevronDownIcon className="text-text-primary font-semibold w-8 h-8" />
-          </CardContent>
-        </CollapsibleTrigger>
-
-        <CollapsibleContent>
-          <CardContent className="p-0">
-            <Table>
+              </div></div>}
+            initiallyOpen={isOpen.doctorsStaff}
+            onOpenChange={(open) => handleToggle("doctorsStaff", open)}
+            content={<div> <Table>
               <TableHeader className="">
                 <TableRow>
-                  <TableHead className="w-[58px] text-left text-text-praimary font-semibold">
-                    {t("Number")}
+                  <TableHead className="w-[58px] text-center  text-text-praimary  font-semibold">
+                    {t("NO")}
                   </TableHead>
-                  <TableHead className="text-center text-text-praimary font-semibold">
+                  <TableHead className="text-center  text-text-praimary  font-semibold">
                     {t("User-ID")}
                   </TableHead>
-                  <TableHead className="text-center text-text-praimary font-semibold">
+                  <TableHead className="text-center  text-text-praimary  font-semibold">
                     {t("Name")}
                   </TableHead>
-                  <TableHead className="w-[225px] text-center text-text-praimary font-semibold">
+                  <TableHead className="w-[225px] text-center  text-text-praimary  font-semibold">
                     {t("Clinic")}
                   </TableHead>
-                  <TableHead className="text-center text-text-praimary font-semibold">
+                  <TableHead className="text-center  text-text-praimary  font-semibold">
                     {t("User Type")}
                   </TableHead>
-                  <TableHead className="text-center text-text-praimary font-semibold">
+                  <TableHead className="text-center  text-text-praimary  font-semibold">
                     {t("Status")}
                   </TableHead>
                 </TableRow>
@@ -644,7 +575,7 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
                     key={person.number}
                     className="border-b border-[#e4e2dd]"
                   >
-                    <TableCell className="text-center text-text-praimary font-semibold">
+                    <TableCell className="text-center  text-text-praimary  font-semibold">
                       {person.number}
                     </TableCell>
                     <TableCell className="text-center text-text-primary font-title-14px-semibold">
@@ -652,17 +583,17 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
                     </TableCell>
                     <TableCell className="text-center text-text-primary font-title-14px-semibold">
                       <div className="flex items-center gap-2 justify-center">
-     <Avatar
-  src={person.avatar}
-  alt={person.name}
-  sx={{
-    width: 32,
-    height: 32,
-    bgcolor: !person.avatar ? "var(--theme-text-accent)" : "transparent", // لون الدائرة من متغير الثيم
-  }}
->
-  {/* إذا ما في صورة، تظل الدائرة ملونة بدون أي نص */}
-</Avatar>
+                        <Avatar
+                          src={person.avatar}
+                          alt={person.name}
+                          sx={{
+                            width: 32,
+                            height: 32,
+                            bgcolor: !person.avatar ? "var(--theme-text-accent)" : "transparent", // لون الدائرة من متغير الثيم
+                          }}
+                        >
+                          {/* إذا ما في صورة، تظل الدائرة ملونة بدون أي نص */}
+                        </Avatar>
                         <span>{person.name}</span>
                       </div>
                     </TableCell>
@@ -674,201 +605,247 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
                     </TableCell>
                     <TableCell className="text-center">
                       <div className="flex items-center justify-center gap-2">
+
                         <Badge className="bg-secondary-light text-secondary-dark rounded-[20px] w-[92px] y-[24px] justify-center">
-                          {person.status}
+                                  {t("Active")}
                         </Badge>
+
+
+
+
+
+
                       </div>
                     </TableCell>
                   </TableRow>
-                ))}
+                )
+
+
+
+                )}
               </TableBody>
             </Table>
+
               <div className="flex items-center justify-between p-4">
-              <div className="flex items-center gap-2.5">
-                <span className="font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">
-              { t("                           Showing ")}
-                </span>
-                <Select defaultValue="1">
-                  <SelectTrigger className="w-auto bg-secondary-light rounded-[20px] border-0 px-2 py-1.5">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="1">1</SelectItem>
-                  </SelectContent>
-                </Select>
-                <span className="font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">
-                { t("                             out of 14 ")}
-                </span>
+                <div className="flex items-center gap-2.5">
+                  <span className="font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">
+                    {t("Showing")}
+                  </span>
+                  <Select defaultValue="1">
+                    <SelectTrigger className="w-auto bg-secondary-light rounded-[20px] border-0 px-2 py-1.5">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="1">1</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <span className="font-title-11px-regular w-96 font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">
+                    {t("out of 14")}
+                  </span>
+                </div>
+
+
+
+                <Pagination className="justify-end">
+                  <PaginationContent className="gap-[5px]">
+                    <PaginationItem>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-8 h-8 p-2.5 rounded-[32px] border-[#f1f1f1]"
+                      >
+
+                        {local === "en" ? (
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.726 12L12.666 11.06L9.61268 8L12.666 4.94L11.726 4L7.72602 8L11.726 12Z" fill="CurrentColor" />
+                            <path d="M7.33344 12L8.27344 11.06L5.2201 8L8.27344 4.94L7.33344 4L3.33344 8L7.33344 12Z" fill="CurrentColor" />
+                          </svg>
+                        ) : (
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.27398 4L3.33398 4.94L6.38732 8L3.33398 11.06L4.27398 12L8.27398 8L4.27398 4Z" fill="CurrentColor" />
+                            <path d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z" fill="CurrentColor" />
+                          </svg>
+                        )}
+
+
+                      </Button>
+                    </PaginationItem>
+                    <PaginationItem>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-8 h-8 p-2.5 rounded-[32px] border-[#f1f1f1]"
+                      >
+
+
+
+                        {local === "en" ? (
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="CurrentColor" />
+                          </svg>
+                        ) : (
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="CurrentColor" />
+                          </svg>
+                        )}
+                      </Button>
+
+
+                    </PaginationItem>
+                    <PaginationItem>
+                      <PaginationLink
+                        className="w-8 h-8 p-2.5 bg-secondary-dark text-white rounded-[32px] [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]"
+                        isActive
+                      >
+                        1
+                      </PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                      <PaginationLink className="w-8 h-8 p-2.5 bg-white text-[#333333] rounded-[32px] border border-[#f1f1f1] [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]">
+                        2
+                      </PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                      <PaginationLink className="w-8 h-8 p-2.5 bg-white text-[#333333] rounded-[32px] border border-[#f1f1f1] [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]">
+                        3
+                      </PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                      <span className="w-8 h-8 p-2.5 bg-white text-[#333333] rounded-lg flex items-center justify-center [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]">
+                        ...
+                      </span>
+                    </PaginationItem>
+                    <PaginationItem>
+                      <PaginationLink className="w-8 h-8 p-2.5 bg-white text-[#333333] rounded-[32px] border border-[#f1f1f1] [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]">
+                        10
+                      </PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-8 h-8 p-2.5 rounded-[32px] border-[#f1f1f1]"
+                      >
+                        <div>
+
+
+
+
+                          {local === "en" ? (
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="black" />
+                            </svg>
+                          ) : (
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="CurrentColor" />
+                            </svg>
+                          )}
+
+
+
+                        </div>
+                      </Button>
+                    </PaginationItem>
+                    <PaginationItem>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-8 h-8 p-2.5 rounded-[32px] border-[#f1f1f1]"
+                      >
+
+
+
+
+                        {local === "en" ? (
+
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.27398 4L3.33398 4.94L6.38732 8L3.33398 11.06L4.27398 12L8.27398 8L4.27398 4Z" fill="CurrentColor" />
+                            <path d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z" fill="CurrentColor" />
+                          </svg>
+                        ) : (
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.726 12L12.666 11.06L9.61268 8L12.666 4.94L11.726 4L7.72602 8L11.726 12Z" fill="CurrentColor" />
+                            <path d="M7.33344 12L8.27344 11.06L5.2201 8L8.27344 4.94L7.33344 4L3.33344 8L7.33344 12Z" fill="CurrentColor" />
+                          </svg>
+                        )}
+
+
+
+
+                      </Button>
+                    </PaginationItem>
+                  </PaginationContent>
+                </Pagination>
               </div>
-              
+            </div>
+            }
 
-              
-              <Pagination className="justify-end">
-                <PaginationContent className="gap-[5px]">
-                  <PaginationItem>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-8 h-8 p-2.5 rounded-[32px] border-[#f1f1f1]"
-                    >
-                           
-     {local === "en" ? (
-               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M11.726 12L12.666 11.06L9.61268 8L12.666 4.94L11.726 4L7.72602 8L11.726 12Z" fill="CurrentColor"/>
-<path d="M7.33344 12L8.27344 11.06L5.2201 8L8.27344 4.94L7.33344 4L3.33344 8L7.33344 12Z" fill="CurrentColor"/>
-</svg>
-) : (
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M4.27398 4L3.33398 4.94L6.38732 8L3.33398 11.06L4.27398 12L8.27398 8L4.27398 4Z" fill="CurrentColor"/>
-<path d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z" fill="CurrentColor"/>
-</svg>
-)}
-        
-
-                    </Button>
-                  </PaginationItem>
-                  <PaginationItem>
-                     <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-8 h-8 p-2.5 rounded-[32px] border-[#f1f1f1]"
-                    >
- 
+          />
 
 
- {local === "en" ? (
-                           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="CurrentColor"/>
-</svg>
-) : (
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="CurrentColor"/>
-</svg>
-)}
-  </Button>
 
-                 
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink
-                      className="w-8 h-8 p-2.5 bg-secondary-dark text-white rounded-[32px] [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]"
-                      isActive
-                    >
-                      1
-                    </PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink className="w-8 h-8 p-2.5 bg-white text-[#333333] rounded-[32px] border border-[#f1f1f1] [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]">
-                      2
-                    </PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink className="w-8 h-8 p-2.5 bg-white text-[#333333] rounded-[32px] border border-[#f1f1f1] [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]">
-                      3
-                    </PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <span className="w-8 h-8 p-2.5 bg-white text-[#333333] rounded-lg flex items-center justify-center [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]">
-                      ...
-                    </span>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink className="w-8 h-8 p-2.5 bg-white text-[#333333] rounded-[32px] border border-[#f1f1f1] [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]">
-                      10
-                    </PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                   <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-8 h-8 p-2.5 rounded-[32px] border-[#f1f1f1]"
-                    >
-                      <div>
-                        
-                        
-                        
-                        
- {local === "en" ? (
-                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="black"/>
-</svg>
-) : (
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="CurrentColor"/>
-</svg>
-)}
-                        
+
+
+
+
+      {/* Working Days Collapsible */}
+          <ReusableCollapsible   dir={local === 'ar' ? 'rtl' : 'ltr'}
+            title={t("Working Days")}
+            initiallyOpen={isOpen.workingDays}
+            onOpenChange={(open) => handleToggle("workingDays", open)}
+            content={<div className=""><div className="bg-surface-default rounded-2xl overflow-hidden">
+              <Table>
+                <TableHeader className="">
+                  <TableRow>
+                    <TableHead className="text-start pl-8 pr-8 text-text-primary pointer-events-none">
+                      {t("Working Days")}
+                    </TableHead>
+                    <TableHead className="text-center text-text-primary ">
+                      {t("Start Time")}
+                    </TableHead>
+                    <TableHead className=" text-end text-text-primary">
+                          {t("End Time")}
+                    </TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {workingDays.map((schedule, index) => (
+                    <TableRow key={index} className="border-b border-[#e4e2dd]">
+                      <TableCell className="items-start pl-8 pr-8">
+                        {schedule.day}
+                      </TableCell>
+                      <TableCell className=" text-center w-[80%]">
+                        {schedule.startTime}
+                      </TableCell>
+                      <TableCell className="text-end pl-5 pr-5 w-[10%]">
+                        {schedule.endTime}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div></div>}
+          />
+
+    
     
 
-</div>
-               </Button>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-8 h-8 p-2.5 rounded-[32px] border-[#f1f1f1]"
-                    >
+
+        {/* Maps Location Collaps ible */}
+          <ReusableCollapsible   dir={local === 'ar' ? 'rtl' : 'ltr'}
+            title={t("Maps Location")}
+            initiallyOpen={isOpen.mapsLocation}
+            onOpenChange={(open) => handleToggle("mapsLocation", open)}
+            content={<div>      <div className="w-full h-[332px] bg-[url(/background.png)] bg-cover bg-center rounded" />
+              <p className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
+                {t("245, King Fahd Road, Al Olaya, Saudi Arabia, KSA")}
+              </p></div>}
+
+          />
 
 
 
 
-{local === "en" ? (
-                             
-                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M4.27398 4L3.33398 4.94L6.38732 8L3.33398 11.06L4.27398 12L8.27398 8L4.27398 4Z" fill="CurrentColor"/>
-<path d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z" fill="CurrentColor"/>
-</svg>
-) : (
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M11.726 12L12.666 11.06L9.61268 8L12.666 4.94L11.726 4L7.72602 8L11.726 12Z" fill="CurrentColor"/>
-<path d="M7.33344 12L8.27344 11.06L5.2201 8L8.27344 4.94L7.33344 4L3.33344 8L7.33344 12Z" fill="CurrentColor"/>
-</svg>
-)}
-
-
-
-
-                    </Button>
-                  </PaginationItem>
-                </PaginationContent>
-              </Pagination>
-            </div>
-          </CardContent>
-        </CollapsibleContent>
-      </Card>
-    </Collapsible>
-
-
-          <Collapsible defaultOpen className="w-full bg-background-primary  mt-5 rounded-2xl">
-            <Card className="bg-surface-default rounded-2xl">
-              <CollapsibleTrigger className="w-full">
-                <CardContent className="p-4 flex items-center justify-between">
-                  <div style={{
-                    fontFamily: "Lato",
-                    fontWeight: 600,
-                    fontStyle: "SemiBold",
-                    fontSize: "16px",
-                    lineHeight: "124%",
-                    letterSpacing: "0%",
-                  }}
-                    className="text-text-accent font-bold size-16 w-56 text-start ">
-                    <h2 className="mt-6">                      {t("                             Maps Location   ")}:</h2></div>
-                  <ChevronDownIcon className="text-text-primary font-semiboldy w-8 h-8" />
-                </CardContent>
-              </CollapsibleTrigger>
-
-              <CollapsibleContent>
-                <CardContent className="flex flex-col gap-4">
-                  <div className="w-full h-[332px] bg-[url(/background.png)] bg-cover bg-center rounded" />
-                  <p className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
-                    {t("                         245, King Fahd Road, Al Olaya, Saudi Arabia, KSA")}
-                  </p>
-
-                </CardContent>
-              </CollapsibleContent>
-            </Card>
-          </Collapsible>
         </CardContent>
       </Card>
     </div>

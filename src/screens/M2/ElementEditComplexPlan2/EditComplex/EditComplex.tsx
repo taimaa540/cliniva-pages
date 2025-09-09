@@ -64,7 +64,7 @@ import {
   UsersIcon,
 }from "lucide-react";
     import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
- 
+import DatePicker from "../../../../components/ui/DatePicker";
 const complexInformation = {
   name: "AlTadawi Medical Complex",
   description:
@@ -119,18 +119,18 @@ const capacityData = [
 ];
 
 
-const contactInfo = {
+const contactInfo = (t: (key: string) => string) => ({
   phoneNumbers: "+966 50 000-0000",
   email: "info@medcaregroup.com",
   physicalAddress: {
-    buildingNumber: "Building Number",
-    streetName: "Street Name",
-    region: "Region",
-    country: "Country",
-    nation: "Nation",
+    buildingNumber: t("Building Number"),
+    streetName: t("Street Name"),
+    region: t("Region"),
+    country: t("Country"),
+    nation: t("Nation"),
   },
   mapsLocation: "www.medcaregroup.com",
-};
+});
 
 const linkedClinics = [
   {
@@ -353,27 +353,13 @@ const {t, i18n} = useTranslation('en')
    <Badge className="bg-secondary-light text-secondary-dark rounded-[20px] w-[92px] y-[24px] justify-center">
             Active
           </Badge>
- <div className=" items-center flex justify-end gap-4 relative flex-[0_0_auto] mt-5  ">
-            <Button
-              variant="outline"
-              className="flex rounded-[20px] w-[200px] items-center h-10 justify-center px-4 py-2.5 relative bg-background-tertiary -[20px] border-2 border-solid- border-light"
-            >
-              <div className="flex w-[82px] items-center justify-center gap-1 relative">
-                <div className="inline-flex h-5 items-center gap-2.5 px-0 py-0.5 relative flex-[0_0_auto]">
-                  <div className="font-[number:var(--btn-14px-medium-font-weight)] text-on-surface-primary text-[length:var(--btn-14px-medium-font-size)] leading-[var(--btn-14px-medium-line-height)] relative w-fit font-btn-14px-medium text-center tracking-[var(--btn-14px-medium-letter-spacing)] whitespace-nowrap [font-style:var(--btn-14px-medium-font-style)]">
-                   { t("  Cancel")}
-                  </div>
-                </div>
-              </div>
-            </Button>
-
-            <Button variant="outline"  className="flex w-[200px] h-10 items-center  justify-center gap-1 pl-4 pr-3.5 py-2.5 relative bg-secondary-dark rounded-[20px] ">
-              <div className="inline-flex items-center  gap-2.5 p-0.5 relative flex-[0_0_auto] ">
-                <div className="mt-[-1.00px] font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] leading-[var(--btn-14px-medium-line-height)] relative w-fit font-btn-14px-medium text-center tracking-[var(--btn-14px-medium-letter-spacing)] whitespace-nowrap [font-style:var(--btn-14px-medium-font-style)]">
-                   { t("  Save")}
-                </div>
-              </div>
-            </Button>
+ <div className=" items-center flex justify-end gap-4 relative flex-[0_0_auto] mt-5  " dir={local === 'ar' ? 'rtl' : 'ltr'}>
+      <button className=" w-[200px] h-[40px] rounded-[20px] border border-border-light bg-surface-primary  font-lato font-medium text-sm leading-[100%] tracking-[0] text-text-primary">
+                {t("Cancel")}
+              </button>
+              <button className=" w-[200px] h-[40px] rounded-[20px] bg-secondary-dark font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
+                {t("Save")}
+              </button>
           </div>
 </div>
 
@@ -381,14 +367,14 @@ const {t, i18n} = useTranslation('en')
 
 
         
-              <ReusableCollapsible
-            title=  { t("   Complax Information")}
+              <ReusableCollapsible  dir={local === 'ar' ? 'rtl' : 'ltr'}
+            title=  { t("Complex Information")}
             initiallyOpen={isOpen.mapsLocation}
             onOpenChange={(open) => handleToggle("mapsLocation", open)}
             content={<div className="flex flex-row items-center justify-between">      <div className="grid gap-x-10 flex-1 gap-y-4 pr-5 pl-5 pb-5">
               <div className="flex items-center gap-2">
-                <label className="w-[162px] text-text-primary font-semibold   text-[length:var(--title-16px-semibold-font-size)] tracking-[var(--title-16px-semibold-letter-spacing)] leading-[var(--title-16px-semibold-line-height)] [font-style:var(--title-16px-semibold-font-style)]">
-              { t("        Complex Name")}:
+                <label className="w-[182px] text-text-primary font-semibold   text-[length:var(--title-16px-semibold-font-size)] tracking-[var(--title-16px-semibold-letter-spacing)] leading-[var(--title-16px-semibold-line-height)] [font-style:var(--title-16px-semibold-font-style)]">
+              { t("Complex Name")}:
                 </label>
                 <Input
                   defaultValue={complexInformation.name}
@@ -397,8 +383,8 @@ const {t, i18n} = useTranslation('en')
               </div>
 
       <div className="flex items-start gap-2">
-                        <div className="w-[162px] text-text-primary font-semibold ">
-                         { t("             Description")}      :
+                        <div className="w-[182px] text-text-primary font-semibold ">
+                         { t("Description")}:
                         </div>
                         <div className="relative  w-[350px]">
                           <Textarea
@@ -410,16 +396,14 @@ const {t, i18n} = useTranslation('en')
                       </div>
            
 
-              <div className="flex items-center gap-2">
-                <label className="w-[162px]  text-text-primary font-semibold">
-                    { t("              Establishment Year")}:
-                </label>
-               <DateInput/>
+              <div className="flex items-center ">
+           
+               <DatePicker/>
               </div>
 
               <div className="flex items-center gap-2">
-                <label className="w-[162px]  text-text-primary font-semibold">
-                   { t("             PIC")}:
+                <label className="w-[182px]  text-text-primary font-semibold">
+                   { t("PIC")}:
                 </label>
                 <Input
                   defaultValue={complexInformation.pic}
@@ -433,7 +417,7 @@ const {t, i18n} = useTranslation('en')
 
    
                       <div className="text-text-accent font-semibold ">
-                         <h2> Capacity </h2>
+                         <h2>   { t("Capacity")} </h2>
                       </div>
 
                   <div className="flex items-center gap-2">
@@ -485,8 +469,8 @@ const {t, i18n} = useTranslation('en')
 
 
 
-     <ReusableCollapsible
-            title=   { t("                Contact Information ")}
+     <ReusableCollapsible  dir={local === 'ar' ? 'rtl' : 'ltr'}
+            title=   { t("Contact Information")}
             initiallyOpen={isOpen.contactInfo}
             onOpenChange={(open) => handleToggle("contactInfo", open)}
             content={<div className="flex flex-col gap-6 p-5">    <div className="flex ">
@@ -506,7 +490,7 @@ const {t, i18n} = useTranslation('en')
 </svg></div> 
 
     <div className="text-text-primary font-semibold">
-        { t("                  Phone Numbers ")}
+        { t("Phone Numbers")}
     </div>
   </div>
 
@@ -514,7 +498,7 @@ const {t, i18n} = useTranslation('en')
 <div className="relative w-[350px] h-12 border border-light rounded-sm overflow-visible font-sans bg-background-secondary  border-border-light "dir="ltr" >
   <PhoneInput 
     country={"sa"}
-    value={contactInfo.phoneNumbers}
+    value={contactInfo(t).phoneNumbers}
     onChange={(phone) => console.log(phone)}
     containerClass="!w-full"
     inputClass="!w-full !h-12 !border-0 !outline-none !text-text-primary !bg-background-secondary !px-3"
@@ -549,12 +533,12 @@ const {t, i18n} = useTranslation('en')
 </div>
 
                   <span className="text-text-primary font-semibold">
-                    { t("                  Email")}:
+                    { t("Email")}:
                   </span>
                   
                 </div>
                 <Input
-                  defaultValue={contactInfo.email}
+                  defaultValue={contactInfo(t).email}
                   className="w-[350px] h-12 bg-background-secondary  border-border-light"
                 />
               </div>
@@ -566,12 +550,12 @@ const {t, i18n} = useTranslation('en')
 <path d="M9.5 6.5C9.5 6.20333 9.58797 5.91332 9.7528 5.66665C9.91762 5.41997 10.1519 5.22771 10.426 5.11418C10.7001 5.00065 11.0017 4.97094 11.2926 5.02882C11.5836 5.0867 11.8509 5.22956 12.0607 5.43934C12.2704 5.64912 12.4133 5.91639 12.4712 6.20736C12.5291 6.49834 12.4994 6.79994 12.3858 7.07403C12.2723 7.34811 12.08 7.58238 11.8334 7.7472C11.5867 7.91203 11.2967 8 11 8C10.6022 8 10.2206 7.84196 9.93934 7.56066C9.65804 7.27936 9.5 6.89782 9.5 6.5ZM5 6.5C5 4.9087 5.63214 3.38258 6.75736 2.25736C7.88258 1.13214 9.4087 0.5 11 0.5C12.5913 0.5 14.1174 1.13214 15.2426 2.25736C16.3679 3.38258 17 4.9087 17 6.5C17 12.1203 11.6019 15.2694 11.375 15.4016C11.2617 15.4663 11.1334 15.5004 11.0028 15.5004C10.8723 15.5004 10.744 15.4663 10.6306 15.4016C10.3981 15.2694 5 12.125 5 6.5ZM6.5 6.5C6.5 10.4563 9.86 13.0822 11 13.8594C12.1391 13.0831 15.5 10.4563 15.5 6.5C15.5 5.30653 15.0259 4.16193 14.182 3.31802C13.3381 2.47411 12.1935 2 11 2C9.80653 2 8.66193 2.47411 7.81802 3.31802C6.97411 4.16193 6.5 5.30653 6.5 6.5ZM18.0097 12.8403C17.8251 12.7793 17.624 12.7924 17.4489 12.8768C17.2738 12.9612 17.1382 13.1102 17.0709 13.2926C17.0035 13.475 17.0096 13.6764 17.0879 13.8543C17.1661 14.0323 17.3104 14.1729 17.4903 14.2466C19.0381 14.8194 20 15.5863 20 16.25C20 17.5025 16.5763 19.25 11 19.25C5.42375 19.25 2 17.5025 2 16.25C2 15.5863 2.96187 14.8194 4.50969 14.2475C4.6896 14.1739 4.8339 14.0332 4.91215 13.8553C4.99039 13.6773 4.99648 13.4759 4.92913 13.2935C4.86178 13.1112 4.72624 12.9621 4.5511 12.8777C4.37596 12.7933 4.17491 12.7803 3.99031 12.8412C1.73937 13.6709 0.5 14.8822 0.5 16.25C0.5 19.1731 5.91031 20.75 11 20.75C16.0897 20.75 21.5 19.1731 21.5 16.25C21.5 14.8822 20.2606 13.6709 18.0097 12.8403Z" fill="CurrentColor"/>
 </svg> </div>
                 <span className=" text-text-primary font-semibold">
-                  Physical Address:
+                 { t("Physical Address")}:
                 </span>
                
               </div>
               <div className="flex gap-4 flex-1">
-                {Object.values(contactInfo.physicalAddress).map(
+                {Object.values(contactInfo(t).physicalAddress).map(
                   (placeholder, index) => (
                     <Input
                       key={index}
@@ -592,11 +576,11 @@ const {t, i18n} = useTranslation('en')
 
                 </div>
                 <span className=" text-text-primary font-semibold">
-                  { t("                     Maps Location ")}:
+                  { t("Maps Location") }:
                 </span>
               </div>
               <Input
-                defaultValue={contactInfo.mapsLocation}
+                defaultValue={contactInfo(t).mapsLocation}
                 className="w-[350px] h-12 bg-background-secondary  border-border-light"
               />
             </div></div>}
@@ -613,30 +597,30 @@ const {t, i18n} = useTranslation('en')
 
 
 
-         <ReusableCollapsible
-            title=  { t("  Linked Clinics ")}
+         <ReusableCollapsible dir={local === 'ar' ? 'rtl' : 'ltr'}
+            title=  { t("Linked Clinics")}
             initiallyOpen={isOpen.mapsLocation}
             onOpenChange={(open) => handleToggle("mapsLocation", open)}
             content={<div className="p-0">      <Table>
               <TableHeader className="">
                 <TableRow>
                   <TableHead className="w-[58px] text-text-primary text-center font-semibold">
-              { t("                   NO ")}
+              { t("NO")}
                   </TableHead>
                   <TableHead className="text-center  text-text-primary font-semiboldI">
-                       { t("                   Name ")}
+                       { t("Name")}
                   </TableHead>
-                  <TableHead className="text-center  text-text-praimary  font-semibold">
-                     { t("                   PIC ")}
+                  <TableHead className="text-center  text-text-primary  font-semibold">
+                     { t("PIC")}
                   </TableHead>
-                  <TableHead className="w-[225px] text-center  text-text-praimary  font-semibold">
-                    { t("                    Scheduled Appointments Count ")}
+                  <TableHead className="w-[225px] text-center  text-text-primary  font-semibold">
+                    { t("Scheduled Appointments Count")}
                   </TableHead>
-                  <TableHead className="text-center  text-text-praimary  font-semibold">
-                     { t("                   Doctors ")}
+                  <TableHead className="text-center  text-text-primary  font-semibold">
+                     { t("Doctors")}
                   </TableHead>
-                  <TableHead className="text-center  text-text-praimary  font-semibold">
-                       { t("                   Status ")}
+                  <TableHead className="text-center  text-text-primary  font-semibold">
+                       { t("Status")}
                   </TableHead>
                 </TableRow>
               </TableHeader>
@@ -666,7 +650,7 @@ const {t, i18n} = useTranslation('en')
 
   
            <Badge className="bg-secondary-light text-secondary-dark rounded-[20px] w-[92px] y-[24px] justify-center">
-                          Active
+                             { t("Active")}
                         </Badge>
    
 
@@ -841,21 +825,21 @@ const {t, i18n} = useTranslation('en')
 
 
 
-          <ReusableCollapsible
-            title= { t("             Department List")}
+          <ReusableCollapsible dir={local === 'ar' ? 'rtl' : 'ltr'}
+            title= { t("Department List")}
             initiallyOpen={isOpen.departments }
             onOpenChange={(open) => handleToggle("departments", open)}
             content={<div className="p-0">    <Table className="table-fixed w-full border-collapse">
           <TableHeader className="">
             <TableRow>
-              <TableHead className="w-[10%]   text-text-praimary  font-semibold  text-center">
-                  { t("             No")}
+              <TableHead className="w-[10%]   text-text-primary  font-semibold  text-center">
+                  { t("No")}
               </TableHead>
-              <TableHead className="w-[40%] text-center    text-text-praimary  font-semiboldd">
-                 { t("             Department Name")}
+              <TableHead className="w-[40%] text-center    text-text-primary  font-semibold">
+                 { t("Department Name")}
               </TableHead>
-              <TableHead className="w-[50%] text-center    text-text-praimary  font-semibold ">
-                     { t("             Description")}
+              <TableHead className="w-[50%] text-center    text-text-primary  font-semibold ">
+                     { t("Description")}
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -941,7 +925,7 @@ const {t, i18n} = useTranslation('en')
 
 
 
-          <ReusableCollapsible
+          <ReusableCollapsible dir={local === 'ar' ? 'rtl' : 'ltr'}
             title={<div>
               <div className="flex items-center gap-4">
                 <h2 className="font-title-16px-bold   w-96 font-[number:var(--title-16px-bold-font-weight)] text-primary-dark text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] [font-style:var(--title-16px-bold-font-style)]">
@@ -977,22 +961,22 @@ const {t, i18n} = useTranslation('en')
               <TableHeader className="">
                 <TableRow>
                   <TableHead className="w-[58px] text-left  text-text-praimary  font-semibold">
-                    {t("                     Number ")}
+                    {t("Number")}
                   </TableHead>
                   <TableHead className="text-center  text-text-praimary  font-semibold">
-                    {t("                      User-ID ")}
+                    {t("User-ID")}
                   </TableHead>
                   <TableHead className="text-center  text-text-praimary  font-semibold">
-                    {t("                      Name ")}
+                    {t("Name")}
                   </TableHead>
                   <TableHead className="w-[225px] text-center  text-text-praimary  font-semibold">
-                    {t("                      Clinic ")}
+                    {t("Clinic")}
                   </TableHead>
                   <TableHead className="text-center  text-text-praimary  font-semibold">
-                    {t("                     User Type ")}
+                    {t("User Type")}
                   </TableHead>
                   <TableHead className="text-center  text-text-praimary  font-semibold">
-                    {t("                     Status ")}
+                    {t("Status")}
                   </TableHead>
                 </TableRow>
               </TableHeader>
@@ -1034,7 +1018,7 @@ const {t, i18n} = useTranslation('en')
                       <div className="flex items-center justify-center gap-2">
 
                         <Badge className="bg-secondary-light text-secondary-dark rounded-[20px] w-[92px] y-[24px] justify-center">
-                          Active
+                              {t("Active")}
                         </Badge>
 
 
@@ -1056,7 +1040,7 @@ const {t, i18n} = useTranslation('en')
               <div className="flex items-center justify-between p-4">
                 <div className="flex items-center gap-2.5">
                   <span className="font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">
-                    {t("                           Showing ")}
+                    {t("Showing")}
                   </span>
                   <Select defaultValue="1">
                     <SelectTrigger className="w-auto bg-secondary-light rounded-[20px] border-0 px-2 py-1.5">
@@ -1067,7 +1051,7 @@ const {t, i18n} = useTranslation('en')
                     </SelectContent>
                   </Select>
                   <span className="font-title-11px-regular w-96 font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">
-                    {t("                             out of 14 ")}
+                    {t("out of 14")}
                   </span>
                 </div>
 
@@ -1217,8 +1201,8 @@ const {t, i18n} = useTranslation('en')
 
 
       {/* Working Days Collapsible */}
-          <ReusableCollapsible
-            title={t("Working Days:")}
+          <ReusableCollapsible dir={local === 'ar' ? 'rtl' : 'ltr'}
+            title={t("Working Days")}
             initiallyOpen={isOpen.workingDays}
             onOpenChange={(open) => handleToggle("workingDays", open)}
             content={<div><div className="flex flex-col gap-4 ">
@@ -1263,7 +1247,7 @@ const {t, i18n} = useTranslation('en')
 
 
         {/* Maps Location Collapsible */}
-          <ReusableCollapsible
+          <ReusableCollapsible dir={local === 'ar' ? 'rtl' : 'ltr'}
             title={t("Maps Location")}
             initiallyOpen={isOpen.mapsLocation}
             onOpenChange={(open) => handleToggle("mapsLocation", open)}

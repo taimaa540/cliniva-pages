@@ -25,7 +25,7 @@ export const ElementViewClinic = (): JSX.Element => {
     };
   return (
 
-    <div className="flex w-full min-h-screen items-start bg-surface-default   "        dir={`${local === "ar" ? "rtl" : "ltr"}`}
+    <div className="flex w-full min-h-screen items-start bg-surface-default   "        
      >
         
       <MedicalSidebarSection />
