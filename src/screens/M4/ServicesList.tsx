@@ -18,78 +18,77 @@ import { useEffect } from "react";
 import SwitchWithLabel from "../CommonComponents/SwitchLabel";
 const serviceData = [
   {
-    id: "001",
-    serviceId: "1",
-    serviceName: "SER-Gsl7m",
-    serviceCategory : "Consultation",
-    sessionsNumber : "3",
-    assignedClinics : "Aleppo Complex",
-    clinicslocation : "Al-Sabil, Forkan",
+    id: "1",
+    serviceId: "SER-Gsl7m",
+    serviceName: "Initial Consultation",
+    serviceCategory: "Consultation",
+    sessionsNumber: "3",
+    assignedClinics: "Aleppo Complex",
+    clinicslocation: "Al-Sabil, Forkan",
   },
   {
-    id: "002",
-    serviceId: "2",
-    serviceName: "SER-Gsl7m",
-    serviceCategory : "Consultation",
-    sessionsNumber : "3",
-    assignedClinics : "Aleppo Complex",
-    clinicslocation : "Al-Sabil, Forkan",
+    id: "2",
+    serviceId: "SER-Gsl7m",
+    serviceName: "Initial Consultation",
+    serviceCategory: "Consultation",
+    sessionsNumber: "3",
+    assignedClinics: "Aleppo Complex",
+    clinicslocation: "Al-Sabil, Forkan",
   },
   {
-    id: "003",
-    serviceId: "3",
-    serviceName: "SER-Gsl7m",
-    serviceCategory : "Consultation",
-    sessionsNumber : "3",
-    assignedClinics : "Aleppo Complex",
-    clinicslocation : "Al-Sabil, Forkan",
+    id: "3",
+    serviceId: "SER-Gsl7m",
+    serviceName: "Initial Consultation",
+    serviceCategory: "Consultation",
+    sessionsNumber: "3",
+    assignedClinics: "Aleppo Complex",
+    clinicslocation: "Al-Sabil, Forkan",
   },
   {
-    id: "004",
-    serviceId: "4",
-    serviceName: "SER-Gsl7m",
-    serviceCategory : "Consultation",
-    sessionsNumber : "3",
-    assignedClinics : "Aleppo Complex",
-    clinicslocation : "Al-Sabil, Forkan",
+    id: "4",
+    serviceId: "SER-Gsl7m",
+    serviceName: "Initial Consultation",
+    serviceCategory: "Consultation",
+    sessionsNumber: "3",
+    assignedClinics: "Aleppo Complex",
+    clinicslocation: "Al-Sabil, Forkan",
   },
   {
-    id: "005",
-    serviceId: "5",
-    serviceName: "SER-Gsl7m",
-    serviceCategory : "Consultation",
-    sessionsNumber : "3",
-    assignedClinics : "Aleppo Complex",
-    clinicslocation : "Al-Sabil, Forkan",
+    id: "5",
+    serviceId: "SER-Gsl7m",
+    serviceName: "Initial Consultation",
+    serviceCategory: "Consultation",
+    sessionsNumber: "3",
+    assignedClinics: "Aleppo Complex",
+    clinicslocation: "Al-Sabil, Forkan",
   },
   {
-    id: "006",
-    serviceId: "6",
-    serviceName: "SER-Gsl7m",
-    serviceCategory : "Consultation",
-    sessionsNumber : "3",
-    assignedClinics : "Aleppo Complex",
-    clinicslocation : "Al-Sabil, Forkan",
+    id: "6",
+    serviceId: "SER-Gsl7m",
+    serviceName: "Initial Consultation",
+    serviceCategory: "Consultation",
+    sessionsNumber: "3",
+    assignedClinics: "Aleppo Complex",
+    clinicslocation: "Al-Sabil, Forkan",
   },
   {
-    id: "007",
-    serviceId: "7",
-    serviceName: "SER-Gsl7m",
-    serviceCategory : "Consultation",
-    sessionsNumber : "3",
-    assignedClinics : "Aleppo Complex",
-    clinicslocation : "Al-Sabil, Forkan",
+    id: "7",
+    serviceId: "SER-Gsl7m",
+    serviceName: "Initial Consultation",
+    serviceCategory: "Consultation",
+    sessionsNumber: "3",
+    assignedClinics: "Aleppo Complex",
+    clinicslocation: "Al-Sabil, Forkan",
   },
   {
-    id: "008",
-    serviceId: "8",
-    serviceName: "SER-Gsl7m",
-    serviceCategory : "Consultation",
-    sessionsNumber : "3",
-    assignedClinics : "Aleppo Complex",
-    clinicslocation : "Al-Sabil, Forkan",
+    id: "8",
+    serviceId: "SER-Gsl7m",
+    serviceName: "Initial Consultation",
+    serviceCategory: "Consultation",
+    sessionsNumber: "3",
+    assignedClinics: "Aleppo Complex",
+    clinicslocation: "Al-Sabil, Forkan",
   },
-
 ];
 
 export const ServicesList = (): JSX.Element => {
@@ -110,7 +109,7 @@ export const ServicesList = (): JSX.Element => {
               {t("Services Management")}
             </h1>
             <p className="font-lato font-regular text-sm leading-[125%] tracking-[0] text-text-primary">
-              {t('View Services List')}
+              {t("View Services List")}
             </p>
           </div>
 
@@ -148,7 +147,7 @@ export const ServicesList = (): JSX.Element => {
                   Anahera Jones
                 </div>
                 <div className="font-lato font-regular text-xs leading-[124%] tracking-[0] text-border-medium">
-                  {t('Admin')}
+                  {t("Admin")}
                 </div>
               </div>
             </div>
@@ -168,7 +167,9 @@ export const ServicesList = (): JSX.Element => {
                     <SearchIcon className="w-3.5 h-3.5 absolute top-[9px] left-[8px]" />
                     <input
                       type="search"
-                      placeholder={t("Search for a service id , service name ..")}
+                      placeholder={t(
+                        "Search for a service id , service name .."
+                      )}
                       className="placeholder:text-[11px] text-[11px] bg-background-primary pl-[30px] py-[8px] rounded-[16px] w-[224px] h-[40px] border-0 px-4 py-2 rounded outline-none focus:border-0"
                     />
                   </form>
@@ -245,67 +246,64 @@ export const ServicesList = (): JSX.Element => {
                   </thead>
                   <tbody>
                     {serviceData.map((service) => (
-                      <Link to="/UserDetails" className="contents h-[78px]">
-                        <tr
-                          key={service.id}
-                          className="h-[78px] bg-background-primary hover:bg-gray-100 border-b border-border-light w-full"
-                        >
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.id}
-                          </td>
-                          <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.serviceId}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.serviceName}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.serviceCategory}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.sessionsNumber}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.assignedClinics}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.clinicslocation}
-                          </td>
-                          <td className="align-middle w-[160px]">
-                            <SwitchWithLabel />
-                          </td>
-                          <td className="align-middle">
-                            <div className="inline-flex flex-col justify-center gap-1 flex-[0_0_auto] items-start">
-                              <div className="inline-flex items-center justify-center gap-1 flex-[0_0_auto]">
-                                <Link to="/EditUserDEtails">
-                                  <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
-                                  >
-                                    <img
-                                      className={`w-[15px] h-[15px]text-on-surface-primary`}
-                                      alt="edit"
-                                      src="./edit-01.svg"
-                                    />
-                                  </Button>
-                                </Link>
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
-                                >
-                                  <Trash2Icon
-                                    className={`w-[20px] h-[20px]
+                      <tr
+                        key={service.id}
+                        className="h-[78px] bg-background-primary hover:bg-gray-100 border-b border-border-light w-full"
+                      >
+                        <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                          {service.id}
+                        </td>
+                        <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary">
+                          {service.serviceId}
+                        </td>
+                        <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                          {service.serviceName}
+                        </td>
+                        <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                          {service.serviceCategory}
+                        </td>
+                        <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                          {service.sessionsNumber}
+                        </td>
+                        <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                          {service.assignedClinics}
+                        </td>
+                        <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                          {service.clinicslocation}
+                        </td>
+                        <td className="align-middle w-[160px]">
+                          <SwitchWithLabel />
+                        </td>
+                        <td className="align-middle">
+                          <div className="inline-flex flex-col justify-center gap-1 flex-[0_0_auto] items-start">
+                            <div className="inline-flex items-center justify-center gap-1 flex-[0_0_auto]">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
+                              >
+                                <img
+                                  className={`w-[15px] h-[15px]text-on-surface-primary`}
+                                  alt="edit"
+                                  src="./edit-01.svg"
+                                />
+                              </Button>
+
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
+                              >
+                                <Trash2Icon
+                                  className={`w-[20px] h-[20px]
                                  "text-on-surface-primary"
                               `}
-                                  />
-                                </Button>
-                              </div>
+                                />
+                              </Button>
                             </div>
-                          </td>
-                        </tr>
-                      </Link>
+                          </div>
+                        </td>
+                      </tr>
                     ))}
                   </tbody>
                 </table>
