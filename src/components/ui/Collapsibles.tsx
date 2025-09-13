@@ -24,7 +24,7 @@ const ReusableCollapsible: React.FC<ReusableCollapsibleProps> = ({
   onOpenChange,
   
   className = "w-full bg-background-primary mt-5 rounded-2xl",
-  cardClassName = "bg-surface-default rounded-2xl p-5",
+  cardClassName = "bg-surface-default rounded-2xl pl-5 pr-5 pt-5",
   titleStyle = {
     fontFamily: "Lato",
     fontWeight: 600,
@@ -73,7 +73,7 @@ const openState = isControlled ? initiallyOpen! : internalOpen;
     >
       <Card className={cardClassName}>
         <CollapsibleTrigger className="w-full rounded-2xl">
-          <CardContent className="flex flex-row items-center rounded-2xl justify-between p-0 py-4">
+          <CardContent className="flex flex-row items-center rounded-2xl justify-between p-0 ">
             <div 
               className="text-text-accent font-bold size-16 w-56 text-start"
               style={titleStyle}
@@ -86,7 +86,7 @@ const openState = isControlled ? initiallyOpen! : internalOpen;
         </CollapsibleTrigger>
         
         <CollapsibleContent>
-          <CardContent className="flex flex-col gap-4 p-0 pt-4">
+          <CardContent className="flex flex-col  p-0 ">
             {content}
           </CardContent>
         </CollapsibleContent>

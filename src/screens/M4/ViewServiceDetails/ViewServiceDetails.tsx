@@ -570,7 +570,7 @@ export const ViewServiceDetails = (): JSX.Element => {
           <TableCell className="text-center text-[14px] font-semibold">{person.ActiveAppt}</TableCell>
 <TableCell className="text-center items-center">
   <Badge className="bg-secondary-light text-secondary-dark text-end rounded-[20px] w-[92px]">
-    {person.status}
+  {t(person.status)}
   </Badge>
 </TableCell>
       </TableRow>

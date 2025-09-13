@@ -7,9 +7,11 @@ interface DatePickerProps {
   label?: string;
   defaultValue?: string;
   direction?: 'ltr' | 'rtl';
+    width?: string;
+     labelWidth?: string;
 }
 
-const DatePicker: React.FC<DatePickerProps> = ({ value, defaultValue, onDateChange, label = "Establishment Year", direction }) => {
+const DatePicker: React.FC<DatePickerProps> = ({ value, defaultValue, onDateChange, label = "Establishment Year", direction, width ,labelWidth}) => {
   const { t, i18n } = useTranslation();
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isPickerOpen, setIsPickerOpen] = useState(false);
@@ -87,10 +89,21 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, defaultValue, onDateChan
 
   return (
     <div className="flex items-center gap-8" dir={resolvedDirection} >
-      <label className={`w-40  text-text-primary text-[16px] font-semibold ${resolvedDirection === 'rtl' ? 'text-right' : ''}`}>
-        {label ? t(label) : t('establishmentYear')}:
-      </label>
-      <div className="relative w-[360px]" >
+     <label
+  className={`
+    text-text-primary 
+    text-[16px] 
+    font-semibold 
+    ${resolvedDirection === 'rtl' ? 'text-right' : ''}
+  `}
+  style={{ width: labelWidth || 'auto' }} // 👈 استخدام القيمة الممررة
+>
+  {label ? t(label) : t('establishmentYear')}:
+</label>
+      <div 
+  className="relative"
+  style={{ width: width || '360px' }}
+>
         {/* حقل الإدخال */}
         <input
           type="text"
