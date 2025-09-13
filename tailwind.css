@@ -178,6 +178,7 @@
 }
 
 @keyframes shimmer {
+
   0%,
   90%,
   to {
@@ -333,5 +334,3 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .PhoneInputInput {
   @apply flex-1 outline-none px-2 text-gray-800;
 }
-
-

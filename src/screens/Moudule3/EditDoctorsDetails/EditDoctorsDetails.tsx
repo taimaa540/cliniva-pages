@@ -1,7 +1,7 @@
 import { BellIcon, CalendarIcon, ChevronDownIcon } from "lucide-react";
 import { CountryDropdown } from "react-country-region-selector";
 import PhoneInput from "react-phone-number-input";
-
+import PhoneInputCustom from "../../../components/ui/PhoneInput";
 import {
 
 
@@ -82,72 +82,72 @@ export const EditDoctorDetails = (): JSX.Element => {
   }, []);
 
 
-const [formDates, setFormDates] = useState<{
-  Barithday: Date | null;
-DateofHire: Date | null;
-  ContactDate: Date | null;
-  CertificationsDate: Date | null;
-  WorkPermit: Date | null;
-  Resume: Date | null;
-}>({
-  Barithday: new Date('1994-01-20'),
-  DateofHire: new Date('1994-01-20'),
-  ContactDate: new Date('2005-04-27'),
-  CertificationsDate:  new Date('2005-04-27'),
-  WorkPermit:  new Date('2005-04-27'),
-  Resume:  new Date('2005-04-27')
-});
+  const [formDates, setFormDates] = useState<{
+    Barithday: Date | null;
+    DateofHire: Date | null;
+    ContactDate: Date | null;
+    CertificationsDate: Date | null;
+    WorkPermit: Date | null;
+    Resume: Date | null;
+  }>({
+    Barithday: new Date('1994-01-20'),
+    DateofHire: new Date('1994-01-20'),
+    ContactDate: new Date('2005-04-27'),
+    CertificationsDate: new Date('2005-04-27'),
+    WorkPermit: new Date('2005-04-27'),
+    Resume: new Date('2005-04-27')
+  });
 
-const documents = [
-    { 
-    label: "Employment Contract", 
-    effectiveDate: (
-      <DatePicker 
-        label={t("Effective Date")}  
-        value={formDates.ContactDate}
-        onDateChange={(date) =>
-          setFormDates((prev) => ({ ...prev, ContactDate: date }))
-        } 
-      />
-    )
-  },
-  {
-    label: "Certifications",
-    effectiveDate: (
-      <DatePicker
-        label={t("Effective Date")}
-        value={formDates.CertificationsDate}
-        onDateChange={(date) =>
-          setFormDates((prev) => ({ ...prev, CertificationsDate: date }))
-        }
-      />
-    )
-  },
-  {
-    label: "Work Permit",
-    effectiveDate: (
-      <DatePicker
-        label={t("Effective Date")}
-        value={formDates.WorkPermit}
-        onDateChange={(date) =>
-          setFormDates((prev) => ({ ...prev, WorkPermit: date }))
-        }
-      />
-    )
-  },
-  {
-    label: "CV / Resume",
-    effectiveDate: (
-      <DatePicker
-        label={t("Effective Date")}
-        value={formDates.Resume}
-        onDateChange={(date) =>
-          setFormDates((prev) => ({ ...prev, Resume: date }))
-        }
-      />
-    )
-  }
-];
+  const documents = [
+    {
+      label: "Employment Contract",
+      effectiveDate: (
+        <DatePicker
+          label={t("Effective Date")}
+          value={formDates.ContactDate}
+          onDateChange={(date) =>
+            setFormDates((prev) => ({ ...prev, ContactDate: date }))
+          }
+        />
+      )
+    },
+    {
+      label: "Certifications",
+      effectiveDate: (
+        <DatePicker
+          label={t("Effective Date")}
+          value={formDates.CertificationsDate}
+          onDateChange={(date) =>
+            setFormDates((prev) => ({ ...prev, CertificationsDate: date }))
+          }
+        />
+      )
+    },
+    {
+      label: "Work Permit",
+      effectiveDate: (
+        <DatePicker
+          label={t("Effective Date")}
+          value={formDates.WorkPermit}
+          onDateChange={(date) =>
+            setFormDates((prev) => ({ ...prev, WorkPermit: date }))
+          }
+        />
+      )
+    },
+    {
+      label: "CV / Resume",
+      effectiveDate: (
+        <DatePicker
+          label={t("Effective Date")}
+          value={formDates.Resume}
+          onDateChange={(date) =>
+            setFormDates((prev) => ({ ...prev, Resume: date }))
+          }
+        />
+      )
+    }
+  ];
   return (
     <div className="flex flex-col w-full overflow-hidden min-h-screen items-start gap-4 py-4 pl-0 pr-5">
       <header className="flex h-[50px] justify-between pl-1 pr-0 py-0 w-full items-center">
@@ -158,16 +158,16 @@ const documents = [
           <div className="flex items-center gap-2.5 text-[14px]">
             <div className=" text-text-primary">
               <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M18 8C18 8.41421 17.6642 8.75 17.25 8.75L0.75 8.75C0.335786 8.75 -3.45941e-07 8.41421 -3.27835e-07 8C-3.0973e-07 7.58579 0.335787 7.25 0.75 7.25L17.25 7.25C17.6642 7.25 18 7.58579 18 8Z" fill="CurrentColor"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M8.03033 0.719669C8.32322 1.01256 8.32322 1.48744 8.03033 1.78033L1.81066 8L8.03033 14.2197C8.32322 14.5126 8.32322 14.9874 8.03033 15.2803C7.73744 15.5732 7.26256 15.5732 6.96967 15.2803L0.219669 8.53033C-0.0732254 8.23744 -0.0732253 7.76256 0.219669 7.46967L6.96967 0.719669C7.26256 0.426776 7.73744 0.426776 8.03033 0.719669Z" fill="CurrentColor"/>
-</svg>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M18 8C18 8.41421 17.6642 8.75 17.25 8.75L0.75 8.75C0.335786 8.75 -3.45941e-07 8.41421 -3.27835e-07 8C-3.0973e-07 7.58579 0.335787 7.25 0.75 7.25L17.25 7.25C17.6642 7.25 18 7.58579 18 8Z" fill="CurrentColor" />
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.03033 0.719669C8.32322 1.01256 8.32322 1.48744 8.03033 1.78033L1.81066 8L8.03033 14.2197C8.32322 14.5126 8.32322 14.9874 8.03033 15.2803C7.73744 15.5732 7.26256 15.5732 6.96967 15.2803L0.219669 8.53033C-0.0732254 8.23744 -0.0732253 7.76256 0.219669 7.46967L6.96967 0.719669C7.26256 0.426776 7.73744 0.426776 8.03033 0.719669Z" fill="CurrentColor" />
+              </svg>
 
             </div>
-             <p className="font-lato font-semibold text-sm text-text-primary leading-[125%] tracking-[0]">
-            {t("Edit Doctor details")}
-          </p>
+            <p className="font-lato font-semibold text-sm text-text-primary leading-[125%] tracking-[0]">
+              {t("Edit Doctor details")}
+            </p>
           </div>
-         
+
         </div>
 
         <div className="inline-flex gap-3 flex-[0_0_auto] rounded-[28px] items-center">
@@ -182,9 +182,8 @@ const documents = [
             <Button
               variant="ghost"
               size="icon"
-              className={`p-2.5 bg-secondary-light ${
-                local === "ar" ? "bg-[green]" : "bg-secondary-light"
-              } rounded-[20px] h-auto transition-all duration-[1000ms]`}
+              className={`p-2.5 bg-secondary-light ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
+                } rounded-[20px] h-auto transition-all duration-[1000ms]`}
               onClick={handleLanguageClick}
             >
               <TranslateIcon className="w-5 h-5" />
@@ -213,16 +212,16 @@ const documents = [
 
       <main className="flex flex-col h-full items-start gap-5 p-[20px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-tertiary">
         <div className="flex flex-col gap-[20px] w-full overflow-y-auto scroll-x-hidden pr-[20px]">
-    
-          
-            <div className="flex gap-[16px] justify-end ">
-              <button className=" w-[200px] h-[40px] rounded-[20px] border border-border-light bg-surface-primary  font-lato font-medium text-sm leading-[100%] tracking-[0] text-text-primary">
-                {t("Cancel")}
-              </button>
-              <button className=" w-[200px] h-[40px] rounded-[20px] bg-secondary-dark font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
-                {t("Save")}
-              </button>
-        
+
+
+          <div className="flex gap-[16px] justify-end "dir={local === "en" ? "ltr" : "rtl"}>
+            <button className=" w-[200px] h-[40px] rounded-[20px] border border-border-light bg-surface-primary  font-lato font-medium text-sm leading-[100%] tracking-[0] text-text-primary">
+              {t("Cancel")}
+            </button>
+            <button className=" w-[200px] h-[40px] rounded-[20px] bg-secondary-dark font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
+              {t("Save")}
+            </button>
+
           </div>
 
           <Card className="w-full bg-background-primary rounded-[16px] p-[16px]">
@@ -245,9 +244,8 @@ const documents = [
                       </h2>
                       <ChevronDownIcon
                         style={{ width: "24px", height: "24px" }}
-                        className={`transition-transform duration-200 ${
-                          open.personal ? "rotate-180" : "rotate-0"
-                        }`}
+                        className={`transition-transform duration-200 ${open.personal ? "rotate-180" : "rotate-0"
+                          }`}
                       />
                     </div>
                   </Button>
@@ -262,7 +260,7 @@ const documents = [
                         <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Profile Picture")}
                         </Label>
-                        <ImageUploader />
+                        <ImageUploader initialImage="/userLogo.png" />
                       </div>
                       <div className="flex items-center gap-[32px] ">
                         <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
@@ -270,7 +268,7 @@ const documents = [
                         </Label>
                         <Input
                           defaultValue="Ammar Mohammed Al Sawwa"
-                          className="w-[360px] h-[48px] w-[360px] bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
+                          className="w-[360px] h-[48px]  bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
                         />
                       </div>
                       <div className="flex items-center gap-[32px] ">
@@ -286,35 +284,67 @@ const documents = [
                           Female
                         </label>
                       </div>
-                  
 
 
-                          <DatePicker 
-                            label={t("Birth Date")}
-                            value={formDates.Barithday}
-                            onDateChange={(date) => setFormDates((prev) => ({ ...prev, Barithday: date }))}
-                          />
+                    <div className="text-text-primary font-semibold">
+                      <DatePicker
+                        label={t("Birth Date")}
+                        value={formDates.Barithday}
+                        onDateChange={(date) => setFormDates((prev) => ({ ...prev, Barithday: date }))}
+                        labelWidth="160px"
+                      />
+</div>
 
 
 
 
 
 
-                       
-                      
-                    
-                  
-                      <div className="flex items-center gap-[32px] ">
+
+
+
+                      <div className="flex items-center gap-[32px] text-text-primary font-semibold ">
                         <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Nationality")}
                         </Label>
-                        <CountryDropdown
-                          value={country}
-                          onChange={(val) => setCountry(val)}
-                          className="w-[360px] h-[48px] w-[360px] bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
-                          defaultOptionLabel="SY"
-                        />
+                
+<div
+  className="relative w-[360px]"
+  dir={local === "en" ? "ltr" : "rtl"}
+>
+  <CountryDropdown 
+    value={country}
+    onChange={(val) => setCountry(val)}
+    className="w-full h-[48px] bg-background-secondary p-3 border border-border-light rounded-[4px] pr-8 appearance-none"
+    defaultOptionLabel="SY"
+  />
+
+  {/* سهم مخصص */}
+  <span
+    className={`absolute top-1/2 -translate-y-1/2 pointer-events-none ${
+      local === "en" ? "right-3" : "left-3"
+    }`}
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-4 h-4 text-gray-400"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M19 9l-7 7-7-7"
+      />
+    </svg>
+  </span>
+</div>
+
+                        
                       </div>
+                
                       <div className="flex items-center gap-[32px] ">
                         <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Card Number")}
@@ -328,8 +358,8 @@ const documents = [
                         <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Marital Status")}
                         </Label>
-                        <Select defaultValue="Married">
-                          <SelectTrigger className="w-[360px] h-[48px] bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary">
+                        <Select defaultValue="Married" dir={local === "en" ? "ltr" : "rtl"}>
+                          <SelectTrigger className="w-[360px] h-[48px] bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary ">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -354,54 +384,44 @@ const documents = [
                     <div className="flex flex-col gap-[16px]">
                       <div className="grid grid-cols-2 gap-[22px]">
                         <div className="grid w-[360px]">
-      <div className="flex items-center gap-[32px] rounded-2xl">
-  <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
-    {t("Phone Numbers")} 
-  </Label>
+                         <div className="flex items-center gap-[32px] rounded-2xl">
+                        <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                          {t("Phone Number")}
+                        </Label>
 
-  <div className="w-[360px]">
-    <PhoneInput
-      defaultCountry="SY"
-      value={"96601234567"}
-      onChange={setValue}
-      labels={{ ...en, ...shortLabels }}
-      style={{ width: '100%', height: '48px' ,boxSizing: 'border-box' }} // مضمونة حتى لو Tailwind ما اشتغلت
-      className="bg-background-secondary border !border-border-light !rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
-
-         containerClass="!w-full"
-                            inputClass="!w-full !h-12 !border-0 !outline-none !text-text-primary !bg-background-secondary !px-3"
-                            buttonClass="!h-12 !border-0 !bg-background-secondary !pr-2 flex items-center relative"
-                            dropdownClass="!absolute !top-full !left-0   !max-h-60 !overflow-y-auto !bg-background-secondary border text-text-primary z-50"
-    />
-  </div>
-</div>
-                                   
-                                                    
-                              
-                                                    <div className="flex justify-end p-2 text-secondary-dark ">
-                                                      <PlusIcon className="w-8 h-8  cursor-pointer" />
-                                                    </div>
-                                                  
-                </div>
-
-
-
-
-          <div className="flex items-start mt-3  ">
-                    <div className="flex w-[100px] items-center gap-1 mb-12 ">
-                
-
-                      <div className="text-text-primary font-semibold">
-                        {t("            Email     ")}:
+                        <div className="w-[360px] !bg-background-secondary text-text-primary font-semibold !rounded-[4px] overflow-hidden">
+                          <PhoneInputCustom 
+                          value={emergencyContact.number}
+                          />
+                        </div>
                       </div>
-                    </div>
-               
-               <div
-                      className="  flex   text-text-primary  font-sans">
-                    <label className="  text-text-primary  font-sans   ">ammarsvu91@gmail.com</label>
-                      </div> 
-               
-                  </div>
+
+
+
+                          <div className="flex justify-end p-2 text-secondary-dark ">
+                            <PlusIcon className="w-8 h-8  cursor-pointer" />
+                          </div>
+
+                        </div>
+
+
+
+
+                        <div className="flex items-start mt-3  ">
+                          <div className="flex w-[100px] items-center gap-1 mb-12 ">
+
+
+                            <div className="text-text-primary font-semibold">
+                              {t("Email")}:
+                            </div>
+                          </div>
+
+                          <div
+                            className="  flex   text-text-primary  font-sans">
+                            <label className="  text-text-primary  font-sans   ">ammarsvu91@gmail.com</label>
+                          </div>
+
+                        </div>
                       </div>
                       <div className="flex items-center gap-8 ">
                         <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
@@ -440,25 +460,19 @@ const documents = [
                           />
                         </div>
                       </div>
-<div className="flex items-center gap-[32px] rounded-2xl">
-  <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
-    {t("Emergency Number")} 
-  </Label>
+                      <div className="flex items-center gap-[32px] rounded-2xl">
+                        <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                          {t("Emergency Number")}
+                        </Label>
 
-  <div className="w-[360px] !bg-background-secondary !rounded-[4px] overflow-hidden">
-    <PhoneInput
-      defaultCountry="SY"
-      value={"+20 112 345 6789"}
-      onChange={setValue}
-      labels={{ ...en, ...shortLabels }}
-      style={{ width: '100%', height: '48px', background: '!bg-background-secondary' }} // مضمونة حتى لو Tailwind ما اشتغلت
-      className="border !border-border-light !bg-background-secondary font-lato font-semibold !rounded-[4px] text-sm leading-[125%] tracking-[0] text-text-primary"
-    
-    />
-  </div>
-</div>
+                      <div className="w-[360px] !bg-background-secondary text-text-primary font-semibold !rounded-[4px] overflow-hidden">
+                          <PhoneInputCustom 
+                          value={emergencyContact.number}
+                          />
+                        </div>
                       </div>
-                  
+                    </div>
+
                   </div>
                 </CollapsibleContent>
               </Collapsible>
@@ -466,7 +480,7 @@ const documents = [
           </Card>
 
 
-        
+
 
 
 
@@ -490,9 +504,8 @@ const documents = [
                       </h2>
                       <ChevronDownIcon
                         style={{ width: "24px", height: "24px" }}
-                        className={`transition-transform duration-200 ${
-                          open.employment ? "rotate-180" : "rotate-0"
-                        }`}
+                        className={`transition-transform duration-200 ${open.employment ? "rotate-180" : "rotate-0"
+                          }`}
                       />
                     </div>
                   </Button>
@@ -509,16 +522,16 @@ const documents = [
                           className="bg-background-secondary border-border-light w-[360px] text-text-primary  h-[48px] shadow-[0px_1px_2px_0px_#0A0D120D] rounder-[4px]  font-lato font-semibold text-sm leading-[125%] tracking-[0]"
                         />
                       </div>
-                      <div className="flex items-center gap-[32px]">
-                      
-          <DatePicker
-        label= {t("Date of Hire")}
-        value={formDates.DateofHire}
-        onDateChange={(date) =>
-          setFormDates((prev) => ({ ...prev, DateofHire: date }))
-          
-        }
-      />
+                      <div className="flex items-center text-text-primary font-semibold gap-[32px]">
+
+                        <DatePicker
+                          label={t("Date of Hire")}
+                          value={formDates.DateofHire}
+                          onDateChange={(date) =>
+                            setFormDates((prev) => ({ ...prev, DateofHire: date }))
+
+                          }
+                        />
                       </div>
                     </div>
                     <WorkingDaysList />
@@ -551,9 +564,8 @@ const documents = [
                       </h2>
                       <ChevronDownIcon
                         style={{ width: "24px", height: "24px" }}
-                        className={`transition-transform duration-200 ${
-                          open.documents ? "rotate-180" : "rotate-0"
-                        }`}
+                        className={`transition-transform duration-200 ${open.documents ? "rotate-180" : "rotate-0"
+                          }`}
                       />
                     </div>
                   </Button>
@@ -573,7 +585,7 @@ const documents = [
                           size={1 * 1024 * 1024}
                         />
 
-     {doc.effectiveDate}
+                        {doc.effectiveDate}
                       </div>
                     ))}
                   </div>

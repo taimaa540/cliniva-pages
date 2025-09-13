@@ -138,7 +138,7 @@ export const ViewStaffMembersList = (): JSX.Element => {
                         </h1>
                         <div className="font-semibold text-[14px] ">
                             <h1 >
-                                {t(" View Staff Members List   ")}
+                                {t("View Staff Members List")}
                             </h1>
                         </div>
                     </div>
@@ -325,7 +325,7 @@ export const ViewStaffMembersList = (): JSX.Element => {
                                         <SelectContent>
                                             <SelectItem value="10">10</SelectItem>
                                             <SelectItem value="20">20</SelectItem>
-                                            <SelectItem value="50">50</SelectItem>
+                                            <SelectItem value="50">505</SelectItem>
                                         </SelectContent>
                                     </Select>
                                     <span className="font-title-11px-regular w-64 font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">

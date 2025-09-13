@@ -1,7 +1,7 @@
 import { BellIcon, CalendarIcon, ChevronDownIcon } from "lucide-react";
 import { CountryDropdown } from "react-country-region-selector";
 import PhoneInput from "react-phone-number-input";
-
+import { Trans } from "react-i18next";
 import {
 
 
@@ -31,11 +31,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../../components/ui/select";
+import PhoneInputCustom from "../../../components/ui/PhoneInput";
 import WorkingDaysList from "../../CommonComponents/workDays";
 import { useLanguage } from "../../../lib/LanguageContext";
 import { useState } from "react";
 import ImageUploader from "../../CommonComponents/ImageUpload";
 import DatePicker from '../../../components/ui/DatePicker';
+import { Value } from "@radix-ui/react-select";
 const accountFields = [
   { label: "User Name", value: "Ammar Al Sawwa", type: "input" },
   { label: "Ghange Password", value: "ammarsvu91@gmail.com", type: "text" },
@@ -43,6 +45,7 @@ const accountFields = [
   { label: "User Type", value: "Staff", type: "text" },
   { label: "Medical Complex", value: "TCT Complex", type: "select" },
   { label: "Clinic", value: "X-Ray Clinic", type: "select" },
+
 ];
 
 const addressFields = [
@@ -51,6 +54,7 @@ const addressFields = [
   { value: "Al Olaya District", width: "w-[165px]" },
   { value: "Riyadh", width: "w-[165px]" },
   { value: "Saudi Arabia", width: "w-[165px]" },
+
 ];
 
 const emergencyContact = {
@@ -63,7 +67,8 @@ const emergencyContact = {
 
 
 export const StaffMemberDetails = (): JSX.Element => {
-  const [value, setValue] = useState<string | undefined>("");
+  const [value, setValue] = useState<string | undefined>(""
+    );
   const shortLabels: Record<string, string> = {};
   Object.keys(en).forEach((key) => {
     shortLabels[key] = key; // يظهر SY, US, EG بدل اسم الدولة
@@ -214,7 +219,7 @@ export const StaffMemberDetails = (): JSX.Element => {
         <div className="flex flex-col gap-[20px] w-full overflow-y-auto scroll-x-hidden pr-[20px]">
 
 
-          <div className="flex gap-[16px] justify-end ">
+          <div className="flex gap-[16px] justify-end "dir={local === "en" ? "ltr" : "rtl"}>
             <button className=" w-[200px] h-[40px] rounded-[20px] border border-border-light bg-surface-primary  font-lato font-medium text-sm leading-[100%] tracking-[0] text-text-primary">
               {t("Cancel")}
             </button>
@@ -260,7 +265,7 @@ export const StaffMemberDetails = (): JSX.Element => {
                         <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Profile Picture")}
                         </Label>
-                        <ImageUploader />
+                        <ImageUploader  initialImage="./userLogo.png"/>
                       </div>
                       <div className="flex items-center gap-[32px] ">
                         <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
@@ -293,13 +298,14 @@ export const StaffMemberDetails = (): JSX.Element => {
                       </div>
 
 
-
+<div className="text-text-primary font-semibold">
                       <DatePicker
                         label={t("Birth Date")}
                         value={formDates.Barithday}
+                        labelWidth="160px"
                         onDateChange={(date) => setFormDates((prev) => ({ ...prev, Barithday: date }))}
                       />
-
+</div>
 
 
 
@@ -316,7 +322,7 @@ export const StaffMemberDetails = (): JSX.Element => {
                        
 
 
-                           <Select defaultValue="Sy">
+                           <Select defaultValue="Sy"dir={local === "en" ? "ltr" : "rtl"}>
                           <SelectTrigger className="w-[360px] h-[48px] bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary">
                             <SelectValue />
                           </SelectTrigger>
@@ -341,7 +347,7 @@ export const StaffMemberDetails = (): JSX.Element => {
                         <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Marital Status")}
                         </Label>
-                        <Select defaultValue="Married">
+                        <Select defaultValue="Married"dir={local === "en" ? "ltr" : "rtl"}>
                           <SelectTrigger className="w-[360px] h-[48px] bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary">
                             <SelectValue />
                           </SelectTrigger>
@@ -369,20 +375,16 @@ export const StaffMemberDetails = (): JSX.Element => {
                         <div className="grid w-[360px]">
                           <div className="flex items-center gap-[32px] rounded-2xl">
                             <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
-                              {t("Emergency Number")}
+                              {t("Phone Number")}
                             </Label>
 
-                            <div className="w-[360px]">
-                              <PhoneInput
-                                defaultCountry="SY"
-                                value={value}
-                                onChange={setValue}
-                                labels={{ ...en, ...shortLabels }}
-                                style={{ width: '100%', height: '48px' }} // مضمونة حتى لو Tailwind ما اشتغلت
-                                className="bg-background-secondary border !border-border-light !rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
-                                placeholder="أدخل رقم الهاتف"
-                              />
-                            </div>
+                              <div className="w-[360px] !bg-background-secondary text-text-primary font-semibold !rounded-[4px] overflow-hidden">
+                                                                         <PhoneInputCustom   
+                                                                         value={emergencyContact.number}
+                                                                             onChange={setValue}
+                                                                        placeholder=     {t("Enter Number")}
+                                                                         />
+                                                                     </div>
                           </div>
 
 
@@ -401,13 +403,13 @@ export const StaffMemberDetails = (): JSX.Element => {
 
 
                             <div className="text-text-primary font-semibold">
-                              {t("            Email     ")}:
+                              {t("Email")}:
                             </div>
                           </div>
 
                           <div
                             className="  flex   text-text-primary  font-sans">
-                            <label className="  text-text-primary  font-sans   ">ammarsvu91@gmail.com</label>
+                            <label className="   font-sans  text-text-primary font-semibold ">ammarsvu91@gmail.com</label>
                           </div>
 
                         </div>
@@ -453,18 +455,14 @@ export const StaffMemberDetails = (): JSX.Element => {
                         <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Emergency Number")}
                         </Label>
-
-                        <div className="w-[360px] !bg-background-secondary !rounded-[4px] overflow-hidden">
-                          <PhoneInput
-                            defaultCountry="SY"
-                            value={value}
-                            onChange={setValue}
-                            labels={{ ...en, ...shortLabels }}
-                            style={{ width: '100%', height: '48px', background: '!bg-background-secondary' }} // مضمونة حتى لو Tailwind ما اشتغلت
-                            className="border !border-border-light !bg-background-secondary font-lato font-semibold !rounded-[4px] text-sm leading-[125%] tracking-[0] text-text-primary"
-                            placeholder="أدخل رقم الهاتف"
-                          />
-                        </div>
+                                  <div className="w-[360px] !bg-background-secondary !rounded-[4px] overflow-hidden  text-text-primary font-semibold">
+                                                                         <PhoneInputCustom     value={emergencyContact.number}
+                                                                             onChange={setValue}
+                                                                        placeholder=     {t("Enter Number")}
+                                                                         />
+                                                                     </div>
+                      
+                      
                       </div>
                     </div>
 
@@ -509,15 +507,16 @@ export const StaffMemberDetails = (): JSX.Element => {
                   <div className="flex flex-col items-start gap-4 mt-[20px] relative">
                     <div className="flex items-center gap-[21.5px] w-full">
                       <div className="flex items-center gap-[32px] ">
-                        <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                        <Label className="w-[160px] font-lato font-semibold  text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Job Title")}
                         </Label>
+                        <div className= "flex text-text-primary font-semibold">
                         <Input
                           defaultValue="Manager"
-                          className="bg-background-secondary border-border-light w-[360px]  h-[48px] shadow-[0px_1px_2px_0px_#0A0D120D] rounder-[4px] text-text-secondary font-lato font-semibold text-sm leading-[125%] tracking-[0]"
-                        />
+                          className="bg-background-secondary  text-text-primary  border-border-light w-[360px]  h-[48px] shadow-[0px_1px_2px_0px_#0A0D120D] rounder-[4px]  font-lato font-semibold text-sm leading-[125%] tracking-[0]"
+                        /></div>
                       </div>
-                      <div className="flex items-center gap-[32px]">
+                      <div className="flex items-center gap-[32px]  text-text-primary font-semibold">
 
                         <DatePicker
                           label={t("Date of Hire")}
@@ -576,6 +575,11 @@ export const StaffMemberDetails = (): JSX.Element => {
                           {t(`${doc.label}`)}
                         </Label>
                         <FileUpload
+                            label={    <>            
+       <Trans i18nKey="uploadFile.dragLabel">
+        <span className="text-text-accent" />
+        <span className="text-text-primary" />
+      </Trans></> }
                           amount="PDF File , Maximum file size 1MB."
                           size={1 * 1024 * 1024}
                         />

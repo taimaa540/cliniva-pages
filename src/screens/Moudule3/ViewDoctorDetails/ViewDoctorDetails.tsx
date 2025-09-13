@@ -57,7 +57,7 @@ const workingDaysData = [
 ];
 
 const documentsData = [
-  { title: "Contract", date: " May 01, 2026 ", size: "0.5 MB" },
+  { title: "Contract", date: " May 01, 2026 ", size: "00.5 MB" },
   { title: "CV / Resume", date: " May 30, 2028", size: "1.0 MB" },
   { title: "Work Permit", date: " Mar 01, 2027", size: "0.7 MB" },
   { title: "Certifications", date: " Mar 01, 2028", size: "0.4 MB" },

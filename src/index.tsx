@@ -55,9 +55,12 @@ import { Edit } from "lucide-react";
 import { ViewSpecialityDetails } from "./screens/Moudule3/ViewSpecialityDetails/ViewSpecialityDetails";
 import { ElementEditSpicialityDetails } from "./screens/Moudule3/EditSpecialityDetails/ElementEditSpicialityDetail";
 import { ViewServiceDetails } from "./screens/M4/ViewServiceDetails/ViewServiceDetails";
+
+import { ViewListOfPatients } from "./screens/M5/ViewListOfPatients/ViewListOfPatients";
+import { AddNewPatient } from "./screens/M5/AddNewPatient/AddNewPatient";
+import { EditPatientDetails } from "./screens/M5/EditPaitentDetails/EditPatientDetails"; 
 import { EditServiceDetails } from "./screens/M4/EditServiceDetails/EditServiceDetails";
-import { ViewListOfPatients } from "./screens/Moudule3/ViewListOfPatients/ViewListOfPatients";
-import { AddNewPatient } from "./screens/Moudule3/AddNewPatient/AddNewPatient";
+
 function MainApp() {
   return (
     <BrowserRouter>
@@ -97,25 +100,28 @@ function MainApp() {
               {/* <ElementEditSpicialityDetails/> */}
               {/* <ElementViewClinic/> */}
               {/* <ElementViewComplex/> */}
-              <ElementEditComplex/>
+              {/* <ElementEditComplex/> */}
               {/* <ElementEditCompany/> */}
               {/* <ElementViewCompany /> */}
               {/* <ElementEditComplexPlan2/> */}
               {/* <ElementViewDetalisComplexp2/> */}
               {/* <EditClinicDetails/> */}
+                  {/* <ElementEditeDetalisCinicP3/> */}
+              {/* <ElementViewDetailsClinicP3/> */}
               {/* <Example/> */}
+              {/*M3*/ }
+
               {/* <ViewDoctorDetails/> */}
               {/* <ViewDoctorList/> */}
-              {/* <ViewListOfSpicialities/> */}
+              <ViewListOfSpicialities/>
               {/* <StaffMemberDetails/> */}
               {/* <EditDoctorDetails/> */}
               {/* <ViewStaffMembersList/> */}
               {/* <ViewStaffDetails/> */}
               {/* <ViewSpecialityDetails/> */}
               {/* <ElementEditSpicialityDetails/> */}
-              {/* <ElementEditeDetalisCinicP3/> */}
-              {/* <ElementViewDetailsClinicP3/> */}
-
+         
+              {/*M 4*/}
               {/* <EditServiceDetails/> */}
 
 
@@ -124,6 +130,7 @@ function MainApp() {
               {/* M5*/}
               {/* <ViewListOfPatients/> */}
               {/* <AddNewPatient /> */}
+              {/* <EditPatientDetails/> */}
             </main>
           </div>
 

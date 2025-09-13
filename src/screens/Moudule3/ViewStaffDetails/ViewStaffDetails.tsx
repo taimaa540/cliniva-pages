@@ -410,7 +410,7 @@ export const ViewStaffDetails = (): JSX.Element => {
             {t('User ID')}
           </h4>
         <div  className="font-lato text-[14px] w-24 font-regular leading-[125%] tracking-[0] text-text-primary">
-     US-001
+     US-0001
           
 </div>
         </div>

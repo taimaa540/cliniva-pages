@@ -237,22 +237,22 @@ export const AssignedDoctorsListSection = ({ local, dark, handelDarkClick, handl
                                     <Table className="table-fixed w-full rounded-lg text-center border-collapse"  >
                   <TableHeader>
                     <TableRow className="sticky top-0 z-10">
-                      <TableHead className="text-center font-semibold text-text-primary text-16px">
+                      <TableHead className="text-center w-[5%] font-semibold text-text-primary text-16px">
                          {t("No")}
                       </TableHead>
-                      <TableHead className="text-center font-semibold text-text-primary text-16px">
+                      <TableHead className="text-center w-[16%]  font-semibold text-text-primary text-16px">
                         {t("User-ID")}
                       </TableHead>
-                      <TableHead className="text-center font-semibold text-text-primary text-16px">
+                      <TableHead className="text-center w-[16%]  font-semibold text-text-primary text-16px">
                           {t("Name")}
                       </TableHead>
-                      <TableHead className="text-center font-semibold text-text-primary text-16px">
+                      <TableHead className="text-center w-[16%]  font-semibold text-text-primary text-16px">
                         {t("Assigned Clinics")}
                       </TableHead>
-                      <TableHead className="text-center font-semibold text-text-primary text-16px">
+                      <TableHead className="text-center  font-semibold text-text-primary text-16px">
                             {t("Clinic Scheduled Appointments Count")}
                       </TableHead>
-                      <TableHead className="text-center font-semibold text-text-primary text-16px">
+                      <TableHead className="text-center w-[16%]  font-semibold text-text-primary text-16px">
                              {t("NaStatusme")}
                       </TableHead>
                     </TableRow>

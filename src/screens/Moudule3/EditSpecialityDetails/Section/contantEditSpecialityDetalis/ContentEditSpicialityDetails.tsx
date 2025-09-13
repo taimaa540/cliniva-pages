@@ -7,6 +7,7 @@ import {
   ChevronsRightIcon,
   Edit2Icon,
 } from "lucide-react";
+import Toggle from "../../../../../components/ui/SwitchToggel";
 import React from "react";
 import { Button } from "../../../../../components/ui/button";
 import { Card, CardContent } from "../../../../../components/ui/card";
@@ -225,10 +226,10 @@ const details = SpecialtyDetails(t);
                   <div className="text-text-primary font-semibold text-[16px] mb-1">
                        {t("Specialty Name")}
                   </div>
-                  <div className="text-text-primary font-semibold text-[14px]">
+                  <div className="text-text-primary  font-semibold text-[14px]">
 
                    <input
-  className="w-[360px] h-12 border-light border bg-background-secondary text-text-primary font-sans"
+  className="w-[360px] h-12 border-light border p-3 bg-background-secondary text-text-primary font-sans"
   placeholder={details[0].SpecialtyName}
 />
                   </div>
@@ -242,7 +243,7 @@ const details = SpecialtyDetails(t);
 
 
                  <textarea
-  className="w-[380px] h-[170px] border-light border bg-background-secondary text-text-primary font-sans"
+  className="w-[380px] h-[170px] p-3 border-light border bg-background-secondary text-text-primary font-sans"
   placeholder={details[0].Description}
 />
 
@@ -255,242 +256,215 @@ const details = SpecialtyDetails(t);
             </CardContent>
           </Card>
 
-          <Card className="w-full bg-surface-default rounded-2xl mb-6" dir={local === 'ar' ? 'rtl' : 'ltr'}>
-            <CardContent className="p-4">
-              <div className="mb-6">
-                <h3 className="text-text-accent text-[16px] font-bold">
-                   {t("Assigned Doctors List")}
-                </h3>
-              </div>
-
-              <div className="bg-surface-default rounded-2xl overflow-hidden">
-                <Table>
-                  <TableHeader>
-                    <TableRow >
-                      <TableHead className="text-center font-semibold text-text-primary text-16px">
-                                     {t("No.")}
-                      </TableHead>
-                      <TableHead className="text-center font-semibold text-text-primary text-16px">
-                        {t("User-ID")}
-                      </TableHead>
-                      <TableHead className="text-center font-semibold text-text-primary text-16px">
-                         {t("Name")}
-                      </TableHead>
-                      <TableHead className="text-center font-semibold text-text-primary text-16px">
-                          {t("Assigned Clinics")}
-                      </TableHead>
-                      <TableHead className="text-center font-semibold text-text-primary text-16px">
-                          {t("Clinic Scheduled Appointments Count")}
-                      </TableHead>
-                      <TableHead className="text-center font-semibold text-text-primary text-16px">
-                          {t("Status")}
-                      </TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {doctorsData.map((doctor, index) => (
-                      <TableRow
-                        key={`doctor-${index}`}
-                        className="bg-surface-default border-b border-[#e4e2dd]"
-                      >
-                        <TableCell className="text-center font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
-                          {doctor.no}
-                        </TableCell>
-                        <TableCell className="text-center font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
-                          {doctor.userId}
-                        </TableCell>
-                        <TableCell className="text-center font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
-                          <div className="flex items-center gap-2 justify-center">
-                            <Avatar
-                              src={doctor.avatar}
-                              alt={doctor.name}
-                              sx={{
-                                width: 32,
-                                height: 32,
-                                bgcolor: !doctor.avatar ? "var(--theme-text-accent)" : "transparent", // لون الدائرة من متغير الثيم
-                              }}
-                            >
-                              {/* إذا ما في صورة، تظل الدائرة ملونة بدون أي نص */}
-                            </Avatar>
-                            <span>{doctor.name}</span>
-                          </div>
-                        </TableCell>
-                        <TableCell className="text-center font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
-                          {doctor.assignedClinic}
-                        </TableCell>
-                        <TableCell className="text-center font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
-                          {doctor.appointmentDate}
-                        </TableCell>
-                        <TableCell className="text-center">
-                          <div className="flex items-center justify-center gap-2">
-
-
-                            <span className="[font-family:'Lato',Helvetica] font-normal text-body-textbody-color text-xs tracking-[0] leading-[18px]">
-                              {doctor.status}
-                            </span>
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </div>
-
-              <footer className="flex items-center justify-between mt-6 bg-transparent">
-                <div className="inline-flex items-center gap-2.5">
-                  <span className="font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">
-                       {t("Showing")}
-                  </span>
-
-                  <Select defaultValue="1">
-                    <SelectTrigger className="w-auto bg-secondary-light rounded-[20px] border-none">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="1">1</SelectItem>
-                      <SelectItem value="5">5</SelectItem>
-                      <SelectItem value="10">10</SelectItem>
-                    </SelectContent>
-                  </Select>
-
-                  <span className="font-title-11px-regular w-96 font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">
-                    {t("out of 14")}
-                  </span> 
-                </div>
-
-                <Pagination className="justify-end">
-                  <PaginationContent className="gap-[5px]">
-                    <PaginationItem>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="w-8 h-8 p-2.5 rounded-[32px] border-[#f1f1f1]"
-                      >
-
-                        {local === "en" ? (
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.726 12L12.666 11.06L9.61268 8L12.666 4.94L11.726 4L7.72602 8L11.726 12Z" fill="CurrentColor" />
-                            <path d="M7.33344 12L8.27344 11.06L5.2201 8L8.27344 4.94L7.33344 4L3.33344 8L7.33344 12Z" fill="CurrentColor" />
-                          </svg>
-                        ) : (
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4.27398 4L3.33398 4.94L6.38732 8L3.33398 11.06L4.27398 12L8.27398 8L4.27398 4Z" fill="CurrentColor" />
-                            <path d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z" fill="CurrentColor" />
-                          </svg>
-                        )}
-
-
-                      </Button>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="w-8 h-8 p-2.5 rounded-[32px] border-[#f1f1f1]"
-                      >
-
-
-
-                        {local === "en" ? (
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="CurrentColor" />
-                          </svg>
-                        ) : (
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="CurrentColor" />
-                          </svg>
-                        )}
-                      </Button>
-
-
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink
-                        className="w-8 h-8 p-2.5 bg-secondary-dark text-white rounded-[32px] [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]"
-                        isActive
-                      >
-                        1
-                      </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink className="w-8 h-8 p-2.5 bg-white text-[#333333] rounded-[32px] border border-[#f1f1f1] [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]">
-                        2
-                      </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink className="w-8 h-8 p-2.5 bg-white text-[#333333] rounded-[32px] border border-[#f1f1f1] [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]">
-                        3
-                      </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <span className="w-8 h-8 p-2.5 bg-white text-[#333333] rounded-lg flex items-center justify-center [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]">
-                        ...
-                      </span>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink className="w-8 h-8 p-2.5 bg-white text-[#333333] rounded-[32px] border border-[#f1f1f1] [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]">
-                        10
-                      </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="w-8 h-8 p-2.5 rounded-[32px] border-[#f1f1f1]"
-                      >
-                        <div>
-
-
-
-
-                          {local === "en" ? (
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="black" />
-                            </svg>
-                          ) : (
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="CurrentColor" />
-                            </svg>
-                          )}
-
-
-
+            <Card className="w-full bg-surface-default rounded-2xl mb-6" dir={local === 'ar' ? 'rtl' : 'ltr'}>
+                      <CardContent className="p-4">
+                        <div className="mb-6">
+                          <h3 className="text-text-accent text-[16px] font-bold">
+                            {t("Assigned Doctors List")}
+                          </h3>
                         </div>
-                      </Button>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="w-8 h-8 p-2.5 rounded-[32px] border-[#f1f1f1]"
-                      >
-
-
-
-
-                        {local === "en" ? (
-
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4.27398 4L3.33398 4.94L6.38732 8L3.33398 11.06L4.27398 12L8.27398 8L4.27398 4Z" fill="CurrentColor" />
-                            <path d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z" fill="CurrentColor" />
-                          </svg>
-                        ) : (
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.726 12L12.666 11.06L9.61268 8L12.666 4.94L11.726 4L7.72602 8L11.726 12Z" fill="CurrentColor" />
-                            <path d="M7.33344 12L8.27344 11.06L5.2201 8L8.27344 4.94L7.33344 4L3.33344 8L7.33344 12Z" fill="CurrentColor" />
-                          </svg>
-                        )}
-
-
-
-
-                      </Button>
-                    </PaginationItem>
-                  </PaginationContent>
-                </Pagination>
-              </footer>
-            </CardContent>
-          </Card>
+          
+                                 <div className="flex flex-col flex-grow rounded-lg   items-start gap-5  pr-[10px] relative w-full overflow-hidden"  >
+                                          <div className="w-full overflow-y-auto flex-grow  h-[228px]   rounded-lg"  >
+                                              <Table className="table-fixed w-full rounded-lg text-center border-collapse"  >
+                            <TableHeader>
+                              <TableRow className="sticky top-0 z-10">
+                                <TableHead className="text-center w-[5%] font-semibold text-text-primary text-16px">
+                                   {t("No")}
+                                </TableHead>
+                                <TableHead className="text-center w-[16%]  font-semibold text-text-primary text-16px">
+                                  {t("User-ID")}
+                                </TableHead>
+                                <TableHead className="text-center w-[16%]  font-semibold text-text-primary text-16px">
+                                    {t("Name")}
+                                </TableHead>
+                                <TableHead className="text-center w-[16%]  font-semibold text-text-primary text-16px">
+                                  {t("Assigned Clinics")}
+                                </TableHead>
+                                <TableHead className="text-center  font-semibold text-text-primary text-16px">
+                                      {t("Clinic Scheduled Appointments Count")}
+                                </TableHead>
+                                <TableHead className="text-center w-[16%]  font-semibold text-text-primary text-16px">
+                                       {t("NaStatusme")}
+                                </TableHead>
+                              </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                              {doctorsData.map((doctor, index) => (
+                                <TableRow
+                                  key={`doctor-${index}`}
+                                  className="bg-surface-default border-b "
+                                >
+                                  <TableCell className="text-center font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
+                                    {doctor.no}
+                                  </TableCell>
+                                  <TableCell className="text-center font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
+                                    {doctor.userId}
+                                  </TableCell>
+                                  <TableCell className="text-center font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
+                                    <div className="flex items-center gap-2 justify-center">
+                                      <Avatar
+                                        src={doctor.avatar}
+                                        alt={doctor.name}
+                                        sx={{
+                                          width: 32,
+                                          height: 32,
+                                          bgcolor: !doctor.avatar ? "var(--theme-text-accent)" : "transparent", // لون الدائرة من متغير الثيم
+                                        }}
+                                      >
+                                        {/* إذا ما في صورة، تظل الدائرة ملونة بدون أي نص */}
+                                      </Avatar>
+                                      <span>{doctor.name}</span>
+                                    </div>
+                                  </TableCell>
+                                  <TableCell className="text-center font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
+                                    {doctor.assignedClinic}
+                                  </TableCell>
+                                  <TableCell className="text-center font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
+                                    {doctor.appointmentDate}
+                                  </TableCell>
+                                  <TableCell className="text-center">
+                                    <div className="flex items-center justify-center gap-2">
+          
+          
+                                        <Toggle>
+                                          {doctor.status}
+                                      </Toggle>
+                                    </div>
+                                  </TableCell>
+                                </TableRow>
+                              ))}
+                            </TableBody>
+                          </Table>
+                        </div>
+             </div>
+                         <div className="flex h-[66px] justify-between pl-2 pr-2  pr-0 py-0 w-full items-center " dir={local === 'ar' ? 'rtl' : 'ltr'}>
+                                          <div className="flex items-center gap-2.5">
+                                              <span className="font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">
+                                                  {t("Showing")}
+                                              </span>
+                                              <Select defaultValue="10"dir={local === 'ar' ? 'rtl' : 'ltr'}>
+                                                  <SelectTrigger className="w-[60px] h-[30px] bg-secondary-light rounded-[20px] border-0 px-2 py-1.5">
+                                                      <SelectValue placeholder="10" />
+                                                  </SelectTrigger>
+                                                  <SelectContent>
+                                                      <SelectItem value="10">10</SelectItem>
+                                                      <SelectItem value="20">20</SelectItem>
+                                                      <SelectItem value="50">50</SelectItem>
+                                                  </SelectContent>
+                                              </Select>
+                                              <span className="font-title-11px-regular w-64 font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] [font-style:var(--title-11px-regular-font-style)]">
+                                                  {t("out of 14")}
+                                              </span>
+                                          </div>
+          
+                                          <Pagination className="justify-end">
+                                              <PaginationContent className="gap-[5px]">
+                                                  <PaginationItem>
+                                                      <Button
+                                                          variant="outline"
+                                                          size="sm"
+                                                          className="w-8 h-8 p-2.5 rounded-[32px] border-[#f1f1f1]"
+                                                      >
+                                                          {local === "en" ? (
+                                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                  <path d="M11.726 12L12.666 11.06L9.61268 8L12.666 4.94L11.726 4L7.72602 8L11.726 12Z" fill="CurrentColor" />
+                                                                  <path d="M7.33344 12L8.27344 11.06L5.2201 8L8.27344 4.94L7.33344 4L3.33344 8L7.33344 12Z" fill="CurrentColor" />
+                                                              </svg>
+                                                          ) : (
+                                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                  <path d="M4.27398 4L3.33398 4.94L6.38732 8L3.33398 11.06L4.27398 12L8.27398 8L4.27398 4Z" fill="CurrentColor" />
+                                                                  <path d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z" fill="CurrentColor" />
+                                                              </svg>
+                                                          )}
+                                                      </Button>
+                                                  </PaginationItem>
+                                                  <PaginationItem>
+                                                      <Button
+                                                          variant="outline"
+                                                          size="sm"
+                                                          className="w-8 h-8 p-2.5 rounded-[32px] border-[#f1f1f1]"
+                                                      >
+                                                          {local === "en" ? (
+                                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                  <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="CurrentColor" />
+                                                              </svg>
+                                                          ) : (
+                                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                  <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="CurrentColor" />
+                                                              </svg>
+                                                          )}
+                                                      </Button>
+                                                  </PaginationItem>
+                                                  <PaginationItem>
+                                                      <PaginationLink
+                                                          className="w-8 h-8 p-2.5 bg-secondary-dark text-white rounded-[32px] [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]"
+                                                          isActive
+                                                      >
+                                                          1
+                                                      </PaginationLink>
+                                                  </PaginationItem>
+                                                  <PaginationItem>
+                                                      <PaginationLink className="w-8 h-8 p-2.5 bg-white text-[#333333] rounded-[32px] border border-[#f1f1f1] [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]">
+                                                          2
+                                                      </PaginationLink>
+                                                  </PaginationItem>
+                                                  <PaginationItem>
+                                                      <PaginationLink className="w-8 h-8 p-2.5 bg-white text-[#333333] rounded-[32px] border border-[#f1f1f1] [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]">
+                                                          3
+                                                      </PaginationLink>
+                                                  </PaginationItem>
+                                                  <PaginationItem>
+                                                      <span className="w-8 h-8 p-2.5 bg-white text-[#333333] rounded-lg flex items-center justify-center [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]">
+                                                          ...
+                                                      </span>
+                                                  </PaginationItem>
+                                                  <PaginationItem>
+                                                      <PaginationLink className="w-8 h-8 p-2.5 bg-white text-[#333333] rounded-[32px] border border-[#f1f1f1] [font-family:'Open_Sans',Helvetica] font-semibold text-[13px]">
+                                                          10
+                                                      </PaginationLink>
+                                                  </PaginationItem>
+                                                  <PaginationItem>
+                                                      <Button
+                                                          variant="outline"
+                                                          size="sm"
+                                                          className="w-8 h-8 p-2.5 rounded-[32px] border-[#f1f1f1]"
+                                                      >
+                                                          {local === "en" ? (
+                                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                  <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="black" />
+                                                              </svg>
+                                                          ) : (
+                                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                  <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="CurrentColor" />
+                                                              </svg>
+                                                          )}
+                                                      </Button>
+                                                  </PaginationItem>
+                                                  <PaginationItem>
+                                                      <Button
+                                                          variant="outline"
+                                                          size="sm"
+                                                          className="w-8 h-8 p-2.5 rounded-[32px] border-[#f1f1f1]"
+                                                      >
+                                                          {local === "en" ? (
+                                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                  <path d="M4.27398 4L3.33398 4.94L6.38732 8L3.33398 11.06L4.27398 12L8.27398 8L4.27398 4Z" fill="CurrentColor" />
+                                                                  <path d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z" fill="CurrentColor" />
+                                                              </svg>
+                                                          ) : (
+                                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                  <path d="M11.726 12L12.666 11.06L9.61268 8L12.666 4.94L11.726 4L7.72602 8L11.726 12Z" fill="CurrentColor" />
+                                                                  <path d="M7.33344 12L8.27344 11.06L5.2201 8L8.27344 4.94L7.33344 4L3.33344 8L7.33344 12Z" fill="CurrentColor" />
+                                                              </svg>
+                                                          )}
+                                                      </Button>
+                                                  </PaginationItem>
+                                              </PaginationContent>
+                                          </Pagination>
+                                      </div>
+                      </CardContent>
+                    </Card>
 
 
         </CardContent>
