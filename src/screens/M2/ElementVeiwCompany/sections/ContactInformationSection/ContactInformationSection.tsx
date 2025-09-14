@@ -1,10 +1,10 @@
 import React from "react";
-import { Button } from "../../../../components/ui/button";
+import { Button } from "../../../../../components/ui/button";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../../../../components/ui/collapsible";
+} from "../../../../../components/ui/collapsible";
 
 export const ContactInformationSection = (): JSX.Element => {
   return (

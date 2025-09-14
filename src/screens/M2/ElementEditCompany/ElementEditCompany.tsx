@@ -23,7 +23,7 @@ import { useState } from "react";
         setDarkMode(!darkMode);
       };
   return (
-    <div className="flex w-full items-start bg-surface-default "dir={`${local === "ar" ? "rtl" : "ltr"}`}>
+    <div className="flex w-full items-start bg-surface-default ">
          
         <CompanyInformationSection />
         <CompanyDetailsSectio local={local} dark={darkMode} handleLanguageClick={handleLanguageClick} handelDarkClick={toggleDarkMode} />

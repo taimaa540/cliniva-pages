@@ -25,7 +25,7 @@ export const  ElementViewCompany = (): JSX.Element => {
   return (
     <div className="flex w-full items-start bg-surface-default   "
     
-          dir={`${local === "ar" ? "rtl" : "ltr"}`}
+
       >
       <ContactInformationSection />
       

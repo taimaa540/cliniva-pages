@@ -217,10 +217,10 @@ export const UserDetails = (): JSX.Element => {
                             key={index}
                             className="grid grid-cols-[110px_1fr] gap-4"
                           >
-                            <span className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary">
+                            <span className="font-lato font-semibold text-[14px] leading-[125%] tracking-[0] text-text-primary">
                               {t(`${item.label}`)}
                             </span>
-                            <span className="font-lato font-regular text-sm leading-[125%] tracking-[0] text-text-primary">
+                            <span className="font-lato font-regular text-[14px]  leading-[125%] tracking-[0] text-text-primary">
                               {t(`${item.value}`)}
                             </span>
                           </div>

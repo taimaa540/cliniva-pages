@@ -178,6 +178,7 @@
 }
 
 @keyframes shimmer {
+
   0%,
   90%,
   to {
@@ -327,19 +328,5 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* 
 حقل إدخال الرقم */
 .PhoneInputInput {
-  @apply flex-1 min-w-0 outline-none px-2 text-gray-800 flex-auto w-full;
+  @apply flex-1 outline-none px-2 text-gray-800;
 }
-
-.PhoneInputCountrySelectArrow,
-.PhoneInputCountrySelectArrow * {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-}
-
-
-
-
-
-
-

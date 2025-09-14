@@ -20,12 +20,12 @@ function DateInput({ lang = "en" }: CustomDateInputProps) {
         selected={selectedDate}
         onChange={(date) => setSelectedDate(date)}
         placeholderText={lang === "ar" ? "اختر التاريخ" : "Select Date"}
-        className="w-[360px] h-[48px] font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary px-4 py-2 bg-surface-default rounded border border-border-light focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+        className="w-[360px] h-[48px] font-lato font-regular text-base leading-[150%] tracking-[0]   bg-background-secondary placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary px-4 py-2  rounded border border-border-light focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
         dateFormat="yyyy-MM-dd"
         locale={lang} // <-- هنا اللغة
       />
       <button
-        className={`absolute ${lang === 'ar' ? "left-[50px]" : "left-[330px]"}  top-1/2 -translate-y-1/2 text-text-secondary hover:text-primary-default cursor-pointer w-5 h-5`}
+        className={`absolute ${lang === 'ar' ? "left-[50px]" : "left-[330px]"}  top-1/2 -translate-y-1/2 text-text-secondary  hover:text-primary-default cursor-pointer w-5 h-5`}
         onClick={() => {
           const input = document.querySelector<HTMLInputElement>(
             ".react-datepicker__input-container input"

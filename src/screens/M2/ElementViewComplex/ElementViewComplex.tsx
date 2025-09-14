@@ -27,7 +27,7 @@ export const ElementViewComplex = (): JSX.Element => {
     <div 
 
 
-      dir={`${local === "ar" ? "rtl" : "ltr"}`}
+ 
       className={`flex w-full` }>
     
 

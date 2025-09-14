@@ -7,31 +7,35 @@ import { ThemeProvider } from "./lib/theme-context";
 import { ThemeToggle } from "./components/theme/ThemeSwitcher";
 import { ThemeDemo } from "./components/theme/ThemeDemo";
 import { ChoosePlan } from "./screens/M2/choosePlan";
-import { CompanyPlan } from "./screens/CompanyPlan/CompanyPlan";
+import { CompanyPlan } from "./screens/M2/CompanyPlan";
 import { BrowserRouter } from "react-router-dom";
 import { ComplexList } from "./screens/M2/ComplexList";
 import { SideBarPlan1 } from "./screens/CommonComponents/SideBarPlan1";
-import { ClinicList } from "./screens/ClinicList";
-import PhoneNumberInput from "./screens/CommonComponents/PhoneInput";
+
+import PhoneNumberInput from "./screens/CommonComponents/test";
 import { AddNewComplex } from "./screens/M2/AddNewComplex";
 import { AddNewClinic } from "./screens/M2/AddNewClinic";
 import { ElementViewCompany } from "./screens/M2/ElementVeiwCompany/ElementViewCompany";
-import { ElementViewComplex } from "./screens/ElementViewComplex/ElementViewComplex";
-import { ElementViewClinic } from "./screens/ElementViewClinic/ElementViewClinic";
-import { ElementEditCompany } from "./screens/ElementEditCompany/ElementEditCompany";
-import { ElementEditComplex } from "./screens/ElementEditComplax/ElementEditComplax";
-import { EditClinicDetails } from "./screens/EditClinicDetails/EditClinicDetails";
-import { ElementEditComplexPlan2 } from "./screens/ElementEditComplexPlan2/ElementEditComplexPlan2";
+import { ElementViewComplex } from "./screens/M2/ElementViewComplex/ElementViewComplex";
+import { ElementViewClinic } from "./screens/M2/ElementViewClinic/ElementViewClinic";
+import { ElementEditCompany } from "./screens/M2/ElementEditCompany/ElementEditCompany";
+import { ElementEditComplex } from "./screens/M2/ElementEditComplax/ElementEditComplax";
+import { EditClinicDetails } from "./screens/M2/EditClinicDetails/EditClinicDetails";
+import { ElementEditComplexPlan2 } from "./screens/M2/ElementEditComplexPlan2/ElementEditComplexPlan2";
 import { SideBarPlan2 } from "./screens/CommonComponents/SideBarPlan2";
-import { SideBarPlan3 } from "./screens/SideBarPlan3";
+import { SideBarPlan3 } from "./screens/CommonComponents/SideBarPlan3";
+import { EditUserDetails } from "./screens/M1/EditUserDetails";
 import { NoDataSection } from "./screens/M1/NoDataSection";
-import { Deactivate } from "./screens/CommonComponents/Deactivate";
-import { Activate } from "./screens/CommonComponents/Activate";
-import { Delete } from "./screens/CommonComponents/Delete";
+import PhoneInputWithShortCode from "./screens/CommonComponents/test";
+import Example from "./screens/CommonComponents/test";
 
 function MainApp() {
   return (
     <BrowserRouter>
+
+      {/* باقي الصفحات */}
+
+
       <ThemeProvider defaultTheme="light" storageKey="cliniva-theme">
         <LanguageProvider>
           {/* Theme toggle in top-right corner */}
@@ -42,8 +46,9 @@ function MainApp() {
           {/* Main app content with theme transition */}
           <div className="theme-transition">
             <main className="flex h-screen w-screen overflow-hidden">
+              {/*  */}
               {/* <ChoosePlan /> */}
-              <SideBarPlan1 />
+              {/* <SideBarPlan1 /> */}
               {/* <SideBarPlan2 local="test"/> */}
               {/* <SideBarPlan3 local="test"/> */}
               {/* <NoDataSection/> */}
@@ -57,8 +62,9 @@ function MainApp() {
               {/* <ElementViewComplex/> */}
               {/* <ElementEditComplex/> */}
               {/* <ElementEditCompany/> */}
-              {/* <ElementViewCompany/> */}
+              {/* <ElementViewCompany /> */}
               {/* <ElementEditComplexPlan2/> */}
+              {/* <ElementViewDetalisComplexp2/> */}
               {/* <EditClinicDetails/> */}
               {/* <Deactivate>
                 Inactive doctors will no longer appear in selection menus or be
@@ -75,8 +81,12 @@ function MainApp() {
               
             </main>
           </div>
+
         </LanguageProvider>
       </ThemeProvider>
+
+
+
     </BrowserRouter>
   );
 }

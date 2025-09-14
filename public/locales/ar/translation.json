@@ -1,4 +1,6 @@
 {
+  "File not accepted. Only SVG, PNG, JPG, GIF up to 2MB allowed.": "الملف غير مقبول. يُسمح فقط بـ SVG, PNG, JPG, GIF بحد أقصى 2MB.",
+  "pdf photo": "صورة ملف PDF",
   "Users Management": "إدارة المستخدمين",
   "Medical Facilities": "المرافق الطبية",
   "Doctors & Staff": "الأطباء و الطاقم الطبي",
@@ -51,6 +53,11 @@
   "Relationship": "العلاقة",
   "Emergency Number": "رقم الطوارئ",
   "Profile Picture": "صورة الملف الشخصي",
+  "Age": "العمر",
+  "Male": "ذكر",
+  "Female": "أنثى",
+  "Insurance Info": "معلومات التأمين",
+  "Get Data": "جلب البيانات",
   "Job Title": "المسمى الوظيفي",
   "Date of Hire": "تاريخ بدء العمل",
   "Working Days": "أيام العمل",
@@ -324,5 +331,7 @@
   "Providing specialized care in a comfortable and professional setting. Our clinic is equipped to handle a variety of medical needs, ensuring fast and reliable service for every patient." : "نقدم رعاية متخصصة في بيئة مريحة ومهنية. عيادتنا مجهزة لتلبية مختلف الاحتياجات الطبية، مما يضمن خدمة سريعة وموثوقة لكل مريض.",
   "Experienced and compassionate physician dedicated to personalized care and accurate diagnosis, with a focus on patient well-being and satisfaction." : "طبيب ذو خبرة وتعاطف، ملتزم بتقديم رعاية شخصية وتشخيص دقيق، مع التركيز على صحة المريض ورضاه.",
   "Sessions List" : "قائمة الجلسات",
-  "Full diagnostic evaluation for diabetes including lab tests, physical exam, and consultation." : "تقييم تشخيصي كامل لمرض السكري بما في ذلك الفحوصات المخبرية والفحص البدني والاستشارة."
+  "Full diagnostic evaluation for diabetes including lab tests, physical exam, and consultation." : "تقييم تشخيصي كامل لمرض السكري بما في ذلك الفحوصات المخبرية والفحص البدني والاستشارة.",
+  "Profile & Identity Info" : "معلومات الملف الشخصي"
+
 }

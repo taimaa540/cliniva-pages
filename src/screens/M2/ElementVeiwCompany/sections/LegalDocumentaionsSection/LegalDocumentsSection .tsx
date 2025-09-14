@@ -1,11 +1,11 @@
 import React from "react";
-import { Card, CardContent } from "../../../../components/ui/card";
-import { Button } from "../../../../components/ui/button";
+import { Card, CardContent } from "../../../../../components/ui/card";
+import { Button } from "../../../../../components/ui/button";
 import {
   Collapsible,
   CollapsibleTrigger,
   CollapsibleContent,
-} from "../../../../components/ui/collapsible";
+} from "../../../../../components/ui/collapsible";
 import {
   ChevronDownIcon,
   Edit2Icon,
@@ -19,10 +19,12 @@ import {
   TwitterIcon,
   InstagramIcon,
 } from "lucide-react";
+import { useState } from "react";
+import ReusableCollapsible from "../../../../../components/ui/Collapsibles";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import LocalPostOfficeOutlinedIcon from "@mui/icons-material/LocalPostOfficeOutlined";
 import XIcon from "@mui/icons-material/X";
-import DarkModeToggle from "../../../ElementUsersNoDataTo/DarkMode";
+
 import TranslateIcon from "@mui/icons-material/Translate";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
@@ -102,6 +104,22 @@ export const LegalDocumentsSection = ({
   useEffect(() => {
     i18n.changeLanguage(local);
   }, []);
+    const [isOpen, setIsOpen] = useState({
+      clinicInfo: true,
+      contactInfo: true,
+      social:true,
+      workingDays: true,
+      doctorsStaff: true,
+      mapsLocation: true,
+      policy:true,
+      term:true,
+    });
+    const handleToggle = (key: keyof typeof isOpen, open: boolean) => {
+      setIsOpen(prev => ({
+        ...prev,
+        [key]: open
+      }))
+    };
   return (
     <div
       className={`flex flex-col w-full overflow-hidden items-start gap-4  py-4  self-stretch relative bg-background-primary
@@ -115,17 +133,13 @@ export const LegalDocumentsSection = ({
             } text-on-surface-primary text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]`}
           >
             <div className="flex items-center gap-4 rounded-2xl ">
-              {local === "ar" ? (
-                <ArrowRight className="w-6 h-6" />
-              ) : (
-                <ArrowLeft className="w-6 h-6" />
-              )}
+       
               <div className="flex flex-col">
-                <h1 className="font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] text-on-surface-primary text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]">
-                  {t("        Medical Facilities    ")}
+                <h1 className="font-bold text-[22px] text-text-primary">
+                  {t("Medical Facilities")}
                 </h1>
-                <p className="font-title-14px-semibold font-[number:var(--title-14px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-14px-semibold-font-size)] tracking-[var(--title-14px-semibold-letter-spacing)] leading-[var(--title-14px-semibold-line-height)] [font-style:var(--title-14px-semibold-font-style)]">
-                  {t("        Medical Company Details  ")}
+                <p className="font-semibold text-[14px] text-text-primary ">
+                  {t("Medical Company Details")}
                 </p>
               </div>
             </div>
@@ -143,12 +157,12 @@ export const LegalDocumentsSection = ({
             </Button>
             <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
           </div>
-
-          <div className="relative">
+          <div className="flex gap-3 items-center">
+          <div className="relative ">
             <Button
               variant="ghost"
               size="icon"
-              className={`p-2.5 bg-secondary-light ${
+              className={`p-4.5 bg-secondary-light ${
                 local === "ar" ? "bg-[green]" : "bg-secondary-light"
               } rounded-[20px] h-auto transition-all duration-[1000ms]`}
               onClick={handleLanguageClick}
@@ -157,10 +171,10 @@ export const LegalDocumentsSection = ({
             </Button>
           </div>
 
-          <div className="w-10 h-[17.5px] relative">
-            <DarkModeToggle dark={dark} handelDarkClick={handelDarkClick} />
+          <div className= " flex justify-center w-10 ml-6  h-[17.5px] relative">
+          
           </div>
-
+</div>
           <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
             <div className="inline-flex items-center w-[40px] h-[40px] gap-2.5 flex-[0_0_auto] bg-app-primary rounded-3xl" />
             <div className="flex-col items-start gap-1 inline-flex flex-[0_0_auto]">
@@ -180,36 +194,22 @@ export const LegalDocumentsSection = ({
       </header>
 
       <Card className="flex flex-col h-auto items-start gap-6 p-5 mt-[10px] bg-background-tertiary relative self-stretch w-full rounded-2xl overflow-hidden">
-        <CardContent className="p-0 w-full overflow-y-auto gap-5 h-auto">
-          <Button className="w-[200px] h-10 bg-secondary-dark rounded-[20px] ml-[1600px] text-surface-default font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-[length:var(--btn-14px-medium-font-size)] leading-[var(--btn-14px-medium-line-height)] tracking-[var(--btn-14px-medium-letter-spacing)] [font-style:var(--btn-14px-medium-font-style)] h-auto self-end">
-            <Edit2Icon className={"  w-4 h-4 mr-1 text-text-primary"} />
-            {t("      Edit     ")}
+        <CardContent className="p-0 w-full overflow-y-auto gap-5 h-auto ">
+          <div className="flex justify-end" dir={local === 'ar' ? 'rtl' : 'ltr'}>
+          <Button className="w-[200px] h-10 bg-secondary-dark text-text-inverse rounded-[20px]   font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-[length:var(--btn-14px-medium-font-size)] leading-[var(--btn-14px-medium-line-height)] tracking-[var(--btn-14px-medium-letter-spacing)] [font-style:var(--btn-14px-medium-font-style)] h-auto self-end"  >
+            <Edit2Icon className={"  w-4 h-4 mr-1 text-text-inverse"} />
+            {t("Edit")}
           </Button>
+</div>
 
-          <Collapsible defaultOpen className="w-full mt-5">
-            <Card className="bg-surface-default rounded-2xl">
-              <CollapsibleTrigger className="w-full">
-                <CardContent className="p-4 flex items-center justify-between">
-                  <div
-                    style={{
-                      fontFamily: "Lato",
-                      fontWeight: 600,
-                      fontStyle: "SemiBold",
-                      fontSize: "16px",
-                      lineHeight: "124%",
-                      letterSpacing: "0%",
-                    }}
-                    className="text-text-accent"
-                  >
-                    {t("       Company information     ")}
-                  </div>
-                  <ChevronDownIcon className=" w-8 h-8 text-text-primary" />
-                </CardContent>
-              </CollapsibleTrigger>
 
-              <CollapsibleContent>
-                <CardContent className="px-4 pb-4">
-                  {/* نستخدم flex أفقياً لتقسيم الأعمدة مع مسافات متساوية */}
+
+      <ReusableCollapsible
+            title=  {t("Company information")}
+            initiallyOpen={isOpen.clinicInfo}
+            onOpenChange={(open) => handleToggle("clinicInfo", open)}
+               dir={local === 'ar' ? 'rtl' : 'ltr'}
+            content={<div  className="px-4 pb-4" >         {/* نستخدم flex أفقياً لتقسيم الأعمدة مع مسافات متساوية */}
                   <div className="flex gap-6">
                     {/* العمود الأول */}
                     <div className="flex flex-col gap-6 w-1/2">
@@ -224,7 +224,7 @@ export const LegalDocumentsSection = ({
                             letterSpacing: "0%",
                           }}
                         >
-                          {t("          Logo:     ")}
+                          {t("Logo:")}
                         </div>
                         <img className="w-12 h-12" src="/logo.png"></img>
                       </div>
@@ -240,7 +240,7 @@ export const LegalDocumentsSection = ({
                             letterSpacing: "0%",
                           }}
                         >
-                          {t("         Trade Name     ")} :
+                          {t("Trade Name")} :
                         </div>
                         <div
                           style={{
@@ -267,7 +267,7 @@ export const LegalDocumentsSection = ({
                             letterSpacing: "0%",
                           }}
                         >
-                          {t("         Year of Establishmen    ")}:
+                          {t("Year of Establishment")}:
                         </div>
                         <div
                           style={{
@@ -294,7 +294,7 @@ export const LegalDocumentsSection = ({
                             letterSpacing: "0%",
                           }}
                         >
-                          {t("             Overview    ")}:
+                          {t("Overview")}:
                         </div>
                         <div
                           style={{
@@ -321,7 +321,7 @@ export const LegalDocumentsSection = ({
                             letterSpacing: "0%",
                           }}
                         >
-                          {t("                Goals    ")}:
+                          {t("Goals")}:
                         </div>
                         <div
                           style={{
@@ -351,7 +351,7 @@ export const LegalDocumentsSection = ({
                             letterSpacing: "0%",
                           }}
                         >
-                          {t("                 Legal Name     ")}:
+                          {t("Legal Name")}:
                         </div>
                         <div
                           style={{
@@ -378,7 +378,7 @@ export const LegalDocumentsSection = ({
                             letterSpacing: "0%",
                           }}
                         >
-                          {t("                      Vision      ")}:
+                          {t("Vision")}:
                         </div>
                         <div
                           style={{
@@ -405,7 +405,7 @@ export const LegalDocumentsSection = ({
                             letterSpacing: "0%",
                           }}
                         >
-                          {t("                        CEO Name       ")}:
+                          {t("CEO Name")}:
                         </div>
                         <div
                           style={{
@@ -421,36 +421,20 @@ export const LegalDocumentsSection = ({
                         </div>
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </CollapsibleContent>
-            </Card>
-          </Collapsible>
+                  </div></div>}
 
-          <Collapsible defaultOpen className="w-full mt-5">
-            <Card className="bg-surface-default rounded-2xl">
-              <CollapsibleTrigger className="w-full">
-                <CardContent className="p-4 flex items-center justify-between">
-                  <div
-                    style={{
-                      fontFamily: "Lato",
-                      fontWeight: 600,
-                      fontStyle: "SemiBold",
-                      fontSize: "16px",
-                      lineHeight: "124%",
-                      letterSpacing: "0%",
-                    }}
-                    className="text-text-accent"
-                  >
-                    {t("        Company Contact Information      ")}
-                  </div>
-                  <ChevronDownIcon className="text-text-primary w-8 h-8" />
-                </CardContent>
-              </CollapsibleTrigger>
+          />
 
-              <CollapsibleContent>
-                <CardContent className="px-4 pb-4">
-                  <div className="grid grid-cols-2 gap-6">
+
+ 
+
+
+               <ReusableCollapsible
+            title= {t("Company Contact Information")}
+            initiallyOpen={isOpen.contactInfo}
+               dir={local === 'ar' ? 'rtl' : 'ltr'}
+            onOpenChange={(open) => handleToggle("contactInfo", open)}
+            content={<div className="px-4 pb-4">     <div className="grid grid-cols-2 gap-6">
                     {/* العمود الأول */}
                     <div className="flex flex-col gap-8">
                       {" "}
@@ -468,7 +452,7 @@ export const LegalDocumentsSection = ({
                           }}
                           className=""
                         >
-                          {t("        Phone Numbers     ")}:
+                          {t("Phone Numbers")}:
                         </div>
                         <div
                           style={{
@@ -497,7 +481,7 @@ export const LegalDocumentsSection = ({
                           }}
                           className="text-text-primary"
                         >
-                          {t("      Physical Address       ")}:
+                          {t("Physical Address")}:
                         </div>
                         <div
                           style={{
@@ -526,7 +510,7 @@ export const LegalDocumentsSection = ({
                           }}
                           className="text-text-primary"
                         >
-                          {t("       Maps Location      ")}:
+                          {t("Maps Location")}:
                         </div>
                         <a
                           href="https://maps.google.com/?q=24.7136,46.6753"
@@ -564,7 +548,7 @@ export const LegalDocumentsSection = ({
                           }}
                           className="text-on-surface-primary"
                         >
-                          {t("          Email       ")}:
+                          {t("Email")}:
                         </div>
                         <div
                           style={{
@@ -593,7 +577,7 @@ export const LegalDocumentsSection = ({
                           }}
                           className="text-on-surface-primary"
                         >
-                          {t("            Company Website       ")} :
+                          {t("Company Website")} :
                         </div>
                         <div
                           style={{
@@ -610,36 +594,18 @@ export const LegalDocumentsSection = ({
                         </div>
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </CollapsibleContent>
-            </Card>
-          </Collapsible>
+                  </div></div>}
 
-          <Collapsible defaultOpen className="w-full mt-5">
-            <Card className="bg-surface-default rounded-2xl">
-              <CollapsibleTrigger className="w-full">
-                <CardContent className="p-4 flex items-center justify-between">
-                  <div
-                    style={{
-                      fontFamily: "Lato",
-                      fontWeight: 600,
-                      fontStyle: "SemiBold",
-                      fontSize: "16px",
-                      lineHeight: "124%",
-                      letterSpacing: "0%",
-                    }}
-                    className="text-text-accent"
-                  >
-                    {t("            Social Media Accounts     ")}
-                  </div>
-                  <ChevronDownIcon className="text-text-primary w-8 h-8" />
-                </CardContent>
-              </CollapsibleTrigger>
+          />
 
-              <CollapsibleContent>
-                <CardContent className="px-4 pb-4">
-                  <div className="grid grid-cols-2 gap-6">
+
+
+      <ReusableCollapsible
+            title= {t("Social Media Accounts")}
+            initiallyOpen={isOpen.social}
+               dir={local === 'ar' ? 'rtl' : 'ltr'}
+            onOpenChange={(open) => handleToggle("social", open)}
+            content={<div className="px-4 pb-4">        <div className="grid grid-cols-2 gap-6">
                     {/* العمود الأول */}
                     <div className="flex flex-col gap-8">
                       <div className="grid grid-cols-[auto_150px_1fr] items-center gap-3">
@@ -655,7 +621,7 @@ export const LegalDocumentsSection = ({
                           }}
                           className="text-on-surface-primary"
                         >
-                          {t("  LinkedIn  ")} :
+                          {t("LinkedIn")} :
                         </div>
                         <a
                           href={socialMedia.linkedin}
@@ -688,7 +654,7 @@ export const LegalDocumentsSection = ({
                           }}
                           className="text-on-surface-primary"
                         >
-                          {t("     Facebook  ")}:
+                          {t("Facebook")}:
                         </div>
                         <div
                           style={{
@@ -723,7 +689,7 @@ export const LegalDocumentsSection = ({
                           className="text-on-surface-primary flex items-center gap-1"
                         >
                           <XIcon className="text-text-primary w-4 h-4 text-center" />
-                          {t("       Twitter   ")}:
+                          {t("Twitter")}:
                         </div>
                         <div
                           style={{
@@ -758,7 +724,7 @@ export const LegalDocumentsSection = ({
                           }}
                           className="text-on-surface-primary"
                         >
-                          {t("       Instagram   ")}:
+                          {t("Instagram")}:
                         </div>
                         <div
                           style={{
@@ -775,74 +741,60 @@ export const LegalDocumentsSection = ({
                         </div>
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </CollapsibleContent>
-            </Card>
-          </Collapsible>
+                  </div></div>}
 
-          <Collapsible defaultOpen className="w-full mt-5">
-            <Card className="bg-surface-default rounded-2xl">
-              <CollapsibleTrigger className="w-full">
-                <CardContent className="p-4 flex items-center justify-between">
-                  <div
-                    style={{
-                      fontFamily: "Lato",
-                      fontWeight: 600,
-                      fontStyle: "SemiBold",
-                      fontSize: "16px",
-                      lineHeight: "124%",
-                      letterSpacing: "0%",
-                    }}
-                    className="text-text-accent"
-                  >
-                    {t("             Legal Details    ")}
-                  </div>
-                  <ChevronDownIcon className="text-text-primary w-8 h-8" />
-                </CardContent>
-              </CollapsibleTrigger>
+          />
 
-              <CollapsibleContent>
-                <CardContent className="px-4 pb-4">
-                  <div className="flex flex-col gap-4">
-                    {/* جدولة VAT و CR */}
-                    <div className="grid grid-cols-4 gap-x-2">
-                      <div className="font-lato font-semibold text-[16px] leading-[124%] text-text-primary">
-                        {t("    VAT   ")}:
-                      </div>
-                      <div className="font-lato font-normal text-[14px] leading-[125%] text-text-primary">
-                        {legalDetails.vat}
-                      </div>
-                      <div className="font-lato font-semibold  leading-[124%] text-text-primary">
-                        {t("     CR    ")}:
-                      </div>
-                      <div className="font-lato font-normal text-[14px] leading-[125%] text-text-primary">
-                        {legalDetails.cr}
-                      </div>
-                    </div>
-                  </div>
 
+          
+
+
+      <ReusableCollapsible
+            title=     {t("Legal Details")}
+            initiallyOpen={isOpen.policy}
+               dir={local === 'ar' ? 'rtl' : 'ltr'}
+            onOpenChange={(open) => handleToggle("policy", open)}
+            content={<div className=" px-4 pb-4"> 
+           <div className="px-4 pb-4">
+  <div className="flex flex-wrap items-center gap-x-10 gap-y-2">
+    {/* VAT */}
+    <div className="flex items-center gap-3">
+      <span className="font-lato font-semibold text-start text-[16px] w-[162px] text-text-primary">{t("VAT")}:</span>
+      <span className="font-lato font-normal text-[14px] w-[393px] text-text-primary">{legalDetails.vat}</span>
+    </div>
+
+    {/* CR */}
+    <div className="flex items-center gap-2">
+      <span className="font-lato font-semibold text-[16px] w-[169px] text-text-primary">{t("CR")}:</span>
+      <span className="font-lato font-normal text-[14px] text-text-primary">{legalDetails.cr}</span>
+    </div>
+  </div>
+</div>
                   {/* Divider */}
                   <div className="border-t border-gray-200 mt-5" />
                   {/* Terms & Conditions */}
                   <div className="flex flex-col gap-4 ">
                     <div className="font-lato font-semibold text-[16px] leading-[124%] text-secondary-dark mt-5">
-                      {t("         Terms & Conditions    ")}
+                      {t("Terms & Conditions")}
                     </div>
-                    <div className="flex  gap-x-[620px]  ">
-                      <div className="font-semibold"> Title </div>
-                      <div> Descration</div>
+                    <div className="flex  gap-x-[592px]  ">
+                      <div className="font-semibold">    {t("Title")} </div>
+                      <div className="font-semibold">  {t("Descration")} </div>
                     </div>
-                    <div className="grid grid-cols-[200px,1fr] gap-x-[453px] gap-y-8">
+                    <div className="grid grid-cols-[200px,1fr] gap-x-[425px] gap-y-8">
                       {termsConditions.map((term, index) => (
+                          
                         <React.Fragment key={index}>
+                        
                           <div className="font-lato font-normal text-[16px] text-start leading-[124%] secondary ">
                             {term.title}
                           </div>
-                          <div className="font-lato font-normal text-[14px] text-start leading-[125%] align-middle secondary break-words  ">
+                          <div className="font-lato font-normal  text-[14px] text-start leading-[125%] align-middle secondary break-words  ">
                             {term.description}
                           </div>
+                        
                         </React.Fragment>
+                        
                       ))}
                     </div>
                   </div>
@@ -851,56 +803,43 @@ export const LegalDocumentsSection = ({
                   {/* Privacy Policy */}
                   <div className="flex flex-col gap-4">
                     <div className="font-lato font-semibold text-[16px] leading-[124%] text-secondary-dark mt-5">
-                      {t("         Privacy Policy   ")}
+                      {t("Privacy Policy")}
                     </div>
-                    <div className="flex  gap-x-[620px]  ">
-                      <div className="font-semibold"> Title </div>
-                      <div> Descration</div>
+                    <div className="flex gap-x-[592px]  ">
+                      <div className="font-semibold">  {t("Title")} </div>
+                      <div className="font-semibold">   {t("Descration")} </div>
                     </div>
-                    <div className="grid grid-cols-[200px,1fr] gap-x-[455px] gap-y-8 ">
+                    <div className="grid grid-cols-[200px,1fr] w-full gap-x-[425px] gap-y-8 ">
                       {privacyPolicy.map((policy, index) => (
                         <React.Fragment key={index}>
-                          <div className="font-lato font-normal text-[16px] leading-[124%] text-start text-text-primary">
+                          <div className="font-lato  font-normal   text-[16px] leading-[124%] text-start text-text-primary">
                             {policy.title}
                           </div>
-                          <div className="font-lato font-normal text-[14px] leading-[125%] align-middle text-start text-text-primary break-words    ">
+                          <div className="font-lato items-center  font-normal text-[14px] leading-[125%] align-middle text-start text-text-primary break-words    ">
                             {policy.description}
                           </div>
                         </React.Fragment>
                       ))}
                     </div>
-                  </div>
-                </CardContent>
-              </CollapsibleContent>
-            </Card>
-          </Collapsible>
+                  </div></div>}
 
-          <Collapsible defaultOpen className="w-full mt-5">
-            <Card className="bg-surface-default rounded-2xl">
-              <CollapsibleTrigger className="w-full">
-                <CardContent className="p-4 flex items-center justify-between">
-                  <div
-                    style={{
-                      fontFamily: "Lato",
-                      fontWeight: 600,
-                      fontStyle: "SemiBold",
-                      fontSize: "16px",
-                      lineHeight: "124%",
-                      letterSpacing: "0%",
-                    }}
-                    className="text-text-accent"
-                  >
-                    <h2> {t("      Map Location   ")}</h2>
-                  </div>
-                  <ChevronDownIcon className=" text-text-primary w-8 h-8" />
-                </CardContent>
-              </CollapsibleTrigger>
+          />
 
-              <CollapsibleContent>
-                <CardContent className="px-4 pb-4"></CardContent>
-              </CollapsibleContent>
-            </Card>
-          </Collapsible>
+
+
+
+
+      <ReusableCollapsible
+            title={  t("Maps Location")}
+            initiallyOpen={isOpen.mapsLocation}
+               dir={local === 'ar' ? 'rtl' : 'ltr'}
+            onOpenChange={(open) => handleToggle("mapsLocation", open)}
+            content={<div>      <div className="w-full h-[332px] bg-[url(/background.png)] bg-cover bg-center rounded" />
+              <p className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
+                {t("245, King Fahd Road, Al Olaya, Saudi Arabia, KSA")}
+              </p></div>}
+
+          />
         </CardContent>
       </Card>
     </div>

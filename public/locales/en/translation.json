@@ -162,5 +162,18 @@
   "Terms & Conditions": "Terms & Conditions",
   "Title": "Title",
   "Descration": "Description",
-  "Privacy Policy": "Privacy Policy"
+  "Privacy Policy": "Privacy Policy",
+    "uploadLabel": "<0>Click or Drag</0> <1>file to this area to upload</1>",
+        "uploadFile": {
+      "label": "Upload File",
+      "dragLabel": "<0>Click or Drag</0> <1>file to this area to upload</1>"
+    },
+  "uploadFile2": {
+    "label": "ارفع ملف",
+    "dragLabel": "<0>انقر أو اسحب</0> <1>الملف إلى هذه المنطقة للرفع</1><2>PDF File , Maximum file size 1MB.</2>"
+  },
+     
+    "Co-payment":"Co-payment",
+      "Coverage Start Date":"Coverage Start Date"
+
 }

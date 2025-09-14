@@ -1,7 +1,7 @@
 import { BellIcon, CalendarIcon, ChevronDownIcon } from "lucide-react";
 import { CountryDropdown } from "react-country-region-selector";
 
-import en from "react-phone-number-input/locale/en.json";
+
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
@@ -11,6 +11,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../../components/ui/collapsible";
+import en from "react-phone-number-input/locale/en.json";
 import TranslateIcon from "@mui/icons-material/Translate";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";

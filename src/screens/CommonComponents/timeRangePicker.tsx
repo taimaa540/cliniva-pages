@@ -1,17 +1,29 @@
 import { useState } from "react";
 import { Clock } from "lucide-react";
+import { useLanguage } from "../../lib/LanguageContext";
 
+import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 export default function TimeRangePicker() {
   const [startTime, setStartTime] = useState("00:00");
   const [endTime, setEndTime] = useState("00:00");
   const [showPicker, setShowPicker] = useState(false);
-
+  const { local, handleLanguageClick } = useLanguage();
+  const { t, i18n } = useTranslation();
+  useEffect(() => {
+    i18n.changeLanguage(local);
+  }, []);
   return (
     <div className="relative w-[360px] max-w-md">
       {/* Display row */}
       <div className="flex items-center gap-[80px] w-[360px] ">
         <span className="text-gray-600 text-sm mr-[10px]">{startTime}</span>
-        <span className="px-3 text-gray-500 ">→</span>
+        <span
+  className={`transition-transform ${i18n.dir() === 'rtl' ? 'rotate-180' : ''}`}
+  style={{ display: 'inline-block' }}
+>
+  →
+</span>
         <span className="text-gray-600 text-sm ">{endTime}</span>
 
         {/* ساعة واحدة للتحكم */}
