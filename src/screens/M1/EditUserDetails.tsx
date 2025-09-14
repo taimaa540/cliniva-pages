@@ -1,6 +1,5 @@
 import { BellIcon, CalendarIcon, ChevronDownIcon } from "lucide-react";
 import { CountryDropdown } from "react-country-region-selector";
-import PhoneInput from "react-phone-number-input";
 
 import en from "react-phone-number-input/locale/en.json";
 import { Button } from "../../components/ui/button";
@@ -27,6 +26,7 @@ import WorkingDaysList from "../CommonComponents/workDays";
 import { useLanguage } from "../../lib/LanguageContext";
 import { useState } from "react";
 import ImageUploader from "../CommonComponents/ImageUpload";
+import PhoneInputCustom from "../CommonComponents/PhoneInput";
 
 const accountFields = [
   { label: "User Name", value: "Ammar Al Sawwa", type: "input" },
@@ -66,7 +66,6 @@ const documents = [
 ];
 
 export const EditUserDetails = (): JSX.Element => {
-  const [value, setValue] = useState<string | undefined>("");
   const shortLabels: Record<string, string> = {};
   Object.keys(en).forEach((key) => {
     shortLabels[key] = key; // يظهر SY, US, EG بدل اسم الدولة
@@ -182,7 +181,7 @@ export const EditUserDetails = (): JSX.Element => {
                 <CollapsibleContent className="w-full">
                   <div className="flex flex-col gap-[16px]">
                     <h3 className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
-                      {t('Profile & Identity Info')}
+                      {t("Profile & Identity Info")}
                     </h3>
                     <div className="grid grid-cols-2 gap-[22px]">
                       <div className="flex items-center gap-[32px] w-full">
@@ -269,7 +268,7 @@ export const EditUserDetails = (): JSX.Element => {
                       </div>
                     </div>
                     <h3 className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
-                      {t('Contact Info')}
+                      {t("Contact Info")}
                     </h3>
                     <div className="flex flex-col gap-[16px]">
                       <div className="grid grid-cols-2 gap-[22px]">
@@ -277,14 +276,9 @@ export const EditUserDetails = (): JSX.Element => {
                           <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                             {t("Phone Number")} *
                           </Label>
-                          <PhoneInput
-                            defaultCountry="SY"
-                            value={value}
-                            onChange={setValue}
-                            labels={{ ...en, ...shortLabels }} // القائمة = en, الحقل = shortLabels
-                            className="flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
-                            placeholder="أدخل رقم الهاتف"
-                          />
+                          <div className="flex-1">
+                            <PhoneInputCustom />
+                          </div>
                         </div>
                         <div className="flex items-center gap-[32px] w-full">
                           <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
@@ -310,7 +304,7 @@ export const EditUserDetails = (): JSX.Element => {
                       </div>
                     </div>
                     <h3 className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
-                      {t('Emergency Contact Info')}
+                      {t("Emergency Contact Info")}
                     </h3>
                     <div className="flex flex-col gap-[16px]">
                       <div className="grid grid-cols-2 gap-[22px]">
@@ -335,16 +329,11 @@ export const EditUserDetails = (): JSX.Element => {
                       </div>
                       <div className="flex items-center gap-[32px] w-full">
                         <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
-                          {t("Emergency Number")} 
+                          {t("Emergency Number")}
                         </Label>
-                        <PhoneInput
-                          defaultCountry="SY"
-                          value={value}
-                          onChange={setValue}
-                          labels={{ ...en, ...shortLabels }} // القائمة = en, الحقل = shortLabels
-                          className="flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
-                          placeholder="أدخل رقم الهاتف"
-                        />
+                        <div className="flex-1">
+                          <PhoneInputCustom />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -353,7 +342,10 @@ export const EditUserDetails = (): JSX.Element => {
             </CardContent>
           </Card>
           <Card className="w-full bg-background-primary rounded-[16px] p-[16px]">
-            <CardContent className="relative" dir={local === "en" ? "ltr" : "rtl"}>
+            <CardContent
+              className="relative"
+              dir={local === "en" ? "ltr" : "rtl"}
+            >
               <Collapsible
                 open={open.account}
                 onOpenChange={() =>

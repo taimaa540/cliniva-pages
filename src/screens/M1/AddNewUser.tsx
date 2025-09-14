@@ -640,15 +640,10 @@ export const AddNewUser = (): JSX.Element => {
                         <Label className="w-[178px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t(`${doc.label}`)}
                         </Label>
-                        <FileUpload
-                          amount="PDF File , Maximum file size 1MB."
-                          size={1 * 1024 * 1024}
-                        />
-
+                        <FileUpload accept=".pdf" maxSizeMB={1} />
                         <Label className="w-40 font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Effective Date")}
                         </Label>
-
                         {doc.effectiveDate && <DateInput lang={local} />}
                       </div>
                     ))}
