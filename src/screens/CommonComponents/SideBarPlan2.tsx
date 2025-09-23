@@ -7,13 +7,45 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../../components/ui/collapsible";
+import TranslateIcon from "@mui/icons-material/Translate";
+
+import { ThemeToggle } from "../../components/theme/ThemeSwitcher";
+import { Link } from "react-router-dom";
 
 interface SideBarPlan2Props {
   local: string;
+  handleDarkClick: () => void;
+  handleLanguageClick: () => void;
+  isOpen: boolean;
+  onOpenSidebar: () => void;
+  onCloseSidebar: () => void;
 }
 
-export const SideBarPlan2 = ({ local }: SideBarPlan2Props): JSX.Element => {
-  const [active, setActive] = useState<
+export const SideBarPlan2 = ({
+  local,
+  handleLanguageClick,
+  handleDarkClick,
+  isOpen,
+  onCloseSidebar,
+}: SideBarPlan2Props) => {
+  const { t, i18n } = useTranslation();
+
+  // تغيير اللغة عند تحميل المكون
+  useEffect(() => {
+    i18n.changeLanguage(local);
+  }, [local, i18n]);
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1060);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // الحالات الأساسية للسايد بار
+  const [activeSection, setActiveSection] = useState<
     | "Users Management"
     | "Medical Facilities"
     | "Doctors & Staff"
@@ -29,20 +61,30 @@ export const SideBarPlan2 = ({ local }: SideBarPlan2Props): JSX.Element => {
   const [dropDown2IsActive, setDropDown2IsActive] = useState<
     "Staff List" | "Doctors List" | "Specialties List"
   >("Staff List");
-  const { t, i18n } = useTranslation();
-  useEffect(() => {
-    i18n.changeLanguage(local);
-  }, [local, i18n]);
 
   return (
     <nav
-      className={`h-screen w-[230px] flex flex-col ${
-        local === "ar" ? "right-[10px]" : "left-0"
-      } bg-background-primary`}
+      className={`h-screen bg-background-primary flex flex-col fixed md:relative top-0   z-50  w-[230px] transition-transform duration-300 ${
+        isOpen
+          ? "translate-x-0"
+          : "-translate-x-full"
+       
+      } md:translate-x-0`}
+        dir="ltr"
     >
+      {/* زر اغلاق على الموبايل */}
+      <div className="p-1  md:hidden flex justify-end">
+        <button
+          onClick={onCloseSidebar}
+          className=" rounded-[16px] w-8 h-8 bg-secondary-light"
+        >
+          ✖
+        </button>
+      </div>
+
       {/* Header */}
-      <header className="flex flex-col items-start gap-2.5 px-2 py-[9px] mt-4 ml-5 w-full">
-        <div className="flex items-center gap-[7px]">
+      <header className="hidden md:flex  flex-col items-start gap-2.5 px-2 py-[9px] mt-4 ml-5 w-full">
+        <div className="flex items-center gap-[7px] md:flex">
           <svg
             width="30"
             height="30"
@@ -63,23 +105,55 @@ export const SideBarPlan2 = ({ local }: SideBarPlan2Props): JSX.Element => {
               fill="#83DFDF"
             />
           </svg>
-          <h1 className="font-lato font-regular text-xl leading-[110%] text-text-primary tracking-[0] ">
+          <h1 className="font-lato font-regular text-xl leading-[110%] text-text-primary tracking-[0]">
             Cliniva SYS
           </h1>
         </div>
       </header>
 
+      {/* User Info + Theme + Language */}
+      <header className="flex flex-row items-start gap-2.5 px-4 mt-3 w-full md:hidden">
+        <div className="items-center gap-3 grid">
+          <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
+          <div className="flex-col items-start gap-1 inline-flex">
+            <div className="text-[13px] w-24 font-bold text-on-surface-primary">
+              Anahera Jones
+            </div>
+            <div className="text-[11px] text-on-surface-tertiary">
+              {t("Admin")}
+            </div>
+          </div>
+        </div>
+        <div className="inline-flex gap-3 items-center px-4 pt-1">
+          <ThemeToggle />
+          <Button
+            variant="ghost"
+            size="icon"
+            className={`p-2.5 ${
+              local === "ar" ? "bg-[green]" : "bg-secondary-light"
+            } rounded-[20px] h-auto transition-all duration-[500ms] w-auto`}
+            onClick={handleLanguageClick}
+          >
+            <TranslateIcon className="w-3 h-3" />
+          </Button>
+        </div>
+      </header>
+
+
+
+
       {/* Main Navigation */}
       <main className="flex flex-col flex-1 items-center mt-5 p-[9px]">
         <section className="w-full space-y-2">
           {/* Users Management button - active state */}
+          <Link to="/UserDesktop">
           <button
             className={`flex items-center w-full h-[40px] gap-2 py-[10px] pl-[4px] ${
-              active === "Users Management"
+              activeSection === "Users Management"
                 ? "text-background-primary bg-secondary-default"
                 : ""
             } rounded justify-start`}
-            onClick={() => setActive("Users Management")}
+              onClick={() => setActiveSection("Users Management")}
           >
             <svg
               width="20"
@@ -96,7 +170,7 @@ export const SideBarPlan2 = ({ local }: SideBarPlan2Props): JSX.Element => {
 
             <span
               className={`font-lato font-semibold text-xs leading-[130%] tracking-[0] ${
-                active === "Users Management"
+                activeSection === "Users Management"
                   ? "text-background-primary font-bold"
                   : "text-text-secondary"
               } `}
@@ -104,15 +178,18 @@ export const SideBarPlan2 = ({ local }: SideBarPlan2Props): JSX.Element => {
               {t("Users Management")}
             </span>
           </button>
-          <Collapsible open={active === "Medical Facilities"}>
+</Link>
+
+
+          <Collapsible open={activeSection === "Medical Facilities"}>
             <CollapsibleTrigger className="w-full">
               <button
-                onClick={() => setActive("Medical Facilities")}
-                className={`flex items-center w-full h-[40px] ${
-                  active === "Medical Facilities"
+                onClick={() => setActiveSection("Medical Facilities")}
+                className={`flex items-center justify-between w-full h-[40px] ${
+                  activeSection === "Medical Facilities"
                     ? "text-background-primary bg-secondary-default"
                     : ""
-                } justify-between py-[10px] pl-[4px] rounded justify-start`}
+                } py-[10px] pl-[4px] rounded justify-start`}
               >
                 <div className="flex items-center gap-[8px]">
                   <svg
@@ -135,7 +212,7 @@ export const SideBarPlan2 = ({ local }: SideBarPlan2Props): JSX.Element => {
                   </svg>
                   <span
                     className={`font-lato font-semibold text-xs leading-[130%] tracking-[0] ${
-                      active === "Medical Facilities"
+                      activeSection === "Medical Facilities"
                         ? "text-background-primary font-bold"
                         : "text-text-secondary"
                     }`}
@@ -146,13 +223,28 @@ export const SideBarPlan2 = ({ local }: SideBarPlan2Props): JSX.Element => {
                 <ChevronDownIcon
                   style={{ width: "14px", height: "14px" }}
                   className={`transition-transform duration-200 ${
-                    active === "Medical Facilities" ? "rotate-180" : "rotate-0"
+                    activeSection === "Medical Facilities" ? "rotate-180" : "rotate-0"
                   }`}
                 />
               </button>
             </CollapsibleTrigger>
             <CollapsibleContent>
-              <div className="w-[205px] h-[80px] bg-background-secondary">
+          
+              <div className="w-[205px] h-[120px] bg-background-secondary">
+                <Link to="/ElementViewCompany">
+                 <button
+                  onClick={() => setDropDown1IsActive("Clinics List")}
+                  className={`font-lato font-regular text-xs ${
+                    dropDown1IsActive === "Clinics List"
+                      ? "text-secondary-default"
+                      : "text-text-secondary"
+                  } leading-[130%] tracking-[0] px-[28px] py-[12px] h-[40px]`}
+                >
+                 
+                 Company List
+                </button>
+                </Link>
+                <Link to="/ElementViewComplex">
                 <button
                   onClick={() => setDropDown1IsActive("Complex Details")}
                   className={`font-lato font-regular text-xs ${
@@ -161,8 +253,9 @@ export const SideBarPlan2 = ({ local }: SideBarPlan2Props): JSX.Element => {
                       : "text-text-secondary"
                   } leading-[130%] tracking-[0] px-[28px] py-[12px] h-[40px]`}
                 >
-                  Complex Details
-                </button>
+                  Complex List
+                </button></Link>
+                <Link to="/ElementViewClinic">
                 <button
                   onClick={() => setDropDown1IsActive("Clinics List")}
                   className={`font-lato font-regular text-xs ${
@@ -172,16 +265,18 @@ export const SideBarPlan2 = ({ local }: SideBarPlan2Props): JSX.Element => {
                   } leading-[130%] tracking-[0] px-[28px] py-[12px] h-[40px]`}
                 >
                   Clinics List
-                </button>
+                </button></Link>
               </div>
             </CollapsibleContent>
           </Collapsible>
-          <Collapsible open={active === "Doctors & Staff"}>
+
+
+          <Collapsible open={activeSection === "Doctors & Staff"}>
             <CollapsibleTrigger className="w-full">
               <button
-                onClick={() => setActive("Doctors & Staff")}
+                onClick={() => setActiveSection("Doctors & Staff")}
                 className={`flex items-center w-full h-[40px] ${
-                  active === "Doctors & Staff"
+                  activeSection === "Doctors & Staff"
                     ? "text-background-primary bg-secondary-default"
                     : ""
                 } justify-between py-[10px] pl-[4px] rounded justify-start`}
@@ -215,7 +310,7 @@ export const SideBarPlan2 = ({ local }: SideBarPlan2Props): JSX.Element => {
                   </svg>
                   <span
                     className={`font-lato font-semibold text-xs leading-[130%] tracking-[0] ${
-                      active === "Doctors & Staff"
+                      activeSection === "Doctors & Staff"
                         ? "text-background-primary font-bold"
                         : "text-text-secondary"
                     }`}
@@ -226,13 +321,14 @@ export const SideBarPlan2 = ({ local }: SideBarPlan2Props): JSX.Element => {
                 <ChevronDownIcon
                   style={{ width: "14px", height: "14px" }}
                   className={`transition-transform duration-200 ${
-                    active === "Doctors & Staff" ? "rotate-180" : "rotate-0"
+                    activeSection === "Doctors & Staff" ? "rotate-180" : "rotate-0"
                   }`}
                 />
               </button>
             </CollapsibleTrigger>
             <CollapsibleContent>
               <div className="w-[205px] h-[124px] bg-background-secondary">
+                <Link to="/ViewStaffList">
                 <button
                   onClick={() => setDropDown2IsActive("Staff List")}
                   className={`font-lato font-regular text-xs ${
@@ -242,7 +338,7 @@ export const SideBarPlan2 = ({ local }: SideBarPlan2Props): JSX.Element => {
                   }  leading-[130%] tracking-[0] px-[28px] py-[12px] h-[40px]`}
                 >
                   Staff List
-                </button>
+                </button> </Link> <Link to="/ViewDoctorList">
                 <button
                   onClick={() => setDropDown2IsActive("Doctors List")}
                   className={`font-lato font-regular text-xs ${
@@ -252,8 +348,9 @@ export const SideBarPlan2 = ({ local }: SideBarPlan2Props): JSX.Element => {
                   } leading-[130%] tracking-[0] px-[28px] py-[12px] h-[40px]`}
                 >
                   Doctors List
-                </button>
-                <button
+                </button></Link>
+                <Link to="/ViewSpecialtiesList">
+                <button 
                   onClick={() => setDropDown2IsActive("Specialties List")}
                   className={`font-lato font-regular text-xs ${
                     dropDown2IsActive === "Specialties List"
@@ -262,14 +359,15 @@ export const SideBarPlan2 = ({ local }: SideBarPlan2Props): JSX.Element => {
                   } leading-[130%] tracking-[0] px-[28px] py-[12px] h-[40px]`}
                 >
                   Specialties List
-                </button>
+                </button></Link>
               </div>
             </CollapsibleContent>
           </Collapsible>
+          <Link to="ServicesList">
           <button
-            onClick={() => setActive("Services Management")}
+            onClick={() => setActiveSection("Services Management")}
             className={`flex items-center w-full h-[40px] gap-2 py-[10px] pl-[4px] ${
-              active === "Services Management"
+              activeSection === "Services Management"
                 ? "text-background-primary bg-secondary-default"
                 : ""
             } rounded justify-start`}
@@ -290,20 +388,25 @@ export const SideBarPlan2 = ({ local }: SideBarPlan2Props): JSX.Element => {
               />
             </svg>
 
+
+
+            
+
             <span
               className={`font-lato font-semibold text-xs leading-[130%] tracking-[0] ${
-                active === "Services Management"
+                activeSection === "Services Management"
                   ? "text-background-primary font-bold"
                   : "text-text-secondary"
               }`}
             >
               {t("Services Management")}
             </span>
-          </button>
+          </button></Link>
+          <Link to="/ViewPatientDetails" >
           <button
-            onClick={() => setActive("Paitients Management")}
+            onClick={() => setActiveSection("Paitients Management")}
             className={`flex items-center w-full h-[40px] gap-2 py-[10px] pl-[4px] ${
-              active === "Paitients Management"
+              activeSection === "Paitients Management"
                 ? "text-background-primary bg-secondary-default"
                 : ""
             } rounded justify-start`}
@@ -322,18 +425,19 @@ export const SideBarPlan2 = ({ local }: SideBarPlan2Props): JSX.Element => {
             </svg>
             <span
               className={`font-lato font-semibold text-xs leading-[130%] tracking-[0] ${
-                active === "Paitients Management"
-                  ? "text-background-primary font-bold"
+                activeSection === "Paitients Management"
+                  ? "text-background-primary font-bold "
                   : "text-text-secondary"
               }`}
             >
               {t("Paitients Management")}
             </span>
-          </button>
-          <button
-            onClick={() => setActive("Appointments Management")}
-            className={`font-lato font-semibold text-xs leading-[130%] tracking-[0] ${
-                active === "Appointments Management"
+          </button></Link>
+          <Link to="">
+          <button 
+            onClick={() => setActiveSection("Appointments Management")}
+            className={`flex font-lato font-semibold   w-full h-[40px]  py-[10px] pl-[4px] items-center gap-2 text-xs leading-[130%] tracking-[0] ${
+                activeSection === "Appointments Management"
                   ? "text-background-primary font-bold"
                   : "text-text-secondary"
               }`}
@@ -351,15 +455,15 @@ export const SideBarPlan2 = ({ local }: SideBarPlan2Props): JSX.Element => {
               />
             </svg>
             <span
-              className={`font-lato font-semibold text-xs leading-[130%] tracking-[0] ${
-                active === "Appointments Management"
+              className={`font-lato font-semibold items-start text-xs leading-[130%] tracking-[0] ${
+                activeSection === "Appointments Management"
                   ? "text-background-primary font-bold"
                   : "text-text-secondary"
               }`}
             >
               {t("Appointments Management")}
             </span>
-          </button>
+          </button></Link>
         </section>
 
         {/* Logout Button */}

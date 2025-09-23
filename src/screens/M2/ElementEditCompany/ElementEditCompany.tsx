@@ -1,11 +1,11 @@
 
 import { CompanyDetailsSectio } from "./sections/CompanyDetailsSectio/CompanyDetailsSectio";
-import { CompanyInformationSection } from "./sections/CompanyInformationSection/CompanyInformationSection";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
   export const ElementEditCompany = (): JSX.Element => {
     const { i18n } = useTranslation();
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
       const [local, setLocal] = useState('en')
       const [darkMode, setDarkMode] = useState(false);
       function handleLanguageClick () {
@@ -24,9 +24,12 @@ import { useState } from "react";
       };
   return (
     <div className="flex w-full items-start bg-surface-default ">
-         
-        <CompanyInformationSection />
-        <CompanyDetailsSectio local={local} dark={darkMode} handleLanguageClick={handleLanguageClick} handelDarkClick={toggleDarkMode} />
+
+        <CompanyDetailsSectio     handleLanguageClick={handleLanguageClick}
+        local={local}
+        dark={darkMode}
+        handelDarkClick={toggleDarkMode}
+        onOpenSidebar={() => setIsSidebarOpen(true)} />
     
     </div>
   );

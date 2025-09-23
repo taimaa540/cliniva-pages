@@ -46,7 +46,7 @@ const phoneWithoutCode = valueStr.startsWith(countryCallingCode)
   return (
     <div
       dir="ltr"
-      className="w-[360px] h-[48px] flex items-center border border-border-light rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-all"
+      className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  flex items-center border border-border-light bg-background-secondary rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-all"
     >
       {/* اختيار الدولة */}
       <div className="relative flex items-center gap-2 px-3 border-r h-full !bg-background-secondary">

@@ -1,10 +1,11 @@
 
 import { CapacitySection } from "./sections/CapacitySection/CapacitySection";
-import { ClinicInfoSection } from "./sections/ClinicInfoSection/ClinicInfoSection";
+
 import { useTranslation } from "react-i18next";
 import { useState } from "react"
 
 export const EditClinicDetails = (): JSX.Element => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
       const { i18n } = useTranslation();
       const [local, setLocal] = useState("en");
       const [darkMode, setDarkMode] = useState(false);
@@ -27,11 +28,12 @@ export const EditClinicDetails = (): JSX.Element => {
   return (
       <div className="flex w-full bg-surface-default ">
    
-      <ClinicInfoSection />
+
       <CapacitySection  handleLanguageClick={handleLanguageClick}
-              local={local}
-              dark={darkMode}
-              handelDarkClick={toggleDarkMode}/>
+        local={local}
+        dark={darkMode}
+        handelDarkClick={toggleDarkMode}
+        onOpenSidebar={() => setIsSidebarOpen(true)}/>
     
     </div>
   );

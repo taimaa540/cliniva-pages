@@ -1,38 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Clock } from "lucide-react";
 import { useLanguage } from "../../lib/LanguageContext";
-
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
+
 export default function TimeRangePicker() {
   const [startTime, setStartTime] = useState("00:00");
   const [endTime, setEndTime] = useState("00:00");
   const [showPicker, setShowPicker] = useState(false);
-  const { local, handleLanguageClick } = useLanguage();
+  const { local } = useLanguage();
   const { t, i18n } = useTranslation();
+
   useEffect(() => {
     i18n.changeLanguage(local);
-  }, []);
-  return (
-    <div className="relative w-[360px] max-w-md">
-      {/* Display row */}
-      <div className="flex items-center gap-[80px] w-[360px] ">
-        <span className="text-gray-600 text-sm mr-[10px]">{startTime}</span>
-        <span
-  className={`transition-transform ${i18n.dir() === 'rtl' ? 'rotate-180' : ''}`}
-  style={{ display: 'inline-block' }}
->
-  →
-</span>
-        <span className="text-gray-600 text-sm ">{endTime}</span>
+  }, [local, i18n]);
 
-        {/* ساعة واحدة للتحكم */}
+  return (
+    <div className="relative  w-[clamp(200px,90%,360px)]">
+      {/* Display row */}
+      <div className="flex items-center justify-between  w-full">
+        <span className="text-gray-600 text-sm mr-2">{startTime}</span>
+        <span
+          className={`transition-transform ${i18n.dir() === "rtl" ? "rotate-180" : ""}`}
+          style={{ display: "inline-block" }}
+        >
+          →
+        </span>
+        <span className="text-gray-600 text-sm">{endTime}</span>
+
+        {/* زر الساعة */}
         <button
           type="button"
           onClick={() => setShowPicker(!showPicker)}
           className="text-gray-500 hover:text-blue-500"
         >
-          <Clock className="w-5 h-5" />
+          <Clock className="w-5 h-5 text-text-primary "  />
         </button>
       </div>
 
@@ -45,7 +46,7 @@ export default function TimeRangePicker() {
               type="time"
               value={startTime}
               onChange={(e) => setStartTime(e.target.value)}
-              className="border rounded px-2 py-1 text-sm"
+              className="border rounded px-2 py-1 text-sm w-full"
             />
           </div>
           <div className="flex items-center gap-2">
@@ -54,7 +55,7 @@ export default function TimeRangePicker() {
               type="time"
               value={endTime}
               onChange={(e) => setEndTime(e.target.value)}
-              className="border rounded px-2 py-1 text-sm"
+              className="border rounded px-2 py-1 text-sm w-full"
             />
           </div>
           <div className="flex justify-end">

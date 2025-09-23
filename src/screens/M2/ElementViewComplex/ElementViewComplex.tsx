@@ -1,13 +1,13 @@
 import React from "react";
 import { MedicalComplexDetailsSection } from "./sections/MedicalComplexDetailsSection/MedicalComplexDetailsSection";
-import { MedicalSidebarSection } from "./sections/MedicalSidebarSection/MedicalSidebarSection";
+
 import { useTranslation } from "react-i18next";
 import { useState } from "react"
 
 
 
 export const ElementViewComplex = (): JSX.Element => {
-
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
       const { i18n } = useTranslation();
       const [local, setLocal] = useState("en");
       const [darkMode, setDarkMode] = useState(false);
@@ -32,13 +32,13 @@ export const ElementViewComplex = (): JSX.Element => {
     
 
 
-      <MedicalSidebarSection />
       <MedicalComplexDetailsSection 
       
               handleLanguageClick={handleLanguageClick}
-              local={local}
-              dark={darkMode}
-              handelDarkClick={toggleDarkMode}
+        local={local}
+        dark={darkMode}
+        handelDarkClick={toggleDarkMode}
+        onOpenSidebar={() => setIsSidebarOpen(true)} // ← يفتح السايد بار
             />
     </div>
   );

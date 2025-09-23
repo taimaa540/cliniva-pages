@@ -13,6 +13,7 @@ interface SideBarPlan3Props {
 }
 
 export const SideBarPlan3 = ({ local }: SideBarPlan3Props): JSX.Element => {
+  const [isOpen, setIsOpen] = useState(false);
   const [active, setActive] = useState<
     | "Users Management"
     | "Medical Facilities"
@@ -21,6 +22,10 @@ export const SideBarPlan3 = ({ local }: SideBarPlan3Props): JSX.Element => {
     | "Paitients Management"
     | "Appointments Management"
   >("Users Management");
+
+  const [dropDown1IsActive, setDropDown1IsActive] = useState<
+    "Complex Details" | "Clinics List"
+  >("Complex Details");
 
   const [dropDown2IsActive, setDropDown2IsActive] = useState<
     "Staff List" | "Doctors List" | "Specialties List"
@@ -228,40 +233,96 @@ export const SideBarPlan3 = ({ local }: SideBarPlan3Props): JSX.Element => {
               </div>
             </CollapsibleContent>
           </Collapsible>
-          <button
-            onClick={() => setActive("Services Management")}
-            className={`flex items-center w-full h-[40px] gap-2 py-[10px] pl-[4px] ${
-              active === "Services Management"
-                ? "text-background-primary bg-secondary-default"
-                : ""
-            } rounded justify-start`}
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16.1802 13.0943C19.4727 8.9193 18.5835 4.7793 16.2185 3.32847C13.9835 1.95763 12.0327 2.51013 10.861 3.39013L9.99933 4.03513M16.1802 13.0943C15.3902 14.0968 14.3593 15.1001 13.0493 16.0693C11.7618 17.0235 11.1177 17.5001 9.99933 17.5001C8.881 17.5001 8.23767 17.0235 6.94933 16.0693C0.184333 11.0626 0.847667 5.12763 3.78017 3.32847C6.01517 1.95763 7.966 2.51013 9.13767 3.39013L9.99933 4.03513M16.1802 13.0943L11.576 7.87097C11.4846 7.76762 11.3595 7.70002 11.2229 7.68018C11.0864 7.66035 10.9472 7.68956 10.8302 7.76263L9.0085 8.90097C8.65126 9.12697 8.22046 9.20606 7.80624 9.1217C7.39202 9.03734 7.02647 8.79605 6.78608 8.44833C6.5457 8.10061 6.44909 7.6734 6.51648 7.25608C6.58388 6.83876 6.81004 6.46368 7.14767 6.2093L9.99933 4.03513"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-
-            <span
-              className={`font-lato font-semibold text-xs leading-[130%] tracking-[0] ${
-                active === "Services Management"
-                  ? "text-background-primary font-bold"
-                  : "text-text-secondary"
-              }`}
-            >
-              {t("Services Management")}
-            </span>
-          </button>
+            <Collapsible open={active === "Doctors & Staff"}>
+            <CollapsibleTrigger className="w-full">
+              <button
+                onClick={() => setActive("Doctors & Staff")}
+                className={`flex items-center w-full h-[40px] ${
+                  active === "Doctors & Staff"
+                    ? "text-background-primary bg-secondary-default"
+                    : ""
+                } justify-between py-[10px] pl-[4px] rounded justify-start`}
+              >
+                <div className="flex items-center gap-[8px]">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.00075 15V13.5C9.00075 12.086 9.00075 11.3785 8.56121 10.9395C8.12217 10.5 7.4146 10.5 6.00047 10.5L5.00038 11.5L4.00028 10.5C2.58615 10.5 1.87858 10.5 1.43954 10.9395C1 11.3785 1 12.086 1 13.5V15M7.00056 10.5V13.25"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M3.25009 10.5V12.5M3.25009 12.5C3.51534 12.5 3.76971 12.6054 3.95727 12.7929C4.14482 12.9804 4.25019 13.2348 4.25019 13.5V14M3.25009 12.5C2.98485 12.5 2.73047 12.6054 2.54292 12.7929C2.35537 12.9804 2.25 13.2348 2.25 13.5V14M6.75042 7.25V6.75C6.75042 6.52019 6.70515 6.29262 6.6172 6.0803C6.52925 5.86798 6.40033 5.67507 6.23781 5.51256C6.07529 5.35006 5.88236 5.22116 5.67002 5.13321C5.45768 5.04527 5.23009 5 5.00026 5C4.77042 5 4.54284 5.04527 4.3305 5.13321C4.11816 5.22116 3.92522 5.35006 3.76271 5.51256C3.60019 5.67507 3.47127 5.86798 3.38332 6.0803C3.29536 6.29262 3.25009 6.52019 3.25009 6.75V7.25C3.25009 7.47981 3.29536 7.70738 3.38332 7.9197C3.47127 8.13202 3.60019 8.32493 3.76271 8.48744C3.92522 8.64994 4.11816 8.77884 4.3305 8.86679C4.54284 8.95474 4.77042 9 5.00026 9C5.23009 9 5.45768 8.95474 5.67002 8.86679C5.88236 8.77884 6.07529 8.64994 6.23781 8.48744C6.40033 8.32493 6.52925 8.13202 6.6172 7.9197C6.70515 7.70738 6.75042 7.47981 6.75042 7.25ZM7.37548 13.625C7.37548 13.7245 7.33597 13.8198 7.26564 13.8902C7.1953 13.9605 7.09991 14 7.00045 14C6.90098 14 6.80559 13.9605 6.73526 13.8902C6.66492 13.8198 6.62541 13.7245 6.62541 13.625C6.62541 13.5255 6.66492 13.4302 6.73526 13.3598C6.80559 13.2895 6.90098 13.25 7.00045 13.25C7.09991 13.25 7.1953 13.2895 7.26564 13.3598C7.33597 13.4302 7.37548 13.5255 7.37548 13.625Z"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M11 15V14.5C11 13.565 11 13.098 11.201 12.75C11.3327 12.522 11.522 12.3326 11.7501 12.201C12.0981 12 12.5651 12 13.5002 12L15.0004 14L16.5005 12C17.4356 12 17.9026 12 18.2507 12.201C18.4787 12.3326 18.6681 12.522 18.7997 12.75C19.0008 13.098 19.0008 13.565 19.0008 14.5V15M16.9691 8L17.4781 5.932C17.5946 5.4585 17.2421 5 16.762 5H13.2387C12.7587 5 12.4061 5.4585 12.5226 5.932L13.0317 8M16.9691 8V9C16.9691 10.1045 16.088 11 15.0004 11C13.9128 11 13.0317 10.1045 13.0317 9V8M16.9691 8H13.0317"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span
+                    className={`font-lato font-semibold text-xs leading-[130%] tracking-[0] ${
+                      active === "Doctors & Staff"
+                        ? "text-background-primary font-bold"
+                        : "text-text-secondary"
+                    }`}
+                  >
+                    {t("Doctors & Staff")}
+                  </span>
+                </div>
+                <ChevronDownIcon
+                  style={{ width: "14px", height: "14px" }}
+                  className={`transition-transform duration-200 ${
+                    active === "Doctors & Staff" ? "rotate-180" : "rotate-0"
+                  }`}
+                />
+              </button>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <div className="w-[205px] h-[124px] bg-background-secondary">
+                <button
+                  onClick={() => setDropDown2IsActive("Staff List")}
+                  className={`font-lato font-regular text-xs ${
+                    dropDown2IsActive === "Staff List"
+                      ? "text-secondary-default"
+                      : "text-text-secondary"
+                  }  leading-[130%] tracking-[0] px-[28px] py-[12px] h-[40px]`}
+                >
+                  Staff List
+                </button>
+                <button
+                  onClick={() => setDropDown2IsActive("Doctors List")}
+                  className={`font-lato font-regular text-xs ${
+                    dropDown2IsActive === "Doctors List"
+                      ? "text-secondary-default"
+                      : "text-text-secondary"
+                  } leading-[130%] tracking-[0] px-[28px] py-[12px] h-[40px]`}
+                >
+                  Doctors List
+                </button>
+                <button
+                  onClick={() => setDropDown2IsActive("Specialties List")}
+                  className={`font-lato font-regular text-xs ${
+                    dropDown2IsActive === "Specialties List"
+                      ? "text-secondary-default"
+                      : "text-text-secondary"
+                  } leading-[130%] tracking-[0] px-[28px] py-[12px] h-[40px]`}
+                >
+                  Specialties List
+                </button>
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
           <button
             onClick={() => setActive("Paitients Management")}
             className={`flex items-center w-full h-[40px] gap-2 py-[10px] pl-[4px] ${

@@ -245,7 +245,7 @@ export const ServicesList = (): JSX.Element => {
                   </thead>
                   <tbody>
                     {serviceData.map((service) => (
-                      <Link to="/UserDetails" className="contents h-[78px]">
+                      <Link to="/ViewServiceDetails" className="contents h-[78px]">
                         <tr
                           key={service.id}
                           className="h-[78px] bg-background-primary hover:bg-gray-100 border-b border-border-light w-full"
@@ -277,7 +277,7 @@ export const ServicesList = (): JSX.Element => {
                           <td className="align-middle">
                             <div className="inline-flex flex-col justify-center gap-1 flex-[0_0_auto] items-start">
                               <div className="inline-flex items-center justify-center gap-1 flex-[0_0_auto]">
-                                <Link to="/EditUserDEtails">
+                                <Link to="/EditServiceDetials">
                                   <Button
                                     variant="ghost"
                                     size="sm"

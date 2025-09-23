@@ -14,10 +14,11 @@ import { CompanyPlan } from "./screens/M2/CompanyPlan";
 import { BrowserRouter } from "react-router-dom";
 import { ComplexList } from "./screens/M2/ComplexList";
 import { SideBarPlan1 } from "./screens/CommonComponents/SideBarPlan1";
-
+import { ClinicList } from "./screens/M2/ClinicList";
 import PhoneNumberInput from "./screens/CommonComponents/test";
 import { AddNewComplex } from "./screens/M2/AddNewComplex";
 import { AddNewClinic } from "./screens/M2/AddNewClinic";
+import { Suspense } from "react";
 import WeatherCard from "./test";
 import { ElementViewCompany } from "./screens/M2/ElementVeiwCompany/ElementViewCompany";
 import { ElementViewComplex } from "./screens/M2/ElementViewComplex/ElementViewComplex";
@@ -32,7 +33,46 @@ import { EditUserDetails } from "./screens/M1/EditUserDetails";
 import { NoDataSection } from "./screens/M1/NoDataSection";
 import PhoneInputWithShortCode from "./screens/CommonComponents/test";
 import Example from "./screens/CommonComponents/test";
+import { ViewDoctorDetails } from "./screens/Moudule3/ViewDoctorDetails/ViewDoctorDetails";
+import { ElementEditeDetalisCinicP3 } from "./screens/ElementEditDetailsClinicP3/ElementEditDetailsClinicP3";
+import { ElementViewDetalisComplexp2 } from "./screens/ElementViewDetailsComplexp2/ElementViewDetalisComplexp2";
+import { ElementViewDetailsClinicP3 } from "./screens/ElementViewDetailsClinicP3/ElementViewDetailsClinicP3";
+import { AddNewUser } from "./screens/M1/AddNewUser";
+import { UserListSection } from "./screens/M1/userListSection";
+import { UserDetails } from "./screens/M1/UserDetails";
+import { ViewStaffDetails } from "./screens/Moudule3/ViewStaffDetails/ViewStaffDetails";
+import { ViewDoctorList } from "./screens/Moudule3/ViewDoctorList/ViewDoctorList";
+import { ViewListOfSpicialities } from "./screens/Moudule3/ViewListOfSpecialities/ViewListOfSpecialities";
+import { ViewStaffMembersList } from "./screens/Moudule3/ViewStaffMembersList/ViewStaffMembersList";
+import AddNewSpecialities from "./screens/CommonComponents/AddNewSpecialities";
+import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
+import { StaffMemberDetails } from "./screens/Moudule3/SrtaffMemberDetails/StaffMemberDetails";
+import { EditDoctorDetails } from "./screens/Moudule3/EditDoctorsDetails/EditDoctorsDetails";
+import { Edit } from "lucide-react";
+import { ViewSpecialityDetails } from "./screens/Moudule3/ViewSpecialityDetails/ViewSpecialityDetails";
+import { ElementEditSpicialityDetails } from "./screens/Moudule3/EditSpecialityDetails/ElementEditSpicialityDetail";
+import { ViewServiceDetails } from "./screens/M4/ViewServiceDetails/ViewServiceDetails";
 
+import { ViewListOfPatients } from "./screens/M5/ViewListOfPatients/ViewListOfPatients";
+import { AddNewPatient } from "./screens/M5/AddNewPatient/AddNewPatient";
+import { EditPatientDetails } from "./screens/M5/EditPaitentDetails/EditPatientDetails";
+import { EditServiceDetails } from "./screens/M4/EditServiceDetails/EditServiceDetails";
+import { ServicesList } from "./screens/M4/ServicesList";
+import { AddNewService } from "./screens/M4/AddNewService";
+
+
+function Layout() {
+
+  return (
+    <div className="flex h-screen w-screen overflow-hidden">
+
+      {/* الصفحات رح تنعرض هون */}
+      <div className="flex-1 overflow-auto">
+        <Outlet />
+      </div>
+    </div>
+  );
+}
 function MainApp() {
   return (
     <BrowserRouter>
@@ -43,21 +83,29 @@ function MainApp() {
       <ThemeProvider defaultTheme="light" storageKey="cliniva-theme">
         <LanguageProvider>
           {/* Theme toggle in top-right corner */}
-          <div className="fixed top-[35px] right-[195px] z-50">
+          { /*  <div className="fixed top-[35px] right-[195px] z-50">
             <ThemeToggle />
-          </div>
+          </div>*/}
 
           {/* Main app content with theme transition */}
           <div className="theme-transition">
             <main className="flex h-screen w-screen overflow-hidden">
+
+
+
+
+
               {/*  */}
               {/* <ChoosePlan /> */}
               {/* <SideBarPlan1 /> */}
-              {/* <SideBarPlan2 local="test"/> */}
+
+
               {/* <SideBarPlan3 local="test"/> */}
-             {/* <EditUserDetails/> */}
-             {/* <NoDataSection/> */}
-             
+
+              {/* <NoDataSection/> */}
+
+
+              {/* <UserDetails/> */}
               {/* <ElementChangeStatus/> */}
               {/* <ElementDeleteUser title="user"/> */}
               {/* <ElementLogOutDialog/> */}
@@ -66,17 +114,76 @@ function MainApp() {
               {/* <AddNewComplex /> */}
               {/* <AddNewClinic/> */}
               {/* <WeatherCard/> */}
-              
-              {/* <ElementViewCompany/> */}
-              {/* <ElementViewClinic/> */}
-              {/* <ElementViewComplex/> */}
+              {/* <ViewSpecialityDetails/> */}
+
+
+
               {/* <ElementEditComplex/> */}
-              {/* <ElementEditCompany/> */}
-              {/* <ElementViewCompany /> */}
+
+
+
+
               {/* <ElementEditComplexPlan2/> */}
               {/* <ElementViewDetalisComplexp2/> */}
-              {/* <EditClinicDetails/> */}
+
+              {/* <ElementEditeDetalisCinicP3/> */}
+              {/* <ElementViewDetailsClinicP3/> */}
+
               {/* <Example/> */}
+              {/*M3*/}
+
+
+
+
+
+              {/*M1*/}
+              <Routes>
+                <Route path="/" element={<Layout />}>
+                  <Route path="UserDesktop" element={<UserListSection />} />
+                  <Route path="EditUserDEtails" element={<EditUserDetails />} />
+                  <Route path="AddNewUser" element={<AddNewUser />} />
+
+
+                  {/* M2*/}
+
+
+
+                  <Route path="ElementViewCompany" element={<ElementViewCompany />} />
+                  <Route path="" element={<ElementViewCompany />} />
+                  <Route path="ElementViewCompany/EditCompanyDetials" element={<ElementEditCompany />} />
+                  <Route path="ElementViewComplex" element={<ElementViewComplex />} />
+                  <Route path="ElementViewComplex/EditComplexDetails" element={
+                    <ElementEditComplex />}
+                  />
+
+
+                  <Route path="ElementViewClinic" element={<ElementViewClinic />} />
+                  <Route path="ElementViewClinic/EditClinicDetails" element={<EditClinicDetails />} />
+
+
+                  {/* M3 */}
+                  <Route path="ViewStaffList" element={<ViewStaffMembersList />}></Route>
+                  <Route path="ViewStaffList/View Staff Details" element={<ViewStaffDetails />}></Route>
+                  <Route path="ViewStaffList/View Staff Details/EditStaffDetails" element={<StaffMemberDetails />}></Route>
+
+                  <Route path="ViewDoctorList" element={<ViewDoctorList />}></Route>
+                  <Route path="ViewDoctorList/ViewDoctorDetails" element={<ViewDoctorDetails />}></Route>
+                  <Route path="ViewDoctorList/ViewDoctorDetails/EditDoctorDetials" element={<EditDoctorDetails />}></Route>
+                  <Route path="ViewSpecialtiesList" element={<ViewListOfSpicialities />}></Route>
+                  <Route path="ViewSpecialtiesDetails" element={<ViewSpecialityDetails />}></Route>
+
+                  <Route path="ViewSpecialtiesList/EditSpecialtiesDetails" element={<ElementEditSpicialityDetails />}></Route>
+                  {/* M4 */}
+                  <Route path="ServicesList" element={<ServicesList />}></Route>
+                  <Route path="AddNewService" element={<AddNewService />}></Route>
+                  <Route path="EditServiceDetials" element={<EditServiceDetails />}></Route>
+                  <Route path="ViewServiceDetails" element={<ViewServiceDetails />}></Route>
+                  {/* M5 */}
+                  <Route path="ViewPatientDetails" element={<ViewListOfPatients />}></Route>
+                  <Route path="AddNewPatient" element={<AddNewPatient />}></Route>
+                  <Route path="EditPatientDetails" element={<EditPatientDetails />}></Route>
+                </Route>
+              </Routes>
             </main>
           </div>
 

@@ -1,10 +1,9 @@
 import React from "react";
-import { SideComplex } from "./SadeparComplex/SideparComplex";
 import { EditComplex } from "./EditComplex/EditComplex";
 import { useTranslation } from "react-i18next";
 import { useState } from "react"
 export const ElementEditComplexPlan2 = (): JSX.Element => {
-
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
 
   const { i18n } = useTranslation();
@@ -25,11 +24,12 @@ export const ElementEditComplexPlan2 = (): JSX.Element => {
 
   return (
     <div className="flex w-full bg-surface-default " >
-      <SideComplex />
-      <EditComplex handleLanguageClick={handleLanguageClick}
+ 
+      <EditComplex  handleLanguageClick={handleLanguageClick}
         local={local}
         dark={darkMode}
-        handelDarkClick={toggleDarkMode} />
+        handelDarkClick={toggleDarkMode}
+        onOpenSidebar={() => setIsSidebarOpen(true)} />
     </div>
   );
 };

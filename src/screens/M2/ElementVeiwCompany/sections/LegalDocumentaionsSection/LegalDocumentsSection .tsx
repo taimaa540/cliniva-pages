@@ -6,6 +6,7 @@ import {
   CollapsibleTrigger,
   CollapsibleContent,
 } from "../../../../../components/ui/collapsible";
+import { ThemeToggle } from "../../../../../components/theme/ThemeSwitcher";
 import {
   ChevronDownIcon,
   Edit2Icon,
@@ -19,16 +20,18 @@ import {
   TwitterIcon,
   InstagramIcon,
 } from "lucide-react";
+import { SideBarPlan2 } from "../../../../CommonComponents/SideBarPlan2";
 import { useState } from "react";
 import ReusableCollapsible from "../../../../../components/ui/Collapsibles";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import LocalPostOfficeOutlinedIcon from "@mui/icons-material/LocalPostOfficeOutlined";
 import XIcon from "@mui/icons-material/X";
-
+import { Link } from "react-router-dom";
 import TranslateIcon from "@mui/icons-material/Translate";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+
 const companyInfo = {
   logo: "/vector.svg",
   tradeName: "MedCare Group",
@@ -92,18 +95,21 @@ interface NoDataSectionProps {
   dark: boolean;
   handelDarkClick: () => void;
   handleLanguageClick: () => void;
+// ⬅️ البروبس الجديد
 }
+
 
 export const LegalDocumentsSection = ({
   handleLanguageClick,
   local,
-  dark,
-  handelDarkClick,
+
+ 
 }: NoDataSectionProps): JSX.Element => {
   const { t, i18n } = useTranslation();
   useEffect(() => {
     i18n.changeLanguage(local);
   }, []);
+
     const [isOpen, setIsOpen] = useState({
       clinicInfo: true,
       contactInfo: true,
@@ -120,710 +126,524 @@ export const LegalDocumentsSection = ({
         [key]: open
       }))
     };
+      const [showSidebar, setShowSidebar] = useState(false);
+  const onOpenSidebar = () => setShowSidebar(true);
+  const onCloseSidebar = () => setShowSidebar(false);
   return (
+     <div className="flex h-screen  w-screen">
+        {showSidebar && (
+    <div
+      onClick={onCloseSidebar}
+      className="fixed inset-0 bg-black/40 z-40 md:hidden"
+    />
+  )}
+                <SideBarPlan2
+        local={local}
+        handleLanguageClick={handleLanguageClick}
+        handleDarkClick={() => {}}
+        isOpen={showSidebar}
+        onOpenSidebar={onOpenSidebar}
+        onCloseSidebar={onCloseSidebar}
+      />
     <div
       className={`flex flex-col w-full overflow-hidden items-start gap-4  py-4  self-stretch relative bg-background-primary
       } `}
     >
-      <header className="flex h-[50px] justify-between pl-[4px] bg-background-primary pr-0 py-0 self-stretch w-full items-center">
-        <div className="flex flex-col w-[340px] items-start gap-1.5 ">
-          <h1
-            className={`self-stretch mt-[-1.00px] font-h5-22px-bold font-[number:var(--h5-22px-bold-font-weight)] 
-              text-text-primary 
-            } text-on-surface-primary text-[length:var(--h5-22px-bold-font-size)] tracking-[var(--h5-22px-bold-letter-spacing)] leading-[var(--h5-22px-bold-line-height)] [font-style:var(--h5-22px-bold-font-style)]`}
-          >
-            <div className="flex items-center gap-4 rounded-2xl ">
-       
-              <div className="flex flex-col">
-                <h1 className="font-bold text-[22px] text-text-primary">
-                  {t("Medical Facilities")}
-                </h1>
-                <p className="font-semibold text-[14px] text-text-primary ">
-                  {t("Medical Company Details")}
-                </p>
-              </div>
-            </div>
-          </h1>
-        </div>
+  
+<header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
+  {/* نسخة الموبايل */}
+<div className="flex w-full items-center justify-between md:hidden">
+  {/* Left Side -> العنوان */}
+  <div className="flex items-center gap-2">
+    <button
+      className="md:hidden p-2 rounded-lg bg-secondary-light"
+      onClick={onOpenSidebar}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={2}
+        stroke="currentColor"
+        className="w-6 h-6"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M4 6h16M4 12h16M4 18h16"
+        />
+      </svg>
+    </button>
 
-        <div className="inline-flex gap-3 flex-[0_0_auto] rounded-[28px] items-center">
-          <div className="relative">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-            >
-              <BellIcon className="w-5 h-5 text-text-primary" />
-            </Button>
-            <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-          </div>
-          <div className="flex gap-3 items-center">
-          <div className="relative ">
-            <Button
-              variant="ghost"
-              size="icon"
-              className={`p-4.5 bg-secondary-light ${
-                local === "ar" ? "bg-[green]" : "bg-secondary-light"
-              } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-              onClick={handleLanguageClick}
-            >
-              <TranslateIcon className="w-5 h-5 text-text-primary" />
-            </Button>
-          </div>
+    <div className="flex flex-col">
+      <h1 className="font-bold text-sm text-on-surface-primary">
+        {t("Medical Facilities")}
+      </h1>
+      <p className="text-xs text-on-surface-primary">
+        {t("Edit Company Details")}
+      </p>
+    </div>
+  </div>
 
-          <div className= " flex justify-center w-10 ml-6  h-[17.5px] relative">
-          
-          </div>
+  {/* Right Side -> الإشعار */}
+  <div className="relative">
+    <Button
+      variant="ghost"
+      size="icon"
+      className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
+    >
+      <BellIcon className="w-5 h-5" />
+    </Button>
+    <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
+  </div>
 </div>
-          <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-            <div className="inline-flex items-center w-[40px] h-[40px] gap-2.5 flex-[0_0_auto] bg-app-primary rounded-3xl" />
-            <div className="flex-col items-start gap-1 inline-flex flex-[0_0_auto]">
-              <div
-                className={`w-fit mt-[-1.00px] 
-                 text-primary
-                } font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-on-surface-primary text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]`}
-              >
-                Anahera Jones
-              </div>
-              <div className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-tertiary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)] border-medium ">
-                {t("      Admin    ")}
-              </div>
-            </div>
+
+
+
+
+  {/* نسخة الـ Desktop/Laptop */}
+  <div className="hidden md:flex w-full items-center justify-between">
+    {/* Left Side */}
+    <div className="flex items-center gap-4">
+      <div className="flex flex-col">
+        <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
+          {t("Medical Facilities")}
+        </h1>
+        <p className="text-sm md:text-base text-on-surface-primary">
+          {t("Edit Company Details")}
+        </p>
+      </div>
+    </div>
+
+    {/* Right Side */}
+    <div className="inline-flex gap-3 items-center px-4">
+      {/* Notification */}
+      <div className="relative">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
+        >
+          <BellIcon className="w-5 h-5" />
+        </Button>
+        <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
+      </div>
+
+      {/* Language Switch */}
+      <div className="relative">
+        <Button
+          variant="ghost"
+          size="icon"
+          className={`p-2.5 ${
+            local === "ar" ? "bg-[green]" : "bg-secondary-light"
+          } rounded-[20px] h-auto transition-all duration-[1000ms]`}
+          onClick={handleLanguageClick}
+        >
+          <TranslateIcon className="w-5 h-5" />
+        </Button>
+      </div>
+
+      {/* Theme Toggle */}
+      <div className="relative">
+        <ThemeToggle />
+      </div>
+
+      {/* User Info */}
+      <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
+        <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
+        <div className="flex-col items-start gap-1 inline-flex">
+          <div className="text-base font-bold text-on-surface-primary">
+            Anahera Jones
+          </div>
+          <div className="text-sm text-on-surface-tertiary">
+            {t("Admin")}
           </div>
         </div>
-      </header>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+
 
       <Card className="flex flex-col h-auto items-start gap-6 p-5 mt-[10px] bg-background-tertiary relative self-stretch w-full rounded-2xl overflow-hidden">
         <CardContent className="p-0 w-full overflow-y-auto gap-5 h-auto ">
           <div className="flex justify-end" dir={local === 'ar' ? 'rtl' : 'ltr'}>
-          <Button className="w-[200px] h-10 bg-secondary-dark text-text-inverse rounded-[20px]   font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-[length:var(--btn-14px-medium-font-size)] leading-[var(--btn-14px-medium-line-height)] tracking-[var(--btn-14px-medium-letter-spacing)] [font-style:var(--btn-14px-medium-font-style)] h-auto self-end"  >
-            <Edit2Icon className={"  w-4 h-4 mr-1 text-text-inverse"} />
-            {t("Edit")}
-          </Button>
+          <Link to="/ElementViewCompany/EditCompanyDetials">
+ <Button
+  className="
+    flex items-center justify-center gap-2
+    w-[140px] sm:w-[150px] md:w-[180px] lg:w-[200px]
+    h-9 sm:h-10 md:h-11 lg:h-10
+    bg-secondary-dark text-text-inverse rounded-[20px]
+    font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)]
+    text-[clamp(12px,1.1vw,16px)] lg:text-base
+    leading-[var(--btn-14px-medium-line-height)]
+    tracking-[var(--btn-14px-medium-letter-spacing)]
+    [font-style:var(--btn-14px-medium-font-style)]
+    self-end
+  "
+>
+  <Edit2Icon
+    className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 text-text-inverse"
+  />
+  {t("Edit")}
+</Button>
+</Link>
 </div>
 
 
+<ReusableCollapsible
+  title={t("Company information")}
+  initiallyOpen={isOpen.clinicInfo}
+  onOpenChange={(open) => handleToggle("clinicInfo", open)}
+  dir={local === "ar" ? "rtl" : "ltr"}
+  content={
+    <div className="px-4 pb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* العمود الأول */}
+        <div className="flex flex-col gap-6">
+          {/* Logo */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            <div className="font-semibold min-w-[180px] text-[clamp(14px,1.1vw,16px)]">
+              {t("Logo:")}
+            </div>
+            <img className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14" src="/logo.png" />
+          </div>
 
-      <ReusableCollapsible
-            title=  {t("Company information")}
-            initiallyOpen={isOpen.clinicInfo}
-            onOpenChange={(open) => handleToggle("clinicInfo", open)}
-               dir={local === 'ar' ? 'rtl' : 'ltr'}
-            content={<div  className="px-4 pb-4" >         {/* نستخدم flex أفقياً لتقسيم الأعمدة مع مسافات متساوية */}
-                  <div className="flex gap-6">
-                    {/* العمود الأول */}
-                    <div className="flex flex-col gap-6 w-1/2">
-                      <div className="grid grid-cols-[200px_1fr] items-start gap-2">
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 600,
-                            fontStyle: "SemiBold",
-                            fontSize: "16px",
-                            lineHeight: "124%",
-                            letterSpacing: "0%",
-                          }}
-                        >
-                          {t("Logo:")}
-                        </div>
-                        <img className="w-12 h-12" src="/logo.png"></img>
-                      </div>
+          {/* Trade Name */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            <div className="font-semibold min-w-[180px] text-[clamp(14px,1.1vw,16px)]">
+              {t("Trade Name")}:
+            </div>
+            <div className="text-[clamp(12px,1.1vw,16px)]">{companyInfo.tradeName}</div>
+          </div>
 
-                      <div className="grid grid-cols-[200px_1fr] items-start gap-2">
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 600,
-                            fontStyle: "SemiBold",
-                            fontSize: "16px",
-                            lineHeight: "124%",
-                            letterSpacing: "0%",
-                          }}
-                        >
-                          {t("Trade Name")} :
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 400,
-                            fontStyle: "Regular",
-                            fontSize: "14px",
-                            lineHeight: "125%",
-                            letterSpacing: "0%",
-                          }}
-                        >
-                          {companyInfo.tradeName}
-                        </div>
-                      </div>
+          {/* Year of Establishment */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            <div className="font-semibold text-xs  min-w-[180px] sm:text-sm md:text-base lg:text-lg">
+              {t("Year of Establishment")}:
+            </div>
+            <div className="text-[clamp(12px,1.1vw,16px)]">{companyInfo.yearEstablished}</div>
+          </div>
 
-                      <div className="grid grid-cols-[200px_1fr] items-start gap-2">
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 600,
-                            fontStyle: "SemiBold",
-                            fontSize: "16px",
-                            lineHeight: "124%",
-                            letterSpacing: "0%",
-                          }}
-                        >
-                          {t("Year of Establishment")}:
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 400,
-                            fontStyle: "Regular",
-                            fontSize: "14px",
-                            lineHeight: "125%",
-                            letterSpacing: "0%",
-                          }}
-                        >
-                          {companyInfo.yearEstablished}
-                        </div>
-                      </div>
+          {/* Overview */}
+          <div className="flex flex-col sm:flex-row sm:items-start  gap-6 sm:gap-4">
+            <div className="font-semibold text-xs min-w-[180px] sm:text-sm md:text-base lg:text-lg">
+              {t("Overview")}:
+            </div>
+            <div className="text-[clamp(12px,1.1vw,16px)]">{companyInfo.overview}</div>
+          </div>
 
-                      <div className="grid grid-cols-[200px_1fr] items-start gap-2">
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 600,
-                            fontStyle: "SemiBold",
-                            fontSize: "16px",
-                            lineHeight: "124%",
-                            letterSpacing: "0%",
-                          }}
-                        >
-                          {t("Overview")}:
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 400,
-                            fontStyle: "Regular",
-                            fontSize: "14px",
-                            lineHeight: "125%",
-                            letterSpacing: "0%",
-                          }}
-                        >
-                          {companyInfo.overview}
-                        </div>
-                      </div>
+          {/* Goals */}
+          <div className="flex flex-col sm:flex-row sm:items-center  sm:gap-4  gap-6">
+            <div className="font-semibold text-xs  min-w-[180px] sm:text-sm md:text-base lg:text-lg">
+              {t("Goals")}:
+            </div>
+            <div className="text-[clamp(12px,1.1vw,16px)]">{companyInfo.goals}</div>
+          </div>
+        </div>
 
-                      <div className="grid grid-cols-[200px_1fr] items-start gap-2">
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 600,
-                            fontStyle: "SemiBold",
-                            fontSize: "16px",
-                            lineHeight: "124%",
-                            letterSpacing: "0%",
-                          }}
-                        >
-                          {t("Goals")}:
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 400,
-                            fontStyle: "Regular",
-                            fontSize: "14px",
-                            lineHeight: "125%",
-                            letterSpacing: "0%",
-                          }}
-                        >
-                          {companyInfo.goals}
-                        </div>
-                      </div>
-                    </div>
+        {/* العمود الثاني */}
+        <div className="flex flex-col gap-6">
+          {/* Legal Name */}
+          <div className="flex flex-col sm:flex-row sm:items-center   gap-4">
+            <div className="font-semibold  min-w-[180px] text-[clamp(14px,1.1vw,16px)]">
+              {t("Legal Name")}:
+            </div>
+            <div className="text-[clamp(12px,1.1vw,16px)]">{companyInfo.legalName}</div>
+          </div>
 
-                    {/* العمود الثاني (الثالث والرابع) */}
-                    <div className="flex flex-col gap-6 w-1/2">
-                      <div className="grid grid-cols-[200px_1fr] items-start gap-2">
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 600,
-                            fontStyle: "SemiBold",
-                            fontSize: "16px",
-                            lineHeight: "124%",
-                            letterSpacing: "0%",
-                          }}
-                        >
-                          {t("Legal Name")}:
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 400,
-                            fontStyle: "Regular",
-                            fontSize: "14px",
-                            lineHeight: "125%",
-                            letterSpacing: "0%",
-                          }}
-                        >
-                          {companyInfo.legalName}
-                        </div>
-                      </div>
+          {/* Vision */}
+          <div className="flex flex-col sm:flex-row sm:items-center   gap-4">
+            <div className="font-semibold  min-w-[180px] text-[clamp(14px,1.1vw,16px)]">
+              {t("Vision")}:
+            </div>
+            <div className="text-xs sm:text-sm   min-w-[180px] md:text-base">{companyInfo.vision}</div>
+          </div>
 
-                      <div className="grid grid-cols-[200px_1fr] items-start gap-2">
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 600,
-                            fontStyle: "SemiBold",
-                            fontSize: "16px",
-                            lineHeight: "124%",
-                            letterSpacing: "0%",
-                          }}
-                        >
-                          {t("Vision")}:
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 400,
-                            fontStyle: "Regular",
-                            fontSize: "14px",
-                            lineHeight: "125%",
-                            letterSpacing: "0%",
-                          }}
-                        >
-                          {companyInfo.vision}
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-[200px_1fr] items-start gap-2">
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 600,
-                            fontStyle: "SemiBold",
-                            fontSize: "16px",
-                            lineHeight: "124%",
-                            letterSpacing: "0%",
-                          }}
-                        >
-                          {t("CEO Name")}:
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 400,
-                            fontStyle: "Regular",
-                            fontSize: "14px",
-                            lineHeight: "125%",
-                            letterSpacing: "0%",
-                          }}
-                        >
-                          {companyInfo.ceoName}
-                        </div>
-                      </div>
-                    </div>
-                  </div></div>}
-
-          />
-
-
- 
-
-
-               <ReusableCollapsible
-            title= {t("Company Contact Information")}
-            initiallyOpen={isOpen.contactInfo}
-               dir={local === 'ar' ? 'rtl' : 'ltr'}
-            onOpenChange={(open) => handleToggle("contactInfo", open)}
-            content={<div className="px-4 pb-4">     <div className="grid grid-cols-2 gap-6">
-                    {/* العمود الأول */}
-                    <div className="flex flex-col gap-8">
-                      {" "}
-                      {/* تم زيادة المسافة بين الصفوف */}
-                      <div className="grid grid-cols-[auto_150px_1fr] items-center gap-3">
-                        <PhoneIcon className="text-text-primary w-6 h-6" />
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 600,
-                            fontStyle: "SemiBold",
-                            fontSize: "16px",
-                            lineHeight: "124%",
-                            letterSpacing: "0%",
-                          }}
-                          className=""
-                        >
-                          {t("Phone Numbers")}:
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 400,
-                            fontStyle: "Regular",
-                            fontSize: "14px",
-                            lineHeight: "125%",
-                            letterSpacing: "0%",
-                          }}
-                          className=""
-                        >
-                          {contactInfo.phoneNumbers}
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-[auto_150px_1fr] items-center gap-3">
-                        <MapPinIcon className="text-text-primaryw-6 h-6" />
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 600,
-                            fontStyle: "SemiBold",
-                            fontSize: "16px",
-                            lineHeight: "124%",
-                            letterSpacing: "0%",
-                          }}
-                          className="text-text-primary"
-                        >
-                          {t("Physical Address")}:
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 400,
-                            fontStyle: "Regular",
-                            fontSize: "14px",
-                            lineHeight: "125%",
-                            letterSpacing: "0%",
-                          }}
-                          className="text-text-primary"
-                        >
-                          {contactInfo.physicalAddress}
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-[auto_150px_1fr] items-center gap-3">
-                        <MapOutlinedIcon className="text-text-primary w-6 h-6" />
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 600,
-                            fontStyle: "SemiBold",
-                            fontSize: "16px",
-                            lineHeight: "124%",
-                            letterSpacing: "0%",
-                          }}
-                          className="text-text-primary"
-                        >
-                          {t("Maps Location")}:
-                        </div>
-                        <a
-                          href="https://maps.google.com/?q=24.7136,46.6753"
-                          rel="noopener noreferrer"
-                          target="_blank"
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 400,
-                            fontStyle: "Regular",
-                            fontSize: "14px",
-                            lineHeight: "125%",
-                            letterSpacing: "0%",
-                          }}
-                          className="text-text-primary"
-                        >
-                          {contactInfo.mapsLocation}
-                        </a>
-                      </div>
-                    </div>
-
-                    {/* العمود الثاني */}
-                    <div className="flex flex-col gap-8">
-                      {" "}
-                      {/* تم زيادة المسافة بين الصفوف */}
-                      <div className="grid grid-cols-[auto_150px_1fr] items-center gap-3">
-                        <LocalPostOfficeOutlinedIcon className="text-text-primary w-6 h-6" />
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 600,
-                            fontStyle: "SemiBold",
-                            fontSize: "16px",
-                            lineHeight: "124%",
-                            letterSpacing: "0%",
-                          }}
-                          className="text-on-surface-primary"
-                        >
-                          {t("Email")}:
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 400,
-                            fontStyle: "Regular",
-                            fontSize: "14px",
-                            lineHeight: "125%",
-                            letterSpacing: "0%",
-                          }}
-                          className="text-on-surface-primary"
-                        >
-                          {contactInfo.email}
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-[auto_150px_1fr] items-center gap-3">
-                        <GlobeIcon className="text-text-primary w-6 h-6" />
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 600,
-                            fontStyle: "SemiBold",
-                            fontSize: "16px",
-                            lineHeight: "124%",
-                            letterSpacing: "0%",
-                          }}
-                          className="text-on-surface-primary"
-                        >
-                          {t("Company Website")} :
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 400,
-                            fontStyle: "Regular",
-                            fontSize: "14px",
-                            lineHeight: "125%",
-                            letterSpacing: "0%",
-                          }}
-                          className="text-on-surface-primary"
-                        >
-                          {contactInfo.website}
-                        </div>
-                      </div>
-                    </div>
-                  </div></div>}
-
-          />
+          {/* CEO Name */}
+          <div className="flex flex-col sm:flex-row sm:items-center  gap-4 ">
+            <div className="font-semibold  text-x  min-w-[180px] text-[clamp(14px,1.1vw,16px)] lg:text-lg">
+              {t("CEO Name")}:
+            </div>
+            <div className="text-[clamp(12px,1.1vw,16px)]">{companyInfo.ceoName}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+/>
 
 
 
-      <ReusableCollapsible
-            title= {t("Social Media Accounts")}
-            initiallyOpen={isOpen.social}
-               dir={local === 'ar' ? 'rtl' : 'ltr'}
-            onOpenChange={(open) => handleToggle("social", open)}
-            content={<div className="px-4 pb-4">        <div className="grid grid-cols-2 gap-6">
-                    {/* العمود الأول */}
-                    <div className="flex flex-col gap-8">
-                      <div className="grid grid-cols-[auto_150px_1fr] items-center gap-3">
-                        <LinkedinIcon className="text-text-primary w-6 h-6" />
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 600,
-                            fontStyle: "SemiBold",
-                            fontSize: "16px",
-                            lineHeight: "124%",
-                            letterSpacing: "0%",
-                          }}
-                          className="text-on-surface-primary"
-                        >
-                          {t("LinkedIn")} :
-                        </div>
-                        <a
-                          href={socialMedia.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 400,
-                            fontStyle: "Regular",
-                            fontSize: "14px",
-                            lineHeight: "125%",
-                            letterSpacing: "0%",
-                          }}
-                          className="text-on-surface-primary"
-                        >
-                          {socialMedia.linkedin}
-                        </a>
-                      </div>
 
-                      <div className="grid grid-cols-[auto_150px_1fr] items-center gap-3">
-                        <FacebookIcon className="text-text-primary w-6 h-6" />
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 600,
-                            fontStyle: "SemiBold",
-                            fontSize: "16px",
-                            lineHeight: "124%",
-                            letterSpacing: "0%",
-                          }}
-                          className="text-on-surface-primary"
-                        >
-                          {t("Facebook")}:
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 400,
-                            fontStyle: "Regular",
-                            fontSize: "14px",
-                            lineHeight: "125%",
-                            letterSpacing: "0%",
-                          }}
-                          className="text-on-surface-primary"
-                        >
-                          {socialMedia.facebook}
-                        </div>
-                      </div>
-                    </div>
 
-                    {/* العمود الثاني */}
-                    <div className="flex flex-col gap-8 items-start text-center">
-                      {/* Twitter فوق */}
-                      <div className="grid grid-cols-[auto_150px_1fr] items-center gap-3">
-                        <div className="w-6 h-6 bg-[url(/subtract.svg)] bg-contain bg-no-repeat" />
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 600,
-                            fontStyle: "SemiBold",
-                            fontSize: "16px",
-                            lineHeight: "124%",
-                            letterSpacing: "0%",
-                          }}
-                          className="text-on-surface-primary flex items-center gap-1"
-                        >
-                          <XIcon className="text-text-primary w-4 h-4 text-center" />
-                          {t("Twitter")}:
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 400,
-                            fontStyle: "Regular",
-                            fontSize: "14px",
-                            lineHeight: "125%",
-                            letterSpacing: "0%",
-                          }}
-                          className="text-on-surface-primary"
-                        >
-                          {socialMedia.twitter}
-                        </div>
-                      </div>
 
-                      {/* Instagram تحت */}
-                      <div className="grid grid-cols-[auto_100px_1fr] items-center gap-2">
-                        <InstagramIcon
-                          className={`text-text-primary w-6 h-6 text-center ${
-                            local === "en" ? "ml-10" : "mr-10"
-                          }`}
-                        />
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 600,
-                            fontStyle: "SemiBold",
-                            fontSize: "16px",
-                            lineHeight: "124%",
-                            letterSpacing: "0%",
-                          }}
-                          className="text-on-surface-primary"
-                        >
-                          {t("Instagram")}:
-                        </div>
-                        <div
-                          style={{
-                            fontFamily: "Lato",
-                            fontWeight: 400,
-                            fontStyle: "Regular",
-                            fontSize: "14px",
-                            lineHeight: "125%",
-                            letterSpacing: "0%",
-                          }}
-                          className="text-on-surface-primary"
-                        >
-                          {socialMedia.instagram}
-                        </div>
-                      </div>
-                    </div>
-                  </div></div>}
+<ReusableCollapsible
+  title={t("Company Contact Information")}
+  initiallyOpen={isOpen.contactInfo}
+  dir={local === "ar" ? "rtl" : "ltr"}
+  onOpenChange={(open) => handleToggle("contactInfo", open)}
+  content={
+    <div className="px-4 pb-4">
+      {/* عمود واحد بالموبايل، عمودين من md وفوق */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        {/* العمود الأول */}
+        <div className="flex flex-col gap-8">
+          {/* Phone Numbers */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            {/* Icon + Label */}
+            <div className="flex items-center gap-2 sm:gap-3">
+              <PhoneIcon className="text-text-primary w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+              <div className="font-semibold text-[clamp(14px,1.1vw,16px)]">
+                {t("Phone Numbers")}:
+              </div>
+            </div>
+            {/* Content */}
+            <div className="text-[clamp(12px,1.1vw,16px)] break-words">
+              {contactInfo.phoneNumbers}
+            </div>
+          </div>
 
-          />
+          {/* Physical Address */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <MapPinIcon className="text-text-primary w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+              <div className="font-semibold text-[clamp(14px,1.1vw,16px)]">
+                {t("Physical Address")}:
+              </div>
+            </div>
+            <div className="text-[clamp(12px,1.1vw,16px)] break-words">
+              {contactInfo.physicalAddress}
+            </div>
+          </div>
+
+          {/* Maps Location */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <MapOutlinedIcon className="text-text-primary w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+              <div className="font-semibold text-[clamp(14px,1.1vw,16px)]">
+                {t("Maps Location")}:
+              </div>
+            </div>
+            <a
+              href="https://maps.google.com/?q=24.7136,46.6753"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[clamp(12px,1.1vw,16px)] text-blue-600 break-all"
+            >
+              {contactInfo.mapsLocation}
+            </a>
+          </div>
+        </div>
+
+        {/* العمود الثاني */}
+        <div className="flex flex-col gap-8">
+          {/* Email */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <LocalPostOfficeOutlinedIcon className="text-text-primary w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+              <div className="font-semibold text-[clamp(14px,1.1vw,16px)]">
+                {t("Email")}:
+              </div>
+            </div>
+            <div className="text-[clamp(12px,1.1vw,16px)] break-words">
+              {contactInfo.email}
+            </div>
+          </div>
+
+          {/* Website */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <GlobeIcon className="text-text-primary w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+              <div className="font-semibold text-[clamp(14px,1.1vw,16px)]">
+                {t("Company Website")}:
+              </div>
+            </div>
+            <div className="text-[clamp(12px,1.1vw,16px)] break-all">
+              {contactInfo.website}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+/>
+
+
+
+
+
+<ReusableCollapsible
+  title={t("Social Media Accounts")}
+  initiallyOpen={isOpen.social}
+  dir={local === "ar" ? "rtl" : "ltr"}
+  onOpenChange={(open) => handleToggle("social", open)}
+  content={
+    <div className="px-4 pb-4">
+      {/* grid: عمود واحد بالموبايل، عمودين من md وفوق */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        {/* العمود الأول */}
+        <div className="flex flex-col gap-6">
+          {/* LinkedIn */}
+          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 md:gap-x-4 lg:gap-x-6">
+            {/* أيقونة + لايبل (دايمًا جنب بعض) */}
+            <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
+              <LinkedinIcon className="text-text-primary w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7"/>
+              <span className="font-semibold text-[clamp(14px,1.1vw,16px)]">
+                {t("LinkedIn")}:
+              </span>
+            </div>
+
+            {/* المحتوى (يبقى في نفس الـ grid عشان يرجع جانبياً على md+) */}
+            <a
+              href={socialMedia.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[clamp(12px,1.1vw,16px)] text-on-surface-primary break-all"
+            >
+              {socialMedia.linkedin}
+            </a>
+          </div>
+
+          {/* Facebook */}
+          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 md:gap-x-4 lg:gap-x-6">
+            <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
+              <FacebookIcon className="text-text-primary w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+              <span className="font-semiboldtext-[clamp(14px,1.1vw,16px)]">
+                {t("Facebook")}:
+              </span>
+            </div>
+            <div className="text-[clamp(12px,1.1vw,16px)] text-on-surface-primary break-words">
+              {socialMedia.facebook}
+            </div>
+          </div>
+        </div>
+
+        {/* العمود الثاني */}
+        <div className="flex flex-col gap-6">
+          {/* Twitter */}
+          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 md:gap-x-4 lg:gap-x-6">
+            <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
+              <XIcon className="text-text-primary w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+              <span className="font-semiboldtext-[clamp(14px,1.1vw,16px)]">
+                {t("Twitter")}:
+              </span>
+            </div>
+            <div className="text-[clamp(12px,1.1vw,16px)] text-on-surface-primary break-words">
+              {socialMedia.twitter}
+            </div>
+          </div>
+
+          {/* Instagram */}
+          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 md:gap-x-4 lg:gap-x-6">
+            <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
+              <InstagramIcon className="text-text-primary w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7"/>
+              <span className="font-semiboldtext-[clamp(14px,1.1vw,16px)]">
+                {t("Instagram")}:
+              </span>
+            </div>
+            <div className="text-[clamp(12px,1.1vw,16px)] text-on-surface-primary break-words">
+              {socialMedia.instagram}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+/>
+
 
 
           
 
 
-      <ReusableCollapsible
-            title=     {t("Legal Details")}
-            initiallyOpen={isOpen.policy}
-               dir={local === 'ar' ? 'rtl' : 'ltr'}
-            onOpenChange={(open) => handleToggle("policy", open)}
-            content={<div className=" px-4 pb-4"> 
-           <div className="px-4 pb-4">
-  <div className="flex flex-wrap items-center gap-x-10 gap-y-2">
-    {/* VAT */}
-    <div className="flex items-center gap-3">
-      <span className="font-lato font-semibold text-start text-[16px] w-[162px] text-text-primary">{t("VAT")}:</span>
-      <span className="font-lato font-normal text-[14px] w-[393px] text-text-primary">{legalDetails.vat}</span>
+ <ReusableCollapsible
+  title={t("Legal Details")}
+  initiallyOpen={isOpen.policy}
+  dir={local === "ar" ? "rtl" : "ltr"}
+  onOpenChange={(open) => handleToggle("policy", open)}
+  content={
+    <div className="px-4 pb-4">
+     
+ {/* VAT + CR */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* VAT */}
+        <div className="flex items-center gap-3">
+          <span className="font-lato font-semibold text-[clamp(14px,1.1vw,16px)] w-[162px] text-text-primary">
+            {t("VAT")}:
+          </span>
+          <span className="font-lato font-normal text-[clamp(12px,1.1vw,16px)] w-full text-text-primary break-words">
+            {legalDetails.vat}
+          </span>
+        </div>
+
+        {/* CR */}
+        <div className="flex items-center gap-3">
+          <span className="font-lato font-semibold text-[clamp(14px,1.1vw,16px)] w-[169px] text-text-primary">
+            {t("CR")}:
+          </span>
+          <span className="font-lato font-normal text-[clamp(12px,1.1vw,16px)] w-full text-text-primary break-words">
+            {legalDetails.cr}
+          </span>
+        </div>
+      </div>
+      {/* Terms & Conditions */}
+      <div className="flex flex-col gap-4">
+        <div className="font-lato font-semibold mt-4 text-[clamp(14px,1.1vw,16px)] text-secondary-dark">
+          {t("Terms & Conditions")}
+        </div>
+
+        <div className="flex flex-col gap-6">
+          {termsConditions.map((term, index) => (
+            <div
+              key={index}
+              className="flex flex-col gap-2 border rounded-lg p-4 shadow-sm"
+            >
+              <div className="font-lato font-semibold text-[clamp(14px,1.1vw,16px)] text-text-primary">
+                {term.title}
+              </div>
+              <div className="font-lato font-normal text-[clamp(12px,1.1vw,16px)] e text-text-primary break-words">
+                {term.description}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div className="border-t border-gray-200 my-6" />
+
+      {/* Privacy Policy */}
+      <div className="flex flex-col gap-4">
+        <div className="font-lato font-semibold text-[clamp(14px,1.1vw,16px)] text-secondary-dark">
+          {t("Privacy Policy")}
+        </div>
+
+        <div className="flex flex-col gap-6">
+          {privacyPolicy.map((policy, index) => (
+            <div
+              key={index}
+              className="flex flex-col gap-2 border rounded-lg p-4 shadow-sm"
+            >
+              <div className="font-lato font-semibold text-[clamp(14px,1.1vw,16px)] text-text-primary">
+                {policy.title}
+              </div>
+              <div className="font-lato font-normal  text-[clamp(12px,1.1vw,16px)] text-text-primary break-words">
+                {policy.description}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
+  }
+/>
 
-    {/* CR */}
-    <div className="flex items-center gap-2">
-      <span className="font-lato font-semibold text-[16px] w-[169px] text-text-primary">{t("CR")}:</span>
-      <span className="font-lato font-normal text-[14px] text-text-primary">{legalDetails.cr}</span>
-    </div>
-  </div>
-</div>
-                  {/* Divider */}
-                  <div className="border-t border-gray-200 mt-5" />
-                  {/* Terms & Conditions */}
-                  <div className="flex flex-col gap-4 ">
-                    <div className="font-lato font-semibold text-[16px] leading-[124%] text-secondary-dark mt-5">
-                      {t("Terms & Conditions")}
-                    </div>
-                    <div className="flex  gap-x-[592px]  ">
-                      <div className="font-semibold">    {t("Title")} </div>
-                      <div className="font-semibold">  {t("Descration")} </div>
-                    </div>
-                    <div className="grid grid-cols-[200px,1fr] gap-x-[425px] gap-y-8">
-                      {termsConditions.map((term, index) => (
-                          
-                        <React.Fragment key={index}>
-                        
-                          <div className="font-lato font-normal text-[16px] text-start leading-[124%] secondary ">
-                            {term.title}
-                          </div>
-                          <div className="font-lato font-normal  text-[14px] text-start leading-[125%] align-middle secondary break-words  ">
-                            {term.description}
-                          </div>
-                        
-                        </React.Fragment>
-                        
-                      ))}
-                    </div>
-                  </div>
-                  {/* Divider */}
-
-                  {/* Privacy Policy */}
-                  <div className="flex flex-col gap-4">
-                    <div className="font-lato font-semibold text-[16px] leading-[124%] text-secondary-dark mt-5">
-                      {t("Privacy Policy")}
-                    </div>
-                    <div className="flex gap-x-[592px]  ">
-                      <div className="font-semibold">  {t("Title")} </div>
-                      <div className="font-semibold">   {t("Descration")} </div>
-                    </div>
-                    <div className="grid grid-cols-[200px,1fr] w-full gap-x-[425px] gap-y-8 ">
-                      {privacyPolicy.map((policy, index) => (
-                        <React.Fragment key={index}>
-                          <div className="font-lato  font-normal   text-[16px] leading-[124%] text-start text-text-primary">
-                            {policy.title}
-                          </div>
-                          <div className="font-lato items-center  font-normal text-[14px] leading-[125%] align-middle text-start text-text-primary break-words    ">
-                            {policy.description}
-                          </div>
-                        </React.Fragment>
-                      ))}
-                    </div>
-                  </div></div>}
-
-          />
 
 
 
@@ -842,6 +662,6 @@ export const LegalDocumentsSection = ({
           />
         </CardContent>
       </Card>
-    </div>
+    </div></div>
   );
 };
