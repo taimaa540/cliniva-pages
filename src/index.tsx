@@ -3,9 +3,6 @@ import { createRoot } from "react-dom/client";
 import "./i18n";
 import "react-phone-input-2/lib/style.css";
 import { LanguageProvider } from "./lib/LanguageContext";
-import { useTranslation } from "react-i18next";
-
-
 import { ThemeProvider } from "./lib/theme-context";
 import { ThemeToggle } from "./components/theme/ThemeSwitcher";
 import { ThemeDemo } from "./components/theme/ThemeDemo";
@@ -101,14 +98,7 @@ function MainApp() {
 
 
               {/* <SideBarPlan3 local="test"/> */}
-
               {/* <NoDataSection/> */}
-
-
-              {/* <UserDetails/> */}
-              {/* <ElementChangeStatus/> */}
-              {/* <ElementDeleteUser title="user"/> */}
-              {/* <ElementLogOutDialog/> */}
               {/* <ComplexList/> */}
               {/* <ClinicList/> */}
               {/* <AddNewComplex /> */}

@@ -2,6 +2,7 @@ import {
   BellIcon,
   ChevronDownIcon,
 } from "lucide-react";
+import Checkbox from '@mui/material/Checkbox';
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { useLanguage } from "../../lib/LanguageContext";
@@ -149,7 +150,7 @@ export const AddNewService = (): JSX.Element => {
                     </CollapsibleTrigger>
                     <CollapsibleContent className="w-full">
                       <div className="flex flex-col gap-[16px]">
-                        <div className="grid grid-cols-2 gap-[22px]">
+                        <div className="grid grid-cols-2 gap-x-[32px] gap-y-[24px]">
                           <h3 className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
                             {t("Identification")}
                           </h3>
@@ -157,7 +158,7 @@ export const AddNewService = (): JSX.Element => {
                             {t("Assign")}
                           </h3>
                           <div className="flex items-center gap-[32px] w-full">
-                            <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                            <Label className={`${local === 'ar' ? "w-[100px]" : "w-[160px]"} font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}>
                               {t("Services Name")}
                             </Label>
                             <Input
@@ -166,13 +167,13 @@ export const AddNewService = (): JSX.Element => {
                             />
                           </div>
                           <div className="flex items-center gap-[32px] w-full">
-                            <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                            <Label className={`${local === 'ar' ? "w-[100px]" : "w-[160px]"} font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}>
                               {t("Assign")} {t("Complex")}
                             </Label>
-                            <Select>
+                            <Select dir={`${local === 'ar' ? "rtl" : "ltr"}`}>
                               <SelectTrigger className="flex-1 h-[48px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary">
                                 <SelectValue
-                                  placeholder={t("Select Category")}
+                                  placeholder={`${t("Select")} ${t("Complex")}`}
                                 />
                               </SelectTrigger>
                               <SelectContent>
@@ -186,10 +187,10 @@ export const AddNewService = (): JSX.Element => {
                             </Select>
                           </div>
                           <div className="flex items-center gap-[32px] w-full">
-                            <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                            <Label className={`${local === 'ar' ? "w-[100px]" : "w-[160px]"} font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}>
                               {t("Service Category")}
                             </Label>
-                            <Select>
+                            <Select dir={`${local === 'ar' ? "rtl" : "ltr"}`}>
                               <SelectTrigger className="flex-1 h-[48px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary">
                                 <SelectValue
                                   placeholder={t("Select Category")}
@@ -206,13 +207,13 @@ export const AddNewService = (): JSX.Element => {
                             </Select>
                           </div>
                           <div className="flex items-center gap-[32px] w-full">
-                            <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                            <Label className={`${local === 'ar' ? "w-[100px]" : "w-[160px]"} font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}>
                               {t("Assign")} {t("Clinics")}
                             </Label>
-                            <Select>
+                            <Select dir={`${local === 'ar' ? "rtl" : "ltr"}`}>
                               <SelectTrigger className="flex-1 h-[48px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary">
                                 <SelectValue
-                                  placeholder={t("Select Category")}
+                                  placeholder={`${t("Select")} ${t("Clinics")}`}
                                 />
                               </SelectTrigger>
                               <SelectContent>
@@ -226,7 +227,7 @@ export const AddNewService = (): JSX.Element => {
                             </Select>
                           </div>
                           <div className="flex items-start gap-[32px] w-full">
-                            <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                            <Label className={`${local === 'ar' ? "w-[100px]" : "w-[160px]"} font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}>
                               {t("Service Description")}
                             </Label>
                             <Textarea
@@ -236,13 +237,13 @@ export const AddNewService = (): JSX.Element => {
                           </div>
                           <div>
                             <div className="flex items-center gap-[32px] w-full">
-                              <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                              <Label className={`${local === 'ar' ? "w-[100px]" : "w-[160px]"} font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}>
                                 {t("Assign")} {t("Doctors")}
                               </Label>
-                              <Select>
+                              <Select dir={`${local === 'ar' ? "rtl" : "ltr"}`}>
                                 <SelectTrigger className="flex-1 h-[48px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary">
                                   <SelectValue
-                                    placeholder={t("Select Category")}
+                                    placeholder={`${t("Select")} ${t("Doctors")}`}
                                   />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -260,7 +261,7 @@ export const AddNewService = (): JSX.Element => {
                                 {t("Resources")}
                               </h3>
                               <div className="flex items-start gap-[32px] w-full">
-                                <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                                <Label className={`${local === 'ar' ? "w-[100px]" : "w-[160px]"} font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}>
                                   {t("Required Equipment")}
                                 </Label>
                                 <Textarea
@@ -333,8 +334,8 @@ export const AddNewService = (): JSX.Element => {
                               <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
                                 1
                               </td>
-                              <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary">
-                                <p className="border border-border-light w-fit px-[16px] py-[8px] rounded-[4px] mx-auto">
+                              <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary w-[250px]">
+                                <p className="border border-border-light px-[16px] py-[8px] rounded-[4px] text-center">
                                   Session Name
                                 </p>
                               </td>
@@ -343,13 +344,13 @@ export const AddNewService = (): JSX.Element => {
                                   00:50
                                 </p>
                               </td>
-                              <td className="align-middle  font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                                <p className="border border-border-light w-fit px-[16px] py-[8px] rounded-[4px] mx-auto">
-                                  Patient history & symptom assessment
+                              <td className="align-middle  font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary w-[400px]">
+                                <p className="border border-border-light py-[8px] rounded-[4px] text-center">
+                                  Patient history & symptom assessment 
                                 </p>
                               </td>
                               <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                                <input type="checkbox" checked />
+                                <Checkbox  defaultChecked size="small"/>
                               </td>
                               <td className="align-middle">
                                 <svg
@@ -370,9 +371,9 @@ export const AddNewService = (): JSX.Element => {
                               <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
                                 2
                               </td>
-                              <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary">
-                                <p className="border border-border-light w-fit px-[16px] py-[8px] rounded-[4px] mx-auto">
-                                  Session Name
+                              <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary w-[250px]">
+                                <p className="border border-border-light px-[16px] py-[8px] rounded-[4px] text-center">
+                                  Session Name 
                                 </p>
                               </td>
                               <td className="align-middle  font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
@@ -380,13 +381,13 @@ export const AddNewService = (): JSX.Element => {
                                   00:50
                                 </p>
                               </td>
-                              <td className="align-middle  font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                                <p className="border border-border-light w-fit px-[16px] py-[8px] rounded-[4px] mx-auto">
+                              <td className="align-middle  font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary w-[400px]">
+                                <p className="border border-border-light py-[8px] rounded-[4px] text-center">
                                   Patient history & symptom assessment
                                 </p>
                               </td>
                               <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                                <input type="checkbox" checked />
+                                <Checkbox  defaultChecked size="small"/>
                               </td>
                               <td>
                                 <svg
@@ -407,9 +408,9 @@ export const AddNewService = (): JSX.Element => {
                               <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
                                 3
                               </td>
-                              <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary">
-                                <p className="border border-border-light w-fit px-[16px] py-[8px] rounded-[4px] mx-auto">
-                                  Session Name
+                              <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary w-[250px]">
+                                <p className="border border-border-light px-[16px] py-[8px] rounded-[4px] text-center">
+                                  Session Name 
                                 </p>
                               </td>
                               <td className="align-middle  font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
@@ -417,13 +418,13 @@ export const AddNewService = (): JSX.Element => {
                                   00:50
                                 </p>
                               </td>
-                              <td className="align-middle  font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                                <p className="border border-border-light w-fit px-[16px] py-[8px] rounded-[4px] mx-auto">
-                                  Patient history & symptom assessment
+                              <td className="align-middle  font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary w-[400px]">
+                                <p className="border border-border-light py-[8px] rounded-[4px] text-center">
+                                  Patient history & symptom assessment 
                                 </p>
                               </td>
                               <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                                <input type="checkbox" checked />
+                                <Checkbox  defaultChecked size="small"/>
                               </td>
                               <td>
                                 <svg

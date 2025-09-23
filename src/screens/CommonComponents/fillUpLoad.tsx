@@ -103,3 +103,12 @@ export default function FileUpload({
     </div>
   );
 }
+
+// // مثال 1: فقط PDF وحجمه 1MB
+// <FileUpload accept=".pdf" maxSizeMB={1} />
+
+// // مثال 2: صور JPG/PNG حتى 5MB
+// <FileUpload accept=".jpg,.png" maxSizeMB={5} />
+
+// // مثال 3: أي نوع ملف حتى 10MB
+// <FileUpload accept="*/*" maxSizeMB={10} />

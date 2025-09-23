@@ -21,7 +21,7 @@ export default function SwitchWithLabel({ initialState = false }: SwitchWithLabe
     }, []);
 
   return (
-    <div className="flex items-center justify-start space-x-3">
+    <div className="flex items-center justify-center space-x-3">
       {/* الزر */}
       <button
       dir="ltr"
@@ -39,7 +39,7 @@ export default function SwitchWithLabel({ initialState = false }: SwitchWithLabe
       </button>
 
       {/* النص */}
-      <span className={`font-medium ${isActive ? "text-green-600" : "text-gray-500"}`}>
+      <span className="font-lato font-regular leading-[130%] tracking-[0] text-xs  text-[#212529]">
         {isActive ? t("Active") : t("Inactive")}
       </span>
     </div>
