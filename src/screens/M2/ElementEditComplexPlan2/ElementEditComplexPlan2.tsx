@@ -29,7 +29,7 @@ export const ElementEditComplexPlan2 = (): JSX.Element => {
         local={local}
         dark={darkMode}
         handelDarkClick={toggleDarkMode}
-        onOpenSidebar={() => setIsSidebarOpen(true)} />
+       />
     </div>
   );
 };

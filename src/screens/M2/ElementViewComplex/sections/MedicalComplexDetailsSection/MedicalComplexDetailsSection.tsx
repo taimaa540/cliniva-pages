@@ -155,18 +155,21 @@ const doctorsAndStaff = [
         avatar:null,
   },
 ];
-
-
-const workingDays = [
-  { day: "Sunday", startTime: "09:00", endTime: "18:00", isActive: true },
-  { day: "Monday", startTime: "09:00", endTime: "18:00", isActive: true },
-  { day: "Tuesday", startTime: "09:00", endTime: "18:00", isActive: true },
-  { day: "Wednesday", startTime: "09:00", endTime: "18:00", isActive: true },
-  { day: "Thursday", startTime: "09:00", endTime: "18:00", isActive: true },
-  { day: "Friday", startTime: "09:00", endTime: "18:00", isActive: false },
-  { day: "Saturday", startTime: "09:00", endTime: "18:00", isActive: true },
+type Schedule = {
+  day: string;
+  startTime: string;
+  endTime: string;
+  isActive: boolean;
+};
+const getWorkingDays = (t: (key: string) => string): Schedule[] => [
+  { day: t("Sunday"), startTime: "09:00", endTime: "18:00", isActive: true },
+  { day: t("Monday"), startTime: "09:00", endTime: "18:00", isActive: true },
+  { day: t("Tuesday"), startTime: "09:00", endTime: "18:00", isActive: true },
+  { day: t("Wednesday"), startTime: "09:00", endTime: "18:00", isActive: true },
+  { day: t("Thursday"), startTime: "09:00", endTime: "18:00", isActive: true },
+  { day: t("Friday"), startTime: "09:00", endTime: "18:00", isActive: false },
+  { day: t("Saturday"), startTime: "09:00", endTime: "18:00", isActive: true },
 ];
-
 
 const linkedClinics = [
   {
@@ -231,20 +234,21 @@ const departments = [
 
 
 interface NoDataSectionProps {
-  dark: boolean;
   local: string;
+  dark: boolean;
   handelDarkClick: () => void;
   handleLanguageClick: () => void;
-     onOpenSidebar: () => void; // ⬅️ ا
+// ⬅️ البروبس الجديد
 }
 
-export const MedicalComplexDetailsSection = ({ local, dark, handelDarkClick, handleLanguageClick,    }: NoDataSectionProps): JSX.Element => {
-  const { t, i18n } = useTranslation('en')
+
+export const MedicalComplexDetailsSection = ({ local, handleLanguageClick,    }: NoDataSectionProps): JSX.Element => {
+  const { t, i18n } = useTranslation();
   useEffect(() => {
     i18n.changeLanguage(local);
   }, []);
 
-  const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
+  const [activeDays, setActiveDays] = useState(getWorkingDays(t).map(() => false));
 
 
   const [isOpen, setIsOpen] = useState({
@@ -534,20 +538,20 @@ export const MedicalComplexDetailsSection = ({ local, dark, handelDarkClick, han
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6">
         {/* Complex Name */}
         <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-          <span className=" min-w-[160px] font-semibold text-text-primary text-14px">
+          <span className=" min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
             {t("Complex Name")}:
           </span>
-          <span className="text-text-primary font-regular text-12px">
+          <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
             AlTadawi Medical Complex
           </span>
         </div>
 
         {/* Year of Establishment */}
         <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-          <span className=" min-w-[160px] font-semibold text-text-primary text-14px">
+          <span className=" min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
             {t("Year of Establishment")}:
           </span>
-          <span className="text-text-primary font-regular text-12px">
+          <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
             3 April 2011
           </span>
         </div>
@@ -557,10 +561,10 @@ export const MedicalComplexDetailsSection = ({ local, dark, handelDarkClick, han
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6">
         {/* Description */}
         <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-          <span className=" min-w-[160px] font-semibold text-text-primary text-14px">
+          <span className=" min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
             {t("Description")}:
           </span>
-          <span className="text-text-primary font-regular text-12px">
+          <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
             A modern multi-specialty healthcare complex offering outpatient and
             diagnostic services in Riyadh.
           </span>
@@ -568,10 +572,10 @@ export const MedicalComplexDetailsSection = ({ local, dark, handelDarkClick, han
 
         {/* PIC */}
         <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-          <span className=" min-w-[160px] font-semibold text-text-primary text-14px">
+          <span className=" min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
             {t("PIC")}:
           </span>
-          <span className="text-text-primary font-regular text-12px">
+          <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
             Hessa AlMutairi
           </span>
         </div>
@@ -581,11 +585,11 @@ export const MedicalComplexDetailsSection = ({ local, dark, handelDarkClick, han
       <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
         <div className="flex items-center gap-2">
           <CalendarIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
-          <span className=" min-w-[130px] font-semibold text-text-primary text-14px">
+          <span className=" min-w-[130px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
             {t("Created on")}:
           </span>
         </div>
-        <span className="text-text-primary font-regular text-12px">
+        <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
           12 March 2023
         </span>
       </div>
@@ -608,10 +612,10 @@ export const MedicalComplexDetailsSection = ({ local, dark, handelDarkClick, han
         <div className="flex items-start gap-3">
           <PhoneIcon className="w-5 h-5 sm:w-6 sm:h-6" />
           <div className="flex flex-col sm:flex-row sm:gap-6">
-            <span className="font-semibold text-text-primary text-14px leading-snug">
+            <span className="font-semibold text-text-primary text-[clamp(14px,2vw,16px)] leading-snug">
               {t("Phone Numbers")}:
             </span>
-            <span className="text-text-primary font-regular text-12px leading-snug">
+            <span className="text-text-primary font-regular text-[clamp(12px,2vw,12px)] leading-snug">
               +966 55 123 4567, +966 11 987 6543
             </span>
           </div>
@@ -627,10 +631,10 @@ export const MedicalComplexDetailsSection = ({ local, dark, handelDarkClick, han
                     </svg></div>
           </div>
           <div className="flex flex-col sm:flex-row sm:gap-6">
-            <span className="font-semibold text-text-primary text-14px leading-snug">
+            <span className="font-semibold text-text-primary text-[clamp(14px,2vw,16px)] leading-snug">
               {t("Email")}:
             </span>
-            <span className="text-text-primary font-regular text-12px leading-snug">
+            <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)] leading-snug">
               info@medcaregroup.com
             </span>
           </div>
@@ -649,10 +653,10 @@ export const MedicalComplexDetailsSection = ({ local, dark, handelDarkClick, han
                     </svg></div>
           </div>
           <div className="flex flex-col sm:flex-row sm:gap-6">
-            <span className="font-semibold text-text-primary text-14px leading-snug">
+            <span className="font-semibold text-text-primary text-[clamp(14px,2vw,16px)] leading-snug">
               {t("Physical Address")}:
             </span>
-            <span className="text-text-primary font-regular text-12px leading-snug">
+            <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)] leading-snug">
               245, King Fahd Road, Al Olaya, Saudi Arabia, KSA
             </span>
           </div>
@@ -665,14 +669,14 @@ export const MedicalComplexDetailsSection = ({ local, dark, handelDarkClick, han
                   </svg>
                   </div>
           <div className="flex flex-col sm:flex-row sm:gap-6">
-            <span className="font-semibold text-text-primary text-14px leading-snug">
+            <span className="font-semibold text-text-primary text-[clamp(14px,2vw,16px)] leading-snug">
               {t("Maps Location")}:
             </span>
             <a
               href="https://maps.google.com/?q=24.7136,46.6753"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underline text-12px"
+              className="text-primary underline text-[clamp(12px,2vw,14px)]"
             >
               www.medcaregroup.com
             </a>
@@ -712,22 +716,22 @@ export const MedicalComplexDetailsSection = ({ local, dark, handelDarkClick, han
   <Table className="min-w-[700px]"> {/* بتحدد أقل عرض مشان السكرول يشتغل */}
     <TableHeader>
       <TableRow>
-        <TableHead className="w-[58px] text-center font-semiboldtext-[clamp(14px,2vw,16px)]  text-text-primary">
+        <TableHead className="w-[58px] text-center font-semibold text-[clamp(14px,2vw,16px)]  text-text-primary">
           {t("NO")}
         </TableHead>
-        <TableHead className="text-center w-[175px] font-semiboldtext-[clamp(14px,2vw,16px)]  text-text-primary">
+        <TableHead className="text-center w-[175px] font-semibold text-[clamp(14px,2vw,16px)]  text-text-primary">
           {t("Name")}
         </TableHead>
-        <TableHead className="text-center w-[175px] font-semiboldtext-[clamp(14px,2vw,16px)]  text-text-primary">
+        <TableHead className="text-center w-[175px] font-semibold text-[clamp(14px,2vw,16px)]  text-text-primary">
           {t("PIC")}
         </TableHead>
-        <TableHead className="w-[255px] text-center font-semiboldtext-[clamp(14px,2vw,16px)]  text-text-primary">
+        <TableHead className="w-[255px] text-center font-semibold text-[clamp(14px,2vw,16px)]  text-text-primary">
           {t("Scheduled Appointments Count")}
         </TableHead>
-        <TableHead className="text-center w-[125px] font-semiboldtext-[16px]  text-text-primary">
+        <TableHead className="text-center w-[125px] font-semibold text-[clamp(14px,2vw,16px)]  text-text-primary">
           {t("Doctors")}
         </TableHead>
-        <TableHead className="text-center w-[125px] font-semiboldtext-[16px]  text-text-primary">
+        <TableHead className="text-center w-[125px] font-semibold text-[clamp(14px,2vw,16px)]  text-text-primary">
           {t("Status")}
         </TableHead>
       </TableRow>
@@ -736,19 +740,19 @@ export const MedicalComplexDetailsSection = ({ local, dark, handelDarkClick, han
     <TableBody>
       {linkedClinics.map((clinic) => (
         <TableRow key={clinic.number} className="border-b border-[#e4e2dd]">
-          <TableCell className="text-center font-mediumtext-[14px]  w-[58px] text-text-primary">
+          <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]  w-[58px] text-text-primary">
             {clinic.number}
           </TableCell>
-          <TableCell className="text-center w-[175px] font-mediumtext-[14px]  text-text-primary">
+          <TableCell className="text-center w-[175px] font-medium text-[clamp(12px,2vw,14px)]  text-text-primary">
             {clinic.name}
           </TableCell>
-          <TableCell className="text-center w-[170px] font-mediumtext-[14px] text-text-primary">
+          <TableCell className="text-center w-[170px] font-medium text-[clamp(12px,2vw,14px)] text-text-primary">
             {clinic.pic}
           </TableCell>
-          <TableCell className="text-center w-[255px]  font-mediumtext-[14px]  text-text-primary">
+          <TableCell className="text-center w-[255px]  font-medium text-[clamp(12px,2vw,14px)]  text-text-primary">
             {clinic.appointmentsCount}
           </TableCell>
-          <TableCell className="text-center w-[150px] font-mediumtext-[14px]  text-text-primary">
+          <TableCell className="text-center w-[150px] font-medium text-[clamp(12px,2vw,14px)]  text-text-primary">
             {clinic.doctors}
           </TableCell>
           <TableCell className="text-center">
@@ -978,13 +982,13 @@ export const MedicalComplexDetailsSection = ({ local, dark, handelDarkClick, han
   <Table className="min-w-[600px]">
     <TableHeader>
       <TableRow>
-        <TableHead className="w-[10%] text-text-praimary font-semibold text-start text-16px">
+        <TableHead className="w-[10%] text-text-praimary font-semibold text-start text-[clamp(14px,2vw,16px)]">
           {t("No")}
         </TableHead>
-        <TableHead className="w-[40%] text-text-praimary font-semibold text-center text-16px">
+        <TableHead className="w-[40%] text-text-praimary font-semibold text-center text-[clamp(14px,2vw,16px)]">
           {t("Department Name")}
         </TableHead>
-        <TableHead className="w-[50%] text-text-praimary font-semibold text-center text-16px">
+        <TableHead className="w-[50%] text-text-praimary font-semibold text-center text-[clamp(14px,2vw,16px)]">
           {t("Description")}
         </TableHead>
       </TableRow>
@@ -996,15 +1000,15 @@ export const MedicalComplexDetailsSection = ({ local, dark, handelDarkClick, han
           key={index}
           className="border-b border-[#e4e2dd] h-[60px] sm:h-[70px] md:h-[78px]"
         >
-          <TableCell className="text-start font-title-14px-semibold text-14px">
+          <TableCell className="text-start font-title-14px-semibold text-[clamp(12px,2vw,14px)]">
             {dept.number}
           </TableCell>
 
-          <TableCell className="text-center font-title-14px-semibold text-14px">
+          <TableCell className="text-center font-title-14px-semibold text-[clamp(12px,2vw,14px)]">
             {dept.name}
           </TableCell>
 
-          <TableCell className="text-text-primary font-regular font-[Lato] text-14px leading-snug sm:leading-normal md:leading-[1.25] tracking-[0] text-start sm:text-end">
+          <TableCell className="text-text-primary font-regular font-[Lato] text-[clamp(12px,2vw,14px)] leading-snug sm:leading-normal md:leading-[1.25] tracking-[0] text-start sm:text-end">
             {dept.description}
           </TableCell>
         </TableRow>
@@ -1088,22 +1092,22 @@ export const MedicalComplexDetailsSection = ({ local, dark, handelDarkClick, han
         <Table className="min-w-[700px]">
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[58px] text-center text-text-primary font-semiboldtext-[clamp(14px,2vw,16px)] sm:text-xs md:text-sm">
+              <TableHead className="w-[58px] text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
                 {t("NO")}
               </TableHead>
-              <TableHead className="text-center text-text-primary  font-semiboldtext-[clamp(14px,2vw,16px)] sm:text-xs md:text-sm">
+              <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)]">
                 {t("User-ID")}
               </TableHead>
-              <TableHead className="text-center text-text-primary  font-semiboldtext-[clamp(14px,2vw,16px)] sm:text-xs md:text-sm">
+              <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)]">
                 {t("Name")}
               </TableHead>
-              <TableHead className="w-[225px]  text-text-primary  text-center font-semiboldtext-[clamp(14px,2vw,16px)] sm:text-xs md:text-sm">
+              <TableHead className="w-[225px]  text-text-primary  text-center font-semibold text-[clamp(14px,2vw,16px)]">
                 {t("Clinic")}
               </TableHead>
-              <TableHead className="text-center text-text-primary  font-semiboldtex t-[16px] sm:text-xs md:text-sm">
+              <TableHead className="text-center text-text-primary  font-semiboldtex text-[clamp(14px,2vw,16px)]">
                 {t("User Type")}
               </TableHead>
-              <TableHead className="text-center text-text-primary  font-semiboldtext-[clamp(14px,2vw,16px)] ">
+              <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)] ">
                 {t("Status")}
               </TableHead>
             </TableRow>
@@ -1115,13 +1119,13 @@ export const MedicalComplexDetailsSection = ({ local, dark, handelDarkClick, han
                 key={person.number}
                 className="border-b border-[#e4e2dd]"
               >
-                <TableCell className="text-center font-mediumtext-[clamp(12px,2vw,16px)] sm:text-xs md:text-sm">
+                <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
                   {person.number}
                 </TableCell>
-                <TableCell className="text-center font-mediumtext-[clamp(12px,2vw,16px)] sm:text-xs md:text-sm">
+                <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
                   {person.userId}
                 </TableCell>
-                <TableCell className="text-center font-mediumtext-[clamp(12px,2vw,16px)] sm:text-xs md:text-sm">
+                <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
                   <div className="flex items-center gap-2 justify-center">
                     <Avatar
                       src={person.avatar??undefined}
@@ -1137,10 +1141,10 @@ export const MedicalComplexDetailsSection = ({ local, dark, handelDarkClick, han
                     <span>{person.name}</span>
                   </div>
                 </TableCell>
-                <TableCell className="text-center font-mediumtext-[clamp(12px,2vw,16px)] sm:text-xs md:text-sm">
+                <TableCell className="text-center font-mediumtext-[clamp(12px,2vw,14px)]">
                   {person.clinic}
                 </TableCell>
-                <TableCell className="text-center font-mediumtext-[clamp(12px,2vw,16px)] sm:text-xs md:text-sm">
+                <TableCell className="text-center font-mediumtext-[clamp(12px,2vw,14px)]">
                   {person.userType}
                 </TableCell>
                 <TableCell className="text-center">
@@ -1373,31 +1377,31 @@ export const MedicalComplexDetailsSection = ({ local, dark, handelDarkClick, han
         <Table className="min-w-[320px]">
           <TableHeader>
             <TableRow>
-              <TableHead className="text-text-primary text-start px-2 py-2 text-16px sm:text-sm">
+              <TableHead className="text-text-primary text-start px-2 py-2 text-[clamp(14px,2vw,16px)] sm:text-sm">
                 {t("Working Days")}
               </TableHead>
-              <TableHead className="text-center text-text-primary px-2 py-2 text-16px sm:text-sm">
+              <TableHead className="text-center text-text-primary px-2 py-2 text-[clamp(14px,2vw,16px)] sm:text-sm">
                 {t("Start Time")}
               </TableHead>
-              <TableHead className="text-end text-text-primary px-2 py-2 text-16px sm:text-sm">
+              <TableHead className="text-end text-text-primary px-2 py-2 text-[clamp(14px,2vw,16px)] sm:text-sm">
                 {t("End Time")}
               </TableHead>
             </TableRow>
           </TableHeader>
 
           <TableBody>
-            {workingDays.map((schedule, index) => (
+            {getWorkingDays(t).map((schedule, index) => (
               <TableRow
                 key={index}
                 className="border-b border-[#e4e2dd] h-[40px] sm:h-[48px]"
               >
-                <TableCell className="text-start px-2 text-14px sm:text-sm">
+                <TableCell className="text-start px-2 text-[clamp(12px,2vw,14px)] sm:text-sm">
                   {schedule.day}
                 </TableCell>
-                <TableCell className="text-center px-2 text-14px sm:text-sm">
+                <TableCell className="text-center px-2 text-[clamp(12px,2vw,14px)] sm:text-sm">
                   {schedule.startTime}
                 </TableCell>
-                <TableCell className="text-end pe-4 px-2 text-14px sm:text-sm">
+                <TableCell className="text-end pe-4 px-2 text-[clamp(12px,2vw,14px)] sm:text-sm">
                   {schedule.endTime}
                 </TableCell>
               </TableRow>

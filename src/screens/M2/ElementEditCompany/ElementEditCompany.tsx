@@ -29,7 +29,7 @@ import { useState } from "react";
         local={local}
         dark={darkMode}
         handelDarkClick={toggleDarkMode}
-        onOpenSidebar={() => setIsSidebarOpen(true)} />
+         />
     
     </div>
   );

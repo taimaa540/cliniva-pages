@@ -35,7 +35,7 @@ export const ElementViewCompany = (): JSX.Element => {
         local={local}
         dark={darkMode}
         handelDarkClick={toggleDarkMode}
-        onOpenSidebar={() => setIsSidebarOpen(true)} // ← يفتح السايد بار
+       // ← يفتح السايد بار
       />
     </div>
   );

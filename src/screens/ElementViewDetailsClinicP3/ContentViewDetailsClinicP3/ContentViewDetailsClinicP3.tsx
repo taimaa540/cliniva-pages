@@ -173,7 +173,7 @@ interface NoDataSectionProps {
   dark: boolean;
   handelDarkClick: () => void;
   handleLanguageClick: () => void;
-  onOpenSidebar:()=>void;
+ 
 }
 
 export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, handelDarkClick ,}: NoDataSectionProps): JSX.Element => {
@@ -448,7 +448,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
           <span className="min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
             {t("Clinic Name")} :
           </span>
-          <span className="text-text-primary font-regular text-[clamp(12px,2vw,16px)]">
+          <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
             {companyInfo.tradeName}
           </span>
         </div>
@@ -457,7 +457,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
           <span className="min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
             {t("Session Slot")}:
           </span>
-          <span className="text-text-primary font-regular text-[clamp(12px,2vw,16px)]">
+          <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
             {companyInfo.SessionSlot}
           </span>
         </div>
@@ -466,7 +466,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
           <span className="min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
             {t("Services Offered")}:
           </span>
-          <span className="text-text-primary font-regular text-[clamp(12px,2vw,16px)]">
+          <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
             {companyInfo.ServicesOffered}
           </span>
         </div>
@@ -478,7 +478,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
           <span className="min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
             {t("Year of Establishment")}:
           </span>
-          <span className="text-text-primary font-regular text-[clamp(12px,2vw,16px)]">
+          <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
             3 April 2011
           </span>
         </div>
@@ -487,7 +487,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
           <span className="min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
             {t("PIC")}:
           </span>
-          <span className="text-text-primary font-regular text-[clamp(12px,2vw,16px)]">
+          <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
             Hessa AlMutairi
           </span>
         </div>
@@ -496,7 +496,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
           <span className="min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
             {t("Vision")}:
           </span>
-          <span className="text-text-primary font-regular text-[clamp(12px,2vw,16px)]">
+          <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
             {companyInfo.PIC}
           </span>
         </div>
@@ -505,7 +505,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
           <span className="min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
             {t("Description")}:
           </span>
-          <span className="text-text-primary font-regular text-[clamp(12px,2vw,16px)]">
+          <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
             {companyInfo.Description}
           </span>
         </div>
@@ -521,7 +521,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
         {t("Created on")}:
       </span>
     </div>
-    <span className="text-text-primary font-regular text-[clamp(12px,2vw,16px)]">
+    <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
       12 March 2023
     </span>
   </div>
@@ -556,7 +556,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
         {/* العمود الأول */}
         <div className="flex flex-col gap-6">
           {/* LinkedIn */}
-          <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 md:gap-x-4 lg:gap-x-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 md:gap-x-4 lg:gap-x-6">
             {/* أيقونة + لايبل (دايمًا جنب بعض) */}
             <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
               <LinkedinIcon className="text-text-primary w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7"/>
@@ -570,7 +570,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
               href= {contactInfo.phoneNumbers}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[clamp(12px,2vw,16px)] text-on-surface-primary break-all"
+              className="text-[clamp(12px,2vw,14px)] text-on-surface-primary break-all"
             >
               {contactInfo.phoneNumbers}
             </a>
@@ -584,7 +584,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
               {t("Physical Address")}:
               </span>
             </div>
-            <div className="text-[clamp(12px,2vw,16px)] text-on-surface-primary break-words">
+            <div className="text-[clamp(12px,2vw,14px)] text-on-surface-primary break-words">
                {contactInfo.physicalAddress}
             </div>
           </div>
@@ -596,7 +596,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                {t("Maps Location")}:
               </span>
             </div>
-            <div className="text-[clamp(12px,2vw,16px)] text-on-surface-primary break-words">
+            <div className="text-[clamp(12px,2vw,14px)] text-on-surface-primary break-words">
             {contactInfo.mapsLocation}
             </div>
           </div>
@@ -612,7 +612,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                   {t("Email")}:
               </span>
             </div>
-            <div className="text-[clamp(12px,2vw,16px)] text-on-surface-primary break-words">
+            <div className="text-[clamp(12px,2vw,14px)] text-on-surface-primary break-words">
               {contactInfo.email}
             </div>
           </div>
@@ -625,7 +625,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                   {t("Company Website")}:
               </span>
             </div>
-            <div className="text-[clamp(12px,2vw,16px)] text-on-surface-primary break-words">
+            <div className="text-[clamp(12px,2vw,14px)] text-on-surface-primary break-words">
             {contactInfo.website}
             </div>
           </div>
@@ -654,7 +654,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
   content={
     <div className="px-4 pb-4">
       {/* grid: عمود واحد بالموبايل، عمودين من md وفوق */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
         {/* العمود الأول */}
         <div className="flex flex-col gap-6">
@@ -673,7 +673,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
               href={socialMedia.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[clamp(12px,2vw,16px)] text-on-surface-primary break-all"
+              className="text-[clamp(12px,2vw,14px)] text-on-surface-primary break-all"
             >
               {socialMedia.linkedin}
             </a>
@@ -687,7 +687,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                 {t("Facebook")}:
               </span>
             </div>
-            <div className="text-[clamp(12px,2vw,16px)] text-on-surface-primary break-words">
+            <div className="text-[clamp(12px,2vw,14px)] text-on-surface-primary break-words">
               {socialMedia.facebook}
             </div>
           </div>
@@ -703,7 +703,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                 {t("Twitter")}:
               </span>
             </div>
-            <div className="text-[clamp(12px,2vw,16px)] text-on-surface-primary break-words">
+            <div className="text-[clamp(12px,2vw,14px)] text-on-surface-primary break-words">
               {socialMedia.twitter}
             </div>
           </div>
@@ -716,7 +716,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                 {t("Instagram")}:
               </span>
             </div>
-            <div className="text-[clamp(12px,2vw,16px)] text-on-surface-primary break-words">
+            <div className="text-[clamp(12px,2vw,14px)] text-on-surface-primary break-words">
               {socialMedia.instagram}
             </div>
           </div>
@@ -744,13 +744,13 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                   <Table className="min-w-[320px]">
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="text-text-primary text-start px-2 py-2 text-[clamp(14px,2vw,16px)] sm:text-xs md:text-sm">
+                        <TableHead className="text-text-primary text-start px-2 py-2 text-[clamp(14px,2vw,16px)]">
                           {t("Working Days")}
                         </TableHead>
-                        <TableHead className="text-center text-text-primary px-2 py-2 text-[clamp(14px,2vw,16px)] sm:text-xs md:text-sm">
+                        <TableHead className="text-center text-text-primary px-2 py-2 text-[clamp(14px,2vw,16px)]">
                           {t("Start Time")}
                         </TableHead>
-                        <TableHead className="text-end text-text-primary px-2 py-2 text-[clamp(14px,2vw,16px)] sm:text-xs md:text-sm">
+                        <TableHead className="text-end text-text-primary px-2 py-2 text-[clamp(14px,2vw,16px)]">
                           {t("End Time")}
                         </TableHead>
                       </TableRow>
@@ -762,13 +762,13 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                           key={index}
                           className="border-b border-[#e4e2dd] h-[40px] sm:h-[48px]"
                         >
-                          <TableCell className="text-start  px-2 text-[clamp(12px,2vw,16px)] sm:text-xs md:text-sm">
+                          <TableCell className="text-start  px-2 text-[clamp(12px,2vw,14px)]">
                             {schedule.day}
                           </TableCell>
-                          <TableCell className="text-center px-2 text-[clamp(12px,2vw,16px)] sm:text-xs md:text-sm">
+                          <TableCell className="text-center px-2 text-[clamp(12px,2vw,14px)]">
                             {schedule.startTime}
                           </TableCell>
-                          <TableCell className="text-end pe-4 text-[clamp(12px,2vw,16px)] sm:text-xs md:text-sm">
+                          <TableCell className="text-end pe-4 text-[clamp(12px,2vw,14px)]">
                             {schedule.endTime}
                           </TableCell>
                         </TableRow>
@@ -836,22 +836,22 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                   <Table className="min-w-[700px]">
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="w-[58px] text-center font-semibold text-[clamp(14px,2vw,16px)] sm:text-xs md:text-sm">
+                        <TableHead className="w-[58px] text-center font-semibold text-[clamp(14px,2vw,16px)]">
                           {t("NO")}
                         </TableHead>
-                        <TableHead className="text-center font-semibold text-[clamp(14px,2vw,16px)] sm:text-xs md:text-sm">
+                        <TableHead className="text-center font-semibold text-[clamp(14px,2vw,16px)]">
                           {t("User-ID")}
                         </TableHead>
-                        <TableHead className="text-center font-semibold text-[clamp(14px,2vw,16px)] sm:text-xs md:text-sm">
+                        <TableHead className="text-center font-semibold text-[clamp(14px,2vw,16px)]">
                           {t("Name")}
                         </TableHead>
-                        <TableHead className="w-[225px] text-center font-semibold text-[clamp(14px,2vw,16px)] sm:text-xs md:text-sm">
+                        <TableHead className="w-[225px] text-center font-semibold text-[clamp(14px,2vw,16px)]">
                           {t("Clinic")}
                         </TableHead>
-                        <TableHead className="text-center font-semibold text-[clamp(14px,2vw,16px)] sm:text-xs md:text-sm">
+                        <TableHead className="text-center font-semibold text-[clamp(14px,2vw,16px)]">
                           {t("User Type")}
                         </TableHead>
-                        <TableHead className="text-center font-semibold text-[clamp(14px,2vw,16px)] sm:text-xs md:text-sm">
+                        <TableHead className="text-center font-semibold text-[clamp(14px,2vw,16px)]">
                           {t("Status")}
                         </TableHead>
                       </TableRow>
@@ -863,13 +863,13 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                           key={person.number}
                           className="border-b border-[#e4e2dd]"
                         >
-                          <TableCell className="text-center font-medium text-[clamp(12px,2vw,16px)] sm:text-xs md:text-sm">
+                          <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
                             {person.number}
                           </TableCell>
-                          <TableCell className="text-center font-medium text-[clamp(12px,2vw,16px)] sm:text-xs md:text-sm">
+                          <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
                             {person.userId}
                           </TableCell>
-                          <TableCell className="text-center font-medium text-[clamp(12px,2vw,16px)] sm:text-xs md:text-sm">
+                          <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
                             <div className="flex items-center gap-2 justify-center">
                               <Avatar
                                 src={person.avatar}
@@ -885,10 +885,10 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                               <span>{person.name}</span>
                             </div>
                           </TableCell>
-                          <TableCell className="text-center font-medium text-[clamp(12px,2vw,16px)] sm:text-xs md:text-sm">
+                          <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
                             {person.clinic}
                           </TableCell>
-                          <TableCell className="text-center font-medium text-[clamp(12px,2vw,16px)] sm:text-xs md:text-sm">
+                          <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
                             {person.userType}
                           </TableCell>
                           <TableCell className="w-[15%] text-center">

@@ -194,7 +194,7 @@ export const EditPatientDetails = (): JSX.Element => {
     </button>
 
     <div className="flex flex-col">
-      <h1 className="font-bold text-sm text-on-surface-primary">
+      <h1 className="font-bold text-[clamp(12px,2vw,14px)] text-on-surface-primary">
     {t("Patients Management")}
       </h1>
       <p className="text-xs text-on-surface-primary">
@@ -227,7 +227,7 @@ export const EditPatientDetails = (): JSX.Element => {
         <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
          {t("Patients Management")}
         </h1>
-        <p className="text-sm md:text-base text-on-surface-primary">
+        <p className="text-[clamp(12px,2vw,14px)] md:text-base text-on-surface-primary">
         {t("Edit Patient Personal Details")}
         </p>
       </div>
@@ -273,7 +273,7 @@ export const EditPatientDetails = (): JSX.Element => {
           <div className="text-base font-bold text-on-surface-primary">
             Anahera Jones
           </div>
-          <div className="text-sm text-on-surface-tertiary">
+          <div className="text-[clamp(12px,2vw,14px)] text-on-surface-tertiary">
             {t("Admin")}
           </div>
         </div>
@@ -294,13 +294,13 @@ export const EditPatientDetails = (): JSX.Element => {
     md:w-[180px] md:h-[38px]
     lg:w-[200px] lg:h-[40px] 
  
-      rounded-[20px] border border-border-light bg-surface-primary  font-lato font-medium text-sm leading-[100%] tracking-[0] text-text-primary">
+      rounded-[20px] border border-border-light bg-surface-primary  font-lato font-medium text-[clamp(12px,2vw,14px)] leading-[100%] tracking-[0] text-text-primary">
                 {t("Cancel")}
               </button>
               <button className="  w-[80px] h-[30px]       /* الموبايل الافتراضي */
     sm:w-[100px] sm:h-[24px] 
     md:w-[160px] md:h-[36px]
-    lg:w-[200px] lg:h-[40px]  rounded-[20px] bg-secondary-dark font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
+    lg:w-[200px] lg:h-[40px]  rounded-[20px] bg-secondary-dark font-lato font-medium text-[clamp(12px,2vw,14px)] leading-[100%] tracking-[0] text-surface-primary">
                 {t("Save")}
               </button>
         
@@ -334,7 +334,7 @@ export const EditPatientDetails = (): JSX.Element => {
                 </CollapsibleTrigger>
                 <CollapsibleContent className="w-full">
                   <div className="flex flex-col   gap-[16px]">
-                    <h3 className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
+                    <h3 className="font-lato font-semibold text-[clamp(12px,2vw,14px)] leading-[125%] tracking-[0] text-secondary-dark">
                       {t('Profile & Identity Info')}
                     </h3>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-[22px]">
@@ -350,7 +350,7 @@ export const EditPatientDetails = (): JSX.Element => {
                         </Label>
                         <Input
                           defaultValue="Ammar Mohammed Al Sawwa"
-                          className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12   bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
+                          className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12   bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-[clamp(12px,2vw,14px)] leading-[125%] tracking-[0] text-text-primary"
                         />
                       </div>
                     
@@ -362,7 +362,7 @@ export const EditPatientDetails = (): JSX.Element => {
 
 
                         <Select defaultValue="Sy" dir={local === "en" ? "ltr" : "rtl"}>
-                          <SelectTrigger className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary">
+                          <SelectTrigger className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-[clamp(12px,2vw,14px)] leading-[125%] tracking-[0] text-text-primary">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -380,7 +380,7 @@ export const EditPatientDetails = (): JSX.Element => {
                         <Label className="min-w-[162px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Card Number")}
                         </Label>
-                      <label className="text-text-primary title-[14px] ps-2 font-semibold"> 4455566688 </label>
+                      <label className="text-text-primary text-[clamp(12px,2vw,14px)]  ps-2 font-semibold"> 4455566688 </label>
                       </div>
                      
 
@@ -398,7 +398,7 @@ export const EditPatientDetails = (): JSX.Element => {
                         </Label>
                         <input
                              defaultValue="Arabic"
-                          className=" w-[min(100%,360px)] h-10 sm:h-10 md:h-12  ps-2 bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
+                          className=" w-[min(100%,360px)] h-10 sm:h-10 md:h-12  ps-2 bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-[clamp(12px,2vw,14px)] leading-[125%] tracking-[0] text-text-primary"
                         />
                    
                        
@@ -411,7 +411,7 @@ export const EditPatientDetails = (): JSX.Element => {
                         </Label>
                         <Input
                           defaultValue="Muslim"
-                          className=" w-[min(100%,360px)] h-10 sm:h-10 md:h-12  bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
+                          className=" w-[min(100%,360px)] h-10 sm:h-10 md:h-12  bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-[clamp(12px,2vw,14px)] leading-[125%] tracking-[0] text-text-primary"
                         />
                       </div>
                     <div className="flex flex-col sm:flex-row sm:items-center gap-y-2 ">
@@ -423,14 +423,14 @@ export const EditPatientDetails = (): JSX.Element => {
                         <Label className="min-w-[162px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Age")}
                         </Label>
-                      <label className="text-text-primary title-[14px] ps-2 font-semibold"> 25</label>
+                      <label className="text-text-primary text-[clamp(12px,2vw,14px)]  ps-2 font-semibold"> 25</label>
                       </div>
                              <div className="flex flex-col sm:flex-row sm:items-center   gap-y-2 ">
                         <Label className="min-w-[162px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Marital Status")}
                         </Label>
                         <Select defaultValue="Married" dir={local === "en" ? "ltr" : "rtl"}>
-                          <SelectTrigger className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary">
+                          <SelectTrigger className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-[clamp(12px,2vw,14px)] leading-[125%] tracking-[0] text-text-primary">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -441,7 +441,7 @@ export const EditPatientDetails = (): JSX.Element => {
                       </div>        
                  
                      <div className="flex items-center md:items-start  ">
-                        <Label className="sm:w-[clamp(70px,10vw,162px)] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                        <Label className="sm:w-[clamp(70px,10vw,162px)] text-[clamp(14px,2vw,16px)] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Gender")}
                         </Label>
                     <div className="flex md:flex-col  lg:flex-row gap-4">
@@ -454,17 +454,17 @@ export const EditPatientDetails = (): JSX.Element => {
                           defaultChecked
                         />
                       
-                        <label className="font-lato font-regular text-sm leading-[154%] tracking-[0] text-text-primary">
+                        <label className="font-lato font-regular text-[clamp(12px,2vw,14px)] leading-[154%] tracking-[0] text-text-primary">
                           Male
                         </label></div>
                        <div className="flex items-center gap-3"><input className="w-5 h-5" type="radio" name="Gender" />
-                        <label className="font-lato font-regular text-sm leading-[154%] tracking-[0] text-text-primary">
+                        <label className="font-lato font-regular text-[clamp(12px,2vw,14px)] leading-[154%] tracking-[0] text-text-primary">
                           Female
                         </label></div> 
                         </div>
                       </div>
                     </div>
-                    <h3 className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
+                    <h3 className="font-lato font-semibold text-[clamp(14px,2vw,16px)] leading-[125%] tracking-[0] text-secondary-dark">
                       {t('Contact Info')}
                     </h3>
                     <div className="flex flex-col ">
@@ -477,7 +477,7 @@ export const EditPatientDetails = (): JSX.Element => {
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M4.77089 1.79165C4.74396 1.78995 4.69757 1.79131 4.62528 1.80353C3.77857 1.94663 3.00486 2.37648 2.43547 3.02333C1.97218 3.54965 1.66854 4.19192 1.55287 4.87525C1.48516 5.27528 1.49216 5.71071 1.52066 6.19936C1.69143 9.12694 2.92996 11.9003 5.01501 13.9853C7.18212 16.1525 10.0928 17.4051 13.1473 17.4949C13.5053 17.5054 13.8283 17.4977 14.1251 17.4475C14.8084 17.3318 15.4507 17.0282 15.977 16.5649C16.6598 15.9639 17.1008 15.1353 17.218 14.2335L17.2168 14.233L17.2168 14.2329L12.8295 12.3487L12.8294 12.3487L12.8294 12.3487L10.4887 13.9123C10.4881 13.9127 10.4874 13.9132 10.4868 13.9136C10.2713 14.0586 10.0219 14.1451 9.76298 14.1648C9.50325 14.1845 9.24287 14.1363 9.00745 14.0248L9.00328 14.0228C7.25484 13.1817 5.84277 11.7732 4.99715 10.0269L4.99564 10.0238L4.99565 10.0238C4.88489 9.79239 4.83535 9.5364 4.85176 9.28035C4.86817 9.0243 4.94999 8.77673 5.0894 8.56133L5.09234 8.55678L5.09236 8.55679L6.65297 6.18316L6.65155 6.17989L6.65156 6.17988L4.77089 1.79165ZM17.2189 14.2264L17.2189 14.2266L17.2189 14.2264ZM4.37532 0.324505C4.70725 0.268408 5.26379 0.236222 5.73387 0.632745C5.91326 0.784063 6.05538 0.976462 6.14718 1.19512L8.02884 5.58566C8.02911 5.58629 8.02938 5.58692 8.02965 5.58755C8.12707 5.81269 8.16779 6.05829 8.14822 6.30284C8.1286 6.54807 8.04897 6.78472 7.91634 6.99191L7.9114 6.99963L7.91135 6.9996L6.3487 9.37632C7.04612 10.8147 8.20932 11.9751 9.6494 12.6691L9.65244 12.667L9.65244 12.667L11.9944 11.1026C12.2022 10.9623 12.4421 10.8767 12.6918 10.8537C12.9415 10.8307 13.193 10.871 13.423 10.9711C13.4239 10.9715 13.4249 10.9719 13.4258 10.9723L17.8056 12.8533C18.1054 12.9793 18.3558 13.1998 18.5186 13.4813C18.6822 13.7643 18.7483 14.0931 18.7067 14.4173C18.5445 15.6835 17.9264 16.8473 16.9681 17.6908C16.2313 18.3395 15.3321 18.7645 14.3755 18.9264C13.9356 19.0009 13.4989 19.0059 13.1033 18.9942C9.66683 18.8932 6.39236 17.484 3.95435 15.046C1.60865 12.7003 0.215328 9.58029 0.0232104 6.28671C-0.00635157 5.77991 -0.0237603 5.20192 0.0739086 4.62491C0.235831 3.6683 0.660897 2.76911 1.30954 2.03223C2.1067 1.12662 3.18988 0.524849 4.37532 0.324505Z" fill="CurrentColor" />
                                               </svg>
                                               </div>
-                                              <div className="text-text-primary text-start font-semibold sm:w-[clamp(120px,10vw,160px)] text-[clamp(16px,1.1vw,16px)]">
+                                              <div className="text-text-primary text-start font-semibold sm:w-[clamp(120px,10vw,160px)] text-[clamp(14px,2vw,16px)]">
                                                 {t("Phone Number")}: </div>
                                             </div> {/* Phone Input */}
                                           <div className="relative w-full ">
@@ -522,7 +522,7 @@ export const EditPatientDetails = (): JSX.Element => {
                                 fill="currentColor"
                               />
                             </svg></div>
-                            <span className="min-min-w-[162px] text-text-primary font-semibold text-[clamp(16px,1.1vw,16px)] leading-6">
+                            <span className="min-min-w-[162px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] leading-6">
                               {t("Email")}:
                             </span>
                           </div>
@@ -549,7 +549,7 @@ export const EditPatientDetails = (): JSX.Element => {
                           </svg>
                           </div>
 
-                          <div className="min-min-w-[162px] text-text-primary font-semibold text-[clamp(16px,1.1vw,16px)]">
+                          <div className="min-min-w-[162px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
                             {t("Physical Address")}:
                           </div >
                         </div>
@@ -574,7 +574,7 @@ export const EditPatientDetails = (): JSX.Element => {
 
 
 
-                    <h3 className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
+                    <h3 className="font-lato font-semibold text-[clamp(12px,2vw,14px)] leading-[125%] tracking-[0] text-secondary-dark">
                       {t('Emergency Contact Info')}
                     </h3>
                     <div className="flex flex-col gap-[16px]">
@@ -824,7 +824,7 @@ export const EditPatientDetails = (): JSX.Element => {
           </Label>
           <Input
             defaultValue="Previous Medical Records"
-            className="w-[min(100%,280px)] h-10 sm:h-10 md:h-12 bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] text-text-primary"
+            className="w-[min(100%,280px)] h-10 sm:h-10 md:h-12 bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-[clamp(12px,2vw,14px)] leading-[125%] text-text-primary"
           />
         </div>
       </div>
@@ -901,7 +901,7 @@ export const EditPatientDetails = (): JSX.Element => {
   </Label>
   <Input
     defaultValue="Previous Medical Records"
-    className="w-[min(100%,360px)] h-10 bg-background-secondary border border-border-light rounded-[6px] font-lato font-semibold text-sm leading-[125%] text-text-primary"
+    className="w-[min(100%,360px)] h-10 bg-background-secondary border border-border-light rounded-[6px] font-lato font-semibold text-[clamp(12px,2vw,14px)] leading-[125%] text-text-primary"
   />
 </div>
 

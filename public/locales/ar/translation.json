@@ -54,8 +54,7 @@
   "Emergency Number": "رقم الطوارئ",
   "Profile Picture": "صورة الملف الشخصي",
   "Age": "العمر",
-  "Male": "ذكر",
-  "Female": "أنثى",
+ 
   "Insurance Info": "معلومات التأمين",
   "Get Data": "جلب البيانات",
   "Job Title": "المسمى الوظيفي",
@@ -89,7 +88,7 @@
   "Married": "متزوج",
   "Divorced": "مطلق",
   "Widowed": "أرمل",
-  "Select Nationality": "اختر الجنسية",
+  
   "United States": "الولايات المتحدة",
   "United Kingdom": "المملكة المتحدة",
   "Canada": "كندا",
@@ -183,8 +182,7 @@
     "Complex Name" : "اسم المجمع",
     "Scheduled Appointments Count" : "عدد المواعيد المجدولة",
     "Clinics Assigned Count" : "عدد العيادات المخصصة",
-    "Status" : "الحالة",
-    "PIC" : "الشخص المسؤول",
+ 
     "Add New Complex" : "إضافة مجمع جديد",
     "Search for a Medical Complex" : "البحث عن مجمع طبي",
     "Active" : "نشط",
@@ -194,8 +192,7 @@
     "Search for a Medical Clinic" : "البحث عن عيادة طبية",
     "Add New Medical Complex" : "إضافة مجمع طبي جديد",
     "Complex information" : "معلومات المجمع",
-    "Description" : "الوصف",
-    "Year of Establishment" : "سنة التأسيس",
+ 
     "PIC Name" : "اسم الشخص المسؤول",
     "Department" : "القسم",
     "Department Name" : "اسم القسم",
@@ -292,19 +289,13 @@
 "Personal Documents": "المستندات الشخصية",
 "Add New Patient": "إضافة مريض جديد",
 "Patient Basic Info": "معلومات أساسية عن المريض",
-"Contact Info": "معلومات الاتصال",
-"Personal Documents": "المستندات الشخصية",
-"Enter Full Name": "أدخل الاسم الكامل", 
- "Select Nationality": "اختر الجنسية",
- "Select Marital Status": "اختر الحالة الاجتماعية",
+
   "Enter Relationship": "أدخل العلاقة",
   "Enter Emergency Contact Name": "أدخل اسم جهة الاتصال في حالات الطوارئ",
   "Enter Emergency Contact Number": "أدخل رقم جهة الاتصال في حالات الطوارئ",
  "Select Language": "اختر اللغة",
   "Language": "اللغة",
-  "Select Date": "اختر التاريخ",
-  "Select Marital Status": "اختر الحالة الاجتماعية",
-  "Religion": "الديانة",
+
   "Enter Religion": "أدخل الديانة",
   "Enter Number of Children": "أدخل عدد الأطفال",
   "Enter Number" : "أدخل الرقم",
@@ -336,14 +327,7 @@
   "Edit Service details": "تعديل تفاصيل الخدمة",
   "Service Information": "معلومات الخدمة",
   "Service Name": "اسم الخدمة",
-  "Service Description": "وصف الخدمة",
-  "Service Category": "فئة الخدمة",
-  "Select Service Category": "اختر فئة الخدمة",
-  "Select Service": "اختر الخدمة",
-  "Service Price": "سعر الخدمة",
-  "Enter Service Name": "أدخل اسم الخدمة",
-  "Enter Service Price": "أدخل سعر الخدمة",
-  "Enter Service Description": "أدخل وصف الخدمة",
+ 
   "View Service Details": "عرض تفاصيل الخدمة",
   "Service Details": "تفاصيل الخدمة",
 "Identification": "التعريف",
@@ -375,9 +359,7 @@
   "Utilization Metrics":" مقاييس الاستخدام",
   "Operational Details":" التفاصيل التشغيلية",
   "Most Frequent Clinic":"العيادة الأكثر تكرارًا",
-  "Total Patients Served":"إجمالي المرضى الذين تم خدمتهم",
-  "Total Appointments":"إجمالي المواعيد",
-  "Completed Sessions":"الجلسات المكتملة",
+ 
   "Average Duration":"متوسط المدة",
   "No-Show Rate":"معدل عدم الحضور",
   "Rebooking Rate":"معدل إعادة الحجز",
@@ -405,7 +387,7 @@
   "Specialties": "التخصصات",
   "Status": "الحالة",
   "Last Performed Date": "تاريخ آخر أداء",
-  "Resources": "الموارد",
+ 
   "Terms & Conditions":"الشروط والأحكام",
   "Title":"العنوان",
   "Social Media Accounts":"حسابات وسائل التواصل الاجتماعي",
@@ -419,8 +401,6 @@
 "Logo":"الشعار",
 "Medical Company Details":"تفاصيل الشركة الطبية",
 
- "Staff Capacity": "القدرة الاستيعابية للموظفين",
- "Medical Complex Details":"تفاصيل المجمع الطبي",
  "Complex Name ": "اسم المجمع",
  "  AlTadawi Medical Complex ":"المجمع الطبي التداوي",
  " Year of Establishment ":"سنة التأسيس",
@@ -433,16 +413,10 @@
   "Department Name":"اسم القسم",
   "Start Time":"وقت البدء",
   "End Time":"وقت الانتهاء",
-  "Medical Facilities":"المرافق الطبية",
-  "Edit Medical Facilities":"تعديل المرافق الطبية",
+
   "View Clinic Details":"عرض تفاصيل العيادة",
   "Session Slot":"مدة الجلسة",
-  "Services Offered":"الخدمات المقدمة",
-"Assigned Departments":"الأقسام المخصصة",
-"Assigned Doctors":"الأطباء المخصصون",
-"Assigned Departments":"الأقسام المخصصة",
-"Edit Clinic Details":"تعديل تفاصيل العيادة",
-"PIC Name":"اسم الشخص المسؤول", 
+
 "out of 14":"أكثر من 14",
 "Contact Information":"معلومات الاتصال",
 "Doctors & Staff":"الأطباء والموظفين",
@@ -474,10 +448,9 @@
 "Specialities Name": "اسم التخصصات",
 "View list of Specialties": "عرض قائمة التخصصات",
 "Add New Speciality": "إضافة تخصص جديد",
-"View list of Specialties": "عرض قائمة التخصصات",
+
 "Add New specialities": "إضافة تخصص جديد",
-  "Specialty Details": "تفاصيل التخصص",
-  "Specialty Name": "اسم التخصص",
+
 "Assigned Doctors List": "قائمة الأطباء المخصصين",
 
 "Clinic Scheduled Appointments Count": "عدد المواعيد المجدولة في العيادة",
@@ -493,20 +466,17 @@
   "Sessions":"",
   "Timestamps":"الطوابع الزمنية",
   "Toperational Details": "تفاصيل التشغيل",
-  "Utilization Metrics": "مقاييس الاستخدام",
-  "Assign Complex": "تعيين المجمع",
+
   "Services ID": "معرف الخدمات",
-  "Medical Examination": "الفحص الطبي",
-"Completed Sessions":"الجلسات المكتملة",
+
   "Session Name.":"اسم الجلسة",
-"Patients Capacity":"سعة المرضى",
+
 "View Specialty details":"عرض تفاصيل التخصص",
-"Patients Management":"إدارة المرضى",
+
 "Edit Patient Personal Details":"تعديل التفاصيل الشخصية للمريض",
 "Patient ID":"معرّف المريض",
 "Enter  Number":"ادحل الرقم ",
-"Insurance Status":"حالة التأمين",
-"Insurance Company":"شركة التأمين",
+
 "Last Visit Date":"تاريخ آخر زيارة",
 "Patient Name":"اسم المريض",
 "Patients List":"قائمة المرضى",
@@ -537,7 +507,9 @@
  "dragLabel": "انقر أو اسحب <1>الملف إلى هذه المنطقة للرفع</1><br/><2>PDF File , Maximum file size 1MB.</2>"
 },
 "Edit Company Details":"تعديل تفاصيل الشركة",
-"Edit Complex Details":"تعديل تفاصيل المجمع"
+"Edit Complex Details":"تعديل تفاصيل المجمع",
+"View complex Detials":"رؤية تفاصيل المجمع ",
+"Edit clinic Details":"تعديل تفاصيل العيادة "
 
  
 }

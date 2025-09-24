@@ -302,14 +302,23 @@ export const StaffMemberDetails = (): JSX.Element => {
         <div className="flex flex-col gap-[20px] w-full overflow-y-auto scroll-x-hidden pr-[20px]">
 
 
-          <div className="flex gap-[16px] justify-end " dir={local === "en" ? "ltr" : "rtl"}>
-            <button className=" w-[200px] h-[40px] rounded-[20px] border border-border-light bg-surface-primary  font-lato font-medium text-sm leading-[100%] tracking-[0] text-text-primary">
-              {t("Cancel")}
-            </button>
-            <button className=" w-[200px] h-[40px] rounded-[20px] bg-secondary-dark font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
-              {t("Save")}
-            </button>
-
+          <div className="flex gap-[14px]  justify-end p-3 items-end text-end pb-2 sm:pb-3 md:pb-3 lg:pb-4 "  dir={local === 'ar' ? 'rtl' : 'ltr'} 
+    >
+              <button className="     w-[100px] h-[40px]       /* الموبايل الافتراضي */
+ 
+    md:w-[180px] md:h-[38px]
+    lg:w-[200px] lg:h-[40px] 
+ 
+      rounded-[20px] border border-border-light bg-surface-primary  font-lato font-medium text-sm leading-[100%] tracking-[0] text-text-primary">
+                {t("Cancel")}
+              </button>
+              <button className="  w-[100px] h-[40px]       /* الموبايل الافتراضي */
+    sm:w-[100px] sm:h-[24px] 
+    md:w-[160px] md:h-[36px]
+    lg:w-[200px] lg:h-[40px]  rounded-[20px] bg-secondary-dark font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
+                {t("Save")}
+              </button>
+        
           </div>
 
           <Card className="w-full bg-background-primary rounded-[16px] p-[16px]">
@@ -649,11 +658,11 @@ export const StaffMemberDetails = (): JSX.Element => {
                             className="bg-background-secondary  text-text-primary  border-border-light w-[min(100%,360px)] h-10 sm:h-10 md:h-12 shadow-[0px_1px_2px_0px_#0A0D120D] rounder-[4px]  font-lato font-semibold text-sm leading-[125%] tracking-[0]"
                           /></div>
                       </div>
-                      <div className="flex items-start justify-start  text-text-primary font-semibold">
+                      <div className="flex items-start justify-start w-full text-text-primary font-semibold">
 
                         <DatePicker
                           label={t("Date of Hire")}
-                          width="w-[min(100%,360px)]"
+                          width="w-full"
                           value={formDates.DateofHire}
                           onDateChange={(date) =>
                             setFormDates((prev) => ({ ...prev, DateofHire: date }))

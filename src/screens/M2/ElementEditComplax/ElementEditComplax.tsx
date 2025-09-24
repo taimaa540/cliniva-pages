@@ -23,13 +23,13 @@ export const ElementEditComplex = (): JSX.Element => {
       };
 
   return (
-    <div className="flex w-full bg-surface-default " dir={`${local === "ar" ? "rtl" : "ltr"}`}>
+    <div className="flex w-full bg-surface-default ">
    
       <MedicalDetailsSection     handleLanguageClick={handleLanguageClick}
         local={local}
         dark={darkMode}
         handelDarkClick={toggleDarkMode}
-        onOpenSidebar={() => setIsSidebarOpen(true)}/>
+       />
     </div>
   );
 };

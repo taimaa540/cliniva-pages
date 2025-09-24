@@ -396,21 +396,21 @@ export const ViewServiceDetails = (): JSX.Element => {
     <div className="flex flex-col gap-4 min-w-0 w-full lg:w-[500px]">
       {/* Services Name */}
       <div className="grid grid-cols-[150px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Services Name")}</div>
-        <div className="text-text-primary font-title-14px-semibold text-[14px] font-semibold break-words">
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Services Name")}</div>
+        <div className="text-text-primary font-title-14px-semibold text-[clamp(12px,2vw,14px)]  font-semibold break-words">
           Comprehensive Diabetes Checkup
         </div>
       </div>
 
       {/* Services ID + Status */}
       <div className="grid grid-cols-[150px_1fr] gap-4 items-center">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Services ID")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Services ID")}</div>
         <div className="flex flex-wrap items-center gap-2">
-          <div className="text-text-primary font-title-14px-semibold text-[14px] font-semibold">
+          <div className="text-text-primary font-title-14px-semibold text-[clamp(12px,2vw,14px)]  font-semibold">
             SRV-00345
           </div>
           <div className="flex items-center gap-2">
-            <div className="text-text-primary font-semibold text-[14px]">{t("Status")}:</div>
+            <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)] ">{t("Status")}:</div>
             <div className="flex items-center justify-center bg-hitbox">
               <Toggle />
               <div className="w-3 h-3 bg-graywhite rounded-2xl" />
@@ -421,14 +421,14 @@ export const ViewServiceDetails = (): JSX.Element => {
 
       {/* Service Category */}
       <div className="grid grid-cols-[150px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Service Category")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">{t("Medical Examination")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Service Category")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">{t("Medical Examination")}</div>
       </div>
 
       {/* Service Description */}
       <div className="grid grid-cols-[150px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Service Description")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Service Description")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
           Full diagnostic evaluation for diabetes including lab tests, physical exam, and consultation.
         </div>
       </div>
@@ -439,30 +439,30 @@ export const ViewServiceDetails = (): JSX.Element => {
       <div className=" w-36  block lg:hidden text-primary-default mt-3 "> {t("Assign")}</div>
       {/* Assign Complex */}
       <div className="grid grid-cols-[150px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Assign Complex")}</div>
-        <div className="text-text-primary font-title-14px-semibold text-[14px] font-semibold break-words">
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Assign Complex")}</div>
+        <div className="text-text-primary font-title-14px-semibold text-[clamp(12px,2vw,14px)]  font-semibold break-words">
           Arab Interface tech Main Complex
         </div>
       </div>
 
       {/* Assign Clinics */}
       <div className="grid grid-cols-[150px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Assign Clinics")}</div>
-        <div className="text-text-primary font-title-14px-semibold text-[14px] font-semibold break-words">
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Assign Clinics")}</div>
+        <div className="text-text-primary font-title-14px-semibold text-[clamp(12px,2vw,14px)]  font-semibold break-words">
           Internal Medicine, Family Medicine
         </div>
       </div>
 
       {/* Resources */}
       <div className="grid grid-cols-[150px_1fr] gap-4 items-start">
-        <div className="text-primary-default font-semibold text-[16px]">{t("Resources")}</div>
+        <div className="text-primary-default font-semibold text-[clamp(14px,2vw,16px)] ">{t("Resources")}</div>
         <div></div> {/* فارغ إذا ما في محتوى */}
       </div>
 
       {/* Required Equipment */}
       <div className="grid grid-cols-[150px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Required Equipment")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Required Equipment")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
           Full diagnostic evaluation for diabetes including lab tests, physical exam, and consultation.
         </div>
       </div>
@@ -504,32 +504,32 @@ export const ViewServiceDetails = (): JSX.Element => {
     <div className="flex flex-col gap-4 w-full lg:w-[500px]">
       {/* Total Patients Served */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Total Patients Served")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">327 Patients</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Total Patients Served")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">327 Patients</div>
       </div>
 
       {/* Completed Sessions */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Completed Sessions")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">945 Sessions</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Completed Sessions")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">945 Sessions</div>
       </div>
 
       {/* Average Duration */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Average Duration")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">25 mins</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Average Duration")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">25 mins</div>
       </div>
 
       {/* No-Show Rate */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("No-Show Rate (%)")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">8.6%</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("No-Show Rate (%)")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">8.6%</div>
       </div>
 
       {/* Rebooking Rate */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Rebooking Rate (%)")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">72.4%</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Rebooking Rate (%)")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">72.4%</div>
       </div>
     </div>
 
@@ -538,38 +538,38 @@ export const ViewServiceDetails = (): JSX.Element => {
        <div className=" w-36  block lg:hidden text-primary-default mt-3"> {t("Operational Details")}</div>
       {/* Last Performed Date */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Last Performed Date")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">June 28-2025</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Last Performed Date")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">June 28-2025</div>
       </div>
 
       {/* Most Frequent Doctor */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Most Frequent Doctor")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">Dr. Sarah Fadel</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Most Frequent Doctor")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">Dr. Sarah Fadel</div>
       </div>
 
       {/* Most Frequent Clinic */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Most Frequent Clinic")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">Internal Medicine Clinic</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Most Frequent Clinic")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">Internal Medicine Clinic</div>
       </div>
 
       {/* Timestamps */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-primary-default font-semibold text-[16px]">{t("Timestamps")}</div>
+        <div className="text-primary-default font-semibold text-[clamp(14px,2vw,16px)] ">{t("Timestamps")}</div>
         <div></div>
       </div>
 
       {/* Creation Date */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Creation Date")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">June 28-2025</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Creation Date")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">June 28-2025</div>
       </div>
 
       {/* Last Update */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Last Update")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Last Update")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
           June 28-2025&nbsp;&nbsp;10:43 AM
         </div>
       </div>
@@ -595,25 +595,25 @@ export const ViewServiceDetails = (): JSX.Element => {
         <Table className="min-w-max stiky z-10 top-0 border-collapse">
           <TableHeader>
             <TableRow className="bg-surface-default sticky top-0 z-10">
-              <TableHead className="w-[80px] text-center text-text-primary text-[16px] font-semibold">
+              <TableHead className="w-[80px] text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                 {t("No.")}
               </TableHead>
-              <TableHead className="text-center text-text-primary text-[16px] font-semibold w-40">
+              <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold w-40">
                 {t("Session Name.")}
               </TableHead>
-              <TableHead className="text-center text-text-primary text-[16px] font-semibold w-40">
+              <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold w-40">
                 {t("Duration")}
               </TableHead>
-              <TableHead className="text-center text-text-primary text-[16px] font-semibold w-40">
+              <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold w-40">
                 {t("Next Session")}
               </TableHead>
-              <TableHead className="text-center text-text-primary text-[16px] font-semibold w-80">
+              <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold w-80">
                 {t("Description")}
               </TableHead>
-              <TableHead className="text-center text-text-primary text-[16px] font-semibold w-40">
+              <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold w-40">
                 {t("Active Appt")}
               </TableHead>
-              <TableHead className="text-center text-text-primary text-[16px] font-semibold w-40">
+              <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold w-40">
                 {t("Appt Required?")}
               </TableHead>
             </TableRow>
@@ -625,22 +625,22 @@ export const ViewServiceDetails = (): JSX.Element => {
                 key={session.no}
                 className="border-b border-[#e4e2dd] h-[54px]"
               >
-                <TableCell className="text-center text-[14px] font-semibold">
+                <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                   {session.no}
                 </TableCell>
-                <TableCell className="text-center text-[14px] font-semibold">
+                <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                   {session.name}
                 </TableCell>
-                <TableCell className="text-center text-[14px] font-semibold">
+                <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                   {session.duration}
                 </TableCell>
-                <TableCell className="text-center text-[14px] font-semibold">
+                <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                   {session.nextSession}
                 </TableCell>
-                <TableCell className="text-center text-[14px] font-semibold w-80">
+                <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold w-80">
                   {session.description}
                 </TableCell>
-                <TableCell className="text-center text-[14px] font-semibold">
+                <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                   {session.activeAppt}
                 </TableCell>
                 <TableCell className="text-center font-semibold">
@@ -712,22 +712,22 @@ export const ViewServiceDetails = (): JSX.Element => {
       <Table className="min-w-max border-collapse">
         <TableHeader>
           <TableRow className="bg-surface-default sticky top-0 z-10">
-            <TableHead className="w-[98px] text-center text-text-primary text-[16px] font-semibold">
+            <TableHead className="w-[98px] text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
               {t("No.")}
             </TableHead>
-            <TableHead className="w-56 text-center text-text-primary text-[16px] font-semibold">
+            <TableHead className="w-56 text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
               {t("User ID")}
             </TableHead>
-            <TableHead className="w-60 text-center text-text-primary text-[16px] font-semibold">
+            <TableHead className="w-60 text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
               {t("Doctor Name")}
             </TableHead>
-            <TableHead className="w-60 text-center text-text-primary text-[16px] font-semibold">
+            <TableHead className="w-60 text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
               {t("Specialties")}
             </TableHead>
-            <TableHead className="w-40 text-center text-text-primary text-[16px] font-semibold">
+            <TableHead className="w-40 text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
               {t("Active Appt")}
             </TableHead>
-            <TableHead className="w-40 text-center text-text-primary text-[16px] font-semibold">
+            <TableHead className="w-40 text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
               {t("Status")}
             </TableHead>
           </TableRow>
@@ -739,21 +739,21 @@ export const ViewServiceDetails = (): JSX.Element => {
               key={person.number}
               className="border-b h-[54px] border-[#e4e2dd]"
             >
-              <TableCell className="text-center text-[14px] font-semibold">
+              <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                 {person.number}
               </TableCell>
-              <TableCell className="text-center text-[14px] font-semibold">
+              <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                 {person.userId}
               </TableCell>
-              <TableCell className="text-center text-[14px] font-semibold">
+              <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                 <div className="flex items-center gap-2 justify-center">
                   <span>{person.name}</span>
                 </div>
               </TableCell>
-              <TableCell className="text-center text-[14px] font-semibold">
+              <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                 {person.userType}
               </TableCell>
-              <TableCell className="text-center text-[14px] font-semibold">
+              <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                 {person.ActiveAppt}
               </TableCell>
               <TableCell className="text-center">

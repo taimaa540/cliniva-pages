@@ -683,25 +683,29 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick ,  }: N
               <div className=" flex gap-x-[123px]  flex-wrap  " >
 
 
+                     <div className="  w-full sm:w-[520px] gap-y-2 rounded-md py-1">
+                                            {/* Label + Input */} <div className="flex  items-start  flex-col  sm:flex-row  "> {/* Label + Icon */} <div className="flex items-center text-center mt-3  pb-9 gap-x-2">
+                                              <div className="text-text-primary"> <svg className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.77089 1.79165C4.74396 1.78995 4.69757 1.79131 4.62528 1.80353C3.77857 1.94663 3.00486 2.37648 2.43547 3.02333C1.97218 3.54965 1.66854 4.19192 1.55287 4.87525C1.48516 5.27528 1.49216 5.71071 1.52066 6.19936C1.69143 9.12694 2.92996 11.9003 5.01501 13.9853C7.18212 16.1525 10.0928 17.4051 13.1473 17.4949C13.5053 17.5054 13.8283 17.4977 14.1251 17.4475C14.8084 17.3318 15.4507 17.0282 15.977 16.5649C16.6598 15.9639 17.1008 15.1353 17.218 14.2335L17.2168 14.233L17.2168 14.2329L12.8295 12.3487L12.8294 12.3487L12.8294 12.3487L10.4887 13.9123C10.4881 13.9127 10.4874 13.9132 10.4868 13.9136C10.2713 14.0586 10.0219 14.1451 9.76298 14.1648C9.50325 14.1845 9.24287 14.1363 9.00745 14.0248L9.00328 14.0228C7.25484 13.1817 5.84277 11.7732 4.99715 10.0269L4.99564 10.0238L4.99565 10.0238C4.88489 9.79239 4.83535 9.5364 4.85176 9.28035C4.86817 9.0243 4.94999 8.77673 5.0894 8.56133L5.09234 8.55678L5.09236 8.55679L6.65297 6.18316L6.65155 6.17989L6.65156 6.17988L4.77089 1.79165ZM17.2189 14.2264L17.2189 14.2266L17.2189 14.2264ZM4.37532 0.324505C4.70725 0.268408 5.26379 0.236222 5.73387 0.632745C5.91326 0.784063 6.05538 0.976462 6.14718 1.19512L8.02884 5.58566C8.02911 5.58629 8.02938 5.58692 8.02965 5.58755C8.12707 5.81269 8.16779 6.05829 8.14822 6.30284C8.1286 6.54807 8.04897 6.78472 7.91634 6.99191L7.9114 6.99963L7.91135 6.9996L6.3487 9.37632C7.04612 10.8147 8.20932 11.9751 9.6494 12.6691L9.65244 12.667L9.65244 12.667L11.9944 11.1026C12.2022 10.9623 12.4421 10.8767 12.6918 10.8537C12.9415 10.8307 13.193 10.871 13.423 10.9711C13.4239 10.9715 13.4249 10.9719 13.4258 10.9723L17.8056 12.8533C18.1054 12.9793 18.3558 13.1998 18.5186 13.4813C18.6822 13.7643 18.7483 14.0931 18.7067 14.4173C18.5445 15.6835 17.9264 16.8473 16.9681 17.6908C16.2313 18.3395 15.3321 18.7645 14.3755 18.9264C13.9356 19.0009 13.4989 19.0059 13.1033 18.9942C9.66683 18.8932 6.39236 17.484 3.95435 15.046C1.60865 12.7003 0.215328 9.58029 0.0232104 6.28671C-0.00635157 5.77991 -0.0237603 5.20192 0.0739086 4.62491C0.235831 3.6683 0.660897 2.76911 1.30954 2.03223C2.1067 1.12662 3.18988 0.524849 4.37532 0.324505Z" fill="CurrentColor" />
+                                              </svg>
+                                              </div>
+                                              <div className="text-text-primary text-start font-semibold min-w-[160px] text-[clamp(16px,1.1vw,16px)]">
+                                                {t("Phone Number")}: </div>
+                                            </div> {/* Phone Input */}
+                                          <div className="relative  w-[min(100%,360px)]  ">
+                  
+                  
+                  
+                                           
+                                            <PhoneInputCustom value={contactInfo.phoneNumbers} 
+                      />    <div className="flex text-secondary-dark justify-end p-2 max-w-[360px]">
+                                              <PlusIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 cursor-pointer" /> </div> </div> </div>
+                                            {/* Plus Icon */}
+                                         
+                                              
+                                          </div>
 
-              <div className="w-auto rounded-md py-1">
-                  {/* Label + Input */} <div className="flex flex-col sm:w-[520px] sm:flex-row"> {/* Label + Icon */} <div className="flex items-center gap-2"> 
-                    <div className="text-text-primary"> <svg  className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M4.77089 1.79165C4.74396 1.78995 4.69757 1.79131 4.62528 1.80353C3.77857 1.94663 3.00486 2.37648 2.43547 3.02333C1.97218 3.54965 1.66854 4.19192 1.55287 4.87525C1.48516 5.27528 1.49216 5.71071 1.52066 6.19936C1.69143 9.12694 2.92996 11.9003 5.01501 13.9853C7.18212 16.1525 10.0928 17.4051 13.1473 17.4949C13.5053 17.5054 13.8283 17.4977 14.1251 17.4475C14.8084 17.3318 15.4507 17.0282 15.977 16.5649C16.6598 15.9639 17.1008 15.1353 17.218 14.2335L17.2168 14.233L17.2168 14.2329L12.8295 12.3487L12.8294 12.3487L12.8294 12.3487L10.4887 13.9123C10.4881 13.9127 10.4874 13.9132 10.4868 13.9136C10.2713 14.0586 10.0219 14.1451 9.76298 14.1648C9.50325 14.1845 9.24287 14.1363 9.00745 14.0248L9.00328 14.0228C7.25484 13.1817 5.84277 11.7732 4.99715 10.0269L4.99564 10.0238L4.99565 10.0238C4.88489 9.79239 4.83535 9.5364 4.85176 9.28035C4.86817 9.0243 4.94999 8.77673 5.0894 8.56133L5.09234 8.55678L5.09236 8.55679L6.65297 6.18316L6.65155 6.17989L6.65156 6.17988L4.77089 1.79165ZM17.2189 14.2264L17.2189 14.2266L17.2189 14.2264ZM4.37532 0.324505C4.70725 0.268408 5.26379 0.236222 5.73387 0.632745C5.91326 0.784063 6.05538 0.976462 6.14718 1.19512L8.02884 5.58566C8.02911 5.58629 8.02938 5.58692 8.02965 5.58755C8.12707 5.81269 8.16779 6.05829 8.14822 6.30284C8.1286 6.54807 8.04897 6.78472 7.91634 6.99191L7.9114 6.99963L7.91135 6.9996L6.3487 9.37632C7.04612 10.8147 8.20932 11.9751 9.6494 12.6691L9.65244 12.667L9.65244 12.667L11.9944 11.1026C12.2022 10.9623 12.4421 10.8767 12.6918 10.8537C12.9415 10.8307 13.193 10.871 13.423 10.9711C13.4239 10.9715 13.4249 10.9719 13.4258 10.9723L17.8056 12.8533C18.1054 12.9793 18.3558 13.1998 18.5186 13.4813C18.6822 13.7643 18.7483 14.0931 18.7067 14.4173C18.5445 15.6835 17.9264 16.8473 16.9681 17.6908C16.2313 18.3395 15.3321 18.7645 14.3755 18.9264C13.9356 19.0009 13.4989 19.0059 13.1033 18.9942C9.66683 18.8932 6.39236 17.484 3.95435 15.046C1.60865 12.7003 0.215328 9.58029 0.0232104 6.28671C-0.00635157 5.77991 -0.0237603 5.20192 0.0739086 4.62491C0.235831 3.6683 0.660897 2.76911 1.30954 2.03223C2.1067 1.12662 3.18988 0.524849 4.37532 0.324505Z" fill="CurrentColor"/>
-</svg>
- </div> 
-                    <div className="text-text-primary  font-semibold sm:w-[clamp(120px,10vw,160px)]  text-[clamp(14px,1.1vw,16px)]"> 
-                      {t("Phone Number")}: </div>
-                       </div> {/* Phone Input */}
-                        <div className="relative w-full "> 
-                            <PhoneInputCustom value={contactInfo.phoneNumbers} 
-                                                   /> 
-                         </div> </div>
-                              {/* Plus Icon */} 
-                              <div className="flex text-secondary-dark justify-end p-2"> 
-                                <PlusIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 cursor-pointer" /> </div> 
-                              </div>
-
+          
                 {/* Email */}
 
 
@@ -857,22 +861,22 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick ,  }: N
   <Table className="min-w-[700px]"> {/* بتحدد أقل عرض مشان السكرول يشتغل */}
     <TableHeader>
       <TableRow>
-        <TableHead className="w-[58px] text-center font-semiboldtext-[clamp(14px,2vw,16px)]  text-text-primary">
+        <TableHead className="w-[58px] text-center font-semibold text-[clamp(14px,2vw,16px)]  text-text-primary">
           {t("NO")}
         </TableHead>
-        <TableHead className="text-center w-[175px] font-semiboldtext-[clamp(14px,2vw,16px)]  text-text-primary">
+        <TableHead className="text-center w-[175px] font-semibold text-[clamp(14px,2vw,16px)]  text-text-primary">
           {t("Name")}
         </TableHead>
-        <TableHead className="text-center w-[175px] font-semiboldtext-[clamp(14px,2vw,16px)]  text-text-primary">
+        <TableHead className="text-center w-[175px] font-semibold text-[clamp(14px,2vw,16px)]  text-text-primary">
           {t("PIC")}
         </TableHead>
-        <TableHead className="w-[255px] text-center font-semiboldtext-[clamp(14px,2vw,16px)]  text-text-primary">
+        <TableHead className="w-[255px] text-center font-semibold text-[clamp(14px,2vw,16px)]  text-text-primary">
           {t("Scheduled Appointments Count")}
         </TableHead>
-        <TableHead className="text-center w-[125px] font-semiboldtext-[16px]  text-text-primary">
+        <TableHead className="text-center w-[125px] font-semibold text-[clamp(14px,2vw,16px)]   text-text-primary">
           {t("Doctors")}
         </TableHead>
-        <TableHead className="text-center w-[125px] font-semiboldtext-[16px]  text-text-primary">
+        <TableHead className="text-center w-[125px] font-semibold text-[clamp(14px,2vw,16px)]   text-text-primary">
           {t("Status")}
         </TableHead>
       </TableRow>
@@ -881,24 +885,24 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick ,  }: N
     <TableBody>
       {linkedClinics.map((clinic) => (
         <TableRow key={clinic.number} className="border-b border-[#e4e2dd]">
-          <TableCell className="text-center font-mediumtext-[14px]  w-[58px] text-text-primary">
+          <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]   w-[58px] text-text-primary">
             {clinic.number}
           </TableCell>
-          <TableCell className="text-center w-[175px] font-mediumtext-[14px]  text-text-primary">
+          <TableCell className="text-center w-[175px] font-medium text-[clamp(12px,2vw,14px)]   text-text-primary">
             {clinic.name}
           </TableCell>
-          <TableCell className="text-center w-[170px] font-mediumtext-[14px] text-text-primary">
+          <TableCell className="text-center w-[170px] font-medium text-[clamp(12px,2vw,14px)]  text-text-primary">
             {clinic.pic}
           </TableCell>
-          <TableCell className="text-center w-[255px]  font-mediumtext-[14px]  text-text-primary">
+          <TableCell className="text-center w-[255px]  font-medium text-[clamp(12px,2vw,14px)]   text-text-primary">
             {clinic.appointmentsCount}
           </TableCell>
-          <TableCell className="text-center w-[150px] font-mediumtext-[14px]  text-text-primary">
+          <TableCell className="text-center w-[150px] font-medium text-[clamp(12px,2vw,14px)]   text-text-primary">
             {clinic.doctors}
           </TableCell>
           <TableCell className="text-center">
             <div className="flex items-center justify-center gap-2">
-              <Badge className="bg-secondary-light text-secondary-dark rounded-[20px] w-[92px] h-[24px] justify-centertext-[16px] sm:text-xs md:text-sm">
+              <Badge className="bg-secondary-light text-secondary-dark rounded-[20px] w-[92px] h-[24px] justify-centertext-[clamp(14px,2vw,16px)]  sm:text-xs md:text-sm">
                   {t("Active")}
               </Badge>
             </div>
@@ -1182,22 +1186,22 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick ,  }: N
         <Table className="min-w-[700px]">
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[58px] text-center text-text-primary font-semiboldtext-[clamp(14px,2vw,16px)] sm:text-xs md:text-sm">
+              <TableHead className="w-[58px] text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                 {t("NO")}
               </TableHead>
-              <TableHead className="text-center text-text-primary  font-semiboldtext-[clamp(14px,2vw,16px)] sm:text-xs md:text-sm">
+              <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)] ">
                 {t("User-ID")}
               </TableHead>
-              <TableHead className="text-center text-text-primary  font-semiboldtext-[clamp(14px,2vw,16px)] sm:text-xs md:text-sm">
+              <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)] ">
                 {t("Name")}
               </TableHead>
-              <TableHead className="w-[225px]  text-text-primary  text-center font-semiboldtext-[clamp(14px,2vw,16px)] sm:text-xs md:text-sm">
+              <TableHead className="w-[225px]  text-text-primary  text-center font-semibold text-[clamp(14px,2vw,16px)] ">
                 {t("Clinic")}
               </TableHead>
-              <TableHead className="text-center text-text-primary  font-semiboldtex t-[16px] sm:text-xs md:text-sm">
+              <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)]">
                 {t("User Type")}
               </TableHead>
-              <TableHead className="text-center text-text-primary  font-semiboldtext-[clamp(14px,2vw,16px)] ">
+              <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)] ">
                 {t("Status")}
               </TableHead>
             </TableRow>
@@ -1209,13 +1213,13 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick ,  }: N
                 key={person.number}
                 className="border-b border-[#e4e2dd]"
               >
-                <TableCell className="text-center font-mediumtext-[clamp(12px,2vw,16px)] sm:text-xs md:text-sm">
+                <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
                   {person.number}
                 </TableCell>
-                <TableCell className="text-center font-mediumtext-[clamp(12px,2vw,16px)] sm:text-xs md:text-sm">
+                <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)] ">
                   {person.userId}
                 </TableCell>
-                <TableCell className="text-center font-mediumtext-[clamp(12px,2vw,16px)] sm:text-xs md:text-sm">
+                <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)] ">
                   <div className="flex items-center gap-2 justify-center">
                     <Avatar
                       src={person.avatar??undefined}
@@ -1231,14 +1235,14 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick ,  }: N
                     <span>{person.name}</span>
                   </div>
                 </TableCell>
-                <TableCell className="text-center font-mediumtext-[clamp(12px,2vw,16px)] sm:text-xs md:text-sm">
+                <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)] ">
                   {person.clinic}
                 </TableCell>
-                <TableCell className="text-center font-mediumtext-[clamp(12px,2vw,16px)] sm:text-xs md:text-sm">
+                <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)] ">
                   {person.userType}
                 </TableCell>
                 <TableCell className="text-center">
-                  <Badge className="bg-secondary-light text-secondary-dark rounded-[20px] w-[70px] sm:w-[92px] h-[20px] sm:h-[24px] mx-auto flex justify-center items-centertext-[16px] sm:text-xs">
+                  <Badge className="bg-secondary-light text-secondary-dark rounded-[20px] w-[70px] sm:w-[92px] h-[20px] sm:h-[24px] mx-auto flex justify-center items-centertext-[clamp(14px,2vw,16px)]  sm:text-xs">
                     {t("Active")}
                   </Badge>
                 </TableCell>

@@ -90,7 +90,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
       <label
         className={`
           ${labelWidth || "sm:w-[165px]"} 
-          text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]
+          text-text-primary font-semibold text-[clamp(14x,1.1vw,16px)]
           ${resolvedDirection === "rtl" ? "text-right" : ""}
         `}
       >

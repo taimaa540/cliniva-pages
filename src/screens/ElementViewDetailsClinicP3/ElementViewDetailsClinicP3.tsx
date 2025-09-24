@@ -1,7 +1,7 @@
 
 import { ContentViewDetailsClinicP3 } from "./ContentViewDetailsClinicP3/ContentViewDetailsClinicP3";
 
-  import { SidebarViewDetailsClinicP3 } from "./SidebarViewDetailsClinicP3/SidebarViewDetailsClinicP3";
+  
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 export const ElementViewDetailsClinicP3 = (): JSX.Element => {
@@ -28,14 +28,12 @@ export const ElementViewDetailsClinicP3 = (): JSX.Element => {
     <div className="flex w-full min-h-screen items-start bg-surface-default   "        
      >
         
-      <SidebarViewDetailsClinicP3  isOpen={isSidebarOpen}
-        onClose={() => setIsSidebarOpen(false)}
-        local={local} />
+    
       <ContentViewDetailsClinicP3      handleLanguageClick={handleLanguageClick}
         local={local}
         dark={darkMode}
         handelDarkClick={toggleDarkMode}
-        onOpenSidebar={() => setIsSidebarOpen(true)} // ← يفتح السايد بار
+        // ← يفتح السايد بار
       />
     </div>
   );

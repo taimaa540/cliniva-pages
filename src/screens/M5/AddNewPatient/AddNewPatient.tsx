@@ -367,7 +367,7 @@ export const AddNewPatient = (): JSX.Element => {
                                     <div className="flex flex-col items-start gap-6">
                                         {/* صورة البروفايل */}
                                         <div className="inline-flex items-center gap-8 relative flex-[0_0_auto]">
-                                            <div className="relative w-40 text-text-primary font-semibold text-[16px]">
+                                            <div className="relative w-40 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {t("Profile Picture")}
                                             </div>
                                             <ImageUploader initialImage={formValues.profilePicture} />
@@ -375,7 +375,7 @@ export const AddNewPatient = (): JSX.Element => {
 
                                         {/* اسم المريض */}
                                         <div className="flex flex-col md:flex-row  self-stretch w-full items-start gap-8 relative">
-                                            <Label className="w-[150px] text-text-primary font-semibold text-[16px]">
+                                            <Label className="w-[150px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {formFields(t).patientName.label}
                                             </Label>
                                             <Input
@@ -388,7 +388,7 @@ export const AddNewPatient = (): JSX.Element => {
 
                                         {/* الجنسية */}
                                         <div className="flex flex-col md:flex-row md:items-center self-stretch w-full items-start gap-8 relative">
-                                            <Label className="w-[150px] text-text-primary font-semibold text-[16px]">
+                                            <Label className="w-[150px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {formFields(t).nationality.label}
                                             </Label>
 
@@ -416,7 +416,7 @@ export const AddNewPatient = (): JSX.Element => {
 
                                         {/* اللغة المفضلة */}
                                         <div className="flex flex-col md:flex-row md:items-center self-stretch w-full items-start gap-8 relative">
-                                            <Label className="w-[150px] text-text-primary  font-semibold text-[16px]">
+                                            <Label className="w-[150px] text-text-primary  font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {formFields(t).preferredLanguage.label}
                                             </Label>
 
@@ -442,7 +442,7 @@ export const AddNewPatient = (): JSX.Element => {
 
                                         {/* تاريخ الميلاد */}
                                         <div className="flex flex-col md:flex-row md:items-center items-start gap-8 w-full">
-                                            <Label className="w-[150px] text-text-primary font-semibold text-[16px]">
+                                            <Label className="w-[150px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {formFields(t).dateOfBirth.label}
                                             </Label>
 
@@ -462,7 +462,7 @@ export const AddNewPatient = (): JSX.Element => {
                                         {/* الحالة الاجتماعية */}
 
                                         <div className="flex flex-col md:flex-row md:items-center self-stretch w-full items-start gap-8 relative">
-                                            <Label className="w-[150px] text-text-primary font-semibold text-[16px]" dir={local === 'ar' ? 'rtl' : 'ltr'}>
+                                            <Label className="w-[150px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] " dir={local === 'ar' ? 'rtl' : 'ltr'}>
                                                 {formFields(t).maritalStatus.label}
                                             </Label>
                                             <Select
@@ -489,11 +489,11 @@ export const AddNewPatient = (): JSX.Element => {
                                     <div className="flex flex-col items-start gap-6">
                                         {/* رقم المريض */}
                                         <div className="inline-flex items-start gap-8 relative">
-                                            <Label className="w-[150px] text-text-primary font-semibold text-[16px]">
+                                            <Label className="w-[150px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {t("Patient ID")}
                                             </Label>
 
-                                            <div className=" w-[min(100%,360px)]  text-text-primary font-semibold text-[16px]">
+                                            <div className=" w-[min(100%,360px)]  text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {patientBasicInfoData.patientId}
                                             </div>
                                         </div>
@@ -505,7 +505,7 @@ export const AddNewPatient = (): JSX.Element => {
 
                                         <div className="flex flex-col md:flex-row md:items-center items-start gap-8  w-[min(100%,547px)]">
                                             <Label
-                                                className={`flex-none w-[150px] font-semibold text-[16px] ${isCardValid ? 'text-text-primary' : 'text-red-500'
+                                                className={`flex-none w-[150px] font-semibold text-[clamp(14px,2vw,16px)]  ${isCardValid ? 'text-text-primary' : 'text-red-500'
                                                     }`}
                                             >
                                                 {formFields(t).cardNumber.label}
@@ -540,7 +540,7 @@ export const AddNewPatient = (): JSX.Element => {
 
                                         {/* الديانة */}
                                         <div className="flex flex-col md:flex-row md:items-center self-stretch w-full items placeholder:text-text-secondary  gap-8 relative">
-                                            <Label className="w-[150px] text-text-primary font-semibold text-[16px]">
+                                            <Label className="w-[150px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {formFields(t).religion.label}
                                             </Label>
                                             <Input
@@ -553,10 +553,10 @@ export const AddNewPatient = (): JSX.Element => {
 
                                         {/* العمر */}
                                         <div className="flex w-[343.23px] items-center gap-8 relative">
-                                            <Label className="w-[150px] text-text-primary font-semibold text-[16px]">
+                                            <Label className="w-[150px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {t("Age")}
                                             </Label>
-                                            <div className="w-40 text-text-primary font-semibold text-[16px]">
+                                            <div className="w-40 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {patientBasicInfoData.age}
                                             </div>
                                         </div>
@@ -598,14 +598,14 @@ export const AddNewPatient = (): JSX.Element => {
 <Card className="bg-background-primary gap-4 rounded-xl mt-5 p-4">
   <CardContent className="p-0 flex flex-col gap-4">
     {/* الصف الأول: العنوان + التحذير + الزر */}
-    <div className="flex  sm:flex-row  justify-center sm:justify-between sm:items-start gap-4">
+    <div className="flex  sm:flex-row  justify-center sm:justify-between sm:items-center gap-4">
       {/* كلمة Insurance Info */}
-      <div className="font-lato w-80 font-semibold text-[16px] text-text-accent">
+      <div className="font-lato w-24 font-semibold text-[clamp(14px,2vw,16px)]  text-text-accent">
         {t("Insurance Info")}
       </div>
 
       {/* جملة التحذير */}
-      <div className="hidden lg:flex items-center gap-2 text-red-700 font-semibold text-[16px]">
+      <div className="hidden lg:flex items-center  gap-2 text-red-700 font-semibold text-[clamp(14px,2vw,16px)] ">
         <svg
           width="27"
           height="26"
@@ -677,7 +677,7 @@ export const AddNewPatient = (): JSX.Element => {
           fill="#D92D20"
         />
       </svg>
-      <h1 className="text-[16px] text-center font-semibold text-red-700 break-words">
+      <h1 className="text-[clamp(14px,2vw,16px)]  text-center font-semibold text-red-700 break-words">
         {t("Card Number is incorrect or not registered with insurance")}.
       </h1>
     </div>
@@ -721,7 +721,7 @@ export const AddNewPatient = (): JSX.Element => {
                                     {/* العمود الأول */}
                                     <div className="grid gap-y-[30px] w-full max-w-full">
                                         <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[16px]">
+                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {t("Member Number")}:
                                             </h1>
                                             <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -730,7 +730,7 @@ export const AddNewPatient = (): JSX.Element => {
                                         </div>
 
                                         <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[16px]">
+                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {t("Insurance Company")}:
                                             </h1>
                                             <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -739,7 +739,7 @@ export const AddNewPatient = (): JSX.Element => {
                                         </div>
 
                                         <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[16px]">
+                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {t("Group Number")}:
                                             </h1>
                                             <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -748,7 +748,7 @@ export const AddNewPatient = (): JSX.Element => {
                                         </div>
 
                                         <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[16px]">
+                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {t("Policy ID")}:
                                             </h1>
                                             <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -757,7 +757,7 @@ export const AddNewPatient = (): JSX.Element => {
                                         </div>
 
                                         <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[16px]">
+                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {t("Co-payment")}:
                                             </h1>
                                             <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -766,7 +766,7 @@ export const AddNewPatient = (): JSX.Element => {
                                         </div>
 
                                         <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[16px]">
+                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {t("Coverage Start Date")}:
                                             </h1>
                                             <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -775,7 +775,7 @@ export const AddNewPatient = (): JSX.Element => {
                                         </div>
 
                                         <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[16px]">
+                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {t("Insurance Status")}:
                                             </h1>
                                             <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -787,7 +787,7 @@ export const AddNewPatient = (): JSX.Element => {
                                     {/* العمود الثاني */}
                                     <div className="flex flex-col gap-8 mt-5 w-full max-w-full">
                                         <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[16px]">
+                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {t("Member Type")}:
                                             </h1>
                                             <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -796,7 +796,7 @@ export const AddNewPatient = (): JSX.Element => {
                                         </div>
 
                                         <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[16px]">
+                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {t("Provider Network")}:
                                             </h1>
                                             <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -805,7 +805,7 @@ export const AddNewPatient = (): JSX.Element => {
                                         </div>
 
                                         <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[16px]">
+                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {t("Class")}:
                                             </h1>
                                             <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -814,7 +814,7 @@ export const AddNewPatient = (): JSX.Element => {
                                         </div>
 
                                         <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[16px]">
+                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {t("Coverage Limit")}:
                                             </h1>
                                             <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -823,7 +823,7 @@ export const AddNewPatient = (): JSX.Element => {
                                         </div>
 
                                         <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[16px]">
+                                            <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                                                 {t("Coverage End Date")}:
                                             </h1>
                                             <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -1123,7 +1123,7 @@ export const AddNewPatient = (): JSX.Element => {
 
                                             {/* Upload File */}
                                             <div className="flex flex-col md:flex-row gap-x-2 items-start ">
-                                                <Label className="flex flex-col md:flex-row  font-lato font-semibold text-[16px] text-text-primary">
+                                                <Label className="flex flex-col md:flex-row  font-lato font-semibold text-[clamp(14px,2vw,16px)]  text-text-primary">
                                                     {personalDocumentFields(t).uploadFile.label}
                                                 </Label>
                                                 <FileUpload

@@ -155,15 +155,20 @@ const socialMedia = [
     value: "https://instagram.com/medcaregroup",
   },
 ];
-
-const workingDays = [
-  { day: "Sunday", startTime: "09:00", endTime: "18:00", isActive: true },
-  { day: "Monday", startTime: "09:00", endTime: "18:00", isActive: true },
-  { day: "Tuesday", startTime: "09:00", endTime: "18:00", isActive: true },
-  { day: "Wednesday", startTime: "09:00", endTime: "18:00", isActive: true },
-  { day: "Thursday", startTime: "09:00", endTime: "18:00", isActive: true },
-  { day: "Friday", startTime: "09:00", endTime: "18:00", isActive: false },
-  { day: "Saturday", startTime: "09:00", endTime: "18:00", isActive: true },
+type Schedule = {
+  day: string;
+  startTime: string;
+  endTime: string;
+  isActive: boolean;
+};
+const getWorkingDays = (t: (key: string) => string): Schedule[] => [
+  { day: t("Sunday"), startTime: "09:00", endTime: "18:00", isActive: true },
+  { day: t("Monday"), startTime: "09:00", endTime: "18:00", isActive: true },
+  { day: t("Tuesday"), startTime: "09:00", endTime: "18:00", isActive: true },
+  { day: t("Wednesday"), startTime: "09:00", endTime: "18:00", isActive: true },
+  { day: t("Thursday"), startTime: "09:00", endTime: "18:00", isActive: true },
+  { day: t("Friday"), startTime: "09:00", endTime: "18:00", isActive: false },
+  { day: t("Saturday"), startTime: "09:00", endTime: "18:00", isActive: true },
 ];
 
 const doctorsAndStaff = [
@@ -230,7 +235,7 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
       [key]: open
     }))
   };
-  const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
+  const [activeDays, setActiveDays] = useState(getWorkingDays(t).map(() => false));
 
   const toggleDay = (index: number) => {
     setActiveDays((prev) => prev.map((val, i) => (i === index ? !val : val)));
@@ -506,21 +511,21 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
                       <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
                         {t("Clinic Name")}
                       </label>
-                      <span className="text-[clamp(12px,1.1vw,16px)]">Al Noor Clinic</span>
+                      <span className="text-[clamp(12px,1.1vw,14px)]">Al Noor Clinic</span>
                     </div>
 
                     <div className="flex flex-col md:flex-row md:items-center gap-1 sm:gap-2 md:gap-4 lg:gap-8">
                       <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
                         {t("Session Slot")}:
                       </label>
-                      <span className="text-[clamp(12px,1.1vw,16px)]">30 minutes</span>
+                      <span className="text-[clamp(12px,1.1vw,14px)]">30 minutes</span>
                     </div>
 
                     <div className="flex flex-col md:flex-row md:items-center gap-1 sm:gap-2 md:gap-4 lg:gap-8">
                       <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
                         {t("Services Offered")}:
                       </label>
-                      <span className="text-[clamp(12px,1.1vw,16px)]">General Consultation</span>
+                      <span className="text-[clamp(12px,1.1vw,14px)]">General Consultation</span>
                     </div>
                   </div>
 
@@ -530,21 +535,21 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
                       <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
                         {t("Year of Establishment")}
                       </label>
-                      <span className="text-[clamp(12px,1.1vw,16px)]">April 3 2011</span>
+                      <span className="text-[clamp(12px,1.1vw,14px)]">April 3 2011</span>
                     </div>
 
                     <div className="flex flex-col md:flex-row md:items-center gap-1 sm:gap-2 md:gap-4 lg:gap-8">
                       <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
                         {t("PIC Name")}
                       </label>
-                      <span className="text-[clamp(12px,1.1vw,16px)]">Dr. Layla Al Saeed</span>
+                      <span className="text-[clamp(12px,1.1vw,14px)]">Dr. Layla Al Saeed</span>
                     </div>
 
                     <div className="flex flex-col md:flex-row md:items-start gap-1 sm:gap-2 md:gap-4 lg:gap-8">
                       <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
                         {t("Description")}
                       </label>
-                      <div className="w-full md:w-[360px] text-[clamp(12px,1.1vw,16px)]">
+                      <div className="w-full md:w-[360px] text-[clamp(12px,1.1vw,14px)]">
                         Al Noor Clinic is a multi-specialty clinic offering high-quality care with modern facilities.
                       </div>
                     </div>
@@ -563,7 +568,7 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
                         <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
                           {t("Department Name")}
                         </label>
-                        <span className="text-[clamp(12px,1.1vw,16px)]">Al Razi Department</span>
+                        <span className="text-[clamp(12px,1.1vw,14px)]">Al Razi Department</span>
                       </div>
                     </div>
 
@@ -573,7 +578,7 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
                         <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
                           {t("Description")}
                         </label>
-                        <div className="w-full md:w-[360px] text-[clamp(12px,1.1vw,16px)]">
+                        <div className="w-full md:w-[360px] text-[clamp(12px,1.1vw,14px)]">
                           Al Noor Clinic is a multi-specialty clinic offering high-quality care with modern facilities.
                         </div>
                       </div>
@@ -604,10 +609,10 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.77089 1.7914C4.74396 1.7897 4.69757 1.79107 4.62528 1.80329C3.77857 1.94638 3.00486 2.37623 2.43547 3.02308C1.97218 3.5494 1.66854 4.19168 1.55287 4.87501C1.48516 5.27504 1.49216 5.71047 1.52066 6.19911C1.69143 9.12669 2.92996 11.9001 5.01501 13.9851C7.18212 16.1522 10.0928 17.4049 13.1473 17.4946C13.5053 17.5052 13.8283 17.4975 14.1251 17.4472C14.8084 17.3316 15.4507 17.0279 15.977 16.5646C16.6598 15.9637 17.1008 15.1351 17.218 14.2332L17.2168 14.2327L17.2168 14.2327L12.8295 12.3484L12.8294 12.3485L12.8294 12.3485L10.4887 13.912C10.4881 13.9125 10.4874 13.9129 10.4868 13.9134C10.2713 14.0583 10.0219 14.1449 9.76298 14.1645C9.50325 14.1843 9.24287 14.136 9.00745 14.0245L9.00328 14.0226C7.25484 13.1814 5.84277 11.773 4.99715 10.0267L4.99564 10.0236L4.99565 10.0236C4.88489 9.79214 4.83535 9.53616 4.85176 9.28011C4.86817 9.02405 4.94999 8.77649 5.0894 8.56108L5.09234 8.55653L5.09236 8.55654L6.65297 6.18292L6.65155 6.17964L6.65156 6.17964L4.77089 1.7914ZM17.2189 14.2261L17.2189 14.2264L17.2189 14.2261ZM4.37532 0.324261C4.70725 0.268164 5.26379 0.235978 5.73387 0.632501C5.91326 0.783819 6.05538 0.976218 6.14718 1.19487L8.02884 5.58542C8.02911 5.58605 8.02938 5.58667 8.02965 5.5873C8.12707 5.81244 8.16779 6.05805 8.14822 6.3026C8.1286 6.54783 8.04897 6.78447 7.91634 6.99167L7.9114 6.99939L7.91135 6.99935L6.3487 9.37608C7.04612 10.8145 8.20932 11.9749 9.6494 12.6688L9.65244 12.6668L9.65244 12.6668L11.9944 11.1024C12.2022 10.9621 12.4421 10.8764 12.6918 10.8534C12.9415 10.8304 13.193 10.8708 13.423 10.9708C13.4239 10.9712 13.4249 10.9716 13.4258 10.972L17.8056 12.8531C18.1054 12.979 18.3558 13.1995 18.5186 13.4811C18.6822 13.764 18.7483 14.0929 18.7067 14.417C18.5445 15.6833 17.9264 16.8471 16.9681 17.6906C16.2313 18.3392 15.3321 18.7643 14.3755 18.9262C13.9356 19.0007 13.4989 19.0056 13.1033 18.994C9.66683 18.893 6.39236 17.4838 3.95435 15.0458C1.60865 12.7001 0.215328 9.58005 0.0232104 6.28646C-0.00635157 5.77966 -0.0237603 5.20168 0.0739086 4.62467C0.235831 3.66806 0.660897 2.76886 1.30954 2.03198C2.1067 1.12638 3.18988 0.524605 4.37532 0.324261Z" fill="CurrentColor" />
                       </svg></div>
                       <span className="font-semibold text-text-primary text-[clamp(14px,1.1vw,16px)]">
-                        {t("PhoneIcon Numbers")}:
+                        {t("Phone Numbers")}:
                       </span>
                     </div>
-                    <span className="font-title-14px-regular text-on-surface-primary text-[clamp(12px,1.1vw,16px)]">
+                    <span className="font-title-14px-regular text-on-surface-primary text-[clamp(12px,1.1vw,14px)]">
                       +966 55 123 4567, +966 11 987 6543
                     </span>
                   </div>
@@ -622,7 +627,7 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
                         {t("Email")}:
                       </span>
                     </div>
-                    <span className="font-title-14px-regular text-on-surface-primary text-[clamp(12px,1.1vw,16px)]">
+                    <span className="font-title-14px-regular text-on-surface-primary text-[clamp(12px,1.1vw,14px)]">
                       info@medcaregroup.com
                     </span>
                   </div>
@@ -693,22 +698,22 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
         <Table className="min-w-[700px]">
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[58px] text-center text-text-primary font-semibold text-16px">
+              <TableHead className="w-[58px] text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
                 {t("NO")}
               </TableHead>
-              <TableHead className="text-center text-text-primary  font-semibold text-16px">
+              <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)]">
                 {t("User-ID")}
               </TableHead>
-              <TableHead className="text-center text-text-primary  font-semibold text-16px">
+              <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)]">
                 {t("Name")}
               </TableHead>
-              <TableHead className="w-[225px] text-text-primary  text-center font-semibold text-16px">
+              <TableHead className="w-[225px] text-text-primary  text-center font-semibold text-[clamp(14px,2vw,16px)]">
                 {t("Clinic")}
               </TableHead>
-              <TableHead className="text-center text-text-primary  font-semibold text-16px">
+              <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)]">
                 {t("User Type")}
               </TableHead>
-              <TableHead className="text-center text-text-primary  font-semibold text-16px">
+              <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)]">
                 {t("Status")}
               </TableHead>
             </TableRow>
@@ -720,13 +725,13 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
                 key={person.number}
                 className="border-b border-[#e4e2dd]"
               >
-                <TableCell className="text-center font-medium text-14px">
+                <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
                   {person.number}
                 </TableCell>
-                <TableCell className="text-center font-medium text-14px">
+                <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
                   {person.userId}
                 </TableCell>
-                <TableCell className="text-center font-medium text-14px">
+                <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
                   <div className="flex items-center gap-2 justify-center">
                     <Avatar
                       src={person.avatar}
@@ -742,14 +747,14 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
                     <span>{person.name}</span>
                   </div>
                 </TableCell>
-                <TableCell className="text-center font-medium text-14px">
+                <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
                   {person.clinic}
                 </TableCell>
-                <TableCell className="text-center font-medium text-14px">
+                <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
                   {person.userType}
                 </TableCell>
   <div className="flex items-center justify-center gap-2">
-              <Badge className="bg-secondary-light text-secondary-dark rounded-[20px]         w-[72px] h-[20px] sm:w-[80px] sm:h-[22px] md:w-[92px] md:h-[24px] justify-center text-16px">
+              <Badge className="bg-secondary-light text-secondary-dark rounded-[20px]         w-[72px] h-[20px] sm:w-[80px] sm:h-[22px] md:w-[92px] md:h-[24px] justify-center text-[clamp(14px,2vw,16px)]">
                 {t("Active")}
               </Badge>
             </div>
@@ -977,31 +982,31 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
         <Table className="min-w-[320px]">
           <TableHeader>
             <TableRow>
-              <TableHead className="text-text-primary text-start px-2 py-2 text-16px sm:text-sm">
+              <TableHead className="text-text-primary text-start px-2 py-2 text-[clamp(14px,2vw,16px)] ">
                 {t("Working Days")}
               </TableHead>
-              <TableHead className="text-center text-text-primary px-2 py-2 text-16px sm:text-sm">
+              <TableHead className="text-center text-text-primary px-2 py-2 text-[clamp(14px,2vw,16px)] ">
                 {t("Start Time")}
               </TableHead>
-              <TableHead className="text-end text-text-primary px-2 py-2 text-16px sm:text-sm">
+              <TableHead className="text-end text-text-primary px-2 py-2 text-[clamp(14px,2vw,16px)] ">
                 {t("End Time")}
               </TableHead>
             </TableRow>
           </TableHeader>
 
           <TableBody>
-            {workingDays.map((schedule, index) => (
+            {getWorkingDays(t).map((schedule, index) => (
               <TableRow
                 key={index}
                 className="border-b border-[#e4e2dd] h-[40px] sm:h-[48px]"
               >
-                <TableCell className="text-start px-2 text-14px sm:text-sm">
+                <TableCell className="text-start px-2 text-[clamp(12px,2vw,14px)]">
                   {schedule.day}
                 </TableCell>
-                <TableCell className="text-center px-2 text-14px sm:text-sm">
+                <TableCell className="text-center px-2 text-[clamp(12px,2vw,14px)] ">
                   {schedule.startTime}
                 </TableCell>
-                <TableCell className="text-end pe-4 px-2 text-14px sm:text-sm">
+                <TableCell className="text-end pe-4 px-2 text-[clamp(12px,2vw,14px)] ">
                   {schedule.endTime}
                 </TableCell>
               </TableRow>

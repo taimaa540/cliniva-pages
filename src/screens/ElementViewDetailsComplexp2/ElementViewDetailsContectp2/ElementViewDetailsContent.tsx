@@ -586,7 +586,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
           <span className=" min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]lg:text-[16px]">
             {t("Complex Name")}:
           </span>
-          <span className="text-text-primary font-regulartext-[clamp(12px,2vw,16px)] lg:text-[15px]">
+          <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)] ">
             {t("AlTadawi Medical Complex")}
           </span>
         </div>
@@ -596,7 +596,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
           <span className="min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]lg:text-[16px]">
             {t("Year of Establishment")}:
           </span>
-          <span className="text-text-primary font-regulartext-[clamp(12px,2vw,16px)] lg:text-[15px]">
+          <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)] ">
             3 April 2011
           </span>
         </div>
@@ -609,7 +609,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
           <span className=" min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
             {t("Description")}:
           </span>
-          <span className="text-text-primary font-regulartext-[clamp(12px,2vw,16px)] ">
+          <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)] ">
             A modern multi-specialty healthcare complex offering outpatient and
             diagnostic services in Riyadh.
           </span>
@@ -620,7 +620,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
           <span className=" min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
             {t("PIC")}:
           </span>
-          <span className="text-text-primary font-regulartext-[clamp(12px,2vw,16px)] ">
+          <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)] ">
             Hessa AlMutairi
           </span>
         </div>
@@ -652,7 +652,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
   content={
     <div className="px-4 pb-4">
       {/* Grid responsive */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6">
         {/* Phone */}
         <div className="flex items-start gap-3">
           <PhoneIcon className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -660,7 +660,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
             <span className="font-semibold text-text-primary text-[clamp(14px,2vw,16px)] leading-snug">
               {t("Phone Numbers")}:
             </span>
-            <span className="text-text-primary font-regulartext-[clamp(12px,2vw,16px)] ] leading-snug">
+            <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]  leading-snug">
               +966 55 123 4567, +966 11 987 6543
             </span>
           </div>
@@ -679,7 +679,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
             <span className="font-semibold text-text-primary text-[clamp(14px,2vw,16px)]lg:text-[16px] leading-snug">
               {t("Email")}:
             </span>
-            <span className="text-text-primary font-regulartext-[clamp(12px,2vw,16px)] lg:text-[15px] leading-snug">
+            <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]  leading-snug">
               info@medcaregroup.com
             </span>
           </div>
@@ -698,10 +698,10 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                     </svg></div>
           </div>
           <div className="flex flex-col sm:flex-row sm:gap-6">
-            <span className="font-semibold text-text-primary text-[clamp(14px,2vw,16px)]lg:text-[16px] leading-snug">
+            <span className="font-semibold text-text-primary text-[clamp(14px,2vw,16px)]  leading-snug">
               {t("Physical Address")}:
             </span>
-            <span className="text-text-primary font-regulartext-[clamp(12px,2vw,16px)] lg:text-[15px] leading-snug">
+            <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]  leading-snug">
               245, King Fahd Road, Al Olaya, Saudi Arabia, KSA
             </span>
           </div>
@@ -714,14 +714,14 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
                   </svg>
                   </div>
           <div className="flex flex-col sm:flex-row sm:gap-6">
-            <span className="font-semibold text-text-primary text-[clamp(14px,2vw,16px)]lg:text-[16px] leading-snug">
+            <span className="font-semibold text-text-primary text-[clamp(12px,2vw,14px)]  leading-snug">
               {t("Maps Location")}:
             </span>
             <a
               href="https://maps.google.com/?q=24.7136,46.6753"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary underlinetext-[clamp(12px,2vw,16px)] lg:text-[15px]"
+              className="text-primary underlinetext-[clamp(12px,2vw,14px)] lg:text-[15px]"
             >
               www.medcaregroup.com
             </a>
@@ -787,7 +787,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
             {dept.name}
           </TableCell>
 
-          <TableCell className="text-text-primary font-regular font-[Lato] text-[clamp(12px,2vw,16px)] leading-snug sm:leading-normal md:leading-[1.25] tracking-[0] text-center sm:text-left">
+          <TableCell className="text-text-primary font-regular font-[Lato] text-[clamp(12px,2vw,14px)] leading-snug sm:leading-normal md:leading-[1.25] tracking-[0] text-center sm:text-left">
             {dept.description}
           </TableCell>
         </TableRow>
@@ -839,19 +839,19 @@ export const ElementViewComplexPlan2 = ({ local, dark, handelDarkClick, handleLa
     <TableBody>
       {linkedClinics.map((clinic) => (
         <TableRow key={clinic.number} className="border-b border-[#e4e2dd]">
-          <TableCell className="text-center font-medium text-[clamp(12px,2vw,16px)] text-text-primary">
+          <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)] text-text-primary">
             {clinic.number}
           </TableCell>
-          <TableCell className="text-center font-medium text-[clamp(12px,2vw,16px)] text-text-primary">
+          <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)] text-text-primary">
             {clinic.name}
           </TableCell>
-          <TableCell className="text-center font-medium text-[clamp(12px,2vw,16px)] text-text-primary">
+          <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)] text-text-primary">
             {clinic.pic}
           </TableCell>
-          <TableCell className="text-center font-medium text-[clamp(12px,2vw,16px)] text-text-primary">
+          <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)] text-text-primary">
             {clinic.appointmentsCount}
           </TableCell>
-          <TableCell className="text-center font-medium text-[clamp(12px,2vw,16px)] text-text-primary">
+          <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)] text-text-primary">
             {clinic.doctors}
           </TableCell>
           <TableCell className="text-center">

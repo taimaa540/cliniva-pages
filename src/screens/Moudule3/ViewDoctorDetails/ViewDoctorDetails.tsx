@@ -907,69 +907,85 @@ export const ViewDoctorDetails = (): JSX.Element => {
                       className="w-auto"
                     >
 
-                      <div className="mt-[16px] flex flex-col  gap-[24px]">
-                 <div className="flex flex-col lg:flex-row   gap-[16px]">
-                          <h2 className="w-[108px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
-                            {t('Job Details')}
-                          </h2>
-                       <div className="grid grid-cols-1 lg:grid-cols-2  justify-between gap-x-[clamp(16px,5vw,410px)] w-full">
-                            <div className="flex gap-[16px]">
-                              <span className="w-[108px] font-lato font-bold text-sm leading-[125%] tracking-[0] text-text-primary">
-                                {t("Job Title")}
-                              </span>
-                              <span className="font-lato font-regular text-sm leading-[125%] tracking-[0] text-text-primary">
-                                {t("Manager")}
-                              </span>
-                            </div>
-                            <div className="flex gap-[16px]">
-                              <span className="w-[108px] font-lato font-bold text-sm leading-[125%] tracking-[0] text-text-primary">
-                                {t("Date of Hire")}
-                              </span>
-                              <span className="font-lato font-regular text-sm leading-[125%] tracking-[0] text-text-primary">
-                                {t('April')} 27, 2025
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                       
-                         <div className="flex flex-col lg:flex-row items-start gap-4">
-                            <span className="w-[108px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
-                              {t("Working Days")}
-                            </span>
+                <div className="mt-[16px] flex flex-col gap-[24px]">
+             <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 w-full">
 
+  <h2 className="w-[108px] font-lato font-semibold text-[clamp(12px,2vw,14px)]  leading-[125%] text-secondary-dark">
+    {t('Job Details')}
+  </h2>
 
+  <div className="flex flex-col lg:flex-row gap-y-6 lg:gap-[404px]  ">
+    <div className="flex gap-4">
+      <span className="w-[108px] font-lato font-bold text-[clamp(12px,2vw,14px)]  leading-[125%] text-text-primary">
+        {t("Job Title")}
+      </span>
+      <span className="font-lato font-regular text-[clamp(12px,2vw,14px)]  leading-[125%] text-text-primary">
+        {t("Manager")}
+      </span>
+    </div>
 
-
-
-
-
-
-
-                            <div className="w-full overflow-x-auto">
-  <Table className="min-w-[600px] max-w-full">
-    <TableHeader className="sticky top-0 bg-background-primary border-b border-border-light">
-      <TableRow>
-        <TableHead className="w-[62px] text-start">{t("Days")}</TableHead>
-        <TableHead className="w-[126px] text-center">{t("Shift 1")}</TableHead>
-        <TableHead className="w-[126px] text-center">{t("Shift 2")}</TableHead>
-      </TableRow>
-    </TableHeader>
-    <TableBody>
-      {workingDaysData.map((day, index) => (
-        <TableRow key={index} className="border-b border-border-light">
-          <TableCell className="w-[62px] text-start">{t(day.day)}</TableCell>
-          <TableCell className="w-[126px] text-center">{t(day.shift1)}</TableCell>
-          <TableCell className="w-[126px] text-center">{t(day.shift2)}</TableCell>
-        </TableRow>
-      ))}
-    </TableBody>
-  </Table>
+    <div className="flex gap-4">
+      <span className="w-[108px] font-lato font-bold text-[clamp(12px,2vw,14px)]  leading-[125%] text-text-primary">
+        {t("Date of Hire")}
+      </span>
+      <span className="font-lato w-24 font-regular text-[clamp(12px,2vw,14px)]  leading-[125%] text-text-primary">
+        {t('April')} 27, 2025
+      </span>
+    </div>
+  </div>
 </div>
 
-                            </div>
+
+                    <div className="flex flex-col lg:flex-row items-start gap-4 w-full">
+  <span className="w-[108px] font-lato font-semibold text-[clamp(12px,2vw,14px)]  leading-[125%] tracking-[0] text-secondary-dark">
+    {t("Working Days")}
+  </span>
+
+  <div className="flex flex-col w-full items-start">
+<div className="w-full overflow-x-auto">
+  <table className="w-full border-collapse">
+    <thead className="bg-gray-50">
+      <tr>
+        <th className="w-[62px] text-center font-lato font-semibold text-[clamp(12px,2vw,14px)]  text-text-primary py-2">
+          {t("Days")}
+        </th>
+        <th className="w-[106px] text-center font-lato font-semibold text-[clamp(12px,2vw,14px)]  text-text-primary py-2">
+          {t("Shift")} 1
+        </th>
+        <th className="w-[126px] text-center font-lato font-semibold text-[clamp(12px,2vw,14px)]  text-text-primary py-2">
+          {t("Shift")} 2
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {workingDaysData.map((day, index) => (
+        <tr key={index} className="border-b border-border-light h-[38px]">
+          <td className="w-[62px] text-center font-lato font-regular text-[clamp(12px,2vw,14px)]  text-text-primary">
+            {t(day.day)}
+          </td>
+          <td className="w-[122px] text-center font-lato font-regular text-[clamp(12px,2vw,14px)]  text-text-primary">
+            {t(day.shift1)}
+          </td>
+          <td className="w-[128px] text-center font-lato font-regular text-[clamp(12px,2vw,14px)]  text-text-primary">
+            {t(day.shift2)}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+
+
+  </div>
+</div>
 
                       </div>
-                    
 
                     </CardContent>
                   )}

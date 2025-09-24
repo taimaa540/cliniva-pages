@@ -246,58 +246,56 @@ export const ServicesList = (): JSX.Element => {
                   </thead>
                   <tbody>
                     {serviceData.map((service) => (
-                      <Link to="/ViewServiceDetails" className="contents h-[78px]">
-                        <tr
-                          key={service.id}
-                          className="h-[78px] bg-background-primary hover:bg-gray-100 border-b border-border-light w-full"
-                        >
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.id}
-                          </td>
-                          <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.serviceId}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.serviceName}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.serviceCategory}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.sessionsNumber}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.assignedClinics}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.clinicslocation}
-                          </td>
-                          <td className="align-middle w-[160px]">
-                            <SwitchWithLabel />
-                          </td>
-                          <td className="align-middle">
-                            <div className="inline-flex flex-col justify-center gap-1 flex-[0_0_auto] items-start">
-                              <div className="inline-flex items-center justify-center gap-1 flex-[0_0_auto]">
-                                <Link to="/EditServiceDetials">
-                                  <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
-                                  >
-                                    <img
-                                      className={`w-[15px] h-[15px]text-on-surface-primary`}
-                                      alt="edit"
-                                      src="./edit-01.svg"
-                                    />
-                                  </Button>
-                                </Link>
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
-                                >
-                                  <Trash2Icon
-                                    className={`w-[20px] h-[20px]
+                      <tr
+                        key={service.id}
+                        className="h-[78px] bg-background-primary hover:bg-gray-100 border-b border-border-light w-full"
+                      >
+                        <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                          {service.id}
+                        </td>
+                        <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary">
+                          {service.serviceId}
+                        </td>
+                        <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                          {service.serviceName}
+                        </td>
+                        <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                          {service.serviceCategory}
+                        </td>
+                        <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                          {service.sessionsNumber}
+                        </td>
+                        <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                          {service.assignedClinics}
+                        </td>
+                        <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                          {service.clinicslocation}
+                        </td>
+                        <td className="align-middle w-[160px]">
+                          <SwitchWithLabel />
+                        </td>
+                        <td className="align-middle">
+                          <div className="inline-flex flex-col justify-center gap-1 flex-[0_0_auto] items-start">
+                            <div className="inline-flex items-center justify-center gap-1 flex-[0_0_auto]">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
+                              >
+                                <img
+                                  className={`w-[15px] h-[15px]text-on-surface-primary`}
+                                  alt="edit"
+                                  src="./edit-01.svg"
+                                />
+                              </Button>
+
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
+                              >
+                                <Trash2Icon
+                                  className={`w-[20px] h-[20px]
                                  "text-on-surface-primary"
                               `}
                                 />

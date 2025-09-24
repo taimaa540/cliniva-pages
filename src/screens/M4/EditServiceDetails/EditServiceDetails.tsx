@@ -375,12 +375,12 @@ const handleChange = <K extends keyof FormData>(field: K, value: FormData[K]) =>
                   <div className="flex flex-col gap-4 w-full">
                     {/* Services Name */}
                     <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 items-start min-h-[54px]">
-                      <div className="w-[180px] text-text-primary font-semibold text-[16px]">
+                      <div className="w-[180px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                         {t("Services Name")}
                       </div>
                       <input
                         type="text"
-                        className="w-[min(100%,360px)]  h-9 sm:h-10 md:h-12 border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[14px]"
+                        className="w-[min(100%,360px)]  h-9 sm:h-10 md:h-12 border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[clamp(12px,2vw,14px)] "
                         value={formData.serviceName}
                         onChange={(e) => handleChange("serviceName", e.target.value)}
                       />
@@ -388,11 +388,11 @@ const handleChange = <K extends keyof FormData>(field: K, value: FormData[K]) =>
 
                     {/* Service Category */}
                   <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 items-start min-h-[54px]">
-                      <div className="w-[180px] text-text-primary font-semibold text-[16px]">
+                      <div className="w-[180px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                         {t("Service Category")}
                       </div>
                       <select
-                        className="w-[min(100%,360px)]  h-9 sm:h-10 md:h-12 border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[14px]"
+                        className="w-[min(100%,360px)]  h-9 sm:h-10 md:h-12 border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[clamp(12px,2vw,14px)] "
                         value={formData.serviceCategory}
                         onChange={(e) => handleChange("serviceCategory", e.target.value)}
                       >
@@ -404,11 +404,11 @@ const handleChange = <K extends keyof FormData>(field: K, value: FormData[K]) =>
 
                     {/* Service Description */}
                     <div className="flex flex-col sm:flex-row gap-6 items-start">
-                      <div className="w-[180px] text-text-primary font-semibold text-[16px]">
+                      <div className="w-[180px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                         {t("Service Description")}
                       </div>
                       <textarea
-                        className="w-[min(100%,360px)]  h-[60px] sm:h-[72px] md:h-[82px] lg:h-[96px]  border bg-background-secondary border-bg-border-light rounded-[4px] px-3 py-2 text-[14px] resize-y"
+                        className="w-[min(100%,360px)]  h-[60px] sm:h-[72px] md:h-[82px] lg:h-[96px]  border bg-background-secondary border-bg-border-light rounded-[4px] px-3 py-2 text-[clamp(12px,2vw,14px)]  resize-y"
                         value={formData.serviceDescription}
                         onChange={(e) => handleChange("serviceDescription", e.target.value)}
                       />
@@ -420,11 +420,11 @@ const handleChange = <K extends keyof FormData>(field: K, value: FormData[K]) =>
                        <div className=" w-36  block lg:hidden text-primary-default mt-3 "> {t("Assign")}</div>
                     {/* Assign Complex */}
                   <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 items-start min-h-[54px]">
-                      <div className="w-[180px] text-text-primary font-semibold text-[16px]">
+                      <div className="w-[180px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                         {t("Assign Complex")}
                       </div>
                       <select
-                        className="w-[min(100%,360px)]  h-9 sm:h-10 md:h-12 border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[14px]"
+                        className="w-[min(100%,360px)]  h-9 sm:h-10 md:h-12 border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[clamp(12px,2vw,14px)] "
                         value={formData.assignComplex}
                         onChange={(e) => handleChange("assignComplex", e.target.value)}
                       >
@@ -435,11 +435,11 @@ const handleChange = <K extends keyof FormData>(field: K, value: FormData[K]) =>
 
                     {/* Assign Clinics */}
                   <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 items-start min-h-[54px]">
-                      <div className="w-[180px] text-text-primary font-semibold text-[16px]">
+                      <div className="w-[180px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                         {t("Assign Clinics")}
                       </div>
                       <select
-                        className="w-[min(100%,360px)]  h-9 sm:h-10 md:h-12 border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[14px]"
+                        className="w-[min(100%,360px)]  h-9 sm:h-10 md:h-12 border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[clamp(12px,2vw,14px)] "
                         value={formData.assignClinics}
                         onChange={(e) => handleChange("assignClinics", e.target.value)}
                       >
@@ -449,17 +449,17 @@ const handleChange = <K extends keyof FormData>(field: K, value: FormData[K]) =>
                       </select>
                     </div>
 
-                    <div className="w-[150px] text-primary-default font-semibold text-[16px]">
+                    <div className="w-[150px] text-primary-default font-semibold text-[clamp(14px,2vw,16px)] ">
                       {t("Resources")}
                     </div>
 
                     {/* Required Equipment */}
                     <div className="flex flex-col sm:flex-row gap-6 items-start">
-                      <div className="w-[180px] text-text-primary font-semibold text-[16px]">
+                      <div className="w-[180px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
                         {t("Required Equipment")}
                       </div>
                       <textarea
-                        className="w-[min(100%,360px)]  h-[60px] sm:h-[72px] md:h-[82px] lg:h-[96px]  border bg-background-secondary border-bg-border-light rounded-[4px] px-3 py-2 text-[14px] resize-y"
+                        className="w-[min(100%,360px)]  h-[60px] sm:h-[72px] md:h-[82px] lg:h-[96px]  border bg-background-secondary border-bg-border-light rounded-[4px] px-3 py-2 text-[clamp(12px,2vw,14px)]  resize-y"
                         value={formData.requiredEquipment}
                         onChange={(e) => handleChange("requiredEquipment", e.target.value)}
                       />
@@ -501,32 +501,32 @@ const handleChange = <K extends keyof FormData>(field: K, value: FormData[K]) =>
     <div className="flex flex-col gap-4 w-full lg:w-[500px]">
       {/* Total Patients Served */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Total Patients Served")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">327 Patients</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Total Patients Served")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">327 Patients</div>
       </div>
 
       {/* Completed Sessions */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Completed Sessions")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">945 Sessions</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Completed Sessions")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">945 Sessions</div>
       </div>
 
       {/* Average Duration */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Average Duration")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">25 mins</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Average Duration")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">25 mins</div>
       </div>
 
       {/* No-Show Rate */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("No-Show Rate (%)")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">8.6%</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("No-Show Rate (%)")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">8.6%</div>
       </div>
 
       {/* Rebooking Rate */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Rebooking Rate (%)")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">72.4%</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Rebooking Rate (%)")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">72.4%</div>
       </div>
     </div>
 
@@ -535,38 +535,38 @@ const handleChange = <K extends keyof FormData>(field: K, value: FormData[K]) =>
        <div className=" w-36  block lg:hidden text-primary-default mt-3"> {t("Operational Details")}</div>
       {/* Last Performed Date */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Last Performed Date")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">June 28-2025</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Last Performed Date")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">June 28-2025</div>
       </div>
 
       {/* Most Frequent Doctor */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Most Frequent Doctor")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">Dr. Sarah Fadel</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Most Frequent Doctor")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">Dr. Sarah Fadel</div>
       </div>
 
       {/* Most Frequent Clinic */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Most Frequent Clinic")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">Internal Medicine Clinic</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Most Frequent Clinic")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">Internal Medicine Clinic</div>
       </div>
 
       {/* Timestamps */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-primary-default font-semibold text-[16px]">{t("Timestamps")}</div>
+        <div className="text-primary-default font-semibold text-[clamp(14px,2vw,16px)] ">{t("Timestamps")}</div>
         <div></div>
       </div>
 
       {/* Creation Date */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Creation Date")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">June 28-2025</div>
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Creation Date")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">June 28-2025</div>
       </div>
 
       {/* Last Update */}
       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-        <div className="text-text-primary font-semibold text-[16px]">{t("Last Update")}</div>
-        <div className="text-text-primary font-semibold text-[14px] break-words">
+        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Last Update")}</div>
+        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
           June 28-2025&nbsp;&nbsp;10:43 AM
         </div>
       </div>
@@ -597,22 +597,22 @@ const handleChange = <K extends keyof FormData>(field: K, value: FormData[K]) =>
                 <TableHead className="w-[80px] text-center font-semibold text-text-primary">
                   {t("No.")}
                 </TableHead>
-                <TableHead className="text-center text-text-primary text-[16px] font-semibold">
+                <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                   {t("Session Name")}
                 </TableHead>
-                <TableHead className="text-center text-text-primary text-[16px] font-semibold">
+                <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                   {t("Duration")}
                 </TableHead>
-                <TableHead className="text-center text-text-primary text-[16px] font-semibold">
+                <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                   {t("Next Session")}
                 </TableHead>
-                <TableHead className="text-center text-text-primary text-[16px] font-semibold w-80">
+                <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold w-80">
                   {t("Description")}
                 </TableHead>
-                <TableHead className="text-center text-text-primary text-[16px] font-semibold">
+                <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                   {t("Active Appt")}
                 </TableHead>
-                <TableHead className="text-center text-text-primary text-[16px] font-semibold">
+                <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                   {t("Appt Required?")}
                 </TableHead>
                 <TableHead></TableHead>
@@ -626,56 +626,56 @@ const handleChange = <K extends keyof FormData>(field: K, value: FormData[K]) =>
                   className="border-b border-[#e4e2dd] h-[54px]"
                 >
                   {/* No. */}
-                  <TableCell className="text-center text-[14px] font-semibold">
+                  <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                     {session.no}
                   </TableCell>
 
                   {/* Editable Inputs */}
-                  <TableCell className="text-center text-[14px] font-semibold border-r border-[#e4e2dd]">
+                  <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold border-r border-[#e4e2dd]">
                     <input
                       type="text"
                       value={session.name}
                       onChange={(e) =>
                         handleSessionChange(index, "name", e.target.value)
                       }
-                      className="w-[259px] h-[34px] text-center border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[14px]"
+                      className="w-[259px] h-[34px] text-center border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[clamp(12px,2vw,14px)] "
                     />
                   </TableCell>
 
-                  <TableCell className="text-center text-[14px] font-semibold">
+                  <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                     <input
                       type="text"
                       value={session.duration}
                       onChange={(e) =>
                         handleSessionChange(index, "duration", e.target.value)
                       }
-                      className="w-[69px] h-[34px] text-center border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[14px]"
+                      className="w-[69px] h-[34px] text-center border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[clamp(12px,2vw,14px)] "
                     />
                   </TableCell>
 
-                  <TableCell className="text-center text-[14px] font-semibold">
+                  <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                     <input
                       type="text"
                       value={session.nextSession}
                       onChange={(e) =>
                         handleSessionChange(index, "nextSession", e.target.value)
                       }
-                      className="w-[83px] h-[34px] text-center border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[14px]"
+                      className="w-[83px] h-[34px] text-center border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[clamp(12px,2vw,14px)] "
                     />
                   </TableCell>
 
-                  <TableCell className="text-center text-[14px] font-semibold w-80">
+                  <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold w-80">
                     <input
                       type="text"
                       value={session.description}
                       onChange={(e) =>
                         handleSessionChange(index, "description", e.target.value)
                       }
-                      className="w-[402px] h-[34px] text-center border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[14px]"
+                      className="w-[402px] h-[34px] text-center border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[clamp(12px,2vw,14px)] "
                     />
                   </TableCell>
 
-                  <TableCell className="text-center text-[14px] font-semibold">
+                  <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                     {session.activeAppt}
                   </TableCell>
 
@@ -698,7 +698,7 @@ const handleChange = <K extends keyof FormData>(field: K, value: FormData[K]) =>
                   </TableCell>
 
                   {/* Icon (minus button) */}
-                  <TableCell className="text-center text-[14px] font-semibold">
+                  <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                     <div className="text-text-inverse">
                       <svg
                         width="18"
@@ -791,22 +791,22 @@ const handleChange = <K extends keyof FormData>(field: K, value: FormData[K]) =>
             {/* الهيدر ثابت */}
             <TableHeader className="sticky top-0 z-20 bg-surface-default">
               <TableRow>
-                <TableHead className="w-[98px] text-center text-text-primary text-[16px] font-semibold">
+                <TableHead className="w-[98px] text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                   {t("No.")}
                 </TableHead>
-                <TableHead className="w-56 text-center text-text-primary text-[16px] font-semibold">
+                <TableHead className="w-56 text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                   {t("User ID")}
                 </TableHead>
-                <TableHead className="text-center text-text-primary text-[16px] font-semibold">
+                <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                   {t("Doctor Name")}
                 </TableHead>
-                <TableHead className="text-center text-text-primary text-[16px] font-semibold">
+                <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                   {t("Specialties")}
                 </TableHead>
-                <TableHead className="text-center text-text-primary text-[16px] font-semibold">
+                <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                   {t("Active Appt")}
                 </TableHead>
-                <TableHead className="text-center text-text-primary text-[16px] font-semibold">
+                <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                   {t("Status")}
                 </TableHead>
               </TableRow>
@@ -818,19 +818,19 @@ const handleChange = <K extends keyof FormData>(field: K, value: FormData[K]) =>
                   key={person.number}
                   className="border-b h-[54px] border-[#e4e2dd]"
                 >
-                  <TableCell className="text-center text-[14px] font-semibold">
+                  <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                     {person.number}
                   </TableCell>
-                  <TableCell className="text-center text-[14px] font-semibold">
+                  <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                     {person.userId}
                   </TableCell>
-                  <TableCell className="text-center text-[14px] font-semibold">
+                  <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                     <select
                      value={person.selectedDoctor} 
                       onChange={(e) =>
                         handleDoctorNameChange(index, e.target.value)
                       }
-                      className="w-[131px] h-[34px] text-center border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[14px]"
+                      className="w-[131px] h-[34px] text-center border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[clamp(12px,2vw,14px)] "
                     >
                       {person.doctorsList?.map((doc) => (
                         <option key={doc} value={doc}>
@@ -839,10 +839,10 @@ const handleChange = <K extends keyof FormData>(field: K, value: FormData[K]) =>
                       ))}
                     </select>
                   </TableCell>
-                  <TableCell className="text-center text-[14px] font-semibold">
+                  <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                     {person.userType}
                   </TableCell>
-                  <TableCell className="text-center text-[14px] font-semibold">
+                  <TableCell className="text-center text-[clamp(12px,2vw,14px)]  font-semibold">
                     {person.ActiveAppt}
                   </TableCell>
                   <TableCell className="text-center items-center">

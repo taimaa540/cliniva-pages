@@ -140,10 +140,10 @@ export const ViewStaffDetails = (): JSX.Element => {
     </button>
 
     <div className="flex flex-col">
-      <h1 className="font-bold text-[14px] text-on-surface-primary">
+      <h1 className="font-bold text-[clamp(12px,2vw,14px)]  text-on-surface-primary">
          {t("Staff")}
       </h1>
-      <p className="text-[14px] text-on-surface-primary">
+      <p className="text-[clamp(12px,2vw,14px)]  text-on-surface-primary">
         {t("View Staff Member details")}
       </p>
     </div>
@@ -170,10 +170,10 @@ export const ViewStaffDetails = (): JSX.Element => {
     {/* Left Side */}
     <div className="flex items-center gap-4">
       <div className="flex flex-col">
-        <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
+        <h1 className="font-bold text-[clamp(14px,2vw,16px)]  md:text-lg lg:text-xl text-on-surface-primary">
                {t("Staff")}
         </h1>
-        <p className="text-[14px] md:text-base text-on-surface-primary">
+        <p className="text-[clamp(12px,2vw,14px)]  md:text-[clamp(14px,2vw,16px)]  text-on-surface-primary">
             {t("View Staff Member details")}
         </p>
       </div>
@@ -216,10 +216,10 @@ export const ViewStaffDetails = (): JSX.Element => {
       <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
         <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
         <div className="flex-col items-start gap-1 inline-flex">
-          <div className="text-base font-bold text-on-surface-primary">
+          <div className="text-[clamp(14px,2vw,16px)]  font-bold text-on-surface-primary">
             Anahera Jones
           </div>
-          <div className="text-[14px] text-on-surface-tertiary">
+          <div className="text-[clamp(12px,2vw,14px)]  text-on-surface-tertiary">
             {t("Admin")}
           </div>
         </div>
@@ -245,7 +245,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                       h-9 sm:h-10 md:h-11 lg:h-10
                       bg-secondary-dark text-text-inverse rounded-[20px]
                       font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)]
-                      text-[14px] sm:text-[14px] md:text-base lg:text-base
+                      text-[clamp(12px,2vw,14px)]  sm:text-[clamp(12px,2vw,14px)]  md:text-[clamp(14px,2vw,16px)]  lg:text-[clamp(14px,2vw,16px)] 
                       leading-[var(--btn-14px-medium-line-height)]
                       tracking-[var(--btn-14px-medium-letter-spacing)]
                       [font-style:var(--btn-14px-medium-font-style)]
@@ -288,7 +288,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                               US-001
                             </span>
                             <div className=" w-[4px] h-[4px] bg-border-light rounded-sm" />
-                            <span className="font-lato font-regular text-[14px] leading-[130%] tracking-[0] text-text-primary">
+                            <span className="font-lato font-regular text-[clamp(12px,2vw,14px)]  leading-[130%] tracking-[0] text-text-primary">
                               {t('Staff')}
                             </span>
                           </div>
@@ -311,11 +311,11 @@ export const ViewStaffDetails = (): JSX.Element => {
                             Ammar Al Sawwa
                           </h2>
                           <div className="flex items-center justify-center gap-[6px] mt-[6px]">
-                            <span className="font-lato font-regular text-[14px] leading-[130%] tracking-[0] text-text-secondary">
+                            <span className="font-lato font-regular text-[clamp(12px,2vw,14px)]  leading-[130%] tracking-[0] text-text-secondary">
                               US-001
                             </span>
                             <div className=" w-[4px] h-[4px] bg-border-light rounded-sm" />
-                            <span className="font-lato font-regular text-[14px] leading-[130%] tracking-[0] text-text-primary">
+                            <span className="font-lato font-regular text-[clamp(12px,2vw,14px)]  leading-[130%] tracking-[0] text-text-primary">
                               {t('Staff')}
                             </span>
                           </div>
@@ -325,7 +325,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                       <Separator className=" w-full h-px " />
 
                       <section className="flex flex-col gap-[16px] pt-[24px] pb-[42px] px-[12px] h-[282]">
-                        <h3 className="font-lato font-semibold text-[14px] leading-[125%] tracking-[0] text-secondary-dark">
+                        <h3 className="font-lato font-semibold text-[clamp(14px,2vw,16px)]  leading-[125%] tracking-[0] text-secondary-dark">
                           {t("Profile & Identity Info")}
                         </h3>
                         <div className="inline-flex flex-col items-start gap-4 px-[4px]">
@@ -334,10 +334,10 @@ export const ViewStaffDetails = (): JSX.Element => {
                               key={index}
                               className="grid grid-cols-[110px_1fr] gap-4"
                             >
-                              <span className="font-lato font-semibold text-[14px] leading-[125%] tracking-[0] text-text-primary">
+                              <span className="font-lato font-semibold text-[clamp(14px,2vw,16px)]  leading-[125%] tracking-[0] text-text-primary">
                                 {t(`${item.label}`)}
                               </span>
-                              <span className="font-lato font-regular text-[14px] leading-[125%] tracking-[0] text-text-primary">
+                              <span className="font-lato font-regular text-[clamp(12px,2vw,14px)]  leading-[125%] tracking-[0] text-text-primary">
                                 {t(`${item.value}`)}
                               </span>
                             </div>
@@ -348,7 +348,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                       <Separator className=" w-full h-px" />
 
                       <section className="flex flex-col gap-[16px] py-[24px] px-[12px]">
-                        <h3 className="font-lato font-semibold text-[14px] leading-[125%] tracking-[0] text-secondary-dark">
+                        <h3 className="font-lato font-semibold text-[clamp(14px,2vw,16px)]  leading-[125%] tracking-[0] text-secondary-dark">
                           {t("Contact Info")}
                         </h3>
                         <div className="relative grid grid-cols-[36px_1fr] gap-x-[12px] gap-y-[16px] items-center px-[4px]">
@@ -367,7 +367,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                               fill="currentColor"
                             />
                           </svg>
-                          <span className="font-lato font-semibold text-[14px] leading-[130%] tracking-[0] text-text-primary">
+                          <span className="font-lato font-semibold text-[clamp(12px,2vw,14px)]  leading-[130%] tracking-[0] text-text-primary">
                             +966 50 123 4567
                           </span>
                           <svg
@@ -403,7 +403,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                               fill="currentColor"
                             />
                           </svg>
-                          <span className="font-lato font-semibold text-[14px] leading-[130%] tracking-[0] text-text-primary">
+                          <span className="font-lato font-semibold text-[clamp(12px,2vw,14px)]  leading-[130%] tracking-[0] text-text-primary">
                             ammarsvu91@gmail.com
                           </span>
                           <svg
@@ -463,7 +463,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                               stroke-linejoin="round"
                             />
                           </svg>
-                          <span className="font-lato font-semibold text-[14px] leading-[130%] tracking-[0] text-text-primary">
+                          <span className="font-lato font-semibold text-[clamp(12px,2vw,14px)]  leading-[130%] tracking-[0] text-text-primary">
                             2154 Abdulaziz Street, Al Olaya District, Riyadh,
                             Saudi Arabia
                           </span>
@@ -472,7 +472,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                       <Separator className=" w-full h-px" />
 
                       <section className="flex flex-col gap-[16px] py-[24px] px-[12px]">
-                        <h3 className="font-lato font-semibold text-[14px] leading-[125%] tracking-[0] text-secondary-dark">
+                        <h3 className="font-lato font-semibold text-[clamp(14px,2vw,16px)]  leading-[125%] tracking-[0] text-secondary-dark">
                           {t("Emergency Contact Info")}
                         </h3>
                         <div className="relative grid grid-cols-[36px_1fr] gap-x-[12px] gap-y-[16px] items-center px-[4px]">
@@ -508,7 +508,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                             </defs>
                           </svg>
 
-                          <span className="font-lato font-semibold text-[14px] leading-[130%] tracking-[0] text-text-primary">
+                          <span className="font-lato font-semibold text-[clamp(12px,2vw,14px)]  leading-[130%] tracking-[0] text-text-primary">
                             Mohammed Zaki, Father +963933348151
                           </span>
                         </div>
@@ -535,7 +535,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                     className="flex justify-between items-center cursor-pointer"
                     onClick={() => isMobile && setIsOpen5(!isOpen5)}
                   >
-                    <h2 className="font-lato font-bold text-base leading-[124%] tracking-[0] text-primary-default">
+                    <h2 className="font-lato font-bold text-[clamp(14px,2vw,16px)]  leading-[124%] tracking-[0] text-primary-default">
                       {t("Profile & Identity Info")}
                     </h2>
                     {isMobile && (
@@ -566,10 +566,10 @@ export const ViewStaffDetails = (): JSX.Element => {
                     <div className="inline-flex flex-col items-start gap-4 px-[4px]">
                       {personalInfoData.map((item, index) => (
                         <div key={index} className="grid grid-cols-[110px_1fr] gap-4">
-                          <span className="font-lato font-semibold text-[14px] leading-[125%] tracking-[0] text-text-primary">
+                          <span className="font-lato font-semibold text-[clamp(14px,2vw,16px)]  leading-[125%] tracking-[0] text-text-primary">
                             {t(`${item.label}`)}
                           </span>
-                          <span className="font-lato font-regular text-[14px] leading-[125%] tracking-[0] text-text-primary">
+                          <span className="font-lato font-regular text-[clamp(12px,2vw,14px)]  leading-[125%] tracking-[0] text-text-primary">
                             {t(`${item.value}`)}
                           </span>
                         </div>
@@ -592,7 +592,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                     className="flex justify-between items-center cursor-pointer"
                     onClick={() => isMobile && setIsOpe7(!isOpen7)}
                   >
-                    <h2 className="font-lato font-bold text-base leading-[124%] tracking-[0] text-primary-default">
+                    <h2 className="font-lato font-bold text-[clamp(14px,2vw,16px)]  leading-[124%] tracking-[0] text-primary-default">
                       {t("Contact Info")}
                     </h2>
                     {isMobile && <span className="text-xl">{isOpen7 ? <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -619,7 +619,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                           fill="currentColor"
                         />
                       </svg>
-                      <span className="font-lato font-semibold text-[14px] leading-[130%] tracking-[0] text-text-primary">
+                      <span className="font-lato font-semibold text-[clamp(12px,2vw,14px)]  leading-[130%] tracking-[0] text-text-primary">
                         +966 50 123 4567
                       </span>
                       <svg
@@ -655,7 +655,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                           fill="currentColor"
                         />
                       </svg>
-                      <span className="font-lato font-semibold text-[14px] leading-[130%] tracking-[0] text-text-primary">
+                      <span className="font-lato font-semibold text-[clamp(12px,2vw,14px)]  leading-[130%] tracking-[0] text-text-primary">
                         ammarsvu91@gmail.com
                       </span>
                       <svg
@@ -715,7 +715,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                           stroke-linejoin="round"
                         />
                       </svg>
-                      <span className="font-lato font-semibold text-[14px] leading-[130%] tracking-[0] text-text-primary">
+                      <span className="font-lato font-semibold text-[clamp(12px,2vw,14px)]  leading-[130%] tracking-[0] text-text-primary">
                         2154 Abdulaziz Street, Al Olaya District, Riyadh,
                         Saudi Arabia
                       </span>
@@ -740,7 +740,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                     className="flex justify-between items-center cursor-pointer"
                     onClick={() => isMobile && setIsOpen6(!isOpen6)}
                   >
-                    <h2 className="font-lato font-bold text-base leading-[124%] tracking-[0] text-primary-default">
+                    <h2 className="font-lato font-bold text-[clamp(14px,2vw,16px)]  leading-[124%] tracking-[0] text-primary-default">
                       {t("Emergency Contact Info")}
                     </h2>
                     {isMobile && <span className="text-xl">{isOpen6 ? <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -784,7 +784,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                         </defs>
                       </svg>
 
-                      <span className="font-lato font-semibold text-[14px] leading-[130%] tracking-[0] text-text-primary">
+                      <span className="font-lato font-semibold text-[clamp(12px,2vw,14px)]  leading-[130%] tracking-[0] text-text-primary">
                         Mohammed Zaki, Father +963933348151
                       </span>
                     </div>
@@ -808,7 +808,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                     className="flex justify-between items-center cursor-pointer"
                     onClick={() => isMobile && setIsOpen2(!isOpen2)}
                   >
-                    <h2 className="font-lato font-bold text-base leading-[124%] tracking-[0] text-primary-default">
+                    <h2 className="font-lato font-bold text-[clamp(14px,2vw,16px)]  leading-[124%] tracking-[0] text-primary-default">
                       {t("Account Information")}
                     </h2>
                     {isMobile && <span className="text-xl">{isOpen2 ? <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -888,7 +888,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                     className="flex justify-between items-center cursor-pointer"
                     onClick={() => isMobile && setIsOpen3(!isOpen3)}
                   >
-                    <h2 className="font-lato font-bold text-base leading-[124%] tracking-[0] text-primary-default">
+                    <h2 className="font-lato font-bold text-[clamp(14px,2vw,16px)]  leading-[124%] tracking-[0] text-primary-default">
                       {t("Employment information")}
                     </h2>
                     {isMobile && <span className="text-xl">{isOpen3 ? <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -905,25 +905,25 @@ export const ViewStaffDetails = (): JSX.Element => {
                       <div className="mt-[16px] flex flex-col gap-[24px]">
              <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 w-full">
 
-  <h2 className="w-[108px] font-lato font-semibold text-[14px] leading-[125%] text-secondary-dark">
+  <h2 className="w-[108px] font-lato font-semibold text-[clamp(12px,2vw,14px)]  leading-[125%] text-secondary-dark">
     {t('Job Details')}
   </h2>
 
   <div className="flex flex-col lg:flex-row gap-y-6 lg:gap-[404px]  ">
     <div className="flex gap-4">
-      <span className="w-[108px] font-lato font-bold text-[14px] leading-[125%] text-text-primary">
+      <span className="w-[108px] font-lato font-bold text-[clamp(12px,2vw,14px)]  leading-[125%] text-text-primary">
         {t("Job Title")}
       </span>
-      <span className="font-lato font-regular text-[14px] leading-[125%] text-text-primary">
+      <span className="font-lato font-regular text-[clamp(12px,2vw,14px)]  leading-[125%] text-text-primary">
         {t("Manager")}
       </span>
     </div>
 
     <div className="flex gap-4">
-      <span className="w-[108px] font-lato font-bold text-[14px] leading-[125%] text-text-primary">
+      <span className="w-[108px] font-lato font-bold text-[clamp(12px,2vw,14px)]  leading-[125%] text-text-primary">
         {t("Date of Hire")}
       </span>
-      <span className="font-lato w-24 font-regular text-[14px] leading-[125%] text-text-primary">
+      <span className="font-lato w-24 font-regular text-[clamp(12px,2vw,14px)]  leading-[125%] text-text-primary">
         {t('April')} 27, 2025
       </span>
     </div>
@@ -932,7 +932,7 @@ export const ViewStaffDetails = (): JSX.Element => {
 
 
                     <div className="flex flex-col lg:flex-row items-start gap-4 w-full">
-  <span className="w-[108px] font-lato font-semibold text-[14px] leading-[125%] tracking-[0] text-secondary-dark">
+  <span className="w-[108px] font-lato font-semibold text-[clamp(12px,2vw,14px)]  leading-[125%] tracking-[0] text-secondary-dark">
     {t("Working Days")}
   </span>
 
@@ -941,13 +941,13 @@ export const ViewStaffDetails = (): JSX.Element => {
   <table className="w-full border-collapse">
     <thead className="bg-gray-50">
       <tr>
-        <th className="w-[62px] text-center font-lato font-semibold text-[14px] text-text-primary py-2">
+        <th className="w-[62px] text-center font-lato font-semibold text-[clamp(12px,2vw,14px)]  text-text-primary py-2">
           {t("Days")}
         </th>
-        <th className="w-[106px] text-center font-lato font-semibold text-[14px] text-text-primary py-2">
+        <th className="w-[106px] text-center font-lato font-semibold text-[clamp(12px,2vw,14px)]  text-text-primary py-2">
           {t("Shift")} 1
         </th>
-        <th className="w-[126px] text-center font-lato font-semibold text-[14px] text-text-primary py-2">
+        <th className="w-[126px] text-center font-lato font-semibold text-[clamp(12px,2vw,14px)]  text-text-primary py-2">
           {t("Shift")} 2
         </th>
       </tr>
@@ -955,13 +955,13 @@ export const ViewStaffDetails = (): JSX.Element => {
     <tbody>
       {workingDaysData.map((day, index) => (
         <tr key={index} className="border-b border-border-light h-[38px]">
-          <td className="w-[62px] text-center font-lato font-regular text-[14px] text-text-primary">
+          <td className="w-[62px] text-center font-lato font-regular text-[clamp(12px,2vw,14px)]  text-text-primary">
             {t(day.day)}
           </td>
-          <td className="w-[122px] text-center font-lato font-regular text-[14px] text-text-primary">
+          <td className="w-[122px] text-center font-lato font-regular text-[clamp(12px,2vw,14px)]  text-text-primary">
             {t(day.shift1)}
           </td>
-          <td className="w-[128px] text-center font-lato font-regular text-[14px] text-text-primary">
+          <td className="w-[128px] text-center font-lato font-regular text-[clamp(12px,2vw,14px)]  text-text-primary">
             {t(day.shift2)}
           </td>
         </tr>
@@ -1006,7 +1006,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                     className="flex justify-between items-center cursor-pointer"
                     onClick={() => isMobile && setIsOpen4(!isOpen4)}
                   >
-                    <h2 className="font-lato font-bold text-base leading-[124%] tracking-[0] text-primary-default">
+                    <h2 className="font-lato font-bold text-[clamp(14px,2vw,16px)]  leading-[124%] tracking-[0] text-primary-default">
                       {t("Documents")}
                     </h2>
                     {isMobile && <span className="text-xl">{isOpen4 ? <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1044,18 +1044,18 @@ export const ViewStaffDetails = (): JSX.Element => {
                               </CardContent>
 
                               <div className="flex flex-col items-start gap-1.5 relative flex-1 grow">
-                                <h4 className="font-lato font-semibold text-[14px] leading-[130%] tracking-[0] text-text-primary">
+                                <h4 className="font-lato font-semibold text-[clamp(12px,2vw,14px)]  leading-[130%] tracking-[0] text-text-primary">
                                   {t(`${doc.title}`)}
                                 </h4>
 
                                 <div className="inline-flex items-center gap-4">
-                                  <span className="font-lato font-regular text-[14px] leading-[124%] tracking-[0] text-text-secondary">
-                                    <span className="font-lato font-bold text-[14px] leading-[124%] tracking-[0] text-text-secondary">
+                                  <span className="font-lato font-regular text-[clamp(12px,2vw,14px)]  leading-[124%] tracking-[0] text-text-secondary">
+                                    <span className="font-lato font-bold text-[clamp(12px,2vw,14px)]  leading-[124%] tracking-[0] text-text-secondary">
                                       {doc.date}
                                     </span>
                                   </span>
                                   <div className="w-[4px] h-[4px] bg-border-light rounded-sm" />
-                                  <span className="font-lato font-regular text-[14px] leading-[124%] tracking-[0] text-text-secondary">
+                                  <span className="font-lato font-regular text-[clamp(12px,2vw,14px)]  leading-[124%] tracking-[0] text-text-secondary">
                                     {doc.size}
                                   </span>
                                 </div>

@@ -472,7 +472,7 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
         {/* Patients Capacity */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <label className=" text-[clamp(14px,1.1vw,16px)] font-semibold text-text-primary  sm:text-base">
-              {t("Patients Capacity ")}
+              {t("Patients Capacity")}
           </label>
           <Input
             defaultValue="250"
@@ -509,7 +509,7 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
      {/* Department Name + Select */}
 <div className="flex flex-col sm:flex-row sm:items-center gap-y-2 sm:gap-x-4 w-full sm:w-[520px]">
   {/* Label */}
-  <label className="w-full sm:w-[160px] text-text-primary font-semibold text-[clamp(12px,1.1vw,16px)]">
+  <label className="w-full sm:w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
     {t("Department Name")}:
   </label>
 
@@ -518,7 +518,7 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
     <SelectTrigger
       className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12 
         border border-border-light bg-background-secondary 
-        text-text-primary font-sans  text-[clamp(12px,1.1vw,16px)] "
+        text-text-primary font-sans  text-[clamp(12px,1.1vw,14px)] "
     >
       <SelectValue defaultValue="razi" />
     </SelectTrigger>
@@ -532,10 +532,10 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
 
         {/* Description */}
         <div className="flex flex-col">
-          <span className="text-[clamp(12px,1.1vw,16px)] text-text-primary font-semibold mb-2">
+          <span className="text-[clamp(14px,1.1vw,16px)] text-text-primary font-semibold mb-2">
             {t("Description")}
           </span>
-          <p className="whitespace-normal break-words text-text-primary font-semibold text-[14px]">
+          <p className="whitespace-normal break-words text-text-primary font-semibold text-[clamp(12px,2vw,14px)]">
             Al Noor Clinic is a multi-specialty clinic offering high-quality care with modern facilities.
           </p>
         </div>
@@ -730,19 +730,19 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
        <Table className="min-w-[700px]">
   <TableHeader>
     <TableRow>
-      <TableHead className="w-[5%] text-center text-text-primary font-semibold text-[10px] sm:text-xs md:text-sm">
+      <TableHead className="w-[5%] text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
         {t("NO")}
       </TableHead>
-      <TableHead className="w-[10%] text-center text-text-primary font-semibold text-[10px] sm:text-xs md:text-sm">
+      <TableHead className="w-[15%] text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
         {t("User-ID")}
       </TableHead>
-      <TableHead className="w-[25%] text-center text-text-primary font-semibold text-[10px] sm:text-xs md:text-sm">
+      <TableHead className="w-[25%] text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
         {t("Name")}
       </TableHead>
-      <TableHead className="w-[15%] text-center text-text-primary font-semibold text-[10px] sm:text-xs md:text-sm">
+      <TableHead className="w-[15%] text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
         {t("User Type")}
       </TableHead>
-      <TableHead className="w-[15%] text-center text-text-primary font-semibold text-[10px] sm:text-xs md:text-sm">
+      <TableHead className="w-[15%] text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
         {t("Status")}
       </TableHead>
     </TableRow>
@@ -754,13 +754,13 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
         key={person.number}
         className="border-b border-[#e4e2dd]"
       >
-        <TableCell className="text-center w-[5%] font-medium text-[10px] sm:text-xs md:text-sm">
+        <TableCell className="text-center w-[5%] font-medium text-[clamp(12px,2vw,14px)]">
           {person.number}
         </TableCell>
-        <TableCell className="text-center w-[10%] font-medium text-[10px] sm:text-xs md:text-sm">
+        <TableCell className="text-center w-[10%] font-medium text-[clamp(12px,2vw,14px)]">
           {person.userId}
         </TableCell>
-        <TableCell className="text-center w-[25%] font-medium text-[10px] sm:text-xs md:text-sm">
+        <TableCell className="text-center w-[25%] font-medium text-[clamp(12px,2vw,14px)]">
           <div className="flex items-center gap-2 justify-center">
             <Avatar
               src={person.avatar??undefined}
@@ -776,11 +776,11 @@ const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
             <span>{person.name}</span>
           </div>
         </TableCell>
-        <TableCell className="text-center w-[15%] font-medium text-[10px] sm:text-xs md:text-sm">
+        <TableCell className="text-center w-[15%] font-medium text-[clamp(12px,2vw,14px)]">
           {person.userType}
         </TableCell>
 <TableCell className="w-[15%] text-center">
-  <Badge variant="destructive" className="bg-secondary-light text-secondary-dark rounded-[20px]  w-[90px] h-[20px] sm:h-[24px] flex items-center justify-center mx-auto text-[10px] sm:text-xs">
+  <Badge variant="destructive" className="bg-secondary-light text-secondary-dark rounded-[20px]  w-[90px] h-[20px] sm:h-[24px] flex items-center justify-center mx-auto text-[clamp(14px,2vw,16px)] sm:text-xs">
     {t("Active")}
   </Badge>
 </TableCell>
