@@ -1,179 +1,328 @@
-'use client'; // ← مهم جداً لتجنب مشاكل process و hooks على client
+'use client';
 
-import Link from '@mui/material/Link';
+
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../Hook/useAuth';
-import { useLanguage } from "../../lib/LanguageContext";
+
+import { Mail, Lock } from 'lucide-react';
 import { Button } from '../../components/ui/button'; 
-import { Card, CardContent } from '../../components/ui/card';
-import { ThemeToggle } from '../../components/theme/ThemeSwitcher';
-import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import { useLanguage } from '../../lib/LanguageContext'; 
+import { ThemeToggle } from "../../components/theme/ThemeSwitcher";
+import { useTranslation } from 'react-i18next';
+import Checkbox from '@mui/material/Checkbox';
+import IconButton from '@mui/material/IconButton';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import TranslateIcon from "@mui/icons-material/Translate";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { Link } from 'react-router-dom';
+// لو عامل كومبوننت لتبديل اللغة
+import LanguageSwitcher from '../CommonComponents/LanguageSwitcher';
 
-interface User {
-  id: string;
-  role: string;
-}
+// لو عندك كومبوننت Alert (shadcn/ui)
 
-export default function Home(): JSX.Element {
-  const { local, handleLanguageClick } = useLanguage();
+export default function LoginPage() {
   const { t, i18n } = useTranslation();
+  const locale = i18n.language; // ✅ تعريف locale بشكل صحيح
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
-  useEffect(() => {
-    if (local) {
-      i18n.changeLanguage(local);
-    }
-  }, [local]);
+  // تغيير اللغة
+  const changeLang = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
+  const { local, handleLanguageClick } = useLanguage();
+  // states
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [rememberMe, setRememberMe] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [darkMode, setDarkMode] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const { user, isLoading, redirectBasedOnRole } = useAuth() as {
-    user: User | null;
-    isLoading: boolean;
-    redirectBasedOnRole: (user: User) => void;
+  // password handlers
+  const handleClickShowPassword = () => setShowPassword((prev) => !prev);
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
+  const handleMouseUpPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
   };
 
-  useEffect(() => {
-    if (!isLoading && user) {
-      redirectBasedOnRole(user);
-    }
-  }, [user, isLoading, redirectBasedOnRole]);
+  // submit handler
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setIsLoading(true);
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
-      </div>
-    );
-  }
+    try {
+      const result = await login(email, password);
+      if (result?.ok) {
+        window.location.href = '/dashboard';
+      } else {
+        setError(t('errors.invalidCredentials'));
+      }
+    } catch (err: any) {
+      setError(err.message || t('errors.networkError'));
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // toggle dark/light
+  const toggleDarkMode = () => {
+    setDarkMode((prev) => !prev);
+    document.documentElement.classList.toggle('dark');
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-background to-blue-50 dark:from-background dark:via-background dark:to-background">
-      {/* Header */}
-      <div className="bg-background shadow-sm border-b border-border">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <svg width="48" height="48" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M96 48V54.8232C74.6098 57.6732 57.6732 74.6098 54.8232 96H48V48H96ZM48 0V48H0V41.5996H3.2002C24.4078 41.5995 41.5995 24.4078 41.5996 3.2002V0H48Z"
-                      fill="#69a3e9"/>
-              </svg>
-              <h1 className="text-3xl font-bold text-[#69a3e9]">{t('home.title')}</h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              <div className="relative">
+    <div
+      className={`min-h-screen flex transition-all duration-300 ${
+        darkMode ? 'bg-[#0f172a]' : 'bg-[white]'
+      }`}
+    >
+      {/* Theme Switcher + Language Switcher */}
+      <div
+        dir="ltr"
+        className={`absolute z-10 flex gap-2 items-center ${
+          locale === 'ar' ? 'top-4 left-4' : 'top-4 right-4'
+        }`}
+      >
+            <div className="relative">
                 <Button
                   variant="ghost"
                   size="icon"
-                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"} rounded-[20px] h-auto transition-all duration-[1000ms]`}
+                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
+                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
                   onClick={handleLanguageClick}
                 >
                   <TranslateIcon className="w-5 h-5" />
                 </Button>
               </div>
-              <ThemeToggle />
-              <Link
-                href="/choosePlan"
-                className="text-[#69a3e9] hover:text-blue-600 font-medium transition-colors"
-              >
-                {t('common.signIn')}
-              </Link>
-            </div>
+        <ThemeToggle />
+      </div>
+
+      {/* Left Side */}
+      <div
+        className={`w-[720px] transition-all duration-300 ${
+          darkMode ? 'bg-[#263245]' : 'bg-[#69a3e9]'
+        } relative flex justify-center overflow-hidden ${
+          locale === 'ar' ? 'rounded-l-[48px]' : 'rounded-r-[48px]'
+        }`}
+      >
+        {/* شعار وبراند */}
+        <div className="mt-[150px] flex flex-col items-center gap-16 w-[524px] z-10">
+          <div className="text-center">
+            <h1 className="text-[#faf6f5] text-[48px] font-semibold leading-none tracking-tight">
+              Cliniva SYS
+            </h1>
+            <p className="text-[#faf6f5] text-[20px] mt-4 opacity-90">
+              {t('home.heroTitle')}
+            </p>
+            <p className="text-[#faf6f5] text-[20px] opacity-90">
+              {t('home.heroSubtitle')}
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Hero Section */}
-      <div className="container mx-auto px-4 py-20">
-        <div className="text-center mb-20">
-          <h2 className="text-6xl font-bold text-[#69a3e9] mb-6 leading-tight">
-            {t('home.heroTitle')}
-            <br />
-            <span className="text-foreground">{t('home.heroSubtitle')}</span>
-          </h2>
-          <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-            {t('home.heroDescription')}
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Button
-              asChild
-              size="lg"
-              className="bg-[#69a3e9] hover:bg-[#4a8ce0] text-white font-semibold px-10 py-6 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+      {/* Right Side - Form */}
+      <div className="w-1/2 flex items-center justify-center">
+        <div className="w-full max-w-md">
+          <div className="mb-8">
+            <h2
+              style={{ fontSize: locale === 'ar' ? '34px' : '36px' }}
+              className={`${
+                darkMode ? 'text-[white]' : 'text-[#69a3e9]'
+              } font-semibold text-center mb-2`}
             >
-              <Link href="/onboarding">{t('home.startOrganization')}</Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="bg-white hover:bg-gray-50 text-[#69a3e9] border-2 border-[#69a3e9] font-semibold px-10 py-6 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-            >
-              <Link href="/auth/register">{t('home.registerPatient')}</Link>
-            </Button>
+              {t('auth.loginTitle')}
+            </h2>
           </div>
 
-          {/* Features Section */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <Card className="hover:shadow-xl transition-shadow duration-300 text-center">
-              <CardContent className="pt-8">
-                <div className="w-16 h-16 bg-[#69a3e9]/10 rounded-xl flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-8 h-8 text-[#69a3e9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-foreground mb-4">{t('home.singleClinics')}</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {t('home.singleClinicsDesc')}
-                </p>
-              </CardContent>
-            </Card>
+          {/* Login Form */}
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            {/* Email */}
+            <div className="space-y-2">
+              <label
+                htmlFor="email"
+                className={`${
+                  darkMode ? 'text-[white]' : 'text-[#69A3E9]'
+                } block text-sm font-medium`}
+              >
+                {t('auth.userName')}
+              </label>
+              <div className="relative">
+                <Mail
+                  style={{ color: '#69A3E9' }}
+                  className={`absolute ${
+                    locale === 'ar' ? 'right-3' : 'left-3'
+                  } top-1/2 h-4 w-4 -translate-y-1/2`}
+                />
+                <OutlinedInput
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  className={`w-full border border-gray-200 ${
+                    locale === 'ar' ? 'pr-9' : 'pl-9'
+                  } h-11 focus-visible:ring-[#69a3e9] focus-visible:border-[#69a3e9]`}
+                  placeholder={t('auth.enterUser')}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  sx={{
+                    '& input': {
+                      color: darkMode ? 'white' : 'black',
+                      caretColor: darkMode ? 'white' : 'black',
+                    },
+                    '& input::placeholder': {
+                      color: '#69A3E9',
+                      opacity: 1,
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: 'none',
+                    },
+                  }}
+                />
+              </div>
+            </div>
 
-            <Card className="hover:shadow-xl transition-shadow duration-300 text-center">
-              <CardContent className="pt-8">
-                <div className="w-16 h-16 bg-[#69a3e9]/10 rounded-xl flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-8 h-8 text-[#69a3e9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-foreground mb-4">{t('home.medicalComplexes')}</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {t('home.medicalComplexesDesc')}
-                </p>
-              </CardContent>
-            </Card>
+            {/* Password */}
+            <div className="space-y-2">
+              <label
+                htmlFor="password"
+                className={`${
+                  darkMode ? 'text-[white]' : 'text-[#69A3E9]'
+                } block text-sm font-medium`}
+              >
+                {t('auth.password')}
+              </label>
+              <div className="relative">
+                <Lock
+                  style={{ color: '#69A3E9' }}
+                  className={`absolute ${
+                    locale === 'ar' ? 'right-3' : 'left-3'
+                  } top-1/2 h-4 w-4 -translate-y-1/2`}
+                />
+                <OutlinedInput
+                  id="password"
+                  name="password"
+                  type={showPassword ? 'text' : 'password'}
+                  autoComplete="current-password"
+                  required
+                  placeholder={t('auth.enterPassword')}
+                  className={`w-full border border-gray-200 ${
+                    locale === 'ar' ? 'pr-9' : 'pl-9'
+                  } h-11 focus-visible:ring-[#69a3e9] focus-visible:border-[#69a3e9]`}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  sx={{
+                    '& input': {
+                      color: darkMode ? 'white' : 'black',
+                      caretColor: darkMode ? 'white' : 'black',
+                    },
+                    '& input::placeholder': {
+                      color: '#69A3E9',
+                      opacity: 1,
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: 'none',
+                    },
+                  }}
+                />
+                <IconButton
+                  style={{
+                    color: darkMode ? 'white' : 'gray',
+                    position: 'absolute',
+                    right: locale === 'ar' ? 'unset' : '10px',
+                    left: locale === 'ar' ? '10px' : 'unset',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                  }}
+                  aria-label={
+                    showPassword ? 'hide the password' : 'display the password'
+                  }
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  onMouseUp={handleMouseUpPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </div>
+            </div>
 
-            <Card className="hover:shadow-xl transition-shadow duration-300 text-center">
-              <CardContent className="pt-8">
-                <div className="w-16 h-16 bg-[#69a3e9]/10 rounded-xl flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-8 h-8 text-[#69a3e9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-foreground mb-4">{t('home.healthcareCompanies')}</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {t('home.healthcareCompaniesDesc')}
-                </p>
-              </CardContent>
-            </Card>
+            {/* Remember Me */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <Checkbox
+                  style={{ color: '#00800080' }}
+                  id="rememberMe"
+                  name="rememberMe"
+                  color="success"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                />
+                <label
+                  htmlFor="rememberMe"
+                  className={`ml-2 mr-2 block text-sm ${
+                    darkMode ? 'text-[white]' : 'text-[#69A3E9]'
+                  }`}
+                >
+                  {t('auth.rememberMe')}
+                </label>
+              </div>
+            </div>
+
+            {/* Submit */}
+            <Button
+              type="submit"
+              disabled={isLoading}
+              className="w-full h-11 bg-[#00B48D] hover:bg-[#4a8ce0] text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer"
+              size="lg"
+            >
+              {isLoading ? (
+                <>
+                  <div className="animate-spin -ml-1 mr-3 h-4 w-4 border-2 border-white border-t-transparent rounded-full"></div>
+                  {t('common.loading')}
+                </>
+              ) : (
+                t('auth.signIn')
+              )}
+            </Button>
+          </form>
+
+          {/* Onboarding Link */}
+          <div className="mt-5">
+            <Link to="/chooseplan">
+            <button className="block mx-auto rounded-[14px] p-[10px] hover:bg-[#8db8ec40] transition-all duration-400">
+
+              <div
+      
+                className="flex items-center text-[26px] text-[#69A3E9]"
+              >
+                <svg
+                  className={`${locale === 'ar' ? 'ml-[20px]' : 'mr-[20px]'}`}
+                  width="40"
+                  height="40"
+                  viewBox="0 0 60 60"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M60 30V34.2646C46.6311 36.0459 36.0459 46.6311 34.2646 60H30V30H60ZM30 0V30H0V26H2C15.2548 26 26 15.2548 26 2V0H30Z"
+                    fill="#69A3E9"
+                  />
+                </svg>
+                {t('home.startOrganization')}
+              </div>
+            </button></Link>
           </div>
-        </div>
-
-        {/* Footer CTA */}
-        <div className="text-center py-16 bg-[#69a3e9]/5 rounded-2xl">
-          <h3 className="text-3xl font-bold text-foreground mb-4">
-            {t('home.readyToTransform')}
-          </h3>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            {t('home.joinThousands')}
-          </p>
-          <Button
-            asChild
-            size="lg"
-            className="bg-[#69a3e9] hover:bg-[#4a8ce0] text-white font-semibold px-10 py-6 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-          >
-            <Link href="/onboarding">{t('home.getStartedToday')}</Link>
-          </Button>
         </div>
       </div>
     </div>
-  ); 
+  );
 }

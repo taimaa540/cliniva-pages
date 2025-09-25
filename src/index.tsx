@@ -10,7 +10,7 @@ import { ChoosePlan } from "./screens/M2/choosePlan";
 import { CompanyPlan } from "./screens/M2/CompanyPlan";
 import { BrowserRouter } from "react-router-dom";
 import { ComplexList } from "./screens/M2/ComplexList";
-import { SideBarPlan1 } from "./screens/CommonComponents/SideBarPlan1";
+
 import { ClinicList } from "./screens/M2/ClinicList";
 import PhoneNumberInput from "./screens/CommonComponents/test";
 import { AddNewComplex } from "./screens/M2/AddNewComplex";
@@ -56,7 +56,7 @@ import { EditPatientDetails } from "./screens/M5/EditPaitentDetails/EditPatientD
 import { EditServiceDetails } from "./screens/M4/EditServiceDetails/EditServiceDetails";
 import { ServicesList } from "./screens/M4/ServicesList";
 import { AddNewService } from "./screens/M4/AddNewService";
-import Home from "./screens/M2/LogoIn";
+
 import { ComplexPlane } from "./screens/M2/ComplexPlane";
 import { ClinicsPlane } from "./screens/M2/ClinicsPlan";
 import { AppProvider } from "./Context/ContextchooseSidbar";
@@ -66,6 +66,7 @@ import { AddCardInAll } from "./screens/M6/AddCardInAll";
 import { AddCard } from "./screens/M6/AddCard";
 import { MoreDetails } from "./screens/M6/MoreDetails";
 import { PatientDetails } from "./screens/M5/PatientDetails";
+import LoginPage from "./screens/M2/LogoIn";
 function Layout() {
 
   return (
@@ -153,8 +154,8 @@ function MainApp() {
 
                     {/* M2 */}
                     
-                      <Home/>
-                    <Route path="" element={<ChoosePlan />} />
+             <Route path="" element={<LoginPage />} />
+                    <Route path="chooseplan" element={<ChoosePlan />} />
                     <Route path="CompanyPlane" element={<CompanyPlan />} />
                     <Route path="ComplexPlane" element={<ComplexPlane />} />
                     <Route path="ClinicPlane" element={<ClinicsPlane />} />

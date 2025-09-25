@@ -25,8 +25,8 @@ import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { Label } from "../../components/ui/label";
 import { Input } from "../../components/ui/input";
-
-
+import { ThemeToggle } from "../../components/theme/ThemeSwitcher";
+import { SideBar } from "../CommonComponents/SideBarPlan2";
 export const AddNewService = (): JSX.Element => {
   const { local, handleLanguageClick } = useLanguage();
   const { t, i18n } = useTranslation();
@@ -37,43 +37,68 @@ export const AddNewService = (): JSX.Element => {
     identification: true,
     sessions: true,
   });
-
+const [isOpenAppointment, setIsOpen] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const onOpenSidebar = () => setShowSidebar(true);
+  const onCloseSidebar = () => setShowSidebar(false);
   return (
+    <div className="flex h-screen  w-screen">
+      {showSidebar && (
+        <div
+          onClick={onCloseSidebar}
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+        />
+      )}
+      <SideBar
+        isOpenAppointment={isOpenAppointment}
+        setIsOpen={setIsOpen}
+        local={local}
+        handleLanguageClick={handleLanguageClick}
+        handleDarkClick={() => { }}
+        isOpen={showSidebar}
+        onOpenSidebar={onOpenSidebar}
+        onCloseSidebar={onCloseSidebar}
+      />
     <>
       <div className="flex flex-col w-full overflow-hidden h-full items-start gap-4 py-4 pl-0 pr-5">
-        <header className="flex h-[66px] justify-between pl-1 pr-0 py-0 w-full items-center">
-          <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5">
-            <h1 className="font-lato font-semibold text-xl leading-[116%] tracking-[0] text-text-primary">
-              {t("Services Management")}
-            </h1>
-            <div className="flex gap-[8px] items-center">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M21 12C21 12.4142 20.6642 12.75 20.25 12.75L3.75 12.75C3.33579 12.75 3 12.4142 3 12C3 11.5858 3.33579 11.25 3.75 11.25L20.25 11.25C20.6642 11.25 21 11.5858 21 12Z"
-                  fill="#414651"
-                />
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M11.0303 4.71967C11.3232 5.01256 11.3232 5.48744 11.0303 5.78033L4.81066 12L11.0303 18.2197C11.3232 18.5126 11.3232 18.9874 11.0303 19.2803C10.7374 19.5732 10.2626 19.5732 9.96967 19.2803L3.21967 12.5303C2.92677 12.2374 2.92677 11.7626 3.21967 11.4697L9.96967 4.71967C10.2626 4.42678 10.7374 4.42678 11.0303 4.71967Z"
-                  fill="#414651"
-                />
-              </svg>
-              <p className="font-lato font-regular text-sm leading-[125%] tracking-[0] text-text-primary">
-                {t("Add New Service")}
-              </p>
-            </div>
-          </div>
 
-          <div className="inline-flex gap-3 flex-[0_0_auto] rounded-[28px] items-center">
+
+          <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
+          {/* نسخة الموبايل */}
+          <div className="flex w-full items-center justify-between md:hidden">
+            {/* Left Side -> العنوان */}
+            <div className="flex items-center gap-2">
+              <button
+                className="md:hidden p-2 rounded-lg bg-secondary-light"
+                onClick={onOpenSidebar}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </button>
+
+              <div className="flex flex-col">
+                <h1 className="font-bold text-sm text-on-surface-primary">
+         {t("Services Management")}
+                </h1>
+                <p className="text-xs text-on-surface-primary">
+               {t("Add New Service")}
+                </p>
+              </div>
+            </div>
+
+            {/* Right Side -> الإشعار */}
             <div className="relative">
               <Button
                 variant="ghost"
@@ -84,30 +109,67 @@ export const AddNewService = (): JSX.Element => {
               </Button>
               <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
             </div>
+          </div>
 
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                className={`p-2.5 ${
-                  local === "ar" ? "bg-secondary-dark" : "bg-secondary-light"
-                } rounded-[20px] h-auto`}
-                onClick={handleLanguageClick}
-              >
-                <TranslateIcon className="w-5 h-5" />
-              </Button>
+
+
+
+          {/* نسخة الـ Desktop/Laptop */}
+          <div className="hidden md:flex w-full items-center justify-between">
+            {/* Left Side */}
+            <div className="flex items-center gap-4">
+              <div className="flex flex-col">
+                <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
+        {t("Services Management")}
+                </h1>
+                <p className="text-sm md:text-base text-on-surface-primary">
+                   {t("Add New Service")}
+                </p>
+              </div>
             </div>
 
-            <div className="w-10 h-[17.5px] relative"></div>
+            {/* Right Side */}
+            <div className="inline-flex gap-3 items-center px-4">
+              {/* Notification */}
+              <div className="relative">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
+                >
+                  <BellIcon className="w-5 h-5" />
+                </Button>
+                <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
+              </div>
 
-            <div className="items-center gap-3 inline-flex ">
-              <div className="inline-flex items-center w-[40px] h-[40px] gap-2.5 bg-app-primary rounded-3xl" />
-              <div className="flex-col items-start gap-1 inline-flex ">
-                <div className="font-lato font-bold text-base leading-[124%] tracking-[0] text-text-primary">
-                  Anahera Jones
-                </div>
-                <div className="font-lato font-regular text-xs leading-[124%] tracking-[0] text-border-medium">
-                  {t("Admin")}
+              {/* Language Switch */}
+              <div className="relative">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
+                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
+                  onClick={handleLanguageClick}
+                >
+                  <TranslateIcon className="w-5 h-5" />
+                </Button>
+              </div>
+
+              {/* Theme Toggle */}
+              <div className="relative">
+                <ThemeToggle />
+              </div>
+
+              {/* User Info */}
+              <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
+                <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
+                <div className="flex-col items-start gap-1 inline-flex">
+                  <div className="text-base font-bold text-on-surface-primary">
+                    Anahera Jones
+                  </div>
+                  <div className="text-sm text-on-surface-tertiary">
+                    {t("Admin")}
+                  </div>
                 </div>
               </div>
             </div>
@@ -482,6 +544,6 @@ export const AddNewService = (): JSX.Element => {
           </CardContent>
         </Card>
       </div>
-    </>
+    </></div>
   );
 };

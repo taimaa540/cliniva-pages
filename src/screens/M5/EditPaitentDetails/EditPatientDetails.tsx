@@ -293,16 +293,16 @@ export const EditPatientDetails = (): JSX.Element => {
             <div className="flex gap-[14px]  justify-end p-3 items-end text-end pb-2 sm:pb-3 md:pb-3 lg:pb-4 " dir={local === 'ar' ? 'rtl' : 'ltr'}
             >
               <Link to="/ViewPatientDetail"> 
-              <button className="     w-[80px] h-[30px]       /* الموبايل الافتراضي */
-    sm:w-[100px] sm:h-[26px] 
+              <button className="     w-[100px] h-[40px]       /* الموبايل الافتراضي */
+    
     md:w-[180px] md:h-[38px]
     lg:w-[200px] lg:h-[40px] 
  
       rounded-[20px] border border-border-light bg-surface-primary  font-lato font-medium text-[clamp(12px,2vw,14px)] leading-[100%] tracking-[0] text-text-primary">
                 {t("Cancel")}
               </button></Link>
-              <button className="  w-[80px] h-[30px]       /* الموبايل الافتراضي */
-    sm:w-[100px] sm:h-[24px] 
+              <button className="  w-[100px] h-[40px]       /* الموبايل الافتراضي */
+  
     md:w-[160px] md:h-[36px]
     lg:w-[200px] lg:h-[40px]  rounded-[20px] bg-secondary-dark font-lato font-medium text-[clamp(12px,2vw,14px)] leading-[100%] tracking-[0] text-surface-primary">
                 {t("Save")}
@@ -553,7 +553,7 @@ export const EditPatientDetails = (): JSX.Element => {
                             </svg>
                             </div>
 
-                            <div className="min-min-w-[162px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
+                            <div className="min-min-w-[182px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
                               {t("Physical Address")}:
                             </div >
                           </div>

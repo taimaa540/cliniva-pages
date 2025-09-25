@@ -442,7 +442,7 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
                   lineHeight: "124%",
                   letterSpacing: "0%",
                 }}
-                className="text-text-accent text-[clamp(14px,1.1vw,16px)] font-bold p-5 w-fit text-start"
+                className="text-primary-default text-[clamp(14px,1.1vw,16px)] font-bold p-5 w-fit text-start"
               >
                 <h2>{t("Capacity")}:</h2>
               </div>
@@ -660,13 +660,13 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
               dir={local === "ar" ? "rtl" : "ltr"}
               title={
                 <div className="flex items-center gap-1 sm:gap-2 md:gap-4">
-                  <h2 className="font-title-16px-bold text-primary-dark text-[clamp(10px,2vw,16px)]">
+                  <h2 className="font-title-16px-bold text-primary-default text-[clamp(10px,2vw,16px)]">
                     {t("Doctors")}
                   </h2>
-                  <h2 className="font-title-16px-bold text-primary-dark text-[clamp(10px,2vw,16px)]">
+                  <h2 className="font-title-16px-bold text-primary-default text-[clamp(10px,2vw,16px)]">
                     {t("&")}
                   </h2>
-                  <h2 className="font-title-16px-bold text-primary-dark text-[clamp(10px,2vw,16px)]">
+                  <h2 className="font-title-16px-bold text-primary-default text-[clamp(10px,2vw,16px)]">
                     {t("Staff")}
                   </h2>
 

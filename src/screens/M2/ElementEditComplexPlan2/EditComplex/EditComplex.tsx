@@ -401,15 +401,15 @@ export const EditComplex = ({ local, dark, handelDarkClick, handleLanguageClick 
               </Badge>
 
               <div className="flex gap-[14px]  justify-end p-3 items-end text-end pb-2 sm:pb-3 md:pb-3 lg:pb-4 " dir={local === 'ar' ? 'rtl' : 'ltr'} >
-                <Link to="/ElementViewComplexP2"> 
-                <button className="     w-[100px] h-[40px]       /* الموبايل الافتراضي */
+                <Link to="/ElementViewComplexP2">
+                  <button className="     w-[100px] h-[40px]       /* الموبايل الافتراضي */
  
     md:w-[180px] md:h-[38px]
     lg:w-[200px] lg:h-[40px] 
  
       rounded-[20px] border border-border-light bg-surface-primary  font-lato font-medium text-sm leading-[100%] tracking-[0] text-text-primary">
-                  {t("Cancel")}
-                </button></Link>
+                    {t("Cancel")}
+                  </button></Link>
                 <button className="  w-[100px] h-[40px]       /* الموبايل الافتراضي */
    
     md:w-[160px] md:h-[36px]
@@ -1115,13 +1115,13 @@ export const EditComplex = ({ local, dark, handelDarkClick, handleLanguageClick 
               dir={local === "ar" ? "rtl" : "ltr"}
               title={
                 <div className="flex items-center gap-1 sm:gap-2 md:gap-4">
-                  <h2 className="font-title-16px-bold text-primary-dark text-[clamp(10px,2vw,16px)]">
+                  <h2 className="font-title-16px-bold text-primary-default text-[clamp(10px,2vw,16px)]">
                     {t("Doctors")}
                   </h2>
-                  <h2 className="font-title-16px-bold text-primary-dark text-[clamp(10px,2vw,16px)]">
+                  <h2 className="font-title-16px-bold text-primary-default text-[clamp(10px,2vw,16px)]">
                     {t("&")}
                   </h2>
-                  <h2 className="font-title-16px-bold text-primary-dark text-[clamp(10px,2vw,16px)]">
+                  <h2 className="font-title-16px-bold text-primary-default text-[clamp(10px,2vw,16px)]">
                     {t("Staff")}
                   </h2>
 

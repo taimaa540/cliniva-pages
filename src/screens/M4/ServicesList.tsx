@@ -335,6 +335,7 @@ export const ServicesList = (): JSX.Element => {
                         <tr
                           key={service.id}
                           className="h-[78px] bg-background-primary hover:bg-gray-100 border-b border-border-light w-full"
+                   onClick={() => window.location.href = `/ViewSpecialtiesDetails?id=${service.id}`}
                         >
                           <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
                             {service.id}
@@ -363,6 +364,7 @@ export const ServicesList = (): JSX.Element => {
                           <td className="align-middle">
                             <div className="inline-flex flex-col justify-center gap-1 flex-[0_0_auto] items-start">
                               <div className="inline-flex items-center justify-center gap-1 flex-[0_0_auto]">
+                                           <Link to="/ViewServiceDetails" onClick={(e) => e.stopPropagation()}>
                                 <Button
                                   variant="ghost"
                                   size="sm"
@@ -373,7 +375,7 @@ export const ServicesList = (): JSX.Element => {
                                     alt="edit"
                                     src="./edit-01.svg"
                                   />
-                                </Button>
+                                </Button></Link>
 
                                 <Button
                                   variant="ghost"

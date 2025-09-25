@@ -34,6 +34,7 @@ import {
 } from "../../../components/ui/table";
 import { SideBar } from "../../CommonComponents/SideBarPlan2";
 import Toggle from "../../../components/ui/SwitchToggel";
+import { Link } from "react-router-dom";
 const navigationItems = [
   {
     icon: UsersIcon,
@@ -362,10 +363,11 @@ export const ViewServiceDetails = (): JSX.Element => {
       <Card className="flex flex-col h-full items-start gap-5 p-[5px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-tertiary">
         <CardContent className="w-full overflow-y-auto scroll-x-hidden pr-[20px] ">
          <div className="flex justify-end">
+          <Link to="/EditServiceDetials">
           <Button className="w-[200px] h-10 bg-secondary-dark text-text-inverse rounded-[20px]   font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-[length:var(--btn-14px-medium-font-size)] leading-[var(--btn-14px-medium-line-height)] tracking-[var(--btn-14px-medium-letter-spacing)] [font-style:var(--btn-14px-medium-font-style)] h-auto self-end">
             <Edit2Icon className={"  w-4 h-4 mr-1 text-text-inverse"} />
             {t("Edit")}
-          </Button>
+          </Button></Link>
 </div>
 
 
@@ -376,12 +378,12 @@ export const ViewServiceDetails = (): JSX.Element => {
   title={
       <div className="flex flex-col lg:flex-row gap-0 lg:gap-[113px] w-full">
       {/* Left Title */}
-      <div className=" lg:w-[min(100%,500px)]   font-semibold  pl-6">
+      <div className=" lg:w-[min(100%,500px)]  text-primary-default font-semibold  pl-6">
       {t("Identification")}
       </div>
 
       {/* Right Title */}
-      <div className=" lg:w-[min(100%,500px)] text-start  font-semibold  pl-6 hidden lg:block">
+      <div className=" lg:w-[min(100%,500px)] text-start  text-primary-default  font-semibold  pl-6 hidden lg:block">
        {t("Assign")}
       </div>
     </div>

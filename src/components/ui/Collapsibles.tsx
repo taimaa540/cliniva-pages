@@ -75,7 +75,7 @@ const ReusableCollapsible: React.FC<ReusableCollapsibleProps> = ({
         <CollapsibleTrigger className="w-full rounded-2xl">
 <CardContent className="flex flex-row h-16 items-center mb-3 justify-between rounded-2xl p-0">
   <div
-    className="flex-1 text-primary-default text-start text-[14px] sm:text-[15px] md:text-[16px] lg:text-[20px]"
+    className="flex-1 text-primary-default text-start text-[14px] sm:text-[15px] md:text-[16px]  font-bold"
     style={{
       fontFamily: "Lato",
       fontWeight: 700,

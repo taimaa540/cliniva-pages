@@ -94,7 +94,7 @@ export const ChoosePlan = (): JSX.Element => {
                           </span>
                         </div>
                       </div>
-                      <Link to="CompanyPlane">
+                      <Link to="/CompanyPlane">
                         <Button    onClick={() => setSelectedPlan("Company")} className="group flex w-[248px]  h-12 items-center justify-center gap-2 p-[10.5px] relative mb-[-2.50px] bg-secondary-dark rounded-[19px] overflow-hidden h-auto">
                           <span className="relative w-fit font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-bg-subtle text-[length:var(--title-16px-bold-font-size)] text-center tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]">
                             Choose this plan
@@ -145,7 +145,7 @@ export const ChoosePlan = (): JSX.Element => {
                           </span>
                         </div>
                       </div>
-                      <Link to="ComplexPlane">
+                      <Link to="/ComplexPlane">
                         <Button    onClick={() => setSelectedPlan("Complex")} className="group flex w-[248px]  h-12 items-center justify-center gap-2 p-[10.5px] relative mb-[-2.50px] bg-secondary-dark rounded-[19px] overflow-hidden h-auto">
                           <span className="relative w-fit font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-bg-subtle text-[length:var(--title-16px-bold-font-size)] text-center tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]">
                             Choose this plan
@@ -196,7 +196,7 @@ export const ChoosePlan = (): JSX.Element => {
                           </span>
                         </div>
                       </div>
-                      <Link to="ClinicPlane">
+                      <Link to="/ClinicPlane">
                         <Button   onClick={() => setSelectedPlan("Clinic")} className="group flex w-[248px]  h-12 items-center justify-center gap-2 p-[10.5px] relative mb-[-2.50px] bg-secondary-dark rounded-[19px] overflow-hidden h-auto">
                           <span className="relative w-fit font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-bg-subtle text-[length:var(--title-16px-bold-font-size)] text-center tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]">
                             Choose this plan

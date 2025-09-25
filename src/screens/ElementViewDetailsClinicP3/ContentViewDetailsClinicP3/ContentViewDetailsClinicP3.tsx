@@ -851,13 +851,13 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
               dir={local === "ar" ? "rtl" : "ltr"}
               title={
                 <div className="flex items-center gap-1 sm:gap-2 md:gap-4">
-                  <h2 className="font-title-16px-bold text-primary-dark text-[clamp(10px,2vw,16px)]">
+                  <h2 className="font-title-16px-bold text-primary-default text-[clamp(10px,2vw,16px)]">
                     {t("Doctors")}
                   </h2>
-                  <h2 className="font-title-16px-bold text-primary-dark text-[clamp(10px,2vw,16px)]">
+                  <h2 className="font-title-16px-bold text-primary-default text-[clamp(10px,2vw,16px)]">
                     {t("&")}
                   </h2>
-                  <h2 className="font-title-16px-bold text-primary-dark text-[clamp(10px,2vw,16px)]">
+                  <h2 className="font-title-16px-bold text-primary-default text-[clamp(10px,2vw,16px)]">
                     {t("Staff")}
                   </h2>
 

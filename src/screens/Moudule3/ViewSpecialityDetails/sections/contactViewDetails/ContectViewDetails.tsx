@@ -315,7 +315,7 @@ export const AssignedDoctorsListSection = ({ local, dark, handelDarkClick, handl
 
             <Card className="w-full bg-surface-default rounded-2xl   mb-6" dir={local === 'ar' ? 'rtl' : 'ltr'}>
               <CardContent className="p-6">
-                <h2 className="text-text-accent text-[16px] font-bold mb-6">
+                <h2 className=" text-primary-default text-[16px] font-bold mb-6">
                   {t("Specialty Details")}
                 </h2>
 
@@ -347,7 +347,7 @@ export const AssignedDoctorsListSection = ({ local, dark, handelDarkClick, handl
             <Card className="w-full bg-surface-default rounded-2xl mb-6" dir={local === 'ar' ? 'rtl' : 'ltr'}>
               <CardContent className="p-4">
                 <div className="mb-6">
-                  <h3 className="text-text-accent text-[16px] font-bold">
+                  <h3 className=" text-primary-default text-[16px] font-bold">
                     {t("Assigned Doctors List")}
                   </h3>
                 </div>

@@ -21,6 +21,7 @@ const personalInfoData = [
 import { ThemeToggle } from "../../components/theme/ThemeSwitcher";
 import { useState } from "react";
 import { SideBar } from "../CommonComponents/SideBarPlan2";
+import { Link } from "react-router-dom";
 export const PatientDetails = (): JSX.Element => {
   const { local, handleLanguageClick } = useLanguage();
   const { t, i18n } = useTranslation();
@@ -189,6 +190,7 @@ export const PatientDetails = (): JSX.Element => {
                     </svg>
                     {t("Delete")}
                   </button>
+                  <Link to='/EditPaitentDetails'>
                   <button className="flex items-center justify-center gap-[6px] w-[200px] h-[40px] rounded-[20px] bg-secondary-dark font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
                     <svg
                       width="21"
@@ -205,7 +207,7 @@ export const PatientDetails = (): JSX.Element => {
                       />
                     </svg>
                     {t("Edit")}
-                  </button>
+                  </button></Link>
                 </div>
               </div>
               <div className="flex gap-[20px] w-full">

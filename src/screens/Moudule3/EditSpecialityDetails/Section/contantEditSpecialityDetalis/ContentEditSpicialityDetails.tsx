@@ -303,7 +303,7 @@ export const ContantEditSpaicialityDetails = ({ local, dark, handelDarkClick, ha
 
             <Card className=" bg-surface-default rounded-2xl mt-5  w-1159 h-254 mb-6" dir={local === 'ar' ? 'rtl' : 'ltr'}>
               <CardContent className="p-6">
-                <h2 className="text-text-accent text-[16px] font-bold mb-6">
+                <h2 className=" text-primary-default text-[16px] font-bold mb-6">
                   {t("Specialty Details")}
                 </h2>
 
@@ -338,59 +338,62 @@ export const ContantEditSpaicialityDetails = ({ local, dark, handelDarkClick, ha
             <Card className="w-full bg-surface-default rounded-2xl mb-6" dir={local === 'ar' ? 'rtl' : 'ltr'}>
               <CardContent className="p-4">
                 <div className="mb-6">
-                  <h3 className="text-text-accent text-[16px] font-bold">
+                  <h3 className=" text-primary-default text-[16px] font-bold">
                     {t("Assigned Doctors List")}
                   </h3>
                 </div>
+<div className="w-full overflow-x-auto">
+  {/* سكرول أفقي لو الجدول كبير */}
+  <div
+    className="overflow-y-auto rounded-lg"
+    style={{ height: "calc(60vh - 78px-300px)" }} // هنا تحدد أقصر طول يبدأ منه السكرول العمودي
+  >
+    <table className="table-auto w-full min-w-[800px] border-collapse">
+      <thead className="sticky top-0 z-10 bg-background-primary border-b border-border-light">
+        <tr>
+          <th className="text-center text-text-primary text-[16px] font-semibold w-[5%] min-w-[50px]">No</th>
+          <th className="text-center text-text-primary text-[16px] font-semibold w-[16%] min-w-[150px]">User-ID</th>
+          <th className="text-center text-text-primary text-[16px] font-semibold w-[16%] min-w-[150px]">Name</th>
+          <th className="text-center text-text-primary text-[16px] font-semibold w-[16%] min-w-[150px]">Assigned Clinics</th>
+          <th className="text-center text-text-primary text-[16px] font-semibold min-w-[200px]">
+            Clinic Scheduled Appointments Count
+          </th>
+          <th className="text-center text-text-primary text-[16px] font-semibold w-[16%] min-w-[120px]">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {doctorsData.map((doctor, index) => (
+          <tr key={index} className="bg-surface-default border-b h-[54px]">
+            <td className="text-center text-text-primary text-[14px] font-semibold">{doctor.no}</td>
+            <td className="text-center text-text-primary text-[14px] font-semibold">{doctor.userId}</td>
+            <td className="text-center text-text-primary text-[14px] font-semibold">
+              <div className="flex items-center gap-2 justify-center text-text-primary text-[14px] font-semibold">
+                <Avatar
+                  src={doctor.avatar ?? undefined}
+                  alt={doctor.name}
+                  sx={{
+                    width: 30,
+                    height: 30,
+                    bgcolor: !doctor.avatar ? "var(--theme-text-accent)" : "transparent",
+                  }}
+                />
+                <span className="min-w-[150px]">{doctor.name}</span>
+              </div>
+            </td>
+            <td className="text-center text-text-primary text-[14px] font-semibold">{doctor.assignedClinic}</td>
+            <td className="text-center text-text-primary text-[14px] font-semibold">{doctor.appointmentDate}</td>
+            <td className="text-center text-text-primary text-[14px] font-semibold">
+              <div className="flex items-center justify-center gap-2">
+                <Toggle />
+              </div>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
 
-                <div className="w-full overflow-x-auto">  {/* يسمح بالسكرول الأفقي إذا الجدول كبير */}
-                  <div
-                    className="overflow-y-auto rounded-lg"
-                    style={{ height: "calc(60vh - 78px - 200px)" }}  // ارتفاع محدد للسكرول الرأسي
-                  >
-                    <table className="table-auto w-full min-w-[800px] border-collapse">
-                      <thead className="sticky top-0 z-10 bg-background-primary border-b border-border-light">
-                        <tr>
-                          <th className="text-center text-text-primary text-[16px] font-semibold w-[5%] min-w-[50px]">No</th>
-                          <th className="text-center text-text-primary text-[16px] font-semibold w-[16%] min-w-[150px]">User-ID</th>
-                          <th className="text-center text-text-primary text-[16px] font-semibold w-[16%] min-w-[150px]">Name</th>
-                          <th className="text-center text-text-primary text-[16px] font-semibold w-[16%] min-w-[150px]">Assigned Clinics</th>
-                          <th className="text-center text-text-primary text-[16px] font-semibold min-w-[200px]">Clinic Scheduled Appointments Count</th>
-                          <th className="text-center text-text-primary text-[16px] font-semibold w-[16%] min-w-[120px]">Status</th>
-                        </tr>
-                      </thead>
-                      <tbody >
-                        {doctorsData.map((doctor, index) => (
-                          <tr key={index} className="bg-surface-default border-b h-[54px] ">
-                            <td className="text-center text-text-primary text-[14px] font-semibold ">{doctor.no}</td>
-                            <td className="text-center text-text-primary text-[14px] font-semibold">{doctor.userId}</td>
-                            <td className="text-center text-text-primary text-[14px] font-semibold">
-                              <div className="flex items-center gap-2 justify-center text-text-primary text-[14px] font-semibold ">
-                                <Avatar
-                                  src={doctor.avatar ?? undefined}
-                                  alt={doctor.name}
-                                  sx={{
-                                    width: 30,
-                                    height: 30,
-                                    bgcolor: !doctor.avatar ? "var(--theme-text-accent)" : "transparent",
-                                  }}
-                                />
-                                <span className="min-w-[150px]">{doctor.name}</span>
-                              </div>
-                            </td>
-                            <td className="text-center text-text-primary text-[14px] font-semibold">{doctor.assignedClinic}</td>
-                            <td className="text-center text-text-primary text-[14px] font-semibold">{doctor.appointmentDate}</td>
-                            <td className="text-center text-text-primary text-[14px] font-semibold">
-                              <div className="flex items-center justify-center gap-2">
-                                <Toggle />
-                              </div>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
 
 
 
