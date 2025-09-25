@@ -1,0 +1,249 @@
+[33mcommit 321ca981386bbbe4a45b0987ef85e0f2cb9f6eb7[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: ae2618f 687342d
+Author: Rawan <Developer03.arabinterface@gmail.com>
+Date:   Tue Sep 23 17:21:28 2025 +0300
+
+    Merge branch 'main' of https://github.com/taimaa540/cliniva-pages
+
+[33mcommit ae2618f0d4e2c6311d0b236380350ad0b9ad6d84[m
+Author: Rawan <Developer03.arabinterface@gmail.com>
+Date:   Tue Sep 23 17:00:09 2025 +0300
+
+    Converting the interfaces to be responsive
+
+[33mcommit 687342d7958418e463085e074fe61f70b825c4fe[m
+Merge: ca6f077 eb547ac
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Sun Sep 14 09:32:47 2025 +0300
+
+    Merge branch 'main' of https://github.com/taimaa540/cliniva-pages
+
+[33mcommit ca6f077a18b11607ae5a2474bdb8c2d4161ef886[m
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Sun Sep 14 09:26:31 2025 +0300
+
+    M6
+
+[33mcommit eb547aca536b5e4226640e571993357f04d354f2[m
+Merge: 752fdaf 49b9953
+Author: Rawan <Developer03.arabinterface@gmail.com>
+Date:   Sat Sep 13 15:08:53 2025 +0300
+
+    Merge branch 'main' of https://github.com/taimaa540/cliniva-pages
+
+[33mcommit 752fdaf9400fd4aa8491fa999f100ab8625a9f5b[m
+Author: Rawan <Developer03.arabinterface@gmail.com>
+Date:   Sat Sep 13 14:53:09 2025 +0300
+
+    M3
+
+[33mcommit 2d7abe80ef39ef7df2b71e435f6d75c8cba41e75[m
+Author: Rawan <Developer03.arabinterface@gmail.com>
+Date:   Sat Sep 13 14:47:14 2025 +0300
+
+    M5.Add&Edit&View Patient
+
+[33mcommit af55558d217c219d629813130b08207529ad2d99[m
+Author: Rawan <Developer03.arabinterface@gmail.com>
+Date:   Sat Sep 13 14:46:21 2025 +0300
+
+    Edit M4.View&Edit Service details
+
+[33mcommit 8aa61c92ea4bc3212505d75d6324079217eb69ab[m
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Tue Sep 9 15:53:33 2025 +0300
+
+    M4 Apply Feedback
+
+[33mcommit 7ca313c9d29aaf7eded6350472cd9c8043bcb936[m
+Author: Rawan <Developer03.arabinterface@gmail.com>
+Date:   Tue Sep 9 10:31:46 2025 +0300
+
+    Detailing modifications for theM2
+
+[33mcommit c9e6e8a1368316200417149b4e73d9c6fa309775[m
+Author: Rawan <Developer03.arabinterface@gmail.com>
+Date:   Mon Sep 8 16:11:58 2025 +0300
+
+    Edit Details M2
+
+[33mcommit 49b99539e1a14a272becf58e353d2a66d8521539[m
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Sat Sep 6 13:00:43 2025 +0300
+
+    M4 Services List Add New Service
+
+[33mcommit 7c5d0b1e9216cfb3b1c2faa4d60d5921cdfa26f8[m
+Merge: 04af0a8 272d2fd
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Thu Sep 4 10:46:25 2025 +0300
+
+    Merge branch 'main' of https://github.com/taimaa540/cliniva-pages
+
+[33mcommit 04af0a817dff7b461b2c0f9b8ac7302627f4ea9e[m
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Thu Sep 4 10:44:15 2025 +0300
+
+    convert M1 to V2
+
+[33mcommit 272d2fd631e44b805679f785bcef3ea415fd4630[m
+Author: BasheerRaj <developer06.arabinterface@gmail.com>
+Date:   Thu Sep 4 09:40:54 2025 +0300
+
+    Wrap MainApp in I18nextProvider for internationalization support
+
+[33mcommit 7ce93f50a838a7197225f32c2cf9b290ead7845f[m
+Merge: b30c2e5 3d3a900
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Mon Sep 1 11:32:11 2025 +0300
+
+    Merge branch 'main' of https://github.com/taimaa540/cliniva-pages
+
+[33mcommit b30c2e582c4e19482c5c2c657c547ff252252dfe[m
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Mon Sep 1 11:21:34 2025 +0300
+
+    Edit SideBar
+
+[33mcommit 76a77b34cca23f94f3a2ee99e83140a0a3b32820[m
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Mon Sep 1 11:20:20 2025 +0300
+
+    add Clinic&complex List and Add New Complex&list
+
+[33mcommit 3d3a900dbc89d3fb99ffe154b69058d74ef74b1f[m
+Author: Rawan <Developer03.arabinterface@gmail.com>
+Date:   Sun Aug 31 13:30:16 2025 +0300
+
+    change dimention module 1
+
+[33mcommit 82cbd2fe89ebabfdc1e31222e7f530a5294b0c3f[m
+Merge: 69a392d 2fe9bfe
+Author: Rawan <Developer03.arabinterface@gmail.com>
+Date:   Sun Aug 31 13:27:13 2025 +0300
+
+    Adjust the dimensions of the first module
+
+[33mcommit 1a9e06847045fda65aea83981182f67daf37e264[m
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Sun Aug 31 09:27:54 2025 +0300
+
+    edit No Data M1
+
+[33mcommit 69a392d08e5db86b33bac6afedbff6708e78d65a[m
+Author: Rawan <Developer03.arabinterface@gmail.com>
+Date:   Sat Aug 30 16:15:01 2025 +0300
+
+    Details plan1
+
+[33mcommit 7289269ed0b35a0b77e918ebbcde637cb9b6b8fc[m
+Merge: b626f93 b8a55d0
+Author: Rawan <Developer03.arabinterface@gmail.com>
+Date:   Sat Aug 30 16:10:22 2025 +0300
+
+    Details plan1
+
+[33mcommit 2fe9bfe41f5611bbe379df5479ce994dbf58e278[m
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Thu Aug 28 09:18:46 2025 +0300
+
+    add plan1&plan2 and create complexList&ClinicList
+
+[33mcommit 72cf60b5159e9ca4bc9f836c91a44e1dec850383[m
+Merge: 2ec0a7c b8a55d0
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Wed Aug 27 09:18:59 2025 +0300
+
+    Merge branch 'main' of https://github.com/taimaa540/cliniva-pages
+
+[33mcommit 2ec0a7cb30cd3e1bc00f4eaae4679c75d9681859[m
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Wed Aug 27 09:02:18 2025 +0300
+
+    plan1
+
+[33mcommit b8a55d0260134f9af31e1675db4e7c84a54566e6[m
+Author: BasheerRaj <developer06.arabinterface@gmail.com>
+Date:   Tue Aug 26 10:50:56 2025 +0300
+
+    fix layout
+
+[33mcommit b626f938e1e4d169a01e1be26e63c945b46cac24[m
+Author: Rawan <Developer03.arabinterface@gmail.com>
+Date:   Tue Aug 26 02:21:17 2025 +0300
+
+    udate the translation
+
+[33mcommit 827c684b5f2a70da829807ddb37b220fb3b74719[m
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Mon Aug 25 17:04:40 2025 +0300
+
+    add to plan 1
+
+[33mcommit 64400c0cc2fa6465891fc0d3678b64e3c99ca12b[m
+Merge: 892c3a2 8757b45
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Mon Aug 25 12:35:35 2025 +0300
+
+    Merge branch 'main' of https://github.com/taimaa540/cliniva-pages
+
+[33mcommit 8757b45f619dde349473a8435c9d11ef5a4d93b6[m
+Author: BasheerRaj <developer06.arabinterface@gmail.com>
+Date:   Mon Aug 25 12:11:30 2025 +0300
+
+    add color design system
+
+[33mcommit 892c3a2d7c9eedfbc761268da8c24fa4401f0783[m
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Mon Aug 25 11:09:10 2025 +0300
+
+    revert commit
+
+[33mcommit 40889b1ff1b623a015fd495cbff5747ccb310e36[m
+Merge: 0b4825c 662fe58
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Mon Aug 25 10:59:05 2025 +0300
+
+    applying the teams feedback
+
+[33mcommit 0b4825ceea752bc110d882e6e294a006b70f77cd[m
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Mon Aug 25 10:30:14 2025 +0300
+
+    plan1
+
+[33mcommit 662fe585f6a7dd5c2dc390d8be0b448a72a935a9[m
+Author: Rawan <Developer03.arabinterface@gmail.com>
+Date:   Mon Aug 25 10:17:34 2025 +0300
+
+    Translation
+
+[33mcommit a12d126e130e7a79f75410ac89153f479b71fb01[m
+Author: Rawan <Developer03.arabinterface@gmail.com>
+Date:   Mon Aug 25 09:52:40 2025 +0300
+
+    add new line
+
+[33mcommit e7470d82d8cb5d5f40485f9300c7007e2787eda1[m
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Mon Aug 25 09:25:38 2025 +0300
+
+    Applying the team’s feedback
+
+[33mcommit f22b18cb2302cb06dcbb4dedad4c8ac4831fb44c[m
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Sun Aug 24 11:42:59 2025 +0300
+
+    remove empty line
+
+[33mcommit 99286bf2b4d016b8c4928a313dbb23d8b60bf2be[m
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Sun Aug 24 11:41:22 2025 +0300
+
+    add empty line
+
+[33mcommit 06c4aceb1f78bb36efdfb4a2bb0a2d2adfbfb836[m
+Author: Timaa <taimaaalabdallah27@gmail.com>
+Date:   Sun Aug 24 11:39:37 2025 +0300
+
+    first commit

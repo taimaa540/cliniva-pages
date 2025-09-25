@@ -1,5 +1,5 @@
 import React from "react";
-import { SidebarviewDetailsContentp2 } from "./SidebarViewDetailsContentp2/SidebarViewDetailsContantp2";
+
 import { ElementViewComplexPlan2 } from "./ElementViewDetailsContectp2/ElementViewDetailsContent";
 import { useTranslation } from "react-i18next";
 import { useState } from "react"
@@ -25,14 +25,12 @@ export const ElementViewDetalisComplexp2 = (): JSX.Element => {
 
   return (
     <div className="flex w-full bg-surface-default " >
-      <SidebarviewDetailsContentp2 isOpen={isSidebarOpen}
-        onClose={() => setIsSidebarOpen(false)}
-        local={local} />
+
       <ElementViewComplexPlan2          handleLanguageClick={handleLanguageClick}
         local={local}
         dark={darkMode}
         handelDarkClick={toggleDarkMode}
-        onOpenSidebar={() => setIsSidebarOpen(true)}/> 
+      /> 
     </div>
   );
 };

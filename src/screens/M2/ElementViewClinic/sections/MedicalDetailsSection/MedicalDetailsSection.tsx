@@ -60,7 +60,7 @@ import {
   TableHeader,
   TableRow,
 } from "../../../../../components/ui/table";
-import { SideBarPlan2 } from "../../../../CommonComponents/SideBarPlan2";
+import { SideBar } from "../../../../CommonComponents/SideBarPlan2";
 import { Tabs, TabsList, TabsTrigger } from "../../../../../components/ui/tabs";
 import Checkbox from '@mui/material/Checkbox';
 const capacityData = [
@@ -215,13 +215,13 @@ interface NoDataSectionProps {
   onOpenSidebar: () => void;
 }
 
-export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handelDarkClick,  }: NoDataSectionProps): JSX.Element => {
+export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handelDarkClick, }: NoDataSectionProps): JSX.Element => {
   const { t, i18n } = useTranslation();
   useEffect(() => {
     i18n.changeLanguage(local);
   }, []);
 
-  const [isOpen, setIsOpen] = useState({
+  const [isOpen, setIsOpen1] = useState({
     clinicInfo: true,
     contactInfo: true,
     workingDays: true,
@@ -230,7 +230,7 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
     mapsLocation: true
   });
   const handleToggle = (key: keyof typeof isOpen, open: boolean) => {
-    setIsOpen(prev => ({
+    setIsOpen1(prev => ({
       ...prev,
       [key]: open
     }))
@@ -245,146 +245,148 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
     // يمكنك هنا إجراء أي عمل تريده مع التاريخ المحدد
   };
 
-      const [showSidebar, setShowSidebar] = useState(false);
+  const [isOpenAppointment, setIsOpen] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
   const onOpenSidebar = () => setShowSidebar(true);
   const onCloseSidebar = () => setShowSidebar(false);
   return (
-     <div className="flex h-screen  w-screen">
-        {showSidebar && (
-    <div
-      onClick={onCloseSidebar}
-      className="fixed inset-0 bg-black/40 z-40 md:hidden"
-    />
-  )}
-                <SideBarPlan2
+    <div className="flex h-screen  w-screen">
+      {showSidebar && (
+        <div
+          onClick={onCloseSidebar}
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+        />
+      )}
+      <SideBar
+        isOpenAppointment={isOpenAppointment}
+        setIsOpen={setIsOpen}
         local={local}
         handleLanguageClick={handleLanguageClick}
-        handleDarkClick={() => {}}
+        handleDarkClick={() => { }}
         isOpen={showSidebar}
         onOpenSidebar={onOpenSidebar}
         onCloseSidebar={onCloseSidebar}
       />
-  
-    <div
 
-      className={`flex flex-col w-full overflow-hidden items-start gap-4  py-4  self-stretch relative bg-background-primary 
+      <div
+
+        className={`flex flex-col w-full overflow-hidden items-start gap-4  py-4  self-stretch relative bg-background-primary 
       } `}
-    >
-
-
-<header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-  {/* نسخة الموبايل */}
-<div className="flex w-full items-center justify-between md:hidden">
-  {/* Left Side -> العنوان */}
-  <div className="flex items-center gap-2">
-    <button
-      className="md:hidden p-2 rounded-lg bg-secondary-light"
-      onClick={onOpenSidebar}
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={2}
-        stroke="currentColor"
-        className="w-6 h-6"
       >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M4 6h16M4 12h16M4 18h16"
-        />
-      </svg>
-    </button>
-
-    <div className="flex flex-col">
-      <h1 className="font-bold text-sm text-on-surface-primary">
-        {t("Medical Facilities")}
-      </h1>
-      <p className="text-xs text-on-surface-primary">
-         {t("View Clinic Details")}
-      </p>
-    </div>
-  </div>
-
-  {/* Right Side -> الإشعار */}
-  <div className="relative">
-    <Button
-      variant="ghost"
-      size="icon"
-      className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-    >
-      <BellIcon className="w-5 h-5" />
-    </Button>
-    <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-  </div>
-</div>
 
 
+        <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
+          {/* نسخة الموبايل */}
+          <div className="flex w-full items-center justify-between md:hidden">
+            {/* Left Side -> العنوان */}
+            <div className="flex items-center gap-2">
+              <button
+                className="md:hidden p-2 rounded-lg bg-secondary-light"
+                onClick={onOpenSidebar}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </button>
 
+              <div className="flex flex-col">
+                <h1 className="font-bold text-sm text-on-surface-primary">
+                  {t("Medical Facilities")}
+                </h1>
+                <p className="text-xs text-on-surface-primary">
+                  {t("View Clinic Details")}
+                </p>
+              </div>
+            </div>
 
-  {/* نسخة الـ Desktop/Laptop */}
-  <div className="hidden md:flex w-full items-center justify-between">
-    {/* Left Side */}
-    <div className="flex items-center gap-4">
-      <div className="flex flex-col">
-        <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
-             {t("Medical Facilities")}
-        </h1>
-        <p className="text-sm md:text-base text-on-surface-primary">
-                 {t("View Clinic Details")}
-        </p>
-      </div>
-    </div>
-
-    {/* Right Side */}
-    <div className="inline-flex gap-3 items-center px-4">
-      {/* Notification */}
-      <div className="relative">
-        <Button
-          variant="ghost"
-          size="icon"
-          className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-        >
-          <BellIcon className="w-5 h-5" />
-        </Button>
-        <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-      </div>
-
-      {/* Language Switch */}
-      <div className="relative">
-        <Button
-          variant="ghost"
-          size="icon"
-          className={`p-2.5 ${
-            local === "ar" ? "bg-[green]" : "bg-secondary-light"
-          } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-          onClick={handleLanguageClick}
-        >
-          <TranslateIcon className="w-5 h-5" />
-        </Button>
-      </div>
-
-      {/* Theme Toggle */}
-      <div className="relative">
-        <ThemeToggle />
-      </div>
-
-      {/* User Info */}
-      <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-        <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-        <div className="flex-col items-start gap-1 inline-flex">
-          <div className="text-base font-bold text-on-surface-primary">
-            Anahera Jones
+            {/* Right Side -> الإشعار */}
+            <div className="relative">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
+              >
+                <BellIcon className="w-5 h-5" />
+              </Button>
+              <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
+            </div>
           </div>
-          <div className="text-sm text-on-surface-tertiary">
-            {t("Admin")}
+
+
+
+
+          {/* نسخة الـ Desktop/Laptop */}
+          <div className="hidden md:flex w-full items-center justify-between">
+            {/* Left Side */}
+            <div className="flex items-center gap-4">
+              <div className="flex flex-col">
+                <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
+                  {t("Medical Facilities")}
+                </h1>
+                <p className="text-sm md:text-base text-on-surface-primary">
+                  {t("View Clinic Details")}
+                </p>
+              </div>
+            </div>
+
+            {/* Right Side */}
+            <div className="inline-flex gap-3 items-center px-4">
+              {/* Notification */}
+              <div className="relative">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
+                >
+                  <BellIcon className="w-5 h-5" />
+                </Button>
+                <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
+              </div>
+
+              {/* Language Switch */}
+              <div className="relative">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
+                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
+                  onClick={handleLanguageClick}
+                >
+                  <TranslateIcon className="w-5 h-5" />
+                </Button>
+              </div>
+
+              {/* Theme Toggle */}
+              <div className="relative">
+                <ThemeToggle />
+              </div>
+
+              {/* User Info */}
+              <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
+                <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
+                <div className="flex-col items-start gap-1 inline-flex">
+                  <div className="text-base font-bold text-on-surface-primary">
+                    Anahera Jones
+                  </div>
+                  <div className="text-sm text-on-surface-tertiary">
+                    {t("Admin")}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
+        </header>
 
 
 
@@ -398,12 +400,12 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
 
 
 
-      <Card className="flex flex-col h-auto items-start gap-6 p-5 mt-[10px] bg-background-tertiary relative self-stretch w-full rounded-2xl overflow-hidden">
-        <CardContent className="p-0 w-full overflow-y-auto gap-5 h-auto">
-          <div className="flex justify-end" dir={local === 'ar' ? 'rtl' : 'ltr'}>
-         <Link to="/ElementViewClinic/EditClinicDetails"> 
-            <Button
-              className="
+        <Card className="flex flex-col h-auto items-start gap-6 p-5 mt-[10px] bg-background-tertiary relative self-stretch w-full rounded-2xl overflow-hidden">
+          <CardContent className="p-0 w-full overflow-y-auto gap-5 h-auto">
+            <div className="flex justify-end" dir={local === 'ar' ? 'rtl' : 'ltr'}>
+              <Link to="/ElementViewClinic/EditClinicDetails">
+                <Button
+                  className="
              flex items-center justify-center gap-2
              w-[140px] sm:w-[150px] md:w-[180px] lg:w-[200px]
              h-9 sm:h-10 md:h-11 lg:h-10
@@ -415,39 +417,39 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
              [font-style:var(--btn-14px-medium-font-style)]
              self-end
            "
-            >
-              <Edit2Icon
-                className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 text-text-inverse"
-              />
-              Edit
-            </Button>
-            </Link>
+                >
+                  <Edit2Icon
+                    className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 text-text-inverse"
+                  />
+                  Edit
+                </Button>
+              </Link>
 
-          </div>
-
-
-
-          <Card
-            className="bg-surface-default rounded-2xl  w-full mt-5"
-            dir={local === "ar" ? "rtl" : "ltr"}
-          >
-            <div
-              style={{
-                fontFamily: "Lato",
-                fontWeight: 600,
-                fontStyle: "SemiBold",
-
-                lineHeight: "124%",
-                letterSpacing: "0%",
-              }}
-              className="text-text-accent text-[clamp(14px,1.1vw,16px)] font-bold p-5 w-fit text-start"
-            >
-              <h2>{t("Capacity")}:</h2>
             </div>
 
-            <div className="px-4 pb-4">
+
+
+            <Card
+              className="bg-surface-default rounded-2xl  w-full mt-5"
+              dir={local === "ar" ? "rtl" : "ltr"}
+            >
               <div
-                className="
+                style={{
+                  fontFamily: "Lato",
+                  fontWeight: 600,
+                  fontStyle: "SemiBold",
+
+                  lineHeight: "124%",
+                  letterSpacing: "0%",
+                }}
+                className="text-text-accent text-[clamp(14px,1.1vw,16px)] font-bold p-5 w-fit text-start"
+              >
+                <h2>{t("Capacity")}:</h2>
+              </div>
+
+              <div className="px-4 pb-4">
+                <div
+                  className="
            grid 
            grid-cols-2
            sm:grid-cols-2
@@ -456,11 +458,11 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
            md:gap-8
            justify-items-center  
          "
-              >
-                {capacityData.map((item, index) => (
-                  <Card
-                    key={index}
-                    className={`
+                >
+                  {capacityData.map((item, index) => (
+                    <Card
+                      key={index}
+                      className={`
          ${item.bgColor} 
          rounded-[25px] 
          shadow-[0px_2px_8px_#e2f6ec] 
@@ -469,112 +471,83 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
          lg:h-[100px]        // الطول 100px فقط على اللابتوب
          lg:gap-[38px]
        `}
-                  >
-                    <CardContent className="flex items-center justify-between  p-5 h-full">
-                      <div className="grid">
-                        <div className="font-semibold text-text-primary text-[clamp(14px,1.1vw,16px)] md:text-lg lg:text-xl">
-                          {item.title}
+                    >
+                      <CardContent className="flex items-center justify-between  p-5 h-full">
+                        <div className="grid">
+                          <div className="font-semibold text-text-primary text-[clamp(14px,1.1vw,16px)] md:text-lg lg:text-xl">
+                            {item.title}
+                          </div>
+                          <div className="font-semibold text-text-primary text-xs sm:text-[clamp(14px,1.1vw,16px)] lg:text-lg">
+                            {item.value}
+                          </div>
                         </div>
-                        <div className="font-semibold text-text-primary text-xs sm:text-[clamp(14px,1.1vw,16px)] lg:text-lg">
-                          {item.value}
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-14 lg:h-14">
+                          {item.icon}
                         </div>
-                      </div>
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-14 lg:h-14">
-                        {item.icon}
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                      </CardContent>
+                    </Card>
+                  ))}
 
 
 
-              </div>
-            </div>
-          </Card>
-
-
-
-
-
-          <ReusableCollapsible
-            dir={local === "ar" ? "rtl" : "ltr"}
-            title={t("Clinic Info")}
-            initiallyOpen={isOpen.contactInfo}
-            onOpenChange={(open) => handleToggle("contactInfo", open)}
-            content={
-              <div className="p-4 pt-0">
-                {/* الأعمدة الرئيسية */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-                  {/* العمود الأول */}
-                  <div className="space-y-4">
-                    <div className="flex flex-col md:flex-row md:items-center gap-1 sm:gap-2 md:gap-4 lg:gap-8">
-                      <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
-                        {t("Clinic Name")}
-                      </label>
-                      <span className="text-[clamp(12px,1.1vw,14px)]">Al Noor Clinic</span>
-                    </div>
-
-                    <div className="flex flex-col md:flex-row md:items-center gap-1 sm:gap-2 md:gap-4 lg:gap-8">
-                      <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
-                        {t("Session Slot")}:
-                      </label>
-                      <span className="text-[clamp(12px,1.1vw,14px)]">30 minutes</span>
-                    </div>
-
-                    <div className="flex flex-col md:flex-row md:items-center gap-1 sm:gap-2 md:gap-4 lg:gap-8">
-                      <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
-                        {t("Services Offered")}:
-                      </label>
-                      <span className="text-[clamp(12px,1.1vw,14px)]">General Consultation</span>
-                    </div>
-                  </div>
-
-                  {/* العمود الثاني */}
-                  <div className="space-y-4">
-                    <div className="flex flex-col md:flex-row md:items-center gap-1 sm:gap-2 md:gap-4 lg:gap-8">
-                      <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
-                        {t("Year of Establishment")}
-                      </label>
-                      <span className="text-[clamp(12px,1.1vw,14px)]">April 3 2011</span>
-                    </div>
-
-                    <div className="flex flex-col md:flex-row md:items-center gap-1 sm:gap-2 md:gap-4 lg:gap-8">
-                      <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
-                        {t("PIC Name")}
-                      </label>
-                      <span className="text-[clamp(12px,1.1vw,14px)]">Dr. Layla Al Saeed</span>
-                    </div>
-
-                    <div className="flex flex-col md:flex-row md:items-start gap-1 sm:gap-2 md:gap-4 lg:gap-8">
-                      <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
-                        {t("Description")}
-                      </label>
-                      <div className="w-full md:w-[360px] text-[clamp(12px,1.1vw,14px)]">
-                        Al Noor Clinic is a multi-specialty clinic offering high-quality care with modern facilities.
-                      </div>
-                    </div>
-                  </div>
                 </div>
+              </div>
+            </Card>
 
-                {/* Assigned Departments */}
-                <div className="mt-6">
-                  <h2 className="mb-4 text-text-accent font-semibold text-[clamp(14px,1.1vw,16px)]">
-                    {t("Assigned Departments")}
-                  </h2>
+
+
+
+
+            <ReusableCollapsible
+              dir={local === "ar" ? "rtl" : "ltr"}
+              title={t("Clinic Info")}
+              initiallyOpen={isOpen.contactInfo}
+              onOpenChange={(open) => handleToggle("contactInfo", open)}
+              content={
+                <div className="p-4 pt-0">
+                  {/* الأعمدة الرئيسية */}
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-                    {/* عمود الاسم */}
+                    {/* العمود الأول */}
                     <div className="space-y-4">
-                      <div className="flex flex-col md:flex-row gap-2 md:gap-4">
+                      <div className="flex flex-col md:flex-row md:items-center gap-1 sm:gap-2 md:gap-4 lg:gap-8">
                         <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
-                          {t("Department Name")}
+                          {t("Clinic Name")}
                         </label>
-                        <span className="text-[clamp(12px,1.1vw,14px)]">Al Razi Department</span>
+                        <span className="text-[clamp(12px,1.1vw,14px)]">Al Noor Clinic</span>
+                      </div>
+
+                      <div className="flex flex-col md:flex-row md:items-center gap-1 sm:gap-2 md:gap-4 lg:gap-8">
+                        <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
+                          {t("Session Slot")}:
+                        </label>
+                        <span className="text-[clamp(12px,1.1vw,14px)]">30 minutes</span>
+                      </div>
+
+                      <div className="flex flex-col md:flex-row md:items-center gap-1 sm:gap-2 md:gap-4 lg:gap-8">
+                        <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
+                          {t("Services Offered")}:
+                        </label>
+                        <span className="text-[clamp(12px,1.1vw,14px)]">General Consultation</span>
                       </div>
                     </div>
 
-                    {/* عمود الوصف */}
+                    {/* العمود الثاني */}
                     <div className="space-y-4">
-                      <div className="flex flex-col md:flex-row gap-2 md:gap-4">
+                      <div className="flex flex-col md:flex-row md:items-center gap-1 sm:gap-2 md:gap-4 lg:gap-8">
+                        <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
+                          {t("Year of Establishment")}
+                        </label>
+                        <span className="text-[clamp(12px,1.1vw,14px)]">April 3 2011</span>
+                      </div>
+
+                      <div className="flex flex-col md:flex-row md:items-center gap-1 sm:gap-2 md:gap-4 lg:gap-8">
+                        <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
+                          {t("PIC Name")}
+                        </label>
+                        <span className="text-[clamp(12px,1.1vw,14px)]">Dr. Layla Al Saeed</span>
+                      </div>
+
+                      <div className="flex flex-col md:flex-row md:items-start gap-1 sm:gap-2 md:gap-4 lg:gap-8">
                         <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
                           {t("Description")}
                         </label>
@@ -584,385 +557,86 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            }
-          />
 
+                  {/* Assigned Departments */}
+                  <div className="mt-6">
+                    <h2 className="mb-4 text-text-accent font-semibold text-[clamp(14px,1.1vw,16px)]">
+                      {t("Assigned Departments")}
+                    </h2>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+                      {/* عمود الاسم */}
+                      <div className="space-y-4">
+                        <div className="flex flex-col md:flex-row gap-2 md:gap-4">
+                          <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
+                            {t("Department Name")}
+                          </label>
+                          <span className="text-[clamp(12px,1.1vw,14px)]">Al Razi Department</span>
+                        </div>
+                      </div>
 
-
-
-
-          <ReusableCollapsible
-            dir={local === "ar" ? "rtl" : "ltr"}
-            title={t("Company Contact Information")}
-            initiallyOpen={isOpen.clinicInfo}
-            onOpenChange={(open) => handleToggle("clinicInfo", open)}
-            content={
-              <div className="flex flex-col h-full pb-4 gap-4">
-                {/* شبكة عمودين على الشاشات الكبيرة وعمود واحد على الموبايل */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8">
-                  {/* Phone Numbers */}
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2 md:gap-4">
-                    <div className="flex items-center gap-2">
-                      <div className="text-text-primary"><svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.77089 1.7914C4.74396 1.7897 4.69757 1.79107 4.62528 1.80329C3.77857 1.94638 3.00486 2.37623 2.43547 3.02308C1.97218 3.5494 1.66854 4.19168 1.55287 4.87501C1.48516 5.27504 1.49216 5.71047 1.52066 6.19911C1.69143 9.12669 2.92996 11.9001 5.01501 13.9851C7.18212 16.1522 10.0928 17.4049 13.1473 17.4946C13.5053 17.5052 13.8283 17.4975 14.1251 17.4472C14.8084 17.3316 15.4507 17.0279 15.977 16.5646C16.6598 15.9637 17.1008 15.1351 17.218 14.2332L17.2168 14.2327L17.2168 14.2327L12.8295 12.3484L12.8294 12.3485L12.8294 12.3485L10.4887 13.912C10.4881 13.9125 10.4874 13.9129 10.4868 13.9134C10.2713 14.0583 10.0219 14.1449 9.76298 14.1645C9.50325 14.1843 9.24287 14.136 9.00745 14.0245L9.00328 14.0226C7.25484 13.1814 5.84277 11.773 4.99715 10.0267L4.99564 10.0236L4.99565 10.0236C4.88489 9.79214 4.83535 9.53616 4.85176 9.28011C4.86817 9.02405 4.94999 8.77649 5.0894 8.56108L5.09234 8.55653L5.09236 8.55654L6.65297 6.18292L6.65155 6.17964L6.65156 6.17964L4.77089 1.7914ZM17.2189 14.2261L17.2189 14.2264L17.2189 14.2261ZM4.37532 0.324261C4.70725 0.268164 5.26379 0.235978 5.73387 0.632501C5.91326 0.783819 6.05538 0.976218 6.14718 1.19487L8.02884 5.58542C8.02911 5.58605 8.02938 5.58667 8.02965 5.5873C8.12707 5.81244 8.16779 6.05805 8.14822 6.3026C8.1286 6.54783 8.04897 6.78447 7.91634 6.99167L7.9114 6.99939L7.91135 6.99935L6.3487 9.37608C7.04612 10.8145 8.20932 11.9749 9.6494 12.6688L9.65244 12.6668L9.65244 12.6668L11.9944 11.1024C12.2022 10.9621 12.4421 10.8764 12.6918 10.8534C12.9415 10.8304 13.193 10.8708 13.423 10.9708C13.4239 10.9712 13.4249 10.9716 13.4258 10.972L17.8056 12.8531C18.1054 12.979 18.3558 13.1995 18.5186 13.4811C18.6822 13.764 18.7483 14.0929 18.7067 14.417C18.5445 15.6833 17.9264 16.8471 16.9681 17.6906C16.2313 18.3392 15.3321 18.7643 14.3755 18.9262C13.9356 19.0007 13.4989 19.0056 13.1033 18.994C9.66683 18.893 6.39236 17.4838 3.95435 15.0458C1.60865 12.7001 0.215328 9.58005 0.0232104 6.28646C-0.00635157 5.77966 -0.0237603 5.20168 0.0739086 4.62467C0.235831 3.66806 0.660897 2.76886 1.30954 2.03198C2.1067 1.12638 3.18988 0.524605 4.37532 0.324261Z" fill="CurrentColor" />
-                      </svg></div>
-                      <span className="font-semibold text-text-primary text-[clamp(14px,1.1vw,16px)]">
-                        {t("Phone Numbers")}:
-                      </span>
+                      {/* عمود الوصف */}
+                      <div className="space-y-4">
+                        <div className="flex flex-col md:flex-row gap-2 md:gap-4">
+                          <label className="min-w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
+                            {t("Description")}
+                          </label>
+                          <div className="w-full md:w-[360px] text-[clamp(12px,1.1vw,14px)]">
+                            Al Noor Clinic is a multi-specialty clinic offering high-quality care with modern facilities.
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <span className="font-title-14px-regular text-on-surface-primary text-[clamp(12px,1.1vw,14px)]">
-                      +966 55 123 4567, +966 11 987 6543
-                    </span>
-                  </div>
-
-                  {/* Email */}
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2 md:gap-4">
-                    <div className="flex items-center gap-2">
-                      <div className="text-text-primary">   <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8.07923 0.787497C10.0441 0.737503 11.9541 0.737499 13.9191 0.787497C17.157 0.869496 18.9413 0.915255 20.2843 2.25625C21.6291 3.61122 21.6655 5.3485 21.7325 8.50136C21.7535 9.50833 21.7535 10.4866 21.7325 11.4936C21.6656 14.6461 21.6288 16.3819 20.2872 17.7348C18.9422 19.0788 17.158 19.1244 13.92 19.2064C12.9381 19.2314 11.9691 19.2445 11.0001 19.2445C10.0312 19.2445 9.06212 19.2314 8.0802 19.2064C4.84234 19.1244 3.05795 19.0785 1.71497 17.7377C0.370009 16.3827 0.332745 14.6454 0.265749 11.4926C0.24475 10.4856 0.244751 9.50735 0.265749 8.50039C0.332749 5.34739 0.370038 3.6112 1.71204 2.2582C3.05703 0.914271 4.84128 0.869495 8.07923 0.787497ZM13.881 2.28554C11.9421 2.23555 10.0572 2.23555 8.11731 2.28554C5.07934 2.36254 3.69256 2.39684 2.77356 3.31582C1.85556 4.24182 1.82677 5.58664 1.76477 8.53164C1.74378 9.5165 1.74378 10.4745 1.76477 11.4603C1.82677 14.4053 1.85648 15.7502 2.77747 16.6771C3.69447 17.593 5.08048 17.6294 8.11829 17.7064C10.0572 17.7564 11.9421 17.7564 13.882 17.7064C16.9199 17.6294 18.3057 17.5941 19.2247 16.6752C20.1427 15.7492 20.1715 14.4053 20.2335 11.4603C20.2545 10.4755 20.2545 9.5175 20.2335 8.53164C20.1715 5.58664 20.1428 4.24086 19.2218 3.31386C18.3048 2.39817 16.9186 2.36253 13.881 2.28554ZM5.35462 6.11074C5.56562 5.75474 6.02596 5.63509 6.38196 5.84609L9.32337 7.58633C10.7954 8.45333 11.2039 8.45333 12.6779 7.58633L15.6183 5.84707C15.9753 5.63607 16.4356 5.75472 16.6456 6.11172C16.8564 6.46859 16.7387 6.92802 16.382 7.13808L13.4396 8.87832C12.4588 9.45619 11.73 9.74442 11.0001 9.74453C10.2711 9.74453 9.54165 9.45532 8.56165 8.87832L5.61829 7.13711C5.26276 6.92603 5.14393 6.46654 5.35462 6.11074Z" fill="CurrentColor" />
-                      </svg></div>
-                      <span className="font-semibold text-text-primary text-[clamp(14px,1.1vw,16px)]">
-                        {t("Email")}:
-                      </span>
-                    </div>
-                    <span className="font-title-14px-regular text-on-surface-primary text-[clamp(12px,1.1vw,14px)]">
-                      info@medcaregroup.com
-                    </span>
                   </div>
                 </div>
-              </div>
-            }
-          />
+              }
+            />
 
 
 
 
 
+            <ReusableCollapsible
+              dir={local === "ar" ? "rtl" : "ltr"}
+              title={t("Company Contact Information")}
+              initiallyOpen={isOpen.clinicInfo}
+              onOpenChange={(open) => handleToggle("clinicInfo", open)}
+              content={
+                <div className="flex flex-col h-full pb-4 gap-4">
+                  {/* شبكة عمودين على الشاشات الكبيرة وعمود واحد على الموبايل */}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8">
+                    {/* Phone Numbers */}
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2 md:gap-4">
+                      <div className="flex items-center gap-2">
+                        <div className="text-text-primary"><svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M4.77089 1.7914C4.74396 1.7897 4.69757 1.79107 4.62528 1.80329C3.77857 1.94638 3.00486 2.37623 2.43547 3.02308C1.97218 3.5494 1.66854 4.19168 1.55287 4.87501C1.48516 5.27504 1.49216 5.71047 1.52066 6.19911C1.69143 9.12669 2.92996 11.9001 5.01501 13.9851C7.18212 16.1522 10.0928 17.4049 13.1473 17.4946C13.5053 17.5052 13.8283 17.4975 14.1251 17.4472C14.8084 17.3316 15.4507 17.0279 15.977 16.5646C16.6598 15.9637 17.1008 15.1351 17.218 14.2332L17.2168 14.2327L17.2168 14.2327L12.8295 12.3484L12.8294 12.3485L12.8294 12.3485L10.4887 13.912C10.4881 13.9125 10.4874 13.9129 10.4868 13.9134C10.2713 14.0583 10.0219 14.1449 9.76298 14.1645C9.50325 14.1843 9.24287 14.136 9.00745 14.0245L9.00328 14.0226C7.25484 13.1814 5.84277 11.773 4.99715 10.0267L4.99564 10.0236L4.99565 10.0236C4.88489 9.79214 4.83535 9.53616 4.85176 9.28011C4.86817 9.02405 4.94999 8.77649 5.0894 8.56108L5.09234 8.55653L5.09236 8.55654L6.65297 6.18292L6.65155 6.17964L6.65156 6.17964L4.77089 1.7914ZM17.2189 14.2261L17.2189 14.2264L17.2189 14.2261ZM4.37532 0.324261C4.70725 0.268164 5.26379 0.235978 5.73387 0.632501C5.91326 0.783819 6.05538 0.976218 6.14718 1.19487L8.02884 5.58542C8.02911 5.58605 8.02938 5.58667 8.02965 5.5873C8.12707 5.81244 8.16779 6.05805 8.14822 6.3026C8.1286 6.54783 8.04897 6.78447 7.91634 6.99167L7.9114 6.99939L7.91135 6.99935L6.3487 9.37608C7.04612 10.8145 8.20932 11.9749 9.6494 12.6688L9.65244 12.6668L9.65244 12.6668L11.9944 11.1024C12.2022 10.9621 12.4421 10.8764 12.6918 10.8534C12.9415 10.8304 13.193 10.8708 13.423 10.9708C13.4239 10.9712 13.4249 10.9716 13.4258 10.972L17.8056 12.8531C18.1054 12.979 18.3558 13.1995 18.5186 13.4811C18.6822 13.764 18.7483 14.0929 18.7067 14.417C18.5445 15.6833 17.9264 16.8471 16.9681 17.6906C16.2313 18.3392 15.3321 18.7643 14.3755 18.9262C13.9356 19.0007 13.4989 19.0056 13.1033 18.994C9.66683 18.893 6.39236 17.4838 3.95435 15.0458C1.60865 12.7001 0.215328 9.58005 0.0232104 6.28646C-0.00635157 5.77966 -0.0237603 5.20168 0.0739086 4.62467C0.235831 3.66806 0.660897 2.76886 1.30954 2.03198C2.1067 1.12638 3.18988 0.524605 4.37532 0.324261Z" fill="CurrentColor" />
+                        </svg></div>
+                        <span className="font-semibold text-text-primary text-[clamp(14px,1.1vw,16px)]">
+                          {t("Phone Numbers")}:
+                        </span>
+                      </div>
+                      <span className="font-title-14px-regular text-on-surface-primary text-[clamp(12px,1.1vw,14px)]">
+                        +966 55 123 4567, +966 11 987 6543
+                      </span>
+                    </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<ReusableCollapsible
-  dir={local === "ar" ? "rtl" : "ltr"}
-  title={
-<div className="flex items-center gap-1 sm:gap-2 md:gap-4">
-  <h2 className="font-title-16px-bold text-primary-dark text-[clamp(10px,2vw,16px)]">
-    {t("Doctors")}
-  </h2>
-  <h2 className="font-title-16px-bold text-primary-dark text-[clamp(10px,2vw,16px)]">
-    {t("&")}
-  </h2>
-  <h2 className="font-title-16px-bold text-primary-dark text-[clamp(10px,2vw,16px)]">
-    {t("Staff")}
-  </h2>
-
-  <div className="flex items-center gap-1 sm:gap-2 ml-2">
-    <Badge className="bg-secondary-light text-on-surface-primary rounded-[20px] px-1.5 py-0.5 text-[clamp(9px,2vw,14px)]">
-      {t("All")}
-    </Badge>
-    <Badge
-      variant="outline"
-      className="bg-bg text-on-surface-primary rounded-[20px] px-1.5 py-0.5 text-[clamp(9px,2vw,14px)]"
-    >
-      {t("Doctors")}
-    </Badge>
-    <Badge
-      variant="outline"
-      className="bg-bg text-on-surface-primary rounded-[20px] px-1.5 py-0.5 text-[clamp(9px,2vw,14px)]"
-    >
-      {t("Staff")}
-    </Badge>
-  </div>
-</div>
-
-
-  }
-  initiallyOpen={isOpen.doctorsStaff}
-  onOpenChange={(open) => handleToggle("doctorsStaff", open)}
-  content={
-    <div className="w-full">
-      {/* جدول مع سكرول جانبي */}
-      <div className="w-full overflow-x-auto">
-        <Table className="min-w-[700px]">
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[58px] text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
-                {t("NO")}
-              </TableHead>
-              <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)]">
-                {t("User-ID")}
-              </TableHead>
-              <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)]">
-                {t("Name")}
-              </TableHead>
-              <TableHead className="w-[225px] text-text-primary  text-center font-semibold text-[clamp(14px,2vw,16px)]">
-                {t("Clinic")}
-              </TableHead>
-              <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)]">
-                {t("User Type")}
-              </TableHead>
-              <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)]">
-                {t("Status")}
-              </TableHead>
-            </TableRow>
-          </TableHeader>
-
-          <TableBody>
-            {doctorsAndStaff.map((person) => (
-              <TableRow
-                key={person.number}
-                className="border-b border-[#e4e2dd]"
-              >
-                <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
-                  {person.number}
-                </TableCell>
-                <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
-                  {person.userId}
-                </TableCell>
-                <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
-                  <div className="flex items-center gap-2 justify-center">
-                    <Avatar
-                      src={person.avatar}
-                      alt={person.name}
-                      sx={{
-                        width: 28,
-                        height: 28,
-                        bgcolor: !person.avatar
-                          ? "var(--theme-text-accent)"
-                          : "transparent",
-                      }}
-                    />
-                    <span>{person.name}</span>
+                    {/* Email */}
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2 md:gap-4">
+                      <div className="flex items-center gap-2">
+                        <div className="text-text-primary">   <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.07923 0.787497C10.0441 0.737503 11.9541 0.737499 13.9191 0.787497C17.157 0.869496 18.9413 0.915255 20.2843 2.25625C21.6291 3.61122 21.6655 5.3485 21.7325 8.50136C21.7535 9.50833 21.7535 10.4866 21.7325 11.4936C21.6656 14.6461 21.6288 16.3819 20.2872 17.7348C18.9422 19.0788 17.158 19.1244 13.92 19.2064C12.9381 19.2314 11.9691 19.2445 11.0001 19.2445C10.0312 19.2445 9.06212 19.2314 8.0802 19.2064C4.84234 19.1244 3.05795 19.0785 1.71497 17.7377C0.370009 16.3827 0.332745 14.6454 0.265749 11.4926C0.24475 10.4856 0.244751 9.50735 0.265749 8.50039C0.332749 5.34739 0.370038 3.6112 1.71204 2.2582C3.05703 0.914271 4.84128 0.869495 8.07923 0.787497ZM13.881 2.28554C11.9421 2.23555 10.0572 2.23555 8.11731 2.28554C5.07934 2.36254 3.69256 2.39684 2.77356 3.31582C1.85556 4.24182 1.82677 5.58664 1.76477 8.53164C1.74378 9.5165 1.74378 10.4745 1.76477 11.4603C1.82677 14.4053 1.85648 15.7502 2.77747 16.6771C3.69447 17.593 5.08048 17.6294 8.11829 17.7064C10.0572 17.7564 11.9421 17.7564 13.882 17.7064C16.9199 17.6294 18.3057 17.5941 19.2247 16.6752C20.1427 15.7492 20.1715 14.4053 20.2335 11.4603C20.2545 10.4755 20.2545 9.5175 20.2335 8.53164C20.1715 5.58664 20.1428 4.24086 19.2218 3.31386C18.3048 2.39817 16.9186 2.36253 13.881 2.28554ZM5.35462 6.11074C5.56562 5.75474 6.02596 5.63509 6.38196 5.84609L9.32337 7.58633C10.7954 8.45333 11.2039 8.45333 12.6779 7.58633L15.6183 5.84707C15.9753 5.63607 16.4356 5.75472 16.6456 6.11172C16.8564 6.46859 16.7387 6.92802 16.382 7.13808L13.4396 8.87832C12.4588 9.45619 11.73 9.74442 11.0001 9.74453C10.2711 9.74453 9.54165 9.45532 8.56165 8.87832L5.61829 7.13711C5.26276 6.92603 5.14393 6.46654 5.35462 6.11074Z" fill="CurrentColor" />
+                        </svg></div>
+                        <span className="font-semibold text-text-primary text-[clamp(14px,1.1vw,16px)]">
+                          {t("Email")}:
+                        </span>
+                      </div>
+                      <span className="font-title-14px-regular text-on-surface-primary text-[clamp(12px,1.1vw,14px)]">
+                        info@medcaregroup.com
+                      </span>
+                    </div>
                   </div>
-                </TableCell>
-                <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
-                  {person.clinic}
-                </TableCell>
-                <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
-                  {person.userType}
-                </TableCell>
-  <div className="flex items-center justify-center gap-2">
-              <Badge className="bg-secondary-light text-secondary-dark rounded-[20px]         w-[72px] h-[20px] sm:w-[80px] sm:h-[22px] md:w-[92px] md:h-[24px] justify-center text-[clamp(14px,2vw,16px)]">
-                {t("Active")}
-              </Badge>
-            </div>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
-
-      {/* Pagination + Showing section */}
-<div className="flex items-center justify-between p-4">
-  <div className="flex items-center gap-2.5 flex-wrap">
-    <span className="text-[clamp(10px,2vw,12px)] text-on-surface-secondary">
-      {t("Showing")}
-    </span>
-
-    <Select defaultValue="1">
-      <SelectTrigger className="w-auto bg-secondary-light rounded-[20px] border-0 px-2 py-1.5 text-[clamp(10px,2vw,12px)]">
-        <SelectValue />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="1">1</SelectItem>
-      </SelectContent>
-    </Select>
-
-    <span className="text-[clamp(10px,2vw,12px)] text-on-surface-secondary">
-      {t("out of 14")}
-    </span>
-  </div>
-
-  {/* الحاوية الجديدة مع overflow-x-auto */}
-  <div className="max-w-full overflow-x-auto">
-    
-    {/* نسخة الموبايل (تظهر فقط تحت sm) */}
-    <Pagination className="flex sm:hidden justify-center">
-      <PaginationContent className="flex-nowrap gap-2">
-
-        {/* previous */}
-        <PaginationItem>
-          <Button
-            variant="outline"
-            size="sm"
-            className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full border-[#f1f1f1]"
-          >
-            {local === "en" ? (
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="#333"/>
-              </svg>
-            ) : (
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="#333"/>
-              </svg>
-            )}
-          </Button>
-        </PaginationItem>
-
-        {/* current page */}
-        <PaginationItem>
-          <PaginationLink
-            isActive
-            className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-secondary-dark text-white rounded-full font-semibold text-[clamp(10px,2vw,13px)]"
-          >
-            1
-          </PaginationLink>
-        </PaginationItem>
-
-        {/* next */}
-        <PaginationItem>
-          <Button
-            variant="outline"
-            size="sm"
-            className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full border-[#f1f1f1]"
-          >
-            {local === "en" ? (
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="#333"/>
-              </svg>
-            ) : (
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="#333"/>
-              </svg>
-            )}
-          </Button>
-        </PaginationItem>
-      </PaginationContent>
-    </Pagination>
-
-    {/* نسخة الديسكتوب (الكاملة) */}
-    <Pagination className="hidden sm:flex justify-end">
-      <PaginationContent className="flex-nowrap gap-0.5 sm:gap-1 md:gap-2">
-
-        <PaginationItem className="shrink-0">
-          <Button
-            variant="outline"
-            size="sm"
-            className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full border-[#f1f1f1]"
-          >
-            {local === "en" ? (
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                <path d="M11.726 12L12.666 11.06L9.61268 8L12.666 4.94L11.726 4L7.72602 8L11.726 12Z" fill="#333"/>
-                <path d="M7.33344 12L8.27344 11.06L5.2201 8L8.27344 4.94L7.33344 4L3.33344 8L7.33344 12Z" fill="#333"/>
-              </svg>
-            ) : (
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                <path d="M4.27398 4L3.33398 4.94L6.38732 8L3.33398 11.06L4.27398 12L8.27398 8L4.27398 4Z" fill="#333"/>
-                <path d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z" fill="#333"/>
-              </svg>
-            )}
-          </Button>
-        </PaginationItem>
-
-        <PaginationItem className="shrink-0">
-          <Button
-            variant="outline"
-            size="sm"
-            className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full border-[#f1f1f1]"
-          >
-            {local === "en" ? (
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="#333"/>
-              </svg>
-            ) : (
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="#333"/>
-              </svg>
-            )}
-          </Button>
-        </PaginationItem>
-
-        <PaginationItem className="shrink-0">
-          <PaginationLink
-            className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-secondary-dark text-white rounded-full font-semibold text-[clamp(10px,2vw,13px)]"
-            isActive
-          >
-            1
-          </PaginationLink>
-        </PaginationItem>
-
-        <PaginationItem className="shrink-0">
-          <PaginationLink className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-white text-[#333] rounded-full border font-semibold text-[clamp(10px,2vw,13px)]">
-            2
-          </PaginationLink>
-        </PaginationItem>
-
-        <PaginationItem className="shrink-0">
-          <PaginationLink className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-white text-[#333] rounded-full border font-semibold text-[clamp(10px,2vw,13px)]">
-            3
-          </PaginationLink>
-        </PaginationItem>
-
-        <PaginationItem className="shrink-0">
-          <span className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-white text-[#333] rounded-lg font-semibold text-[clamp(10px,2vw,13px)]">
-            ...
-          </span>
-        </PaginationItem>
-
-        <PaginationItem className="shrink-0">
-          <PaginationLink className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-white text-[#333] rounded-full border font-semibold text-[clamp(10px,2vw,13px)]">
-            10
-          </PaginationLink>
-        </PaginationItem>
-
-        <PaginationItem className="shrink-0">
-          <Button
-            variant="outline"
-            size="sm"
-            className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full border-[#f1f1f1]"
-          >
-            {local === "en" ? (
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="#333"/>
-              </svg>
-            ) : (
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="#333"/>
-              </svg>
-            )}
-          </Button>
-        </PaginationItem>
-
-        <PaginationItem className="shrink-0">
-          <Button
-            variant="outline"
-            size="sm"
-            className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full border-[#f1f1f1]"
-          >
-            {local === "en" ? (
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                <path d="M4.27398 4L3.33398 4.94L6.38732 8L3.33398 11.06L4.27398 12L8.27398 8L4.27398 4Z" fill="#333"/>
-                <path d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z" fill="#333"/>
-              </svg>
-            ) : (
-              <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                <path d="M11.726 12L12.666 11.06L9.61268 8L12.666 4.94L11.726 4L7.72602 8L11.726 12Z" fill="#333"/>
-                <path d="M7.33344 12L8.27344 11.06L5.2201 8L8.27344 4.94L7.33344 4L3.33344 8L7.33344 12Z" fill="#333"/>
-              </svg>
-            )}
-          </Button>
-        </PaginationItem>
-
-      </PaginationContent>
-    </Pagination>
-  </div>
-  
-</div>
-    </div>
-  }
-/>
+                </div>
+              }
+            />
 
 
 
@@ -970,74 +644,402 @@ export const MedicalDetailsSection = ({ handleLanguageClick, local, dark, handel
 
 
 
-                  {/* Working Days Collapsible */}
-<ReusableCollapsible
-  title={t("Working Days")}
-  dir={local === "ar" ? "rtl" : "ltr"}
-  initiallyOpen={isOpen.workingDays}
-  onOpenChange={(open) => handleToggle("workingDays", open)}
-  content={
-    <div className="px-4 pb-4">
-      <div className="bg-surface-default rounded-2xl overflow-x-auto">
-        <Table className="min-w-[320px]">
-          <TableHeader>
-            <TableRow>
-              <TableHead className="text-text-primary text-start px-2 py-2 text-[clamp(14px,2vw,16px)] ">
-                {t("Working Days")}
-              </TableHead>
-              <TableHead className="text-center text-text-primary px-2 py-2 text-[clamp(14px,2vw,16px)] ">
-                {t("Start Time")}
-              </TableHead>
-              <TableHead className="text-end text-text-primary px-2 py-2 text-[clamp(14px,2vw,16px)] ">
-                {t("End Time")}
-              </TableHead>
-            </TableRow>
-          </TableHeader>
-
-          <TableBody>
-            {getWorkingDays(t).map((schedule, index) => (
-              <TableRow
-                key={index}
-                className="border-b border-[#e4e2dd] h-[40px] sm:h-[48px]"
-              >
-                <TableCell className="text-start px-2 text-[clamp(12px,2vw,14px)]">
-                  {schedule.day}
-                </TableCell>
-                <TableCell className="text-center px-2 text-[clamp(12px,2vw,14px)] ">
-                  {schedule.startTime}
-                </TableCell>
-                <TableCell className="text-end pe-4 px-2 text-[clamp(12px,2vw,14px)] ">
-                  {schedule.endTime}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
-    </div>
-  }
-/>
 
 
 
 
 
-          {/* Maps Location Collaps ible */}
-          <ReusableCollapsible dir={local === 'ar' ? 'rtl' : 'ltr'}
-            title={t("Maps Location")}
-            initiallyOpen={isOpen.mapsLocation}
-            onOpenChange={(open) => handleToggle("mapsLocation", open)}
-            content={<div>      <div className="w-full h-[332px] bg-[url(/background.png)] bg-cover bg-center rounded" />
-              <p className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
-                {t("245, King Fahd Road, Al Olaya, Saudi Arabia, KSA")}
-              </p></div>}
 
-          />
 
-  
 
-        </CardContent>
-      </Card>
-    </div></div>
+
+
+
+
+            <ReusableCollapsible
+              dir={local === "ar" ? "rtl" : "ltr"}
+              title={
+                <div className="flex items-center gap-1 sm:gap-2 md:gap-4">
+                  <h2 className="font-title-16px-bold text-primary-dark text-[clamp(10px,2vw,16px)]">
+                    {t("Doctors")}
+                  </h2>
+                  <h2 className="font-title-16px-bold text-primary-dark text-[clamp(10px,2vw,16px)]">
+                    {t("&")}
+                  </h2>
+                  <h2 className="font-title-16px-bold text-primary-dark text-[clamp(10px,2vw,16px)]">
+                    {t("Staff")}
+                  </h2>
+
+                  <div className="flex items-center gap-1 sm:gap-2 ml-2">
+                    <Badge className="bg-secondary-light text-on-surface-primary rounded-[20px] px-1.5 py-0.5 text-[clamp(9px,2vw,14px)]">
+                      {t("All")}
+                    </Badge>
+                    <Badge
+                      variant="outline"
+                      className="bg-bg text-on-surface-primary rounded-[20px] px-1.5 py-0.5 text-[clamp(9px,2vw,14px)]"
+                    >
+                      {t("Doctors")}
+                    </Badge>
+                    <Badge
+                      variant="outline"
+                      className="bg-bg text-on-surface-primary rounded-[20px] px-1.5 py-0.5 text-[clamp(9px,2vw,14px)]"
+                    >
+                      {t("Staff")}
+                    </Badge>
+                  </div>
+                </div>
+
+
+              }
+              initiallyOpen={isOpen.doctorsStaff}
+              onOpenChange={(open) => handleToggle("doctorsStaff", open)}
+              content={
+                <div className="w-full">
+                  {/* جدول مع سكرول جانبي */}
+                  <div className="w-full overflow-x-auto">
+                    <Table className="min-w-[700px]">
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead className="w-[58px] text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
+                            {t("NO")}
+                          </TableHead>
+                          <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)]">
+                            {t("User-ID")}
+                          </TableHead>
+                          <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)]">
+                            {t("Name")}
+                          </TableHead>
+                          <TableHead className="w-[225px] text-text-primary  text-center font-semibold text-[clamp(14px,2vw,16px)]">
+                            {t("Clinic")}
+                          </TableHead>
+                          <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)]">
+                            {t("User Type")}
+                          </TableHead>
+                          <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)]">
+                            {t("Status")}
+                          </TableHead>
+                        </TableRow>
+                      </TableHeader>
+
+                      <TableBody>
+                        {doctorsAndStaff.map((person) => (
+                          <TableRow
+                            key={person.number}
+                            className="border-b border-[#e4e2dd]"
+                          >
+                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
+                              {person.number}
+                            </TableCell>
+                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
+                              {person.userId}
+                            </TableCell>
+                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
+                              <div className="flex items-center gap-2 justify-center">
+                                <Avatar
+                                  src={person.avatar}
+                                  alt={person.name}
+                                  sx={{
+                                    width: 28,
+                                    height: 28,
+                                    bgcolor: !person.avatar
+                                      ? "var(--theme-text-accent)"
+                                      : "transparent",
+                                  }}
+                                />
+                                <span>{person.name}</span>
+                              </div>
+                            </TableCell>
+                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
+                              {person.clinic}
+                            </TableCell>
+                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
+                              {person.userType}
+                            </TableCell>
+                            <div className="flex items-center justify-center gap-2">
+                              <Badge className="bg-secondary-light text-secondary-dark rounded-[20px]         w-[72px] h-[20px] sm:w-[80px] sm:h-[22px] md:w-[92px] md:h-[24px] justify-center text-[clamp(14px,2vw,16px)]">
+                                {t("Active")}
+                              </Badge>
+                            </div>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+
+                  {/* Pagination + Showing section */}
+                  <div className="flex items-center justify-between p-4">
+                    <div className="flex items-center gap-2.5 flex-wrap">
+                      <span className="text-[clamp(10px,2vw,12px)] text-on-surface-secondary">
+                        {t("Showing")}
+                      </span>
+
+                      <Select defaultValue="1">
+                        <SelectTrigger className="w-auto bg-secondary-light rounded-[20px] border-0 px-2 py-1.5 text-[clamp(10px,2vw,12px)]">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="1">1</SelectItem>
+                        </SelectContent>
+                      </Select>
+
+                      <span className="text-[clamp(10px,2vw,12px)] text-on-surface-secondary">
+                        {t("out of 14")}
+                      </span>
+                    </div>
+
+                    {/* الحاوية الجديدة مع overflow-x-auto */}
+                    <div className="max-w-full overflow-x-auto">
+
+                      {/* نسخة الموبايل (تظهر فقط تحت sm) */}
+                      <Pagination className="flex sm:hidden justify-center">
+                        <PaginationContent className="flex-nowrap gap-2">
+
+                          {/* previous */}
+                          <PaginationItem>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full border-[#f1f1f1]"
+                            >
+                              {local === "en" ? (
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                  <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="#333" />
+                                </svg>
+                              ) : (
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                  <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="#333" />
+                                </svg>
+                              )}
+                            </Button>
+                          </PaginationItem>
+
+                          {/* current page */}
+                          <PaginationItem>
+                            <PaginationLink
+                              isActive
+                              className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-secondary-dark text-white rounded-full font-semibold text-[clamp(10px,2vw,13px)]"
+                            >
+                              1
+                            </PaginationLink>
+                          </PaginationItem>
+
+                          {/* next */}
+                          <PaginationItem>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full border-[#f1f1f1]"
+                            >
+                              {local === "en" ? (
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                  <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="#333" />
+                                </svg>
+                              ) : (
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                  <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="#333" />
+                                </svg>
+                              )}
+                            </Button>
+                          </PaginationItem>
+                        </PaginationContent>
+                      </Pagination>
+
+                      {/* نسخة الديسكتوب (الكاملة) */}
+                      <Pagination className="hidden sm:flex justify-end">
+                        <PaginationContent className="flex-nowrap gap-0.5 sm:gap-1 md:gap-2">
+
+                          <PaginationItem className="shrink-0">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full border-[#f1f1f1]"
+                            >
+                              {local === "en" ? (
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                  <path d="M11.726 12L12.666 11.06L9.61268 8L12.666 4.94L11.726 4L7.72602 8L11.726 12Z" fill="#333" />
+                                  <path d="M7.33344 12L8.27344 11.06L5.2201 8L8.27344 4.94L7.33344 4L3.33344 8L7.33344 12Z" fill="#333" />
+                                </svg>
+                              ) : (
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                  <path d="M4.27398 4L3.33398 4.94L6.38732 8L3.33398 11.06L4.27398 12L8.27398 8L4.27398 4Z" fill="#333" />
+                                  <path d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z" fill="#333" />
+                                </svg>
+                              )}
+                            </Button>
+                          </PaginationItem>
+
+                          <PaginationItem className="shrink-0">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full border-[#f1f1f1]"
+                            >
+                              {local === "en" ? (
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                  <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="#333" />
+                                </svg>
+                              ) : (
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                  <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="#333" />
+                                </svg>
+                              )}
+                            </Button>
+                          </PaginationItem>
+
+                          <PaginationItem className="shrink-0">
+                            <PaginationLink
+                              className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-secondary-dark text-white rounded-full font-semibold text-[clamp(10px,2vw,13px)]"
+                              isActive
+                            >
+                              1
+                            </PaginationLink>
+                          </PaginationItem>
+
+                          <PaginationItem className="shrink-0">
+                            <PaginationLink className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-white text-[#333] rounded-full border font-semibold text-[clamp(10px,2vw,13px)]">
+                              2
+                            </PaginationLink>
+                          </PaginationItem>
+
+                          <PaginationItem className="shrink-0">
+                            <PaginationLink className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-white text-[#333] rounded-full border font-semibold text-[clamp(10px,2vw,13px)]">
+                              3
+                            </PaginationLink>
+                          </PaginationItem>
+
+                          <PaginationItem className="shrink-0">
+                            <span className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-white text-[#333] rounded-lg font-semibold text-[clamp(10px,2vw,13px)]">
+                              ...
+                            </span>
+                          </PaginationItem>
+
+                          <PaginationItem className="shrink-0">
+                            <PaginationLink className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-white text-[#333] rounded-full border font-semibold text-[clamp(10px,2vw,13px)]">
+                              10
+                            </PaginationLink>
+                          </PaginationItem>
+
+                          <PaginationItem className="shrink-0">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full border-[#f1f1f1]"
+                            >
+                              {local === "en" ? (
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                  <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="#333" />
+                                </svg>
+                              ) : (
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                  <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="#333" />
+                                </svg>
+                              )}
+                            </Button>
+                          </PaginationItem>
+
+                          <PaginationItem className="shrink-0">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full border-[#f1f1f1]"
+                            >
+                              {local === "en" ? (
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                  <path d="M4.27398 4L3.33398 4.94L6.38732 8L3.33398 11.06L4.27398 12L8.27398 8L4.27398 4Z" fill="#333" />
+                                  <path d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z" fill="#333" />
+                                </svg>
+                              ) : (
+                                <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                                  <path d="M11.726 12L12.666 11.06L9.61268 8L12.666 4.94L11.726 4L7.72602 8L11.726 12Z" fill="#333" />
+                                  <path d="M7.33344 12L8.27344 11.06L5.2201 8L8.27344 4.94L7.33344 4L3.33344 8L7.33344 12Z" fill="#333" />
+                                </svg>
+                              )}
+                            </Button>
+                          </PaginationItem>
+
+                        </PaginationContent>
+                      </Pagination>
+                    </div>
+
+                  </div>
+                </div>
+              }
+            />
+
+
+
+
+
+
+
+            {/* Working Days Collapsible */}
+            <ReusableCollapsible
+              title={t("Working Days")}
+              dir={local === "ar" ? "rtl" : "ltr"}
+              initiallyOpen={isOpen.workingDays}
+              onOpenChange={(open) => handleToggle("workingDays", open)}
+              content={
+                <div className="px-4 pb-4">
+                  <div className="bg-surface-default rounded-2xl overflow-x-auto">
+                    <Table className="min-w-[320px]">
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead className="text-text-primary text-start px-2 py-2 text-[clamp(14px,2vw,16px)] ">
+                            {t("Working Days")}
+                          </TableHead>
+                          <TableHead className="text-center text-text-primary px-2 py-2 text-[clamp(14px,2vw,16px)] ">
+                            {t("Start Time")}
+                          </TableHead>
+                          <TableHead className="text-end text-text-primary px-2 py-2 text-[clamp(14px,2vw,16px)] ">
+                            {t("End Time")}
+                          </TableHead>
+                        </TableRow>
+                      </TableHeader>
+
+                      <TableBody>
+                        {getWorkingDays(t).map((schedule, index) => (
+                          <TableRow
+                            key={index}
+                            className="border-b border-[#e4e2dd] h-[40px] sm:h-[48px]"
+                          >
+                            <TableCell className="text-start px-2 text-[clamp(12px,2vw,14px)]">
+                              {schedule.day}
+                            </TableCell>
+                            <TableCell className="text-center px-2 text-[clamp(12px,2vw,14px)] ">
+                              {schedule.startTime}
+                            </TableCell>
+                            <TableCell className="text-end pe-4 px-2 text-[clamp(12px,2vw,14px)] ">
+                              {schedule.endTime}
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                </div>
+              }
+            />
+
+
+
+
+
+            {/* Maps Location Collaps ible */}
+            <ReusableCollapsible dir={local === 'ar' ? 'rtl' : 'ltr'}
+              title={t("Maps Location")}
+              initiallyOpen={isOpen.mapsLocation}
+              onOpenChange={(open) => handleToggle("mapsLocation", open)}
+              content={<div>      <div className="w-full h-[332px] bg-[url(/background.png)] bg-cover bg-center rounded" />
+                <p className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
+                  {t("245, King Fahd Road, Al Olaya, Saudi Arabia, KSA")}
+                </p></div>}
+
+            />
+
+
+
+          </CardContent>
+        </Card>
+      </div></div>
   );
 };

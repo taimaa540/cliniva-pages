@@ -9,7 +9,7 @@ import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
-import DateInput from "../DateInput";
+import DateInput from "../CommonComponents/DateInput";
 interface buttonProps {
   handleNext: () => void;
   prevStep: () => void;

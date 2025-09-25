@@ -19,7 +19,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "../../../components/ui/pagination";
-import { SideBarPlan2 } from "../../CommonComponents/SideBarPlan2";
+import { SideBar } from "../../CommonComponents/SideBarPlan2";
 import { ThemeToggle } from "../../../components/theme/ThemeSwitcher";
 import { useState } from "react";
 import TranslateIcon from "@mui/icons-material/Translate";
@@ -186,144 +186,145 @@ export const ViewStaffMembersList = (): JSX.Element => {
   useEffect(() => {
     i18n.changeLanguage(local);
   }, []);
-
-       const [showSidebar, setShowSidebar] = useState(false);
-   const onOpenSidebar = () => setShowSidebar(true);
-   const onCloseSidebar = () => setShowSidebar(false);
-   return (
-      <div className="flex h-screen  w-screen">
-         {showSidebar && (
-     <div
-       onClick={onCloseSidebar}
-       className="fixed inset-0 bg-black/40 z-40 md:hidden"
-     />
-   )}
-                 <SideBarPlan2
-         local={local}
-         handleLanguageClick={handleLanguageClick}
-         handleDarkClick={() => {}}
-         isOpen={showSidebar}
-         onOpenSidebar={onOpenSidebar}
-         onCloseSidebar={onCloseSidebar}
-       />
+  const [isOpenAppointment, setIsOpen] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const onOpenSidebar = () => setShowSidebar(true);
+  const onCloseSidebar = () => setShowSidebar(false);
+  return (
+    <div className="flex h-screen  w-screen">
+      {showSidebar && (
+        <div
+          onClick={onCloseSidebar}
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+        />
+      )}
+     <SideBar
+        isOpenAppointment={isOpenAppointment}
+        setIsOpen={setIsOpen}
+        local={local}
+        handleLanguageClick={handleLanguageClick}
+        handleDarkClick={() => { }}
+        isOpen={showSidebar}
+        onOpenSidebar={onOpenSidebar}
+        onCloseSidebar={onCloseSidebar}
+      />
       <div className="flex flex-col w-full overflow-hidden h-full items-start gap-4 py-4 pl-0 pr-5">
 
-<header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-  {/* نسخة الموبايل */}
-<div className="flex w-full items-center justify-between md:hidden">
-  {/* Left Side -> العنوان */}
-  <div className="flex items-center gap-2">
-    <button
-      className="md:hidden p-2 rounded-lg bg-secondary-light"
-      onClick={onOpenSidebar}
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={2}
-        stroke="currentColor"
-        className="w-6 h-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M4 6h16M4 12h16M4 18h16"
-        />
-      </svg>
-    </button>
+        <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
+          {/* نسخة الموبايل */}
+          <div className="flex w-full items-center justify-between md:hidden">
+            {/* Left Side -> العنوان */}
+            <div className="flex items-center gap-2">
+              <button
+                className="md:hidden p-2 rounded-lg bg-secondary-light"
+                onClick={onOpenSidebar}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </button>
 
-    <div className="flex flex-col">
-      <h1 className="font-bold text-sm text-on-surface-primary">
-         {t("Staff")}
-      </h1>
-      <p className="text-xs text-on-surface-primary">
-       {t("View Staff Members List")}
-      </p>
-    </div>
-  </div>
+              <div className="flex flex-col">
+                <h1 className="font-bold text-sm text-on-surface-primary">
+                  {t("Staff")}
+                </h1>
+                <p className="text-xs text-on-surface-primary">
+                  {t("View Staff Members List")}
+                </p>
+              </div>
+            </div>
 
-  {/* Right Side -> الإشعار */}
-  <div className="relative">
-    <Button
-      variant="ghost"
-      size="icon"
-      className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-    >
-      <BellIcon className="w-5 h-5" />
-    </Button>
-    <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-  </div>
-</div>
-
-
-
-
-  {/* نسخة الـ Desktop/Laptop */}
-  <div className="hidden md:flex w-full items-center justify-between">
-    {/* Left Side */}
-    <div className="flex items-center gap-4">
-      <div className="flex flex-col">
-        <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
-               {t("Staff")}
-        </h1>
-        <p className="text-sm md:text-base text-on-surface-primary">
-                {t("View Staff Members List")}
-        </p>
-      </div>
-    </div>
-
-    {/* Right Side */}
-    <div className="inline-flex gap-3 items-center px-4">
-      {/* Notification */}
-      <div className="relative">
-        <Button
-          variant="ghost"
-          size="icon"
-          className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-        >
-          <BellIcon className="w-5 h-5" />
-        </Button>
-        <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-      </div>
-
-      {/* Language Switch */}
-      <div className="relative">
-        <Button
-          variant="ghost"
-          size="icon"
-          className={`p-2.5 ${
-            local === "ar" ? "bg-[green]" : "bg-secondary-light"
-          } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-          onClick={handleLanguageClick}
-        >
-          <TranslateIcon className="w-5 h-5" />
-        </Button>
-      </div>
-
-      {/* Theme Toggle */}
-      <div className="relative">
-        <ThemeToggle />
-      </div>
-
-      {/* User Info */}
-      <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-        <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-        <div className="flex-col items-start gap-1 inline-flex">
-          <div className="text-base font-bold text-on-surface-primary">
-            Anahera Jones
+            {/* Right Side -> الإشعار */}
+            <div className="relative">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
+              >
+                <BellIcon className="w-5 h-5" />
+              </Button>
+              <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
+            </div>
           </div>
-          <div className="text-sm text-on-surface-tertiary">
-            {t("Admin")}
+
+
+
+
+          {/* نسخة الـ Desktop/Laptop */}
+          <div className="hidden md:flex w-full items-center justify-between">
+            {/* Left Side */}
+            <div className="flex items-center gap-4">
+              <div className="flex flex-col">
+                <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
+                  {t("Staff")}
+                </h1>
+                <p className="text-sm md:text-base text-on-surface-primary">
+                  {t("View Staff Members List")}
+                </p>
+              </div>
+            </div>
+
+            {/* Right Side */}
+            <div className="inline-flex gap-3 items-center px-4">
+              {/* Notification */}
+              <div className="relative">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
+                >
+                  <BellIcon className="w-5 h-5" />
+                </Button>
+                <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
+              </div>
+
+              {/* Language Switch */}
+              <div className="relative">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
+                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
+                  onClick={handleLanguageClick}
+                >
+                  <TranslateIcon className="w-5 h-5" />
+                </Button>
+              </div>
+
+              {/* Theme Toggle */}
+              <div className="relative">
+                <ThemeToggle />
+              </div>
+
+              {/* User Info */}
+              <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
+                <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
+                <div className="flex-col items-start gap-1 inline-flex">
+                  <div className="text-base font-bold text-on-surface-primary">
+                    Anahera Jones
+                  </div>
+                  <div className="text-sm text-on-surface-tertiary">
+                    {t("Admin")}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
+        </header>
 
 
-    
+
         <Card className="flex flex-col h-full items-start gap-5 p-[20px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-secondary">
           <CardContent className="w-full h-full flex flex-col">
             <div
@@ -341,7 +342,7 @@ export const ViewStaffMembersList = (): JSX.Element => {
                     <input
                       type="search"
                       placeholder={t("Search for a user id , staff name ..")}
-                      className="placeholder:text-[clamp(16px,2vw,16px)] text-[11px] bg-background-primary pl-[30px] py-[8px] rounded-[16px]  w-[160px] h-[32px]     /* موبايل */
+                      className="placeholder:text-[clamp(12px,2vw,12px)] text-[11px] bg-background-primary pl-[30px] py-[8px] rounded-[16px]  w-[160px] h-[32px]     /* موبايل */
   sm:w-[170px] sm:h-[34px]  /* شاشات ≥ 640px */
     md:w-[200px] md:h-[38px]  /* شاشات ≥ 768px */
     lg:w-[224px] lg:h-[40px]  border-0 px-4   outline-none"
@@ -376,89 +377,89 @@ export const ViewStaffMembersList = (): JSX.Element => {
 
 
 
-        <div
-  className="flex flex-col flex-grow rounded-lg items-start gap-5 pt-4 pr-[10px] relative w-full overflow-hidden"
-  dir={local === "ar" ? "rtl" : "ltr"}
->
-  {/* حاوية سكرول أفقي */}
-  <div className="w-full overflow-x-auto">
-    {/* حاوية سكرول رأسي */}
-    <div
-      className="overflow-y-auto rounded-lg"
-      style={{ height: "calc(100vh - 78px - 200px)" }}
-    >
-      <table className="table-auto w-full min-w-[800px] text-center border-collapse">
-        <thead className="sticky top-0 z-10 bg-background-primary border-b border-border-light">
-          <tr className="h-[56px]">
-            <td className="font-lato font-semibold text-[clamp(16px,2vw,16px)]  text-text-primary">
-              {t("No.")}
-            </td>
-            <td className="font-lato font-semibold text-[clamp(16px,2vw,16px)]  text-text-primary">
-              {t("User ID")}
-            </td>
-            <td className="font-lato font-semibold text-[clamp(16px,2vw,16px)]  text-text-primary">
-              {t("Staff Member’s Name")}
-            </td>
-            <td className="font-lato font-semibold text-[clamp(16px,2vw,16px)]  text-text-primary">
-              {t("Job title")}
-            </td>
-            <td className="font-lato font-semibold text-[clamp(16px,2vw,16px)]  text-text-primary">
-              {t("Assigned Complex")}
-            </td>
-            <td className="font-lato font-semibold text-[clamp(16px,2vw,16px)]  text-text-primary">
-              {t("Status")}
-            </td>
-            <td className="font-lato font-semibold text-[clamp(14px,2vw,16px)]  text-text-primary">
-              {t("Actions")}
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-          {userData.map((user, index) => (
-            <tr
-              key={index}
-              className="h-[78px] bg-background-primary hover:bg-secondary-light border-b border-border-light whitespace-nowrap cursor-pointer"
-              onClick={() =>
-                (window.location.href = `/ViewStaffList/View Staff Details?id=${user.id}`)
-              } // 👈 كل السطر قابل للضغط
-            >
-              <td className="font-lato font-semibold text-[clamp(12px,2vw,14px)]">
-                {user.id}
-              </td>
-              <td className="font-lato text-[clamp(12px,2vw,14px)]">{user.userid}</td>
-              <td className="font-lato font-semibold text-[clamp(12px,2vw,14px)]">
-                {user.StaffName}
-              </td>
-              <td className="font-lato font-semibold text-[clamp(12px,2vw,14px)]">
-                {user.Jop}
-              </td>
-              <td className="font-lato font-semibold text-[clamp(12px,2vw,14px)]">
-                {user.AssignedComplex}
-              </td>
-              <td className="w-[160px]">
-                <Badge className="bg-secondary-light text-secondary-dark rounded-[20px] w-[92px] justify-center">
-                  {t("Active")}
-                </Badge>
-              </td>
-              <td>
-                <Link to="/ViewStaffList/View Staff Details/EditStaffDetails">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="p-2.5 rounded-lg"
-                    onClick={(e) => e.stopPropagation()}
+              <div
+                className="flex flex-col flex-grow rounded-lg items-start gap-5 pt-4 pr-[10px] relative w-full overflow-hidden"
+                dir={local === "ar" ? "rtl" : "ltr"}
+              >
+                {/* حاوية سكرول أفقي */}
+                <div className="w-full overflow-x-auto">
+                  {/* حاوية سكرول رأسي */}
+                  <div
+                    className="overflow-y-auto rounded-lg"
+                    style={{ height: "calc(100vh - 78px - 200px)" }}
                   >
-                    <img src="./edit-01.svg" alt="edit" className="w-[15px] h-[15px]" />
-                  </Button>
-                </Link>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+                    <table className="table-auto w-full min-w-[800px] text-center border-collapse">
+                      <thead className="sticky top-0 z-10 bg-background-primary border-b border-border-light">
+                        <tr className="h-[56px]">
+                          <td className="font-lato font-semibold text-[clamp(12px,2vw,12px)]  text-text-primary">
+                            {t("No.")}
+                          </td>
+                          <td className="font-lato font-semibold text-[clamp(12px,2vw,12px)]  text-text-primary">
+                            {t("User ID")}
+                          </td>
+                          <td className="font-lato font-semibold text-[clamp(12px,2vw,12px)]  text-text-primary">
+                            {t("Staff Member’s Name")}
+                          </td>
+                          <td className="font-lato font-semibold text-[clamp(12px,2vw,12px)]  text-text-primary">
+                            {t("Job title")}
+                          </td>
+                          <td className="font-lato font-semibold text-[clamp(12px,2vw,12px)]  text-text-primary">
+                            {t("Assigned Complex")}
+                          </td>
+                          <td className="font-lato font-semibold text-[clamp(12px,2vw,12px)]  text-text-primary">
+                            {t("Status")}
+                          </td>
+                          <td className="font-lato font-semibold text-[clamp(14px,2vw,16px)]  text-text-primary">
+                            {t("Actions")}
+                          </td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {userData.map((user, index) => (
+                          <tr
+                            key={index}
+                            className="h-[78px] bg-background-primary hover:bg-secondary-light border-b border-border-light whitespace-nowrap cursor-pointer"
+                            onClick={() =>
+                              (window.location.href = `/ViewStaffList/View Staff Details?id=${user.id}`)
+                            } // 👈 كل السطر قابل للضغط
+                          >
+                            <td className="font-lato font-normal text-[clamp(12px,2vw,12px)]">
+                              {user.id}
+                            </td>
+                            <td className="font-lato text-[clamp(12px,2vw,12px)]">{user.userid}</td>
+                            <td className="font-lato font-normal text-[clamp(12px,2vw,12px)]">
+                              {user.StaffName}
+                            </td>
+                            <td className="font-lato font-normal  text-[clamp(12px,2vw,12px)]">
+                              {user.Jop}
+                            </td>
+                            <td className="font-lato font-normal  text-[clamp(12px,2vw,12px)]">
+                              {user.AssignedComplex}
+                            </td>
+                            <td className="w-[160px]">
+                              <Badge className="bg-secondary-light text-secondary-dark rounded-[20px] w-[92px] justify-center">
+                                {t("Active")}
+                              </Badge>
+                            </td>
+                            <td>
+                              <Link to="/ViewStaffList/View Staff Details/EditStaffDetails">
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="p-2.5 rounded-lg"
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  <img src="./edit-01.svg" alt="edit" className="w-[15px] h-[15px]" />
+                                </Button>
+                              </Link>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
 
 
 

@@ -1,14 +1,14 @@
 import { ArrowLeftIcon, ChevronRightIcon, ChevronLeftIcon } from "lucide-react";
-import { Button } from "../../../components/ui/button";
+import { Button } from "../../components/ui/button"; 
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "../../../components/ui/card";
-import { Input } from "../../../components/ui/input";
-import { Textarea } from "../../../components/ui/textarea";
-import DateInput from "../../DateInput";
+} from "../../components/ui/card";
+import { Input } from "../../components/ui/input"; 
+import { Textarea } from "../../components/ui/textarea"; 
+import DateInput from "../CommonComponents/DateInput";
 
 const formSections = [
   {

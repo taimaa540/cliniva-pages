@@ -24,8 +24,8 @@ import { ElementEditCompany } from "./screens/M2/ElementEditCompany/ElementEditC
 import { ElementEditComplex } from "./screens/M2/ElementEditComplax/ElementEditComplax";
 import { EditClinicDetails } from "./screens/M2/EditClinicDetails/EditClinicDetails";
 import { ElementEditComplexPlan2 } from "./screens/M2/ElementEditComplexPlan2/ElementEditComplexPlan2";
-import { SideBarPlan2 } from "./screens/CommonComponents/SideBarPlan2";
-import { SideBarPlan3 } from "./screens/CommonComponents/SideBarPlan3";
+import { SideBar } from "./screens/CommonComponents/SideBarPlan2";
+
 import { EditUserDetails } from "./screens/M1/EditUserDetails";
 import { NoDataSection } from "./screens/M1/NoDataSection";
 import PhoneInputWithShortCode from "./screens/CommonComponents/test";
@@ -49,15 +49,23 @@ import { Edit } from "lucide-react";
 import { ViewSpecialityDetails } from "./screens/Moudule3/ViewSpecialityDetails/ViewSpecialityDetails";
 import { ElementEditSpicialityDetails } from "./screens/Moudule3/EditSpecialityDetails/ElementEditSpicialityDetail";
 import { ViewServiceDetails } from "./screens/M4/ViewServiceDetails/ViewServiceDetails";
-
+import { ElementViewComplexPlan2 } from "./screens/ElementViewDetailsComplexp2/ElementViewDetailsContectp2/ElementViewDetailsContent";
 import { ViewListOfPatients } from "./screens/M5/ViewListOfPatients/ViewListOfPatients";
 import { AddNewPatient } from "./screens/M5/AddNewPatient/AddNewPatient";
 import { EditPatientDetails } from "./screens/M5/EditPaitentDetails/EditPatientDetails";
 import { EditServiceDetails } from "./screens/M4/EditServiceDetails/EditServiceDetails";
 import { ServicesList } from "./screens/M4/ServicesList";
 import { AddNewService } from "./screens/M4/AddNewService";
-
-
+import Home from "./screens/M2/LogoIn";
+import { ComplexPlane } from "./screens/M2/ComplexPlane";
+import { ClinicsPlane } from "./screens/M2/ClinicsPlan";
+import { AppProvider } from "./Context/ContextchooseSidbar";
+import { Appointments } from "./screens/M6/AppointmentsHome";
+import { useState } from "react";
+import { AddCardInAll } from "./screens/M6/AddCardInAll";
+import { AddCard } from "./screens/M6/AddCard";
+import { MoreDetails } from "./screens/M6/MoreDetails";
+import { PatientDetails } from "./screens/M5/PatientDetails";
 function Layout() {
 
   return (
@@ -71,6 +79,13 @@ function Layout() {
   );
 }
 function MainApp() {
+  const [showLeftSidebar, setShowLeftSidebar] = useState(true);
+  const [addPatient, setAddPatient] = useState(false);
+
+  const handleAddClick = () => {
+    console.log("Button clicked!");
+    setAddPatient(!addPatient); // مثال لتغيير الحالة
+  };
   return (
     <BrowserRouter>
 
@@ -79,104 +94,124 @@ function MainApp() {
 
       <ThemeProvider defaultTheme="light" storageKey="cliniva-theme">
         <LanguageProvider>
-          {/* Theme toggle in top-right corner */}
-          { /*  <div className="fixed top-[35px] right-[195px] z-50">
+          <AppProvider>
+            {/* Theme toggle in top-right corner */}
+            { /*  <div className="fixed top-[35px] right-[195px] z-50">
             <ThemeToggle />
           </div>*/}
 
-          {/* Main app content with theme transition */}
-          <div className="theme-transition">
-            <main className="flex h-screen w-screen overflow-hidden">
+            {/* Main app content with theme transition */}
+            <div className="theme-transition">
+              <main className="flex h-screen w-screen overflow-hidden">
+
+              
+
+
+
+                {/*  */}
+                {/* <ChoosePlan /> */}
+                {/* <SideBarPlan1 /> */}
+
+
+                {/* <SideBarPlan3 local="test"/> */}
+                {/* <NoDataSection/> */}
+                {/* <ComplexList/> */}
+                {/* <ClinicList/> */}
+                {/* <AddNewComplex /> */}
+                {/* <AddNewClinic/> */}
+                {/* <WeatherCard/> */}
+                {/* <ViewSpecialityDetails/> */}
+
+
+
+                {/* <ElementEditComplex/> */}
+
+
+
+
+                {/* <ElementEditComplexPlan2/> */}
+                {/* <ElementViewDetalisComplexp2/> */}
+
+                {/* <ElementEditeDetalisCinicP3/> */}
+                {/* <ElementViewDetailsClinicP3/> */}
+
+                {/* <Example/> */}
+                {/*M3*/}
 
 
 
 
 
-              {/*  */}
-              {/* <ChoosePlan /> */}
-              {/* <SideBarPlan1 /> */}
+                {/* M1 */}
+                <Routes>
+                  <Route path="/" element={<Layout />}>
+                    <Route path="UserDesktop" element={<UserListSection />} />
+                    <Route path="ViewUserDetails" element={<UserDetails />} />
+                    <Route path="AddNewUser" element={<AddNewUser />} />
+                    <Route path="EditUserDetails" element={<EditUserDetails />} />
 
 
-              {/* <SideBarPlan3 local="test"/> */}
-              {/* <NoDataSection/> */}
-              {/* <ComplexList/> */}
-              {/* <ClinicList/> */}
-              {/* <AddNewComplex /> */}
-              {/* <AddNewClinic/> */}
-              {/* <WeatherCard/> */}
-              {/* <ViewSpecialityDetails/> */}
+                    {/* M2 */}
+                    <Route path="" element={<Home/>} />
+                      
+                    <Route path="choosePlan" element={<ChoosePlan />} />
+                    <Route path="CompanyPlane" element={<CompanyPlan />} />
+                    <Route path="ComplexPlane" element={<ComplexPlane />} />
+                    <Route path="ClinicPlane" element={<ClinicsPlane />} />
+
+                    <Route path="ElementViewCompany" element={<ElementViewCompany />} />
+
+                    <Route path="ElementViewCompany/EditCompanyDetials" element={<ElementEditCompany />} />
+                    <Route path="ElementViewComplex" element={<ElementViewComplex />} />
+                    <Route path="ElementViewComplex/EditComplexDetails" element={
+                      <ElementEditComplex />}
+                    />
 
 
+                    <Route path="ElementViewClinic" element={<ElementViewClinic />} />
+                    <Route path="ElementViewClinic/EditClinicDetails" element={<EditClinicDetails />} />
+                    <Route path="ElementViewComplexP2" element={<ElementViewDetalisComplexp2 />} />
+                    <Route path="ElementViewCopmlexP2/ElementEditCopmlexP2" element={<ElementEditComplexPlan2 />} />
+                    <Route path="ElementViewClinicP3" element={<ElementViewDetailsClinicP3 />} />
+                    <Route path="ElementViewClinicP3/ElementEditClincp3" element={<ElementEditeDetalisCinicP3 />} />
+                    {/* M3  */}
+                    <Route path="ViewStaffList" element={<ViewStaffMembersList />}></Route>
+                    <Route path="ViewStaffList/View Staff Details" element={<ViewStaffDetails />}></Route>
+                    <Route path="ViewStaffList/View Staff Details/EditStaffDetails" element={<StaffMemberDetails />}></Route>
 
-              {/* <ElementEditComplex/> */}
+                    <Route path="ViewDoctorList" element={<ViewDoctorList />}></Route>
+                    <Route path="ViewDoctorList/ViewDoctorDetails" element={<ViewDoctorDetails />}></Route>
+                    <Route path="ViewDoctorList/ViewDoctorDetails/EditDoctorDetials" element={<EditDoctorDetails />}></Route>
+                    <Route path="ViewSpecialtiesList" element={<ViewListOfSpicialities />}></Route>
+                    <Route path="ViewSpecialtiesDetails" element={<ViewSpecialityDetails />}></Route>
 
+                    <Route path="ViewSpecialtiesList/EditSpecialtiesDetails" element={<ElementEditSpicialityDetails />}></Route>
+                    {/* M4 */}
+                    <Route path="ServicesList" element={<ServicesList />}></Route>
+                    <Route path="AddNewService" element={<AddNewService />}></Route>
+                    <Route path="EditServiceDetials" element={<EditServiceDetails />}></Route>
+                    <Route path="ViewServiceDetails" element={<ViewServiceDetails />}></Route>
+                    ServicesList
+                    {/* M5  */}
+                    <Route path="ViewPatientDetails" element={<ViewListOfPatients />}></Route>
+                    <Route path="AddNewPatient" element={<AddNewPatient />}></Route>
+                    <Route path="EditPatientDetails" element={<EditPatientDetails />}></Route>
+                    <Route path="ViewPatientDetail" element={<PatientDetails />}></Route>
 
+                    {/* M6  */}
+                    <Route path="Appointments" element={<Appointments
+                      showLeftSidebar={showLeftSidebar}
+                      setShowLeftSidebar={setShowLeftSidebar}
+                    />}></Route>
 
-
-              {/* <ElementEditComplexPlan2/> */}
-              {/* <ElementViewDetalisComplexp2/> */}
-
-              {/* <ElementEditeDetalisCinicP3/> */}
-              {/* <ElementViewDetailsClinicP3/> */}
-
-              {/* <Example/> */}
-              {/*M3*/}
-
-
-
-
-
-              {/*M1*/}
-              <Routes>
-                <Route path="/" element={<Layout />}>
-                  <Route path="UserDesktop" element={<UserListSection />} />
-                  <Route path="EditUserDEtails" element={<EditUserDetails />} />
-                  <Route path="AddNewUser" element={<AddNewUser />} />
-
-
-                  {/* M2*/}
-
-
-
-                  <Route path="ElementViewCompany" element={<ElementViewCompany />} />
-                  <Route path="" element={<ElementViewCompany />} />
-                  <Route path="ElementViewCompany/EditCompanyDetials" element={<ElementEditCompany />} />
-                  <Route path="ElementViewComplex" element={<ElementViewComplex />} />
-                  <Route path="ElementViewComplex/EditComplexDetails" element={
-                    <ElementEditComplex />}
-                  />
-
-
-                  <Route path="ElementViewClinic" element={<ElementViewClinic />} />
-                  <Route path="ElementViewClinic/EditClinicDetails" element={<EditClinicDetails />} />
+                    <Route path="MoreDetails" element={<MoreDetails />} />
+                  </Route>
 
 
-                  {/* M3 */}
-                  <Route path="ViewStaffList" element={<ViewStaffMembersList />}></Route>
-                  <Route path="ViewStaffList/View Staff Details" element={<ViewStaffDetails />}></Route>
-                  <Route path="ViewStaffList/View Staff Details/EditStaffDetails" element={<StaffMemberDetails />}></Route>
-
-                  <Route path="ViewDoctorList" element={<ViewDoctorList />}></Route>
-                  <Route path="ViewDoctorList/ViewDoctorDetails" element={<ViewDoctorDetails />}></Route>
-                  <Route path="ViewDoctorList/ViewDoctorDetails/EditDoctorDetials" element={<EditDoctorDetails />}></Route>
-                  <Route path="ViewSpecialtiesList" element={<ViewListOfSpicialities />}></Route>
-                  <Route path="ViewSpecialtiesDetails" element={<ViewSpecialityDetails />}></Route>
-
-                  <Route path="ViewSpecialtiesList/EditSpecialtiesDetails" element={<ElementEditSpicialityDetails />}></Route>
-                  {/* M4 */}
-                  <Route path="ServicesList" element={<ServicesList />}></Route>
-                  <Route path="AddNewService" element={<AddNewService />}></Route>
-                  <Route path="EditServiceDetials" element={<EditServiceDetails />}></Route>
-                  <Route path="ViewServiceDetails" element={<ViewServiceDetails />}></Route>
-                  {/* M5 */}
-                  <Route path="ViewPatientDetails" element={<ViewListOfPatients />}></Route>
-                  <Route path="AddNewPatient" element={<AddNewPatient />}></Route>
-                  <Route path="EditPatientDetails" element={<EditPatientDetails />}></Route>
-                </Route>
-              </Routes>
-            </main>
-          </div>
-
+                </Routes>
+              </main>
+            </div>
+          </AppProvider>
         </LanguageProvider>
       </ThemeProvider>
 

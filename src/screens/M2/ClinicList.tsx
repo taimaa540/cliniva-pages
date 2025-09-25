@@ -1,8 +1,8 @@
 import { BellIcon, PlusIcon, SearchIcon, Trash2Icon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import { Button } from "../components/ui/button";
-import { Card, CardContent } from "../components/ui/card";
+import { Button } from "../../components/ui/button"; 
+import { Card, CardContent } from "../../components/ui/card";
 import Pagination from "@mui/material/Pagination";
 import {
   Select,
@@ -10,13 +10,13 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../components/ui/select";
+} from "../../components/ui/select";
 import {
   TableCell,
   TableRow,
-} from "../components/ui/table";
+} from "../../components/ui/table";
 import TranslateIcon from "@mui/icons-material/Translate";
-import SwitchWithLabel from "./SwitchLabel";
+import SwitchWithLabel from "../CommonComponents/SwitchLabel";
 
 const clinicData = [
   {

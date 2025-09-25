@@ -3,16 +3,26 @@ import { useLanguage } from "../../lib/LanguageContext";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 
-export const AddCardInAll = (): JSX.Element => {
+interface AddProps {
+  addPatient: boolean;
+  handelAddClick: () => void;
+}
+export const AddCardInAll = ({
+  handelAddClick,
+  addPatient,
+}: AddProps): JSX.Element => {
   const { local } = useLanguage();
   const { t, i18n } = useTranslation();
   useEffect(() => {
     i18n.changeLanguage(local);
   }, []);
   return (
-    <Card className="w-full h-[34px] rounded-[6px] bg-[#E1EDFB] border-0 relative z-1">
-      <CardContent className="p-[4px] flex items-center justify-center gap-[4px]">
+    <Card className={`w-full h-[34px] rounded-[6px]  ${
+        addPatient ? "border-solid" : "border-dashed"
+      } bg-[#E1EDFB] border-0 relative z-1`}>
+      <CardContent     hidden={addPatient} className="p-[4px] flex items-center justify-center gap-[4px]">
         <svg
+         onClick={handelAddClick}
           width="16"
           height="16"
           viewBox="0 0 16 16"

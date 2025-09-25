@@ -84,13 +84,13 @@ const DatePicker: React.FC<DatePickerProps> = ({
 
   return (
     <div
-      className="flex flex-col md:flex-row  items-start  w-[min(100%,520px)]  "
+      className="flex flex-col sm:flex-row  items-start  w-[min(100%,520px)]  "
       dir={resolvedDirection}
     >
       <label
         className={`
           ${labelWidth || "sm:w-[165px]"} 
-          text-text-primary font-semibold text-[clamp(14x,1.1vw,16px)]
+          text-text-primary font-lato font-semibold text-[clamp(14x,1.1vw,16px)]
           ${resolvedDirection === "rtl" ? "text-right" : ""}
         `}
       >
@@ -104,9 +104,9 @@ const DatePicker: React.FC<DatePickerProps> = ({
     readOnly
     value={selectedDate ? formatDate(selectedDate) : ""}
     className="
-      w-[min(100%,360px)]  h-10 sm:h-10 md:h-12  font-lato font-regular text-base 
+      w-[min(100%,360px)]  h-10 sm:h-10 md:h-12  font-lato font-regular  
       bg-background-secondary text-text-primary placeholder:text-text-secondary
-      px-4 py-2 rounded  border border-border-light
+      px-4 py-2 rounded text-[clamp(12px,1.1vw,14px)]  border border-border-light
       focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
     "
     placeholder={t("select Date")}

@@ -32,7 +32,7 @@ import {
   TableHeader,
   TableRow,
 } from "../../../components/ui/table";
-import { SideBarPlan2 } from "../../CommonComponents/SideBarPlan2";
+import { SideBar } from "../../CommonComponents/SideBarPlan2";
 import Toggle from "../../../components/ui/SwitchToggel";
 const navigationItems = [
   {
@@ -203,7 +203,7 @@ export const ViewServiceDetails = (): JSX.Element => {
 
 
 
-  const [isOpen, setIsOpen] = useState({
+  const [isOpen, setIsOpen1] = useState({
     clinicInfo: true,
     Utilization: true,
     Sessions: true,
@@ -211,7 +211,7 @@ export const ViewServiceDetails = (): JSX.Element => {
  
   });
   const handleToggle = (key: keyof typeof isOpen, open: boolean) => {
-    setIsOpen(prev => ({
+    setIsOpen1(prev => ({
       ...prev,
       [key]: open
     }))
@@ -219,7 +219,7 @@ export const ViewServiceDetails = (): JSX.Element => {
 
 
 
-
+  const [isOpenAppointment, setIsOpen] = useState(false);
        const [showSidebar, setShowSidebar] = useState(false);
     const onOpenSidebar = () => setShowSidebar(true);
     const onCloseSidebar = () => setShowSidebar(false);
@@ -231,14 +231,16 @@ export const ViewServiceDetails = (): JSX.Element => {
         className="fixed inset-0 bg-black/40 z-40 md:hidden"
       />
     )}
-                  <SideBarPlan2
-          local={local}
-          handleLanguageClick={handleLanguageClick}
-          handleDarkClick={() => {}}
-          isOpen={showSidebar}
-          onOpenSidebar={onOpenSidebar}
-          onCloseSidebar={onCloseSidebar}
-        />
+            <SideBar
+        isOpenAppointment={isOpenAppointment}
+        setIsOpen={setIsOpen}
+        local={local}
+        handleLanguageClick={handleLanguageClick}
+        handleDarkClick={() => { }}
+        isOpen={showSidebar}
+        onOpenSidebar={onOpenSidebar}
+        onCloseSidebar={onCloseSidebar}
+      />
   
   <div className="flex flex-col w-full overflow-hidden min-h-screen items-start gap-4 py-4 pl-0 pr-5">
 

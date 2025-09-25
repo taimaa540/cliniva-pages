@@ -4,25 +4,27 @@ import {
   ChevronLeftIcon,
   PlusIcon,
 } from "lucide-react";
-import { Button } from "../components/ui/button";
+import { Button } from "../../components/ui/button"; 
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from "../components/ui/card";
-import { Input } from "../components/ui/input";
+} from "../../components/ui/card";
+import { Input } from "../../components/ui/input"; 
 import {
   Select,
   SelectContent,
+  SelectGroup,
+  SelectLabel,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../components/ui/select";
-import { Textarea } from "../components/ui/textarea";
+} from "../../components/ui/select";
+import { Textarea } from "../../components/ui/textarea";
 import PhoneInput from "react-phone-input-2";
 import { useState } from "react";
-import DateInput from "./DateInput";
+import DateInput from "../CommonComponents/DateInput";
 
 const formSections = [
   {

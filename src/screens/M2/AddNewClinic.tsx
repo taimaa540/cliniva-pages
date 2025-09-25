@@ -1,28 +1,31 @@
 import { BellIcon, PlusIcon, ChevronDownIcon } from "lucide-react";
-import { Button } from "../components/ui/button";
-import { Card, CardContent } from "../components/ui/card";
-import { Input } from "../components/ui/input";
+import { Button } from "../../components/ui/button"; 
+import {  CardContent } from "../../components/ui/card";
+import { Card } from "../../components/ui/card";
+import { Input } from "../../components/ui/input"; 
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../components/ui/select";
-import { Textarea } from "../components/ui/textarea";
+}  from "@radix-ui/react-select";
+
+import { Textarea } from "../../components/ui/textarea"; 
 import PhoneInput from "react-phone-input-2";
 import { useState } from "react";
-import DateInput from './DateInput';
-import TimeRangePicker from "./UsersDesktop/timeRangePicker";
-import CustomCheckbox from "./customCheckbox";
+import DateInput from "../CommonComponents/DateInput";
+import TimeRangePicker from "../CommonComponents/timeRangePicker";
+import CustomCheckbox from "../CommonComponents/customCheckbox";
 import { useTranslation } from "react-i18next";
 import TranslateIcon from "@mui/icons-material/Translate";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../components/ui/collapsible";
-import TimeInput from "./TimeInput";
+} from "../../components/ui/collapsible";
+
+import TimeInput from "../CommonComponents/TimeInput";
 
 const workingDays = [
   { day: "Sunday", checked: true, startTime: "09:00", endTime: "18:00" },

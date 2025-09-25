@@ -10,14 +10,25 @@ import { ComplexDetailsSection } from "./ComplexDetailsSection";
 import { ComplexWorkSchedule } from "./ComplexWorkingScheduleSection";
 import { AccountCreationSection } from "./AccountCreationSection";
 import { useState } from "react";
-
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "react-phone-input-2/lib/style.css";
 
 type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 export const CompanyPlan = (): JSX.Element => {
   const [currentStep, setCurrentStep] = useState<Step>(1);
-  const [showDialog, setShowDialog] = useState(false);
+    const navigate = useNavigate();
 
+  const [showDialog, setShowDialog] = useState(false);
+  useEffect(() => {
+    if (showDialog) {
+      const timer = setTimeout(() => {
+        navigate("/ElementViewCompany"); // غير الرابط للي بدك تروح عليه
+      }, 3000); // 3000ms = 3 ثواني
+
+      return () => clearTimeout(timer); // تنظيف التايمر إذا أغلق الدايالوج
+    }
+  }, [showDialog, navigate]);
   const handleNext = () => {
     if (currentStep < 9) setCurrentStep((prev) => (prev + 1) as Step);
     else if (currentStep === 9) {
@@ -33,6 +44,8 @@ export const CompanyPlan = (): JSX.Element => {
       {/* Left Sidebar */}
       <div className="w-[280px] h-screen bg-surface-default">
         {/* Logo */}
+
+        
         <header className="flex flex-col items-start gap-2.5 px-2 py-[9px] mt-4 ml-5 w-full">
           <div className="flex items-center gap-[7px]">
             <svg
@@ -358,7 +371,7 @@ export const CompanyPlan = (): JSX.Element => {
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div className=" bg-white rounded-lg shadow-lg w-[500px] h-[144px] ">
               <button className="ml-[450px] mt-[16px] p-[5px] rounded-[16px] hover:bg-surface-hover transiton duration-300">
-                <img alt="" src="x-close.svg" />
+         
               </button>
               <img alt="" src="./FeaturedIcon.svg" className="m-auto" />
               <p className=" text-center font-lato font-semibold text-xl leading-[118%] tracking-[0] text-[#181D27] ">

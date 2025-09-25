@@ -22,7 +22,7 @@ import { useTranslation } from "react-i18next";
 import { ThemeToggle } from "../../../components/theme/ThemeSwitcher";
 import { useEffect } from "react";
 import Toggle from "../../../components/ui/SwitchToggel";
-import { SideBarPlan2 } from "../../CommonComponents/SideBarPlan2";
+import { SideBar } from "../../CommonComponents/SideBarPlan2";
 const userData = [
   {
     id: "001",
@@ -189,6 +189,7 @@ export const ViewListOfPatients = (): JSX.Element => {
     i18n.changeLanguage(local);
   }, [local, i18n]);
 
+  const [isOpenAppointment, setIsOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const onOpenSidebar = () => setShowSidebar(true);
   const onCloseSidebar = () => setShowSidebar(false);
@@ -200,7 +201,9 @@ export const ViewListOfPatients = (): JSX.Element => {
           className="fixed inset-0 bg-black/40 z-40 md:hidden"
         />
       )}
-      <SideBarPlan2
+      <SideBar
+        isOpenAppointment={isOpenAppointment}
+        setIsOpen={setIsOpen}
         local={local}
         handleLanguageClick={handleLanguageClick}
         handleDarkClick={() => { }}
@@ -238,7 +241,7 @@ export const ViewListOfPatients = (): JSX.Element => {
               </button>
 
               <div className="flex flex-col">
-                <h1 className="font-bold text-sm text-on-surface-primary">
+                <h1 className="font-semibold text-sm text-on-surface-primary">
                   {t("Patients Management")}
                 </h1>
                 <p className="text-xs text-on-surface-primary">
@@ -268,7 +271,7 @@ export const ViewListOfPatients = (): JSX.Element => {
             {/* Left Side */}
             <div className="flex items-center gap-4">
               <div className="flex flex-col">
-                <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
+                <h1 className="font-semibold text-base md:text-lg lg:text-xl text-on-surface-primary">
                   {t("Patients Management")}
                 </h1>
                 <p className="text-sm md:text-base text-on-surface-primary">
@@ -313,7 +316,7 @@ export const ViewListOfPatients = (): JSX.Element => {
               <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
                 <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
                 <div className="flex-col items-start gap-1 inline-flex">
-                  <div className="text-base font-bold text-on-surface-primary">
+                  <div className="text-base font-semibold text-on-surface-primary">
                     Anahera Jones
                   </div>
                   <div className="text-sm text-on-surface-tertiary">
@@ -370,7 +373,7 @@ export const ViewListOfPatients = (): JSX.Element => {
                           <path fillRule="evenodd" clipRule="evenodd" d="M5 0.625C5.24162 0.625 5.4375 0.373096 5.4375 0.833333V9.01042C5.4375 9.21177 5.24162 9.375 5 9.375C4.75838 9.375 4.5625 9.21177 4.5625 9.01042V0.833333C4.5625 0.78823 4.75838 0.625 5 0.625Z" fill="CurrentColor" />
                         </svg>
                       </div>
-                      <h1 className="text-[11px] font-bold text-text-inverse">{t("Add New Patient")}</h1>
+                      <h1 className="text-[11px] font-semibold text-text-inverse">{t("Add New Patient")}</h1>
                     </div>
                   </Button>
                 </Link>
@@ -392,32 +395,33 @@ export const ViewListOfPatients = (): JSX.Element => {
                   <table className="table-auto w-full min-w-[800px] text-center border-collapse">
                     <thead className="sticky top-0 z-10 bg-background-primary border-b border-border-light">
                       <tr className="h-[56px] bg-background-primary border-b border-border-light sticky top-0">
-                        <td className="min-w-[80px] font-lato font-bold text-[clamp(14px,1.5vw,16px)] text-text-primary">{t("No.")}</td>
-                        <td className="min-w-[120px] font-lato font-bold text-[clamp(14px,1.5vw,16px)] text-text-primary">{t("Patient ID")}</td>
-                        <td className="min-w-[150px] font-lato font-bold text-[clamp(14px,1.5vw,16px)] text-text-primary">{t("Patient Name")}</td>
-                        <td className="min-w-[80px] font-lato font-bold text-[clamp(14px,1.5vw,16px)] text-text-primary">{t("Age")}</td>
-                        <td className="min-w-[150px] font-lato font-bold text-[clamp(14px,1.5vw,16px)] text-text-primary">{t("Last Visit Date")}</td>
-                        <td className="min-w-[100px] font-lato font-bold text-[clamp(14px,1.5vw,16px)] text-text-primary">{t("Gender")}</td>
-                        <td className="min-w-[150px] font-lato font-bold text-[clamp(14px,1.5vw,16px)] text-text-primary">{t("Insurance Company")}</td>
-                        <td className="min-w-[150px] font-lato font-bold text-[clamp(14px,1.5vw,16px)] text-text-primary">{t("Insurance Status")}</td>
-                        <td className="min-w-[100px] font-lato font-bold text-[clamp(14px,1.5vw,16px)] text-text-primary">{t("Status")}</td>
-                        <td className="min-w-[120px] font-lato font-bold text-[clamp(14px,1.5vw,16px)] text-text-primary">{t("Actions")}</td>
+                        <td className="min-w-[50px] font-lato font-semibold text-[clamp(12px,1.5vw,12px)] text-text-primary">{t("No.")}</td>
+                        <td className="min-w-[100px] font-lato font-semibold text-[clamp(12px,1.5vw,12px)] text-text-primary">{t("Patient ID")}</td>
+                        <td className="min-w-[150px] font-lato font-semibold text-[clamp(12px,1.5vw,12px)] text-text-primary">{t("Patient Name")}</td>
+                        <td className="min-w-[80px] font-lato font-semibold text-[clamp(12px,1.5vw,12px)] text-text-primary">{t("Age")}</td>
+                        <td className="min-w-[150px] font-lato font-semibold text-[clamp(12px,1.5vw,12px)] text-text-primary">{t("Last Visit Date")}</td>
+                        <td className="min-w-[100px] font-lato font-semibold text-[clamp(12px,1.5vw,12px)] text-text-primary">{t("Gender")}</td>
+                        <td className="min-w-[150px] font-lato font-semibold text-[clamp(12px,1.5vw,12px)] text-text-primary">{t("Insurance Company")}</td>
+                        <td className="min-w-[150px] font-lato font-semibold text-[clamp(12px,1.5vw,12px)] text-text-primary">{t("Insurance Status")}</td>
+                        <td className="min-w-[100px] font-lato font-semibold text-[clamp(12px,1.5vw,12px)] text-text-primary">{t("Status")}</td>
+                        <td className="min-w-[120px] font-lato font-semibold text-[clamp(12px,1.5vw,12px)] text-text-primary">{t("Actions")}</td>
                       </tr>
                     </thead>
                     <tbody>
                       {userData.map((user, index) => (
-                        <tr key={index} className="h-[78px] bg-background-primary hover:bg-secondary-light border-b border-border-light">
-                          <td className="w-[10%] align-middle font-lato text-[clamp(12px,1.5vw,14px)] text-text-primary">{user.id}</td>
-                          <td className="w-[15%] align-middle font-lato text-[clamp(12px,1.5vw,14px)] text-text-primary">{user.PatientID}</td>
-                          <td className="w-[15%] align-middle font-lato text-[clamp(12px,1.5vw,14px)] text-text-primary">
+                        <tr key={index} className="h-[78px] bg-background-primary hover:bg-secondary-light border-b border-border-light"
+                          onClick={() => window.location.href = `/ViewPatientDetail?id=${user.id}`}>
+                          <td className="w-[10%] align-middle font-lato text-[clamp(12px,1.5vw,12px)] text-text-primary">{user.id}</td>
+                          <td className="w-[10%] align-middle font-lato text-[clamp(12px,1.5vw,12px)] text-text-primary">{user.PatientID}</td>
+                          <td className="w-[15%] align-middle font-lato text-[clamp(12px,1.5vw,12px)] text-text-primary">
                             {user.PatientName}
                           </td>
-                          <td className="w-[15%] align-middle font-lato text-[clamp(12px,1.5vw,14px)] text-text-primary">{user.Age}</td>
-                          <td className="w-[15%] align-middle font-lato text-[clamp(12px,1.5vw,14px)] text-text-primary">{user.LastVisitDate}</td>
-                          <td className="w-[15%] align-middle font-lato text-[clamp(12px,1.5vw,14px)] text-text-primary">{user.Gender}</td>
-                          <td className="w-[15%] align-middle font-lato text-[clamp(12px,1.5vw,14px)] text-text-primary">{user.InsuranceCompany}</td>
-                          <td className="w-[15%]  align-middle font-lato text-[clamp(12px,1.5vw,14px)] text-text-primary">{user.InsuranceStatus}</td>
-                          <td className="w-[15%] align-middle font-lato text-[clamp(12px,1.5vw,14px)] text-text-primary">
+                          <td className="w-[10%] align-middle font-lato text-[clamp(12px,1.5vw,12px)] text-text-primary">{user.Age}</td>
+                          <td className="w-[15%] align-middle font-lato text-[clamp(12px,1.5vw,12px)] text-text-primary">{user.LastVisitDate}</td>
+                          <td className="w-[15%] align-middle font-lato text-[clamp(12px,1.5vw,12px)] text-text-primary">{user.Gender}</td>
+                          <td className="w-[15%] align-middle font-lato text-[clamp(12px,1.5vw,12px)] text-text-primary">{user.InsuranceCompany}</td>
+                          <td className="w-[15%]  align-middle font-lato text-[clamp(12px,1.5vw,12px)] text-text-primary">{user.InsuranceStatus}</td>
+                          <td className="w-[15%] align-middle font-lato text-[clamp(12px,1.5vw,12px)] text-text-primary">
                             <Toggle />
                           </td>
                           <td className="w-[15%] align-middle">
@@ -427,7 +431,7 @@ export const ViewListOfPatients = (): JSX.Element => {
                                   <Button
                                     variant="ghost"
                                     size="sm"
-                                    className="inline-flex items-center justify-center gap-2 p-2.5 rounded-lg overflow-hidden h-auto"
+                                    className="inline-flex items-center justify-center gap-2 p-2.5 rounded-lg overflow-hidden h-auto" onClick={(e) => e.stopPropagation()}
                                   >
                                     <img
                                       className="w-[15px] h-[15px] text-on-surface-primary"

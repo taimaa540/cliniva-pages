@@ -1,7 +1,7 @@
 import { ArrowLeftIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
-import CustomCheckbox from "../customCheckbox";
+import CustomCheckbox from "../CommonComponents/customCheckbox";
 import { useState } from "react";
-import TimeRangePicker from "../UsersDesktop/timeRangePicker";
+import TimeRangePicker from "../CommonComponents/timeRangePicker";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 

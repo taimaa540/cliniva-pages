@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../../components/ui/select";
-import { SideBarPlan2 } from "../../CommonComponents/SideBarPlan2";
+import { SideBar } from "../../CommonComponents/SideBarPlan2";
 import {
   Pagination,
   PaginationContent,
@@ -165,94 +165,97 @@ export const ViewListOfSpicialities = (): JSX.Element => {
     i18n.changeLanguage(local);
   }, []);
 
-      const [showSidebar, setShowSidebar] = useState(false);
+  const [isOpenAppointment, setIsOpen] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
   const onOpenSidebar = () => setShowSidebar(true);
   const onCloseSidebar = () => setShowSidebar(false);
   return (
-     <div className="flex h-screen  w-screen">
-        {showSidebar && (
-    <div
-      onClick={onCloseSidebar}
-      className="fixed inset-0 bg-black/40 z-40 md:hidden"
-    />
-  )}
-                <SideBarPlan2
+    <div className="flex h-screen  w-screen">
+      {showSidebar && (
+        <div
+          onClick={onCloseSidebar}
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+        />
+      )}
+      <SideBar
+        isOpenAppointment={isOpenAppointment}
+        setIsOpen={setIsOpen}
         local={local}
         handleLanguageClick={handleLanguageClick}
-        handleDarkClick={() => {}}
+        handleDarkClick={() => { }}
         isOpen={showSidebar}
         onOpenSidebar={onOpenSidebar}
         onCloseSidebar={onCloseSidebar}
       />
-    
+
       <div className="flex flex-col w-full overflow-hidden h-full items-start gap-4  pb-4 pl-0 pr-5">
 
-          
+
         <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
           {/* نسخة الموبايل */}
-        <div className="flex w-full items-center justify-between md:hidden">
-          {/* Left Side -> العنوان */}
-          <div className="flex items-center gap-2">
-            <button
-              className="md:hidden p-2 rounded-lg bg-secondary-light"
-              onClick={onOpenSidebar}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="w-6 h-6"
+          <div className="flex w-full items-center justify-between md:hidden">
+            {/* Left Side -> العنوان */}
+            <div className="flex items-center gap-2">
+              <button
+                className="md:hidden p-2 rounded-lg bg-secondary-light"
+                onClick={onOpenSidebar}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-        
-            <div className="flex flex-col">
-              <h1 className="font-bold text-sm text-on-surface-primary">
-                {t("Specialties")}
-              </h1>
-              <p className="text-xs text-on-surface-primary">
-               {t("View list of Specialties")}
-              </p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </button>
+
+              <div className="flex flex-col">
+                <h1 className="font-bold text-sm text-on-surface-primary">
+                  {t("Specialties")}
+                </h1>
+                <p className="text-xs text-on-surface-primary">
+                  {t("View list of Specialties")}
+                </p>
+              </div>
+            </div>
+
+            {/* Right Side -> الإشعار */}
+            <div className="relative">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
+              >
+                <BellIcon className="w-5 h-5" />
+              </Button>
+              <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
             </div>
           </div>
-        
-          {/* Right Side -> الإشعار */}
-          <div className="relative">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-            >
-              <BellIcon className="w-5 h-5" />
-            </Button>
-            <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-          </div>
-        </div>
-        
-        
-        
-        
+
+
+
+
           {/* نسخة الـ Desktop/Laptop */}
           <div className="hidden md:flex w-full items-center justify-between">
             {/* Left Side */}
             <div className="flex items-center gap-4">
               <div className="flex flex-col">
                 <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
-                     {t("Specialties")}
+                  {t("Specialties")}
                 </h1>
                 <p className="text-sm md:text-base text-on-surface-primary">
-               {t("View list of Specialties")}
+                  {t("View list of Specialties")}
                 </p>
               </div>
             </div>
-        
+
             {/* Right Side */}
             <div className="inline-flex gap-3 items-center px-4">
               {/* Notification */}
@@ -266,26 +269,25 @@ export const ViewListOfSpicialities = (): JSX.Element => {
                 </Button>
                 <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
               </div>
-        
+
               {/* Language Switch */}
               <div className="relative">
                 <Button
                   variant="ghost"
                   size="icon"
-                  className={`p-2.5 ${
-                    local === "ar" ? "bg-[green]" : "bg-secondary-light"
-                  } rounded-[20px] h-auto transition-all duration-[1000ms]`}
+                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
+                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
                   onClick={handleLanguageClick}
                 >
                   <TranslateIcon className="w-5 h-5" />
                 </Button>
               </div>
-        
+
               {/* Theme Toggle */}
               <div className="relative">
                 <ThemeToggle />
               </div>
-        
+
               {/* User Info */}
               <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
                 <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
@@ -309,90 +311,90 @@ export const ViewListOfSpicialities = (): JSX.Element => {
               className={`w-full  ${local === "ar" ? "pl-[20px]" : "pr-[20px]"
                 } `}
             >
-             <div
-  className="flex flex-row flex-wrap justify-between w-full mt-4 items-start sm:items-center gap-2.5"
-  dir={local === 'ar' ? 'rtl' : 'ltr'}
->
-  <div className="inline-flex items-center gap-2.5 w-full sm:w-auto">
-    <form className="relative flex items-center">
-      <SearchIcon className="w-[min(100%,16px)] h-[min(100%,16px)] absolute top-[10px] left-[8px]" />
-      <input
-        type="search"
-        placeholder={t("Search for a user id, doctor name ..")}
-        className="placeholder:text-[11px] text-[11px] bg-background-primary pl-[30px] py-[8px] rounded-[16px] w-full sm:w-[150px] md:w-[200px] lg:w-[224px] border-0 outline-none"
-      />
-    </form>
+              <div
+                className="flex flex-row flex-wrap justify-between w-full mt-4 items-start sm:items-center gap-2.5"
+                dir={local === 'ar' ? 'rtl' : 'ltr'}
+              >
+                <div className="inline-flex items-center gap-2.5 w-full sm:w-auto">
+                  <form className="relative flex items-center">
+                    <SearchIcon className="w-[min(100%,16px)] h-[min(100%,16px)] absolute top-[10px] left-[8px]" />
+                    <input
+                      type="search"
+                      placeholder={t("Search for a user id, doctor name ..")}
+                      className="placeholder:text-[11px] text-[11px] bg-background-primary pl-[30px] py-[8px] rounded-[16px] w-full sm:w-[150px] md:w-[200px] lg:w-[224px] border-0 outline-none"
+                    />
+                  </form>
 
-    <Select
-      dir={local === 'ar' ? 'rtl' : 'ltr'}
-      value={status}
-      onValueChange={(value) => setStatus(value)}
-    
-    >
-      <SelectTrigger className="inline-flex items-center gap-0.5 pl-2.5 pr-2 py-1.5 bg-secondary-light rounded-[20px] border-0 h-auto w-auto">
-        <SelectValue>
-          <span className="font-lato font-medium text-[clamp(12px,2vw,14px)] text-text-primary">
-            {t(`status.${status}`)}
-          </span>
-        </SelectValue>
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="status" disabled>
-          {t("status.status")}
-        </SelectItem>
-        <SelectItem value="active">{t("status.active")}</SelectItem>
-        <SelectItem value="inactive">{t("status.inactive")}</SelectItem>
-      </SelectContent>
-    </Select>
-  </div>
+                  <Select
+                    dir={local === 'ar' ? 'rtl' : 'ltr'}
+                    value={status}
+                    onValueChange={(value) => setStatus(value)}
 
-  <div className="inline-flex items-center gap-2.5 mt-2 sm:mt-0">
-    <Button
-      className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-secondary-dark rounded-[20px]"
-      onClick={() => setShowModal(true)}
-      dir={local === 'ar' ? 'rtl' : 'ltr'}
-    >
-      <PlusIcon className="w-[16px] h-[16px] text-background-primary" />
-      <span className="font-lato text-[clamp(11px,2vw,11px)] text-background-primary">
-        {t("Add New Specialtiy")}
-      </span>
-    </Button>
+                  >
+                    <SelectTrigger className="inline-flex items-center gap-0.5 pl-2.5 pr-2 py-1.5 bg-secondary-light rounded-[20px] border-0 h-auto w-auto">
+                      <SelectValue>
+                        <span className="font-lato font-medium text-[clamp(12px,2vw,14px)] text-text-primary">
+                          {t(`status.${status}`)}
+                        </span>
+                      </SelectValue>
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="status" disabled>
+                        {t("status.status")}
+                      </SelectItem>
+                      <SelectItem value="active">{t("status.active")}</SelectItem>
+                      <SelectItem value="inactive">{t("status.inactive")}</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
 
-    {showModal && <AddNewSpecialities onClose={() => setShowModal(false)} />}
-  </div>
-</div>
+                <div className="inline-flex items-center gap-2.5 mt-2 sm:mt-0">
+                  <Button
+                    className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-secondary-dark rounded-[20px]"
+                    onClick={() => setShowModal(true)}
+                    dir={local === 'ar' ? 'rtl' : 'ltr'}
+                  >
+                    <PlusIcon className="w-[16px] h-[16px] text-background-primary" />
+                    <span className="font-lato text-[clamp(11px,2vw,11px)] text-background-primary">
+                      {t("Add New Specialtiy")}
+                    </span>
+                  </Button>
+
+                  {showModal && <AddNewSpecialities onClose={() => setShowModal(false)} />}
+                </div>
+              </div>
 
 
-        <div
-  className="flex flex-col flex-grow rounded-lg items-start gap-2 pt-4 pr-[10px] relative w-full overflow-hidden"
-  dir={local === "ar" ? "rtl" : "ltr"}
->
-  {/* حاوية سكرول أفقي */}
-  <div className="w-full overflow-x-auto">
-    {/* حاوية سكرول رأسي */}
-    <div
-      className="overflow-y-auto rounded-lg"
-      style={{ height: "calc(100vh - 78px - 200px)" }}
-    >
-      <table className="table-auto w-full min-w-[800px] text-center border-collapse">
-        <thead className="sticky top-0 z-10 bg-background-primary border-b border-border-light">
+              <div
+                className="flex flex-col flex-grow rounded-lg items-start gap-2 pt-4 pr-[10px] relative w-full overflow-hidden"
+                dir={local === "ar" ? "rtl" : "ltr"}
+              >
+                {/* حاوية سكرول أفقي */}
+                <div className="w-full overflow-x-auto">
+                  {/* حاوية سكرول رأسي */}
+                  <div
+                    className="overflow-y-auto rounded-lg"
+                    style={{ height: "calc(100vh - 78px - 200px)" }}
+                  >
+                    <table className="table-auto w-full min-w-[800px] text-center border-collapse">
+                      <thead className="sticky top-0 z-10 bg-background-primary border-b border-border-light">
                         <tr className="h-[56px] bg-background-primary border-b border-border-light sticky top-0 z-10">
-                          <th className="px-2 font-lato font-semibold text-[clamp(14px,1.5vw,16px)] leading-[130%] text-text-primary">
+                          <th className="px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
                             {t("No.")}
                           </th>
-                          <th className="px-2 font-lato font-semibold text-[clamp(14px,1.5vw,16px)] leading-[130%] text-text-primary">
+                          <th className="px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
                             {t("Specialities Name")}
                           </th>
-                          <th className="px-2 font-lato font-semibold text-[clamp(14px,1.5vw,16px)] leading-[130%] text-text-primary">
+                          <th className="px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
                             {t("Number of Assigned Doctors")}
                           </th>
-                          <th className="px-2 font-lato font-semibold text-[clamp(14px,1.5vw,16px)] leading-[130%] text-text-primary">
+                          <th className="px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
                             {t("Last update (Date & Time)")}
                           </th>
-                          <th className="px-2 font-lato font-semibold text-[clamp(14px,1.5vw,16px)] leading-[130%] text-text-primary">
+                          <th className="px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
                             {t("Status")}
                           </th>
-                          <th className="px-2 font-lato font-semibold text-[clamp(14px,1.5vw,16px)] leading-[130%] text-text-primary">
+                          <th className="px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
                             {t("Actions")}
                           </th>
                         </tr>
@@ -402,17 +404,17 @@ export const ViewListOfSpicialities = (): JSX.Element => {
                           <tr
                             key={user.id}
                             className="h-[78px] bg-background-primary hover:bg-secondary-light border-b border-border-light whitespace-nowrap"
-                            onClick={()=> window.location.href=`/ViewSpecialtiesDetails?id=${user.id}`}
+                            onClick={() => window.location.href = `/ViewSpecialtiesDetails?id=${user.id}`}
 
                           >
-                            <td className="px-2 font-lato text-[clamp(12px,1.5vw,14px)]">{user.id}</td>
-                            <td className="px-2 font-lato text-[clamp(12px,1.5vw,14px)]">
+                            <td className="px-2 font-lato text-[clamp(12px,2vw,12px)]">{user.id}</td>
+                            <td className="px-2 font-lato text-[clamp(12px,2vw,12px)]">
                               {user.SpecialitiesName}
                             </td>
-                            <td className="px-2 font-lato text-[clamp(12px,1.5vw,14px)]">
+                            <td className="px-2 font-lato text-[clamp(12px,2vw,12px)]">
                               {user.NumberofAssignedDoctors}
                             </td>
-                            <td className="px-2 font-lato text-[clamp(12px,1.5vw,14px)]">
+                            <td className="px-2 font-lato text-[clamp(12px,2vw,12px)]">
                               {user.Lastupdate}
                             </td>
                             <td className="px-2">
@@ -420,7 +422,7 @@ export const ViewListOfSpicialities = (): JSX.Element => {
                             </td>
                             <td className="px-2">
                               <div className="inline-flex items-center gap-1">
-                                <Link to="/ViewSpecialtiesList/EditSpecialtiesDetails" onClick={(e)=>e.stopPropagation()}>
+                                <Link to="/ViewSpecialtiesList/EditSpecialtiesDetails" onClick={(e) => e.stopPropagation()}>
                                   <Button
                                     variant="ghost"
                                     size="sm"
@@ -643,6 +645,6 @@ export const ViewListOfSpicialities = (): JSX.Element => {
           </CardContent>
         </Card>
       </div>
-  </div>
+    </div>
   );
 };
