@@ -152,9 +152,9 @@ function MainApp() {
 
 
                     {/* M2 */}
-                    <Route path="" element={<Home/>} />
-                      
-                    <Route path="choosePlan" element={<ChoosePlan />} />
+                    
+                      <Home/>
+                    <Route path="" element={<ChoosePlan />} />
                     <Route path="CompanyPlane" element={<CompanyPlan />} />
                     <Route path="ComplexPlane" element={<ComplexPlane />} />
                     <Route path="ClinicPlane" element={<ClinicsPlane />} />
