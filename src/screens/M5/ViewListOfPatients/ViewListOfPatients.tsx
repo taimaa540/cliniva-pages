@@ -349,7 +349,7 @@ export const ViewListOfPatients = (): JSX.Element => {
                 >
                   <SelectTrigger className="inline-flex items-center gap-0.5 pl-2.5 pr-2 py-1.5 bg-secondary-light rounded-[20px] border-0 h-auto w-auto">
                     <SelectValue>
-                      <span className="font-lato font-medium text-[clamp(12px,2vw,14px)] text-text-primary">
+                      <span className=" text-[clamp(12px,2vw,14px)] text-text-primary font-lato">
                         {t(`status.${status}`)}
                       </span>
                     </SelectValue>
@@ -422,7 +422,8 @@ export const ViewListOfPatients = (): JSX.Element => {
                           <td className="w-[15%] align-middle font-lato text-[clamp(12px,1.5vw,12px)] text-text-primary">{user.InsuranceCompany}</td>
                           <td className="w-[15%]  align-middle font-lato text-[clamp(12px,1.5vw,12px)] text-text-primary">{user.InsuranceStatus}</td>
                           <td className="w-[15%] align-middle font-lato text-[clamp(12px,1.5vw,12px)] text-text-primary">
-                            <Toggle />
+                            <div        onClick={(e) => e.stopPropagation()}>
+                            <Toggle /></div>
                           </td>
                           <td className="w-[15%] align-middle">
                             <div className="inline-flex flex-col justify-center gap-1 items-start">

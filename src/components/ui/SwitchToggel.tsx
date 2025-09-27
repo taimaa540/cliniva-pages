@@ -49,7 +49,7 @@ const Toggle: React.FC<ToggleProps> = ({
         aria-label={ariaLabel}
         onClick={handleToggle}
         className={`relative inline-flex 
-          h-3 w-6 sm:h-4 sm:w-8   /* Responsive sizes */
+          h-2.5 w-5 sm:h-3 sm:w-6   /* Responsive sizes */
           flex-shrink-0 cursor-pointer rounded-full 
           transition-colors duration-200 ease-in-out 
           outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary`}
@@ -63,7 +63,7 @@ const Toggle: React.FC<ToggleProps> = ({
         {/* Knob */}
         <span
           className={`pointer-events-none absolute left-0.25 top-0.25 inline-block 
-            h-3 w-3 sm:h-4 sm:w-4   /* Responsive knob size */
+            h-3 w-3 sm:h-3 sm:w-3   /* Responsive knob size */
             transform rounded-full bg-white shadow-md ring-0 
             transition-transform duration-200 ease-in-out
             ${
@@ -80,7 +80,7 @@ const Toggle: React.FC<ToggleProps> = ({
       {/* Label */}
       <span
         className="select-none text-text-primary 
-          text-xs sm:text-sm md:text-base"  /* Responsive text size */
+          text-xs md:text-sm "  /* Responsive text size */
         style={{
           fontFamily:
             'Lato, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',

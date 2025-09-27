@@ -40,7 +40,7 @@ import ImageUploader from "../../CommonComponents/ImageUpload";
 import DatePicker from '../../../components/ui/DatePicker';
 import { Link } from "react-router-dom";
 
-
+import { ArrowLeftIcon } from "lucide-react";
 const addressFields = [
   { value: "2154", width: "w-[136px]" },
   { value: "Abdulaziz Street", width: "w-[165px]" },
@@ -201,9 +201,14 @@ export const EditPatientDetails = (): JSX.Element => {
                 <h1 className="font-bold text-[clamp(12px,2vw,14px)] text-on-surface-primary">
                   {t("Patients Management")}
                 </h1>
-                <p className="text-xs text-on-surface-primary">
+                                    <Link to='/ViewPatientDetail'><div className="flex gap-1 items-center ">
+                    
+                                    <ArrowLeftIcon className="relative w-4 h-4 pt-1" />
+                                 
+                     <p className="text-xs text-on-surface-primary">
                   {t("Edit Patient Personal Details")}
-                </p>
+                </p></div>   </Link>
+         
               </div>
             </div>
 
@@ -231,9 +236,13 @@ export const EditPatientDetails = (): JSX.Element => {
                 <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
                   {t("Patients Management")}
                 </h1>
-                <p className="text-[clamp(12px,2vw,14px)] md:text-base text-on-surface-primary">
+                         <Link to='/ViewPatientDetail'><div className="flex gap-2 items-center ">
+                    
+                                    <ArrowLeftIcon className="relative w-5 h-5 pt-1" />
+                                 
+                     <p className="text-xs text-on-surface-primary">
                   {t("Edit Patient Personal Details")}
-                </p>
+                </p></div>   </Link>
               </div>
             </div>
 
@@ -292,19 +301,19 @@ export const EditPatientDetails = (): JSX.Element => {
 
             <div className="flex gap-[14px]  justify-end p-3 items-end text-end pb-2 sm:pb-3 md:pb-3 lg:pb-4 " dir={local === 'ar' ? 'rtl' : 'ltr'}
             >
-              <Link to="/ViewPatientDetail"> 
-              <button className="     w-[100px] h-[40px]       /* الموبايل الافتراضي */
+              <Link to="/ViewPatientDetail">
+                <button className="     w-[100px] h-[40px]       /* الموبايل الافتراضي */
     
     md:w-[180px] md:h-[38px]
     lg:w-[200px] lg:h-[40px] 
  
-      rounded-[20px] border border-border-light bg-surface-primary  font-lato font-medium text-[clamp(12px,2vw,14px)] leading-[100%] tracking-[0] text-text-primary">
-                {t("Cancel")}
-              </button></Link>
+      rounded-[20px] border border-border-light bg-surface-primary  font-lato font-lato font-medium text-[clamp(12px,2vw,14px)] leading-[100%] tracking-[0] text-text-primary">
+                  {t("Cancel")}
+                </button></Link>
               <button className="  w-[100px] h-[40px]       /* الموبايل الافتراضي */
   
     md:w-[160px] md:h-[36px]
-    lg:w-[200px] lg:h-[40px]  rounded-[20px] bg-secondary-dark font-lato font-medium text-[clamp(12px,2vw,14px)] leading-[100%] tracking-[0] text-surface-primary">
+    lg:w-[200px] lg:h-[40px]  rounded-[20px] bg-secondary-dark font-lato font-lato font-medium text-[clamp(12px,2vw,14px)] leading-[100%] tracking-[0] text-surface-primary">
                 {t("Save")}
               </button>
 
@@ -343,7 +352,7 @@ export const EditPatientDetails = (): JSX.Element => {
                       </h3>
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-[22px]">
                         <div className="flex flex-col sm:flex-row items-start w-full">
-                          <Label className="min-w-[162px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                          <Label className="min-w-[162px] pb-3 font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                             {t("Profile Picture")}
                           </Label>
                           <ImageUploader initialImage="./userLogo.png" />
@@ -526,15 +535,15 @@ export const EditPatientDetails = (): JSX.Element => {
                                   fill="currentColor"
                                 />
                               </svg></div>
-                              <span className="min-min-w-[162px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] leading-6">
+                              <span className="min-min-w-[162px] text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] leading-6">
                                 {t("Email")}:
                               </span>
                             </div>
 
                             {/* Input */}
                             <div
-                              className="  flex   text-text-primary  font-sans">
-                              <label className="   font-sans  text-text-primary font-semibold w-[min(100%,360px)] h-10 sm:h-10 md:h-12 ">ammarsvu91@gmail.com</label>
+                              className="  flex   text-text-primary  font-lato">
+                              <label className="   font-lato  text-text-primary font-semibold w-[min(100%,360px)] h-10 sm:h-10 md:h-12 ">ammarsvu91@gmail.com</label>
                             </div>
                           </div>
 
@@ -547,13 +556,13 @@ export const EditPatientDetails = (): JSX.Element => {
 
 
                         <div className="flex flex-col md:flex-row md:items-start lg:items-start   gap-3">
-                          <div className="flex w-[186px] items-center gap-4 mt-2">
+                          <div className="flex w-[186px] items-center gap-2 mt-2">
                             <div className="  text-text-primary ">     <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M10.5 7.5C10.5 7.20333 10.588 6.91332 10.7528 6.66665C10.9176 6.41997 11.1519 6.22771 11.426 6.11418C11.7001 6.00065 12.0017 5.97094 12.2926 6.02882C12.5836 6.0867 12.8509 6.22956 13.0607 6.43934C13.2704 6.64912 13.4133 6.91639 13.4712 7.20736C13.5291 7.49834 13.4994 7.79994 13.3858 8.07403C13.2723 8.34811 13.08 8.58238 12.8334 8.7472C12.5867 8.91203 12.2967 9 12 9C11.6022 9 11.2206 8.84196 10.9393 8.56066C10.658 8.27936 10.5 7.89782 10.5 7.5ZM6 7.5C6 5.9087 6.63214 4.38258 7.75736 3.25736C8.88258 2.13214 10.4087 1.5 12 1.5C13.5913 1.5 15.1174 2.13214 16.2426 3.25736C17.3679 4.38258 18 5.9087 18 7.5C18 13.1203 12.6019 16.2694 12.375 16.4016C12.2617 16.4663 12.1334 16.5004 12.0028 16.5004C11.8723 16.5004 11.744 16.4663 11.6306 16.4016C11.3981 16.2694 6 13.125 6 7.5ZM7.5 7.5C7.5 11.4563 10.86 14.0822 12 14.8594C13.1391 14.0831 16.5 11.4563 16.5 7.5C16.5 6.30653 16.0259 5.16193 15.182 4.31802C14.3381 3.47411 13.1935 3 12 3C10.8065 3 9.66193 3.47411 8.81802 4.31802C7.97411 5.16193 7.5 6.30653 7.5 7.5ZM19.0097 13.8403C18.8251 13.7793 18.624 13.7924 18.4489 13.8768C18.2738 13.9612 18.1382 14.1102 18.0709 14.2926C18.0035 14.475 18.0096 14.6764 18.0879 14.8543C18.1661 15.0323 18.3104 15.1729 18.4903 15.2466C20.0381 15.8194 21 16.5863 21 17.25C21 18.5025 17.5763 20.25 12 20.25C6.42375 20.25 3 18.5025 3 17.25C3 16.5863 3.96187 15.8194 5.50969 15.2475C5.6896 15.1739 5.8339 15.0332 5.91215 14.8553C5.99039 14.6773 5.99648 14.4759 5.92913 14.2935C5.86178 14.1112 5.72624 13.9621 5.5511 13.8777C5.37596 13.7933 5.17491 13.7803 4.99031 13.8412C2.73937 14.6709 1.5 15.8822 1.5 17.25C1.5 20.1731 6.91031 21.75 12 21.75C17.0897 21.75 22.5 20.1731 22.5 17.25C22.5 15.8822 21.2606 14.6709 19.0097 13.8403Z" fill="currentColor" />
                             </svg>
                             </div>
 
-                            <div className="min-min-w-[182px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
+                            <div className="w-[145px] text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)]">
                               {t("Physical Address")}:
                             </div >
                           </div>
@@ -561,7 +570,7 @@ export const EditPatientDetails = (): JSX.Element => {
                             {addressFields.map((field, index) => (
                               <Input
                                 key={index}
-                                className={`${field.width} w-[min(100%,172px)] h-10 sm:h-10 md:h-12  text-[clamp(14px,1.1vw,16px)] placeholder:text-[clamp(14px,1.1vw,16px)]  bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold  leading-[125%] tracking-[0] text-text-primary`}
+                                className={`${field.width} w-[min(100%,172px)] h-10 sm:h-10 md:h-12  text-[clamp(14px,1.1vw,16px)] placeholder:text-[clamp(12px,1.1vw,14px)]  bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold  leading-[125%] tracking-[0] text-text-primary`}
                                 defaultValue={field.value}
                               />
                             ))}
@@ -589,7 +598,7 @@ export const EditPatientDetails = (): JSX.Element => {
                             </Label>
                             <Input
                               defaultValue={emergencyContact.name}
-                              className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  text-[clamp(14px,1.1vw,16px)] placeholder:text-[clamp(14px,1.1vw,16px)]  bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold  leading-[125%] tracking-[0] text-text-primary"
+                              className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  text-[clamp(14px,1.1vw,16px)] placeholder:text-[clamp(12px,1.1vw,14px)]  bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold  leading-[125%] tracking-[0] text-text-primary"
                             />
                           </div>
                           <div className="flex flex-col sm:flex-row sm:items-center    gap-y-2 gap-x-8">
@@ -598,7 +607,7 @@ export const EditPatientDetails = (): JSX.Element => {
                             </Label>
                             <Input
                               defaultValue={emergencyContact.relationship}
-                              className=" w-[min(100%,360px)] h-10 sm:h-10 md:h-12 text-[clamp(14px,1.1vw,16px)] placeholder:text-[clamp(14px,1.1vw,16px)] bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold leading-[125%] tracking-[0] text-text-primary"
+                              className=" w-[min(100%,360px)] h-10 sm:h-10 md:h-12 text-[clamp(14px,1.1vw,16px)] placeholder:text-[clamp(12px,1.1vw,14px)] bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold leading-[125%] tracking-[0] text-text-primary"
                             />
                           </div>
                         </div>
@@ -606,7 +615,7 @@ export const EditPatientDetails = (): JSX.Element => {
                           <Label className="min-w-[162px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                             {t("Emergency Number")}
                           </Label>
-                          <div className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  text-[clamp(14px,1.1vw,16px)] placeholder:text-[clamp(14px,1.1vw,16px)] !bg-background-secondary !rounded-[4px] overflow-hidden  text-text-primary font-semibold">
+                          <div className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  text-[clamp(14px,1.1vw,16px)] placeholder:text-[clamp(12px,1.1vw,14px)] !bg-background-secondary !rounded-[4px] overflow-hidden  text-text-primary font-semibold">
                             <PhoneInputCustom value={emergencyContact.number}
                               onChange={setValue}
                               placeholder={t("Enter Number")}
@@ -658,7 +667,7 @@ export const EditPatientDetails = (): JSX.Element => {
                   <CollapsibleContent className="w-full">
                     <div
                       className="
-    flex flex-col md:flex-row w-full rounded-2xl 
+    flex flex-col lg:flex-row w-full rounded-2xl 
     gap-x-4 sm:gap-x-8 md:gap-x-16 lg:gap-x-[126px] 
     h-full pb-4
   "
@@ -814,77 +823,82 @@ export const EditPatientDetails = (): JSX.Element => {
 
                   <CollapsibleContent className="w-full">
                     <div className="w-full" dir={local === "ar" ? "rtl" : "ltr"}>
-                      {/* ---------- DESKTOP: keep original layout exactly as before (visible on lg+) ---------- */}
-                      <div className="hidden lg:flex">
-                        <div className="grid justify-end">
-                          {/* --- هذه هي نسخة اللابتوب كما في كودك الأصلي --- */}
-                          <div className="flex items-center w-full justify-between gap-6">
-                            {/* Title Field */}
-                            <div className="flex-none flex-shrink min-w-0 w-[min(100%,378px)]">
-                              <div className="flex items-center gap-x-4">
-                                <Label className="min-w-[162px] font-lato font-semibold text-base leading-[124%] text-text-primary">
-                                  {personalDocumentFields(t).title.label}
-                                </Label>
-                                <Input
-                                  defaultValue="Previous Medical Records"
-                                  className="w-[min(100%,280px)] h-10 sm:h-10 md:h-12 bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-[clamp(12px,2vw,14px)] leading-[125%] text-text-primary"
-                                />
-                              </div>
-                            </div>
+             {/* ---------- DESKTOP: keep original layout exactly as before (visible on lg+) ---------- */}
+<div className="hidden lg:flex w-full">
+  <div className="flex flex-col w-full">
+    {/* --- نسخة اللابتوب معدلة لتكون ريسبونسف مع max-w --- */}
+    <div className="flex items-center w-full justify-between gap-4">
+      
+      {/* Title Field */}
+      <div className="w-full max-w-[378px]">
+        <div className="flex items-center gap-[24px]">
+          <Label className="font-lato font-semibold text-base leading-[124%] text-text-primary">
+            {personalDocumentFields(t).title.label}
+          </Label>
+          <Input
+            defaultValue="Previous Medical Records"
+            className=" w-full max-w-[280px] h-10 sm:h-10 md:h-12 bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-[clamp(12px,2vw,14px)] leading-[125%] text-text-primary"
+          />
+        </div>
+      </div>
 
-                            {/* Upload Field */}
-                            <div className="flex-none flex-shrink min-w-0 w-[min(100%,378px)]">
-                              <div className="flex items-center">
-                                <Label className="min-w-[162px] text-text-primary font-semibold text-base">
-                                  {personalDocumentFields(t).uploadFile.label}
-                                </Label>
-                                <FileUpload
-                                  amount="Max 2MB"
-                                  size={2 * 1024 * 1024}
-                                  width="w-[min(100%,280px)]"
-                                  label={
-                                    <Trans i18nKey="uploadFile.dragLabel">
-                                      <span className="text-text-accent" />
-                                      <span className="text-text-primary" />
-                                    </Trans>
-                                  }
-                                />
-                              </div>
-                            </div>
+      {/* Upload Field */}
+      <div className="w-full max-w-[367px]">
+        <div className="flex items-center">
+          <Label className="text-text-primary w-28 font-semibold text-base">
+            {personalDocumentFields(t).uploadFile.label}
+          </Label>
+          <FileUpload
+            amount="Max 2MB"
+            width="w-full max-w-[280px] "
+            label={
+              <Trans i18nKey="uploadFile.dragLabel">
+                <span className="text-text-accent text-[clamp(10px,2vw,12px)]" />
+                <span className="text-text-primary text-[clamp(10px,2vw,12px)]" />
+              </Trans>
+            }
+          />
+        </div>
+      </div>
 
-                            {/* Date Picker */}
-                            <div className="flex-none flex-shrink min-w-0 w-[min(100%,378px)]">
-                              <DatePicker label="Date" width="w-[min(100%,280px)]" />
-                            </div>
+      {/* Date Picker */}
+      <div className="flex-1 max-w-[347px]">
+        <div className="flex items-center gap-[24px]">
+          <DatePicker label="Date" width="w-full max-w-[280px]" labelWidth="w-[80px]" />
+        </div>
+      </div>
 
-                            {/* Minus Icon */}
-                            <MinusIcon className="w-8 h-8 text-secondary-dark flex-none" />
-                          </div>
+      {/* Minus Icon */}
+      <MinusIcon className="w-8 h-8 text-secondary-dark flex-none shrink-0" />
+    </div>
 
-                          <div className="flex w-full justify-end text-secondary-dark">
-                            <svg
-                              width="20"
-                              height="20"
-                              viewBox="0 0 20 20"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                clipRule="evenodd"
-                                d="M0 10C0 9.44771 0.373096 9 0.833333 9H19.1667C19.6269 9 20 9.44771 20 10C20 10.5523 19.6269 11 19.1667 11H0.833333C0.373096 11 0 10.5523 0 10Z"
-                                fill="currentColor"
-                              />
-                              <path
-                                fillRule="evenodd"
-                                clipRule="evenodd"
-                                d="M10 0C10.5523 0 11 0.373096 11 0.833333V19.1667C11 19.6269 10.5523 20 10 20C9.44771 20 9 19.6269 9 19.1667V0.833333C9 0.373096 9.44771 0 10 0Z"
-                                fill="currentColor"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
+    {/* Plus Icon */}
+    <div className="flex w-full justify-end text-secondary-dark mt-2">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M0 10C0 9.44771 0.373096 9 0.833333 9H19.1667C19.6269 9 20 9.44771 20 10C20 10.5523 19.6269 11 19.1667 11H0.833333C0.373096 11 0 10.5523 0 10Z"
+          fill="currentColor"
+        />
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M10 0C10.5523 0 11 0.373096 11 0.833333V19.1667C11 19.6269 10.5523 20 10 20C9.44771 20 9 19.6269 9 19.1667V0.833333C9 0.373096 9.44771 0 10 0Z"
+          fill="currentColor"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+
+
 
 
 
@@ -910,14 +924,14 @@ export const EditPatientDetails = (): JSX.Element => {
 
 
                             {/* Upload File */}
-                            <div className="flex flex-col md:flex-row gap-x-2 items-center ">
-                              <Label className="flex flex-col md:flex-row  font-lato font-semibold text-[16px] text-text-primary">
+                            <div className="flex flex-col md:flex-row gap-x-2 items-start ">
+                              <Label className="flex flex-col md:flex-row  font-lato font-semibold text-[clamp(14px,2vw,16px)]text-text-primary">
                                 {personalDocumentFields(t).uploadFile.label}
                               </Label>
                               <FileUpload
                                 amount="Max 2MB"
-                                size={2 * 1024 * 1024}
-
+                          
+                                 
                                 label={
                                   <Trans i18nKey="uploadFile.dragLabel">
                                     <span className="text-text-accent" />

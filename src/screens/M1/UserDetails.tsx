@@ -64,7 +64,7 @@ const documentsData = [
   { title: "Work Permit", date: " Mar 01, 2027", size: "0.7 MB" },
   { title: "Certifications", date: " Mar 01, 2028", size: "0.4 MB" },
 ];
-
+import { ArrowLeftIcon } from "lucide-react";
 export const UserDetails = (): JSX.Element => {
   const { local, handleLanguageClick } = useLanguage();
   const { t, i18n } = useTranslation();
@@ -125,9 +125,13 @@ export const UserDetails = (): JSX.Element => {
                 <h1 className="font-bold text-sm text-on-surface-primary">
                   {t("Users Management")}
                 </h1>
+                <Link to='/UserDesktop'>
+                <div className="flex items-center pag-2">
+                                    <ArrowLeftIcon className="relative w-4 h-4 top-1" />
+                               
                 <p className="text-xs text-on-surface-primary">
                   {t("User Details")}
-                </p>
+                </p>   </div>  </Link>
               </div>
             </div>
 
@@ -154,10 +158,13 @@ export const UserDetails = (): JSX.Element => {
               <div className="flex flex-col">
                 <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
                   {t("Users Management")}
-                </h1>
+                </h1>  <Link to='/UserDesktop'><div className="flex gap-2 items-center ">
+                    
+                                    <ArrowLeftIcon className="relative w-5 h-5 pt-1" />
+                                 
                 <p className="text-sm md:text-base text-on-surface-primary">
                   {t("User Details")}
-                </p>
+                </p></div>   </Link>
               </div>
             </div>
 

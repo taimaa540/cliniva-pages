@@ -333,7 +333,7 @@ export const ViewListOfSpicialities = (): JSX.Element => {
                   >
                     <SelectTrigger className="inline-flex items-center gap-0.5 pl-2.5 pr-2 py-1.5 bg-secondary-light rounded-[20px] border-0 h-auto w-auto">
                       <SelectValue>
-                        <span className="font-lato font-medium text-[clamp(12px,2vw,14px)] text-text-primary">
+                        <span className="font-lato font-lato text-[clamp(12px,2vw,14px)] text-text-primary font-lato">
                           {t(`status.${status}`)}
                         </span>
                       </SelectValue>
@@ -376,71 +376,79 @@ export const ViewListOfSpicialities = (): JSX.Element => {
                     className="overflow-y-auto rounded-lg"
                     style={{ height: "calc(100vh - 78px - 200px)" }}
                   >
-                    <table className="table-auto w-full min-w-[800px] text-center border-collapse">
-                      <thead className="sticky top-0 z-10 bg-background-primary border-b border-border-light">
-                        <tr className="h-[56px] bg-background-primary border-b border-border-light sticky top-0 z-10">
-                          <th className="px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
-                            {t("No.")}
-                          </th>
-                          <th className="px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
-                            {t("Specialities Name")}
-                          </th>
-                          <th className="px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
-                            {t("Number of Assigned Doctors")}
-                          </th>
-                          <th className="px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
-                            {t("Last update (Date & Time)")}
-                          </th>
-                          <th className="px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
-                            {t("Status")}
-                          </th>
-                          <th className="px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
-                            {t("Actions")}
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {userData(t).map((user) => (
-                          <tr
-                            key={user.id}
-                            className="h-[78px] bg-background-primary hover:bg-secondary-light border-b border-border-light whitespace-nowrap"
-                            onClick={() => window.location.href = `/ViewSpecialtiesDetails?id=${user.id}`}
+                <table className="table-fixed w-full min-w-[700px] text-center border-collapse">
+  <thead className="sticky top-0 z-10 bg-background-primary border-b border-border-light">
+    <tr className="h-[56px] bg-background-primary border-b border-border-light sticky top-0 z-10">
+      <th className="w-[5%] px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary whitespace-nowrap">
+        {t("No.")}
+      </th>
+      <th className="w-[25%] px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary whitespace-nowrap">
+        {t("Specialities Name")}
+      </th>
+      <th className="w-[20%] px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary whitespace-nowrap">
+        {t("Number of Assigned Doctors")}
+      </th>
+      <th className="w-[25%] px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary whitespace-nowrap">
+        {t("Last update (Date & Time)")}
+      </th>
+      <th className="w-[12.5%] px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary whitespace-nowrap">
+        {t("Status")}
+      </th>
+      <th className="w-[12.5%] px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary whitespace-nowrap">
+        {t("Actions")}
+      </th>
+    </tr>
+  </thead>
 
-                          >
-                            <td className="px-2 font-lato text-[clamp(12px,2vw,12px)]">{user.id}</td>
-                            <td className="px-2 font-lato text-[clamp(12px,2vw,12px)]">
-                              {user.SpecialitiesName}
-                            </td>
-                            <td className="px-2 font-lato text-[clamp(12px,2vw,12px)]">
-                              {user.NumberofAssignedDoctors}
-                            </td>
-                            <td className="px-2 font-lato text-[clamp(12px,2vw,12px)]">
-                              {user.Lastupdate}
-                            </td>
-                            <td className="px-2">
-                              <Toggle></Toggle>
-                            </td>
-                            <td className="px-2">
-                              <div className="inline-flex items-center gap-1">
-                                <Link to="/ViewSpecialtiesList/EditSpecialtiesDetails" onClick={(e) => e.stopPropagation()}>
-                                  <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    className="inline-flex items-center justify-center gap-2 p-2.5 rounded-lg"
-                                  >
-                                    <img
-                                      className="w-[15px] h-[15px] text-on-surface-primary"
-                                      alt="edit"
-                                      src="./edit-01.svg"
-                                    />
-                                  </Button>
-                                </Link>
-                              </div>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
+  <tbody>
+    {userData(t).map((user) => (
+      <tr
+        key={user.id}
+        className="h-[78px] bg-background-primary hover:bg-secondary-light border-b border-border-light whitespace-nowrap"
+        onClick={() =>
+          (window.location.href = `/ViewSpecialtiesDetails?id=${user.id}`)
+        }
+      >
+        <td className="px-2 font-lato text-[clamp(12px,2vw,12px)]">{user.id}</td>
+        <td className="px-2 font-lato text-[clamp(12px,2vw,12px)]">
+          {user.SpecialitiesName}
+        </td>
+        <td className="px-2 font-lato text-[clamp(12px,2vw,12px)]">
+          {user.NumberofAssignedDoctors}
+        </td>
+        <td className="px-2 font-lato text-[clamp(12px,2vw,12px)]">
+          {user.Lastupdate}
+        </td>
+        <td className="px-2">
+            <div onClick={(e) => e.stopPropagation()}>
+          <Toggle className="" />
+          </div>
+        </td>
+        <td className="px-2">
+          <div className="inline-flex items-center gap-1">
+            <Link
+              to="/ViewSpecialtiesList/EditSpecialtiesDetails"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Button
+                variant="ghost"
+                size="sm"
+                className="inline-flex items-center justify-center gap-2 p-2.5 rounded-lg"
+              >
+                <img
+                  className="w-[15px] h-[15px] text-on-surface-primary"
+                  alt="edit"
+                  src="./edit-01.svg"
+                />
+              </Button>
+            </Link>
+          </div>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
                   </div>
                 </div>
               </div>

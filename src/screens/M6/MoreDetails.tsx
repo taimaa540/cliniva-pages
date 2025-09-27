@@ -15,6 +15,8 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../../components/ui/collapsible";
+import { ArrowLeftIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 import { ThemeToggle } from "../../components/theme/ThemeSwitcher";
 import { useState } from "react";
 import TranslateIcon from "@mui/icons-material/Translate";
@@ -35,6 +37,7 @@ export const MoreDetails = (): JSX.Element => {
     sessionList: true,
     generalInformations: true,
   });
+
 
   const [isOpenAppointment, setIsOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
@@ -87,11 +90,16 @@ export const MoreDetails = (): JSX.Element => {
 
                 <div className="flex flex-col">
                   <h1 className="font-bold text-sm text-on-surface-primary">
-                    {t("Medical Clinic Details")}
+                    {t("Appointments")}
                   </h1>
-                  <p className="text-xs text-on-surface-primary">
-                    {t("Medical Facilities")}
-                  </p>
+                                                  <Link to='/Appointments'><div className="flex gap-1 items-center ">
+                                    
+                                                    <ArrowLeftIcon className="relative w-4 h-4 pt-1" />
+                                                 
+                         <p className="text-xs text-on-surface-primary">
+                    {t("Add New Appointmetns")}
+                  </p></div>   </Link>
+     
                 </div>
               </div>
 
@@ -117,11 +125,15 @@ export const MoreDetails = (): JSX.Element => {
               <div className="flex items-center gap-4">
                 <div className="flex flex-col">
                   <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
-                    {t("Medical Clinic Details")}
+                    {t("Appointments")}
                   </h1>
-                  <p className="text-sm md:text-base text-on-surface-primary">
-                    {t("Medical Facilities")}
-                  </p>
+                                                          <Link to='/Appointments'><div className="flex gap-1 items-center ">
+                                    
+                                                    <ArrowLeftIcon className="relative w-4 h-4 pt-1" />
+                                                 
+                         <p className="text-xs text-on-surface-primary">
+                    {t("Add New Appointmetns")}
+                  </p></div>   </Link>
                 </div>
               </div>
 

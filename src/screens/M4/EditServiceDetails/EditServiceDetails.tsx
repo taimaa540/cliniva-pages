@@ -54,7 +54,7 @@ interface FormData {
   serviceDescription: string;
   requiredEquipment: string;
 }
-
+import { ArrowLeftIcon } from "lucide-react";
 
 export const EditServiceDetails = (): JSX.Element => {
   const { local, handleLanguageClick } = useLanguage();
@@ -245,9 +245,14 @@ export const EditServiceDetails = (): JSX.Element => {
                 <h1 className="font-bold text-sm text-on-surface-primary">
                   {t("Services Management")}
                 </h1>
-                <p className="text-xs text-on-surface-primary">
+                                <Link to='/ViewServiceDetails'><div className="flex gap-1 items-center ">
+
+                  <ArrowLeftIcon className="relative w-4 h-4 pt-1" />
+
+              <p className="text-xs text-on-surface-primary">
                   {t("Edit Service details")}
-                </p>
+                </p></div>   </Link>
+            
               </div>
             </div>
 
@@ -275,9 +280,13 @@ export const EditServiceDetails = (): JSX.Element => {
                 <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
                   {t("Services Management")}
                 </h1>
-                <p className="text-sm md:text-base text-on-surface-primary">
+                                          <Link to='/ViewServiceDetails'><div className="flex gap-2 items-center ">
+
+                  <ArrowLeftIcon className="relative w-5 h-5 pt-1" />
+
+              <p className="text-xs text-on-surface-primary">
                   {t("Edit Service details")}
-                </p>
+                </p></div>   </Link>
               </div>
             </div>
 
@@ -332,15 +341,15 @@ export const EditServiceDetails = (): JSX.Element => {
         <Card className="flex flex-col h-full items-start gap-5 p-[5px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-tertiary">
           <CardContent className="w-full overflow-y-auto scroll-x-hidden pr-[20px] ">
             <div className="flex gap-[14px]  justify-end p-3 items-end text-end pb-2 sm:pb-3 md:pb-3 lg:pb-4 " dir={local === 'ar' ? 'rtl' : 'ltr'}
-            ><Link to="/ViewServiceDetails"> 
-              <button className="     w-[100px] h-[40px]       /* الموبايل الافتراضي */
+            ><Link to="/ViewServiceDetails">
+                <button className="     w-[100px] h-[40px]       /* الموبايل الافتراضي */
   
     md:w-[180px] md:h-[38px]
     lg:w-[200px] lg:h-[40px] 
  
       rounded-[20px] border border-border-light bg-surface-primary  font-lato font-medium text-sm leading-[100%] tracking-[0] text-text-primary">
-                {t("Cancel")}
-              </button></Link>
+                  {t("Cancel")}
+                </button></Link>
               <button className="  w-[100px] h-[40px]       /* الموبايل الافتراضي */
 
     md:w-[160px] md:h-[36px]
@@ -378,7 +387,7 @@ export const EditServiceDetails = (): JSX.Element => {
                     <div className="flex flex-col gap-4 w-full">
                       {/* Services Name */}
                       <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 items-start min-h-[54px]">
-                        <div className="w-[180px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                        <div className="w-[180px] text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                           {t("Services Name")}
                         </div>
                         <input
@@ -391,7 +400,7 @@ export const EditServiceDetails = (): JSX.Element => {
 
                       {/* Service Category */}
                       <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 items-start min-h-[54px]">
-                        <div className="w-[180px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                        <div className="w-[180px] text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                           {t("Service Category")}
                         </div>
                         <select
@@ -407,7 +416,7 @@ export const EditServiceDetails = (): JSX.Element => {
 
                       {/* Service Description */}
                       <div className="flex flex-col sm:flex-row gap-6 items-start">
-                        <div className="w-[180px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                        <div className="w-[180px] text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                           {t("Service Description")}
                         </div>
                         <textarea
@@ -423,7 +432,7 @@ export const EditServiceDetails = (): JSX.Element => {
                       <div className=" w-36  block lg:hidden text-primary-default mt-3 "> {t("Assign")}</div>
                       {/* Assign Complex */}
                       <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 items-start min-h-[54px]">
-                        <div className="w-[180px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                        <div className="w-[180px] text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                           {t("Assign Complex")}
                         </div>
                         <select
@@ -438,7 +447,7 @@ export const EditServiceDetails = (): JSX.Element => {
 
                       {/* Assign Clinics */}
                       <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 items-start min-h-[54px]">
-                        <div className="w-[180px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                        <div className="w-[180px] text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                           {t("Assign Clinics")}
                         </div>
                         <select
@@ -452,13 +461,13 @@ export const EditServiceDetails = (): JSX.Element => {
                         </select>
                       </div>
 
-                      <div className="w-[150px] text-primary-default font-semibold text-[clamp(14px,2vw,16px)] ">
+                      <div className="w-[150px] font-lato text-primary-default font-semibold text-[clamp(14px,2vw,16px)] ">
                         {t("Resources")}
                       </div>
 
                       {/* Required Equipment */}
                       <div className="flex flex-col sm:flex-row gap-6 items-start">
-                        <div className="w-[180px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                        <div className="w-[180px] text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                           {t("Required Equipment")}
                         </div>
                         <textarea
@@ -504,71 +513,71 @@ export const EditServiceDetails = (): JSX.Element => {
                     <div className="flex flex-col gap-4 w-full lg:w-[500px]">
                       {/* Total Patients Served */}
                       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-                        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Total Patients Served")}</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Total Patients Served")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">327 Patients</div>
                       </div>
 
                       {/* Completed Sessions */}
                       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-                        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Completed Sessions")}</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Completed Sessions")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">945 Sessions</div>
                       </div>
 
                       {/* Average Duration */}
                       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-                        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Average Duration")}</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Average Duration")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">25 mins</div>
                       </div>
 
                       {/* No-Show Rate */}
                       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-                        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("No-Show Rate (%)")}</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("No-Show Rate (%)")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">8.6%</div>
                       </div>
 
                       {/* Rebooking Rate */}
                       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-                        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Rebooking Rate (%)")}</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Rebooking Rate (%)")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">72.4%</div>
                       </div>
                     </div>
 
                     {/* Right Column - Operational Details */}
                     <div className="flex flex-col gap-4 w-full lg:w-[500px]">
-                      <div className=" w-36  block lg:hidden text-primary-default mt-3"> {t("Operational Details")}</div>
+                      <div className=" w-36  block lg:hidden  font-lato text-primary-default mt-3"> {t("Operational Details")}</div>
                       {/* Last Performed Date */}
                       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-                        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Last Performed Date")}</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Last Performed Date")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">June 28-2025</div>
                       </div>
 
                       {/* Most Frequent Doctor */}
                       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-                        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Most Frequent Doctor")}</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Most Frequent Doctor")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">Dr. Sarah Fadel</div>
                       </div>
 
                       {/* Most Frequent Clinic */}
                       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-                        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Most Frequent Clinic")}</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Most Frequent Clinic")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">Internal Medicine Clinic</div>
                       </div>
 
                       {/* Timestamps */}
                       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-                        <div className="text-primary-default font-semibold text-[clamp(14px,2vw,16px)] ">{t("Timestamps")}</div>
+                        <div className="text-primary-default  font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Timestamps")}</div>
                         <div></div>
                       </div>
 
                       {/* Creation Date */}
                       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-                        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Creation Date")}</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Creation Date")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">June 28-2025</div>
                       </div>
 
                       {/* Last Update */}
                       <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
-                        <div className="text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">{t("Last Update")}</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Last Update")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
                           June 28-2025&nbsp;&nbsp;10:43 AM
                         </div>
@@ -597,25 +606,25 @@ export const EditServiceDetails = (): JSX.Element => {
                       <Table className="min-w-max border-collapse">
                         <TableHeader className="sticky top-0 z-20 bg-surface-default">
                           <TableRow>
-                            <TableHead className="w-[80px] text-center font-semibold text-text-primary">
+                            <TableHead className="w-[80px] font-lato text-center font-semibold text-text-primary">
                               {t("No.")}
                             </TableHead>
-                            <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
+                            <TableHead className="text-center font-lato text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                               {t("Session Name")}
                             </TableHead>
-                            <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
+                            <TableHead className="text-center font-lato text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                               {t("Duration")}
                             </TableHead>
-                            <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
+                            <TableHead className="text-center font-lato text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                               {t("Next Session")}
                             </TableHead>
-                            <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold w-80">
+                            <TableHead className="text-center font-lato text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold w-80">
                               {t("Description")}
                             </TableHead>
-                            <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
+                            <TableHead className="text-center  font-lato text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                               {t("Active Appt")}
                             </TableHead>
-                            <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
+                            <TableHead className="text-center font-lato text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                               {t("Appt Required?")}
                             </TableHead>
                             <TableHead></TableHead>
@@ -794,22 +803,22 @@ export const EditServiceDetails = (): JSX.Element => {
                         {/* الهيدر ثابت */}
                         <TableHeader className="sticky top-0 z-20 bg-surface-default">
                           <TableRow>
-                            <TableHead className="w-[98px] text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
+                            <TableHead className="w-[98px] text-center font-lato text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                               {t("No.")}
                             </TableHead>
-                            <TableHead className="w-56 text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
+                            <TableHead className="w-56 text-center font-lato text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                               {t("User ID")}
                             </TableHead>
-                            <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
+                            <TableHead className="text-center font-lato text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                               {t("Doctor Name")}
                             </TableHead>
-                            <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
+                            <TableHead className="text-center font-lato text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                               {t("Specialties")}
                             </TableHead>
-                            <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
+                            <TableHead className="text-center font-lato text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                               {t("Active Appt")}
                             </TableHead>
-                            <TableHead className="text-center text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
+                            <TableHead className="text-center font-lato text-text-primary text-[clamp(14px,2vw,16px)]  font-semibold">
                               {t("Status")}
                             </TableHead>
                           </TableRow>

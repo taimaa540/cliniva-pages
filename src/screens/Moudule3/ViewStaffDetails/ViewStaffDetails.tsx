@@ -31,7 +31,7 @@ const personalInfoData = [
   { label: "Marital Status", value: "Married" },
   { label: "children Number", value: "1" },
 ];
-
+import { ArrowLeftIcon } from "lucide-react";
 const workingDaysData = [
   {
     day: "Sunday",
@@ -74,9 +74,7 @@ export const ViewStaffDetails = (): JSX.Element => {
   const [isOpen2, setIsOpen2] = useState(false);
   const [isOpen3, setIsOpen3] = useState(false);
   const [isOpen4, setIsOpen4] = useState(false);
-  const [isOpen5, setIsOpen5] = useState(false);
-  const [isOpen6, setIsOpen6] = useState(false);
-  const [isOpen7, setIsOpe7] = useState(false);
+
 
   const [isMobile, setIsMobile] = useState(false);
 
@@ -146,9 +144,14 @@ export const ViewStaffDetails = (): JSX.Element => {
                 <h1 className="font-bold text-[clamp(12px,2vw,14px)]  text-on-surface-primary">
                   {t("Staff")}
                 </h1>
-                <p className="text-[clamp(12px,2vw,14px)]  text-on-surface-primary">
+                      <Link to='/ViewStaffList/View Staff Details'><div className="flex gap-1 items-center ">
+                    
+                                    <ArrowLeftIcon className="relative w-4 h-4 pt-1" />
+                                 
+             <p className="text-[clamp(12px,2vw,14px)]  md:text-[clamp(14px,2vw,16px)]  text-on-surface-primary">
                   {t("View Staff Member details")}
-                </p>
+                </p></div>   </Link>
+            
               </div>
             </div>
 
@@ -176,9 +179,14 @@ export const ViewStaffDetails = (): JSX.Element => {
                 <h1 className="font-bold text-[clamp(14px,2vw,16px)]  md:text-lg lg:text-xl text-on-surface-primary">
                   {t("Staff")}
                 </h1>
-                <p className="text-[clamp(12px,2vw,14px)]  md:text-[clamp(14px,2vw,16px)]  text-on-surface-primary">
+                 <Link to='/ViewStaffList'><div className="flex gap-2 items-center ">
+                    
+                                    <ArrowLeftIcon className="relative w-5 h-5 pt-1" />
+                                 
+             <p className="text-[clamp(12px,2vw,14px)]  md:text-[clamp(14px,2vw,16px)]  text-on-surface-primary">
                   {t("View Staff Member details")}
-                </p>
+                </p></div>   </Link>
+            
               </div>
             </div>
 
@@ -872,7 +880,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                                 fill="currentColor"
                               />
                             </svg>
-                            <span className="font-lato font-semibold text-[clamp(12px,2vw,14px)] leading-[130%] tracking-[0] text-text-primary break-words w-full">
+                            <span className="font-lato  font-semibold text-[clamp(12px,2vw,14px)] leading-[130%] tracking-[0] text-text-primary break-words w-full">
                               ammarsvu91@gmail.com
                             </span>
                           </div>

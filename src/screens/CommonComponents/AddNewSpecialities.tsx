@@ -32,7 +32,7 @@ export default function AddNewSpecialities({ onClose }: { onClose: () => void })
    <hr className="m-3"></hr>
 
         <div className="p-4">
-          <label className="text-text-primary font-semibold text-[16px]">
+          <label className="text-text-primary font-lato font-semibold text-[16px]">
             Speciality Name
           </label>
           <Input
@@ -46,17 +46,18 @@ export default function AddNewSpecialities({ onClose }: { onClose: () => void })
       fontSize: '14px',
       color: 'text-text-secondary',
       fontWeight: 400,
+      fontFamily:'font-lato'
     }}}
 
             placeholder="Enter Speciality Name"
           />
    <hr className="m-3"></hr>
           <div className="mt-4">
-            <label className="text-text-primary font-semibold text-[16px]">
+            <label className="text-text-primary font-lato font-semibold text-[16px]">
               Description
             </label>
             <Textarea
-              className="w-full h-[120px] bg-background-secondary text-[clamp(14px,1.1vw,16px)]  text-text-secondary border-border-input rounded-[8px] px-3 placeholder:text-text-secondary Placeholder:text-[14px] placeholder:font-normal"
+              className="w-full h-[120px] font-lato bg-background-secondary text-[clamp(14px,1.1vw,16px)]  text-text-secondary border-border-input rounded-[8px] px-3 placeholder:text-text-secondary Placeholder:text-[14px] placeholder:font-normal"
                
               placeholder="Enter Description " 
             />

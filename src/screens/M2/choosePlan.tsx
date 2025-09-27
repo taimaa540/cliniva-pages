@@ -3,13 +3,13 @@ import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { Route, Routes, Link } from "react-router-dom";
 import { useAppContext } from "../../Context/ContextchooseSidbar"; 
-import { useContext } from "react";
+
 export const ChoosePlan = (): JSX.Element => {
     const { setSelectedPlan } = useAppContext();
   return (
     <>
 
-      {/* Routes */}
+
  
         
             <div className=" w-full h-screen bg-surface-default overflow-hidden">
@@ -35,7 +35,9 @@ export const ChoosePlan = (): JSX.Element => {
               />
               <div>
                 <button className="group hover:bg-accent flex gap-4 absolute left-[220px] top-[30px] p-2.5 rounded-[16px]">
+                  <Link to='/Home'>
                   <ArrowLeft className=" group-hover:animate-arrow-bounce-to-left" />
+                  </Link>
                   <h6>Back to Login Page</h6>
                 </button>
               </div>

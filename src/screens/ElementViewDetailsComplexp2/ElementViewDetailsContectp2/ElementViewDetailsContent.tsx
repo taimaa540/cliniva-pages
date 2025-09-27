@@ -88,6 +88,7 @@ import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '../../../co
 import Checkbox from '@mui/material/Checkbox';
 import Avatar from "@mui/material/Avatar";
 import ReusableCollapsible from "../../../components/ui/Collapsibles";
+import { useLanguage } from "../../../lib/LanguageContext";
 import {
 
   Container,
@@ -207,39 +208,7 @@ const capacityData = [
 ];
 
 
-const contactInfo = {
-  phoneNumbers: "+966 50 000-0000",
-  email: "info@medcaregroup.com",
-  physicalAddress: {
-    buildingNumber: "Building Number",
-    streetName: "Street Name",
-    region: "Region",
-    country: "Country",
-    nation: "Nation",
-  },
-  mapsLocation: "www.medcaregroup.com",
-};
 
-const departmentsData = [
-  {
-    no: 1,
-    name: "Internal Medicine",
-    description:
-      "Handles the diagnosis and nonsurgical treatment of diseases in adults, including chronic conditions such as hypertension and diabetes.",
-  },
-  {
-    no: 2,
-    name: "Internal Medicine",
-    description:
-      "Handles the diagnosis and nonsurgical treatment of diseases in adults, including chronic conditions such as hypertension and diabetes.",
-  },
-  {
-    no: 3,
-    name: "Internal Medicine",
-    description:
-      "Handles the diagnosis and nonsurgical treatment of diseases in adults, including chronic conditions such as hypertension and diabetes.",
-  },
-];
 
 
 const linkedClinics = [
@@ -342,21 +311,14 @@ const doctorsAndStaff = [
 
 
 
+export const ElementViewDetalisComplexp2 = (): JSX.Element => {
 
-interface NoDataSectionProps {
-  dark: boolean;
-  local: string;
 
-  handelDarkClick: () => void;
-  handleLanguageClick: () => void;
-
-}
-
-export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: NoDataSectionProps): JSX.Element => {
-  const { t, i18n } = useTranslation()
-  useEffect(() => {
-    i18n.changeLanguage(local);
-  }, []);
+    const { local, handleLanguageClick } = useLanguage();
+    const { t, i18n } = useTranslation();
+    useEffect(() => {
+        i18n.changeLanguage(local);
+    }, []);
 
 
   const [isOpen, setIsOpen1] = useState({
@@ -551,7 +513,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
                   <Edit2Icon
                     className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 text-text-inverse"
                   />
-                  Edit
+                  {t("Edit")}
                 </Button></Link>
 
             </div>
@@ -644,7 +606,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6">
                     {/* Complex Name */}
                     <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-                      <span className=" min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]lg:text-[16px]">
+                      <span className=" min-w-[160px] font-lato font-semibold text-text-primary text-[clamp(14px,2vw,16px)]lg:text-[16px]">
                         {t("Complex Name")}:
                       </span>
                       <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)] ">
@@ -654,7 +616,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
 
                     {/* Year of Establishment */}
                     <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-                      <span className="min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]lg:text-[16px]">
+                      <span className="min-w-[160px] font-lato  font-semibold text-text-primary text-[clamp(14px,2vw,16px)]lg:text-[16px]">
                         {t("Year of Establishment")}:
                       </span>
                       <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)] ">
@@ -667,7 +629,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mb-6">
                     {/* Description */}
                     <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-                      <span className=" min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
+                      <span className=" min-w-[160px] font-lato  font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
                         {t("Description")}:
                       </span>
                       <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)] ">
@@ -678,7 +640,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
 
                     {/* PIC */}
                     <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-                      <span className=" min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
+                      <span className=" min-w-[160px]  font-lato  font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
                         {t("PIC")}:
                       </span>
                       <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)] ">
@@ -691,7 +653,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                     <div className="flex items-center gap-2">
                       <CalendarIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
-                      <span className=" min-w-[130px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)] ">
+                      <span className=" min-w-[130px]  font-lato font-semibold text-text-primary text-[clamp(14px,2vw,16px)] ">
                         {t("Created on")}:
                       </span>
                     </div>
@@ -718,7 +680,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
                     <div className="flex items-start gap-3">
                       <PhoneIcon className="w-5 h-5 sm:w-6 sm:h-6" />
                       <div className="flex flex-col sm:flex-row sm:gap-6">
-                        <span className="font-semibold text-text-primary text-[clamp(14px,2vw,16px)] leading-snug">
+                        <span className="font-lato font-lato font-semibold text-text-primary text-[clamp(14px,2vw,16px)] leading-snug">
                           {t("Phone Numbers")}:
                         </span>
                         <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]  leading-snug">
@@ -737,7 +699,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
                           </svg></div>
                       </div>
                       <div className="flex flex-col sm:flex-row sm:gap-6">
-                        <span className="font-semibold text-text-primary text-[clamp(14px,2vw,16px)]lg:text-[16px] leading-snug">
+                        <span className="font-lato font-lato font-semibold text-text-primary text-[clamp(14px,2vw,16px)]lg:text-[16px] leading-snug">
                           {t("Email")}:
                         </span>
                         <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]  leading-snug">
@@ -759,7 +721,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
                           </svg></div>
                       </div>
                       <div className="flex flex-col sm:flex-row sm:gap-6">
-                        <span className="font-semibold text-text-primary text-[clamp(14px,2vw,16px)]  leading-snug">
+                        <span className="font-lato font-lato font-semibold text-text-primary text-[clamp(14px,2vw,16px)]  leading-snug">
                           {t("Physical Address")}:
                         </span>
                         <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]  leading-snug">
@@ -775,7 +737,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
                       </svg>
                       </div>
                       <div className="flex flex-col sm:flex-row sm:gap-6">
-                        <span className="font-semibold text-text-primary text-[clamp(12px,2vw,14px)]  leading-snug">
+                        <span className="font-semibold text-text-primary text-[clamp(12px,2vw,14px)]  font-lato leading-snug">
                           {t("Maps Location")}:
                         </span>
                         <a
@@ -815,6 +777,7 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
 
             <ReusableCollapsible
               title={t("Department List")}
+              dir={local === "ar" ? "rtl" : "ltr"}
               initiallyOpen={isOpen.departments}
               onOpenChange={(open) => handleToggle("departments", open)}
               content={<div className="p-0">     <div className="bg-surface-default rounded-2xl  w-full overflow-x-auto">
@@ -822,13 +785,13 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
                   <Table className="min-w-[600px]">
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="w-[10%] text-text-praimary font-semibold text-start text-[clamp(14px,2vw,16px)]">
+                        <TableHead className="w-[10%] text-text-praimary font-lato font-semibold text-start text-[clamp(14px,2vw,16px)]">
                           {t("No")}
                         </TableHead>
-                        <TableHead className="w-[40%] text-text-praimary font-semibold text-center text-[clamp(14px,2vw,16px)]">
+                        <TableHead className="w-[40%] text-text-praimary font-lato font-semibold text-center text-[clamp(14px,2vw,16px)]">
                           {t("Department Name")}
                         </TableHead>
-                        <TableHead className="w-[50%] text-text-praimary font-semibold text-center text-[clamp(14px,2vw,16px)]">
+                        <TableHead className="w-[50%] text-text-praimary font-lato font-semibold text-center text-[clamp(14px,2vw,16px)]">
                           {t("Description")}
                         </TableHead>
                       </TableRow>
@@ -840,15 +803,15 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
                           key={index}
                           className="border-b border-[#e4e2dd] h-[60px] sm:h-[70px] md:h-[78px]"
                         >
-                          <TableCell className="text-start font-title-14px-semibold text-[clamp(12px,2vw,16px)]">
+                          <TableCell className="text-start font-lato font-title-14px-semibold text-[clamp(12px,2vw,16px)]">
                             {dept.number}
                           </TableCell>
 
-                          <TableCell className="text-center font-title-14px-semibold text-[clamp(12px,2vw,16px)]">
+                          <TableCell className="text-center font-lato font-title-14px-semibold text-[clamp(12px,2vw,16px)]">
                             {dept.name}
                           </TableCell>
 
-                          <TableCell className="text-text-primary font-regular font-[Lato] text-[clamp(12px,2vw,14px)] leading-snug sm:leading-normal md:leading-[1.25] tracking-[0] text-center sm:text-left">
+                          <TableCell className="text-text-primary font-lato font-regular  text-[clamp(12px,2vw,14px)] leading-snug sm:leading-normal md:leading-[1.25] tracking-[0] text-center sm:text-left">
                             {dept.description}
                           </TableCell>
                         </TableRow>
@@ -876,22 +839,22 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
                   <Table className="min-w-[800px]"> {/* بتحدد أقل عرض مشان السكرول يشتغل */}
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="w-[58px] text-center font-semibold text-[clamp(14px,2vw,16px)] text-text-primary">
+                        <TableHead className="w-[58px] text-center font-lato font-semibold text-[clamp(14px,2vw,16px)] text-text-primary">
                           {t("NO")}
                         </TableHead>
-                        <TableHead className="text-center w-[138px]  font-semibold text-[clamp(14px,2vw,16px)] text-text-primary">
+                        <TableHead className="text-center w-[138px]  font-lato font-semibold text-[clamp(14px,2vw,16px)] text-text-primary">
                           {t("Name")}
                         </TableHead>
-                        <TableHead className="text-center  w-[138px] font-semibold text-[clamp(14px,2vw,16px)] text-text-primary">
+                        <TableHead className="text-center  w-[138px] font-lato font-semibold text-[clamp(14px,2vw,16px)] text-text-primary">
                           {t("PIC")}
                         </TableHead>
-                        <TableHead className="w-[255px] text-center font-semibold text-[clamp(14px,2vw,16px)] text-text-primary">
+                        <TableHead className="w-[195px] text-center font-lato font-semibold text-[clamp(14px,2vw,16px)] text-text-primary">
                           {t("Scheduled Appointments Count")}
                         </TableHead>
-                        <TableHead className="text-center  w-[118px]  font-semibold text-[clamp(14px,2vw,16px)] text-text-primary">
+                        <TableHead className="text-center  w-[118px]  font-lato font-semibold text-[clamp(14px,2vw,16px)] text-text-primary">
                           {t("Doctors")}
                         </TableHead>
-                        <TableHead className="text-center w-[118px]  font-semibold text-[clamp(14px,2vw,16px)] text-text-primary">
+                        <TableHead className="text-center w-[118px]  font-lato font-semibold text-[clamp(14px,2vw,16px)] text-text-primary">
                           {t("Status")}
                         </TableHead>
                       </TableRow>
@@ -900,25 +863,25 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
                     <TableBody>
                       {linkedClinics.map((clinic) => (
                         <TableRow key={clinic.number} className="border-b border-[#e4e2dd]">
-                          <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)] text-text-primary">
+                          <TableCell className="text-center font-medium  text-[clamp(12px,2vw,14px)] text-text-primary font-lato">
                             {clinic.number}
                           </TableCell>
-                          <TableCell className="text-center w-[138px] font-medium text-[clamp(12px,2vw,14px)] text-text-primary">
+                          <TableCell className="text-center w-[138px]  text-[clamp(12px,2vw,14px)] text-text-primary font-lato">
                             {clinic.name}
                           </TableCell>
-                          <TableCell className="text-center font-medium  w-[138px] text-[clamp(12px,2vw,14px)] text-text-primary">
+                          <TableCell className="text-center font-medium  w-[138px] text-[clamp(12px,2vw,14px)] text-text-primary font-lato">
                             {clinic.pic}
                           </TableCell>
-                          <TableCell className="text-center font-medium   text-[clamp(12px,2vw,14px)] text-text-primary">
+                          <TableCell className="text-center font-medium   text-[clamp(12px,2vw,14px)] text-text-primary font-lato">
                             {clinic.appointmentsCount}
                           </TableCell>
-                          <TableCell className="text-center font-medium w-[118px]  text-[clamp(12px,2vw,14px)] text-text-primary">
+                          <TableCell className="text-center font-medium w-[118px]  text-[clamp(12px,2vw,14px)] text-text-primary font-lato">
                             {clinic.doctors}
                           </TableCell>
-                          <TableCell className="text-center">
+                          <TableCell className="text-center ">
                             <div className="flex items-center justify-center gap-2">
-                              <Badge className="bg-secondary-light text-secondary-dark rounded-[20px] w-[92px] h-[24px] justify-center text-[clamp(14px,2vw,16px)]">
-                                Active
+                              <Badge className="bg-secondary-light font-lato text-secondary-dark rounded-[20px] w-[92px] h-[24px] justify-center text-[clamp(14px,2vw,16px)]">
+                                {t("Active")}
                               </Badge>
                             </div>
                           </TableCell>
@@ -1177,22 +1140,22 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
                     <Table className="min-w-[800px]">
                       <TableHeader>
                         <TableRow>
-                          <TableHead className="w-[58px] text-text-primary text-center font-semibold text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="w-[58px] text-text-primary text-center font-semibold font-lato text-[clamp(14px,2vw,16px)]">
                             {t("NO")}
                           </TableHead>
-                          <TableHead className="text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="text-center text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)]">
                             {t("User-ID")}
                           </TableHead>
-                          <TableHead className="text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="text-center text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)]">
                             {t("Name")}
                           </TableHead>
-                          <TableHead className="w-[225px]  text-text-primary text-center font-semibold text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="w-[225px]  text-text-primary text-center font-semibold font-lato text-[clamp(14px,2vw,16px)]">
                             {t("Clinic")}
                           </TableHead>
                           <TableHead className="text-center  text-text-primaryfont-semibold text-[clamp(14px,2vw,16px)]">
                             {t("User Type")}
                           </TableHead>
-                          <TableHead className="text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="text-center text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)]">
                             {t("Status")}
                           </TableHead>
                         </TableRow>
@@ -1204,13 +1167,13 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
                             key={person.number}
                             className="border-b border-[#e4e2dd]"
                           >
-                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,16px)]">
+                            <TableCell className="text-center font-lato text-[clamp(12px,2vw,16px)]">
                               {person.number}
                             </TableCell>
-                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,16px)]">
+                            <TableCell className="text-center font-lato text-[clamp(12px,2vw,16px)]">
                               {person.userId}
                             </TableCell>
-                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,16px)]">
+                            <TableCell className="text-center font-lato text-[clamp(12px,2vw,16px)]">
                               <div className="flex items-center gap-2 justify-center">
                                 <Avatar
                                   src={person.avatar ?? undefined}
@@ -1226,16 +1189,18 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
                                 <span>{person.name}</span>
                               </div>
                             </TableCell>
-                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,16px)]">
+                            <TableCell className="text-center font-lato text-[clamp(12px,2vw,16px)]">
                               {person.clinic}
                             </TableCell>
-                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,16px)]">
+                            <TableCell className="text-center font-lato text-[clamp(12px,2vw,16px)]">
                               {person.userType}
                             </TableCell>
-                            <TableCell className="text-center">
-                              <Badge className="bg-secondary-light text-secondary-dark rounded-[20px] w-[70px] sm:w-[92px] h-[20px] sm:h-[24px] flex justify-center items-center text-[10px] sm:text-xs">
-                                {t("Active")}
-                              </Badge>
+                            <TableCell className="text-center ">
+                              <div className="flex items-center justify-center  gap-2">
+                                <Badge className="bg-secondary-light font-lato text-secondary-dark rounded-[20px] w-[92px] h-[24px] justify-center text-[clamp(14px,2vw,16px)]">
+                                  {t("Active")}
+                                </Badge>
+                              </div>
                             </TableCell>
                           </TableRow>
                         ))}
@@ -1456,13 +1421,13 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
                     <Table className="min-w-[320px]">
                       <TableHeader>
                         <TableRow>
-                          <TableHead className="text-text-primary text-start px-2 py-2 text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="text-text-primary text-start px-2 font-semibold font-lato py-2 text-[clamp(14px,2vw,16px)]">
                             {t("Working Days")}
                           </TableHead>
-                          <TableHead className="text-center text-text-primary px-2 py-2 text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="text-center text-text-primary px-2 font-semibold font-lato py-2 text-[clamp(14px,2vw,16px)]">
                             {t("Start Time")}
                           </TableHead>
-                          <TableHead className="text-end text-text-primary px-2 py-2 text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="text-end text-text-primary px-2 font-semibold font-lato py-2 text-[clamp(14px,2vw,16px)]">
                             {t("End Time")}
                           </TableHead>
                         </TableRow>
@@ -1501,8 +1466,8 @@ export const ElementViewComplexPlan2 = ({ local, dark, handleLanguageClick }: No
               dir={local === 'ar' ? 'rtl' : 'ltr'}
               initiallyOpen={isOpen.mapsLocation}
               onOpenChange={(open) => handleToggle("mapsLocation", open)}
-              content={<div>      <div className="w-full h-[332px] bg-[url(/background.png)] bg-cover bg-center rounded" />
-                <p className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
+              content={<div>      <div className="w-full h-[332px] bg-[url(/background.png)] bg-cover font-lato bg-center rounded" />
+                <p className="title-[14px] font-lato text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
                   {t("245, King Fahd Road, Al Olaya, Saudi Arabia, KSA")}
                 </p></div>}
 

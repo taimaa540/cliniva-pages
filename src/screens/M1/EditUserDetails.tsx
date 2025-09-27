@@ -66,7 +66,7 @@ const documents = [
   },
   { label: "CV / Resume", effectiveDate: "Mar 01, 2027" },
 ];
-
+import { ArrowLeftIcon } from "lucide-react";
 export const EditUserDetails = (): JSX.Element => {
   const shortLabels: Record<string, string> = {};
   Object.keys(en).forEach((key) => {
@@ -139,9 +139,11 @@ export const EditUserDetails = (): JSX.Element => {
                 <h1 className="font-bold text-sm text-on-surface-primary">
                   {t("Users Management")}
                 </h1>
-                <p className="text-xs text-on-surface-primary">
+       <Link to='/UserDesktop'>     <div className="flex gap-2 items-center">    
+                                    <ArrowLeftIcon className="relative w-4 h-4" />
+                <p className="text-sm md:text-base text-on-surface-primary">
                   {t("Add New User")}
-                </p>
+                </p></div></Link>
               </div>
             </div>
 
@@ -169,9 +171,11 @@ export const EditUserDetails = (): JSX.Element => {
                 <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
                   {t("Users Management")}
                 </h1>
+           <Link to='/UserDesktop'>     <div className="flex gap-1">    
+                                    <ArrowLeftIcon className="relative w-6 h-6 pt-1" />
                 <p className="text-sm md:text-base text-on-surface-primary">
                   {t("Add New User")}
-                </p>
+                </p></div></Link>
               </div>
             </div>
 

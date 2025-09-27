@@ -119,20 +119,17 @@ const doctorsAndStaff = [
 
 
 
-interface NoDataSectionProps {
-  local: string;
-  dark: boolean;
-  handelDarkClick: () => void;
-  handleLanguageClick: () => void;
-  // ⬅️ البروبس الجديد
-}
 
-export const CapacitySection = ({ local, dark, handleLanguageClick }: NoDataSectionProps): JSX.Element => {
-  const { t, i18n } = useTranslation();
-  useEffect(() => {
-    i18n.changeLanguage(local);
-  }, []);
 
+import { useLanguage } from "../../../../../lib/LanguageContext";
+export const EditClinicDetails = (): JSX.Element => {
+
+
+    const { local, handleLanguageClick } = useLanguage();
+    const { t, i18n } = useTranslation();
+    useEffect(() => {
+        i18n.changeLanguage(local);
+    }, []);
   const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
 
   const [isOpen, setIsOpen1] = useState({
@@ -312,7 +309,7 @@ export const CapacitySection = ({ local, dark, handleLanguageClick }: NoDataSect
             <div className="flex items-center justify-between w-full mb-4" dir={local === 'ar' ? 'rtl' : 'ltr'}>
               <Badge
                 variant="secondary"
-                className="bg-secondary-light text-secondary-dark rounded-[20px] px-4 py-2.5"
+                className="hidden md:flex bg-secondary-light  font-lato text-secondary-dark rounded-[20px] px-4 py-2.5"
               >
                 {t("Active")}
               </Badge>
@@ -353,14 +350,14 @@ export const CapacitySection = ({ local, dark, handleLanguageClick }: NoDataSect
                     <div className="space-y-6">
                       {/* Clinic Name */}
                       <div className="flex flex-col sm:flex-row sm:items-center">
-                        <label className="min-w-[160px] md:w-36 lg:w-40 font-semibold text-[clamp(14px,1.1vw,16px)] text-text-primary [font-family:'Lato',Helvetica]">
+                        <label className="sm:w-[165px] font-semibold  text-[clamp(14px,1.1vw,16px)] text-text-primary font-lato ">
                           {t("Clinic Name")}
                         </label>
                         <Input
                           defaultValue="Al Noor Clinic"
                           className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12
                 border-light border bg-background-secondary
-                text-text-primary font-sans border-border-light text-[clamp(12px,1.1vw,16px)]"
+                text-text-primary font-lato border-border-light text-[clamp(12px,1.1vw,16px)]"
                         />
                       </div>
 
@@ -369,38 +366,41 @@ export const CapacitySection = ({ local, dark, handleLanguageClick }: NoDataSect
 
                       {/* PIC Name */}
                       <div className="flex flex-col sm:flex-row sm:items-center">
-                        <label className="min-w-[160px] md:w-36 lg:w-40 font-semibold text-[clamp(14px,1.1vw,16px)] text-text-primary [font-family:'Lato',Helvetica]">
+                        <label className="sm:w-[165px] md:w-36 lg:w-40 font-semibold font-lato text-[clamp(14px,1.1vw,16px)] text-text-primary [font-family:'Lato',Helvetica]">
                           {t("PIC Name")}
                         </label>
-                        <Select>
-                          <SelectTrigger dir={`${local === "ar" ? "rtl" : "ltr"}`}
-                            className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12
-                  border-light border bg-background-secondary
-                  text-text-primary font-sans border-border-light text-[clamp(12px,1.1vw,16px)]"
-                          >
-                            <SelectValue defaultValue="Dr. Layla Al Saeed" />
-                          </SelectTrigger>
-                          <SelectContent className="!bg-background-secondary">
-                            <SelectItem
-                              value="dr-layla"
-                              className="bg-background-secondary border-border-light  text-[clamp(12px,1.1vw,16px)] text-text-primary"
-                            >
-                              Dr. Layla Al Saeed
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
+                   <Select defaultValue="dr-layla">
+  <SelectTrigger
+    dir={local === "ar" ? "rtl" : "ltr"}
+    className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12
+      border-light border bg-background-secondary
+      text-text-primary font-lato border-border-light text-[clamp(12px,1.1vw,16px)]"
+  >
+    <SelectValue placeholder="Choose a doctor" />
+  </SelectTrigger>
+
+  <SelectContent className="!bg-background-secondary">
+    <SelectItem
+      value="dr-layla"
+      className="bg-background-secondary border-border-light text-[clamp(12px,1.1vw,16px)] text-text-primary"
+    >
+      Dr. Layla Al Saeed
+    </SelectItem>
+  </SelectContent>
+</Select>
+
                       </div>
 
                       {/* Services Offered */}
                       <div className="flex flex-col sm:flex-row sm:items-center">
-                        <label className="min-w-[160px] md:w-36 lg:w-40 font-semibold text-[clamp(14x,1.1vw,16px)] text-text-primary [font-family:'Lato',Helvetica]">
+                        <label className="sm:w-[165px] font-semibold text-[clamp(14x,1.1vw,16px)] text-text-primary [font-family:'Lato',Helvetica]">
                           {t("Services Offered")}
                         </label>
                         <Input
                           defaultValue="General Consultation"
                           className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12
                 border-light border bg-background-secondary
-                text-text-primary font-sans border-border-light text-[clamp(12px,1.1vw,16px)]"
+                text-text-primary font-lato border-border-light text-[clamp(12px,1.1vw,16px)]"
                         />
                       </div>
                     </div>
@@ -415,7 +415,7 @@ export const CapacitySection = ({ local, dark, handleLanguageClick }: NoDataSect
                         <Textarea
                           className="w-[min(100%,360px)] h-20 sm:h-28
                 border-light border bg-background-secondary
-                text-text-primary font-sans border-border-light text-[clamp(12px,1.1vw,16px)]"
+                text-text-primary font-lato border-border-light text-[clamp(12px,1.1vw,16px)]"
                           defaultValue={complexInformation.description}
                         />
                       </div>
@@ -453,7 +453,7 @@ export const CapacitySection = ({ local, dark, handleLanguageClick }: NoDataSect
 
                     {/* Staff Capacity */}
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                      <label className=" text-[clamp(14px,1.1vw,16px)] font-semibold text-text-primary sm:text-base">
+                      <label className=" text-[clamp(14px,1.1vw,16px)] font-lato font-semibold text-text-primary sm:text-base">
                         {t("Staff Capacity")}
                       </label>
                       <Input
@@ -464,23 +464,23 @@ export const CapacitySection = ({ local, dark, handleLanguageClick }: NoDataSect
 
                     {/* Doctors Capacity */}
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                      <label className=" text-[clamp(14px,1.1vw,16px)] font-semibold text-text-primary  sm:text-base">
+                      <label className=" text-[clamp(14px,1.1vw,16px)] font-lato font-semibold text-text-primary  sm:text-base">
                         {t("Doctors Capacity")}
                       </label>
                       <Input
                         defaultValue="1780"
-                        className="w-[min(100%,220px)]  h-10 sm:h-12 bg-background-secondary border-border-light text-text-primary  text-[clamp(12px,1.1vw,16px)] "
+                        className="w-[min(100%,220px)] font-lato  h-10 sm:h-12 bg-background-secondary border-border-light text-text-primary  text-[clamp(12px,1.1vw,16px)] "
                       />
                     </div>
 
                     {/* Patients Capacity */}
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                      <label className=" text-[clamp(14px,1.1vw,16px)] font-semibold text-text-primary  sm:text-base">
+                      <label className=" text-[clamp(14px,1.1vw,16px)] font-semibold text-text-primary font-lato  sm:text-base">
                         {t("Patients Capacity")}
                       </label>
                       <Input
                         defaultValue="250"
-                        className="w-[min(100%,220px)] h-10 sm:h-12 bg-background-secondary border-border-light text-text-primary  text-[clamp(12px,1.1vw,16px)] "
+                        className="w-[min(100%,220px)] h-10 sm:h-12 bg-background-secondary  font-lato border-border-light text-text-primary  text-[clamp(12px,1.1vw,16px)] "
                       />
                     </div>
 
@@ -508,40 +508,43 @@ export const CapacitySection = ({ local, dark, handleLanguageClick }: NoDataSect
               content={
                 <div className="p-3 pt-0 h-auto pb-3">
                   {/* Grid: عمودين */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-x-2 gap-y-6">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
 
                     {/* Department Name + Select */}
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-y-2 sm:gap-x-4 w-full sm:w-[520px]">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-y-2 sm:gap-x-4 w-[min(100%,520px)]">
                       {/* Label */}
-                      <label className="w-full sm:w-[160px] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)]">
+                      <label className="w-full sm:w-[160px] font-lato text-text-primary font-semibold font-lato text-[clamp(14px,1.1vw,16px)]">
                         {t("Department Name")}:
                       </label>
 
                       {/* Select */}
-                      <Select>
-                        <SelectTrigger
-                          className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12 
-        border border-border-light bg-background-secondary 
-        text-text-primary font-sans  text-[clamp(12px,1.1vw,14px)] "
-                        >
-                          <SelectValue defaultValue="razi" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-background-secondary border border-border-light">
-                          <SelectItem value="razi">Al razi</SelectItem>
-                          <SelectItem value="noor">Al Noor Clinic</SelectItem>
-                        </SelectContent>
-                      </Select>
+                <Select defaultValue="noor">
+  <SelectTrigger
+    className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12 
+      border border-border-light bg-background-secondary 
+      text-text-primary font-lato text-[clamp(12px,1.1vw,14px)]"
+    dir={local === "ar" ? "rtl" : "ltr"}
+  >
+    <SelectValue placeholder="Select clinic" />
+  </SelectTrigger>
+
+  <SelectContent className="bg-background-secondary border border-border-light">
+    <SelectItem value="razi">Al razi</SelectItem>
+    <SelectItem value="noor">Al Noor Clinic</SelectItem>
+  </SelectContent>
+</Select>
+
                     </div>
 
 
                     {/* Description */}
                     <div className="flex flex-col">
-                      <span className="text-[clamp(14px,1.1vw,16px)] text-text-primary font-semibold mb-2">
+                      <span className="text-[clamp(14px,1.1vw,16px)] font-lato text-text-primary font-semibold mb-2">
                         {t("Description")}
                       </span>
-                      <p className="whitespace-normal break-words text-text-primary font-semibold text-[clamp(12px,2vw,14px)]">
-                        Al Noor Clinic is a multi-specialty clinic offering high-quality care with modern facilities.
-                      </p>
+               <div className="break-words whitespace-normal w-full md:w-[360px] text-[clamp(12px,1.1vw,14px)]">
+  Al Noor Clinic is a multi-specialty clinic offering high-quality care with modern facilities.
+</div>
                     </div>
                   </div>
                 </div>
@@ -573,7 +576,7 @@ export const CapacitySection = ({ local, dark, handleLanguageClick }: NoDataSect
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.77089 1.79165C4.74396 1.78995 4.69757 1.79131 4.62528 1.80353C3.77857 1.94663 3.00486 2.37648 2.43547 3.02333C1.97218 3.54965 1.66854 4.19192 1.55287 4.87525C1.48516 5.27528 1.49216 5.71071 1.52066 6.19936C1.69143 9.12694 2.92996 11.9003 5.01501 13.9853C7.18212 16.1525 10.0928 17.4051 13.1473 17.4949C13.5053 17.5054 13.8283 17.4977 14.1251 17.4475C14.8084 17.3318 15.4507 17.0282 15.977 16.5649C16.6598 15.9639 17.1008 15.1353 17.218 14.2335L17.2168 14.233L17.2168 14.2329L12.8295 12.3487L12.8294 12.3487L12.8294 12.3487L10.4887 13.9123C10.4881 13.9127 10.4874 13.9132 10.4868 13.9136C10.2713 14.0586 10.0219 14.1451 9.76298 14.1648C9.50325 14.1845 9.24287 14.1363 9.00745 14.0248L9.00328 14.0228C7.25484 13.1817 5.84277 11.7732 4.99715 10.0269L4.99564 10.0238L4.99565 10.0238C4.88489 9.79239 4.83535 9.5364 4.85176 9.28035C4.86817 9.0243 4.94999 8.77673 5.0894 8.56133L5.09234 8.55678L5.09236 8.55679L6.65297 6.18316L6.65155 6.17989L6.65156 6.17988L4.77089 1.79165ZM17.2189 14.2264L17.2189 14.2266L17.2189 14.2264ZM4.37532 0.324505C4.70725 0.268408 5.26379 0.236222 5.73387 0.632745C5.91326 0.784063 6.05538 0.976462 6.14718 1.19512L8.02884 5.58566C8.02911 5.58629 8.02938 5.58692 8.02965 5.58755C8.12707 5.81269 8.16779 6.05829 8.14822 6.30284C8.1286 6.54807 8.04897 6.78472 7.91634 6.99191L7.9114 6.99963L7.91135 6.9996L6.3487 9.37632C7.04612 10.8147 8.20932 11.9751 9.6494 12.6691L9.65244 12.667L9.65244 12.667L11.9944 11.1026C12.2022 10.9623 12.4421 10.8767 12.6918 10.8537C12.9415 10.8307 13.193 10.871 13.423 10.9711C13.4239 10.9715 13.4249 10.9719 13.4258 10.9723L17.8056 12.8533C18.1054 12.9793 18.3558 13.1998 18.5186 13.4813C18.6822 13.7643 18.7483 14.0931 18.7067 14.4173C18.5445 15.6835 17.9264 16.8473 16.9681 17.6908C16.2313 18.3395 15.3321 18.7645 14.3755 18.9264C13.9356 19.0009 13.4989 19.0059 13.1033 18.9942C9.66683 18.8932 6.39236 17.484 3.95435 15.046C1.60865 12.7003 0.215328 9.58029 0.0232104 6.28671C-0.00635157 5.77991 -0.0237603 5.20192 0.0739086 4.62491C0.235831 3.6683 0.660897 2.76911 1.30954 2.03223C2.1067 1.12662 3.18988 0.524849 4.37532 0.324505Z" fill="CurrentColor" />
                       </svg>
                       </div>
-                      <div className="text-text-primary text-start font-semibold sm:w-[132px] text-[clamp(14px,1.1vw,16px)]">
+                      <div className="text-text-primary text-start font-lato font-semibold sm:w-[132px] text-[clamp(14px,1.1vw,16px)]">
                         {t("Phone Number")}: </div>
                     </div> {/* Phone Input */}
                       <div className="relative w-full ">
@@ -605,7 +608,7 @@ export const CapacitySection = ({ local, dark, handleLanguageClick }: NoDataSect
                           fill="currentColor"
                         />
                       </svg></div>
-                      <span className="min-sm:w-[clamp(88px,10vw,162px)] text-text-primary font-semibold text-[clamp(14px,1.1vw,16px)] leading-6">
+                      <span className="min-sm:w-[clamp(88px,10vw,162px)] font-lato text-text-primary font-semibold font-lato text-[clamp(14px,1.1vw,16px)] leading-6">
                         {t("Email")}:
                       </span>
                     </div>
@@ -653,8 +656,7 @@ export const CapacitySection = ({ local, dark, handleLanguageClick }: NoDataSect
                             onChange={() => toggleDay(index)}
                           />
                           <label
-                            className={`${dark ? "text-white" : "text-[#2a2b2a]"
-                              } tracking-[0.07px] font-normal text-text-primary text-[clamp(14px,1.1vw,16px)] leading-5 sm:leading-6 whitespace-nowrap`}
+                            className={`tracking-[0.07px] font-normal font-lato text-text-primary text-[clamp(14px,1.1vw,16px)] leading-5 sm:leading-6 whitespace-nowrap`}
                           >
                             {t(`${workDay.day}`)}
                           </label>
@@ -692,29 +694,29 @@ export const CapacitySection = ({ local, dark, handleLanguageClick }: NoDataSect
               dir={local === "ar" ? "rtl" : "ltr"}
               title={
                 <div className="flex items-center gap-1 sm:gap-2 md:gap-4">
-                  <h2 className="font-title-16px-bold text-primary-default text-[clamp(10px,2vw,16px)]">
+                  <h2 className="font-title-16px-bold text-primary-default font-lato text-[clamp(10px,2vw,16px)]">
                     {t("Doctors")}
                   </h2>
-                  <h2 className="font-title-16px-bold text-primary-default text-[clamp(10px,2vw,16px)]">
+                  <h2 className="font-title-16px-bold text-primary-default font-lato text-[clamp(10px,2vw,16px)]">
                     {t("&")}
                   </h2>
-                  <h2 className="font-title-16px-bold text-primary-default text-[clamp(10px,2vw,16px)]">
+                  <h2 className="font-title-16px-bold text-primary-default font-lato text-[clamp(10px,2vw,16px)]">
                     {t("Staff")}
                   </h2>
 
                   <div className="flex items-center gap-1 sm:gap-2 ml-2">
-                    <Badge className="bg-secondary-light text-on-surface-primary rounded-[20px] px-1.5 py-0.5 text-[clamp(9px,2vw,14px)]">
+                    <Badge className="bg-secondary-light text-on-surface-primary font-lato rounded-[20px] px-1.5 py-0.5 text-[clamp(9px,2vw,14px)]">
                       {t("All")}
                     </Badge>
                     <Badge
                       variant="outline"
-                      className="bg-bg text-on-surface-primary rounded-[20px] px-1.5 py-0.5 text-[clamp(9px,2vw,14px)]"
+                      className="bg-bg text-on-surface-primary  font-lato rounded-[20px] px-1.5 py-0.5 text-[clamp(9px,2vw,14px)]"
                     >
                       {t("Doctors")}
                     </Badge>
                     <Badge
                       variant="outline"
-                      className="bg-bg text-on-surface-primary rounded-[20px] px-1.5 py-0.5 text-[clamp(9px,2vw,14px)]"
+                      className="bg-bg text-on-surface-primary  font-lato rounded-[20px] px-1.5 py-0.5 text-[clamp(9px,2vw,14px)]"
                     >
                       {t("Staff")}
                     </Badge>
@@ -732,19 +734,19 @@ export const CapacitySection = ({ local, dark, handleLanguageClick }: NoDataSect
                     <Table className="min-w-[700px]">
                       <TableHeader>
                         <TableRow>
-                          <TableHead className="w-[5%] text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="w-[5%] text-center text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)]">
                             {t("NO")}
                           </TableHead>
-                          <TableHead className="w-[15%] text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="w-[15%] text-center text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)]">
                             {t("User-ID")}
                           </TableHead>
-                          <TableHead className="w-[25%] text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="w-[25%] text-center text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)]">
                             {t("Name")}
                           </TableHead>
-                          <TableHead className="w-[15%] text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="w-[15%] text-center text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)]">
                             {t("User Type")}
                           </TableHead>
-                          <TableHead className="w-[15%] text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="w-[15%] text-center text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)]">
                             {t("Status")}
                           </TableHead>
                         </TableRow>
@@ -756,13 +758,13 @@ export const CapacitySection = ({ local, dark, handleLanguageClick }: NoDataSect
                             key={person.number}
                             className="border-b border-[#e4e2dd]"
                           >
-                            <TableCell className="text-center w-[5%] font-medium text-[clamp(12px,2vw,14px)]">
+                            <TableCell className="text-center w-[5%] font-lato font-medium text-[clamp(12px,2vw,14px)]">
                               {person.number}
                             </TableCell>
-                            <TableCell className="text-center w-[10%] font-medium text-[clamp(12px,2vw,14px)]">
+                            <TableCell className="text-center w-[10%] font-lato font-medium text-[clamp(12px,2vw,14px)]">
                               {person.userId}
                             </TableCell>
-                            <TableCell className="text-center w-[25%] font-medium text-[clamp(12px,2vw,14px)]">
+                            <TableCell className="text-center w-[25%] font-lato font-medium text-[clamp(12px,2vw,14px)]">
                               <div className="flex items-center gap-2 justify-center">
                                 <Avatar
                                   src={person.avatar ?? undefined}
@@ -778,7 +780,7 @@ export const CapacitySection = ({ local, dark, handleLanguageClick }: NoDataSect
                                 <span>{person.name}</span>
                               </div>
                             </TableCell>
-                            <TableCell className="text-center w-[15%] font-medium text-[clamp(12px,2vw,14px)]">
+                            <TableCell className="text-center w-[15%] font-lato font-medium text-[clamp(12px,2vw,14px)]">
                               {person.userType}
                             </TableCell>
                             <TableCell className="w-[15%] text-center">
@@ -1004,8 +1006,8 @@ export const CapacitySection = ({ local, dark, handleLanguageClick }: NoDataSect
               title={t("Maps Location")}
               initiallyOpen={isOpen.mapsLocation}
               onOpenChange={(open) => handleToggle("mapsLocation", open)}
-              content={<div>      <div className="w-full h-[332px] bg-[url(/background.png)] bg-cover bg-center rounded" />
-                <p className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
+              content={<div>      <div className="w-full h-[332px] bg-[url(/background.png)] bg-cover font-lato bg-center rounded" />
+                <p className="title-[14px] font-lato text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
                   {t("245, King Fahd Road, Al Olaya, Saudi Arabia, KSA")}
                 </p></div>}
 

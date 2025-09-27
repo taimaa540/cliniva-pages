@@ -37,10 +37,10 @@ export default function WorkingDaysList() {
         {t("Working Days")}
       </div>
  <div className="flex w-full max-w-[900px] mx-auto gap-4">
-  <span className="flex-1 text-center font-semibold hidden lg:block">
+  <span className="flex-1 text-center font-lato font-semibold hidden lg:block">
     {t('Shift')} 1
   </span>
-  <span className="flex-1 text-center font-semibold hidden lg:block">
+  <span className="flex-1 text-center font-lato font-semibold hidden lg:block">
     {t('Shift')} 2
   </span>
 </div>
@@ -75,7 +75,7 @@ export default function WorkingDaysList() {
   {/* الحقل الأول */}
    <div className="flex-1 min-w-0  max-w-[404px] text-center"> <label className="block text-sm lg:hidden  text-center font-semibold ">Shift 1</label>
   <div
-    className={`flex-1 min-w-0  max-w-[404px] py-[4px] pl-[13px] border rounded transition 
+    className={`flex-1 min-w-0  max-w-[404px] py-[7px] pl-[13px] border rounded transition 
     ${activeDays[index] ? "bg-transparent" : "bg-background-tertiary"}`}
   >
     <TimeRangePicker />

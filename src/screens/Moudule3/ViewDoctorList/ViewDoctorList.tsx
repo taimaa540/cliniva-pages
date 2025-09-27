@@ -348,28 +348,28 @@ export const ViewDoctorList = (): JSX.Element => {
                     className="overflow-y-auto rounded-lg"
                     style={{ height: "calc(100vh - 78px - 200px)" }}
                   >
-                    <table className="table-auto w-full min-w-[800px] text-center border-collapse">
+                    <table className="table-auto w-full min-w-[700px] text-center border-collapse">
                       <thead className="sticky top-0 z-10 bg-background-primary border-b border-border-light">
                         <tr className="h-[56px] bg-background-primary border-b border-border-light sticky top-0 z-10">
                           <th className="min-w-[60px] px-2 font-lato font-semibold text-[clamp(13px,2vw,14px)] leading-[130%] text-text-primary">
                             {t("No.")}
                           </th>
-                          <th className="min-w-[120px] px-2  font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
+                          <th className="min-w-[100px] px-2  font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
                             {t("User ID")}
                           </th>
-                          <th className="min-w-[180px] px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
+                          <th className="min-w-[150px] px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
                             {t("Doctor's Name")}
                           </th>
-                          <th className="min-w-[180px] px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
+                          <th className="min-w-[90px] px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
                             {t("Specialities")}
                           </th>
-                          <th className="min-w-[200px] px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
+                          <th className="min-w-[150px] px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
                             {t("Assigned Complex")}
                           </th>
-                          <th className="min-w-[120px] px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
+                          <th className="min-w-[100px] px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
                             {t("Status")}
                           </th>
-                          <th className="min-w-[100px] px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
+                          <th className="min-w-[80px] px-2 font-lato font-semibold text-[clamp(12px,2vw,12px)] leading-[130%] text-text-primary">
                             {t("Actions")}
                           </th>
                         </tr>

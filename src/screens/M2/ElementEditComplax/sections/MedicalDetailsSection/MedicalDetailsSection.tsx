@@ -249,23 +249,18 @@ const workingDays = (t: (key: string) => string) => [
 
 
 
+import { useLanguage } from "../../../../../lib/LanguageContext";
 
 
-
-interface NoDataSectionProps {
-  local: string;
-  dark: boolean;
-  handelDarkClick: () => void;
-  handleLanguageClick: () => void;
-  // ⬅️ البروبس الجديد
-}
+export const ElementEditComplex = (): JSX.Element => {
 
 
-export const MedicalDetailsSection = ({ local, dark, handleLanguageClick, }: NoDataSectionProps): JSX.Element => {
-  const { t, i18n } = useTranslation();
-  useEffect(() => {
-    i18n.changeLanguage(local);
-  }, []);
+    const { local, handleLanguageClick } = useLanguage();
+    const { t, i18n } = useTranslation();
+    useEffect(() => {
+        i18n.changeLanguage(local);
+    }, []);
+
 
 
 
@@ -439,7 +434,7 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick, }: NoD
           <CardContent className="w-full overflow-y-auto scroll-x-hidden ">
             <div className="flex  justify-between items-center w-full" dir={local === 'ar' ? 'rtl' : 'ltr'}>
               <div className="hidden   sm:flex ">
-              <Toggle /></div>
+                <Toggle /></div>
               <div className="flex gap-[4px]  justify-end p-3 items-end text-end pb-2 sm:pb-3 md:pb-3 lg:pb-4 " dir={local === 'ar' ? 'rtl' : 'ltr'} >
                 <Link to='/ElementViewComplex'>
                   <button className="    w-[80px] h-[30px]       /* الموبايل الافتراضي */
@@ -688,7 +683,7 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick, }: NoD
 
 
 
-                <div className=" flex gap-x-[123px]  flex-wrap  " >
+                <div className=" flex gap-x-3 flex-wrap  " >
 
 
                   <div className="  w-full sm:w-[520px] gap-y-2 rounded-md py-1">
@@ -720,7 +715,7 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick, }: NoD
 
                   <div className="flex flex-col sm:flex-row lg:items-start sm:items-center gap-y-2 gap-x-4  w-full sm:w-[520px]">
                     {/* Label + Icon */}
-                    <div className="flex items-center mt-2 gap-2 min-w-[180px] sm:justify-start">
+                    <div className="flex items-center mt-3 gap-2 min-w-[180px] sm:justify-start">
                       <svg
                         className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6"
                         viewBox="0 0 22 20"
@@ -741,7 +736,7 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick, }: NoD
                     <Input
                       className="flex-1 w-[min(100%,360px)]  h-9 sm:h-10 md:h-12 
       border-light border bg-background-secondary 
-      text-text-primary font-sans"
+      text-text-primary font-lato"
                       defaultValue={contactInfo.email}
                     />
                   </div>
@@ -768,8 +763,9 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick, }: NoD
                     {addressFields.map((field, index) => (
                       <Input
                         key={index}
-                        className=" w-[min(100%,172px)] h-9 sm:h-10 md:h-12  border-light border bg-background-secondary  text-text-primary  font-sans"
+                        className=" w-[min(100%,172px)] h-9 sm:h-10 md:h-12  border-light border bg-background-secondary  text-text-primary  font-lato"
                         placeholder={field.label}
+                        defaultValue={field.value}
                       />
                     ))}
                   </div>
@@ -779,7 +775,7 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick, }: NoD
 
 
 
-                <div className=" flex gap-x-[121px]  gap-y-11 flex-wrap ">
+                <div className=" flex gap-x-3  gap-y-11 flex-wrap ">
 
 
 
@@ -802,7 +798,7 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick, }: NoD
                       <Input
                         className="w-[min(100%,360px)] h-9 sm:h-10 md:h-12 
                  border border-light rounded-md bg-background-secondary 
-                 text-text-primary font-sans"
+                 text-text-primary font-lato"
                         defaultValue={contactInfo.mapsLocation}
                       />
                     </div>
@@ -831,7 +827,7 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick, }: NoD
                     <Input
                       className="w-[min(100%,360px)] md:w-[360px] h-9 sm:h-10 md:h-12 
                border border-light rounded-md bg-background-secondary 
-               text-text-primary font-sans"
+               text-text-primary font-lato"
                       defaultValue={contactInfo.mapsLocation}
                     />
                   </div>
@@ -869,16 +865,16 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick, }: NoD
                   <Table className="min-w-[700px]"> {/* بتحدد أقل عرض مشان السكرول يشتغل */}
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="w-[58px] text-center font-semibold text-[clamp(14px,2vw,16px)]  text-text-primary">
+                        <TableHead className="w-[58px] text-center font-semibold text-[clamp(14px,2vw,16px)] font-lato  text-text-primary">
                           {t("NO")}
                         </TableHead>
-                        <TableHead className="text-center w-[175px] font-semibold text-[clamp(14px,2vw,16px)]  text-text-primary">
+                        <TableHead className="text-center w-[175px] font-semibold text-[clamp(14px,2vw,16px)] font-lato text-text-primary">
                           {t("Name")}
                         </TableHead>
-                        <TableHead className="text-center w-[175px] font-semibold text-[clamp(14px,2vw,16px)]  text-text-primary">
+                        <TableHead className="text-center w-[175px] font-semibold text-[clamp(14px,2vw,16px)] font-lato text-text-primary">
                           {t("PIC")}
                         </TableHead>
-                        <TableHead className="w-[255px] text-center font-semibold text-[clamp(14px,2vw,16px)]  text-text-primary">
+                        <TableHead className="w-[255px] text-center font-semibold text-[clamp(14px,2vw,16px)] font-lato text-text-primary">
                           {t("Scheduled Appointments Count")}
                         </TableHead>
                         <TableHead className="text-center w-[125px] font-semibold text-[clamp(14px,2vw,16px)]   text-text-primary">
@@ -893,19 +889,19 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick, }: NoD
                     <TableBody>
                       {linkedClinics.map((clinic) => (
                         <TableRow key={clinic.number} className="border-b border-[#e4e2dd]">
-                          <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]   w-[58px] text-text-primary">
+                          <TableCell className="text-center font-lato font-medium text-[clamp(12px,2vw,14px)]   w-[58px] text-text-primary">
                             {clinic.number}
                           </TableCell>
-                          <TableCell className="text-center w-[175px] font-medium text-[clamp(12px,2vw,14px)]   text-text-primary">
+                          <TableCell className="text-center w-[175px] font-lato font-medium text-[clamp(12px,2vw,14px)]   text-text-primary">
                             {clinic.name}
                           </TableCell>
-                          <TableCell className="text-center w-[170px] font-medium text-[clamp(12px,2vw,14px)]  text-text-primary">
+                          <TableCell className="text-center w-[170px] font-lato font-medium text-[clamp(12px,2vw,14px)]  text-text-primary">
                             {clinic.pic}
                           </TableCell>
-                          <TableCell className="text-center w-[255px]  font-medium text-[clamp(12px,2vw,14px)]   text-text-primary">
+                          <TableCell className="text-center w-[255px]  font-lato font-medium text-[clamp(12px,2vw,14px)]   text-text-primary">
                             {clinic.appointmentsCount}
                           </TableCell>
-                          <TableCell className="text-center w-[150px] font-medium text-[clamp(12px,2vw,14px)]   text-text-primary">
+                          <TableCell className="text-center w-[150px] font-lato font-medium text-[clamp(12px,2vw,14px)]   text-text-primary">
                             {clinic.doctors}
                           </TableCell>
                           <TableCell className="text-center">
@@ -1194,7 +1190,7 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick, }: NoD
                     <Table className="min-w-[700px]">
                       <TableHeader>
                         <TableRow>
-                          <TableHead className="w-[58px] text-center text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                          <TableHead className="w-[58px] text-center text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                             {t("NO")}
                           </TableHead>
                           <TableHead className="text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)] ">
@@ -1221,13 +1217,13 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick, }: NoD
                             key={person.number}
                             className="border-b border-[#e4e2dd]"
                           >
-                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
+                            <TableCell className="text-center font-lato font-medium text-[clamp(12px,2vw,14px)]">
                               {person.number}
                             </TableCell>
-                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)] ">
+                            <TableCell className="text-center font-lato font-medium text-[clamp(12px,2vw,14px)] ">
                               {person.userId}
                             </TableCell>
-                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)] ">
+                            <TableCell className="text-center font-lato font-medium text-[clamp(12px,2vw,14px)] ">
                               <div className="flex items-center gap-2 justify-center">
                                 <Avatar
                                   src={person.avatar ?? undefined}
@@ -1243,10 +1239,10 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick, }: NoD
                                 <span>{person.name}</span>
                               </div>
                             </TableCell>
-                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)] ">
+                            <TableCell className="text-center font-lato font-medium text-[clamp(12px,2vw,14px)] ">
                               {person.clinic}
                             </TableCell>
-                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)] ">
+                            <TableCell className="text-center font-lato font-medium text-[clamp(12px,2vw,14px)] ">
                               {person.userType}
                             </TableCell>
                             <TableCell className="text-center">
@@ -1488,8 +1484,7 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick, }: NoD
                             onChange={() => toggleDay(index)}
                           />
                           <label
-                            className={`${dark ? "text-white" : "text-[#2a2b2a]"
-                              } tracking-[0.07px] font-normal text-[clamp(14px,1.1vw,16px)] leading-5 sm:leading-6 whitespace-nowrap`}
+                            className={` tracking-[0.07px] font-normal text-[clamp(14px,1.1vw,16px)] leading-5 sm:leading-6 whitespace-nowrap`}
                           >
                             {t(`${workDay.day}`)}
                           </label>
@@ -1529,8 +1524,8 @@ export const MedicalDetailsSection = ({ local, dark, handleLanguageClick, }: NoD
               title={t("Maps Location")}
               initiallyOpen={isOpen.mapsLocation}
               onOpenChange={(open) => handleToggle("mapsLocation", open)}
-              content={<div>      <div className="w-full h-[332px] bg-[url(/background.png)] bg-cover bg-center rounded" />
-                <p className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
+              content={<div>      <div className="w-full h-[332px] bg-[url(/background.png)] bg-cover font-lato bg-center rounded" />
+                <p className="title-[14px] font-lato text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
                   {t("245, King Fahd Road, Al Olaya, Saudi Arabia, KSA")}
                 </p></div>}
 

@@ -190,7 +190,7 @@ export const PatientDetails = (): JSX.Element => {
                     </svg>
                     {t("Delete")}
                   </button>
-                  <Link to='/EditPaitentDetails'>
+                  <Link to='/EditPatientDetails'>
                   <button className="flex items-center justify-center gap-[6px] w-[200px] h-[40px] rounded-[20px] bg-secondary-dark font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
                     <svg
                       width="21"

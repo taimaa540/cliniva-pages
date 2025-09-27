@@ -1,4 +1,4 @@
-import { BellIcon, FileTextIcon } from "lucide-react";
+import { ArrowLeftIcon, BellIcon, FileTextIcon } from "lucide-react";
 import { Button } from "../../../components/ui/button";
 import { Card, CardContent } from "../../../components/ui/card";
 import { Separator } from "../../../components/ui/separator";
@@ -143,9 +143,13 @@ export const ViewDoctorDetails = (): JSX.Element => {
                 <h1 className="font-bold text-sm text-on-surface-primary">
                   {t("Doctors")}
                 </h1>
-                <p className="text-xs text-on-surface-primary">
+                   <Link to='/ViewDoctorList'><div className="flex gap-1 items-center ">
+                    
+                                    <ArrowLeftIcon className="relative w-4 h-4 pt-1" />
+                                 
+                    <p className="text-sm md:text-base text-on-surface-primary">
                   {t("View Doctor details")}
-                </p>
+                </p></div>   </Link>
               </div>
             </div>
 
@@ -173,9 +177,14 @@ export const ViewDoctorDetails = (): JSX.Element => {
                 <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
                   {t("Doctors")}
                 </h1>
-                <p className="text-sm md:text-base text-on-surface-primary">
+                                <Link to='/ViewDoctorList'><div className="flex gap-2 items-center ">
+                    
+                                    <ArrowLeftIcon className="relative w-5 h-5 pt-1" />
+                                 
+                    <p className="text-sm md:text-base text-on-surface-primary">
                   {t("View Doctor details")}
-                </p>
+                </p></div>   </Link>
+       
               </div>
             </div>
 

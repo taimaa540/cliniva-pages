@@ -169,22 +169,17 @@ const workingScheduleData = (t: (key: string) => string) => [
   { day: t("Saturday"), startTime: "09:00", endTime: "16:00" },
 ];
 
-interface NoDataSectionProps {
-  local: string;
-  dark: boolean;
-  handelDarkClick: () => void;
-  handleLanguageClick: () => void;
-
-}
-
-export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, handelDarkClick, }: NoDataSectionProps): JSX.Element => {
-  const { t, i18n } = useTranslation();
 
 
-
-  useEffect(() => {
-    i18n.changeLanguage(local);
-  }, []);
+import { useLanguage } from "../../../lib/LanguageContext";
+  export const ElementViewDetailsClinicP3 = (): JSX.Element => {
+  
+  
+      const { local, handleLanguageClick } = useLanguage();
+      const { t, i18n } = useTranslation();
+      useEffect(() => {
+          i18n.changeLanguage(local);
+      }, []);
   // حالة منفصلة لكل مكون Collapsible
   const [isOpen, setIsOpen1] = useState({
     clinicInfo: true,
@@ -426,7 +421,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                     >
                       <CardContent className="flex items-center justify-between  p-5 h-full">
                         <div className="grid">
-                          <div className="font-semibold text-text-primary text-[clamp(14px,1.1vw,16px)] md:text-lg lg:text-xl">
+                          <div className="font-semibold font-lato text-text-primary text-[clamp(14px,1.1vw,16px)] md:text-lg lg:text-xl">
                             {item.title}
                           </div>
                           <div className="font-semibold text-text-primary text-xs sm:text-[clamp(14px,1.1vw,16px)] lg:text-lg">
@@ -481,7 +476,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                     {/* العمود الأول */}
                     <div className="flex flex-col gap-6">
                       <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-                        <span className="min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
+                        <span className="min-w-[160px] font-lato font-lato font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
                           {t("Clinic Name")} :
                         </span>
                         <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
@@ -490,7 +485,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                       </div>
 
                       <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-                        <span className="min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
+                        <span className="min-w-[160px] font-lato font-lato font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
                           {t("Session Slot")}:
                         </span>
                         <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
@@ -499,7 +494,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                       </div>
 
                       <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-                        <span className="min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
+                        <span className="min-w-[160px] font-lato font-lato font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
                           {t("Services Offered")}:
                         </span>
                         <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
@@ -511,7 +506,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                     {/* العمود الثاني */}
                     <div className="flex flex-col gap-6">
                       <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-                        <span className="min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
+                        <span className="min-w-[160px] font-lato font-lato font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
                           {t("Year of Establishment")}:
                         </span>
                         <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
@@ -520,7 +515,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                       </div>
 
                       <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-                        <span className="min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
+                        <span className="min-w-[160px] font-lato font-lato font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
                           {t("PIC")}:
                         </span>
                         <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
@@ -529,7 +524,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                       </div>
 
                       <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-                        <span className="min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
+                        <span className="min-w-[160px] font-lato font-lato font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
                           {t("Vision")}:
                         </span>
                         <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
@@ -538,7 +533,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                       </div>
 
                       <div className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
-                        <span className="min-w-[160px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
+                        <span className="min-w-[160px] font-lato font-lato font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
                           {t("Description")}:
                         </span>
                         <span className="text-text-primary font-regular text-[clamp(12px,2vw,14px)]">
@@ -553,7 +548,7 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-6">
                   <div className="flex items-center gap-2">
                     <CalendarIcon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
-                    <span className="min-w-[130px] font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
+                    <span className="min-w-[130px] font-lato font-lato font-semibold text-text-primary text-[clamp(14px,2vw,16px)]">
                       {t("Created on")}:
                     </span>
                   </div>
@@ -592,14 +587,14 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                     {/* العمود الأول */}
                     <div className="flex flex-col gap-6">
                       {/* LinkedIn */}
-                      <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 md:gap-x-4 lg:gap-x-6">
+                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 ">
                         {/* أيقونة + لايبل (دايمًا جنب بعض) */}
                         <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
                           <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M4.77089 1.79165C4.74396 1.78995 4.69757 1.79131 4.62528 1.80353C3.77857 1.94663 3.00486 2.37648 2.43547 3.02333C1.97218 3.54965 1.66854 4.19192 1.55287 4.87525C1.48516 5.27528 1.49216 5.71071 1.52066 6.19936C1.69143 9.12694 2.92996 11.9003 5.01501 13.9853C7.18212 16.1525 10.0928 17.4051 13.1473 17.4949C13.5053 17.5054 13.8283 17.4977 14.1251 17.4475C14.8084 17.3318 15.4507 17.0282 15.977 16.5649C16.6598 15.9639 17.1008 15.1353 17.218 14.2335L17.2168 14.233L17.2168 14.2329L12.8295 12.3487L12.8294 12.3487L12.8294 12.3487L10.4887 13.9123C10.4881 13.9127 10.4874 13.9132 10.4868 13.9136C10.2713 14.0586 10.0219 14.1451 9.76298 14.1648C9.50325 14.1845 9.24287 14.1363 9.00745 14.0248L9.00328 14.0228C7.25484 13.1817 5.84277 11.7732 4.99715 10.0269L4.99564 10.0238L4.99565 10.0238C4.88489 9.79239 4.83535 9.5364 4.85176 9.28035C4.86817 9.0243 4.94999 8.77673 5.0894 8.56133L5.09234 8.55678L5.09236 8.55679L6.65297 6.18316L6.65155 6.17989L6.65156 6.17988L4.77089 1.79165ZM17.2189 14.2264L17.2189 14.2266L17.2189 14.2264ZM4.37532 0.324505C4.70725 0.268408 5.26379 0.236222 5.73387 0.632745C5.91326 0.784063 6.05538 0.976462 6.14718 1.19512L8.02884 5.58566C8.02911 5.58629 8.02938 5.58692 8.02965 5.58755C8.12707 5.81269 8.16779 6.05829 8.14822 6.30284C8.1286 6.54807 8.04897 6.78472 7.91634 6.99191L7.9114 6.99963L7.91135 6.9996L6.3487 9.37632C7.04612 10.8147 8.20932 11.9751 9.6494 12.6691L9.65244 12.667L9.65244 12.667L11.9944 11.1026C12.2022 10.9623 12.4421 10.8767 12.6918 10.8537C12.9415 10.8307 13.193 10.871 13.423 10.9711C13.4239 10.9715 13.4249 10.9719 13.4258 10.9723L17.8056 12.8533C18.1054 12.9793 18.3558 13.1998 18.5186 13.4813C18.6822 13.7643 18.7483 14.0931 18.7067 14.4173C18.5445 15.6835 17.9264 16.8473 16.9681 17.6908C16.2313 18.3395 15.3321 18.7645 14.3755 18.9264C13.9356 19.0009 13.4989 19.0059 13.1033 18.9942C9.66683 18.8932 6.39236 17.484 3.95435 15.046C1.60865 12.7003 0.215328 9.58029 0.0232104 6.28671C-0.00635157 5.77991 -0.0237603 5.20192 0.0739086 4.62491C0.235831 3.6683 0.660897 2.76911 1.30954 2.03223C2.1067 1.12662 3.18988 0.524849 4.37532 0.324505Z" fill="#414651" />
                           </svg>
 
-                          <span className="font-semibold text-[clamp(14px,2vw,16px)]">
+                          <span className="font-semibold min-w-[160px] font-lato text-[clamp(14px,2vw,16px)]">
                             {t("Phone Numbers")}:
                           </span>
                         </div>
@@ -609,20 +604,20 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                           href={contactInfo.phoneNumbers}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[clamp(12px,2vw,14px)] text-on-surface-primary break-all"
+                          className="text-[clamp(12px,2vw,14px)] font-lato text-on-surface-primary break-all"
                         >
                           {contactInfo.phoneNumbers}
                         </a>
                       </div>
 
                       {/* Facebook */}
-                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 md:gap-x-4 lg:gap-x-6">
+                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 ">
                         <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
                           <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9.5 6.5C9.5 6.20333 9.58797 5.91332 9.7528 5.66665C9.91762 5.41997 10.1519 5.22771 10.426 5.11418C10.7001 5.00065 11.0017 4.97094 11.2926 5.02882C11.5836 5.0867 11.8509 5.22956 12.0607 5.43934C12.2704 5.64912 12.4133 5.91639 12.4712 6.20736C12.5291 6.49834 12.4994 6.79994 12.3858 7.07403C12.2723 7.34811 12.08 7.58238 11.8334 7.7472C11.5867 7.91203 11.2967 8 11 8C10.6022 8 10.2206 7.84196 9.93934 7.56066C9.65804 7.27936 9.5 6.89782 9.5 6.5ZM5 6.5C5 4.9087 5.63214 3.38258 6.75736 2.25736C7.88258 1.13214 9.4087 0.5 11 0.5C12.5913 0.5 14.1174 1.13214 15.2426 2.25736C16.3679 3.38258 17 4.9087 17 6.5C17 12.1203 11.6019 15.2694 11.375 15.4016C11.2617 15.4663 11.1334 15.5004 11.0028 15.5004C10.8723 15.5004 10.744 15.4663 10.6306 15.4016C10.3981 15.2694 5 12.125 5 6.5ZM6.5 6.5C6.5 10.4563 9.86 13.0822 11 13.8594C12.1391 13.0831 15.5 10.4563 15.5 6.5C15.5 5.30653 15.0259 4.16193 14.182 3.31802C13.3381 2.47411 12.1935 2 11 2C9.80653 2 8.66193 2.47411 7.81802 3.31802C6.97411 4.16193 6.5 5.30653 6.5 6.5ZM18.0097 12.8403C17.8251 12.7793 17.624 12.7924 17.4489 12.8768C17.2738 12.9612 17.1382 13.1102 17.0709 13.2926C17.0035 13.475 17.0096 13.6764 17.0879 13.8543C17.1661 14.0323 17.3104 14.1729 17.4903 14.2466C19.0381 14.8194 20 15.5863 20 16.25C20 17.5025 16.5763 19.25 11 19.25C5.42375 19.25 2 17.5025 2 16.25C2 15.5863 2.96187 14.8194 4.50969 14.2475C4.6896 14.1739 4.8339 14.0332 4.91215 13.8553C4.99039 13.6773 4.99648 13.4759 4.92913 13.2935C4.86178 13.1112 4.72624 12.9621 4.5511 12.8777C4.37596 12.7933 4.17491 12.7803 3.99031 12.8412C1.73937 13.6709 0.5 14.8822 0.5 16.25C0.5 19.1731 5.91031 20.75 11 20.75C16.0897 20.75 21.5 19.1731 21.5 16.25C21.5 14.8822 20.2606 13.6709 18.0097 12.8403Z" fill="#414651" />
                           </svg>
 
-                          <span className="font-semibold text-[clamp(14px,2vw,16px)]">
+                          <span className="font-semibold min-w-[160px] font-lato text-[clamp(14px,2vw,16px)]">
                             {t("Physical Address")}:
                           </span>
                         </div>
@@ -631,17 +626,17 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 md:gap-x-4 lg:gap-x-6">
+                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 ">
                         <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
                           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M16.5 10.2503C19.3402 10.2503 21.75 12.5934 21.75 15.4632C21.7499 16.9338 21.125 18.1577 20.2783 19.1458C19.4378 20.1268 18.3524 20.9073 17.3545 21.5179L17.3438 21.5248L17.332 21.5316C17.0781 21.6749 16.7914 21.7503 16.5 21.7503C16.2086 21.7503 15.9219 21.6749 15.668 21.5316L15.6543 21.5238L15.6416 21.516C14.649 20.9015 13.5644 20.1237 12.7236 19.1458C11.876 18.16 11.2501 16.9385 11.25 15.4632C11.25 12.5934 13.6598 10.2503 16.5 10.2503ZM16.5 11.7503C14.4697 11.7503 12.75 13.4403 12.75 15.4632C12.7501 16.4814 13.1747 17.3686 13.8613 18.1673C14.5508 18.9692 15.4773 19.6492 16.4131 20.2298C16.4395 20.2431 16.4696 20.2503 16.5 20.2503C16.5308 20.2503 16.5612 20.2424 16.5879 20.2289C17.5226 19.6556 18.4494 18.9745 19.1387 18.1703C19.8255 17.3687 20.2499 16.4776 20.25 15.4632C20.25 13.4403 18.5303 11.7503 16.5 11.7503ZM6.98828 0.751314C7.49476 0.734844 7.95906 0.8501 8.4541 1.04233C8.92734 1.22613 9.47582 1.49967 10.1445 1.83432L13.5068 3.51792C13.7443 3.63674 13.8895 3.70611 13.9902 3.75034C13.9935 3.7503 13.9967 3.75034 14 3.75034C14.1285 3.75034 14.2478 3.78521 14.3535 3.84213C14.4629 3.84939 14.6273 3.85287 14.9209 3.85288H17.0527C17.9499 3.85284 18.7008 3.85252 19.2969 3.93491C19.9286 4.02227 20.4976 4.2154 20.9522 4.68295C21.4036 5.14748 21.5873 5.72321 21.6709 6.36264C21.7505 6.97163 21.75 7.74005 21.75 8.66635V9.50034C21.7498 9.91437 21.4141 10.2503 21 10.2503C20.5859 10.2503 20.2502 9.91437 20.25 9.50034V8.71713C20.25 7.72687 20.248 7.05723 20.1826 6.55698C20.1198 6.07637 20.0101 5.86581 19.876 5.72788C19.7447 5.59307 19.5488 5.48444 19.0918 5.42124C18.6105 5.35467 17.9646 5.35288 17 5.35288H14.8594C14.8223 5.35289 14.7858 5.35097 14.75 5.35092V8.50034C14.7498 8.91438 14.4141 9.25034 14 9.25034C13.5859 9.25034 13.2502 8.91437 13.25 8.50034V5.05893C13.1373 5.00615 13.0183 4.95054 12.8916 4.88706C12.8732 4.87784 12.8547 4.86814 12.8359 4.85874L9.50391 3.19174C8.79625 2.83762 8.31111 2.59511 7.91113 2.43979C7.85496 2.41798 7.80094 2.39979 7.75 2.38217V15.8197C8.25305 15.91 8.71472 16.1021 9.11914 16.3011C9.34178 16.4107 9.55891 16.5279 9.75977 16.6371L9.78906 16.6537C9.98276 16.759 10.1613 16.8553 10.3359 16.9427C10.7063 17.1281 10.8562 17.5792 10.6709 17.9496C10.4855 18.3199 10.0345 18.4699 9.66406 18.2845C9.46575 18.1853 9.26674 18.077 9.0791 17.9749L9.04297 17.9554C8.84013 17.8451 8.64784 17.7412 8.45606 17.6468C8.06955 17.4566 7.72722 17.3272 7.40235 17.2826C6.65872 17.1805 6.05177 17.5349 5.11914 18.0794L5.0625 18.1117C4.44356 18.473 3.92893 18.7736 3.50293 18.9671C3.07219 19.1628 2.60392 19.3128 2.10938 19.224C1.57481 19.128 1.09595 18.8388 0.756837 18.4154C0.446329 18.0276 0.342688 17.548 0.2959 17.0697C0.249543 16.5956 0.249986 15.9893 0.250001 15.2552V6.9642C0.249985 6.40933 0.249692 5.94044 0.287111 5.55209C0.32684 5.14003 0.413207 4.75965 0.619142 4.39585C0.825692 4.03108 1.10707 3.76436 1.43945 3.5228C1.75106 3.29637 2.14922 3.06357 2.61719 2.79038C2.62723 2.78451 2.63735 2.7787 2.64746 2.7728L3.90527 2.03842C4.55205 1.66081 5.08217 1.35129 5.54297 1.13706C6.02501 0.912998 6.48175 0.76785 6.98828 0.751314ZM6.17578 2.49741C5.78602 2.67858 5.3162 2.95138 4.63184 3.35092L3.40332 4.06772C2.89687 4.3634 2.56483 4.55876 2.32129 4.73569C2.09187 4.90242 1.98989 5.02019 1.92481 5.1351C1.8591 5.25117 1.80846 5.40341 1.78027 5.69565C1.75059 6.00355 1.75 6.39987 1.75 6.99838V15.2162C1.75 15.9996 1.75071 16.5321 1.78906 16.9242C1.82785 17.3202 1.89603 17.4383 1.92774 17.4779C2.0441 17.6231 2.20391 17.7167 2.375 17.7474C2.41122 17.7538 2.53316 17.7608 2.88281 17.6019C3.23043 17.4439 3.67832 17.1836 4.3418 16.7962C4.39461 16.7654 4.44886 16.733 4.50391 16.7005C4.99631 16.4102 5.57792 16.0671 6.25 15.888V2.46518C6.22602 2.47586 6.20084 2.48576 6.17578 2.49741ZM16.5088 14.5003C17.0611 14.5003 17.5088 14.9481 17.5088 15.5003C17.5086 16.0524 17.0609 16.5003 16.5088 16.5003H16.5C15.9478 16.5003 15.5002 16.0524 15.5 15.5003C15.5 14.9481 15.9477 14.5003 16.5 14.5003H16.5088Z" fill="#414651" />
                           </svg>
 
-                          <span className="font-semibold text-[clamp(14px,2vw,16px)]">
+                          <span className="font-semibold min-w-[160px] font-lato text-[clamp(14px,2vw,16px)]">
                             {t("Maps Location")}:
                           </span>
                         </div>
-                        <div className="text-[clamp(12px,2vw,14px)] text-on-surface-primary break-words">
+                        <div className="text-[clamp(12px,2vw,14px)] font-lato text-on-surface-primary break-words">
                           {contactInfo.mapsLocation}
                         </div>
                       </div>
@@ -650,34 +645,34 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                     {/* العمود الثاني */}
                     <div className="flex flex-col gap-6">
                       {/* Twitter */}
-                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 md:gap-x-4 lg:gap-x-6">
+                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 ">
                         <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
                           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M16.5 10.2503C19.3402 10.2503 21.75 12.5934 21.75 15.4632C21.7499 16.9338 21.125 18.1577 20.2783 19.1458C19.4378 20.1268 18.3524 20.9073 17.3545 21.5179L17.3438 21.5248L17.332 21.5316C17.0781 21.6749 16.7914 21.7503 16.5 21.7503C16.2086 21.7503 15.9219 21.6749 15.668 21.5316L15.6543 21.5238L15.6416 21.516C14.649 20.9015 13.5644 20.1237 12.7236 19.1458C11.876 18.16 11.2501 16.9385 11.25 15.4632C11.25 12.5934 13.6598 10.2503 16.5 10.2503ZM16.5 11.7503C14.4697 11.7503 12.75 13.4403 12.75 15.4632C12.7501 16.4814 13.1747 17.3686 13.8613 18.1673C14.5508 18.9692 15.4773 19.6492 16.4131 20.2298C16.4395 20.2431 16.4696 20.2503 16.5 20.2503C16.5308 20.2503 16.5612 20.2424 16.5879 20.2289C17.5226 19.6556 18.4494 18.9745 19.1387 18.1703C19.8255 17.3687 20.2499 16.4776 20.25 15.4632C20.25 13.4403 18.5303 11.7503 16.5 11.7503ZM6.98828 0.751314C7.49476 0.734844 7.95906 0.8501 8.4541 1.04233C8.92734 1.22613 9.47582 1.49967 10.1445 1.83432L13.5068 3.51792C13.7443 3.63674 13.8895 3.70611 13.9902 3.75034C13.9935 3.7503 13.9967 3.75034 14 3.75034C14.1285 3.75034 14.2478 3.78521 14.3535 3.84213C14.4629 3.84939 14.6273 3.85287 14.9209 3.85288H17.0527C17.9499 3.85284 18.7008 3.85252 19.2969 3.93491C19.9286 4.02227 20.4976 4.2154 20.9522 4.68295C21.4036 5.14748 21.5873 5.72321 21.6709 6.36264C21.7505 6.97163 21.75 7.74005 21.75 8.66635V9.50034C21.7498 9.91437 21.4141 10.2503 21 10.2503C20.5859 10.2503 20.2502 9.91437 20.25 9.50034V8.71713C20.25 7.72687 20.248 7.05723 20.1826 6.55698C20.1198 6.07637 20.0101 5.86581 19.876 5.72788C19.7447 5.59307 19.5488 5.48444 19.0918 5.42124C18.6105 5.35467 17.9646 5.35288 17 5.35288H14.8594C14.8223 5.35289 14.7858 5.35097 14.75 5.35092V8.50034C14.7498 8.91438 14.4141 9.25034 14 9.25034C13.5859 9.25034 13.2502 8.91437 13.25 8.50034V5.05893C13.1373 5.00615 13.0183 4.95054 12.8916 4.88706C12.8732 4.87784 12.8547 4.86814 12.8359 4.85874L9.50391 3.19174C8.79625 2.83762 8.31111 2.59511 7.91113 2.43979C7.85496 2.41798 7.80094 2.39979 7.75 2.38217V15.8197C8.25305 15.91 8.71472 16.1021 9.11914 16.3011C9.34178 16.4107 9.55891 16.5279 9.75977 16.6371L9.78906 16.6537C9.98276 16.759 10.1613 16.8553 10.3359 16.9427C10.7063 17.1281 10.8562 17.5792 10.6709 17.9496C10.4855 18.3199 10.0345 18.4699 9.66406 18.2845C9.46575 18.1853 9.26674 18.077 9.0791 17.9749L9.04297 17.9554C8.84013 17.8451 8.64784 17.7412 8.45606 17.6468C8.06955 17.4566 7.72722 17.3272 7.40235 17.2826C6.65872 17.1805 6.05177 17.5349 5.11914 18.0794L5.0625 18.1117C4.44356 18.473 3.92893 18.7736 3.50293 18.9671C3.07219 19.1628 2.60392 19.3128 2.10938 19.224C1.57481 19.128 1.09595 18.8388 0.756837 18.4154C0.446329 18.0276 0.342688 17.548 0.2959 17.0697C0.249543 16.5956 0.249986 15.9893 0.250001 15.2552V6.9642C0.249985 6.40933 0.249692 5.94044 0.287111 5.55209C0.32684 5.14003 0.413207 4.75965 0.619142 4.39585C0.825692 4.03108 1.10707 3.76436 1.43945 3.5228C1.75106 3.29637 2.14922 3.06357 2.61719 2.79038C2.62723 2.78451 2.63735 2.7787 2.64746 2.7728L3.90527 2.03842C4.55205 1.66081 5.08217 1.35129 5.54297 1.13706C6.02501 0.912998 6.48175 0.76785 6.98828 0.751314ZM6.17578 2.49741C5.78602 2.67858 5.3162 2.95138 4.63184 3.35092L3.40332 4.06772C2.89687 4.3634 2.56483 4.55876 2.32129 4.73569C2.09187 4.90242 1.98989 5.02019 1.92481 5.1351C1.8591 5.25117 1.80846 5.40341 1.78027 5.69565C1.75059 6.00355 1.75 6.39987 1.75 6.99838V15.2162C1.75 15.9996 1.75071 16.5321 1.78906 16.9242C1.82785 17.3202 1.89603 17.4383 1.92774 17.4779C2.0441 17.6231 2.20391 17.7167 2.375 17.7474C2.41122 17.7538 2.53316 17.7608 2.88281 17.6019C3.23043 17.4439 3.67832 17.1836 4.3418 16.7962C4.39461 16.7654 4.44886 16.733 4.50391 16.7005C4.99631 16.4102 5.57792 16.0671 6.25 15.888V2.46518C6.22602 2.47586 6.20084 2.48576 6.17578 2.49741ZM16.5088 14.5003C17.0611 14.5003 17.5088 14.9481 17.5088 15.5003C17.5086 16.0524 17.0609 16.5003 16.5088 16.5003H16.5C15.9478 16.5003 15.5002 16.0524 15.5 15.5003C15.5 14.9481 15.9477 14.5003 16.5 14.5003H16.5088Z" fill="#414651" />
                           </svg>
 
 
-                          <span className="font-semibold text-[clamp(14px,2vw,16px)]">
+                          <span className="font-semibold min-w-[160px] font-lato text-[clamp(14px,2vw,16px)]">
                             {t("Email")}:
                           </span>
                         </div>
-                        <div className="text-[clamp(12px,2vw,14px)] text-on-surface-primary break-words">
+                        <div className="text-[clamp(12px,2vw,14px)] font-lato text-on-surface-primary break-words">
                           {contactInfo.email}
                         </div>
                       </div>
 
                       {/* Instagram */}
-                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 md:gap-x-4 lg:gap-x-6">
+                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0">
                         <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
                           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9.99999 0.25C8.07163 0.25 6.18657 0.821827 4.58319 1.89317C2.97981 2.96451 1.73013 4.48725 0.992178 6.26883C0.254225 8.05041 0.0611422 10.0108 0.437348 11.9021C0.813553 13.7934 1.74215 15.5307 3.10571 16.8943C4.46927 18.2578 6.20655 19.1864 8.09786 19.5626C9.98918 19.9388 11.9496 19.7458 13.7312 19.0078C15.5127 18.2698 17.0355 17.0202 18.1068 15.4168C19.1782 13.8134 19.75 11.9284 19.75 9.99999C19.747 7.41504 18.7188 4.93683 16.891 3.10899C15.0632 1.28116 12.5849 0.252977 9.99999 0.25ZM18.25 9.99999C18.2506 10.7608 18.1456 11.5181 17.9378 12.25H14.3275C14.5575 10.7588 14.5575 9.24117 14.3275 7.74999H17.9378C18.1456 8.48191 18.2506 9.23915 18.25 9.99999ZM7.5625 13.75H12.4375C11.9572 15.3237 11.1235 16.7667 9.99999 17.9687C8.87694 16.7664 8.04325 15.3234 7.5625 13.75ZM7.19687 12.25C6.93938 10.761 6.93938 9.23894 7.19687 7.74999H12.8106C13.0681 9.23894 13.0681 10.761 12.8106 12.25H7.19687ZM1.75 9.99999C1.74935 9.23915 1.85442 8.48191 2.06219 7.74999H5.6725C5.4425 9.24117 5.4425 10.7588 5.6725 12.25H2.06219C1.85442 11.5181 1.74935 10.7608 1.75 9.99999ZM12.4375 6.24999H7.5625C8.04277 4.67632 8.87651 3.23329 9.99999 2.03125C11.123 3.23361 11.9567 4.67653 12.4375 6.24999ZM17.3434 6.24999H14.0041C13.5832 4.70585 12.8738 3.25532 11.9134 1.975C13.0738 2.25374 14.1601 2.7801 15.098 3.51799C16.0359 4.25587 16.8032 5.18784 17.3472 6.24999H17.3434ZM8.08656 1.975C7.12618 3.25532 6.41682 4.70585 5.99593 6.24999H2.65281C3.19682 5.18784 3.96406 4.25587 4.90196 3.51799C5.83985 2.7801 6.9262 2.25374 8.08656 1.975ZM2.65281 13.75H5.99593C6.41682 15.2941 7.12618 16.7447 8.08656 18.025C6.9262 17.7462 5.83985 17.2199 4.90196 16.482C3.96406 15.7441 3.19682 14.8121 2.65281 13.75ZM11.9134 18.025C12.8738 16.7447 13.5832 15.2941 14.0041 13.75H17.3472C16.8032 14.8121 16.0359 15.7441 15.098 16.482C14.1601 17.2199 13.0738 17.7462 11.9134 18.025Z" fill="#414651" />
                           </svg>
 
-                          <span className="font-semibold text-[clamp(14px,2vw,16px)]">
+                          <span className="font-semibold min-w-[160px] font-lato text-[clamp(14px,2vw,16px)]">
                             {t("Company Website")}:
                           </span>
                         </div>
-                        <div className="text-[clamp(12px,2vw,14px)] text-on-surface-primary break-words">
+                        <div className="text-[clamp(12px,2vw,14px)] font-lato text-on-surface-primary break-words">
                           {contactInfo.website}
                         </div>
                       </div>
@@ -711,11 +706,11 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                     {/* العمود الأول */}
                     <div className="flex flex-col gap-6">
                       {/* LinkedIn */}
-                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 md:gap-x-4 lg:gap-x-6">
+                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 ">
                         {/* أيقونة + لايبل (دايمًا جنب بعض) */}
                         <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
                           <LinkedinIcon className="text-text-primary w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
-                          <span className="font-semibold text-[clamp(14px,2vw,16px)]">
+                          <span className="font-semibold min-w-[160px] font-lato text-[clamp(14px,2vw,16px)]">
                             {t("LinkedIn")}:
                           </span>
                         </div>
@@ -725,21 +720,21 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                           href={socialMedia.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[clamp(12px,2vw,14px)] text-on-surface-primary break-all"
+                          className="text-[clamp(12px,2vw,14px)] font-lato text-on-surface-primary break-all"
                         >
                           {socialMedia.linkedin}
                         </a>
                       </div>
 
                       {/* Facebook */}
-                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 md:gap-x-4 lg:gap-x-6">
+                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 ">
                         <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
                           <FacebookIcon className="text-text-primary w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
-                          <span className="font-semibold text-[clamp(14px,2vw,16px)]">
+                          <span className="font-semibold  min-w-[160px] font-lato text-[clamp(14px,2vw,16px)]">
                             {t("Facebook")}:
                           </span>
                         </div>
-                        <div className="text-[clamp(12px,2vw,14px)] text-on-surface-primary break-words">
+                        <div className="text-[clamp(12px,2vw,14px)] font-lato  text-on-surface-primary break-words">
                           {socialMedia.facebook}
                         </div>
                       </div>
@@ -748,26 +743,26 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                     {/* العمود الثاني */}
                     <div className="flex flex-col gap-6">
                       {/* Twitter */}
-                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 md:gap-x-4 lg:gap-x-6">
+                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 ">
                         <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M0.0174851 24H2.04576L9.98402 14.6892L16.2962 24H23.2727L13.8657 10.1925L22.5034 0H20.4401L12.939 8.81705L6.92412 0H0L9.09228 13.3666L0.0174851 24ZM2.79762 1.56943H5.92746L20.4576 22.5187H17.2928L2.79762 1.56943Z" fill="#414651" />
                           </svg>
 
-                          <span className="font-semibold text-[clamp(14px,2vw,16px)]">
+                          <span className="font-semibold min-w-[160px] font-lato text-[clamp(14px,2vw,16px)]">
                             {t("Twitter")}:
                           </span>
                         </div>
-                        <div className="text-[clamp(12px,2vw,14px)] text-on-surface-primary break-words">
+                        <div className="text-[clamp(12px,2vw,14px)] font-lato text-on-surface-primary break-words">
                           {socialMedia.twitter}
                         </div>
                       </div>
 
                       {/* Instagram */}
-                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 md:gap-x-4 lg:gap-x-6">
+                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] items-start gap-y-2 md:gap-y-0 ">
                         <div className="flex items-center gap-1 sm:gap-2 md:gap-3">
-                          <InstagramIcon className="text-text-primary w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
-                          <span className="font-semibold text-[clamp(14px,2vw,16px)]">
+                          <InstagramIcon className="text-text-primary w-4 h-4 sm:w-5 font-lato sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7" />
+                          <span className="font-semibold  min-w-[160px] text-[clamp(14px,2vw,16px)]">
                             {t("Instagram")}:
                           </span>
                         </div>
@@ -799,13 +794,13 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                     <Table className="min-w-[320px]">
                       <TableHeader>
                         <TableRow>
-                          <TableHead className="text-text-primary text-start px-2 py-2 text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="text-text-primary font-semibold   text-start px-2 font-lato py-2 text-[clamp(14px,2vw,16px)]">
                             {t("Working Days")}
                           </TableHead>
-                          <TableHead className="text-center text-text-primary px-2 py-2 text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="text-center font-semibold text-text-primary px-2 font-lato py-2 text-[clamp(14px,2vw,16px)]">
                             {t("Start Time")}
                           </TableHead>
-                          <TableHead className="text-end text-text-primary px-2 py-2 text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="text-end font-semibold text-text-primary px-2 font-lato py-2 text-[clamp(14px,2vw,16px)]">
                             {t("End Time")}
                           </TableHead>
                         </TableRow>
@@ -891,16 +886,16 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                     <Table className="min-w-[700px]">
                       <TableHeader>
                         <TableRow>
-                          <TableHead className="w-[58px] text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="w-[58px] text-center text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)]">
                             {t("NO")}
                           </TableHead>
-                          <TableHead className="text-center  text-text-primary  font-semibold text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="text-center  text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)]">
                             {t("User-ID")}
                           </TableHead>
                           <TableHead className="text-center text-text-primary ont-semibold   text-[clamp(14px,2vw,16px)]">
                             {t("Name")}
                           </TableHead>
-                          <TableHead className="w-[225px] text-center text-text-primary  font-semibold text-[clamp(14px,2vw,16px)]">
+                          <TableHead className="w-[225px] text-center text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)]">
                             {t("Clinic")}
                           </TableHead>
                           <TableHead className="text-center font-semibold text-text-primary  text-[clamp(14px,2vw,16px)]">
@@ -918,13 +913,13 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                             key={person.number}
                             className="border-b border-[#e4e2dd]"
                           >
-                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
+                            <TableCell className="text-center font-lato font-medium text-[clamp(12px,2vw,14px)]">
                               {person.number}
                             </TableCell>
-                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
+                            <TableCell className="text-center font-lato font-medium text-[clamp(12px,2vw,14px)]">
                               {person.userId}
                             </TableCell>
-                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
+                            <TableCell className="text-center font-lato font-medium text-[clamp(12px,2vw,14px)]">
                               <div className="flex items-center gap-2 justify-center">
                                 <Avatar
                                   src={person.avatar}
@@ -940,10 +935,10 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
                                 <span>{person.name}</span>
                               </div>
                             </TableCell>
-                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
+                            <TableCell className="text-center font-lato font-medium text-[clamp(12px,2vw,14px)]">
                               {person.clinic}
                             </TableCell>
-                            <TableCell className="text-center font-medium text-[clamp(12px,2vw,14px)]">
+                            <TableCell className="text-center font-lato font-medium text-[clamp(12px,2vw,14px)]">
                               {person.userType}
                             </TableCell>
                             <TableCell className="w-[15%] text-center">
@@ -1172,8 +1167,8 @@ export const ContentViewDetailsClinicP3 = ({ handleLanguageClick, local, dark, h
               title={t("Maps Location")}
               initiallyOpen={isOpen.mapsLocation}
               onOpenChange={(open) => handleToggle("mapsLocation", open)}
-              content={<div>      <div className="w-full h-[332px] bg-[url(/background.png)] bg-cover bg-center rounded" />
-                <p className="font-title-14px-regular font-[number:var(--title-14px-regular-font-weight)] text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
+              content={<div>      <div className="w-full h-[332px] bg-[url(/background.png)] bg-cover font-lato bg-center rounded" />
+                <p className="title-[14px] font-lato text-on-surface-primary text-[length:var(--title-14px-regular-font-size)] tracking-[var(--title-14px-regular-letter-spacing)] leading-[var(--title-14px-regular-line-height)] [font-style:var(--title-14px-regular-font-style)]">
                   {t("245, King Fahd Road, Al Olaya, Saudi Arabia, KSA")}
                 </p></div>}
 

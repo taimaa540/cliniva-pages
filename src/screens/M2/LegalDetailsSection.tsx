@@ -8,7 +8,7 @@ import {
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
-
+import { Link } from "react-router-dom";
 interface buttonProps {
   title : string,
   handleNext : () => void;
@@ -20,7 +20,9 @@ export const LegalDetailsSection = ({handleNext, prevStep, title}:buttonProps): 
       {/* Header */}
       <div className="flex flex-col gap-2">
         <button className="flex items-center gap-2 font-lato text-xs text-text-secondary font-regular leading-[130%] tracking-[0]">
-          <ArrowLeftIcon className="w-4 h-4" />
+            <Link to='/ChossPlan'>
+                   <ArrowLeftIcon className="relative w-4 h-4" />
+                   </Link>
           Back to Choosing Plan Page
         </button>
         <h2 className="font-lato text-xl text-text-primary font-semibold leading-[116%] tracking-[0]">

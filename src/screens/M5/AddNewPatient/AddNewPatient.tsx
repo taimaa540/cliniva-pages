@@ -26,6 +26,7 @@ import PhoneInputCustom from "../../../components/ui/PhoneInput";
 import { SideBar } from "../../CommonComponents/SideBarPlan2";
 import { ThemeToggle } from "../../../components/theme/ThemeSwitcher";
 import { add } from "date-fns";
+import { Link } from "react-router-dom";
 const headerData = {
     title: "Patients Management",
     breadcrumb: "Add New Patient",
@@ -182,7 +183,7 @@ export const AddNewPatient = (): JSX.Element => {
     };
     {/*لتخزين حالة الكارد*/ }
     const [isCardValid, setIsCardValid] = useState(true);
-  const [isOpenAppointment, setIsOpen] = useState(false);
+    const [isOpenAppointment, setIsOpen] = useState(false);
 
     const [showSidebar, setShowSidebar] = useState(false);
     const onOpenSidebar = () => setShowSidebar(true);
@@ -243,9 +244,14 @@ export const AddNewPatient = (): JSX.Element => {
                                         </svg>
 
                                     </div>
-                                    <p className="font-lato font-semibold text-sm text-text-primary leading-[125%] tracking-[0]">
+                                                  <Link to='/ViewPatientDetails'><div className="flex gap-1 items-center ">
+                                                        
+                                                                        <ArrowLeftIcon className="relative w-4 h-4 pt-1" />
+                                                                     
+                                                  <p className="font-lato font-semibold text-sm text-text-primary leading-[125%] tracking-[0]">
                                         {t("Add New Patient")}
-                                    </p>
+                                    </p></div>   </Link>
+                     
                                 </div>
                             </div>
                         </div>
@@ -276,15 +282,16 @@ export const AddNewPatient = (): JSX.Element => {
                                 </h1>
                                 <div className="flex items-center gap-2.5 text-[14px]">
                                     <div className=" text-text-primary">
-                                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M18 8C18 8.41421 17.6642 8.75 17.25 8.75L0.75 8.75C0.335786 8.75 -3.45941e-07 8.41421 -3.27835e-07 8C-3.0973e-07 7.58579 0.335787 7.25 0.75 7.25L17.25 7.25C17.6642 7.25 18 7.58579 18 8Z" fill="CurrentColor" />
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.03033 0.719669C8.32322 1.01256 8.32322 1.48744 8.03033 1.78033L1.81066 8L8.03033 14.2197C8.32322 14.5126 8.32322 14.9874 8.03033 15.2803C7.73744 15.5732 7.26256 15.5732 6.96967 15.2803L0.219669 8.53033C-0.0732254 8.23744 -0.0732253 7.76256 0.219669 7.46967L6.96967 0.719669C7.26256 0.426776 7.73744 0.426776 8.03033 0.719669Z" fill="CurrentColor" />
-                                        </svg>
+                                 
 
                                     </div>
-                                    <p className="font-lato font-semibold text-sm text-text-primary leading-[125%] tracking-[0]">
+                                                                   <Link to='/ViewPatientDetails'><div className="flex gap-2 items-center ">
+                                                        
+                                                                        <ArrowLeftIcon className="relative w-5 h-5 pt-1" />
+                                                                     
+                                                  <p className="font-lato font-semibold text-sm text-text-primary leading-[125%] tracking-[0]">
                                         {t("Add New Patient")}
-                                    </p>
+                                    </p></div>   </Link>
                                 </div>
                             </div>
                         </div>
@@ -368,7 +375,7 @@ export const AddNewPatient = (): JSX.Element => {
                                         <div className="flex flex-col items-start gap-6">
                                             {/* صورة البروفايل */}
                                             <div className="inline-flex items-center gap-8 relative flex-[0_0_auto]">
-                                                <div className="relative w-40 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <div className="relative w-40 text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {t("Profile Picture")}
                                                 </div>
                                                 <ImageUploader initialImage={formValues.profilePicture} />
@@ -376,11 +383,11 @@ export const AddNewPatient = (): JSX.Element => {
 
                                             {/* اسم المريض */}
                                             <div className="flex flex-col md:flex-row  self-stretch w-full items-start gap-8 relative">
-                                                <Label className="w-[150px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <Label className="w-[150px] text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {formFields(t).patientName.label}
                                                 </Label>
                                                 <Input
-                                                    className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  bg-background-secondary placeholder:text-text-secondary  border border-border-light  shadow-shadow-xs"
+                                                    className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  bg-background-secondary  placeholder:text-[clamp(14px,1.1vw,16px) placeholder:font-normal placeholder:text-text-secondary  border border-border-light  shadow-shadow-xs"
                                                     value={formValues.patientName}
                                                     placeholder={formFields(t).patientName.placeholder}
                                                     onChange={e => handleInputChangeV('patientName', e.target.value)}
@@ -389,7 +396,7 @@ export const AddNewPatient = (): JSX.Element => {
 
                                             {/* الجنسية */}
                                             <div className="flex flex-col md:flex-row md:items-center self-stretch w-full items-start gap-8 relative">
-                                                <Label className="w-[150px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <Label className="w-[150px] text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {formFields(t).nationality.label}
                                                 </Label>
 
@@ -397,13 +404,13 @@ export const AddNewPatient = (): JSX.Element => {
 
 
 
-                                                <Select
+                                                <Select 
                                                     value={formValues.nationality}
                                                     onValueChange={val => handleInputChangeV('nationality', val)}
                                                 >
 
-                                                    <SelectTrigger className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  bg-background-secondary border border-border-light  shadow-shadow-xs" dir={local === 'ar' ? 'rtl' : 'ltr'}>
-                                                        <SelectValue placeholder={formFields(t).nationality.placeholder}>
+                                                    <SelectTrigger className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  bg-background-secondary border border-border-light font-regular text-base leading-[150%] tracking-[0]  placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0]  title-[14px] placeholder:text-text-secondar" dir={local === 'ar' ? 'rtl' : 'ltr'}>
+                                                        <SelectValue placeholder={formFields(t).nationality.placeholder} className="font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondar title-[14px]">
                                                             {formValues.nationality ? t(formValues.nationality) : null}
                                                         </SelectValue>
                                                     </SelectTrigger>
@@ -417,7 +424,7 @@ export const AddNewPatient = (): JSX.Element => {
 
                                             {/* اللغة المفضلة */}
                                             <div className="flex flex-col md:flex-row md:items-center self-stretch w-full items-start gap-8 relative">
-                                                <Label className="w-[150px] text-text-primary  font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <Label className="w-[150px] text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {formFields(t).preferredLanguage.label}
                                                 </Label>
 
@@ -427,7 +434,7 @@ export const AddNewPatient = (): JSX.Element => {
                                                     onValueChange={val => handleInputChangeV('preferredLanguage', val)}
                                                 >
 
-                                                    <SelectTrigger className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  bg-background-secondary border border-border-light  shadow-shadow-xs" dir={local === 'ar' ? 'rtl' : 'ltr'}>
+                                                    <SelectTrigger className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  bg-background-secondary  font-regular text-base leading-[150%] tracking-[0]  placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0]  title-[14px] placeholder:text-text-secondar border border-border-light  shadow-shadow-xs" dir={local === 'ar' ? 'rtl' : 'ltr'}>
                                                         <SelectValue placeholder={formFields(t).preferredLanguage.placeholder}>
                                                             {formValues.preferredLanguage ? t(formValues.preferredLanguage) : null}
                                                         </SelectValue>
@@ -443,7 +450,7 @@ export const AddNewPatient = (): JSX.Element => {
 
                                             {/* تاريخ الميلاد */}
                                             <div className="flex flex-col md:flex-row md:items-center items-start gap-8 w-full">
-                                                <Label className="w-[150px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <Label className="w-[150px] text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {formFields(t).dateOfBirth.label}
                                                 </Label>
 
@@ -454,7 +461,7 @@ export const AddNewPatient = (): JSX.Element => {
                                                         value={formValues.dateOfBirth}
                                                         placeholder={formFields(t).dateOfBirth.placeholder}
                                                         onChange={(e) => handleInputChangeV("dateOfBirth", e.target.value)}
-                                                        className="w-full bg-background-secondary placeholder:text-text-secondary  placeholder:bg-background-secondary text-sm outline-none"
+                                                        className="w-full bg-background-secondary  placeholder:text-[clamp(14px,1.1vw,16px) placeholder:font-normal placeholder:text-text-secondary text-sm outline-none"
                                                     />
                                                     <CalendarIcon className="w-4 h-4 ml-2 shrink-0 bg-background-secondary" />
                                                 </div>
@@ -463,24 +470,37 @@ export const AddNewPatient = (): JSX.Element => {
                                             {/* الحالة الاجتماعية */}
 
                                             <div className="flex flex-col md:flex-row md:items-center self-stretch w-full items-start gap-8 relative">
-                                                <Label className="w-[150px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] " dir={local === 'ar' ? 'rtl' : 'ltr'}>
+                                                <Label className="w-[150px] text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] " dir={local === 'ar' ? 'rtl' : 'ltr'}>
                                                     {formFields(t).maritalStatus.label}
                                                 </Label>
                                                 <Select
                                                     value={formValues.maritalStatus}
                                                     onValueChange={val => handleInputChangeV('maritalStatus', val)}
                                                 >
-                                                    <SelectTrigger className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  bg-background-secondary border border-border-light  shadow-shadow-xs" dir={local === 'ar' ? 'rtl' : 'ltr'}>
-                                                        <SelectValue placeholder={formFields(t).maritalStatus.placeholder}>
-                                                            {formValues.maritalStatus ? t(formValues.maritalStatus) : null}
-                                                        </SelectValue>
+                                                    <SelectTrigger
+                                                        className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12
+               text-[clamp(14px,1.1vw,16px)] font-normal
+               bg-background-secondary border border-border-light shadow-shadow-xs font-regular text-base leading-[150%] tracking-[0]  placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0]  title-[14px] placeholder:text-text-secondar"
+                                                        dir={local === 'ar' ? 'rtl' : 'ltr'}
+                                                    >
+                                                        <SelectValue
+                                                            placeholder={formFields(t).maritalStatus.placeholder}
+                                                            className={
+                                                                formValues.maritalStatus
+                                                                    ? "text-text-secondary font-normal" // إذا في قيمة
+                                                                    : "text-text-secondary/60 font-normal text-[clamp(12px,1.1vw,14px)]" // placeholder
+                                                            }
+                                                        />
                                                     </SelectTrigger>
+
                                                     <SelectContent dir={local === 'ar' ? 'rtl' : 'ltr'}>
                                                         <SelectItem value="single">{t("Single")}</SelectItem>
                                                         <SelectItem value="married">{t("Married")}</SelectItem>
                                                         <SelectItem value="divorced">{t("Divorced")}</SelectItem>
                                                     </SelectContent>
                                                 </Select>
+
+
 
 
                                             </div>
@@ -490,11 +510,11 @@ export const AddNewPatient = (): JSX.Element => {
                                         <div className="flex flex-col items-start gap-6">
                                             {/* رقم المريض */}
                                             <div className="inline-flex items-start gap-8 relative">
-                                                <Label className="w-[150px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <Label className="w-[150px] text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {t("Patient ID")}
                                                 </Label>
 
-                                                <div className=" w-[min(100%,360px)]  text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <div className=" w-[min(100%,360px)]  text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {patientBasicInfoData.patientId}
                                                 </div>
                                             </div>
@@ -514,7 +534,7 @@ export const AddNewPatient = (): JSX.Element => {
 
                                                 <div className="flex flex-col gap-1 w-full">
                                                     <Input
-                                                        className={` w-[min(100%,360px)]  h-10 sm:h-10 md:h-12  bg-background-secondary placeholder:text-text-secondary  border shadow-shadow-xs ${isCardValid ? 'border border-border-light ' : 'border-red-500'
+                                                        className={` w-[min(100%,360px)]  h-10 sm:h-10 md:h-12  bg-background-secondary  placeholder:text-[clamp(14px,1.1vw,16px) placeholder:font-normal placeholder:text-text-secondary border shadow-shadow-xs ${isCardValid ? 'border border-border-light ' : 'border-red-500'
                                                             }`}
                                                         value={formValues.cardNumber}
                                                         placeholder={formFields(t).cardNumber.placeholder}
@@ -540,12 +560,12 @@ export const AddNewPatient = (): JSX.Element => {
 
 
                                             {/* الديانة */}
-                                            <div className="flex flex-col md:flex-row md:items-center self-stretch w-full items placeholder:text-text-secondary  gap-8 relative">
-                                                <Label className="w-[150px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                            <div className="flex flex-col md:flex-row md:items-center self-stretch w-full items  gap-8 relative">
+                                                <Label className="w-[150px] text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {formFields(t).religion.label}
                                                 </Label>
                                                 <Input
-                                                    className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  bg-background-secondary placeholder:text-text-secondary  border border-border-light   shadow-shadow-xs"
+                                                    className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  bg-background-secondary  placeholder:text-[clamp(14px,1.1vw,16px) placeholder:font-normal placeholder:text-text-secondary  border border-border-light   shadow-shadow-xs"
                                                     placeholder={formFields(t).religion.placeholder}
                                                     value={formValues.religion}
                                                     onChange={e => handleInputChangeV('religion', e.target.value)}
@@ -554,10 +574,10 @@ export const AddNewPatient = (): JSX.Element => {
 
                                             {/* العمر */}
                                             <div className="flex w-[343.23px] items-center gap-8 relative">
-                                                <Label className="w-[150px] text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <Label className="w-[150px] text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {t("Age")}
                                                 </Label>
-                                                <div className="w-40 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <div className="w-40 text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {patientBasicInfoData.age}
                                                 </div>
                                             </div>
@@ -601,7 +621,7 @@ export const AddNewPatient = (): JSX.Element => {
                                 {/* الصف الأول: العنوان + التحذير + الزر */}
                                 <div className="flex  sm:flex-row  justify-center sm:justify-between sm:items-center gap-4">
                                     {/* كلمة Insurance Info */}
-                                    <div className="font-lato w-24 font-semibold text-[clamp(14px,2vw,16px)]  text-text-accent">
+                                    <div className="font-lato  font-semibold text-[clamp(14px,2vw,16px)]  text-text-accent">
                                         {t("Insurance Info")}
                                     </div>
 
@@ -713,7 +733,7 @@ export const AddNewPatient = (): JSX.Element => {
                                 content={
                                     <div
                                         className="
-    flex flex-col md:flex-row w-full rounded-2xl 
+    flex flex-col lg:flex-row w-full rounded-2xl 
     gap-x-4 sm:gap-x-8 md:gap-x-16 lg:gap-x-[126px] 
     h-full pb-4
   "
@@ -722,7 +742,7 @@ export const AddNewPatient = (): JSX.Element => {
                                         {/* العمود الأول */}
                                         <div className="grid gap-y-[30px] w-full max-w-full">
                                             <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                                <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <h1 className="w-[150px] shrink-0 text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {t("Member Number")}:
                                                 </h1>
                                                 <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -731,7 +751,7 @@ export const AddNewPatient = (): JSX.Element => {
                                             </div>
 
                                             <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                                <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <h1 className="w-[150px] shrink-0 text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {t("Insurance Company")}:
                                                 </h1>
                                                 <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -740,7 +760,7 @@ export const AddNewPatient = (): JSX.Element => {
                                             </div>
 
                                             <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                                <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <h1 className="w-[150px] shrink-0 text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {t("Group Number")}:
                                                 </h1>
                                                 <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -749,7 +769,7 @@ export const AddNewPatient = (): JSX.Element => {
                                             </div>
 
                                             <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                                <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <h1 className="w-[150px] shrink-0 text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {t("Policy ID")}:
                                                 </h1>
                                                 <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -758,7 +778,7 @@ export const AddNewPatient = (): JSX.Element => {
                                             </div>
 
                                             <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                                <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <h1 className="w-[150px] shrink-0 text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {t("Co-payment")}:
                                                 </h1>
                                                 <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -767,7 +787,7 @@ export const AddNewPatient = (): JSX.Element => {
                                             </div>
 
                                             <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                                <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <h1 className="w-[150px] shrink-0 text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {t("Coverage Start Date")}:
                                                 </h1>
                                                 <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -776,7 +796,7 @@ export const AddNewPatient = (): JSX.Element => {
                                             </div>
 
                                             <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                                <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <h1 className="w-[150px] shrink-0 text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {t("Insurance Status")}:
                                                 </h1>
                                                 <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -788,7 +808,7 @@ export const AddNewPatient = (): JSX.Element => {
                                         {/* العمود الثاني */}
                                         <div className="flex flex-col gap-8 mt-5 w-full max-w-full">
                                             <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                                <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <h1 className="w-[150px] shrink-0 text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {t("Member Type")}:
                                                 </h1>
                                                 <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -797,7 +817,7 @@ export const AddNewPatient = (): JSX.Element => {
                                             </div>
 
                                             <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                                <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <h1 className="w-[150px] shrink-0 text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {t("Provider Network")}:
                                                 </h1>
                                                 <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -806,7 +826,7 @@ export const AddNewPatient = (): JSX.Element => {
                                             </div>
 
                                             <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                                <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <h1 className="w-[150px] shrink-0 text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {t("Class")}:
                                                 </h1>
                                                 <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -815,7 +835,7 @@ export const AddNewPatient = (): JSX.Element => {
                                             </div>
 
                                             <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                                <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <h1 className="w-[150px] shrink-0 text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {t("Coverage Limit")}:
                                                 </h1>
                                                 <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -824,7 +844,7 @@ export const AddNewPatient = (): JSX.Element => {
                                             </div>
 
                                             <div className="flex flex-col sm:flex-row gap-x-[32px] w-full max-w-[500px]">
-                                                <h1 className="w-[150px] shrink-0 text-text-primary font-semibold text-[clamp(14px,2vw,16px)] ">
+                                                <h1 className="w-[150px] shrink-0 text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                                                     {t("Coverage End Date")}:
                                                 </h1>
                                                 <p className="flex-1 text-text-primary font-normal text-[14px] break-words whitespace-normal">
@@ -853,11 +873,11 @@ export const AddNewPatient = (): JSX.Element => {
                             content={
                                 <div className="relative w-full h-full pb-4 rounded-2x">
                                     <div className="flex flex-col ">
-                                        <div className=" flex gap-x-[53px]  flex-wrap  " >
+                                        <div className=" flex gap-x-[27px]  flex-wrap  " >
                                             {/* Phone Number Field */}
 
 
-                                            <div className=" w-full   sm:w-[560px] gap-y-2 rounded-md py-1">
+                                            <div className=" w-full   sm:w-[520px] gap-y-2 rounded-md py-1">
                                                 {/* Label + Input */} <div className="flex  items-start  flex-col  sm:flex-row  "> {/* Label + Icon */} <div className="flex items-center text-center mt-3  pb-9 gap-x-2">
                                                     <div className="text-text-primary"> <svg className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.77089 1.79165C4.74396 1.78995 4.69757 1.79131 4.62528 1.80353C3.77857 1.94663 3.00486 2.37648 2.43547 3.02333C1.97218 3.54965 1.66854 4.19192 1.55287 4.87525C1.48516 5.27528 1.49216 5.71071 1.52066 6.19936C1.69143 9.12694 2.92996 11.9003 5.01501 13.9853C7.18212 16.1525 10.0928 17.4051 13.1473 17.4949C13.5053 17.5054 13.8283 17.4977 14.1251 17.4475C14.8084 17.3318 15.4507 17.0282 15.977 16.5649C16.6598 15.9639 17.1008 15.1353 17.218 14.2335L17.2168 14.233L17.2168 14.2329L12.8295 12.3487L12.8294 12.3487L12.8294 12.3487L10.4887 13.9123C10.4881 13.9127 10.4874 13.9132 10.4868 13.9136C10.2713 14.0586 10.0219 14.1451 9.76298 14.1648C9.50325 14.1845 9.24287 14.1363 9.00745 14.0248L9.00328 14.0228C7.25484 13.1817 5.84277 11.7732 4.99715 10.0269L4.99564 10.0238L4.99565 10.0238C4.88489 9.79239 4.83535 9.5364 4.85176 9.28035C4.86817 9.0243 4.94999 8.77673 5.0894 8.56133L5.09234 8.55678L5.09236 8.55679L6.65297 6.18316L6.65155 6.17989L6.65156 6.17988L4.77089 1.79165ZM17.2189 14.2264L17.2189 14.2266L17.2189 14.2264ZM4.37532 0.324505C4.70725 0.268408 5.26379 0.236222 5.73387 0.632745C5.91326 0.784063 6.05538 0.976462 6.14718 1.19512L8.02884 5.58566C8.02911 5.58629 8.02938 5.58692 8.02965 5.58755C8.12707 5.81269 8.16779 6.05829 8.14822 6.30284C8.1286 6.54807 8.04897 6.78472 7.91634 6.99191L7.9114 6.99963L7.91135 6.9996L6.3487 9.37632C7.04612 10.8147 8.20932 11.9751 9.6494 12.6691L9.65244 12.667L9.65244 12.667L11.9944 11.1026C12.2022 10.9623 12.4421 10.8767 12.6918 10.8537C12.9415 10.8307 13.193 10.871 13.423 10.9711C13.4239 10.9715 13.4249 10.9719 13.4258 10.9723L17.8056 12.8533C18.1054 12.9793 18.3558 13.1998 18.5186 13.4813C18.6822 13.7643 18.7483 14.0931 18.7067 14.4173C18.5445 15.6835 17.9264 16.8473 16.9681 17.6908C16.2313 18.3395 15.3321 18.7645 14.3755 18.9264C13.9356 19.0009 13.4989 19.0059 13.1033 18.9942C9.66683 18.8932 6.39236 17.484 3.95435 15.046C1.60865 12.7003 0.215328 9.58029 0.0232104 6.28671C-0.00635157 5.77991 -0.0237603 5.20192 0.0739086 4.62491C0.235831 3.6683 0.660897 2.76911 1.30954 2.03223C2.1067 1.12662 3.18988 0.524849 4.37532 0.324505Z" fill="CurrentColor" />
@@ -884,9 +904,9 @@ export const AddNewPatient = (): JSX.Element => {
 
 
 
-                                            <div className="flex flex-col sm:flex-row items-start sm:items-start w-full   sm:w-[560px]   gap-y-2 ">
+                                            <div className="flex flex-col sm:flex-row items-start sm:items-start w-full   sm:w-[520px]   gap-y-6">
                                                 {/* Label + Icon */}
-                                                <div className="flex items-center gap-2 pt-4 sm:w-[166px] h-6 flex-shrink-0">
+                                                <div className="flex items-center gap-2 pt-4 sm:w-[136px] h-6 flex-shrink-0">
                                                     <div className="   text-text-primary ">        <svg
                                                         className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6"
                                                         viewBox="0 0 22 20"
@@ -898,7 +918,7 @@ export const AddNewPatient = (): JSX.Element => {
                                                             fill="currentColor"
                                                         />
                                                     </svg></div>
-                                                    <span className="min-sm:w-[clamp(88px,10vw,162px)] text-text-primary font-semibold text-[clamp(16px,1.1vw,16px)] leading-6">
+                                                    <span className=" text-text-primary font-semibold text-[clamp(16px,1.1vw,16px)] leading-6">
                                                         {t("Email")}:
                                                     </span>
                                                 </div>
@@ -909,7 +929,7 @@ export const AddNewPatient = (): JSX.Element => {
                                                     placeholder={formFields(t).email.placeholder}
                                                     value={formValues.email}
                                                     onChange={(e) => handleInputChangeV("email", e.target.value)}
-                                                    className=" w-[min(100%,360px)] rounded-[4px]  h-10 sm:h-10 md:h-12  bg-background-secondary placeholder:text-text-secondary items-start  border border-border-light  shadow-shadow-xs px-3"
+                                                    className=" w-[min(100%,360px)] rounded-[4px]  h-10 sm:h-10 md:h-12  bg-background-secondary placeholder:text-[clamp(14px,1.1vw,16px) placeholder:font-normal placeholder:text-text-secondary items-start  border border-border-light  shadow-shadow-xs px-3"
                                                 />
                                             </div>
 
@@ -919,14 +939,14 @@ export const AddNewPatient = (): JSX.Element => {
 
 
 
-                                        <div className="flex flex-col md:flex-row md:items-start lg:items-start   gap-3">
-                                            <div className="flex w-[186px] items-center gap-4 mt-2">
+                                        <div className="flex flex-col md:flex-row md:items-start lg:items-start mt-4  ">
+                                            <div className="flex w-[186px] items-center gap-2 mt-2">
                                                 <div className="  text-text-primary ">     <svg className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M10.5 7.5C10.5 7.20333 10.588 6.91332 10.7528 6.66665C10.9176 6.41997 11.1519 6.22771 11.426 6.11418C11.7001 6.00065 12.0017 5.97094 12.2926 6.02882C12.5836 6.0867 12.8509 6.22956 13.0607 6.43934C13.2704 6.64912 13.4133 6.91639 13.4712 7.20736C13.5291 7.49834 13.4994 7.79994 13.3858 8.07403C13.2723 8.34811 13.08 8.58238 12.8334 8.7472C12.5867 8.91203 12.2967 9 12 9C11.6022 9 11.2206 8.84196 10.9393 8.56066C10.658 8.27936 10.5 7.89782 10.5 7.5ZM6 7.5C6 5.9087 6.63214 4.38258 7.75736 3.25736C8.88258 2.13214 10.4087 1.5 12 1.5C13.5913 1.5 15.1174 2.13214 16.2426 3.25736C17.3679 4.38258 18 5.9087 18 7.5C18 13.1203 12.6019 16.2694 12.375 16.4016C12.2617 16.4663 12.1334 16.5004 12.0028 16.5004C11.8723 16.5004 11.744 16.4663 11.6306 16.4016C11.3981 16.2694 6 13.125 6 7.5ZM7.5 7.5C7.5 11.4563 10.86 14.0822 12 14.8594C13.1391 14.0831 16.5 11.4563 16.5 7.5C16.5 6.30653 16.0259 5.16193 15.182 4.31802C14.3381 3.47411 13.1935 3 12 3C10.8065 3 9.66193 3.47411 8.81802 4.31802C7.97411 5.16193 7.5 6.30653 7.5 7.5ZM19.0097 13.8403C18.8251 13.7793 18.624 13.7924 18.4489 13.8768C18.2738 13.9612 18.1382 14.1102 18.0709 14.2926C18.0035 14.475 18.0096 14.6764 18.0879 14.8543C18.1661 15.0323 18.3104 15.1729 18.4903 15.2466C20.0381 15.8194 21 16.5863 21 17.25C21 18.5025 17.5763 20.25 12 20.25C6.42375 20.25 3 18.5025 3 17.25C3 16.5863 3.96187 15.8194 5.50969 15.2475C5.6896 15.1739 5.8339 15.0332 5.91215 14.8553C5.99039 14.6773 5.99648 14.4759 5.92913 14.2935C5.86178 14.1112 5.72624 13.9621 5.5511 13.8777C5.37596 13.7933 5.17491 13.7803 4.99031 13.8412C2.73937 14.6709 1.5 15.8822 1.5 17.25C1.5 20.1731 6.91031 21.75 12 21.75C17.0897 21.75 22.5 20.1731 22.5 17.25C22.5 15.8822 21.2606 14.6709 19.0097 13.8403Z" fill="currentColor" />
                                                 </svg>
                                                 </div>
 
-                                                <div className="min-w-[160px] text-text-primary font-semibold  text-[clamp(14px,1.1vw,16px)]">
+                                                <div className="min-w-[140px] text-text-primary font-semibold  text-[clamp(14px,1.1vw,16px)]">
                                                     {t("Physical Address")}:
                                                 </div >
                                             </div>
@@ -941,7 +961,7 @@ export const AddNewPatient = (): JSX.Element => {
                                                             updatedAddress[index] = e.target.value;
                                                             handleInputChangeV("address", updatedAddress);
                                                         }}
-                                                        className="w-[min(100%,172px)] h-10 sm:h-10 md:h-12 bg-background-secondary placeholder:text-text-secondary  border border-border-light  shadow-shadow-xs px-3"
+                                                        className="w-[min(100%,172px)] h-10 sm:h-10 md:h-12 bg-background-secondary placeholder:text-text-secondary placeholder:font-normal placeholder:text-[clamp(12px,1.1vw,14px)] font-lato border border-border-light  shadow-shadow-xs px-3"
                                                     />
                                                 ))}
                                             </div>
@@ -971,7 +991,7 @@ export const AddNewPatient = (): JSX.Element => {
                                                     value={formValues.emergencyContact}
                                                     onChange={(e) => handleInputChangeV("emergencyContact", e.target.value)}
                                                     placeholder={formFields(t).emergencyContact.placeholder}
-                                                    className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  bg-background-secondary placeholder:text-text-secondary text-[clamp(14px,1.1vw,16px)] placeholder:text-[clamp(14px,1.1vw,16px)] border border-border-light  shadow-shadow-xs px-3"
+                                                    className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  bg-background-secondary placeholder:text-text-secondary placeholder:font-normal placeholder:text-[clamp(12px,1.1vw,14px)] border border-border-light  shadow-shadow-xs px-3"
                                                 />
                                             </div>
 
@@ -984,7 +1004,7 @@ export const AddNewPatient = (): JSX.Element => {
                                                     value={formValues.relationship}
                                                     onChange={(e) => handleInputChangeV("relationship", e.target.value)}
                                                     placeholder={formFields(t).relationship.placeholder}
-                                                    className=" w-[min(100%,360px)] h-10 sm:h-10 md:h-12 text-[clamp(14px,1.1vw,16px)] placeholder:text-[clamp(14px,1.1vw,16px)] bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold leading-[125%] tracking-[0] text-text-primary"
+                                                    className=" w-[min(100%,360px)] h-10 sm:h-10 md:h-12 text-[clamp(14px,1.1vw,16px)] placeholder:text-text-secondary placeholder:font-normal placeholder:text-[clamp(12px,1.1vw,14px)] bg-background-secondary border border-border-light rounded-[4px] font-normal leading-[125%] tracking-[0] text-text-secondary"
                                                 />
                                             </div>
 
@@ -997,7 +1017,7 @@ export const AddNewPatient = (): JSX.Element => {
                                             <Label className="sm:w-[clamp(88px,10vw,162px)] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                                                 {t("Emergency Number")}
                                             </Label>
-                                            <div className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  text-[clamp(14px,1.1vw,16px)] placeholder:text-[clamp(14px,1.1vw,16px)] !bg-background-secondary !rounded-[4px] overflow-hidden  text-text-primary font-semibold">
+                                            <div className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  text-[clamp(14px,1.1vw,16px)] placeholder:text-text-secondary placeholder:font-normal placeholder:text-[clamp(12px,1.1vw,14px)] !bg-background-secondary !rounded-[4px] overflow-hidden  text-text-primary ">
                                                 <PhoneInputCustom value={formValues.emergencyNumber}
                                                     onChange={(val) =>
                                                         setFormValues((prev) => ({ ...prev, emergencyNumber: val }))}
@@ -1026,39 +1046,39 @@ export const AddNewPatient = (): JSX.Element => {
                             dir={local === 'ar' ? 'rtl' : 'ltr'}
                             onOpenChange={(open) => handleToggle("Personal", open)}
                             content={
-                                <div className="w-full" dir={local === "ar" ? "rtl" : "ltr"}>
+                                <div className="w-full h-full pb-4" dir={local === "ar" ? "rtl" : "ltr"}>
                                     {/* ---------- DESKTOP: keep original layout exactly as before (visible on lg+) ---------- */}
-                                    <div className="hidden lg:flex">
-                                        <div className="grid justify-end">
-                                            {/* --- هذه هي نسخة اللابتوب كما في كودك الأصلي --- */}
-                                            <div className="flex items-center w-full justify-between gap-6">
+                                    <div className="hidden lg:flex w-full">
+                                        <div className="flex flex-col w-full">
+                                            {/* --- نسخة اللابتوب معدلة لتكون ريسبونسف مع max-w --- */}
+                                            <div className="flex items-center w-full justify-between ">
+
                                                 {/* Title Field */}
-                                                <div className="flex-none flex-shrink min-w-0 w-[min(100%,378px)]">
-                                                    <div className="flex items-center gap-x-4">
-                                                        <Label className="w-[150px] font-lato font-semibold text-base leading-[124%] text-text-primary">
+                                                <div className="w-full max-w-[358px]">
+                                                    <div className="flex items-center gap-[24px]">
+                                                        <Label className="font-lato font-semibold text-base leading-[124%] text-text-primary">
                                                             {personalDocumentFields(t).title.label}
                                                         </Label>
                                                         <Input
-                                                            defaultValue="Previous Medical Records"
-                                                            className="w-[min(100%,280px)] h-10 sm:h-10 md:h-12 bg-background-secondary border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] text-text-primary"
+                                                            placeholder="Enter Your Title"
+                                                            className=" w-full max-w-[280px] h-10 sm:h-10 md:h-12 bg-background-secondary placeholder:text-text-secondary placeholder:font-normal placeholder:text-[clamp(12px,1.1vw,14px)]  border border-border-light rounded-[4px] font-lato font-semibold text-[clamp(12px,2vw,14px)] leading-[125%] text-text-primary"
                                                         />
                                                     </div>
                                                 </div>
 
                                                 {/* Upload Field */}
-                                                <div className="flex-none flex-shrink min-w-0 w-[min(100%,378px)]">
+                                                <div className="w-full max-w-[367px]">
                                                     <div className="flex items-center">
-                                                        <Label className="w-[150px] text-text-primary font-semibold text-base">
+                                                        <Label className="text-text-primary w-28 font-semibold text-base">
                                                             {personalDocumentFields(t).uploadFile.label}
                                                         </Label>
                                                         <FileUpload
                                                             amount="Max 2MB"
-                                                            size={2 * 1024 * 1024}
-                                                            width="w-[min(100%,280px)]"
+                                                            width="w-full max-w-[280px] "
                                                             label={
                                                                 <Trans i18nKey="uploadFile.dragLabel">
-                                                                    <span className="text-text-accent" />
-                                                                    <span className="text-text-primary" />
+                                                                    <span className="text-text-accent text-[clamp(10px,2vw,12px)]" />
+                                                                    <span className="text-text-primary text-[clamp(10px,2vw,12px)]" />
                                                                 </Trans>
                                                             }
                                                         />
@@ -1066,15 +1086,18 @@ export const AddNewPatient = (): JSX.Element => {
                                                 </div>
 
                                                 {/* Date Picker */}
-                                                <div className="flex-none flex-shrink min-w-0 w-[min(100%,378px)]">
-                                                    <DatePicker label="Date" width="w-[min(100%,280px)]" />
+                                                <div className="flex-1 max-w-[347px]">
+                                                    <div className="flex items-center gap-[24px]">
+                                                        <DatePicker label="Date" width="w-full max-w-[280px]" labelWidth="w-[80px]" />
+                                                    </div>
                                                 </div>
 
                                                 {/* Minus Icon */}
-                                                <MinusIcon className="w-8 h-8 text-secondary-dark flex-none" />
+                                                <MinusIcon className="w-8 h-8 text-secondary-dark flex-none shrink-0" />
                                             </div>
 
-                                            <div className="flex w-full justify-end text-secondary-dark">
+                                            {/* Plus Icon */}
+                                            <div className="flex w-full justify-end text-secondary-dark mt-2">
                                                 <svg
                                                     width="20"
                                                     height="20"
@@ -1117,7 +1140,7 @@ export const AddNewPatient = (): JSX.Element => {
                                                     </Label>
                                                     <Input
                                                         defaultValue="Previous Medical Records"
-                                                        className="w-[min(100%,360px)] h-10 bg-background-secondary border border-border-light rounded-[6px] font-lato font-semibold text-sm leading-[125%] text-text-primary"
+                                                        className="w-[min(100%,360px)] h-10 bg-background-secondary border border-border-light rounded-[6px]  font-normal text-sm leading-[125%] text-text-primary"
                                                     />
                                                 </div>
 
@@ -1129,7 +1152,7 @@ export const AddNewPatient = (): JSX.Element => {
                                                     </Label>
                                                     <FileUpload
                                                         amount="Max 2MB"
-                                                        size={2 * 1024 * 1024}
+
 
                                                         label={
                                                             <Trans i18nKey="uploadFile.dragLabel">

@@ -4,36 +4,26 @@ import "./i18n";
 import "react-phone-input-2/lib/style.css";
 import { LanguageProvider } from "./lib/LanguageContext";
 import { ThemeProvider } from "./lib/theme-context";
-import { ThemeToggle } from "./components/theme/ThemeSwitcher";
-import { ThemeDemo } from "./components/theme/ThemeDemo";
+
 import { ChoosePlan } from "./screens/M2/choosePlan";
 import { CompanyPlan } from "./screens/M2/CompanyPlan";
 import { BrowserRouter } from "react-router-dom";
-import { ComplexList } from "./screens/M2/ComplexList";
 
-import { ClinicList } from "./screens/M2/ClinicList";
-import PhoneNumberInput from "./screens/CommonComponents/test";
-import { AddNewComplex } from "./screens/M2/AddNewComplex";
-import { AddNewClinic } from "./screens/M2/AddNewClinic";
-import { Suspense } from "react";
-import WeatherCard from "./test";
-import { ElementViewCompany } from "./screens/M2/ElementVeiwCompany/ElementViewCompany";
-import { ElementViewComplex } from "./screens/M2/ElementViewComplex/ElementViewComplex";
-import { ElementViewClinic } from "./screens/M2/ElementViewClinic/ElementViewClinic";
-import { ElementEditCompany } from "./screens/M2/ElementEditCompany/ElementEditCompany";
-import { ElementEditComplex } from "./screens/M2/ElementEditComplax/ElementEditComplax";
-import { EditClinicDetails } from "./screens/M2/EditClinicDetails/EditClinicDetails";
-import { ElementEditComplexPlan2 } from "./screens/M2/ElementEditComplexPlan2/ElementEditComplexPlan2";
-import { SideBar } from "./screens/CommonComponents/SideBarPlan2";
+import { ElementViewCompany } from "./screens/M2/ElementVeiwCompany/sections/LegalDocumentaionsSection/LegalDocumentsSection "; 
+import { ElementViewComplex } from "./screens/M2/ElementViewComplex/sections/MedicalComplexDetailsSection/MedicalComplexDetailsSection"; 
+import { ElementViewClinic } from "./screens/M2/ElementViewClinic/sections/MedicalDetailsSection/MedicalDetailsSection"; 
+import { ElementEditCompany } from "./screens/M2/ElementEditCompany/sections/CompanyDetailsSectio/CompanyDetailsSectio"; 
+import { ElementEditComplex } from "./screens/M2/ElementEditComplax/sections/MedicalDetailsSection/MedicalDetailsSection"; 
+import { EditClinicDetails } from "./screens/M2/EditClinicDetails/sections/CapacitySection/CapacitySection";
+import { ElementEditComplexPlan2 } from "./screens/M2/ElementEditComplexPlan2/EditComplex/EditComplex"; 
+
 
 import { EditUserDetails } from "./screens/M1/EditUserDetails";
-import { NoDataSection } from "./screens/M1/NoDataSection";
-import PhoneInputWithShortCode from "./screens/CommonComponents/test";
-import Example from "./screens/CommonComponents/test";
+
 import { ViewDoctorDetails } from "./screens/Moudule3/ViewDoctorDetails/ViewDoctorDetails";
-import { ElementEditeDetalisCinicP3 } from "./screens/ElementEditDetailsClinicP3/ElementEditDetailsClinicP3";
-import { ElementViewDetalisComplexp2 } from "./screens/ElementViewDetailsComplexp2/ElementViewDetalisComplexp2";
-import { ElementViewDetailsClinicP3 } from "./screens/ElementViewDetailsClinicP3/ElementViewDetailsClinicP3";
+import { ElementEditeDetalisCinicP3 } from "./screens/ElementEditDetailsClinicP3/Sections/contectEditDetails/ContentEditDetails"; 
+import { ElementViewDetalisComplexp2 } from "./screens/ElementViewDetailsComplexp2/ElementViewDetailsContectp2/ElementViewDetailsContent"; 
+import { ElementViewDetailsClinicP3 } from "./screens/ElementViewDetailsClinicP3/ContentViewDetailsClinicP3/ContentViewDetailsClinicP3";
 import { AddNewUser } from "./screens/M1/AddNewUser";
 import { UserListSection } from "./screens/M1/userListSection";
 import { UserDetails } from "./screens/M1/UserDetails";
@@ -41,15 +31,15 @@ import { ViewStaffDetails } from "./screens/Moudule3/ViewStaffDetails/ViewStaffD
 import { ViewDoctorList } from "./screens/Moudule3/ViewDoctorList/ViewDoctorList";
 import { ViewListOfSpicialities } from "./screens/Moudule3/ViewListOfSpecialities/ViewListOfSpecialities";
 import { ViewStaffMembersList } from "./screens/Moudule3/ViewStaffMembersList/ViewStaffMembersList";
-import AddNewSpecialities from "./screens/CommonComponents/AddNewSpecialities";
+
 import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
 import { StaffMemberDetails } from "./screens/Moudule3/SrtaffMemberDetails/StaffMemberDetails";
 import { EditDoctorDetails } from "./screens/Moudule3/EditDoctorsDetails/EditDoctorsDetails";
-import { Edit } from "lucide-react";
+
 import { ViewSpecialityDetails } from "./screens/Moudule3/ViewSpecialityDetails/ViewSpecialityDetails";
 import { ElementEditSpicialityDetails } from "./screens/Moudule3/EditSpecialityDetails/ElementEditSpicialityDetail";
 import { ViewServiceDetails } from "./screens/M4/ViewServiceDetails/ViewServiceDetails";
-import { ElementViewComplexPlan2 } from "./screens/ElementViewDetailsComplexp2/ElementViewDetailsContectp2/ElementViewDetailsContent";
+
 import { ViewListOfPatients } from "./screens/M5/ViewListOfPatients/ViewListOfPatients";
 import { AddNewPatient } from "./screens/M5/AddNewPatient/AddNewPatient";
 import { EditPatientDetails } from "./screens/M5/EditPaitentDetails/EditPatientDetails";
@@ -62,8 +52,7 @@ import { ClinicsPlane } from "./screens/M2/ClinicsPlan";
 import { AppProvider } from "./Context/ContextchooseSidbar";
 import { Appointments } from "./screens/M6/AppointmentsHome";
 import { useState } from "react";
-import { AddCardInAll } from "./screens/M6/AddCardInAll";
-import { AddCard } from "./screens/M6/AddCard";
+
 import { MoreDetails } from "./screens/M6/MoreDetails";
 import { PatientDetails } from "./screens/M5/PatientDetails";
 import LoginPage from "./screens/M2/LogoIn";
@@ -81,12 +70,9 @@ function Layout() {
 }
 function MainApp() {
   const [showLeftSidebar, setShowLeftSidebar] = useState(true);
-  const [addPatient, setAddPatient] = useState(false);
 
-  const handleAddClick = () => {
-    console.log("Button clicked!");
-    setAddPatient(!addPatient); // مثال لتغيير الحالة
-  };
+
+ 
   return (
     <BrowserRouter>
 
@@ -109,35 +95,8 @@ function MainApp() {
 
 
 
-                {/*  */}
-                {/* <ChoosePlan /> */}
-                {/* <SideBarPlan1 /> */}
-
-
-                {/* <SideBarPlan3 local="test"/> */}
-                {/* <NoDataSection/> */}
-                {/* <ComplexList/> */}
-                {/* <ClinicList/> */}
-                {/* <AddNewComplex /> */}
-                {/* <AddNewClinic/> */}
-                {/* <WeatherCard/> */}
-                {/* <ViewSpecialityDetails/> */}
-
-
-
-                {/* <ElementEditComplex/> */}
-
-
-
-
-                {/* <ElementEditComplexPlan2/> */}
-                {/* <ElementViewDetalisComplexp2/> */}
-
-                {/* <ElementEditeDetalisCinicP3/> */}
-                {/* <ElementViewDetailsClinicP3/> */}
-
-                {/* <Example/> */}
-                {/*M3*/}
+          
+          
 
 
 
@@ -150,11 +109,14 @@ function MainApp() {
                     <Route path="ViewUserDetails" element={<UserDetails />} />
                     <Route path="AddNewUser" element={<AddNewUser />} />
                     <Route path="EditUserDetails" element={<EditUserDetails />} />
-
+  {/* M2.BackIcon*/ }
 
                     {/* M2 */}
                     
              <Route path="" element={<LoginPage />} />
+             
+
+           
                     <Route path="chooseplan" element={<ChoosePlan />} />
                     <Route path="CompanyPlane" element={<CompanyPlan />} />
                     <Route path="ComplexPlane" element={<ComplexPlane />} />
@@ -166,6 +128,8 @@ function MainApp() {
                     <Route path="ElementViewComplex" element={<ElementViewComplex />} />
                     <Route path="ElementViewComplex/EditComplexDetails" element={
                       <ElementEditComplex />}
+
+
                     />
 
 
@@ -175,6 +139,10 @@ function MainApp() {
                     <Route path="ElementViewCopmlexP2/ElementEditCopmlexP2" element={<ElementEditComplexPlan2 />} />
                     <Route path="ElementViewClinicP3" element={<ElementViewDetailsClinicP3 />} />
                     <Route path="ElementViewClinicP3/ElementEditClincp3" element={<ElementEditeDetalisCinicP3 />} />
+                    {/* M2.BackIcon*/ }
+                    <Route path="Home" element={<LoginPage />}/>
+    <Route path="ChossPlan" element={<ChoosePlan/>}/>
+                    {/*  */}
                     {/* M3  */}
                     <Route path="ViewStaffList" element={<ViewStaffMembersList />}></Route>
                     <Route path="ViewStaffList/View Staff Details" element={<ViewStaffDetails />}></Route>
@@ -192,7 +160,7 @@ function MainApp() {
                     <Route path="AddNewService" element={<AddNewService />}></Route>
                     <Route path="EditServiceDetials" element={<EditServiceDetails />}></Route>
                     <Route path="ViewServiceDetails" element={<ViewServiceDetails />}></Route>
-                    ServicesList
+                  
                     {/* M5  */}
                     <Route path="ViewPatientDetails" element={<ViewListOfPatients />}></Route>
                     <Route path="AddNewPatient" element={<AddNewPatient />}></Route>

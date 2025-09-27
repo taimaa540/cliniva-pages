@@ -388,7 +388,7 @@ export const ViewStaffMembersList = (): JSX.Element => {
                     className="overflow-y-auto rounded-lg"
                     style={{ height: "calc(100vh - 78px - 200px)" }}
                   >
-                    <table className="table-auto w-full min-w-[800px] text-center border-collapse">
+                    <table className="table-auto w-full min-w-[700px] text-center border-collapse">
                       <thead className="sticky top-0 z-10 bg-background-primary border-b border-border-light">
                         <tr className="h-[56px]">
                           <td className="font-lato font-semibold text-[clamp(12px,2vw,12px)]  text-text-primary">
@@ -406,7 +406,7 @@ export const ViewStaffMembersList = (): JSX.Element => {
                           <td className="font-lato font-semibold text-[clamp(12px,2vw,12px)]  text-text-primary">
                             {t("Assigned Complex")}
                           </td>
-                          <td className="font-lato font-semibold text-[clamp(12px,2vw,12px)]  text-text-primary">
+                          <td className="font-lato w-[80px] font-semibold text-[clamp(12px,2vw,12px)]  text-text-primary">
                             {t("Status")}
                           </td>
                           <td className="font-lato font-semibold text-[clamp(14px,2vw,16px)]  text-text-primary">

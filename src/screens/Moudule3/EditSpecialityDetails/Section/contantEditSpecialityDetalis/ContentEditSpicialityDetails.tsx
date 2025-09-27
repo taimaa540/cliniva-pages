@@ -190,9 +190,13 @@ export const ContantEditSpaicialityDetails = ({ local, dark, handelDarkClick, ha
                 <h1 className="font-bold text-[14px] text-on-surface-primary">
                   {t("Specialties")}
                 </h1>
-                <p className="text-[14px] text-on-surface-primary">
+                                      <Link to='/ViewSpecialtiesDetails'><div className="flex gap-1 items-center ">
+                                    
+                                                    <ArrowLeftIcon className="relative w-4 h-4 pt-1" />
+                                                 
+                            <p className="text-[14px] md:text-base text-on-surface-primary">
                   {t("Edit Specialty details")}
-                </p>
+                </p></div>   </Link>
               </div>
             </div>
 
@@ -220,9 +224,14 @@ export const ContantEditSpaicialityDetails = ({ local, dark, handelDarkClick, ha
                 <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
                   {t("Specialties")}
                 </h1>
-                <p className="text-[14px] md:text-base text-on-surface-primary">
+                                 <Link to='/ViewSpecialtiesDetails'><div className="flex gap-2 items-center ">
+                                    
+                                                    <ArrowLeftIcon className="relative w-5 h-5 pt-1" />
+                                                 
+                            <p className="text-[14px] md:text-base text-on-surface-primary">
                   {t("Edit Specialty details")}
-                </p>
+                </p></div>   </Link>
+        
               </div>
             </div>
 
@@ -281,16 +290,16 @@ export const ContantEditSpaicialityDetails = ({ local, dark, handelDarkClick, ha
 
           <CardContent className="p-0 w-full overflow-y-auto gap-5 h-auto">
 
-            <div className="flex gap-[14px]  justify-end p-3 items-end text-end pb-2 sm:pb-3 md:pb-3 lg:pb-4 " dir={local === 'ar' ? 'rtl' : 'ltr'} >
-            <Link to="/ViewSpecialtiesDetails ">
-              <button className="     w-[100px] h-[40px]       /* الموبايل الافتراضي */
+            <div className="flex gap-[14px]   justify-end p-3 items-end text-end pb-2 sm:pb-3 md:pb-3 lg:pb-4 " dir={local === 'ar' ? 'rtl' : 'ltr'} >
+              <Link to="/ViewSpecialtiesDetails ">
+                <button className="     w-[100px] h-[40px]       /* الموبايل الافتراضي */
    
     md:w-[180px] md:h-[38px]
     lg:w-[200px] lg:h-[40px] 
  
       rounded-[20px] border border-border-light bg-surface-primary  font-lato font-medium text-sm leading-[100%] tracking-[0] text-text-primary">
-                {t("Cancel")}
-              </button> </Link>
+                  {t("Cancel")}
+                </button> </Link>
               <button className="  w-[100px] h-[40px]       /* الموبايل الافتراضي */
 
     md:w-[160px] md:h-[36px]
@@ -303,29 +312,29 @@ export const ContantEditSpaicialityDetails = ({ local, dark, handelDarkClick, ha
 
             <Card className=" bg-surface-default rounded-2xl mt-5  w-1159 h-254 mb-6" dir={local === 'ar' ? 'rtl' : 'ltr'}>
               <CardContent className="p-6">
-                <h2 className=" text-primary-default text-[16px] font-bold mb-6">
+                <h2 className=" text-primary-default font-lato  text-[16px] font-bold mb-6">
                   {t("Specialty Details")}
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {/* Specialty Name */}
                   <div className="flex flex-col md:flex-row gap-2 md:items-start">
-                    <label className="text-text-primary font-semibold text-[16px] w-[140px] md:mb-0 mb-1">
+                    <label className="text-text-primary font-lato  font-semibold text-[16px] w-[140px] md:mb-0 mb-1">
                       {t("Specialty Name")}
                     </label>
                     <input
-                      className="w-[min(100%,360px)] h-9 sm:h-10 md:h-12 text-[clamp(14px,1.1vw,16px)] border-light border p-3 bg-background-secondary text-text-primary font-sans"
+                      className="w-[min(100%,360px)] font-lato  h-9 sm:h-10 md:h-12 text-[clamp(14px,1.1vw,16px)] border-light border p-3 bg-background-secondary text-text-primary font-lato"
                       placeholder={details[0].SpecialtyName}
                     />
                   </div>
 
                   {/* Description */}
                   <div className="flex flex-col md:flex-row gap-2 md:items-start">
-                    <label className="text-text-primary font-semibold text-[16px] w-[140px] md:mb-0 mb-1">
+                    <label className="text-text-primary font-lato  font-semibold text-[16px] w-[140px] md:mb-0 mb-1">
                       {t("Description")}
                     </label>
                     <textarea
-                      className="w-[min(100%,360px)] h-[170px] text-[clamp(14px,1.1vw,16px)] p-3 border-light border bg-background-secondary text-text-primary font-sans"
+                      className="w-[min(100%,360px)] h-[170px] font-lato  text-[clamp(14px,1.1vw,16px)] p-3 border-light border bg-background-secondary text-text-primary font-lato"
                       placeholder={details[0].Description}
                     />
                   </div>
@@ -338,61 +347,61 @@ export const ContantEditSpaicialityDetails = ({ local, dark, handelDarkClick, ha
             <Card className="w-full bg-surface-default rounded-2xl mb-6" dir={local === 'ar' ? 'rtl' : 'ltr'}>
               <CardContent className="p-4">
                 <div className="mb-6">
-                  <h3 className=" text-primary-default text-[16px] font-bold">
+                  <h3 className=" text-primary-default font-lato  text-[16px] font-bold">
                     {t("Assigned Doctors List")}
                   </h3>
                 </div>
-<div className="w-full overflow-x-auto">
-  {/* سكرول أفقي لو الجدول كبير */}
-  <div
-    className="overflow-y-auto rounded-lg"
-    style={{ height: "calc(60vh - 78px-300px)" }} // هنا تحدد أقصر طول يبدأ منه السكرول العمودي
-  >
-    <table className="table-auto w-full min-w-[800px] border-collapse">
-      <thead className="sticky top-0 z-10 bg-background-primary border-b border-border-light">
-        <tr>
-          <th className="text-center text-text-primary text-[16px] font-semibold w-[5%] min-w-[50px]">No</th>
-          <th className="text-center text-text-primary text-[16px] font-semibold w-[16%] min-w-[150px]">User-ID</th>
-          <th className="text-center text-text-primary text-[16px] font-semibold w-[16%] min-w-[150px]">Name</th>
-          <th className="text-center text-text-primary text-[16px] font-semibold w-[16%] min-w-[150px]">Assigned Clinics</th>
-          <th className="text-center text-text-primary text-[16px] font-semibold min-w-[200px]">
-            Clinic Scheduled Appointments Count
-          </th>
-          <th className="text-center text-text-primary text-[16px] font-semibold w-[16%] min-w-[120px]">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {doctorsData.map((doctor, index) => (
-          <tr key={index} className="bg-surface-default border-b h-[54px]">
-            <td className="text-center text-text-primary text-[14px] font-semibold">{doctor.no}</td>
-            <td className="text-center text-text-primary text-[14px] font-semibold">{doctor.userId}</td>
-            <td className="text-center text-text-primary text-[14px] font-semibold">
-              <div className="flex items-center gap-2 justify-center text-text-primary text-[14px] font-semibold">
-                <Avatar
-                  src={doctor.avatar ?? undefined}
-                  alt={doctor.name}
-                  sx={{
-                    width: 30,
-                    height: 30,
-                    bgcolor: !doctor.avatar ? "var(--theme-text-accent)" : "transparent",
-                  }}
-                />
-                <span className="min-w-[150px]">{doctor.name}</span>
-              </div>
-            </td>
-            <td className="text-center text-text-primary text-[14px] font-semibold">{doctor.assignedClinic}</td>
-            <td className="text-center text-text-primary text-[14px] font-semibold">{doctor.appointmentDate}</td>
-            <td className="text-center text-text-primary text-[14px] font-semibold">
-              <div className="flex items-center justify-center gap-2">
-                <Toggle />
-              </div>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-</div>
+                <div className="w-full overflow-x-auto">
+                  {/* سكرول أفقي لو الجدول كبير */}
+                  <div
+                    className="overflow-y-auto rounded-lg"
+                    style={{ height: "calc(60vh - 78px-300px)" }} // هنا تحدد أقصر طول يبدأ منه السكرول العمودي
+                  >
+                    <table className="table-auto w-full min-w-[800px] border-collapse">
+                      <thead className="sticky top-0 z-10 bg-background-primary border-b border-border-light">
+                        <tr>
+                          <th className="text-center text-text-primary font-lato text-[16px] font-semibold w-[5%] min-w-[50px]">     {t("No")}</th>
+                          <th className="text-center text-text-primary  font-lato text-[16px] font-semibold w-[16%] min-w-[150px]"> {t("User-ID")}</th>
+                          <th className="text-center text-text-primary   font-lato text-[16px] font-semibold w-[16%] min-w-[150px]"> {t("Name")}</th>
+                          <th className="text-center text-text-primary  font-lato text-[16px] font-semibold w-[16%] min-w-[150px]">{t("Assigned Clinics")} </th>
+                          <th className="text-center text-text-primary   font-lato text-[16px] font-semibold min-w-[200px]">
+                         {t("Clinic Scheduled Appointments Count")}
+                          </th>
+                          <th className="text-center text-text-primary  font-lato text-[16px] font-semibold w-[16%] min-w-[120px]"> {t("Status")}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {doctorsData.map((doctor, index) => (
+                          <tr key={index} className="bg-surface-default  font-lato border-b h-[54px]">
+                            <td className="text-center text-text-primary   font-lato text-[14px] font-semibold">{doctor.no}</td>
+                            <td className="text-center text-text-primary  font-lato text-[14px] font-semibold">{doctor.userId}</td>
+                            <td className="text-center text-text-primary   font-lato text-[14px] font-semibold">
+                              <div className="flex items-center gap-2 justify-center text-text-primary text-[14px] font-semibold">
+                                <Avatar
+                                  src={doctor.avatar ?? undefined}
+                                  alt={doctor.name}
+                                  sx={{
+                                    width: 30,
+                                    height: 30,
+                                    bgcolor: !doctor.avatar ? "var(--theme-text-accent)" : "transparent",
+                                  }}
+                                />
+                                <span className="min-w-[150px]">{doctor.name}</span>
+                              </div>
+                            </td>
+                            <td className="text-center text-text-primary  font-lato text-[14px] font-semibold">{doctor.assignedClinic}</td>
+                            <td className="text-center text-text-primary  font-lato text-[14px] font-semibold">{doctor.appointmentDate}</td>
+                            <td className="text-center text-text-primary   font-lato text-[14px] font-semibold">
+                              <div className="flex items-center justify-center gap-2">
+                                <Toggle />
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
 
 
 
