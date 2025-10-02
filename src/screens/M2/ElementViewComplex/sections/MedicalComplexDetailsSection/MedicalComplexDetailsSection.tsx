@@ -55,7 +55,7 @@ import { Badge } from "../../../../../components/ui/badge";
 import ReusableCollapsible from "../../../../../components/ui/Collapsibles";
 import { useState } from "react";
 import TimeRangePicker from '../../../../CommonComponents/timeRangePicker';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SideBar } from "../../../../CommonComponents/SideBarPlan2";
 import {
 
@@ -232,7 +232,7 @@ const departments = [
 
 
 import { useLanguage } from "../../../../../lib/LanguageContext";
-
+import { Header } from "../../../../CommonComponents/Header";
 export const ElementViewComplex = (): JSX.Element => {
 
 
@@ -262,13 +262,8 @@ export const ElementViewComplex = (): JSX.Element => {
   };
 
 
-  const toggleDay = (index: number) => {
-    setActiveDays((prev) => prev.map((val, i) => (i === index ? !val : val)));
-  };
-  const handleDateChange = (date: Date) => {
 
-    // يمكنك هنا إجراء أي عمل تريده مع التاريخ المحدد
-  };
+const navigate=useNavigate();
 
   const [isOpenAppointment, setIsOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
@@ -298,120 +293,9 @@ export const ElementViewComplex = (): JSX.Element => {
       } `}
       >
 
+<Header MainTitle="Medical Facilities" SubTitle="View Complex Details" onOpenSidebar={onOpenSidebar}  />
 
-        <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-          {/* نسخة الموبايل */}
-          <div className="flex w-full items-center justify-between md:hidden">
-            {/* Left Side -> العنوان */}
-            <div className="flex items-center gap-2">
-              <button
-                className="md:hidden p-2 rounded-lg bg-secondary-light"
-                onClick={onOpenSidebar}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-
-              <div className="flex flex-col">
-                <h1 className="font-bold text-sm text-on-surface-primary">
-                  {t("Medical Facilities")}
-                </h1>
-                <p className="text-xs text-on-surface-primary">
-                  {t("View Complex Details")}
-                </p>
-              </div>
-            </div>
-
-            {/* Right Side -> الإشعار */}
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-              >
-                <BellIcon className="w-5 h-5" />
-              </Button>
-              <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-            </div>
-          </div>
-
-
-
-
-          {/* نسخة الـ Desktop/Laptop */}
-          <div className="hidden md:flex w-full items-center justify-between">
-            {/* Left Side */}
-            <div className="flex items-center gap-4">
-              <div className="flex flex-col">
-                <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
-                  {t("Medical Facilities")}
-                </h1>
-                <p className="text-sm md:text-base text-on-surface-primary">
-                  {t("View Complex Details")}
-                </p>
-              </div>
-            </div>
-
-            {/* Right Side */}
-            <div className="inline-flex gap-3 items-center px-4">
-              {/* Notification */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                >
-                  <BellIcon className="w-5 h-5" />
-                </Button>
-                <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-              </div>
-
-              {/* Language Switch */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
-                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-                  onClick={handleLanguageClick}
-                >
-                  <TranslateIcon className="w-5 h-5" />
-                </Button>
-              </div>
-
-              {/* Theme Toggle */}
-              <div className="relative">
-                <ThemeToggle />
-              </div>
-
-              {/* User Info */}
-              <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-                <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-                <div className="flex-col items-start gap-1 inline-flex">
-                  <div className="text-base font-bold text-on-surface-primary">
-                    Anahera Jones
-                  </div>
-                  <div className="text-sm text-on-surface-tertiary">
-                    {t("Admin")}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-
+  
 
 
 
@@ -426,8 +310,11 @@ export const ElementViewComplex = (): JSX.Element => {
 
 
             <div className="flex justify-end" dir={local === 'ar' ? 'rtl' : 'ltr'}>
-              <Link to="/ElementViewComplex/EditComplexDetails">
-                <Button
+      
+                <Button onClick={
+                    (e)=>{
+                      navigate('/ElementViewComplex/EditComplexDetails',{state:{from:'/ElementViewComplex'}})
+                    } }
                   className="
              flex items-center justify-center gap-2
              w-[140px] sm:w-[150px] md:w-[180px] lg:w-[200px]
@@ -446,7 +333,7 @@ export const ElementViewComplex = (): JSX.Element => {
                   />
                       {t("Edit")}
                 </Button>
-              </Link>
+       
 
             </div>
 

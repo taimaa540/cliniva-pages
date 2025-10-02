@@ -11,13 +11,16 @@ import {
   TableHeader,
   TableRow,
 } from "../../components/ui/table";
+
+import { Activate } from "../CommonComponents/Activate";
+import { Deactivate } from "../CommonComponents/Deactivate";
 import { SideBar } from "../CommonComponents/SideBarPlan2";
 import { ThemeToggle } from "../../components/theme/ThemeSwitcher";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { useLanguage } from "../../lib/LanguageContext";
 import SwitchWithLabel from "../CommonComponents/SwitchLabel";
-
+import Toggle from "../../components/ui/SwitchToggel";
 const personalInfoData = [
   { label: "Gender", value: "Male" },
   { label: "Date of Birth", value: "Nov 20, 1994" },
@@ -63,11 +66,53 @@ const documentsData = [
   { title: "CV / Resume", date: " May 30, 2028", size: "1.0 MB" },
   { title: "Work Permit", date: " Mar 01, 2027", size: "0.7 MB" },
   { title: "Certifications", date: " Mar 01, 2028", size: "0.4 MB" },
-];
+];  import { useNavigate } from "react-router-dom";
 import { ArrowLeftIcon } from "lucide-react";
+import { Header } from "../CommonComponents/Header";
 export const UserDetails = (): JSX.Element => {
   const { local, handleLanguageClick } = useLanguage();
   const { t, i18n } = useTranslation();
+   const [checked, setChecked] = useState<boolean>(true); // الحالة الحالية
+  const [showDialog, setShowDialog] = useState<boolean>(false);
+  const [pendingNext, setPendingNext] = useState<boolean | null>(null);
+  const [actionType, setActionType] = useState<"activate" | "deactivate" | null>(null);
+const navigate=useNavigate();
+  // عندما يضغط المستخدم على الـ Toggle
+  function handleToggle(next: boolean) {
+    // إذا كان من Active -> Inactive
+    if (checked && !next) {
+      setPendingNext(next);
+      setActionType("deactivate");
+      setShowDialog(true);
+      return;
+    }
+
+    // إذا كان من Inactive -> Active
+    if (!checked && next) {
+      setPendingNext(next);
+      setActionType("activate");
+      setShowDialog(true);
+      return;
+    }
+
+    // غير هيك غيّر مباشرة
+    setChecked(next);
+  }
+
+  function confirmDeactivate() {
+    setChecked(pendingNext ?? false);
+    setPendingNext(null);
+    setActionType(null);
+    setShowDialog(false);
+  }
+
+  function cancelDeactivate() {
+    setPendingNext(null);
+    setActionType(null);
+    setShowDialog(false);
+  }
+
+
   useEffect(() => {
     i18n.changeLanguage(local);
   }, []);
@@ -75,6 +120,7 @@ export const UserDetails = (): JSX.Element => {
   const [showSidebar, setShowSidebar] = useState(false);
   const onOpenSidebar = () => setShowSidebar(true);
   const onCloseSidebar = () => setShowSidebar(false);
+
   return (
     <div className="flex h-screen  w-screen">
       {showSidebar && (
@@ -96,125 +142,11 @@ export const UserDetails = (): JSX.Element => {
 
       <div className="flex flex-col w-full overflow-hidden min-h-screen items-start gap-4 py-4 pl-0 pr-5">
 
-        <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-          {/* نسخة الموبايل */}
-          <div className="flex w-full items-center justify-between md:hidden">
-            {/* Left Side -> العنوان */}
-            <div className="flex items-center gap-2">
-              <button
-                className="md:hidden p-2 rounded-lg bg-secondary-light"
-                onClick={onOpenSidebar}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-
-              <div className="flex flex-col">
-                <h1 className="font-bold text-sm text-on-surface-primary">
-                  {t("Users Management")}
-                </h1>
-                <Link to='/UserDesktop'>
-                <div className="flex items-center pag-2">
-                                    <ArrowLeftIcon className="relative w-4 h-4 top-1" />
-                               
-                <p className="text-xs text-on-surface-primary">
-                  {t("User Details")}
-                </p>   </div>  </Link>
-              </div>
-            </div>
-
-            {/* Right Side -> الإشعار */}
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-              >
-                <BellIcon className="w-5 h-5" />
-              </Button>
-              <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-            </div>
-          </div>
+<Header MainTitle="Users Management" SubTitle="User Details" onOpenSidebar={onOpenSidebar} backTo="/UserDesktop" />
 
 
 
 
-          {/* نسخة الـ Desktop/Laptop */}
-          <div className="hidden md:flex w-full items-center justify-between">
-            {/* Left Side */}
-            <div className="flex items-center gap-4">
-              <div className="flex flex-col">
-                <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
-                  {t("Users Management")}
-                </h1>  <Link to='/UserDesktop'><div className="flex gap-2 items-center ">
-                    
-                                    <ArrowLeftIcon className="relative w-5 h-5 pt-1" />
-                                 
-                <p className="text-sm md:text-base text-on-surface-primary">
-                  {t("User Details")}
-                </p></div>   </Link>
-              </div>
-            </div>
-
-            {/* Right Side */}
-            <div className="inline-flex gap-3 items-center px-4">
-              {/* Notification */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                >
-                  <BellIcon className="w-5 h-5" />
-                </Button>
-                <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-              </div>
-
-              {/* Language Switch */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
-                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-                  onClick={handleLanguageClick}
-                >
-                  <TranslateIcon className="w-5 h-5" />
-                </Button>
-              </div>
-
-              {/* Theme Toggle */}
-              <div className="relative">
-                <ThemeToggle />
-              </div>
-
-              {/* User Info */}
-              <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-                <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-                <div className="flex-col items-start gap-1 inline-flex">
-                  <div className="text-base font-bold text-on-surface-primary">
-                    Anahera Jones
-                  </div>
-                  <div className="text-sm text-on-surface-tertiary">
-                    {t("Admin")}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
 
         <Card className="flex flex-col h-full items-start gap-5 p-[20px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-tertiary">
           <CardContent className="w-full overflow-y-auto scroll-x-hidden pr-[20px] ">
@@ -237,8 +169,12 @@ export const UserDetails = (): JSX.Element => {
                   </svg>
                   {t('Delete')}
                 </button>
-                <Link to='/EditUserDetails'>
-                  <button className="flex items-center justify-center gap-[6px] w-[200px] h-[40px] rounded-[20px] bg-secondary-dark font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
+           
+                  <button onClick={
+                    (e)=>{
+                      navigate('/EditUserDetails',{state:{from:'/ViewUserDetails'}})
+                    }                  }
+                  className="flex items-center justify-center gap-[6px] w-[200px] h-[40px] rounded-[20px] bg-secondary-dark font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
                     <svg
                       width="21"
                       height="20"
@@ -254,7 +190,7 @@ export const UserDetails = (): JSX.Element => {
                       />
                     </svg>
                     {t('Edit')}
-                  </button></Link>
+                  </button>
               </div>
               <div className="flex gap-[20px] w-full">
                 <aside
@@ -514,7 +450,30 @@ export const UserDetails = (): JSX.Element => {
                           <h4 className="font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                             {t('Account Status')}
                           </h4>
-                          <SwitchWithLabel />
+                         <Toggle checked={checked} onChange={handleToggle} />
+
+                              {showDialog && actionType === "deactivate" && (
+                                <Deactivate
+                                  open={showDialog}
+                                  onConfirm={confirmDeactivate}
+                                  onCancel={cancelDeactivate}
+                                >
+                                    <p>Are you sure you want to change this user’s status from Active to Inactive?</p>
+                                  <p>Inactive users will no longer be able to access the system until reactivated.</p>
+                                </Deactivate>
+                              )}
+
+                              {showDialog && actionType === "activate" && (
+                                <Activate
+                                  open={showDialog}
+                                  onConfirm={confirmDeactivate}
+                                  onCancel={cancelDeactivate}
+                                >
+                                  <p>Activate the patient will be able to book appointments, receive notifications, and access system services.</p>
+
+                                </Activate>
+
+                              )}
                           <h4 className="font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                             {t('Account Creation Date')}
                           </h4>
@@ -534,6 +493,7 @@ export const UserDetails = (): JSX.Element => {
                             {t('May')} 22, 2025 | 23:49
                           </h5>
                         </div>
+                        
                       </div>
                     </CardContent>
                   </Card>

@@ -85,10 +85,14 @@ const doctorsData = [
     avatar: null,
   },
 ];
+import { useLocation } from "react-router-dom";
+import { Deactivate } from "../../../../CommonComponents/Deactivate";
+import { Activate } from "../../../../CommonComponents/Activate";
 import Avatar from "@mui/material/Avatar";
 import { ThemeToggle } from "../../../../../components/theme/ThemeSwitcher";
 import { useState } from "react";
 import { SideBar } from "../../../../CommonComponents/SideBarPlan2";
+import { Header } from "../../../../CommonComponents/Header";
 import {
 
   PaginationLink,
@@ -109,13 +113,7 @@ const SpecialtyDetails = (t: (key: string) => string): SpecialtyDetail[] => [
 ];
 
 
-const addressFields = [
-  { label: "Building Number", value: "Building Number" },
-  { label: "Street Name", value: "Street Name" },
-  { label: "Region", value: "Region" },
-  { label: "Country", value: "Country" },
-  { label: "Nation", value: "Nation" },
-];
+
 
 interface NoDataSectionProps {
   dark: boolean;
@@ -124,12 +122,55 @@ interface NoDataSectionProps {
   handleLanguageClick: () => void;
 }
 
-export const ContantEditSpaicialityDetails = ({ local, dark, handelDarkClick, handleLanguageClick }: NoDataSectionProps): JSX.Element => {
+export const ContantEditSpaicialityDetails = ({ local,  handleLanguageClick }: NoDataSectionProps): JSX.Element => {
   const { t, i18n } = useTranslation()
 
   useEffect(() => {
     i18n.changeLanguage(local);
   }, []);
+const [checked, setChecked] = useState<boolean>(true); // الحالة الحالية
+const [showDialog, setShowDialog] = useState<boolean>(false);
+const [pendingNext, setPendingNext] = useState<boolean | null>(null);
+const [actionType, setActionType] = useState<"activate" | "deactivate" | null>(null);
+    const location = useLocation();
+      const backTo = location.state?.from || "/ViewSpecialtiesList";
+
+  // عندما يضغط المستخدم على الـ Toggle
+function handleToggle(next: boolean) {
+  // إذا كان من Active -> Inactive
+  if (checked && !next) {
+    setPendingNext(next);
+    setActionType("deactivate");
+    setShowDialog(true);
+    return;
+  }
+
+  // إذا كان من Inactive -> Active
+  if (!checked && next) {
+    setPendingNext(next);
+    setActionType("activate");
+    setShowDialog(true);
+    return;
+  }
+
+  // غير هيك غيّر مباشرة
+  setChecked(next);
+}
+
+function confirmDeactivate() {
+  setChecked(pendingNext ?? false);
+  setPendingNext(null);
+  setActionType(null);
+  setShowDialog(false);
+}
+
+function cancelDeactivate() {
+  setPendingNext(null);
+  setActionType(null);
+  setShowDialog(false);
+}
+
+
   const details = SpecialtyDetails(t);
 
   const [isOpenAppointment, setIsOpen] = useState(false);
@@ -160,128 +201,9 @@ export const ContantEditSpaicialityDetails = ({ local, dark, handelDarkClick, ha
       } `}
       >
 
+                    <Header MainTitle="Specialties" SubTitle="Edit Specialty details" onOpenSidebar={onOpenSidebar} backTo={backTo} />
 
-        <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-          {/* نسخة الموبايل */}
-          <div className="flex w-full items-center justify-between md:hidden">
-            {/* Left Side -> العنوان */}
-            <div className="flex items-center gap-2">
-              <button
-                className="md:hidden p-2 rounded-lg bg-secondary-light"
-                onClick={onOpenSidebar}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-
-              <div className="flex flex-col">
-                <h1 className="font-bold text-[14px] text-on-surface-primary">
-                  {t("Specialties")}
-                </h1>
-                                      <Link to='/ViewSpecialtiesDetails'><div className="flex gap-1 items-center ">
-                                    
-                                                    <ArrowLeftIcon className="relative w-4 h-4 pt-1" />
-                                                 
-                            <p className="text-[14px] md:text-base text-on-surface-primary">
-                  {t("Edit Specialty details")}
-                </p></div>   </Link>
-              </div>
-            </div>
-
-            {/* Right Side -> الإشعار */}
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-              >
-                <BellIcon className="w-5 h-5" />
-              </Button>
-              <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-            </div>
-          </div>
-
-
-
-
-          {/* نسخة الـ Desktop/Laptop */}
-          <div className="hidden md:flex w-full items-center justify-between">
-            {/* Left Side */}
-            <div className="flex items-center gap-4">
-              <div className="flex flex-col">
-                <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
-                  {t("Specialties")}
-                </h1>
-                                 <Link to='/ViewSpecialtiesDetails'><div className="flex gap-2 items-center ">
-                                    
-                                                    <ArrowLeftIcon className="relative w-5 h-5 pt-1" />
-                                                 
-                            <p className="text-[14px] md:text-base text-on-surface-primary">
-                  {t("Edit Specialty details")}
-                </p></div>   </Link>
-        
-              </div>
-            </div>
-
-            {/* Right Side */}
-            <div className="inline-flex gap-3 items-center px-4">
-              {/* Notification */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                >
-                  <BellIcon className="w-5 h-5" />
-                </Button>
-                <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-              </div>
-
-              {/* Language Switch */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
-                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-                  onClick={handleLanguageClick}
-                >
-                  <TranslateIcon className="w-5 h-5" />
-                </Button>
-              </div>
-
-              {/* Theme Toggle */}
-              <div className="relative">
-                <ThemeToggle />
-              </div>
-
-              {/* User Info */}
-              <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-                <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-                <div className="flex-col items-start gap-1 inline-flex">
-                  <div className="text-base font-bold text-on-surface-primary">
-                    Anahera Jones
-                  </div>
-                  <div className="text-[14px] text-on-surface-tertiary">
-                    {t("Admin")}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
+     
 
 
 
@@ -291,7 +213,7 @@ export const ContantEditSpaicialityDetails = ({ local, dark, handelDarkClick, ha
           <CardContent className="p-0 w-full overflow-y-auto gap-5 h-auto">
 
             <div className="flex gap-[14px]   justify-end p-3 items-end text-end pb-2 sm:pb-3 md:pb-3 lg:pb-4 " dir={local === 'ar' ? 'rtl' : 'ltr'} >
-              <Link to="/ViewSpecialtiesDetails ">
+              <Link to={backTo}>
                 <button className="     w-[100px] h-[40px]       /* الموبايل الافتراضي */
    
     md:w-[180px] md:h-[38px]
@@ -392,9 +314,29 @@ export const ContantEditSpaicialityDetails = ({ local, dark, handelDarkClick, ha
                             <td className="text-center text-text-primary  font-lato text-[14px] font-semibold">{doctor.assignedClinic}</td>
                             <td className="text-center text-text-primary  font-lato text-[14px] font-semibold">{doctor.appointmentDate}</td>
                             <td className="text-center text-text-primary   font-lato text-[14px] font-semibold">
-                              <div className="flex items-center justify-center gap-2">
-                                <Toggle />
-                              </div>
+                            <div onClick={(e) => e.stopPropagation()}>
+  <Toggle checked={checked} onChange={handleToggle} />
+
+  {showDialog && actionType === "deactivate" && (
+    <Deactivate
+      open={showDialog}
+      onConfirm={confirmDeactivate}
+      onCancel={cancelDeactivate}
+    >
+      <p>Inactive doctors will no longer appear in selection menus or be assignable to patients.</p>
+    </Deactivate>
+  )}
+
+{showDialog && actionType === "activate" && (
+  <Activate
+    open={showDialog}
+    onConfirm={confirmDeactivate}
+    onCancel={cancelDeactivate}
+  >
+    <p>Active specialty will be visible in selection menus or be assignable to doctors .</p>
+  </Activate>
+)}
+</div>
                             </td>
                           </tr>
                         ))}

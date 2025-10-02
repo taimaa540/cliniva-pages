@@ -9,7 +9,7 @@ interface AppContextType {
   setSelectedPlan: (plan: PlanType) => void;
 }
 
-// إنشاء الـContext مع قيمة افتراضية
+// إنشاء الـContext
 const AppContext = createContext<AppContextType>({
   setSelectedPlan: () => {},
 });

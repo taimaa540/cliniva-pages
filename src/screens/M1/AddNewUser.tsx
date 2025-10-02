@@ -26,6 +26,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "../../components/ui/tabs";
+import { Header } from "../CommonComponents/Header";
 import FileUpload from "../CommonComponents/fillUpLoad";
 import { useLanguage } from "../../lib/LanguageContext";
 import DateInput from "../CommonComponents/DateInput";
@@ -58,6 +59,7 @@ const documents = [
   { label: "CV / Resume", effectiveDate: "Mar 01, 2027" },
 ];
 import { ThemeToggle } from "../../components/theme/ThemeSwitcher";
+import { Link } from "react-router-dom";
 export const AddNewUser = (): JSX.Element => {
   const shortLabels: Record<string, string> = {};
   Object.keys(en).forEach((key) => {
@@ -74,6 +76,12 @@ export const AddNewUser = (): JSX.Element => {
   const [showSidebar, setShowSidebar] = useState(false);
   const onOpenSidebar = () => setShowSidebar(true);
   const onCloseSidebar = () => setShowSidebar(false);
+  {/*  stats for tabs*/ }
+const [activeTab, setActiveTab] = useState("account"); 
+
+  const [phones, setPhones] = useState<string[]>([""]); // مصفوفة أرقام مبدئية
+
+
   return (
     <div className="flex h-screen  w-screen">
       {showSidebar && (
@@ -94,144 +102,34 @@ export const AddNewUser = (): JSX.Element => {
       />
       <div className="flex flex-col w-full overflow-hidden min-h-screen items-start gap-4 py-4 pl-0 pr-5">
 
+<Header MainTitle="Users Management" SubTitle="Add New User" onOpenSidebar={onOpenSidebar}  />
 
-
-        <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-          {/* نسخة الموبايل */}
-          <div className="flex w-full items-center justify-between md:hidden">
-            {/* Left Side -> العنوان */}
-            <div className="flex items-center gap-2">
-              <button
-                className="md:hidden p-2 rounded-lg bg-secondary-light"
-                onClick={onOpenSidebar}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-
-              <div className="flex flex-col">
-                <h1 className="font-bold text-sm text-on-surface-primary">
-                  {t("Users Management")}
-                </h1>
-                <p className="text-xs text-on-surface-primary">
-                  {t("Add New User")}
-                </p>
-              </div>
-            </div>
-
-            {/* Right Side -> الإشعار */}
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-              >
-                <BellIcon className="w-5 h-5" />
-              </Button>
-              <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-            </div>
-          </div>
-
-
-
-
-          {/* نسخة الـ Desktop/Laptop */}
-          <div className="hidden md:flex w-full items-center justify-between">
-            {/* Left Side */}
-            <div className="flex items-center gap-4">
-              <div className="flex flex-col">
-                <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
-                  {t("Users Management")}
-                </h1>
-                <p className="text-sm md:text-base text-on-surface-primary">
-                  {t("Add New User")}
-                </p>
-              </div>
-            </div>
-
-            {/* Right Side */}
-            <div className="inline-flex gap-3 items-center px-4">
-              {/* Notification */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                >
-                  <BellIcon className="w-5 h-5" />
-                </Button>
-                <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-              </div>
-
-              {/* Language Switch */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
-                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-                  onClick={handleLanguageClick}
-                >
-                  <TranslateIcon className="w-5 h-5" />
-                </Button>
-              </div>
-
-              {/* Theme Toggle */}
-              <div className="relative">
-                <ThemeToggle />
-              </div>
-
-              {/* User Info */}
-              <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-                <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-                <div className="flex-col items-start gap-1 inline-flex">
-                  <div className="text-base font-bold text-on-surface-primary">
-                    Anahera Jones
-                  </div>
-                  <div className="text-sm text-on-surface-tertiary">
-                    {t("Admin")}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-
+       
 
         <Card className="flex flex-col h-full items-start gap-5 p-[20px] relative w-full rounded-2xl overflow-hidden bg-background-tertiary">
           <CardContent className="w-full overflow-y-auto scroll-x-hidden ">
             {/* Account Tab */}
-            <Tabs
-              dir={`${local === "ar" ? "rtl" : "ltr"}`}
-              defaultValue="account"
-            >
+           
+  <Tabs value={activeTab} onValueChange={setActiveTab}>
+            
               <TabsList className="flex items-center w-full h-[50px] py-[8px] px-[12px] bg-primary-foreground rounded-[14px] border border-border-light shadow-lg">
                 {tabItems.map((tab) => (
                   <TabsTrigger
                     key={tab.value}
                     value={tab.value}
-                    className="flex w-[270px] items-center gap-[19px] p-1.5 rounded-lg font-lato font-bold text-[sm] leading-[125%] tracking-[0] text-text-primary"
+                    className="flex w-[270px] items-center gap-[19px] p-1.5 rounded-lg font-lato font-bold  leading-[125%] tracking-[0] text-text-primary"
                   >
                     {t(`${tab.label}`)}
                   </TabsTrigger>
                 ))}
               </TabsList>
 
+
+
               <TabsContent
                 value="account"
                 className="w-full flex flex-col min-h-screen"
+             
               >
                 <div className=" w-full mt-[20px] bg-background-primary p-[16px] rounded-[16px]">
                   <form className="w-full ">
@@ -383,7 +281,7 @@ export const AddNewUser = (): JSX.Element => {
                     {t("Cancel")}
                   </button>
 
-                  <button className="relative w-[200px] h-[40px] rounded-[50px] border border-secondary-dark shadow-[0px_1px_2px_0px_#0A0D120D] bg-secondary-dark font-inter font-semibold text-base leading-[16px] tracking-[0] text-[#FFFFFF]">
+                  <button   onClick={() => setActiveTab("personal")}  className="relative w-[200px] h-[40px] rounded-[50px] border border-secondary-dark shadow-[0px_1px_2px_0px_#0A0D120D] bg-secondary-dark font-inter font-semibold text-base leading-[16px] tracking-[0] text-[#FFFFFF]">
                     {t("Next")}
                     <svg
                       className="absolute top-[11px] right-[55px]"
@@ -403,9 +301,14 @@ export const AddNewUser = (): JSX.Element => {
                   </button>
                 </div>
               </TabsContent>
-              <TabsContent
-                value="personal"
+
+
+              <TabsContent  value="personal"
+               
                 className="w-full flex flex-col min-h-screen gap-[16px] mt-[20px]"
+                onClick={()=>{
+           
+                }}
               >
                 <Card className="w-full bg-background-primary rounded-[16px] p-[16px] ">
                   <CardContent dir={local === "en" ? "ltr" : "rtl"}>
@@ -511,7 +414,10 @@ export const AddNewUser = (): JSX.Element => {
                             {t("Phone Number")}
                           </Label>
                           <div className="flex-1 min-w-0">
-                            <PhoneInputCustom />
+                          <PhoneInputCustom
+        value={phones}
+        onChange={(updated) => setPhones(updated)}
+      />
                           </div>
                         </div>
                         <div className="flex items-center gap-[32px] w-full">
@@ -571,7 +477,10 @@ export const AddNewUser = (): JSX.Element => {
                             {t("Emergency Number")}
                           </Label>
                           <div className="flex-1 min-w-0">
-                            <PhoneInputCustom />
+                               <PhoneInputCustom
+        value={phones}
+        onChange={(updated) => setPhones(updated)}
+      />
                           </div>
                         </div>
                       </div>
@@ -583,7 +492,7 @@ export const AddNewUser = (): JSX.Element => {
                   className={`mt-auto flex ${local === "ar" ? "justify-start" : "justify-end"
                     } gap-[12px] w-full h-[40px]`}
                 >
-                  <button className="relative w-[200px] h-[40px] rounded-[50px] border border-[#D5D7DA] shadow-[0px_1px_2px_0px_#0A0D120D] bg-[#FFFFFF] font-inter font-semibold text-base leading-[16px] tracking-[0] text-text-primary">
+                  <button onClick={() => setActiveTab("account")} className="relative w-[200px] h-[40px] rounded-[50px] border border-[#D5D7DA] shadow-[0px_1px_2px_0px_#0A0D120D] bg-[#FFFFFF] font-inter font-semibold text-base leading-[16px] tracking-[0] text-text-primary">
                     <svg
                       className="absolute top-[11px] left-[40px]"
                       width="20"
@@ -603,7 +512,7 @@ export const AddNewUser = (): JSX.Element => {
                     {t("Previous")}
                   </button>
 
-                  <button className="relative w-[200px] h-[40px] rounded-[50px] border border-secondary-dark shadow-[0px_1px_2px_0px_#0A0D120D] bg-secondary-dark font-inter font-semibold text-base leading-[16px] tracking-[0] text-[#FFFFFF]">
+                  <button  onClick={() => setActiveTab("employment")}  className="relative w-[200px] h-[40px] rounded-[50px] border border-secondary-dark shadow-[0px_1px_2px_0px_#0A0D120D] bg-secondary-dark font-inter font-semibold text-base leading-[16px] tracking-[0] text-[#FFFFFF]">
                     {t("Next")}
                     <svg
                       className="absolute top-[11px] right-[55px]"
@@ -623,6 +532,7 @@ export const AddNewUser = (): JSX.Element => {
                   </button>
                 </div>
               </TabsContent>
+
 
               <TabsContent
                 value="employment"
@@ -665,8 +575,8 @@ export const AddNewUser = (): JSX.Element => {
                   className={`mt-auto flex ${local === "ar" ? "justify-start" : "justify-end"
                     } gap-[12px] w-full h-[40px]`}
                 >
-                  <button className="relative w-[200px] h-[40px] rounded-[50px] border border-[#D5D7DA] shadow-[0px_1px_2px_0px_#0A0D120D] bg-[#FFFFFF] font-inter font-semibold text-base leading-[16px] tracking-[0] text-text-primary">
-                    <svg
+                  <button  onClick={() => setActiveTab("personal")} className="relative w-[200px] h-[40px] rounded-[50px] border border-[#D5D7DA] shadow-[0px_1px_2px_0px_#0A0D120D] bg-[#FFFFFF] font-inter font-semibold text-base leading-[16px] tracking-[0] text-text-primary">
+                    <svg 
                       className="absolute top-[11px] left-[40px]"
                       width="20"
                       height="20"
@@ -685,7 +595,7 @@ export const AddNewUser = (): JSX.Element => {
                     {t("Previous")}
                   </button>
 
-                  <button className="relative w-[200px] h-[40px] rounded-[50px] border border-secondary-dark shadow-[0px_1px_2px_0px_#0A0D120D] bg-secondary-dark font-inter font-semibold text-base leading-[16px] tracking-[0] text-[#FFFFFF]">
+                  <button onClick={() => setActiveTab("documents")}  className="relative w-[200px] h-[40px] rounded-[50px] border border-secondary-dark shadow-[0px_1px_2px_0px_#0A0D120D] bg-secondary-dark font-inter font-semibold text-base leading-[16px] tracking-[0] text-[#FFFFFF]">
                     {t("Next")}
                     <svg
                       className="absolute top-[11px] right-[55px]"
@@ -705,6 +615,8 @@ export const AddNewUser = (): JSX.Element => {
                   </button>
                 </div>
               </TabsContent>
+
+
               <TabsContent value="documents">
                 <Card className="w-full bg-background-primary rounded-[16px] p-[16px]">
                   <CardContent dir={local === "en" ? "ltr" : "rtl"}>
@@ -732,6 +644,9 @@ export const AddNewUser = (): JSX.Element => {
                   </CardContent>
                 </Card>
               </TabsContent>
+
+
+
             </Tabs>
           </CardContent>
         </Card>

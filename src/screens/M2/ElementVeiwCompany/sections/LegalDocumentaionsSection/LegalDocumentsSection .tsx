@@ -1,37 +1,31 @@
-import React from "react";
+
 import { Card, CardContent } from "../../../../../components/ui/card";
 import { Button } from "../../../../../components/ui/button";
-import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-} from "../../../../../components/ui/collapsible";
+
 import { ThemeToggle } from "../../../../../components/theme/ThemeSwitcher";
 import {
-  ChevronDownIcon,
+
   Edit2Icon,
   BellIcon,
   PhoneIcon,
-  MailIcon,
-  MapPinIcon,
+
   GlobeIcon,
   LinkedinIcon,
   FacebookIcon,
-  TwitterIcon,
+
   InstagramIcon,
 } from "lucide-react";
 import { SideBar } from "../../../../CommonComponents/SideBarPlan2";
 import { useState } from "react";
 import ReusableCollapsible from "../../../../../components/ui/Collapsibles";
-import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
-import LocalPostOfficeOutlinedIcon from "@mui/icons-material/LocalPostOfficeOutlined";
+
 import XIcon from "@mui/icons-material/X";
 import { Link } from "react-router-dom";
 import TranslateIcon from "@mui/icons-material/Translate";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 
+import { Header } from "../../../../CommonComponents/Header";
 const companyInfo = {
   logo: "/vector.svg",
   tradeName: "MedCare Group",
@@ -96,11 +90,11 @@ import { useLanguage } from "../../../../../lib/LanguageContext";
 export const ElementViewCompany = (): JSX.Element => {
 
 
-    const { local, handleLanguageClick } = useLanguage();
-    const { t, i18n } = useTranslation();
-    useEffect(() => {
-        i18n.changeLanguage(local);
-    }, []);
+  const { local, handleLanguageClick } = useLanguage();
+  const { t, i18n } = useTranslation();
+  useEffect(() => {
+    i18n.changeLanguage(local);
+  }, []);
   const [isOpen, setIsOpen1] = useState({
     clinicInfo: true,
     contactInfo: true,
@@ -143,119 +137,9 @@ export const ElementViewCompany = (): JSX.Element => {
         className={`flex flex-col w-full overflow-hidden items-start gap-4  py-4  self-stretch relative bg-background-primary
       } `}
       >
-
-        <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-          {/* نسخة الموبايل */}
-          <div className="flex w-full items-center justify-between md:hidden">
-            {/* Left Side -> العنوان */}
-            <div className="flex items-center gap-2">
-              <button
-                className="md:hidden p-2 rounded-lg bg-secondary-light"
-                onClick={onOpenSidebar}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-
-              <div className="flex flex-col">
-                <h1 className="font-bold text-sm text-on-surface-primary">
-                  {t("Medical Facilities")}
-                </h1>
-                <p className="text-xs text-on-surface-primary">
-                  {t("View Company Details")}
-                </p>
-              </div>
-            </div>
-
-            {/* Right Side -> الإشعار */}
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-              >
-                <BellIcon className="w-5 h-5" />
-              </Button>
-              <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-            </div>
-          </div>
+<Header MainTitle="Medical Facilities" SubTitle="View Company Details" onOpenSidebar={onOpenSidebar}  />
 
 
-
-
-          {/* نسخة الـ Desktop/Laptop */}
-          <div className="hidden md:flex w-full items-center justify-between">
-            {/* Left Side */}
-            <div className="flex items-center gap-4">
-              <div className="flex flex-col">
-                <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
-                  {t("Medical Facilities")}
-                </h1>
-                <p className="text-sm md:text-base text-on-surface-primary">
-                  {t("View Company Details")}
-                </p>
-              </div>
-            </div>
-
-            {/* Right Side */}
-            <div className="inline-flex gap-3 items-center px-4">
-              {/* Notification */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                >
-                  <BellIcon className="w-5 h-5" />
-                </Button>
-                <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-              </div>
-
-              {/* Language Switch */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
-                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-                  onClick={handleLanguageClick}
-                >
-                  <TranslateIcon className="w-5 h-5" />
-                </Button>
-              </div>
-
-              {/* Theme Toggle */}
-              <div className="relative">
-                <ThemeToggle />
-              </div>
-
-              {/* User Info */}
-              <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-                <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-                <div className="flex-col items-start gap-1 inline-flex">
-                  <div className="text-base font-bold text-on-surface-primary">
-                    Anahera Jones
-                  </div>
-                  <div className="text-sm text-on-surface-tertiary">
-                    {t("Admin")}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
 
 
 

@@ -34,7 +34,7 @@ import {
 } from "../../../components/ui/table";
 import { SideBar } from "../../CommonComponents/SideBarPlan2";
 import Toggle from "../../../components/ui/SwitchToggel";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 const navigationItems = [
   {
     icon: UsersIcon,
@@ -189,10 +189,11 @@ const doctorsAndStaff = [
 
   },
 ];
+import { Deactivate } from "../../CommonComponents/Deactivate";
+import { Activate } from "../../CommonComponents/Activate";
 
-import { ArrowLeftIcon } from "lucide-react";
-
-
+import { useNavigate } from "react-router-dom";
+import { Header } from "../../CommonComponents/Header";
 
 export const ViewServiceDetails = (): JSX.Element => {
   const { local, handleLanguageClick } = useLanguage();
@@ -201,7 +202,46 @@ export const ViewServiceDetails = (): JSX.Element => {
     i18n.changeLanguage(local);
   }, []);
 
+const [checked, setChecked] = useState<boolean>(true); // الحالة الحالية
+const [showDialog, setShowDialog] = useState<boolean>(false);
+const [pendingNext, setPendingNext] = useState<boolean | null>(null);
+const [actionType, setActionType] = useState<"activate" | "deactivate" | null>(null);
 
+
+  // عندما يضغط المستخدم على الـ Toggle
+function handleToggles(next: boolean) {
+  // إذا كان من Active -> Inactive
+  if (checked && !next) {
+    setPendingNext(next);
+    setActionType("deactivate");
+    setShowDialog(true);
+    return;
+  }
+
+  // إذا كان من Inactive -> Active
+  if (!checked && next) {
+    setPendingNext(next);
+    setActionType("activate");
+    setShowDialog(true);
+    return;
+  }
+
+  // غير هيك غيّر مباشرة
+  setChecked(next);
+}
+
+function confirmDeactivate() {
+  setChecked(pendingNext ?? false);
+  setPendingNext(null);
+  setActionType(null);
+  setShowDialog(false);
+}
+
+function cancelDeactivate() {
+  setPendingNext(null);
+  setActionType(null);
+  setShowDialog(false);
+}
 
 
   const [isOpen, setIsOpen1] = useState({
@@ -219,7 +259,7 @@ export const ViewServiceDetails = (): JSX.Element => {
   };
 
 
-
+const navigate=useNavigate();
   const [isOpenAppointment, setIsOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const onOpenSidebar = () => setShowSidebar(true);
@@ -245,134 +285,14 @@ export const ViewServiceDetails = (): JSX.Element => {
 
       <div className="flex flex-col w-full overflow-hidden min-h-screen items-start gap-4 py-4 pl-0 pr-5">
 
-
-        <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-          {/* نسخة الموبايل */}
-          <div className="flex w-full items-center justify-between md:hidden">
-            {/* Left Side -> العنوان */}
-            <div className="flex items-center gap-2">
-              <button
-                className="md:hidden p-2 rounded-lg bg-secondary-light"
-                onClick={onOpenSidebar}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-
-              <div className="flex flex-col">
-                <h1 className="font-bold text-sm text-on-surface-primary">
-                  {t("Services Management")}
-                </h1>
-                   <Link to='/ServicesList'><div className="flex gap-1 items-center ">
-
-                  <ArrowLeftIcon className="relative w-4 h-4 pt-1" />
-
-                  <p className="text-sm md:text-base text-on-surface-primary">
-                    {t("View Service Details")}
-                  </p></div>   </Link>
-              </div>
-            </div>
-
-            {/* Right Side -> الإشعار */}
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-              >
-                <BellIcon className="w-5 h-5" />
-              </Button>
-              <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-            </div>
-          </div>
+<Header MainTitle="Services Management" SubTitle="View Service Details" onOpenSidebar={onOpenSidebar}  backTo="/ServicesList"/>
 
 
-
-
-          {/* نسخة الـ Desktop/Laptop */}
-          <div className="hidden md:flex w-full items-center justify-between">
-            {/* Left Side */}
-            <div className="flex items-center gap-4">
-              <div className="flex flex-col">
-                <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
-                  {t("Services Management")}
-                </h1>
-                <Link to='/ServicesList'><div className="flex gap-2 items-center ">
-
-                  <ArrowLeftIcon className="relative w-5 h-5 pt-1" />
-
-                  <p className="text-sm md:text-base text-on-surface-primary">
-                    {t("View Service Details")}
-                  </p></div>   </Link>
-
-              </div>
-            </div>
-
-            {/* Right Side */}
-            <div className="inline-flex gap-3 items-center px-4">
-              {/* Notification */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                >
-                  <BellIcon className="w-5 h-5" />
-                </Button>
-                <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-              </div>
-
-              {/* Language Switch */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
-                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-                  onClick={handleLanguageClick}
-                >
-                  <TranslateIcon className="w-5 h-5" />
-                </Button>
-              </div>
-
-              {/* Theme Toggle */}
-              <div className="relative">
-                <ThemeToggle />
-              </div>
-
-              {/* User Info */}
-              <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-                <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-                <div className="flex-col items-start gap-1 inline-flex">
-                  <div className="text-base font-bold text-on-surface-primary">
-                    Anahera Jones
-                  </div>
-                  <div className="text-sm text-on-surface-tertiary">
-                    {t("Admin")}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-
-        <Card className="flex flex-col h-full items-start gap-5 p-[5px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-tertiary">
+        <Card className="flex flex-col  h-full items-start gap-5 p-[5px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-tertiary">
           <CardContent className="w-full overflow-y-auto scroll-x-hidden pr-[20px] ">
             <div className="flex justify-end">
               <Link to="/EditServiceDetials">
-                <Button className="w-[200px] h-10 bg-secondary-dark text-text-inverse rounded-[20px]   font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-[length:var(--btn-14px-medium-font-size)] leading-[var(--btn-14px-medium-line-height)] tracking-[var(--btn-14px-medium-letter-spacing)] [font-style:var(--btn-14px-medium-font-style)] h-auto self-end">
+                <Button onClick={()=>navigate("/EditServiceDetials",{state:{from:"/ViewServiceDetails"}} )}  className="w-[200px] h-10 bg-secondary-dark text-text-inverse rounded-[20px]   font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-[length:var(--btn-14px-medium-font-size)] leading-[var(--btn-14px-medium-line-height)] tracking-[var(--btn-14px-medium-letter-spacing)] [font-style:var(--btn-14px-medium-font-style)] h-auto self-end">
                   <Edit2Icon className={" font-lato w-4 h-4 mr-1 text-text-inverse"} />
                   <h1 className="font-lato">{t("Edit")}</h1>
                 </Button></Link>
@@ -402,12 +322,12 @@ export const ViewServiceDetails = (): JSX.Element => {
               content={
                 <div className="relative w-full bg-surface-default rounded-2xl p-6 pt-0">
                   {/* Wrapper: Flex column on small screens, row on large */}
-                  <div className="flex flex-col lg:flex-row gap-0 lg:gap-[113px]">
+                  <div className="flex  flex-col lg:flex-row  gap-0 lg:gap-[113px]">
 
                     {/* Left Column */}
-                    <div className="flex flex-col gap-4 min-w-0 w-full lg:w-[500px]">
+                    <div className="flex flex-col   gap-4 min-w-0 w-full lg:w-[500px]">
                       {/* Services Name */}
-                      <div className="grid grid-cols-[150px_1fr] gap-4 items-start">
+                      <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[150px_1fr] sm:gap-4  gap-4 items-start">
                         <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Services Name")}</div>
                         <div className="text-text-primary font-title-14px-semibold text-[clamp(12px,2vw,14px)]  font-semibold break-words">
                           Comprehensive Diabetes Checkup
@@ -415,42 +335,68 @@ export const ViewServiceDetails = (): JSX.Element => {
                       </div>
 
                       {/* Services ID + Status */}
-                      <div className="grid grid-cols-[150px_1fr] gap-4 items-center">
+                      <div className="flex flex-col sm:grid sm:grid-cols-[150px_1fr] sm:gap-4 gap-4 items-start">
                         <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Services ID")}</div>
-                        <div className="flex flex-wrap items-center gap-2">
-                          <div className="text-text-primary font-title-14px-semibold text-[clamp(12px,2vw,14px)]  font-semibold">
-                            SRV-00345
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)] ">{t("Status")}:</div>
-                            <div className="flex items-center justify-center bg-hitbox">
-                              <Toggle />
-                              <div className="w-3 h-3 bg-graywhite rounded-2xl" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+               <div className="flex flex-wrap items-center gap-2">
+  <div className="text-text-primary font-title-14px-semibold text-[clamp(12px,2vw,14px)] font-semibold">
+    SRV-00345
+  </div>
 
+  <div className="flex items-center gap-2">
+    <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]">
+      {t("Status")}:
+    </div>
+
+    <div className="flex items-center justify-center bg-hitbox">
+      <div onClick={(e) => e.stopPropagation()}>
+        <Toggle checked={checked} onChange={handleToggles} />
+
+        {showDialog && actionType === "deactivate" && (
+          <Deactivate
+            open={showDialog}
+            onConfirm={confirmDeactivate}
+            onCancel={cancelDeactivate}
+          >
+            <p>Inactive services will no longer appear in selection menus or be assignable to patients.</p>
+          </Deactivate>
+        )}
+
+        {showDialog && actionType === "activate" && (
+          <Activate
+            open={showDialog}
+            onConfirm={confirmDeactivate}
+            onCancel={cancelDeactivate}
+          >
+            <p>Active services will be visible in selection menus and can be assigned to patients.</p>
+          </Activate>
+        )}
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
                       {/* Service Category */}
-                      <div className="grid grid-cols-[150px_1fr] gap-4 items-start">
+                      <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[150px_1fr] sm:gap-4 gap-4 items-start">
                         <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Service Category")}</div>
-                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">{t("Medical Examination")}</div>
+                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  ">{t("Medical Examination")}</div>
                       </div>
 
                       {/* Service Description */}
-                      <div className="grid grid-cols-[150px_1fr] gap-4 items-start">
+                   
+                
+                       <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[150px_1fr] sm:gap-4 gap-4 items-start">
                         <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Service Description")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
                           Full diagnostic evaluation for diabetes including lab tests, physical exam, and consultation.
                         </div>
                       </div>
-                    </div>
-
+  </div>
                     {/* Right Column */}
                     <div className="flex flex-col gap-4 min-w-0 w-full lg:w-[500px] items-start">
                       <div className=" w-36  block lg:hidden text-primary-default mt-3 "> {t("Assign")}</div>
                       {/* Assign Complex */}
-                      <div className="grid grid-cols-[150px_1fr] gap-4 items-start">
+                      <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[150px_1fr] sm:gap-4 gap-4 items-start">
                         <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Assign Complex")}</div>
                         <div className="text-text-primary font-title-14px-semibold text-[clamp(12px,2vw,14px)]  font-semibold break-words">
                           Arab Interface tech Main Complex
@@ -458,7 +404,7 @@ export const ViewServiceDetails = (): JSX.Element => {
                       </div>
 
                       {/* Assign Clinics */}
-                      <div className="grid grid-cols-[150px_1fr] gap-4 items-start">
+                      <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[150px_1fr] sm:gap-4 gap-4 items-start">
                         <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Assign Clinics")}</div>
                         <div className="text-text-primary font-title-14px-semibold text-[clamp(12px,2vw,14px)]  font-semibold break-words">
                           Internal Medicine, Family Medicine
@@ -466,20 +412,23 @@ export const ViewServiceDetails = (): JSX.Element => {
                       </div>
 
                       {/* Resources */}
-                      <div className="grid grid-cols-[150px_1fr]  font-lato gap-4 items-start">
+                      <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[150px_1fr] sm:gap-4  font-lato gap-4 items-start">
                         <div className="text-primary-default font-semibold text-[clamp(14px,2vw,16px)] ">{t("Resources")}</div>
                         <div></div> {/* فارغ إذا ما في محتوى */}
                       </div>
 
                       {/* Required Equipment */}
-                      <div className="grid grid-cols-[150px_1fr] gap-4 items-start">
+                      <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[150px_1fr] sm:gap-4 gap-4 items-start">
                         <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Required Equipment")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
                           Full diagnostic evaluation for diabetes including lab tests, physical exam, and consultation.
                         </div>
                       </div>
                     </div>
-                  </div>
+                
+                </div>
+                
+                
                 </div>
 
               }
@@ -515,31 +464,31 @@ export const ViewServiceDetails = (): JSX.Element => {
                     {/* Left Column - Utilization Metrics */}
                     <div className="flex flex-col gap-4 w-full lg:w-[500px]">
                       {/* Total Patients Served */}
-                      <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
+                      <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
                         <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Total Patients Served")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">327 Patients</div>
                       </div>
 
                       {/* Completed Sessions */}
-                      <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
+                      <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
                         <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Completed Sessions")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">945 Sessions</div>
                       </div>
 
                       {/* Average Duration */}
-                      <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
+                      <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
                         <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Average Duration")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">25 mins</div>
                       </div>
 
                       {/* No-Show Rate */}
-                      <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
+                      <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
                         <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("No-Show Rate (%)")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">8.6%</div>
                       </div>
 
                       {/* Rebooking Rate */}
-                      <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
+                      <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
                         <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Rebooking Rate (%)")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">72.4%</div>
                       </div>
@@ -549,37 +498,37 @@ export const ViewServiceDetails = (): JSX.Element => {
                     <div className="flex flex-col gap-4 w-full lg:w-[500px]">
                       <div className=" w-36  block lg:hidden text-primary-default mt-3"> {t("Operational Details")}</div>
                       {/* Last Performed Date */}
-                      <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
+                      <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
                         <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Last Performed Date")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">June 28-2025</div>
                       </div>
 
                       {/* Most Frequent Doctor */}
-                      <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
+                      <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
                         <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Most Frequent Doctor")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">Dr. Sarah Fadel</div>
                       </div>
 
                       {/* Most Frequent Clinic */}
-                      <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
+                      <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
                         <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Most Frequent Clinic")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">Internal Medicine Clinic</div>
                       </div>
 
                       {/* Timestamps */}
-                      <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
+                      <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
                         <div className="text-primary-default font-semibold font-lato text-[clamp(14px,2vw,16px)] ">{t("Timestamps")}</div>
                         <div></div>
                       </div>
 
                       {/* Creation Date */}
-                      <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
+                      <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
                         <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Creation Date")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">June 28-2025</div>
                       </div>
 
                       {/* Last Update */}
-                      <div className="grid grid-cols-[180px_1fr] gap-4 items-start">
+                      <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
                         <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Last Update")}</div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
                           June 28-2025&nbsp;&nbsp;10:43 AM

@@ -9,20 +9,20 @@ import { ChoosePlan } from "./screens/M2/choosePlan";
 import { CompanyPlan } from "./screens/M2/CompanyPlan";
 import { BrowserRouter } from "react-router-dom";
 
-import { ElementViewCompany } from "./screens/M2/ElementVeiwCompany/sections/LegalDocumentaionsSection/LegalDocumentsSection "; 
-import { ElementViewComplex } from "./screens/M2/ElementViewComplex/sections/MedicalComplexDetailsSection/MedicalComplexDetailsSection"; 
-import { ElementViewClinic } from "./screens/M2/ElementViewClinic/sections/MedicalDetailsSection/MedicalDetailsSection"; 
-import { ElementEditCompany } from "./screens/M2/ElementEditCompany/sections/CompanyDetailsSectio/CompanyDetailsSectio"; 
-import { ElementEditComplex } from "./screens/M2/ElementEditComplax/sections/MedicalDetailsSection/MedicalDetailsSection"; 
+import { ElementViewCompany } from "./screens/M2/ElementVeiwCompany/sections/LegalDocumentaionsSection/LegalDocumentsSection ";
+import { ElementViewComplex } from "./screens/M2/ElementViewComplex/sections/MedicalComplexDetailsSection/MedicalComplexDetailsSection";
+import { ElementViewClinic } from "./screens/M2/ElementViewClinic/sections/MedicalDetailsSection/MedicalDetailsSection";
+import { ElementEditCompany } from "./screens/M2/ElementEditCompany/sections/CompanyDetailsSectio/CompanyDetailsSectio";
+import { ElementEditComplex } from "./screens/M2/ElementEditComplax/sections/MedicalDetailsSection/MedicalDetailsSection";
 import { EditClinicDetails } from "./screens/M2/EditClinicDetails/sections/CapacitySection/CapacitySection";
-import { ElementEditComplexPlan2 } from "./screens/M2/ElementEditComplexPlan2/EditComplex/EditComplex"; 
+import { ElementEditComplexPlan2 } from "./screens/M2/ElementEditComplexPlan2/EditComplex/EditComplex";
 
 
 import { EditUserDetails } from "./screens/M1/EditUserDetails";
 
 import { ViewDoctorDetails } from "./screens/Moudule3/ViewDoctorDetails/ViewDoctorDetails";
-import { ElementEditeDetalisCinicP3 } from "./screens/ElementEditDetailsClinicP3/Sections/contectEditDetails/ContentEditDetails"; 
-import { ElementViewDetalisComplexp2 } from "./screens/ElementViewDetailsComplexp2/ElementViewDetailsContectp2/ElementViewDetailsContent"; 
+import { ElementEditeDetalisCinicP3 } from "./screens/ElementEditDetailsClinicP3/Sections/contectEditDetails/ContentEditDetails";
+import { ElementViewDetalisComplexp2 } from "./screens/ElementViewDetailsComplexp2/ElementViewDetailsContectp2/ElementViewDetailsContent";
 import { ElementViewDetailsClinicP3 } from "./screens/ElementViewDetailsClinicP3/ContentViewDetailsClinicP3/ContentViewDetailsClinicP3";
 import { AddNewUser } from "./screens/M1/AddNewUser";
 import { UserListSection } from "./screens/M1/userListSection";
@@ -56,6 +56,10 @@ import { useState } from "react";
 import { MoreDetails } from "./screens/M6/MoreDetails";
 import { PatientDetails } from "./screens/M5/PatientDetails";
 import LoginPage from "./screens/M2/LogoIn";
+import { ComplexList } from "./screens/M2/ComplexList";
+import { AddNewClinic } from "./screens/M2/AddNewClinic";
+import { AddNewComplex } from "./screens/M2/AddNewComplex";
+import { ClinicList } from "./screens/M2/ClinicList";
 function Layout() {
 
   return (
@@ -72,7 +76,7 @@ function MainApp() {
   const [showLeftSidebar, setShowLeftSidebar] = useState(true);
 
 
- 
+
   return (
     <BrowserRouter>
 
@@ -91,12 +95,12 @@ function MainApp() {
             <div className="theme-transition">
               <main className="flex h-screen w-screen overflow-hidden">
 
-              
 
 
 
-          
-          
+
+
+
 
 
 
@@ -109,28 +113,26 @@ function MainApp() {
                     <Route path="ViewUserDetails" element={<UserDetails />} />
                     <Route path="AddNewUser" element={<AddNewUser />} />
                     <Route path="EditUserDetails" element={<EditUserDetails />} />
-  {/* M2.BackIcon*/ }
+                    {/* M2.BackIcon*/}
 
                     {/* M2 */}
-                    
-             <Route path="" element={<LoginPage />} />
-             
 
-           
+                    <Route path="" element={<LoginPage />} />
+
+
+
                     <Route path="chooseplan" element={<ChoosePlan />} />
                     <Route path="CompanyPlane" element={<CompanyPlan />} />
                     <Route path="ComplexPlane" element={<ComplexPlane />} />
                     <Route path="ClinicPlane" element={<ClinicsPlane />} />
-
+                    <Route path="ViewlistofComplex" element={<ComplexList />} />
+                    <Route path="AddNewClinic" element={<AddNewClinic />} />
+                    <Route path="AddNewComplex" element={<AddNewComplex />} />
                     <Route path="ElementViewCompany" element={<ElementViewCompany />} />
-
+                    <Route path="ViewListOfClinics" element={<ClinicList />} />
                     <Route path="ElementViewCompany/EditCompanyDetials" element={<ElementEditCompany />} />
                     <Route path="ElementViewComplex" element={<ElementViewComplex />} />
-                    <Route path="ElementViewComplex/EditComplexDetails" element={
-                      <ElementEditComplex />}
-
-
-                    />
+                    <Route path="ElementViewComplex/EditComplexDetails" element={<ElementEditComplex />} />
 
 
                     <Route path="ElementViewClinic" element={<ElementViewClinic />} />
@@ -139,14 +141,14 @@ function MainApp() {
                     <Route path="ElementViewCopmlexP2/ElementEditCopmlexP2" element={<ElementEditComplexPlan2 />} />
                     <Route path="ElementViewClinicP3" element={<ElementViewDetailsClinicP3 />} />
                     <Route path="ElementViewClinicP3/ElementEditClincp3" element={<ElementEditeDetalisCinicP3 />} />
-                    {/* M2.BackIcon*/ }
-                    <Route path="Home" element={<LoginPage />}/>
-    <Route path="ChossPlan" element={<ChoosePlan/>}/>
+                    {/* M2.BackIcon*/}
+                    <Route path="Home" element={<LoginPage />} />
+                    <Route path="ChossPlan" element={<ChoosePlan />} />
                     {/*  */}
                     {/* M3  */}
                     <Route path="ViewStaffList" element={<ViewStaffMembersList />}></Route>
-                    <Route path="ViewStaffList/View Staff Details" element={<ViewStaffDetails />}></Route>
-                    <Route path="ViewStaffList/View Staff Details/EditStaffDetails" element={<StaffMemberDetails />}></Route>
+                    <Route path="ViewStaffList/ViewStaffDetails" element={<ViewStaffDetails />}></Route>
+                    <Route path="ViewStaffList/ViewStaffDetails/EditStaffDetails" element={<StaffMemberDetails />}></Route>
 
                     <Route path="ViewDoctorList" element={<ViewDoctorList />}></Route>
                     <Route path="ViewDoctorList/ViewDoctorDetails" element={<ViewDoctorDetails />}></Route>
@@ -160,18 +162,15 @@ function MainApp() {
                     <Route path="AddNewService" element={<AddNewService />}></Route>
                     <Route path="EditServiceDetials" element={<EditServiceDetails />}></Route>
                     <Route path="ViewServiceDetails" element={<ViewServiceDetails />}></Route>
-                  
+
                     {/* M5  */}
-                    <Route path="ViewPatientDetails" element={<ViewListOfPatients />}></Route>
+                    <Route path="ViewLastOfPatient" element={<ViewListOfPatients />}></Route>
                     <Route path="AddNewPatient" element={<AddNewPatient />}></Route>
                     <Route path="EditPatientDetails" element={<EditPatientDetails />}></Route>
                     <Route path="ViewPatientDetail" element={<PatientDetails />}></Route>
 
                     {/* M6  */}
-                    <Route path="Appointments" element={<Appointments
-                      showLeftSidebar={showLeftSidebar}
-                      setShowLeftSidebar={setShowLeftSidebar}
-                    />}></Route>
+                    <Route path="Appointments" element={<Appointments showLeftSidebar={showLeftSidebar} setShowLeftSidebar={setShowLeftSidebar} />}></Route>
 
                     <Route path="MoreDetails" element={<MoreDetails />} />
                   </Route>

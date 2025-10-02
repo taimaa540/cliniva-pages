@@ -17,8 +17,37 @@ import { useState } from "react";
 import TranslateIcon from "@mui/icons-material/Translate";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
+import { Delete } from "../CommonComponents/Delete";
 import SwitchWithLabel from "../CommonComponents/SwitchLabel";
-const userData = [
+interface user {
+  id: string;
+  userId: string;
+  userName: string;
+  role: string;
+  userType: string;
+  status: string;
+}
+
+import { useNavigate } from "react-router-dom";
+import { Deactivate } from "../CommonComponents/Deactivate";
+import { Activate } from "../CommonComponents/Activate";
+import Toggle from "../../components/ui/SwitchToggel";
+import { Header } from "../CommonComponents/Header";
+export const UserListSection = (): JSX.Element => {
+  const { local, handleLanguageClick } = useLanguage();
+  const [role, setRole] = useState("role");
+  const [status, setStatus] = useState("status");
+  const [num, setNum] = useState("10");
+  const { t, i18n } = useTranslation();
+  useEffect(() => {
+    i18n.changeLanguage(local);
+  }, []);
+  const [checked, setChecked] = useState<boolean>(true); // الحالة الحالية
+  const [showDialog, setShowDialog] = useState<boolean>(false);
+  const [pendingNext, setPendingNext] = useState<boolean | null>(null);
+  const [actionType, setActionType] = useState<"activate" | "deactivate" | null>(null);
+
+       const [user,setuser]=useState < user[] >([
   {
     id: "001",
     userId: "US-001",
@@ -99,22 +128,72 @@ const userData = [
     userType: "Doctor",
     status: "Inactive",
   },
-];
+      ] );
 
-export const UserListSection = (): JSX.Element => {
-  const { local, handleLanguageClick } = useLanguage();
-  const [role, setRole] = useState("role");
-  const [status, setStatus] = useState("status");
-  const [num, setNum] = useState("10");
-  const { t, i18n } = useTranslation();
-  useEffect(() => {
-    i18n.changeLanguage(local);
-  }, []);
 
+  // عندما يضغط المستخدم على الـ Toggle
+  function handleToggle(next: boolean) {
+    // إذا كان من Active -> Inactive
+    if (checked && !next) {
+      setPendingNext(next);
+      setActionType("deactivate");
+      setShowDialog(true);
+      return;
+    }
+
+    // إذا كان من Inactive -> Active
+    if (!checked && next) {
+      setPendingNext(next);
+      setActionType("activate");
+      setShowDialog(true);
+      return;
+    }
+
+    // غير هيك غيّر مباشرة
+    setChecked(next);
+  }
+
+  function confirmDeactivate() {
+    setChecked(pendingNext ?? false);
+    setPendingNext(null);
+    setActionType(null);
+    setShowDialog(false);
+  }
+
+  function cancelDeactivate() {
+    setPendingNext(null);
+    setActionType(null);
+    setShowDialog(false);
+  }
+
+
+
+  {/*DeletDialog*/ }
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+
+  function handleDelete() {
+    if (selectedId !== null) {
+      setuser((prev) => prev.filter(user => user.id !== selectedId));
+    }
+    setShowDeleteDialog(false);
+    setSelectedId(null);
+  }
+
+
+  function cancelDelete() {
+    setShowDeleteDialog(false);
+  }
+{/*</delete>*/ }
+  const navigate = useNavigate();
   const [isOpenAppointment, setIsOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const onOpenSidebar = () => setShowSidebar(true);
   const onCloseSidebar = () => setShowSidebar(false);
+
+
+
   return (
     <div className="flex h-screen  w-screen">
       {showSidebar && (
@@ -137,114 +216,9 @@ export const UserListSection = (): JSX.Element => {
       <>
         <div className="flex flex-col w-full overflow-hidden h-full items-start gap-4 py-4 pl-0 pr-5">
 
-          <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-            {/* نسخة الموبايل */}
-            <div className="flex w-full items-center justify-between md:hidden">
-              {/* Left Side -> العنوان */}
-              <div className="flex items-center gap-2">
-                <button
-                  className="md:hidden p-2 rounded-lg bg-secondary-light"
-                  onClick={onOpenSidebar}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={2}
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  </svg>
-                </button>
-
-                <div className="flex flex-col">
-                  <h1 className="font-bold text-sm text-on-surface-primary">
-                    {t("Users Management")}
-                  </h1>
-
-                </div>
-              </div>
-
-              {/* Right Side -> الإشعار */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                >
-                  <BellIcon className="w-5 h-5" />
-                </Button>
-                <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-              </div>
-            </div>
+          <Header MainTitle="Users Management" SubTitle="" onOpenSidebar={onOpenSidebar} />
 
 
-
-
-            {/* نسخة الـ Desktop/Laptop */}
-            <div className="hidden md:flex w-full items-center justify-between">
-              {/* Left Side */}
-              <div className="flex items-center gap-4">
-                <div className="flex flex-col">
-                  <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
-                    {t("Users Management")}
-                  </h1>
-
-                </div>
-              </div>
-
-              {/* Right Side */}
-              <div className="inline-flex gap-3 items-center px-4">
-                {/* Notification */}
-                <div className="relative">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                  >
-                    <BellIcon className="w-5 h-5" />
-                  </Button>
-                  <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-                </div>
-
-                {/* Language Switch */}
-                <div className="relative">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
-                      } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-                    onClick={handleLanguageClick}
-                  >
-                    <TranslateIcon className="w-5 h-5" />
-                  </Button>
-                </div>
-
-                {/* Theme Toggle */}
-                <div className="relative">
-                  <ThemeToggle />
-                </div>
-
-                {/* User Info */}
-                <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-                  <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-                  <div className="flex-col items-start gap-1 inline-flex">
-                    <div className="text-base font-bold text-on-surface-primary">
-                      Anahera Jones
-                    </div>
-                    <div className="text-sm text-on-surface-tertiary">
-                      {t("Admin")}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </header>
 
 
 
@@ -350,69 +324,134 @@ export const UserListSection = (): JSX.Element => {
                       </tr>
                     </thead>
                     <tbody>
-                      {userData.map((user) => (
 
-                        <tr
-                          key={user.id}
-                          className="h-[78px] bg-background-primary hover:bg-secondary-light border-b border-border-light whitespace-nowrap"
-                          onClick={() => window.location.href = `/ViewUserDetails?id=${user.id}`}
 
-                        >
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {user.id}
-                          </td>
-                          <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {user.userId}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {user.userName}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {user.role}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {user.userType}
-                          </td>
-                          <td className="align-middle w-[160px]">
-                            <SwitchWithLabel />
-                          </td>
-                          <td className="align-middle">
-                            <div className="inline-flex flex-col justify-center gap-1 flex-[0_0_auto] items-start">
-                              <div className="inline-flex items-center justify-center gap-1 flex-[0_0_auto]">
-                                <Link to="/EditUserDetails" onClick={(e) => e.stopPropagation()}>
-                                  <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
-                                  >
-                                    <img
-                                      className={`w-[15px] h-[15px]text-on-surface-primary`}
-                                      alt="edit"
-                                      src="./edit-01.svg"
-                                    />
-                                  </Button>
-                                </Link>
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
-                                >
-                                  <Trash2Icon
-                                    className={`w-[20px] h-[20px]
-                                 "text-on-surface-primary"
-                              `}
-                                  />
-                                </Button>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
+    {user.length === 0 ? (
+      <tr>
+        <td colSpan={7} className="py-20 text-center">
+          <div className="flex flex-col items-center justify-center">
+            <img
+              className="w-[423px] h-[282px]"
+              alt="No data"
+              src="/noData.png"
+            />
+            <div className="font-lato font-semibold text-xl leading-[116%] tracking-[0] text-text-primary mt-4">
+              {t("No data to show")}
+            </div>
+          </div>
+        </td>
+      </tr>
+    ) :
 
-                      ))}
+                 (
+      user.map((user) => (
+        <tr
+          key={user.id}
+            onClick={() => navigate(`/ViewUserDetails?=id${user.id}`)}  
+            
+          className="h-[78px] bg-background-primary hover:bg-secondary-light border-b border-border-light whitespace-nowrap"
+        >
+          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+            {user.id}
+          </td>
+          <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary">
+            {user.userId}
+          </td>
+          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+            {user.userName}
+          </td>
+          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+            {user.role}
+          </td>
+          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+            {user.userType}
+          </td>
+          <td className="align-middle w-[160px]">
+            <div onClick={(e) => e.stopPropagation()}>
+              <Toggle checked={checked} onChange={handleToggle} />
+
+              {showDialog && actionType === "deactivate" && (
+                <Deactivate
+                  open={showDialog}
+                  onConfirm={confirmDeactivate}
+                  onCancel={cancelDeactivate}
+                >
+                  <p>Are you sure you want to change this user’s status from Active to Inactive?</p>
+                  <p>Inactive users will no longer be able to access the system until reactivated.</p>
+                </Deactivate>
+              )}
+
+              {showDialog && actionType === "activate" && (
+                <Activate
+                  open={showDialog}
+                  onConfirm={confirmDeactivate}
+                  onCancel={cancelDeactivate}
+                >
+                  <p>Activate the patient will be able to book appointments, receive notifications, and access system services.</p>
+                </Activate>
+              )}
+            </div>
+          </td>
+          <td className="align-middle">
+            <div className="inline-flex flex-col justify-center gap-1 flex-[0_0_auto] items-start">
+              <div className="inline-flex items-center justify-center gap-1 flex-[0_0_auto]">
+            
+                  
+                  <Button
+                    variant="ghost"
+                    onClick={(e) => {
+    e.stopPropagation(); // عشان ما يروح على view لما تضغط على row
+    navigate("/EditUserDetails", { state: { from: `/UserDesktop?=id${user.id}` } });
+  }}
+                    size="sm"
+                    className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
+                  >
+                    <img
+                      className="w-[15px] h-[15px] text-on-surface-primary"
+                      alt="edit"
+                      src="./edit-01.svg"
+                    />
+                  </Button>
+                
+                <div>
+                  <Button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setShowDeleteDialog(true);
+                  setSelectedId(user.id);
+                    }}
+                    variant="ghost"
+                    size="sm"
+                    className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
+                  >
+                    <Trash2Icon
+                      className="w-[20px] h-[20px] text-on-surface-primary"
+                    />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      )))}
+
+
+
+
+
+                      
                     </tbody>
                   </table>
                 </div>
-
+                {showDeleteDialog && (<Delete
+                  open={showDeleteDialog}
+                  title="SRV-00345"
+                  onDelete={handleDelete}
+                  onCancel={cancelDelete}
+                >
+                  <p>Are you sure you want to delete this User? This action cannot be undone.</p>
+                </Delete>)}
                 <footer
                   dir="ltr"
                   className="flex items-center justify-between self-stretch w-full flex-[0_0_auto] bg-transparent mt-[10px]"

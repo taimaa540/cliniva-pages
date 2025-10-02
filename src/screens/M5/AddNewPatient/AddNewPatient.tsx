@@ -82,7 +82,7 @@ const personalDocumentFields = (t: (key: string) => string) => ({
 });
 
 
-
+import { Header } from "../../CommonComponents/Header";
 
 export const AddNewPatient = (): JSX.Element => {
 
@@ -207,142 +207,9 @@ export const AddNewPatient = (): JSX.Element => {
                 onCloseSidebar={onCloseSidebar}
             />
             <div className="flex flex-col w-full overflow-hidden min-h-screen items-start gap-4 py-4 pl-0 pr-5">
-                <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-                    {/* نسخة الموبايل */}
-                    <div className="flex w-full items-center justify-between md:hidden">
-                        {/* Left Side -> العنوان */}
-                        <div className="flex items-center gap-2">
-                            <button
-                                className="md:hidden p-2 rounded-lg bg-secondary-light"
-                                onClick={onOpenSidebar}
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={2}
-                                    stroke="currentColor"
-                                    className="w-6 h-6"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M4 6h16M4 12h16M4 18h16"
-                                    />
-                                </svg>
-                            </button>
-
-                            <div className="flex flex-col">
-                                <h1 className="font-bold text-sm text-on-surface-primary">
-                                    {t("Patients Management")}
-                                </h1>
-                                <div className="flex items-center gap-2.5 text-[14px]">
-                                    <div className=" text-text-primary">
-                                        <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M18 8C18 8.41421 17.6642 8.75 17.25 8.75L0.75 8.75C0.335786 8.75 -3.45941e-07 8.41421 -3.27835e-07 8C-3.0973e-07 7.58579 0.335787 7.25 0.75 7.25L17.25 7.25C17.6642 7.25 18 7.58579 18 8Z" fill="CurrentColor" />
-                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.03033 0.719669C8.32322 1.01256 8.32322 1.48744 8.03033 1.78033L1.81066 8L8.03033 14.2197C8.32322 14.5126 8.32322 14.9874 8.03033 15.2803C7.73744 15.5732 7.26256 15.5732 6.96967 15.2803L0.219669 8.53033C-0.0732254 8.23744 -0.0732253 7.76256 0.219669 7.46967L6.96967 0.719669C7.26256 0.426776 7.73744 0.426776 8.03033 0.719669Z" fill="CurrentColor" />
-                                        </svg>
-
-                                    </div>
-                                                  <Link to='/ViewPatientDetails'><div className="flex gap-1 items-center ">
-                                                        
-                                                                        <ArrowLeftIcon className="relative w-4 h-4 pt-1" />
-                                                                     
-                                                  <p className="font-lato font-semibold text-sm text-text-primary leading-[125%] tracking-[0]">
-                                        {t("Add New Patient")}
-                                    </p></div>   </Link>
-                     
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Right Side -> الإشعار */}
-                        <div className="relative">
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                            >
-                                <BellIcon className="w-5 h-5" />
-                            </Button>
-                            <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-                        </div>
-                    </div>
-
-
-
-
-                    {/* نسخة الـ Desktop/Laptop */}
-                    <div className="hidden md:flex w-full items-center justify-between">
-                        {/* Left Side */}
-                        <div className="flex items-center gap-4">
-                            <div className="flex flex-col">
-                                <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
-                                    {t("Patients Management")}
-                                </h1>
-                                <div className="flex items-center gap-2.5 text-[14px]">
-                                    <div className=" text-text-primary">
-                                 
-
-                                    </div>
-                                                                   <Link to='/ViewPatientDetails'><div className="flex gap-2 items-center ">
-                                                        
-                                                                        <ArrowLeftIcon className="relative w-5 h-5 pt-1" />
-                                                                     
-                                                  <p className="font-lato font-semibold text-sm text-text-primary leading-[125%] tracking-[0]">
-                                        {t("Add New Patient")}
-                                    </p></div>   </Link>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Right Side */}
-                        <div className="inline-flex gap-3 items-center px-4">
-                            {/* Notification */}
-                            <div className="relative">
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                                >
-                                    <BellIcon className="w-5 h-5" />
-                                </Button>
-                                <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-                            </div>
-
-                            {/* Language Switch */}
-                            <div className="relative">
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
-                                        } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-                                    onClick={handleLanguageClick}
-                                >
-                                    <TranslateIcon className="w-5 h-5" />
-                                </Button>
-                            </div>
-
-                            {/* Theme Toggle */}
-                            <div className="relative">
-                                <ThemeToggle />
-                            </div>
-
-                            {/* User Info */}
-                            <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-                                <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-                                <div className="flex-col items-start gap-1 inline-flex">
-                                    <div className="text-base font-bold text-on-surface-primary">
-                                        Anahera Jones
-                                    </div>
-                                    <div className="text-sm text-on-surface-tertiary">
-                                        {t("Admin")}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </header>
+                <Header MainTitle="Patients Management" SubTitle="Add New Patient" onOpenSidebar={onOpenSidebar}  backTo="/ViewPatientDetails"/>
+                
+        
 
 
 

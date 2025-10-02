@@ -40,7 +40,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../../../../../components/ui/collapsible";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import {
   Pagination,
@@ -103,58 +103,11 @@ const capacityData = [
 ];
 
 
-const clinicInfo = [
-  { label: "Clinic Name", value: "Al Noor Clinic" },
-  { label: "Session Slot:", value: "30 minutes" },
-  { label: "Services Offered:", value: "General Consultation,Pediatric Care" },
-  { label: "Year of Establishment", value: "3 April 2011" },
-  { label: "PIC", value: "Dr. Layla Al Saeed" },
-  {
-    label: "Description",
-    value:
-      "Al Noor Clinic is a multi-specialty clinic offering high-quality care with modern facilities.",
-  },
-];
 
-const contactInfo = [
-  {
-    icon: PhoneIcon,
-    label: "PhoneIcon Numbers:",
-    value: "+966 55 123 4567, +966 11 987 6543",
-  },
-  { icon: MailIcon, label: "Email:", value: "info@medcaregroup.com" },
-  {
-    icon: MapPinIcon,
-    label: "Physical Address:",
-    value: "245, King Fahd Road, Al Olaya, Saudi Arabia, KSA",
-  },
-  { icon: GlobeIcon, label: "Company Website:", value: "www.medcaregroup.com" },
-];
 
-const socialMedia = [
-  {
-    icon: LinkedinIcon,
-    label: "LinkedIn:",
-    value: "https://www.linkedin.com/company/medcare-group",
-    isLink: true,
-  },
-  {
-    icon: FacebookIcon,
-    label: "Facebook:",
-    value: "https://facebook.com/medcaregroup",
-  },
-  {
-    icon: TwitterIcon,
-    label: "Twitter:",
-    value: "https://twitter.com/medcaregroup",
-    isLink: true,
-  },
-  {
-    icon: InstagramIcon,
-    label: "Instagram:",
-    value: "https://instagram.com/medcaregroup",
-  },
-];
+
+
+
 type Schedule = {
   day: string;
   startTime: string;
@@ -206,6 +159,7 @@ const doctorsAndStaff = [
     status: "Active",
   },
 ];
+import { Header } from "../../../../CommonComponents/Header";
 import { useLanguage } from "../../../../../lib/LanguageContext";
 export const ElementViewClinic = (): JSX.Element => {
 
@@ -230,16 +184,9 @@ export const ElementViewClinic = (): JSX.Element => {
       [key]: open
     }))
   };
-  const [activeDays, setActiveDays] = useState(getWorkingDays(t).map(() => false));
 
-  const toggleDay = (index: number) => {
-    setActiveDays((prev) => prev.map((val, i) => (i === index ? !val : val)));
-  };
-  const handleDateChange = (date: Date) => {
 
-    // يمكنك هنا إجراء أي عمل تريده مع التاريخ المحدد
-  };
-
+const navigate=useNavigate();
   const [isOpenAppointment, setIsOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const onOpenSidebar = () => setShowSidebar(true);
@@ -269,119 +216,9 @@ export const ElementViewClinic = (): JSX.Element => {
       } `}
       >
 
+<Header MainTitle="Medical Facilities" SubTitle="View Clinic Details" onOpenSidebar={onOpenSidebar}  />
 
-        <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-          {/* نسخة الموبايل */}
-          <div className="flex w-full items-center justify-between md:hidden">
-            {/* Left Side -> العنوان */}
-            <div className="flex items-center gap-2">
-              <button
-                className="md:hidden p-2 rounded-lg bg-secondary-light"
-                onClick={onOpenSidebar}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-
-              <div className="flex flex-col">
-                <h1 className="font-bold text-sm text-on-surface-primary">
-                  {t("Medical Facilities")}
-                </h1>
-                <p className="text-xs text-on-surface-primary">
-                  {t("View Clinic Details")}
-                </p>
-              </div>
-            </div>
-
-            {/* Right Side -> الإشعار */}
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-              >
-                <BellIcon className="w-5 h-5" />
-              </Button>
-              <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-            </div>
-          </div>
-
-
-
-
-          {/* نسخة الـ Desktop/Laptop */}
-          <div className="hidden md:flex w-full items-center justify-between">
-            {/* Left Side */}
-            <div className="flex items-center gap-4">
-              <div className="flex flex-col">
-                <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
-                  {t("Medical Facilities")}
-                </h1>
-                <p className="text-sm md:text-base text-on-surface-primary">
-                  {t("View Clinic Details")}
-                </p>
-              </div>
-            </div>
-
-            {/* Right Side */}
-            <div className="inline-flex gap-3 items-center px-4">
-              {/* Notification */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                >
-                  <BellIcon className="w-5 h-5" />
-                </Button>
-                <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-              </div>
-
-              {/* Language Switch */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
-                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-                  onClick={handleLanguageClick}
-                >
-                  <TranslateIcon className="w-5 h-5" />
-                </Button>
-              </div>
-
-              {/* Theme Toggle */}
-              <div className="relative">
-                <ThemeToggle />
-              </div>
-
-              {/* User Info */}
-              <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-                <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-                <div className="flex-col items-start gap-1 inline-flex">
-                  <div className="text-base font-bold text-on-surface-primary">
-                    Anahera Jones
-                  </div>
-                  <div className="text-sm text-on-surface-tertiary">
-                    {t("Admin")}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
+   
 
 
 
@@ -398,8 +235,11 @@ export const ElementViewClinic = (): JSX.Element => {
         <Card className="flex flex-col h-auto items-start gap-6 p-5 mt-[10px] bg-background-tertiary relative self-stretch w-full rounded-2xl overflow-hidden">
           <CardContent className="p-0 w-full overflow-y-auto gap-5 h-auto">
             <div className="flex justify-end" dir={local === 'ar' ? 'rtl' : 'ltr'}>
-              <Link to="/ElementViewClinic/EditClinicDetails">
-                <Button
+           
+                <Button onClick={
+                    (e)=>{
+                      navigate('/ElementViewClinic/EditClinicDetails',{state:{from:'/ElementViewClinic'}})
+                    }                  }
                   className="
              flex items-center justify-center gap-2
              w-[140px] sm:w-[150px] md:w-[180px] lg:w-[200px]
@@ -418,7 +258,7 @@ export const ElementViewClinic = (): JSX.Element => {
                   />
                   {t("Edit")}
                 </Button>
-              </Link>
+       
 
             </div>
 

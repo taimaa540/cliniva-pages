@@ -58,7 +58,7 @@ const addressFields = [
   { value: "Saudi Arabia", width: "w-[165px]" },
 
 ];
-
+import { Header } from "../../CommonComponents/Header";
 const emergencyContact = {
   name: "Mohammed Zaki",
   relationship: "Father",
@@ -66,7 +66,7 @@ const emergencyContact = {
   number: "93 348 151",
 };
 
-
+import { useLocation } from "react-router-dom";
 import { ArrowLeftIcon } from "lucide-react";
 export const StaffMemberDetails = (): JSX.Element => {
   const [value, setValue] = useState<string | undefined>(""
@@ -158,7 +158,8 @@ export const StaffMemberDetails = (): JSX.Element => {
       )
     }
   ];
-
+const location=useLocation();
+    const backTo = location.state?.from || "/ViewStaffList";
   const [isOpenAppointment, setIsOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const onOpenSidebar = () => setShowSidebar(true);
@@ -182,129 +183,8 @@ export const StaffMemberDetails = (): JSX.Element => {
         onCloseSidebar={onCloseSidebar}
       />
       <div className="flex flex-col w-full overflow-hidden min-h-screen items-start gap-4 py-4 pl-0 pr-5">
+                    <Header MainTitle="Staff" SubTitle="Edit Staff Member Details" onOpenSidebar={onOpenSidebar} backTo={backTo} />
 
-        <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-          {/* نسخة الموبايل */}
-          <div className="flex w-full items-center justify-between md:hidden">
-            {/* Left Side -> العنوان */}
-            <div className="flex items-center gap-2">
-              <button
-                className="md:hidden p-2 rounded-lg bg-secondary-light"
-                onClick={onOpenSidebar}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-
-              <div className="flex flex-col">
-                <h1 className="font-bold text-[14px] text-on-surface-primary">
-                  {t("Staff")}
-                </h1>
-                                 <Link to='/ViewStaffList/View Staff Details'><div className="flex gap-1 items-center ">
-                                    
-                                                    <ArrowLeftIcon className="relative w-4 h-4 pt-1" />
-                                                 
-                          <p className="text-[14px] text-on-surface-primary">
-                  {t("Edit Staff Member Details")}
-                </p></div>   </Link>
-              
-              </div>
-            </div>
-
-            {/* Right Side -> الإشعار */}
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-              >
-                <BellIcon className="w-5 h-5" />
-              </Button>
-              <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-            </div>
-          </div>
-
-
-
-
-          {/* نسخة الـ Desktop/Laptop */}
-          <div className="hidden md:flex w-full items-center justify-between">
-            {/* Left Side */}
-            <div className="flex items-center gap-4">
-              <div className="flex flex-col">
-                <h1 className="font-bold text-[clamp(14px,1.1vw,16px)]md:text-lg lg:text-xl text-on-surface-primary">
-                  {t("Staff")}
-                </h1>
-                
-                        <Link to='/ViewStaffList/View Staff Details'><div className="flex gap-1 items-center ">
-                                    
-                                                    <ArrowLeftIcon className="relative w-4 h-4 pt-1" />
-                                                 
-                          <p className="text-[14px] text-on-surface-primary">
-                  {t("Edit Staff Member Details")}
-                </p></div>   </Link>
-              </div>
-            </div>
-
-            {/* Right Side */}
-            <div className="inline-flex gap-3 items-center px-4">
-              {/* Notification */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                >
-                  <BellIcon className="w-5 h-5" />
-                </Button>
-                <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-              </div>
-
-              {/* Language Switch */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
-                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-                  onClick={handleLanguageClick}
-                >
-                  <TranslateIcon className="w-5 h-5" />
-                </Button>
-              </div>
-
-              {/* Theme Toggle */}
-              <div className="relative">
-                <ThemeToggle />
-              </div>
-
-              {/* User Info */}
-              <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-                <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-                <div className="flex-col items-start gap-1 inline-flex">
-                  <div className="text-[clamp(14px,1.1vw,16px)]font-bold text-on-surface-primary">
-                    Anahera Jones
-                  </div>
-                  <div className="text-[14px] text-on-surface-tertiary">
-                    {t("Admin")}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
 
 
 
@@ -316,7 +196,7 @@ export const StaffMemberDetails = (): JSX.Element => {
 
 
             <div className="flex gap-[14px]  justify-end p-3 items-end text-end pb-2 sm:pb-3 md:pb-3 lg:pb-4 " dir={local === 'ar' ? 'rtl' : 'ltr'}
-            ><Link to="/ViewStaffList/View Staff Details">
+            ><Link to={backTo}>
                 <button className="     w-[80px] h-[30px]       /* الموبايل الافتراضي */
  
     md:w-[180px] md:h-[38px]

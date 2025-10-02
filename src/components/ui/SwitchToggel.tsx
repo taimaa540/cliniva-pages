@@ -13,7 +13,7 @@ type ToggleProps = {
 
 const Toggle: React.FC<ToggleProps> = ({
   checked: controlledChecked,
-  defaultChecked = false,
+  defaultChecked = true,
   onChange,
   ariaLabel = "Toggle",
   id,
@@ -90,7 +90,7 @@ const Toggle: React.FC<ToggleProps> = ({
           letterSpacing: "0%",
         }}
       >
-        {checked ? t("status.active") : t("status.inactive")}
+        {checked ?t("status.active") :  t("status.inactive")}
       </span>
     </div>
   );

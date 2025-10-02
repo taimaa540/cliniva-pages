@@ -18,6 +18,13 @@ import TranslateIcon from "@mui/icons-material/Translate";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import SwitchWithLabel from "../CommonComponents/SwitchLabel";
+import { Header } from "../CommonComponents/Header";
+import { Deactivate } from "../CommonComponents/Deactivate"; 
+import { Activate } from "../CommonComponents/Activate";
+import Toggle from "../../components/ui/SwitchToggel";
+import { Delete } from "../CommonComponents/Delete";
+import { useNavigate } from "react-router-dom";
+
 const serviceData = [
   {
     id: "1",
@@ -101,6 +108,61 @@ export const ServicesList = (): JSX.Element => {
   useEffect(() => {
     i18n.changeLanguage(local);
   }, []);
+  const navigate = useNavigate();
+const [checked, setChecked] = useState<boolean>(true); // الحالة الحالية
+const [showDialog, setShowDialog] = useState<boolean>(false);
+const [pendingNext, setPendingNext] = useState<boolean | null>(null);
+const [actionType, setActionType] = useState<"activate" | "deactivate" | null>(null);
+
+
+  // عندما يضغط المستخدم على الـ Toggle
+function handleToggle(next: boolean) {
+  // إذا كان من Active -> Inactive
+  if (checked && !next) {
+    setPendingNext(next);
+    setActionType("deactivate");
+    setShowDialog(true);
+    return;
+  }
+
+  // إذا كان من Inactive -> Active
+  if (!checked && next) {
+    setPendingNext(next);
+    setActionType("activate");
+    setShowDialog(true);
+    return;
+  }
+
+  // غير هيك غيّر مباشرة
+  setChecked(next);
+}
+
+function confirmDeactivate() {
+  setChecked(pendingNext ?? false);
+  setPendingNext(null);
+  setActionType(null);
+  setShowDialog(false);
+}
+
+function cancelDeactivate() {
+  setPendingNext(null);
+  setActionType(null);
+  setShowDialog(false);
+}
+
+{/*DeletDialog*/ }
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+
+  function handleDelete() {
+    // تنفيذ الحذف هنا
+    console.log("Deleted!");
+    setShowDeleteDialog(false);
+  }
+
+  function cancelDelete() {
+    setShowDeleteDialog(false);
+  }
+
 
   const [isOpenAppointment, setIsOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
@@ -126,119 +188,9 @@ export const ServicesList = (): JSX.Element => {
       />
       <>
         <div className="flex flex-col w-full overflow-hidden h-full items-start gap-4 py-4 pl-0 pr-5">
+                <Header MainTitle="Services Management" SubTitle="View Services List" onOpenSidebar={onOpenSidebar}  />
 
-          <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-            {/* نسخة الموبايل */}
-            <div className="flex w-full items-center justify-between md:hidden">
-              {/* Left Side -> العنوان */}
-              <div className="flex items-center gap-2">
-                <button
-                  className="md:hidden p-2 rounded-lg bg-secondary-light"
-                  onClick={onOpenSidebar}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={2}
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  </svg>
-                </button>
-
-                <div className="flex flex-col">
-                  <h1 className="font-bold text-sm text-on-surface-primary">
-                    {t("Services Management")}
-                  </h1>
-                  <p className="text-xs text-on-surface-primary">
-                    {t("View Services List")}
-                  </p>
-                </div>
-              </div>
-
-              {/* Right Side -> الإشعار */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                >
-                  <BellIcon className="w-5 h-5" />
-                </Button>
-                <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-              </div>
-            </div>
-
-
-
-
-            {/* نسخة الـ Desktop/Laptop */}
-            <div className="hidden md:flex w-full items-center justify-between">
-              {/* Left Side */}
-              <div className="flex items-center gap-4">
-                <div className="flex flex-col">
-                  <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
-                    {t("Services Management")}
-                  </h1>
-                  <p className="text-sm md:text-base text-on-surface-primary">
-                    {t("View Services List")}
-                  </p>
-                </div>
-              </div>
-
-              {/* Right Side */}
-              <div className="inline-flex gap-3 items-center px-4">
-                {/* Notification */}
-                <div className="relative">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                  >
-                    <BellIcon className="w-5 h-5" />
-                  </Button>
-                  <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-                </div>
-
-                {/* Language Switch */}
-                <div className="relative">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
-                      } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-                    onClick={handleLanguageClick}
-                  >
-                    <TranslateIcon className="w-5 h-5" />
-                  </Button>
-                </div>
-
-                {/* Theme Toggle */}
-                <div className="relative">
-                  <ThemeToggle />
-                </div>
-
-                {/* User Info */}
-                <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-                  <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-                  <div className="flex-col items-start gap-1 inline-flex">
-                    <div className="text-base font-bold text-on-surface-primary">
-                      Anahera Jones
-                    </div>
-                    <div className="text-sm text-on-surface-tertiary">
-                      {t("Admin")}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </header>
+   
 
 
           <Card className="flex flex-col h-full items-start gap-5 p-[20px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-secondary">
@@ -297,107 +249,123 @@ export const ServicesList = (): JSX.Element => {
                   </div>
                 </div>
 
-                <div className="flex flex-col h-full items-center gap-[183px] w-full">
-                  <table className="w-full text-center">
-                    <thead>
-                      <tr className="h-[56px] bg-background-primary border-b border-border-light w-full">
-                        <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {t("No.")}
-                        </td>
-                        <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {t("Service ID")}
-                        </td>
-                        <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {t("Services Name")}
-                        </td>
-                        <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {t("Service Category")}
-                        </td>
-                        <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {t("Sessions Number")}
-                        </td>
-                        <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {t("Assigned Clinics")}
-                        </td>
-                        <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {t("Clinics Location")}
-                        </td>
-                        <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {t("Status")}
-                        </td>
-                        <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {t("Actions")}
-                        </td>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {serviceData.map((service) => (
-                        <tr
-                          key={service.id}
-                          className="h-[78px] bg-background-primary hover:bg-gray-100 border-b border-border-light w-full"
-                   onClick={() => window.location.href = `/ViewServiceDetails?id=${service.id}`}
-                        >
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.id}
-                          </td>
-                          <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.serviceId}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.serviceName}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.serviceCategory}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.sessionsNumber}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.assignedClinics}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {service.clinicslocation}
-                          </td>
-                          <td className="align-middle w-[160px]">
-                               <div        onClick={(e) => e.stopPropagation()}>
-                            <SwitchWithLabel /></div>
-                          </td>
-                          <td className="align-middle">
-                            <div className="inline-flex flex-col justify-center gap-1 flex-[0_0_auto] items-start">
-                              <div className="inline-flex items-center justify-center gap-1 flex-[0_0_auto]">
-                                           <Link to="/ViewServiceDetails" onClick={(e) => e.stopPropagation()}>
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
-                                >
-                                  <img
-                                    className={`w-[15px] h-[15px]text-on-surface-primary`}
-                                    alt="edit"
-                                    src="./edit-01.svg"
-                                  />
-                                </Button></Link>
+             <div className="flex flex-col h-full items-center gap-[183px] w-full">
+  <table className="w-full text-center">
+    <thead>
+      <tr className="h-[56px] bg-background-primary border-b border-border-light w-full">
+        <td className="font-lato font-semibold text-xs leading-[130%] text-text-primary">{t("No.")}</td>
+        <td className="font-lato font-semibold text-xs leading-[130%] text-text-primary">{t("Service ID")}</td>
+        <td className="font-lato font-semibold text-xs leading-[130%] text-text-primary">{t("Services Name")}</td>
+        <td className="font-lato font-semibold text-xs leading-[130%] text-text-primary">{t("Service Category")}</td>
+        <td className="font-lato font-semibold text-xs leading-[130%] text-text-primary">{t("Sessions Number")}</td>
+        <td className="font-lato font-semibold text-xs leading-[130%] text-text-primary">{t("Assigned Clinics")}</td>
+        <td className="font-lato font-semibold text-xs leading-[130%] text-text-primary">{t("Clinics Location")}</td>
+        <td className="font-lato font-semibold text-xs leading-[130%] text-text-primary">{t("Status")}</td>
+        <td className="font-lato font-semibold text-xs leading-[130%] text-text-primary">{t("Actions")}</td>
+      </tr>
+    </thead>
 
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
-                                >
-                                  <Trash2Icon
-                                    className={`w-[20px] h-[20px]
-                                 "text-on-surface-primary"
-                              `}
-                                  />
-                                </Button>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+    <tbody>
+      {serviceData.map((service) => (
+        <tr
+          key={service.id}
+          className="h-[78px] bg-background-primary hover:bg-gray-100 border-b border-border-light w-full"
+          onClick={() =>
+            navigate(`/ViewServiceDetails?id=${service.id}`, {
+              state: { from: "/ServicesList" },
+            })
+          }
+        >
+          <td className="align-middle font-lato font-semibold text-xs text-text-primary">{service.id}</td>
+          <td className="align-middle font-lato font-normal text-xs text-text-primary">{service.serviceId}</td>
+          <td className="align-middle font-lato font-semibold text-xs text-text-primary">{service.serviceName}</td>
+          <td className="align-middle font-lato font-semibold text-xs text-text-primary">{service.serviceCategory}</td>
+          <td className="align-middle font-lato font-semibold text-xs text-text-primary">{service.sessionsNumber}</td>
+          <td className="align-middle font-lato font-semibold text-xs text-text-primary">{service.assignedClinics}</td>
+          <td className="align-middle font-lato font-semibold text-xs text-text-primary">{service.clinicslocation}</td>
 
+          {/* Status Toggle */}
+          <td className="align-middle w-[160px]">
+            <div onClick={(e) => e.stopPropagation()}>
+              <Toggle checked={checked} onChange={handleToggle} />
+              {showDialog && actionType === "deactivate" && (
+                <Deactivate
+                  open={showDialog}
+                  onConfirm={confirmDeactivate}
+                  onCancel={cancelDeactivate}
+                >
+                  <p>
+                    Inactive services will no longer appear in selection menus or be assignable to patients.
+                  </p>
+                </Deactivate>
+              )}
+              {showDialog && actionType === "activate" && (
+                <Activate
+                  open={showDialog}
+                  onConfirm={confirmDeactivate}
+                  onCancel={cancelDeactivate}
+                >
+                  <p>
+                    Active services will be visible in selection menus and can be assigned to patients.
+                  </p>
+                </Activate>
+              )}
+            </div>
+          </td>
+
+          {/* Actions */}
+          <td className="align-middle">
+            <div className="inline-flex flex-col justify-center gap-1 items-start">
+              <div className="inline-flex items-center justify-center gap-1">
+                <Button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    navigate("/EditServiceDetails");
+                  }}
+                  variant="ghost"
+                  size="sm"
+                  className="inline-flex items-center justify-center gap-2 p-2.5 rounded-lg h-auto"
+                >
+                  <img
+                    className="w-[15px] h-[15px] text-on-surface-primary"
+                    alt="edit"
+                    src="./edit-01.svg"
+                  />
+                </Button>
+
+                <Button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setShowDeleteDialog(true);
+                  }}
+                  variant="ghost"
+                  size="sm"
+                  className="inline-flex items-center justify-center gap-2 p-2.5 rounded-lg h-auto"
+                >
+                  <Trash2Icon className="w-[20px] h-[20px] text-on-surface-primary" />
+                </Button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+
+
+           
+ {showDeleteDialog  && ( <Delete
+                                  open={showDeleteDialog}
+                                  title="SRV-00345"
+                                  onDelete={handleDelete}
+                                  onCancel={cancelDelete}
+                                >
+                                  <p>Are you sure you want to delete this User? This action cannot be undone.</p>
+                                </Delete>)}
                 <footer
                   dir="ltr"
                   className="flex items-center justify-between self-stretch w-full flex-[0_0_auto] bg-transparent mt-[10px]"

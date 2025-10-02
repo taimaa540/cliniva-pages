@@ -23,164 +23,25 @@ import { ThemeToggle } from "../../../components/theme/ThemeSwitcher";
 import { useEffect } from "react";
 import Toggle from "../../../components/ui/SwitchToggel";
 import { SideBar } from "../../CommonComponents/SideBarPlan2";
-const userData = [
-  {
-    id: "001",
-    PatientID: "US-001",
-    PatientName: "Dr. Ahmed Hassan",
-    Age: "45",
-    LastVisitDate: "2023-01-01",
-    Gender: "Male",
-    InsuranceCompany: "Al hasan company",
-    InsuranceStatus: "Expired",
-    status: "Active",
-  },
-  {
-    id: "001",
-    PatientID: "US-001",
-    PatientName: "Dr. Ahmed Hassan",
-    Age: "45",
-    LastVisitDate: "2023-01-01",
-    Gender: "Male",
-    InsuranceCompany: "Al hasan company",
-    InsuranceStatus: "Expired",
-    status: "Active",
-  },
-  {
-    id: "001",
-    PatientID: "US-001",
-    PatientName: "Dr. Ahmed Hassan",
-    Age: "45",
-    LastVisitDate: "2023-01-01",
-    Gender: "Male",
-    InsuranceCompany: "Al hasan company",
-    InsuranceStatus: "Expired",
-    status: "Active",
-  },
-  {
-    id: "001",
-    PatientID: "US-001",
-    PatientName: "Dr. Ahmed Hassan",
-    Age: "45",
-    LastVisitDate: "2023-01-01",
-    Gender: "Male",
-    InsuranceCompany: "Al hasan company",
-    InsuranceStatus: "Expired",
-    status: "Active",
-  },
-  {
-    id: "001",
-    PatientID: "US-001",
-    PatientName: "Dr. Ahmed Hassan",
-    Age: "45",
-    LastVisitDate: "2023-01-01",
-    Gender: "Male",
-    InsuranceCompany: "Al hasan company",
-    InsuranceStatus: "Expired",
-    status: "Active",
-  },
-  {
-    id: "001",
-    PatientID: "US-001",
-    PatientName: "Dr. Ahmed Hassan",
-    Age: "45",
-    LastVisitDate: "2023-01-01",
-    Gender: "Male",
-    InsuranceCompany: "Al hasan company",
-    InsuranceStatus: "Expired",
-    status: "Active",
-  }, {
-    id: "001",
-    PatientID: "US-001",
-    PatientName: "Dr. Ahmed Hassan",
-    Age: "45",
-    LastVisitDate: "2023-01-01",
-    Gender: "Male",
-    InsuranceCompany: "Al hasan company",
-    InsuranceStatus: "Expired",
-    status: "Active",
-  },
-  {
-    id: "001",
-    PatientID: "US-001",
-    PatientName: "Dr. Ahmed Hassan",
-    Age: "45",
-    LastVisitDate: "2023-01-01",
-    Gender: "Male",
-    InsuranceCompany: "Al hasan company",
-    InsuranceStatus: "Expired",
-    status: "Active",
-  },
-  {
-    id: "001",
-    PatientID: "US-001",
-    PatientName: "Dr. Ahmed Hassan",
-    Age: "45",
-    LastVisitDate: "2023-01-01",
-    Gender: "Male",
-    InsuranceCompany: "Al hasan company",
-    InsuranceStatus: "Expired",
-    status: "Active",
-  },
-  {
-    id: "001",
-    PatientID: "US-001",
-    PatientName: "Dr. Ahmed Hassan",
-    Age: "45",
-    LastVisitDate: "2023-01-01",
-    Gender: "Male",
-    InsuranceCompany: "Al hasan company",
-    InsuranceStatus: "Expired",
-    status: "Active",
-  },
-  {
-    id: "001",
-    PatientID: "US-001",
-    PatientName: "Dr. Ahmed Hassan",
-    Age: "45",
-    LastVisitDate: "2023-01-01",
-    Gender: "Male",
-    InsuranceCompany: "Al hasan company",
-    InsuranceStatus: "Expired",
-    status: "Active",
-  },
-  {
-    id: "001",
-    PatientID: "US-001",
-    PatientName: "Dr. Ahmed Hassan",
-    Age: "45",
-    LastVisitDate: "2023-01-01",
-    Gender: "Male",
-    InsuranceCompany: "Al hasan company",
-    InsuranceStatus: "Expired",
-    status: "Active",
-  },
-  {
-    id: "001",
-    PatientID: "US-001",
-    PatientName: "Dr. Ahmed Hassan",
-    Age: "45",
-    LastVisitDate: "2023-01-01",
-    Gender: "Male",
-    InsuranceCompany: "Al hasan company",
-    InsuranceStatus: "Expired",
-    status: "Active",
-  },
-  {
-    id: "001",
-    PatientID: "US-001",
-    PatientName: "Dr. Ahmed Hassan",
-    Age: "45",
-    LastVisitDate: "2023-01-01",
-    Gender: "Male",
-    InsuranceCompany: "Al hasan company",
-    InsuranceStatus: "Expired",
-    status: "Active",
-  },
+import { Deactivate } from "../../CommonComponents/Deactivate";
+import { Activate } from "../../CommonComponents/Activate";
+import { Delete } from "../../CommonComponents/Delete";
+import { useNavigate } from "react-router-dom";
+interface User {
+  id: string;
+  PatientID: string;
+  PatientName: string;
+  Age: string;
+  LastVisitDate: string;
+  Gender: string;
+  InsuranceCompany: string;
+  InsuranceStatus: string;
+  status: string;
+}
 
-];
-
+import { Header } from "../../CommonComponents/Header";
 export const ViewListOfPatients = (): JSX.Element => {
+
   const { local, handleLanguageClick } = useLanguage();
   const [status, setStatus] = useState("status");
   const { t, i18n } = useTranslation();
@@ -189,6 +50,226 @@ export const ViewListOfPatients = (): JSX.Element => {
     i18n.changeLanguage(local);
   }, [local, i18n]);
 
+  {/* Toggel Dialog */ }
+  const [checked, setChecked] = useState<boolean>(true); // الحالة الحالية
+  const [showDialog, setShowDialog] = useState<boolean>(false);
+  const [pendingNext, setPendingNext] = useState<boolean | null>(null);
+  const [actionType, setActionType] = useState<"activate" | "deactivate" | null>(null);
+
+
+  {/*  user's Data */ }
+
+  const [userData, setUserData] = useState<User[]>([
+
+    {
+      id: "001",
+      PatientID: "US-001",
+      PatientName: "Dr. Ahmed Hassan",
+      Age: "45",
+      LastVisitDate: "2023-01-01",
+      Gender: "Male",
+      InsuranceCompany: "Al hasan company",
+      InsuranceStatus: "Expired",
+      status: "Active",
+    },
+    {
+      id: "001",
+      PatientID: "US-001",
+      PatientName: "Dr. Ahmed Hassan",
+      Age: "45",
+      LastVisitDate: "2023-01-01",
+      Gender: "Male",
+      InsuranceCompany: "Al hasan company",
+      InsuranceStatus: "Expired",
+      status: "Active",
+    },
+    {
+      id: "001",
+      PatientID: "US-001",
+      PatientName: "Dr. Ahmed Hassan",
+      Age: "45",
+      LastVisitDate: "2023-01-01",
+      Gender: "Male",
+      InsuranceCompany: "Al hasan company",
+      InsuranceStatus: "Expired",
+      status: "Active",
+    },
+    {
+      id: "001",
+      PatientID: "US-001",
+      PatientName: "Dr. Ahmed Hassan",
+      Age: "45",
+      LastVisitDate: "2023-01-01",
+      Gender: "Male",
+      InsuranceCompany: "Al hasan company",
+      InsuranceStatus: "Expired",
+      status: "Active",
+    },
+    {
+      id: "001",
+      PatientID: "US-001",
+      PatientName: "Dr. Ahmed Hassan",
+      Age: "45",
+      LastVisitDate: "2023-01-01",
+      Gender: "Male",
+      InsuranceCompany: "Al hasan company",
+      InsuranceStatus: "Expired",
+      status: "Active",
+    },
+    {
+      id: "001",
+      PatientID: "US-001",
+      PatientName: "Dr. Ahmed Hassan",
+      Age: "45",
+      LastVisitDate: "2023-01-01",
+      Gender: "Male",
+      InsuranceCompany: "Al hasan company",
+      InsuranceStatus: "Expired",
+      status: "Active",
+    }, {
+      id: "001",
+      PatientID: "US-001",
+      PatientName: "Dr. Ahmed Hassan",
+      Age: "45",
+      LastVisitDate: "2023-01-01",
+      Gender: "Male",
+      InsuranceCompany: "Al hasan company",
+      InsuranceStatus: "Expired",
+      status: "Active",
+    },
+    {
+      id: "001",
+      PatientID: "US-001",
+      PatientName: "Dr. Ahmed Hassan",
+      Age: "45",
+      LastVisitDate: "2023-01-01",
+      Gender: "Male",
+      InsuranceCompany: "Al hasan company",
+      InsuranceStatus: "Expired",
+      status: "Active",
+    },
+    {
+      id: "001",
+      PatientID: "US-001",
+      PatientName: "Dr. Ahmed Hassan",
+      Age: "45",
+      LastVisitDate: "2023-01-01",
+      Gender: "Male",
+      InsuranceCompany: "Al hasan company",
+      InsuranceStatus: "Expired",
+      status: "Active",
+    },
+    {
+      id: "001",
+      PatientID: "US-001",
+      PatientName: "Dr. Ahmed Hassan",
+      Age: "45",
+      LastVisitDate: "2023-01-01",
+      Gender: "Male",
+      InsuranceCompany: "Al hasan company",
+      InsuranceStatus: "Expired",
+      status: "Active",
+    },
+    {
+      id: "001",
+      PatientID: "US-001",
+      PatientName: "Dr. Ahmed Hassan",
+      Age: "45",
+      LastVisitDate: "2023-01-01",
+      Gender: "Male",
+      InsuranceCompany: "Al hasan company",
+      InsuranceStatus: "Expired",
+      status: "Active",
+    },
+    {
+      id: "001",
+      PatientID: "US-001",
+      PatientName: "Dr. Ahmed Hassan",
+      Age: "45",
+      LastVisitDate: "2023-01-01",
+      Gender: "Male",
+      InsuranceCompany: "Al hasan company",
+      InsuranceStatus: "Expired",
+      status: "Active",
+    },
+    {
+      id: "001",
+      PatientID: "US-001",
+      PatientName: "Dr. Ahmed Hassan",
+      Age: "45",
+      LastVisitDate: "2023-01-01",
+      Gender: "Male",
+      InsuranceCompany: "Al hasan company",
+      InsuranceStatus: "Expired",
+      status: "Active",
+    },
+    {
+      id: "002",
+      PatientID: "US-001",
+      PatientName: "Dr. Ahmed Hassan",
+      Age: "45",
+      LastVisitDate: "2023-01-01",
+      Gender: "Male",
+      InsuranceCompany: "Al hasan company",
+      InsuranceStatus: "Expired",
+      status: "Active",
+    },
+
+  ]);
+
+  // عندما يضغط المستخدم على الـ Toggle
+  function handleToggle(next: boolean) {
+    // إذا كان من Active -> Inactive
+    if (checked && !next) {
+      setPendingNext(next);
+      setActionType("deactivate");
+      setShowDialog(true);
+      return;
+    }
+
+    // إذا كان من Inactive -> Active
+    if (!checked && next) {
+      setPendingNext(next);
+      setActionType("activate");
+      setShowDialog(true);
+      return;
+    }
+
+
+  }
+
+  function confirmDeactivate() {
+    setChecked(pendingNext ?? false);
+    setPendingNext(null);
+    setActionType(null);
+    setShowDialog(false);
+  }
+
+  function cancelDeactivate() {
+    setPendingNext(null);
+    setActionType(null);
+    setShowDialog(false);
+  }
+
+  {/*DeletDialog*/ }
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+
+  function handleDelete() {
+    if (selectedId !== null) {
+      setUserData((prev) => prev.filter(user => user.id !== selectedId));
+    }
+    setShowDeleteDialog(false);
+    setSelectedId(null);
+  }
+
+
+  function cancelDelete() {
+    setShowDeleteDialog(false);
+  }
+
+  const navigate = useNavigate();
   const [isOpenAppointment, setIsOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const onOpenSidebar = () => setShowSidebar(true);
@@ -213,120 +294,9 @@ export const ViewListOfPatients = (): JSX.Element => {
       />
       <div className="flex flex-col w-full overflow-hidden h-full items-start gap-4 py-4 pl-0 pr-5">
         {/* الهيدر الرئيسي */}
+        <Header MainTitle="Patients Management" SubTitle="Patients List" onOpenSidebar={onOpenSidebar} />
 
 
-        <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-          {/* نسخة الموبايل */}
-          <div className="flex w-full items-center justify-between md:hidden">
-            {/* Left Side -> العنوان */}
-            <div className="flex items-center gap-2">
-              <button
-                className="md:hidden p-2 rounded-lg bg-secondary-light"
-                onClick={onOpenSidebar}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-
-              <div className="flex flex-col">
-                <h1 className="font-semibold text-sm text-on-surface-primary">
-                  {t("Patients Management")}
-                </h1>
-                <p className="text-xs text-on-surface-primary">
-                  {t("Patients List")}
-                </p>
-              </div>
-            </div>
-
-            {/* Right Side -> الإشعار */}
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-              >
-                <BellIcon className="w-5 h-5" />
-              </Button>
-              <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-            </div>
-          </div>
-
-
-
-
-          {/* نسخة الـ Desktop/Laptop */}
-          <div className="hidden md:flex w-full items-center justify-between">
-            {/* Left Side */}
-            <div className="flex items-center gap-4">
-              <div className="flex flex-col">
-                <h1 className="font-semibold text-base md:text-lg lg:text-xl text-on-surface-primary">
-                  {t("Patients Management")}
-                </h1>
-                <p className="text-sm md:text-base text-on-surface-primary">
-                  {t("Patients List")}
-                </p>
-              </div>
-            </div>
-
-            {/* Right Side */}
-            <div className="inline-flex gap-3 items-center px-4">
-              {/* Notification */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                >
-                  <BellIcon className="w-5 h-5" />
-                </Button>
-                <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-              </div>
-
-              {/* Language Switch */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
-                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-                  onClick={handleLanguageClick}
-                >
-                  <TranslateIcon className="w-5 h-5" />
-                </Button>
-              </div>
-
-              {/* Theme Toggle */}
-              <div className="relative">
-                <ThemeToggle />
-              </div>
-
-              {/* User Info */}
-              <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-                <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-                <div className="flex-col items-start gap-1 inline-flex">
-                  <div className="text-base font-semibold text-on-surface-primary">
-                    Anahera Jones
-                  </div>
-                  <div className="text-sm text-on-surface-tertiary">
-                    {t("Admin")}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
 
 
         {/* البطاقة الرئيسية */}
@@ -422,26 +392,58 @@ export const ViewListOfPatients = (): JSX.Element => {
                           <td className="w-[15%] align-middle font-lato text-[clamp(12px,1.5vw,12px)] text-text-primary">{user.InsuranceCompany}</td>
                           <td className="w-[15%]  align-middle font-lato text-[clamp(12px,1.5vw,12px)] text-text-primary">{user.InsuranceStatus}</td>
                           <td className="w-[15%] align-middle font-lato text-[clamp(12px,1.5vw,12px)] text-text-primary">
-                            <div        onClick={(e) => e.stopPropagation()}>
-                            <Toggle /></div>
+                            <div onClick={(e) => e.stopPropagation()}>
+                              <Toggle checked={checked} onChange={handleToggle} />
+
+                              {showDialog && actionType === "deactivate" && (
+                                <Deactivate
+                                  open={showDialog}
+                                  onConfirm={confirmDeactivate}
+                                  onCancel={cancelDeactivate}
+                                >
+                                  <p>Deactivating a patient will prevent access to services, appointment bookings, and future communications. This action can be reversed later.</p>
+                                </Deactivate>
+                              )}
+
+                              {showDialog && actionType === "activate" && (
+                                <Activate
+                                  open={showDialog}
+                                  onConfirm={confirmDeactivate}
+                                  onCancel={cancelDeactivate}
+                                >
+                                  <p>Activate the patient will be able to book appointments, receive and access system services.</p>
+                                </Activate>
+                              )}
+                            </div>
                           </td>
                           <td className="w-[15%] align-middle">
                             <div className="inline-flex flex-col justify-center gap-1 items-start">
                               <div className="inline-flex items-center justify-center gap-1">
                                 <Link to="/EditPatientDetails">
-                                  <Button
+                                  <Button   onClick={(e) => {
+    e.stopPropagation();
+    navigate(`/EditPatientDetails?id=${user.id}`, { state: { from: "/ViewLastOfPatient" } });
+  }}
                                     variant="ghost"
                                     size="sm"
-                                    className="inline-flex items-center justify-center gap-2 p-2.5 rounded-lg overflow-hidden h-auto" onClick={(e) => e.stopPropagation()}
+                                    className="inline-flex items-center justify-center gap-2 p-2.5 rounded-lg overflow-hidden h-auto" 
                                   >
                                     <img
                                       className="w-[15px] h-[15px] text-on-surface-primary"
                                       alt="edit"
                                       src="./edit-01.svg"
                                     />
-                                  </Button>
+                                  </Button >
                                 </Link>
-                                <Button
+                                <Button onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  // تمنع حدث النقر من الوصول للـ parent
+                                  setShowDeleteDialog(true); // تفتح الـ dialog
+                                  setSelectedId(user.id);
+
+
+                                }}
                                   variant="ghost"
                                   size="sm"
                                   className="inline-flex items-center justify-center gap-2 p-2.5 rounded-lg overflow-hidden h-auto"
@@ -460,7 +462,14 @@ export const ViewListOfPatients = (): JSX.Element => {
             </div>
             {/* التذييل (أرقام الصفحات) - مثبت في الأسفل */}
 
-
+            {showDeleteDialog && (<Delete
+              open={showDeleteDialog}
+              title="SRV-00345"
+              onDelete={handleDelete}
+              onCancel={cancelDelete}
+            >
+              <p>Are you sure you want to delete this User? This action cannot be undone.</p>
+            </Delete>)}
             <div className="flex items-center justify-between p-4" dir={local === "ar" ? "rtl" : "ltr"}>
               <div className="flex items-center gap-2.5 flex-wrap">
                 <span className="text-[clamp(10px,2vw,12px)] text-on-surface-secondary">

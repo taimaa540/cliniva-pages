@@ -6,6 +6,7 @@ import { useLanguage } from "../../lib/LanguageContext";
 
 interface SwitchWithLabelProps {
   initialState?: boolean;
+  
 }
 
 export default function SwitchWithLabel({ initialState = false }: SwitchWithLabelProps) {

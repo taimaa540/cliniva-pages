@@ -6,6 +6,7 @@ import {
 
 
 } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -64,6 +65,7 @@ const contactInfo = {
   },
   mapsLocation: "www.medcaregroup.com",
 };
+ 
 const workingDays = [
   { day: "Sunday", startTime: "09:00", endTime: "18:00", isActive: true },
   { day: "Monday", startTime: "09:00", endTime: "18:00", isActive: true },
@@ -120,7 +122,7 @@ const doctorsAndStaff = [
 
 
 
-
+import { Header } from "../../../../CommonComponents/Header";
 import { useLanguage } from "../../../../../lib/LanguageContext";
 export const EditClinicDetails = (): JSX.Element => {
 
@@ -153,7 +155,8 @@ export const EditClinicDetails = (): JSX.Element => {
     setActiveDays((prev) => prev.map((val, i) => (i === index ? !val : val)));
   };
 
-
+   const location = useLocation();
+      const backTo = location.state?.from || "/ViewListOfClinics";
   const [isOpenAppointment, setIsOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const onOpenSidebar = () => setShowSidebar(true);
@@ -178,120 +181,10 @@ export const EditClinicDetails = (): JSX.Element => {
       />
       <div className="flex flex-col w-full overflow-hidden h-full items-start gap-4  py-4  pb-8 self-stretch relative bg-background-primary">
 
+<Header MainTitle="Medical Facilities" SubTitle="Edit clinic Details" onOpenSidebar={onOpenSidebar}  />
 
 
-        <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-          {/* نسخة الموبايل */}
-          <div className="flex w-full items-center justify-between md:hidden">
-            {/* Left Side -> العنوان */}
-            <div className="flex items-center gap-2">
-              <button
-                className="md:hidden p-2 rounded-lg bg-secondary-light"
-                onClick={onOpenSidebar}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-
-              <div className="flex flex-col">
-                <h1 className="font-bold text-sm text-on-surface-primary">
-                  {t("Medical Facilities")}
-                </h1>
-                <p className="text-xs text-on-surface-primary">
-                  {t("Edit clinic Details")}
-                </p>
-              </div>
-            </div>
-
-            {/* Right Side -> الإشعار */}
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-              >
-                <BellIcon className="w-5 h-5" />
-              </Button>
-              <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-            </div>
-          </div>
-
-
-
-
-          {/* نسخة الـ Desktop/Laptop */}
-          <div className="hidden md:flex w-full items-center justify-between">
-            {/* Left Side */}
-            <div className="flex items-center gap-4">
-              <div className="flex flex-col">
-                <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
-                  {t("Medical Facilities")}
-                </h1>
-                <p className="text-sm md:text-base text-on-surface-primary">
-                  {t("Edit clinic Details")}
-                </p>
-              </div>
-            </div>
-
-            {/* Right Side */}
-            <div className="inline-flex gap-3 items-center px-4">
-              {/* Notification */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                >
-                  <BellIcon className="w-5 h-5" />
-                </Button>
-                <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-              </div>
-
-              {/* Language Switch */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
-                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-                  onClick={handleLanguageClick}
-                >
-                  <TranslateIcon className="w-5 h-5" />
-                </Button>
-              </div>
-
-              {/* Theme Toggle */}
-              <div className="relative">
-                <ThemeToggle />
-              </div>
-
-              {/* User Info */}
-              <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-                <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-                <div className="flex-col items-start gap-1 inline-flex">
-                  <div className="text-base font-bold text-on-surface-primary">
-                    Anahera Jones
-                  </div>
-                  <div className="text-sm text-on-surface-tertiary">
-                    {t("Admin")}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
+    
 
 
 
@@ -315,7 +208,7 @@ export const EditClinicDetails = (): JSX.Element => {
               </Badge>
 
               <div className="flex gap-[14px]  justify-end p-3 items-end text-end pb-2 sm:pb-3 md:pb-3 lg:pb-4 " dir={local === 'ar' ? 'rtl' : 'ltr'} >
-                <Link to="/ElementViewClinic">
+                <Link to={backTo}>
                   <button className="     w-[100px] h-[40px]       /* الموبايل الافتراضي */
 
     md:w-[180px] md:h-[38px]

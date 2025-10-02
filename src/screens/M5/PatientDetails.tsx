@@ -18,16 +18,76 @@ const personalInfoData = [
   { label: "Marital Status", value: "Married" },
   { label: "Gender", value: "Male" },
 ];
+import { Header } from "../CommonComponents/Header";
 import { ThemeToggle } from "../../components/theme/ThemeSwitcher";
+import Toggle from "../../components/ui/SwitchToggel";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { SideBar } from "../CommonComponents/SideBarPlan2";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { Deactivate } from "../CommonComponents/Deactivate";
+import { Activate } from "../CommonComponents/Activate"; 
+import { Delete } from "../CommonComponents/Delete";
 export const PatientDetails = (): JSX.Element => {
   const { local, handleLanguageClick } = useLanguage();
   const { t, i18n } = useTranslation();
   useEffect(() => {
     i18n.changeLanguage(local);
   }, []);
+  const [checked, setChecked] = useState<boolean>(true); // الحالة الحالية
+const [showDialog, setShowDialog] = useState<boolean>(false);
+const [pendingNext, setPendingNext] = useState<boolean | null>(null);
+const [actionType, setActionType] = useState<"activate" | "deactivate" | null>(null);
+const navigate=useNavigate();
+
+  // عندما يضغط المستخدم على الـ Toggle
+function handleToggle(next: boolean) {
+  // إذا كان من Active -> Inactive
+  if (checked && !next) {
+    setPendingNext(next);
+    setActionType("deactivate");
+    setShowDialog(true);
+    return;
+  }
+
+  // إذا كان من Inactive -> Active
+  if (!checked && next) {
+    setPendingNext(next);
+    setActionType("activate");
+    setShowDialog(true);
+    return;
+  }
+
+  // غير هيك غيّر مباشرة
+  setChecked(next);
+}
+
+function confirmDeactivate() {
+  setChecked(pendingNext ?? false);
+  setPendingNext(null);
+  setActionType(null);
+  setShowDialog(false);
+}
+
+function cancelDeactivate() {
+  setPendingNext(null);
+  setActionType(null);
+  setShowDialog(false);
+}
+ {/*DeletDialog*/ }
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+ 
+
+
+  function handleDelete() {
+
+    setShowDeleteDialog(false);
+  }
+
+
+  function cancelDelete() {
+    setShowDeleteDialog(false);
+  }
   const [isOpenAppointment, setIsOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const onOpenSidebar = () => setShowSidebar(true);
@@ -51,119 +111,9 @@ export const PatientDetails = (): JSX.Element => {
         onCloseSidebar={onCloseSidebar}
       />
       <div className="flex flex-col w-full overflow-hidden min-h-screen items-start gap-4 py-4 pl-0 pr-5">
+<Header MainTitle="Patients Management" SubTitle="View Patient Details" onOpenSidebar={onOpenSidebar} />
 
-        <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-          {/* نسخة الموبايل */}
-          <div className="flex w-full items-center justify-between md:hidden">
-            {/* Left Side -> العنوان */}
-            <div className="flex items-center gap-2">
-              <button
-                className="md:hidden p-2 rounded-lg bg-secondary-light"
-                onClick={onOpenSidebar}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-
-              <div className="flex flex-col">
-                <h1 className="font-bold text-sm text-on-surface-primary">
-                  {t("Patients Management")}
-                </h1>
-                <p className="text-xs text-on-surface-primary">
-                  {t("View Patient Details")}
-                </p>
-              </div>
-            </div>
-
-            {/* Right Side -> الإشعار */}
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-              >
-                <BellIcon className="w-5 h-5" />
-              </Button>
-              <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-            </div>
-          </div>
-
-
-
-
-          {/* نسخة الـ Desktop/Laptop */}
-          <div className="hidden md:flex w-full items-center justify-between">
-            {/* Left Side */}
-            <div className="flex items-center gap-4">
-              <div className="flex flex-col">
-                <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
-                  {t("Patients Management")}
-                </h1>
-                <p className="text-sm md:text-base text-on-surface-primary">
-                  {t("View Patient Details")}
-                </p>
-              </div>
-            </div>
-
-            {/* Right Side */}
-            <div className="inline-flex gap-3 items-center px-4">
-              {/* Notification */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                >
-                  <BellIcon className="w-5 h-5" />
-                </Button>
-                <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-              </div>
-
-              {/* Language Switch */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
-                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-                  onClick={handleLanguageClick}
-                >
-                  <TranslateIcon className="w-5 h-5" />
-                </Button>
-              </div>
-
-              {/* Theme Toggle */}
-              <div className="relative">
-                <ThemeToggle />
-              </div>
-
-              {/* User Info */}
-              <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-                <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-                <div className="flex-col items-start gap-1 inline-flex">
-                  <div className="text-base font-bold text-on-surface-primary">
-                    Anahera Jones
-                  </div>
-                  <div className="text-sm text-on-surface-tertiary">
-                    {t("Admin")}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
+   
 
         <Card className="flex flex-col h-full items-start gap-5 p-[20px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-tertiary">
           <CardContent className="w-full overflow-y-auto scroll-x-hidden pr-[20px] ">
@@ -171,10 +121,38 @@ export const PatientDetails = (): JSX.Element => {
               <div className="flex justify-between">
                 <div className="flex gap-[9px] items-center">
                   <span className="font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">{t('Patient Status')}</span>
-                  <SwitchWithLabel />
+                 <Toggle checked={checked} onChange={handleToggle} />
+
+  {showDialog && actionType === "deactivate" && (
+    <Deactivate
+      open={showDialog}
+      onConfirm={confirmDeactivate}
+      onCancel={cancelDeactivate}
+    >
+      <p>Deactivating a patient will prevent access to services, appointment bookings, and future communications. This action can be reversed later.</p>
+    </Deactivate>
+  )}
+
+{showDialog && actionType === "activate" && (
+  <Activate
+    open={showDialog}
+    onConfirm={confirmDeactivate}
+    onCancel={cancelDeactivate}
+  >
+    <p>Activate the patient will be able to book appointments, receive and access system services.</p>
+  </Activate>
+)}
                 </div>
                 <div className="flex gap-[16px]">
-                  <button className="flex items-center justify-center gap-[6px] w-[200px] h-[40px] rounded-[20px] bg-[#E46962] font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
+                  <button  onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  // تمنع حدث النقر من الوصول للـ parent
+                                  setShowDeleteDialog(true); // تفتح الـ dialog
+                             
+
+
+                                }} className="flex items-center justify-center gap-[6px] w-[200px] h-[40px] rounded-[20px] bg-[#E46962] font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
                     <svg
                       className="text-surface-primary"
                       width="20"
@@ -190,8 +168,20 @@ export const PatientDetails = (): JSX.Element => {
                     </svg>
                     {t("Delete")}
                   </button>
-                  <Link to='/EditPatientDetails'>
-                  <button className="flex items-center justify-center gap-[6px] w-[200px] h-[40px] rounded-[20px] bg-secondary-dark font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
+                          {showDeleteDialog && (<Delete
+                                open={showDeleteDialog}
+                                title="SRV-00345"
+                                onDelete={handleDelete}
+                                onCancel={cancelDelete}
+                              >
+                                <p>Are you sure you want to delete this User? This action cannot be undone.</p>
+                              </Delete>)}
+                 
+                  <button onClick={()=>{
+                       navigate(`/EditPatientDetails`, { state: { from: "/ViewPatientDetail" } });
+                   
+                  }}
+                   className="flex items-center justify-center gap-[6px] w-[200px] h-[40px] rounded-[20px] bg-secondary-dark font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
                     <svg
                       width="21"
                       height="20"
@@ -207,7 +197,7 @@ export const PatientDetails = (): JSX.Element => {
                       />
                     </svg>
                     {t("Edit")}
-                  </button></Link>
+                  </button>
                 </div>
               </div>
               <div className="flex gap-[20px] w-full">

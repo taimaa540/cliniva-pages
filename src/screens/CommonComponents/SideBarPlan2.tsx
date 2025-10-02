@@ -245,10 +245,10 @@ export const SideBar = ({isOpenAppointment, setIsOpen,
                   } leading-[130%] tracking-[0] px-[28px] py-[12px] h-[40px]`}
                 >
                  
-                 Company List
+                 Company Details
                 </button>
                 </Link>
-                <Link to="/ElementViewComplex">
+                <Link to="/ViewListOfComplex">
                 <button
                   onClick={() => setDropDown1IsActive("Complex Details")}
                   className={`font-lato font-regular text-xs ${
@@ -259,7 +259,7 @@ export const SideBar = ({isOpenAppointment, setIsOpen,
                 >
                   Complex List
                 </button></Link>
-                <Link to="/ElementViewClinic">
+                <Link to="/ViewListOfClinics">
                 <button
                   onClick={() => setDropDown1IsActive("Clinics List")}
                   className={`font-lato font-regular text-xs ${
@@ -277,7 +277,7 @@ export const SideBar = ({isOpenAppointment, setIsOpen,
           
               <div className="w-[205px] h-fit rounded-b-[4px] rounded-l-[4px] bg-background-secondary">
          
-                <Link to="/ElementViewComplexP2">
+                <Link to="/ViewListOfComplex">
                 <button
                   onClick={() => setDropDown1IsActive("Complex Details")}
                   className={`font-lato font-regular text-xs ${
@@ -288,7 +288,7 @@ export const SideBar = ({isOpenAppointment, setIsOpen,
                 >
                   Complex List
                 </button></Link>
-                <Link to="/ElementViewClinic">
+                <Link to="/ViewListOfClinics">
                 <button
                   onClick={() => setDropDown1IsActive("Clinics List")}
                   className={`font-lato font-regular text-xs ${
@@ -307,7 +307,7 @@ export const SideBar = ({isOpenAppointment, setIsOpen,
               <div className="w-[205px] h-fit rounded-b-[4px] rounded-l-[4px] bg-background-secondary">
        
             
-                <Link to="/ElementViewClinicP3">
+                <Link to="/ViewListOfClinics">
                 <button
                   onClick={() => setDropDown1IsActive("Clinics List")}
                   className={`font-lato font-regular text-xs ${
@@ -456,7 +456,7 @@ export const SideBar = ({isOpenAppointment, setIsOpen,
               {t("Services Management")}
             </span>
           </button></Link>
-          <Link to="/ViewPatientDetails" >
+          <Link to="/ViewLastOfPatient" >
           <button
             onClick={() => setActiveSection("Paitients Management")}
             className={`flex items-center w-full h-[40px] gap-2 py-[10px] pl-[4px] ${
@@ -755,11 +755,11 @@ export const SideBar = ({isOpenAppointment, setIsOpen,
         {/* Logout Button */}
         <Button
           variant="ghost"
-          className="mt-auto mb-4 w-[183px] h-11 gap-3 pl-4 pr-2 py-3 bg-bg rounded-[14px] justify-start"
+          className="mt-auto mb-4  h-11 rounded-[14px] justify-center items-center"
         >
           <LogOutIcon className="w-5 h-5" />
       
-          <ChevronDownIcon className="w-3.5 h-3.5 ml-[30px]" />
+
         </Button>
       </main>
     </nav>)}

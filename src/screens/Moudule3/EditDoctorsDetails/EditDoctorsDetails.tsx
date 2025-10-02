@@ -10,6 +10,7 @@ import {
 
   PlusIcon,
 } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import { SideBar } from "../../CommonComponents/SideBarPlan2";
 import DateInput from "../../CommonComponents/DateInput";
 import { Button } from "../../../components/ui/button";
@@ -38,14 +39,7 @@ import { useLanguage } from "../../../lib/LanguageContext";
 import { useState } from "react";
 import ImageUploader from "../../CommonComponents/ImageUpload";
 import DatePicker from '../../../components/ui/DatePicker';
-const accountFields = [
-  { label: "User Name", value: "Ammar Al Sawwa", type: "input" },
-  { label: "Ghange Password", value: "ammarsvu91@gmail.com", type: "text" },
-  { label: "Role", value: "Admin", type: "select" },
-  { label: "User Type", value: "Staff", type: "text" },
-  { label: "Medical Complex", value: "TCT Complex", type: "select" },
-  { label: "Clinic", value: "X-Ray Clinic", type: "select" },
-];
+
 
 const addressFields = [
   { value: "2154", width: "w-[136px]" },
@@ -61,8 +55,8 @@ const emergencyContact = {
   countryCode: "+963",
   number: "93 348 151",
 };
-import { ArrowLeftIcon } from "lucide-react";
-import { ThemeToggle } from "../../../components/theme/ThemeSwitcher";
+import { Header } from "../../CommonComponents/Header";
+
 import { Link } from "react-router-dom";
 export const EditDoctorDetails = (): JSX.Element => {
   const [value, setValue] = useState<string | undefined>("");
@@ -70,7 +64,7 @@ export const EditDoctorDetails = (): JSX.Element => {
   Object.keys(en).forEach((key) => {
     shortLabels[key] = key; // يظهر SY, US, EG بدل اسم الدولة
   });
-  const [country, setCountry] = useState("");
+
   const [open, setOpen] = useState({
     personal: true,
     account: true,
@@ -82,8 +76,8 @@ export const EditDoctorDetails = (): JSX.Element => {
   useEffect(() => {
     i18n.changeLanguage(local);
   }, []);
-
-
+  const location = useLocation();
+      const backTo = location.state?.from || "/ViewDoctorList";
   const [formDates, setFormDates] = useState<{
     Barithday: Date | null;
     DateofHire: Date | null;
@@ -173,136 +167,16 @@ export const EditDoctorDetails = (): JSX.Element => {
         onCloseSidebar={onCloseSidebar}
       />
       <div className="flex flex-col w-full overflow-hidden min-h-screen items-start gap-4 py-4 pl-0 pr-5">
+                    <Header MainTitle="Doctors" SubTitle="Edit Doctor details" onOpenSidebar={onOpenSidebar} backTo= {backTo}/>
 
-        <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-          {/* نسخة الموبايل */}
-          <div className="flex w-full items-center justify-between md:hidden">
-            {/* Left Side -> العنوان */}
-            <div className="flex items-center gap-2">
-              <button
-                className="md:hidden p-2 rounded-lg bg-secondary-light"
-                onClick={onOpenSidebar}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-
-              <div className="flex flex-col">
-                <h1 className="font-bold text-sm text-on-surface-primary">
-                  {t("Doctors")}
-                </h1>
-                               <Link to='/ViewDoctorList/ViewDoctorDetails'><div className="flex gap-1 items-center ">
-                                    
-                                                    <ArrowLeftIcon className="relative w-4 h-4 pt-1" />
-                                                 
-                            <p className="text-xs text-on-surface-primary">
-                  {t("Edit Doctor details")}
-                </p></div>   </Link>
-            
-              </div>
-            </div>
-
-            {/* Right Side -> الإشعار */}
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-              >
-                <BellIcon className="w-5 h-5" />
-              </Button>
-              <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-            </div>
-          </div>
-
-
-
-
-          {/* نسخة الـ Desktop/Laptop */}
-          <div className="hidden md:flex w-full items-center justify-between">
-            {/* Left Side */}
-            <div className="flex items-center gap-4">
-              <div className="flex flex-col">
-                <h1 className="font-bold text-[clamp(14px,1.1vw,16px)] md:text-lg lg:text-xl text-on-surface-primary">
-                  {t("Doctors")}
-                </h1>
-                                      <Link to='/ViewDoctorList/ViewDoctorDetails'><div className="flex gap-2 items-center ">
-                                    
-                                                    <ArrowLeftIcon className="relative w-5 h-5 pt-1" />
-                                                 
-                            <p className="text-xs text-on-surface-primary">
-                  {t("Edit Doctor details")}
-                </p></div>   </Link>
-              </div>
-            </div>
-
-            {/* Right Side */}
-            <div className="inline-flex gap-3 items-center px-4">
-              {/* Notification */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                >
-                  <BellIcon className="w-5 h-5" />
-                </Button>
-                <div className="absolute top-1 left-6 w-2 h-2 bg-[#fa812d] rounded-full" />
-              </div>
-
-              {/* Language Switch */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
-                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-                  onClick={handleLanguageClick}
-                >
-                  <TranslateIcon className="w-5 h-5" />
-                </Button>
-              </div>
-
-              {/* Theme Toggle */}
-              <div className="relative">
-                <ThemeToggle />
-              </div>
-
-              {/* User Info */}
-              <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-                <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-                <div className="flex-col items-start gap-1 inline-flex">
-                  <div className="text-[clamp(14px,1.1vw,16px)] font-bold text-on-surface-primary">
-                    Anahera Jones
-                  </div>
-                  <div className="text-sm text-on-surface-tertiary">
-                    {t("Admin")}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-
+  
 
         <main className="flex flex-col h-full items-start gap-5 p-[20px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-tertiary">
           <div className="flex flex-col gap-[20px] w-full overflow-y-auto scroll-x-hidden pr-[20px]">
 
 
             <div className="flex gap-[14px]  justify-end p-3 items-end text-end pb-2 sm:pb-3 md:pb-3 lg:pb-4 " dir={local === 'ar' ? 'rtl' : 'ltr'} >
-              <Link to="/ViewDoctorList/ViewDoctorDetails">
+              <Link to= {backTo}>
                 <button className="     w-[100px] h-[40px]       /* الموبايل الافتراضي */
     sm:w-[100px] sm:h-[26px] 
     md:w-[180px] md:h-[38px]

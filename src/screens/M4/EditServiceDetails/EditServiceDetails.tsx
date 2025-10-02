@@ -53,9 +53,11 @@ interface FormData {
   assignClinics: string;
   serviceDescription: string;
   requiredEquipment: string;
-}
+}import { useLocation } from "react-router-dom";
+import { Activate } from "../../CommonComponents/Activate";
+import { Deactivate } from "../../CommonComponents/Deactivate";
 import { ArrowLeftIcon } from "lucide-react";
-
+import { Header } from "../../CommonComponents/Header";
 export const EditServiceDetails = (): JSX.Element => {
   const { local, handleLanguageClick } = useLanguage();
   const { t, i18n } = useTranslation();
@@ -96,6 +98,9 @@ export const EditServiceDetails = (): JSX.Element => {
       selectedDoctor: "Dr. Ahmed",
     },
   ]);
+
+      const location = useLocation();
+        const backTo = location.state?.from || "/ServicesList";
 
   const [isOpen, setIsOpen1] = useState({
     clinicInfo: true,
@@ -190,6 +195,46 @@ export const EditServiceDetails = (): JSX.Element => {
   const handleChange = <K extends keyof FormData>(field: K, value: FormData[K]) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
+const [checked, setChecked] = useState<boolean>(true); // الحالة الحالية
+  const [showDialog, setShowDialog] = useState<boolean>(false);
+  const [pendingNext, setPendingNext] = useState<boolean | null>(null);
+  const [actionType, setActionType] = useState<"activate" | "deactivate" | null>(null);
+
+
+  // عندما يضغط المستخدم على الـ Toggle
+  function handleToggles(next: boolean) {
+    // إذا كان من Active -> Inactive
+    if (checked && !next) {
+      setPendingNext(next);
+      setActionType("deactivate");
+      setShowDialog(true);
+      return;
+    }
+
+    // إذا كان من Inactive -> Active
+    if (!checked && next) {
+      setPendingNext(next);
+      setActionType("activate");
+      setShowDialog(true);
+      return;
+    }
+
+    // غير هيك غيّر مباشرة
+    setChecked(next);
+  }
+
+  function confirmDeactivate() {
+    setChecked(pendingNext ?? false);
+    setPendingNext(null);
+    setActionType(null);
+    setShowDialog(false);
+  }
+
+  function cancelDeactivate() {
+    setPendingNext(null);
+    setActionType(null);
+    setShowDialog(false);
+  }
 
 
   const [isOpenAppointment, setIsOpen] = useState(false);
@@ -215,133 +260,13 @@ export const EditServiceDetails = (): JSX.Element => {
         onCloseSidebar={onCloseSidebar}
       />
       <div className="flex flex-col w-full overflow-hidden min-h-screen items-start gap-4 py-4 pl-0 pr-5">
+<Header MainTitle="Services Management" SubTitle="Edit Service details" onOpenSidebar={onOpenSidebar}  backTo={backTo}/>
 
-        <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-          {/* نسخة الموبايل */}
-          <div className="flex w-full items-center justify-between md:hidden">
-            {/* Left Side -> العنوان */}
-            <div className="flex items-center gap-2">
-              <button
-                className="md:hidden p-2 rounded-lg bg-secondary-light"
-                onClick={onOpenSidebar}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-
-              <div className="flex flex-col">
-                <h1 className="font-bold text-sm text-on-surface-primary">
-                  {t("Services Management")}
-                </h1>
-                                <Link to='/ViewServiceDetails'><div className="flex gap-1 items-center ">
-
-                  <ArrowLeftIcon className="relative w-4 h-4 pt-1" />
-
-              <p className="text-xs text-on-surface-primary">
-                  {t("Edit Service details")}
-                </p></div>   </Link>
-            
-              </div>
-            </div>
-
-            {/* Right Side -> الإشعار */}
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-              >
-                <BellIcon className="w-5 h-5" />
-              </Button>
-              <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-            </div>
-          </div>
-
-
-
-
-          {/* نسخة الـ Desktop/Laptop */}
-          <div className="hidden md:flex w-full items-center justify-between">
-            {/* Left Side */}
-            <div className="flex items-center gap-4">
-              <div className="flex flex-col">
-                <h1 className="font-bold text-base md:text-lg lg:text-xl text-on-surface-primary">
-                  {t("Services Management")}
-                </h1>
-                                          <Link to='/ViewServiceDetails'><div className="flex gap-2 items-center ">
-
-                  <ArrowLeftIcon className="relative w-5 h-5 pt-1" />
-
-              <p className="text-xs text-on-surface-primary">
-                  {t("Edit Service details")}
-                </p></div>   </Link>
-              </div>
-            </div>
-
-            {/* Right Side */}
-            <div className="inline-flex gap-3 items-center px-4">
-              {/* Notification */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                >
-                  <BellIcon className="w-5 h-5" />
-                </Button>
-                <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-              </div>
-
-              {/* Language Switch */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
-                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-                  onClick={handleLanguageClick}
-                >
-                  <TranslateIcon className="w-5 h-5" />
-                </Button>
-              </div>
-
-              {/* Theme Toggle */}
-              <div className="relative">
-                <ThemeToggle />
-              </div>
-
-              {/* User Info */}
-              <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-                <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-                <div className="flex-col items-start gap-1 inline-flex">
-                  <div className="text-base font-bold text-on-surface-primary">
-                    Anahera Jones
-                  </div>
-                  <div className="text-sm text-on-surface-tertiary">
-                    {t("Admin")}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
 
         <Card className="flex flex-col h-full items-start gap-5 p-[5px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-tertiary">
           <CardContent className="w-full overflow-y-auto scroll-x-hidden pr-[20px] ">
             <div className="flex gap-[14px]  justify-end p-3 items-end text-end pb-2 sm:pb-3 md:pb-3 lg:pb-4 " dir={local === 'ar' ? 'rtl' : 'ltr'}
-            ><Link to="/ViewServiceDetails">
+            ><Link to={backTo}>
                 <button className="     w-[100px] h-[40px]       /* الموبايل الافتراضي */
   
     md:w-[180px] md:h-[38px]
@@ -366,17 +291,20 @@ export const EditServiceDetails = (): JSX.Element => {
             <ReusableCollapsible
               dir={local === "ar" ? "rtl" : "ltr"}
               title={
-                <div className="flex flex-col lg:flex-row gap-0 lg:gap-[113px] w-full">
+    <div className="flex flex-col lg:flex-row gap-0 lg:gap-[123px] w-full">
                   {/* Left Title */}
-                  <div className=" lg:w-[min(100%,547px)]   font-semibold  pl-6">
+                  <div className=" lg:w-[min(100%,500px)]   font-semibold  pl-6">
                     {t("Identification")}
                   </div>
 
                   {/* Right Title */}
-                  <div className=" lg:w-[min(100%,547px)] text-start  font-semibold  pl-6 hidden lg:block">
-                    {t("Assign")}
+                  <div className=" lg:w-[min(100%,500px)] text-start  font-semibold  pl-6 hidden lg:block">
+                   {t("Assign")}
                   </div>
                 </div>
+
+
+
               }
               initiallyOpen={true}
               onOpenChange={(open) => handleToggle("clinicInfo", open)}
@@ -384,7 +312,7 @@ export const EditServiceDetails = (): JSX.Element => {
                 <div className="self-stretch w-full h-auto bg-surface-default rounded-2xl p-6">
                   <div className="flex flex-col lg:flex-row gap-0 lg:gap-[113px]">
                     {/* Left Column */}
-                    <div className="flex flex-col gap-4 w-full">
+                     <div className="flex flex-col gap-4 w-full lg:w-[500px]">
                       {/* Services Name */}
                       <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 items-start min-h-[54px]">
                         <div className="w-[180px] text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
@@ -392,19 +320,60 @@ export const EditServiceDetails = (): JSX.Element => {
                         </div>
                         <input
                           type="text"
-                          className="w-[min(100%,360px)]  h-9 sm:h-10 md:h-12 border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[clamp(12px,2vw,14px)] "
+                          className="w-[min(100%,360px)]  h-10 sm:h-10 md:h-12 border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[clamp(12px,2vw,14px)] "
                           value={formData.serviceName}
                           onChange={(e) => handleChange("serviceName", e.target.value)}
                         />
                       </div>
+                   <div className="flex flex-col sm:grid sm:grid-cols-[150px_1fr] sm:gap-4 gap-4 gap-x-40 items-start
+                   ">
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] w-[180px] gap-2 sm:gap-6">{t("Services ID")}</div>
+               <div className="flex flex-wrap items-center gap-4">
+  <div className="text-text-primary font-title-14px-semibold text-[clamp(12px,2vw,14px)] font-semibold">
+    SRV-00345
+  </div>
 
+  <div className="flex items-center gap-2">
+    <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]">
+      {t("Status")}:
+    </div>
+
+    <div className="flex items-center justify-center bg-hitbox">
+      <div onClick={(e) => e.stopPropagation()}>
+        <Toggle checked={checked} onChange={handleToggles} />
+
+        {showDialog && actionType === "deactivate" && (
+          <Deactivate
+            open={showDialog}
+            onConfirm={confirmDeactivate}
+            onCancel={cancelDeactivate}
+          >
+            <p>Inactive services will no longer appear in selection menus or be assignable to patients.</p>
+          </Deactivate>
+        )}
+
+        {showDialog && actionType === "activate" && (
+          <Activate
+            open={showDialog}
+            onConfirm={confirmDeactivate}
+            onCancel={cancelDeactivate}
+          >
+            <p>Active services will be visible in selection menus and can be assigned to patients.</p>
+          </Activate>
+        )}
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
                       {/* Service Category */}
                       <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 items-start min-h-[54px]">
                         <div className="w-[180px] text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
                           {t("Service Category")}
                         </div>
                         <select
-                          className="w-[min(100%,360px)]  h-9 sm:h-10 md:h-12 border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[clamp(12px,2vw,14px)] "
+                          className="w-[min(100%,360px)]  h-10 sm:h-10 md:h-12 border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[clamp(12px,2vw,14px)] "
                           value={formData.serviceCategory}
                           onChange={(e) => handleChange("serviceCategory", e.target.value)}
                         >
@@ -428,7 +397,7 @@ export const EditServiceDetails = (): JSX.Element => {
                     </div>
 
                     {/* Right Column */}
-                    <div className="flex flex-col gap-4 w-full">
+                 <div className="flex flex-col gap-4 w-full lg:w-[500px]">
                       <div className=" w-36  block lg:hidden text-primary-default mt-3 "> {t("Assign")}</div>
                       {/* Assign Complex */}
                       <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 items-start min-h-[54px]">
@@ -436,7 +405,7 @@ export const EditServiceDetails = (): JSX.Element => {
                           {t("Assign Complex")}
                         </div>
                         <select
-                          className="w-[min(100%,360px)]  h-9 sm:h-10 md:h-12 border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[clamp(12px,2vw,14px)] "
+                          className="w-[min(100%,360px)]  h-10 sm:h-10 md:h-12 border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[clamp(12px,2vw,14px)] "
                           value={formData.assignComplex}
                           onChange={(e) => handleChange("assignComplex", e.target.value)}
                         >
@@ -451,7 +420,7 @@ export const EditServiceDetails = (): JSX.Element => {
                           {t("Assign Clinics")}
                         </div>
                         <select
-                          className="w-[min(100%,360px)]  h-9 sm:h-10 md:h-12 border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[clamp(12px,2vw,14px)] "
+                          className="w-[min(100%,360px)]  h-10 sm:h-10 md:h-12 border bg-background-secondary border-bg-border-light rounded-[4px] px-3 text-[clamp(12px,2vw,14px)] "
                           value={formData.assignClinics}
                           onChange={(e) => handleChange("assignClinics", e.target.value)}
                         >

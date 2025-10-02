@@ -12,6 +12,7 @@ import {
   TableRow,
 } from "../../../components/ui/table";
 import { Link } from "react-router-dom";
+import { Header } from "../../CommonComponents/Header";
 import { ThemeToggle } from "../../../components/theme/ThemeSwitcher";
 import { ChevronDownIcon } from "lucide-react";
 import { useState } from "react";
@@ -31,6 +32,7 @@ const personalInfoData = [
   { label: "Marital Status", value: "Married" },
   { label: "children Number", value: "1" },
 ];
+import { useNavigate } from "react-router-dom";
 import { ArrowLeftIcon } from "lucide-react";
 const workingDaysData = [
   {
@@ -75,9 +77,8 @@ export const ViewStaffDetails = (): JSX.Element => {
   const [isOpen3, setIsOpen3] = useState(false);
   const [isOpen4, setIsOpen4] = useState(false);
 
-
   const [isMobile, setIsMobile] = useState(false);
-
+const navigate=useNavigate();
   // التحقق من حجم الشاشة لتطبيق السلوك على الموبايل فقط
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 640);
@@ -115,128 +116,10 @@ export const ViewStaffDetails = (): JSX.Element => {
       <div className="flex flex-col w-full min-h-screen items-start gap-4 py-4 pl-0 pr-5">
 
 
-        <header className="flex h-[50px] w-full  items-center bg-background-primary px-2">
-          {/* نسخة الموبايل */}
-          <div className="flex w-full items-center justify-between md:hidden">
-            {/* Left Side -> العنوان */}
-            <div className="flex items-center gap-2">
-              <button
-                className="md:hidden p-2 rounded-lg bg-secondary-light"
-                onClick={onOpenSidebar}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
 
-              <div className="flex flex-col">
-                <h1 className="font-bold text-[clamp(12px,2vw,14px)]  text-on-surface-primary">
-                  {t("Staff")}
-                </h1>
-                      <Link to='/ViewStaffList/View Staff Details'><div className="flex gap-1 items-center ">
-                    
-                                    <ArrowLeftIcon className="relative w-4 h-4 pt-1" />
-                                 
-             <p className="text-[clamp(12px,2vw,14px)]  md:text-[clamp(14px,2vw,16px)]  text-on-surface-primary">
-                  {t("View Staff Member details")}
-                </p></div>   </Link>
-            
-              </div>
-            </div>
+                           <Header MainTitle="Staff" SubTitle="View Staff Member details" onOpenSidebar={onOpenSidebar} backTo="/ViewStaffList" />
 
-            {/* Right Side -> الإشعار */}
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-              >
-                <BellIcon className="w-5 h-5" />
-              </Button>
-              <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-            </div>
-          </div>
-
-
-
-
-          {/* نسخة الـ Desktop/Laptop */}
-          <div className="hidden md:flex w-full items-center justify-between">
-            {/* Left Side */}
-            <div className="flex items-center gap-4">
-              <div className="flex flex-col">
-                <h1 className="font-bold text-[clamp(14px,2vw,16px)]  md:text-lg lg:text-xl text-on-surface-primary">
-                  {t("Staff")}
-                </h1>
-                 <Link to='/ViewStaffList'><div className="flex gap-2 items-center ">
-                    
-                                    <ArrowLeftIcon className="relative w-5 h-5 pt-1" />
-                                 
-             <p className="text-[clamp(12px,2vw,14px)]  md:text-[clamp(14px,2vw,16px)]  text-on-surface-primary">
-                  {t("View Staff Member details")}
-                </p></div>   </Link>
-            
-              </div>
-            </div>
-
-            {/* Right Side */}
-            <div className="inline-flex gap-3 items-center px-4">
-              {/* Notification */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-                >
-                  <BellIcon className="w-5 h-5" />
-                </Button>
-                <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-              </div>
-
-              {/* Language Switch */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className={`p-2.5 ${local === "ar" ? "bg-[green]" : "bg-secondary-light"
-                    } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-                  onClick={handleLanguageClick}
-                >
-                  <TranslateIcon className="w-5 h-5" />
-                </Button>
-              </div>
-
-              {/* Theme Toggle */}
-              <div className="relative">
-                <ThemeToggle />
-              </div>
-
-              {/* User Info */}
-              <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-                <div className="inline-flex items-center w-[40px] h-[40px] bg-app-primary rounded-3xl" />
-                <div className="flex-col items-start gap-1 inline-flex">
-                  <div className="text-[clamp(14px,2vw,16px)]  font-bold text-on-surface-primary">
-                    Anahera Jones
-                  </div>
-                  <div className="text-[clamp(12px,2vw,14px)]  text-on-surface-tertiary">
-                    {t("Admin")}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
+      
 
 
 
@@ -247,8 +130,12 @@ export const ViewStaffDetails = (): JSX.Element => {
               <div className="flex gap-[16px]">
 
                 <div className="flex justify-end" dir={local === 'ar' ? 'rtl' : 'ltr'}>
-                  <Link to="/ViewStaffList/View Staff Details/EditStaffDetails">
-                    <Button
+     
+                    <Button   
+                    onClick={
+                    (e)=>{
+                      navigate('/ViewStaffList/ViewStaffDetails/EditStaffDetails',{state:{from:'/ViewStaffList/ViewStaffDetails'}})
+                    }                  }
                       className="
                       flex items-center justify-center gap-2
                       w-[140px] sm:w-[150px] md:w-[180px] lg:w-[200px]
@@ -266,7 +153,7 @@ export const ViewStaffDetails = (): JSX.Element => {
                         className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 text-text-inverse"
                       />
                       Edit
-                    </Button></Link>
+                    </Button>
                 </div>
               </div>
 
