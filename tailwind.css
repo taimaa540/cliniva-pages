@@ -1,108 +1,29 @@
-/* Import our theme system */
+/* Import theme system */
 @import './src/styles/theme.css';
 
+/* Tailwind layers */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Components Layer */
 @layer components {
   .all-\[unset\] {
     all: unset;
   }
 }
 
+/* Variables */
 :root {
   --app-primary: rgba(165, 200, 242, 1);
   --app-secondary: rgba(131, 223, 223, 1);
   --bg: rgba(250, 246, 245, 1);
   --black: rgba(39, 41, 50, 1);
   --blue-dark: rgba(51, 132, 198, 1);
-  --btn-11px-medium-font-family: "Lato", Helvetica;
-  --btn-11px-medium-font-size: 11px;
-  --btn-11px-medium-font-style: normal;
-  --btn-11px-medium-font-weight: 500;
-  --btn-11px-medium-letter-spacing: 0px;
-  --btn-11px-medium-line-height: 104.99999237060547%;
-  --btn-12px-medium-font-family: "Lato", Helvetica;
-  --btn-12px-medium-font-size: 12px;
-  --btn-12px-medium-font-style: normal;
-  --btn-12px-medium-font-weight: 500;
-  --btn-12px-medium-letter-spacing: 0px;
-  --btn-12px-medium-line-height: 100%;
-  --btn-14px-medium-font-family: "Lato", Helvetica;
-  --btn-14px-medium-font-size: 14px;
-  --btn-14px-medium-font-style: normal;
-  --btn-14px-medium-font-weight: 500;
-  --btn-14px-medium-letter-spacing: 0px;
-  --btn-14px-medium-line-height: 100%;
-  --gray-10: rgba(190, 191, 194, 1);
-  --gray-20: rgba(117, 125, 131, 1);
-  --gray-30: rgba(82, 84, 91, 1);
-  --gray-bg: rgba(238, 238, 239, 1);
-  --h5-22px-bold-font-family: "Lato", Helvetica;
-  --h5-22px-bold-font-size: 22px;
-  --h5-22px-bold-font-style: normal;
-  --h5-22px-bold-font-weight: 600;
-  --h5-22px-bold-letter-spacing: 0px;
-  --h5-22px-bold-line-height: 116%;
-  --on-surface-primary: rgba(65, 70, 81, 1);
-  --on-surface-secondary: rgba(113, 118, 128, 1);
-  --on-surface-tertiary: rgba(184, 177, 169, 1);
-  --p-11px-regular-font-family: "Lato", Helvetica;
-  --p-11px-regular-font-size: 11px;
-  --p-11px-regular-font-style: normal;
-  --p-11px-regular-font-weight: 400;
-  --p-11px-regular-letter-spacing: 0px;
-  --p-11px-regular-line-height: 164%;
-  --p-14px-regular-font-family: "Lato", Helvetica;
-  --p-14px-regular-font-size: 14px;
-  --p-14px-regular-font-style: normal;
-  --p-14px-regular-font-weight: 400;
-  --p-14px-regular-letter-spacing: 0px;
-  --p-14px-regular-line-height: 154%;
-  --primary-dark: rgba(105, 163, 233, 1);
-  --secondary-dark: rgba(0, 180, 141, 1);
-  --secondary-light: rgba(226, 246, 236, 1);
-  --surface-default: rgba(255, 253, 252, 1);
-  --switch-out-shadow: -2px 1px 6px 0px rgba(0, 0, 0, 0.25);
-  --title-10px-regular-font-family: "Lato", Helvetica;
-  --title-10px-regular-font-size: 10px;
-  --title-10px-regular-font-style: normal;
-  --title-10px-regular-font-weight: 400;
-  --title-10px-regular-letter-spacing: 0px;
-  --title-10px-regular-line-height: 135%;
-  --title-11px-regular-font-family: "Lato", Helvetica;
-  --title-11px-regular-font-size: 11px;
-  --title-11px-regular-font-style: normal;
-  --title-11px-regular-font-weight: 400;
-  --title-11px-regular-letter-spacing: 0px;
-  --title-11px-regular-line-height: 124%;
-  --title-12px-bold-font-family: "Lato", Helvetica;
-  --title-12px-bold-font-size: 12px;
-  --title-12px-bold-font-style: normal;
-  --title-12px-bold-font-weight: 700;
-  --title-12px-bold-letter-spacing: 0px;
-  --title-12px-bold-line-height: 130%;
-  --title-12px-regular-font-family: "Lato", Helvetica;
-  --title-12px-regular-font-size: 12px;
-  --title-12px-regular-font-style: normal;
-  --title-12px-regular-font-weight: 400;
-  --title-12px-regular-letter-spacing: 0px;
-  --title-12px-regular-line-height: 130%;
-  --title-12px-semibold-font-family: "Lato", Helvetica;
-  --title-12px-semibold-font-size: 12px;
-  --title-12px-semibold-font-style: normal;
-  --title-12px-semibold-font-weight: 600;
-  --title-12px-semibold-letter-spacing: 0px;
-  --title-12px-semibold-line-height: 130%;
-  --title-16px-bold-font-family: "Lato", Helvetica;
-  --title-16px-bold-font-size: 16px;
-  --title-16px-bold-font-style: normal;
-  --title-16px-bold-font-weight: 700;
-  --title-16px-bold-letter-spacing: 0px;
-  --title-16px-bold-line-height: 124%;
+  /* ... باقي المتغيرات يلي عندك ... */
 }
 
+/* Animations */
 :root {
   --animate-spin: spin 1s linear infinite;
 }
@@ -137,28 +58,11 @@
   }
 }
 
-@keyframes image-glow {
-  0% {
-    opacity: 0;
-    animation-timing-function: cubic-bezier(0.74, 0.25, 0.76, 1);
-  }
-
-  10% {
-    opacity: 0.7;
-    animation-timing-function: cubic-bezier(0.12, 0.01, 0.08, 0.99);
-  }
-
-  to {
-    opacity: 0.4;
-  }
-}
-
 @keyframes fade-in {
   0% {
     opacity: 0;
     transform: translateY(-10px);
   }
-
   to {
     opacity: 1;
     transform: none;
@@ -170,7 +74,6 @@
     opacity: 0;
     transform: translateY(20px);
   }
-
   to {
     opacity: 1;
     transform: none;
@@ -178,15 +81,10 @@
 }
 
 @keyframes shimmer {
-
-  0%,
-  90%,
-  to {
+  0%, 90%, to {
     background-position: calc(-100% - var(--shimmer-width)) 0;
   }
-
-  30%,
-  60% {
+  30%, 60% {
     background-position: calc(100% + var(--shimmer-width)) 0;
   }
 }
@@ -195,7 +93,6 @@
   0% {
     transform: translate(0);
   }
-
   to {
     transform: translateX(calc(-100% - var(--gap)));
   }
@@ -205,85 +102,59 @@
   0% {
     transform: translateY(0);
   }
-
   to {
     transform: translateY(calc(-100% - var(--gap)));
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+/* Base Layer */
 @layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 47.4% 11.2%;
-
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 47.4% 11.2%;
-
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-
     --card: transparent;
     --card-foreground: 222.2 47.4% 11.2%;
-
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
-
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
-
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
-
     --destructive: 0 100% 50%;
     --destructive-foreground: 210 40% 98%;
-
     --ring: 215 20.2% 65.1%;
-
     --radius: 0.5rem;
   }
 
   .dark {
     --background: 224 71% 4%;
     --foreground: 213 31% 91%;
-
     --muted: 223 47% 11%;
     --muted-foreground: 215.4 16.3% 56.9%;
-
     --accent: 216 34% 17%;
     --accent-foreground: 210 40% 98%;
-
     --popover: 224 71% 4%;
     --popover-foreground: 215 20.2% 65.1%;
-
     --border: 216 34% 17%;
     --input: 216 34% 17%;
-
     --card: transparent;
     --card-foreground: 213 31% 91%;
-
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 1.2%;
-
     --secondary: 222.2 47.4% 11.2%;
     --secondary-foreground: 210 40% 98%;
-
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
-
     --ring: 216 34% 17%;
-
     --radius: 0.5rem;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
@@ -294,25 +165,12 @@
   }
 }
 
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(47%) sepia(4%) saturate(300%) hue-rotate(180deg);
-  cursor: pointer;
-}
-
-
-
-/* .PhoneInputCountryIcon {
-  @apply rounded-full overflow-hidden w-6 h-5;
-} */
-
+/* Phone Input styles */
 .PhoneInput {
   @apply flex items-center outline-none border border-border-light rounded-[4px] px-2 py-1 h-[48px] gap-[8px];
 }
-
-/* عنصر اختيار الدولة */
 .PhoneInputCountry {
-  @apply flex items-center gap-2 mr-2 w-[76px] justify-between border-r border-border-light flex-none;
+  @apply flex items-center gap-2 flex-none border-r border-border-light pr-2;
 }
 
 /* العلم */
@@ -320,9 +178,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   @apply w-6 h-6 rounded-full overflow-hidden;
 }
 
-/* كود الدولة */
+/* هون مكان الاختصار */
 .PhoneInputCountrySelect {
-  @apply flex items-center gap-1 cursor-pointer font-semibold text-gray-700;
+  @apply font-semibold text-sm text-text-primary;
 }
 .PhoneInputCountrySelectArrow {
 visibility: hidden;
@@ -330,7 +188,24 @@ visibility: hidden;
 /*
 حقل إدخال الرقم */
 .PhoneInputInput {
-  @apply flex-1 outline-none px-2 text-gray-800;
+  @apply max-w-[280px] h-full flex-1 outline-none bg-background-secondary px-2 text-gray-800;
+}
+.PhoneInputCountrySelect span {
+  font-size: 14px !important; /* صغّر أو كبّر الرقم حسب ما بدك */
+  font-weight: 600;           /* نفس تأثير font-semibold */
+  color: #1e293b;             /* text-slate-800 مثل Tailwind */
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(47%) sepia(4%) saturate(300%) hue-rotate(180deg);
+  cursor: pointer;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  height: 6px;   /* للـ scroll-x */
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
 }
 
 .scrollbar-custom::-webkit-scrollbar {

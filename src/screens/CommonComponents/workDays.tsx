@@ -34,65 +34,70 @@ export default function WorkingDaysList() {
 
   return (
     <div className="w-full">
-      {/* العنوان */}
-      <div className="font-lato font-semibold text-sm leading-[125%] text-secondary-dark">
+      
+      <div
+        className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark"
+      >
         {t("Working Days")}
       </div>
+ <div className="flex w-full max-w-[900px] mx-auto gap-4">
+  <span className="flex-1 text-center font-lato font-semibold hidden lg:block">
+    {t('Shift')} 1
+  </span>
+  <span className="flex-1 text-center font-lato font-semibold hidden lg:block">
+    {t('Shift')} 2
+  </span>
+</div>
 
-      {/* Scroll-x فقط على القائمة */}
-      <div className="overflow-x-auto">
-        <div className="relative min-w-[900px]">
-          <span className="absolute left-[280px] font-semibold">
-            {t("Shift")} 1
-          </span>
-          <span className="absolute left-[700px] font-semibold">
-            {t("Shift")} 2
-          </span>
-        </div>
 
-        {/* قائمة الأيام */}
-        <div className="mt-[53px] flex flex-col gap-4 min-w-[900px]">
-          {workingDays.map((workDay, index) => (
-            <div
-              key={index}
-              className="flex items-center gap-8 w-full"
-            >
-              {/* اليوم + checkbox */}
-              <div className="flex items-center gap-3 w-[120px] shrink-0">
-                <CustomCheckbox
-                  checked={activeDays[index]}
-                  onChange={() => toggleDay(index)}
-                />
-                <label className="text-sm whitespace-nowrap">
-                  {t(`${workDay.day}`)}
-                </label>
-              </div>
 
-              {/* الأعمدة (تبقى صفوف جنب بعض) */}
-              <div className="flex items-center gap-4 w-[810px] shrink-0">
-                <div
-                  className={`flex items-center w-[404px] py-2 px-3 border rounded ${
-                    activeDays[index]
-                      ? "bg-transparent"
-                      : "bg-background-tertiary"
-                  }`}
-                >
-                  <TimeRangePicker />
-                </div>
 
-                <div
-                  className={`flex items-center w-[404px] py-2 px-3 border rounded ${
-                    activeDays[index]
-                      ? "bg-transparent"
-                      : "bg-background-tertiary"
-                  }`}
-                >
-                  <TimeRangePicker />
-                </div>
-              </div>
+
+
+
+
+
+
+      
+      <div className="flex flex-col gap-4 mt-[53px]">
+        {workingDays.map((workDay, index) => (
+          <div key={index} className="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8 w-full">
+            <div className="flex items-center gap-5 w-[160px] ">
+              {/* Checkbox */}
+              <CustomCheckbox
+                checked={activeDays[index]}
+                onChange={() => toggleDay(index)}
+              />
+              <label
+                className={`tracking-[0.07px] leading-6 [font-family:'Lato',Helvetica]  font-normal text-base whitespace-nowrap`}
+              >
+                {t(`${workDay.day}`)}
+              </label>
             </div>
-          ))}
-        </div>
+
+  <div className="flex flex-col lg:flex-row gap-2 w-full max-w-[810px]">
+  {/* الحقل الأول */}
+   <div className="flex-1 min-w-0  max-w-[404px] text-center"> <label className="block text-sm lg:hidden  text-center font-semibold ">Shift 1</label>
+  <div
+    className={`flex-1 min-w-0  max-w-[404px] py-[7px] pl-[13px] border rounded transition 
+    ${activeDays[index] ? "bg-transparent" : "bg-background-tertiary"}`}
+  >
+    <TimeRangePicker />
+  </div></div>
+
+  {/* الحقل الثاني */}<div className="flex-1 min-w-0  max-w-[404px] text-center"><label className="block lg:hidden   text-sm font-semibold ">Shift 2</label>
+  <div
+    className={`flex-1 min-w-0  max-w-[404px] py-[7px] pl-[13px] border rounded transition 
+    ${activeDays[index] ? "bg-transparent" : "bg-background-tertiary"}`}
+  >
+    
+    <TimeRangePicker />
+  </div>
+</div></div>
+
+
+          </div>
+        ))}
       </div>
     </div>
   );

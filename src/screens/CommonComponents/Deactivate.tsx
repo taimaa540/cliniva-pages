@@ -9,11 +9,17 @@ import {
 
 interface DeactivateProps {
   children : React.ReactNode;
+    onConfirm: () => void;                // يناديه عند الضغط Confirm
+  onCancel?: () => void;     
+       open: boolean;         // يناديه عند الضغط Cancel أو عند غلق الـ dialog
 }
-export const Deactivate = ({children} : DeactivateProps): JSX.Element => {
+export const Deactivate = ({children,   open, onConfirm, onCancel} : DeactivateProps): JSX.Element => {
+
+
+
   return (
     <div className="flex w-[1440px] h-[1086px] items-center justify-center relative bg-[#b7b1a840]">
-      <Dialog open={true}>
+         <Dialog open={open} onOpenChange={(nextOpen) => { if (!nextOpen) onCancel?.(); }}>
         <DialogContent className="w-[500px] bg-primary-foreground rounded-[16px] shadow-[0px_8px_8px_-4px_rgba(10,13,18,0.04)] shadow-[0px_20px_24px_-4px_rgba(10,13,18,0.10)] border-0 p-0">
           <div className="relative">
             <DialogHeader className="flex-col gap-4 pt-6 pb-0 px-6 flex items-start relative">
@@ -73,8 +79,11 @@ export const Deactivate = ({children} : DeactivateProps): JSX.Element => {
 
           <div className="items-start pt-8 pb-0 px-0 self-stretch w-full flex-[0_0_auto] flex flex-col relative">
             <div className="gap-3 pt-0 pb-6 px-6 flex items-start relative self-stretch w-full flex-[0_0_auto]">
-              <Button
-                variant="outline"
+              <Button     variant="outline"
+             onClick={() => {
+                onCancel?.();
+              }}
+               
                 className="bg-primary-foreground border border-border-light flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow rounded-[40px] overflow-hidden shadow-[0px_1px_2px_0px_rgba(10,13,18,0.05)] h-auto"
               >
                 <span className="w-fit font-semibold leading-[24px] tracking-[0] text-base text-text-primary">
@@ -82,7 +91,9 @@ export const Deactivate = ({children} : DeactivateProps): JSX.Element => {
                 </span>
               </Button>
 
-              <Button className="bg-[#FF9500] border-[#ff9500] flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow rounded-[40px] overflow-hidden shadow-[0px_1px_2px_0px_rgba(10,13,18,0.05)] h-auto">
+              <Button    onClick={() => {
+                onConfirm();
+              }} className="bg-[#FF9500] border-[#ff9500] flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow rounded-[40px] overflow-hidden shadow-[0px_1px_2px_0px_rgba(10,13,18,0.05)] h-auto">
                 <span className="w-fit font-semibold leading-[24px] tracking-[0] text-base text-background-primary">
                   Confirm
                 </span>

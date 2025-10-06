@@ -1,11 +1,12 @@
-"use client";
+
 import { UserCircleIcon } from "lucide-react";
-import { ClinicWorkSchedule } from "./ClinicWorkingScheduleSection";
+import { ClinicWorkSchedule } from "./ClinicWorkingScheduleSection"; 
 import { ContactInfoSection } from "./ContactInfoSectionContant";
 import { LegalDetailsSection } from "./LegalDetailsSection";
 import { AccountCreationSection } from "./AccountCreationSection";
 import { useState } from "react";
-
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "react-phone-input-2/lib/style.css";
 import { ClinicOverview } from "./ClinicOverview";
 import { AccountCreationSectionMobile } from "./AccountCreationSectionMobile";
@@ -17,14 +18,23 @@ import { ClinicOverviewMobile } from "./ClinicOverviewMobile";
 type Step = 1 | 2 | 3 | 4 | 5 ;
 export const ClinicsPlane = (): JSX.Element => {
   const [currentStep, setCurrentStep] = useState<number>(1);
+  const navigate = useNavigate();
   const [showDialog, setShowDialog] = useState(false);
+  useEffect(() => {
+    if (showDialog) {
+      const timer = setTimeout(() => {
+        navigate("/ElementViewClinicP3"); // غير الرابط للي بدك تروح عليه
+      }, 3000); // 3000ms = 3 ثواني
 
+      return () => clearTimeout(timer); // تنظيف التايمر إذا أغلق الدايالوج
+    }
+  }, [showDialog, navigate]);
   const handleNext = () => {
     if (currentStep < 5) setCurrentStep((prev) => (prev + 1) as Step);
     else if (currentStep === 5) {
       setShowDialog(true); // آخر خطوة → إظهار الـ Dialog
     }
-  };
+  };;
 
   const prevStep = () => {
     if (currentStep > 1) setCurrentStep((prev) => (prev - 1) as Step);
@@ -230,7 +240,7 @@ export const ClinicsPlane = (): JSX.Element => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className=" bg-white rounded-lg shadow-lg w-[500px] h-[144px] ">
             <button className="ml-[450px] mt-[16px] p-[5px] rounded-[16px] hover:bg-surface-hover transiton duration-300">
-              <img alt="" src="x-close.svg" />
+          
             </button>
             <img alt="" src="./FeaturedIcon.svg" className="m-auto" />
             <p className=" text-center font-lato font-semibold text-xl leading-[118%] tracking-[0] text-[#181D27] ">

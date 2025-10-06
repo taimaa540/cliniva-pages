@@ -7,7 +7,7 @@ export default function AddNewSpecialities({ onClose }: { onClose: () => void })
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div
-      className="bg-background-primary p-6 rounded-lg w-[500px] shadow-lg"
+      className="bg-background-primary p-6 rounded-lg w-[min(100%,500px)] shadow-lg"
         style={{
           boxShadow: `
             0px 8px 8px -4px rgba(10, 13, 18, 0.04),
@@ -32,57 +32,52 @@ export default function AddNewSpecialities({ onClose }: { onClose: () => void })
    <hr className="m-3"></hr>
 
         <div className="p-4">
-          <label className="text-text-primary font-semibold text-[16px]">
+          <label className="text-text-primary font-lato font-semibold text-[16px]">
             Speciality Name
           </label>
           <Input
-            className="w-full h-[48px]  rounded-md border border-gray-300
+            className="w-full h-9 sm:h-10 md:h-12  rounded-md border border-gray-300
     hover:border-blue-500
     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-    transition-colors px-3 placeholder: text-text-secondary Placeholder: text-[14px] placeholder:font-normal"
+    transition-colors px-3 placeholder: text-text-secondary Placeholder: text-[clamp(14px,1.1vw,16px)] placeholder:font-normal"
      disableUnderline
       sx={{
     '::placeholder': {
       fontSize: '14px',
       color: 'text-text-secondary',
       fontWeight: 400,
+      fontFamily:'font-lato'
     }}}
 
             placeholder="Enter Speciality Name"
           />
    <hr className="m-3"></hr>
           <div className="mt-4">
-            <label className="text-text-primary font-semibold text-[16px]">
+            <label className="text-text-primary font-lato font-semibold text-[16px]">
               Description
             </label>
             <Textarea
-              className="w-full h-[120px] bg-background-secondary text-[14px]  text-text-secondary border-border-input rounded-[8px] px-3 placeholder:text-text-secondary Placeholder:text-[14px] placeholder:font-normal"
+              className="w-full h-[120px] font-lato bg-background-secondary text-[clamp(14px,1.1vw,16px)]  text-text-secondary border-border-input rounded-[8px] px-3 placeholder:text-text-secondary Placeholder:text-[14px] placeholder:font-normal"
                
               placeholder="Enter Description " 
             />
           </div>
         </div>
-              <div className=" items-center flex justify-end gap-4 relative flex-[0_0_auto] mt-5  ">
-              <Button
-                variant="outline"
-                className="flex rounded-[20px] w-[200px] items-center h-10 justify-center px-4 py-2.5 relative bg-background-tertiary -[20px] border-2 border-solid- border-light"
-              >
-                <div className="flex w-[82px] items-center justify-center gap-1 relative">
-                  <div className="inline-flex h-5 items-center gap-2.5 px-0 py-0.5 relative flex-[0_0_auto]">
-                    <div className="font-[number:var(--btn-14px-medium-font-weight)] text-on-surface-primary text-[length:var(--btn-14px-medium-font-size)] leading-[var(--btn-14px-medium-line-height)] relative w-fit font-btn-14px-medium text-center tracking-[var(--btn-14px-medium-letter-spacing)] whitespace-nowrap [font-style:var(--btn-14px-medium-font-style)]">
-                      Cancel
-                    </div>
-                  </div>
-                </div>
-              </Button>
-
-              <Button variant="outline" className="flex w-[200px] h-10 items-center  justify-center gap-1 pl-4 pr-3.5 py-2.5 relative bg-secondary-dark rounded-[20px] ">
-                <div className="inline-flex items-center  gap-2.5 p-0.5 relative flex-[0_0_auto] ">
-                  <div className="mt-[-1.00px] font-[number:var(--btn-14px-medium-font-weight)] text-surface-default text-[length:var(--btn-14px-medium-font-size)] leading-[var(--btn-14px-medium-line-height)] relative w-fit font-btn-14px-medium text-center tracking-[var(--btn-14px-medium-letter-spacing)] whitespace-nowrap [font-style:var(--btn-14px-medium-font-style)]">
-                    Save
-                  </div>
-                </div>
-              </Button>
+              <div className=" items-center flex justify-center gap-4 relative flex-[0_0_auto] mt-5  ">
+                   <button className="     w-[100px] h-[40px]       /* الموبايل الافتراضي */
+    sm:w-[100px] sm:h-[26px] 
+    md:w-[180px] md:h-[38px]
+    lg:w-[200px] lg:h-[40px] 
+ 
+      rounded-[20px] border border-border-light bg-surface-primary  font-lato font-medium text-sm leading-[100%] tracking-[0] text-text-primary">
+                Cancel
+              </button>
+              <button className="  w-[100px] h-[40px]       /* الموبايل الافتراضي */
+    sm:w-[100px] sm:h-[24px] 
+    md:w-[160px] md:h-[36px]
+    lg:w-[200px] lg:h-[40px]  rounded-[20px] bg-secondary-dark font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
+                Save
+              </button>
             </div>
       </div>
     </div>

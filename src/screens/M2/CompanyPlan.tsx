@@ -10,7 +10,8 @@ import { ComplexDetailsSection } from "./ComplexDetailsSection";
 import { ComplexWorkSchedule } from "./ComplexWorkingScheduleSection";
 import { AccountCreationSection } from "./AccountCreationSection";
 import { useState } from "react";
-
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "react-phone-input-2/lib/style.css";
 import { AccountCreationSectionMobile } from "./AccountCreationSectionMobile";
 import { CompanyDetailsSectionMobile } from "./CompanyDetailsSectionMobile";
@@ -25,8 +26,18 @@ import { ClinicWorkScheduleMobile } from "./ClinicWorkScheduleMobile";
 type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 export const CompanyPlan = (): JSX.Element => {
   const [currentStep, setCurrentStep] = useState<number>(1);
-  const [showDialog, setShowDialog] = useState(false);
+    const navigate = useNavigate();
 
+  const [showDialog, setShowDialog] = useState(false);
+  useEffect(() => {
+    if (showDialog) {
+      const timer = setTimeout(() => {
+        navigate("/ElementViewCompany"); // غير الرابط للي بدك تروح عليه
+      }, 3000); // 3000ms = 3 ثواني
+
+      return () => clearTimeout(timer); // تنظيف التايمر إذا أغلق الدايالوج
+    }
+  }, [showDialog, navigate]);
   const handleNext = () => {
     if (currentStep < 9) setCurrentStep((prev) => (prev + 1) as Step);
     else if (currentStep === 9) {
@@ -46,6 +57,8 @@ export const CompanyPlan = (): JSX.Element => {
       {/* Left Sidebar Desktop */}
       <div className="w-[280px] h-screen bg-surface-default hidden md:flex md:flex-col">
         {/* Logo */}
+
+        
         <header className="flex flex-col items-start gap-2.5 px-2 py-[9px] mt-4 ml-5 w-full">
           <div className="flex items-center gap-[7px]">
             <svg

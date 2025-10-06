@@ -1,6 +1,6 @@
 import React from "react";
 import { ContantEditSpaicialityDetails } from "./Section/contantEditSpecialityDetalis/ContentEditSpicialityDetails";
-import { SidebarEditSpecialityDetails } from "./Section/SidebarEditSpecialityDetalis/SidebarEditSpaicialityDetails";
+
 import { useTranslation } from "react-i18next";
 import { useState } from "react"
 
@@ -29,7 +29,7 @@ export const ElementEditSpicialityDetails = (): JSX.Element => {
 
 
       className={`flex w-full` }>
-    <SidebarEditSpecialityDetails/>
+
 
    
       <ContantEditSpaicialityDetails 

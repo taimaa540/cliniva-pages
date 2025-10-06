@@ -10,7 +10,8 @@ import { AccountCreationSection } from "./AccountCreationSection";
 import { Input } from "../../components/ui/input";
 import { Card, CardContent } from "../../components/ui/card";
 import { useState } from "react";
-
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "react-phone-input-2/lib/style.css";
 import { AccountCreationSectionMobile } from "./AccountCreationSectionMobile";
 import { CompanyDetailsSectionMobile } from "./CompanyDetailsSectionMobile";
@@ -23,14 +24,25 @@ import { ClinicWorkScheduleMobile } from "./ClinicWorkScheduleMobile";
 type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 export const ComplexPlane = (): JSX.Element => {
   const [currentStep, setCurrentStep] = useState<number>(1);
+  const navigate = useNavigate();
+  
   const [showDialog, setShowDialog] = useState(false);
+  useEffect(() => {
+    if (showDialog) {
+      const timer = setTimeout(() => {
+        navigate("/ElementViewComplexP2"); // غير الرابط للي بدك تروح عليه
+      }, 3000); // 3000ms = 3 ثواني
 
+      return () => clearTimeout(timer); // تنظيف التايمر إذا أغلق الدايالوج
+    }
+  }, [showDialog, navigate]);
   const handleNext = () => {
     if (currentStep < 7) setCurrentStep((prev) => (prev + 1) as Step);
     else if (currentStep === 7) {
       setShowDialog(true); // آخر خطوة → إظهار الـ Dialog
     }
   };
+
 
   const prevStep = () => {
     if (currentStep > 1) setCurrentStep((prev) => (prev - 1) as Step);
@@ -350,7 +362,7 @@ export const ComplexPlane = (): JSX.Element => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className=" bg-white rounded-lg shadow-lg w-[500px] h-[144px] ">
             <button className="ml-[450px] mt-[16px] p-[5px] rounded-[16px] hover:bg-surface-hover transiton duration-300">
-              <img alt="" src="x-close.svg" />
+     
             </button>
             <img alt="" src="./FeaturedIcon.svg" className="m-auto" />
             <p className=" text-center font-lato font-semibold text-xl leading-[118%] tracking-[0] text-[#181D27] ">

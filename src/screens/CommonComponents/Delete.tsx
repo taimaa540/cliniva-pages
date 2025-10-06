@@ -9,13 +9,17 @@ import {
 interface DeleteProps {
   title: string;
   children: React.ReactNode;
+  open: boolean;                   // يتحكم بظهور الديالوج
+  onDelete: () => void;            // تنفيذ الحذف عند الضغط Delete
+  onCancel?: () => void;           // إلغاء/إغلاق الديالوج
 }
 
-export const Delete = ({ title, children } : DeleteProps): JSX.Element => {
+
+export const Delete = ({ title, children ,open, onDelete,onCancel } : DeleteProps): JSX.Element => {
   return (
     <div className="flex w-[1440px] h-[1086px] items-center justify-center relative bg-[#b7b1a840]">
-      <Dialog open={true}>
-        <DialogContent className="w-[500px] bg-primary-foreground rounded-[16px] shadow-[0px_8px_8px_-4px_rgba(10,13,18,0.04)] shadow-[0px_20px_24px_-4px_rgba(10,13,18,0.10)] border-0 p-0">
+       <Dialog open={open} onOpenChange={(nextOpen) => { if (!nextOpen) onCancel?.(); }}>
+        <DialogContent className="w-[500px] bg-primary-foreground rounded-[16px]  shadow-[0px_20px_24px_-4px_rgba(10,13,18,0.10)] border-0 p-0">
           <div className="relative">
             <DialogHeader className="flex-col gap-4 pt-6 pb-0 px-6 flex items-start relative">
               <svg
@@ -65,7 +69,7 @@ export const Delete = ({ title, children } : DeleteProps): JSX.Element => {
 
           <div className="items-start pt-8 pb-0 px-0 self-stretch w-full flex-[0_0_auto] flex flex-col relative">
             <div className="gap-3 pt-0 pb-6 px-6 flex items-start relative self-stretch w-full flex-[0_0_auto]">
-              <Button
+              <Button    onClick={onCancel}
                 variant="outline"
                 className="bg-primary-foreground border border-border-light flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow rounded-[40px] overflow-hidden shadow-[0px_1px_2px_0px_rgba(10,13,18,0.05)] h-auto"
               >
@@ -74,7 +78,7 @@ export const Delete = ({ title, children } : DeleteProps): JSX.Element => {
                 </span>
               </Button>
 
-              <Button className="bg-[#D92D20] border-[#D92D20] flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow rounded-[40px] overflow-hidden shadow-[0px_1px_2px_0px_rgba(10,13,18,0.05)] h-auto">
+              <Button    onClick={onDelete} className="bg-[#D92D20] border-[#D92D20] flex items-center justify-center gap-2 px-[18px] py-2.5 relative flex-1 grow rounded-[40px] overflow-hidden shadow-[0px_1px_2px_0px_rgba(10,13,18,0.05)] h-auto">
                 <span className="w-fit font-semibold leading-[24px] tracking-[0] text-base text-background-primary">
                   Delete
                 </span>

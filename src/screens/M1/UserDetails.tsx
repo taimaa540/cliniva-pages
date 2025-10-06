@@ -11,11 +11,16 @@ import {
   TableHeader,
   TableRow,
 } from "../../components/ui/table";
+
+import { Activate } from "../CommonComponents/Activate";
+import { Deactivate } from "../CommonComponents/Deactivate";
+import { SideBar } from "../CommonComponents/SideBarPlan2";
+import { ThemeToggle } from "../../components/theme/ThemeSwitcher";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { useLanguage } from "../../lib/LanguageContext";
 import SwitchWithLabel from "../CommonComponents/SwitchLabel";
-
+import Toggle from "../../components/ui/SwitchToggel";
 const personalInfoData = [
   { label: "Gender", value: "Male" },
   { label: "Date of Birth", value: "Nov 20, 1994" },
@@ -54,23 +59,163 @@ const workingDaysData = [
   { day: "Friday", shift1: "OFF", shift2: "OFF" },
   { day: "Saturday", shift1: "OFF", shift2: "OFF" },
 ];
-
+import { useState } from "react";
+import { Link } from "react-router-dom";
 const documentsData = [
   { title: "Contract", date: " May 01, 2026 ", size: "0.5 MB" },
   { title: "CV / Resume", date: " May 30, 2028", size: "1.0 MB" },
   { title: "Work Permit", date: " Mar 01, 2027", size: "0.7 MB" },
   { title: "Certifications", date: " Mar 01, 2028", size: "0.4 MB" },
-];
-
+];  import { useNavigate } from "react-router-dom";
+import { ArrowLeftIcon } from "lucide-react";
+import { Header } from "../CommonComponents/Header";
 export const UserDetails = (): JSX.Element => {
   const { local, handleLanguageClick } = useLanguage();
   const { t, i18n } = useTranslation();
-  
+   const [checked, setChecked] = useState<boolean>(true); // الحالة الحالية
+  const [showDialog, setShowDialog] = useState<boolean>(false);
+  const [pendingNext, setPendingNext] = useState<boolean | null>(null);
+  const [actionType, setActionType] = useState<"activate" | "deactivate" | null>(null);
+const navigate=useNavigate();
+  // عندما يضغط المستخدم على الـ Toggle
+  function handleToggle(next: boolean) {
+    // إذا كان من Active -> Inactive
+    if (checked && !next) {
+      setPendingNext(next);
+      setActionType("deactivate");
+      setShowDialog(true);
+      return;
+    }
+
+    // إذا كان من Inactive -> Active
+    if (!checked && next) {
+      setPendingNext(next);
+      setActionType("activate");
+      setShowDialog(true);
+      return;
+    }
+
+    // غير هيك غيّر مباشرة
+    setChecked(next);
+  }
+
+  function confirmDeactivate() {
+    setChecked(pendingNext ?? false);
+    setPendingNext(null);
+    setActionType(null);
+    setShowDialog(false);
+  }
+
+  function cancelDeactivate() {
+    setPendingNext(null);
+    setActionType(null);
+    setShowDialog(false);
+  }
+
+
   useEffect(() => {
     i18n.changeLanguage(local);
-  }, [local, i18n]);
+  }, []);
+  const [isOpenAppointment, setIsOpen] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const onOpenSidebar = () => setShowSidebar(true);
+  const onCloseSidebar = () => setShowSidebar(false);
 
   return (
+    <div className="flex h-screen  w-screen">
+      {showSidebar && (
+        <div
+          onClick={onCloseSidebar}
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+        />
+      )}
+      <SideBar
+        isOpenAppointment={isOpenAppointment}
+        setIsOpen={setIsOpen}
+        local={local}
+        handleLanguageClick={handleLanguageClick}
+        handleDarkClick={() => { }}
+        isOpen={showSidebar}
+        onOpenSidebar={onOpenSidebar}
+        onCloseSidebar={onCloseSidebar}
+      />
+
+      <div className="flex flex-col w-full overflow-hidden min-h-screen items-start gap-4 py-4 pl-0 pr-5">
+
+<Header MainTitle="Users Management" SubTitle="User Details" onOpenSidebar={onOpenSidebar} backTo="/UserDesktop" />
+
+
+
+
+
+        <Card className="flex flex-col h-full items-start gap-5 p-[20px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-tertiary">
+          <CardContent className="w-full overflow-y-auto scroll-x-hidden pr-[20px] ">
+            <main className="flex flex-col gap-[20px] w-full items-end rounded-2xl">
+              <div className="flex gap-[16px]">
+
+                <button className="flex items-center justify-center gap-[6px] w-[200px] h-[40px] rounded-[20px] bg-[#E46962] font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
+                  <svg
+                    className="text-surface-primary"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15.5 5H13V4.5C13 4.10218 12.842 3.72064 12.5607 3.43934C12.2794 3.15804 11.8978 3 11.5 3H8.5C8.10218 3 7.72064 3.15804 7.43934 3.43934C7.15804 3.72064 7 4.10218 7 4.5V5H4.5C4.36739 5 4.24021 5.05268 4.14645 5.14645C4.05268 5.24021 4 5.36739 4 5.5C4 5.63261 4.05268 5.75979 4.14645 5.85355C4.24021 5.94732 4.36739 6 4.5 6H5V15C5 15.2652 5.10536 15.5196 5.29289 15.7071C5.48043 15.8946 5.73478 16 6 16H14C14.2652 16 14.5196 15.8946 14.7071 15.7071C14.8946 15.5196 15 15.2652 15 15V6H15.5C15.6326 6 15.7598 5.94732 15.8536 5.85355C15.9473 5.75979 16 5.63261 16 5.5C16 5.36739 15.9473 5.24021 15.8536 5.14645C15.7598 5.05268 15.6326 5 15.5 5ZM8 4.5C8 4.36739 8.05268 4.24021 8.14645 4.14645C8.24021 4.05268 8.36739 4 8.5 4H11.5C11.6326 4 11.7598 4.05268 11.8536 4.14645C11.9473 4.24021 12 4.36739 12 4.5V5H8V4.5ZM14 15H6V6H14V15ZM9 8.5V12.5C9 12.6326 8.94732 12.7598 8.85355 12.8536C8.75979 12.9473 8.63261 13 8.5 13C8.36739 13 8.24021 12.9473 8.14645 12.8536C8.05268 12.7598 8 12.6326 8 12.5V8.5C8 8.36739 8.05268 8.24021 8.14645 8.14645C8.24021 8.05268 8.36739 8 8.5 8C8.63261 8 8.75979 8.05268 8.85355 8.14645C8.94732 8.24021 9 8.36739 9 8.5ZM12 8.5V12.5C12 12.6326 11.9473 12.7598 11.8536 12.8536C11.7598 12.9473 11.6326 13 11.5 13C11.3674 13 11.2402 12.9473 11.1464 12.8536C11.0527 12.7598 11 12.6326 11 12.5V8.5C11 8.36739 11.0527 8.24021 11.1464 8.14645C11.2402 8.05268 11.3674 8 11.5 8C11.6326 8 11.7598 8.05268 11.8536 8.14645C11.9473 8.24021 12 8.36739 12 8.5Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  {t('Delete')}
+                </button>
+           
+                  <button onClick={
+                    (e)=>{
+                      navigate('/EditUserDetails',{state:{from:'/ViewUserDetails'}})
+                    }                  }
+                  className="flex items-center justify-center gap-[6px] w-[200px] h-[40px] rounded-[20px] bg-secondary-dark font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
+                    <svg
+                      width="21"
+                      height="20"
+                      viewBox="0 0 21 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M13.832 3.99955C14.0071 3.82445 14.215 3.68556 14.4438 3.5908C14.6725 3.49604 14.9177 3.44727 15.1654 3.44727C15.413 3.44727 15.6582 3.49604 15.887 3.5908C16.1157 3.68556 16.3236 3.82445 16.4987 3.99955C16.6738 4.17465 16.8127 4.38252 16.9074 4.61129C17.0022 4.84006 17.051 5.08526 17.051 5.33288C17.051 5.58051 17.0022 5.8257 16.9074 6.05448C16.8127 6.28325 16.6738 6.49112 16.4987 6.66622L7.4987 15.6662L3.83203 16.6662L4.83203 12.9995L13.832 3.99955Z"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    {t('Edit')}
+                  </button>
+              </div>
+              <div className="flex gap-[20px] w-full">
+                <aside
+                  dir={local === "en" ? "ltr" : "rtl"}
+                  className="w-[277px] h-[880px] bg-background-primary rounded-[16px] py-[22px] px-[8px] shadow-[0px_20px_24px_0px_#0A0D121A]"
+                >
+                  <Card className=" w-full">
+                    <CardContent className="flex flex-col w-[245px]">
+                      <section className="flex flex-col items-center justify-center gap-[24px] h-[208px]">
+                        <div className="w-[100px] h-[100px] bg-[#A5C8F2] rounded-[50px]" />
+                        <div>
+                          <h2 className="font-lato font-bold text-lg leading-[120%] tracking-[0] text-text-primary">
+                            Ammar Al Sawwa
+                          </h2>
+                          <div className="flex items-center justify-center gap-[6px] mt-[6px]">
+                            <span className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary">
+                              US-001
+                            </span>
+                            <div className=" w-[4px] h-[4px] bg-border-light rounded-sm" />
+                            <span className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary">
+                              {t('Staff')}
+                            </span>
+                          </div>
+                        </div>
+                      </section>
     <div className="flex flex-col w-full min-h-screen items-start gap-2 sm:gap-4 p-2 sm:p-4 max-w-full overflow-x-hidden">
       {/* Responsive Header */}
       <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 w-full max-w-full">
@@ -303,54 +448,52 @@ export const UserDetails = (): JSX.Element => {
                           </span>
                         </div>
 
-                        <div className="flex items-start gap-3 w-full">
-                          <svg
-                            width="36"
-                            height="36"
-                            viewBox="0 0 36 36"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="shrink-0"
-                          >
-                            <rect width="36" height="36" rx="18" fill="#E1EDFB" />
-                            <path
-                              d="M15.75 25.5V18H20.25V25.5M11.25 15.75L18 10.5L24.75 15.75V24C24.75 24.3978 24.592 24.7794 24.3107 25.0607C24.0294 25.342 23.6478 25.5 23.25 25.5H12.75C12.3522 25.5 11.9706 25.342 11.6893 25.0607C11.408 24.7794 11.25 24.3978 11.25 24V15.75Z"
-                              stroke="currentColor"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-                          <span className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary break-words min-w-0 flex-1">
-                            2154 Abdulaziz Street, Al Olaya District, Riyadh, Saudi Arabia
-                          </span>
-                        </div>
-                      </div>
-                    </section>
-
-                    <Separator className="w-full h-px my-2" />
-
-                    {/* Emergency Contact Section */}
-                    
-                    <section className="flex flex-col gap-4 py-4 px-2">
-                      <h3 className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
-                        {t("Emergency Contact Info")}
-                      </h3>
-                      <div className="flex items-start gap-3 w-full">
                         <svg
                           width="36"
                           height="36"
                           viewBox="0 0 36 36"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
-                          className="shrink-0"
                         >
                           <rect width="36" height="36" rx="18" fill="#E1EDFB" />
-                          <g clipPath="url(#clip0_6375_72054)">
+                          <path
+                            d="M15.75 25.5V18H20.25V25.5M11.25 15.75L18 10.5L24.75 15.75V24C24.75 24.3978 24.592 24.7794 24.3107 25.0607C24.0294 25.342 23.6478 25.5 23.25 25.5H12.75C12.3522 25.5 11.9706 25.342 11.6893 25.0607C11.408 24.7794 11.25 24.3978 11.25 24V15.75Z"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                        <span className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                          2154 Abdulaziz Street, Al Olaya District, Riyadh,
+                          Saudi Arabia
+                        </span>
+                      </div>
+                    </section>
+                    <Separator className=" w-full h-px" />
+
+                    <section className="flex flex-col gap-[16px] py-[24px] px-[12px]">
+                      <h3 className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
+                        {t("Emergency Contact Info")}
+                      </h3>
+                      <div className="relative grid grid-cols-[36px_1fr] gap-x-[12px] gap-y-[16px] items-center px-[4px]">
+                        <svg
+                          width="36"
+                          height="36"
+                          viewBox="0 0 36 36"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect width="36" height="36" rx="18" fill="#E1EDFB" />
+                          <g clip-path="url(#clip0_6375_72054)">
                             <path
                               d="M24.4981 22.6901V24.9401C24.499 25.1489 24.4562 25.3557 24.3725 25.5471C24.2888 25.7385 24.1661 25.9103 24.0122 26.0515C23.8583 26.1927 23.6765 26.3002 23.4787 26.3671C23.2808 26.434 23.0711 26.4589 22.8631 26.4401C20.5552 26.1893 18.3384 25.4007 16.3906 24.1376C14.5785 22.9861 13.0421 21.4497 11.8906 19.6376C10.6231 17.681 9.8343 15.4533 9.58812 13.1351C9.56938 12.9277 9.59402 12.7186 9.66049 12.5213C9.72696 12.3239 9.8338 12.1426 9.97419 11.9888C10.1146 11.835 10.2855 11.7121 10.476 11.628C10.6665 11.5438 10.8724 11.5003 11.0806 11.5001H13.3306C13.6946 11.4965 14.0475 11.6254 14.3234 11.8627C14.5994 12.1001 14.7797 12.4297 14.8306 12.7901C14.9256 13.5101 15.1017 14.2171 15.3556 14.8976C15.4565 15.166 15.4784 15.4578 15.4185 15.7382C15.3587 16.0187 15.2198 16.2762 15.0181 16.4801L14.0656 17.4326C15.1333 19.3102 16.688 20.8649 18.5656 21.9326L19.5181 20.9801C19.722 20.7784 19.9795 20.6395 20.26 20.5796C20.5404 20.5198 20.8322 20.5417 21.1006 20.6426C21.7811 20.8965 22.4881 21.0726 23.2081 21.1676C23.5724 21.219 23.9052 21.4025 24.143 21.6832C24.3809 21.9639 24.5072 22.3223 24.4981 22.6901Z"
                               stroke="currentColor"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                            <path
+                              d="M19.2727 17C19.1439 17 19.0361 16.9548 18.9491 16.8645C18.8621 16.7741 18.8185 16.6624 18.8182 16.5294C18.8179 16.3964 18.8615 16.2847 18.9491 16.1943C19.0367 16.104 19.1445 16.0588 19.2727 16.0588H19.5455L20.4432 12.9647C20.5038 12.7608 20.6156 12.5981 20.7786 12.4767C20.9417 12.3553 21.1215 12.2944 21.3182 12.2941H22.6818C22.8788 12.2941 23.0588 12.355 23.2218 12.4767C23.3848 12.5984 23.4965 12.7611 23.5568 12.9647L24.4545 16.0588H24.7273C24.8561 16.0588 24.9641 16.104 25.0514 16.1943C25.1386 16.2847 25.1821 16.3964 25.1818 16.5294C25.1815 16.6624 25.1379 16.7743 25.0509 16.8649C24.9639 16.9556 24.8561 17.0006 24.7273 17H19.2727ZM20.5 16.0588H23.5L22.6818 13.2353H21.3182L20.5 16.0588ZM21.5455 10.8824V9.47059C21.5455 9.33726 21.5891 9.22557 21.6764 9.13553C21.7636 9.04549 21.8715 9.00032 22 9C22.1285 8.99969 22.2365 9.04486 22.3241 9.13553C22.4117 9.2262 22.4552 9.33788 22.4545 9.47059V10.8824C22.4545 11.0157 22.4109 11.1275 22.3236 11.2179C22.2364 11.3082 22.1285 11.3533 22 11.3529C21.8715 11.3526 21.7636 11.3075 21.6764 11.2174C21.5891 11.1274 21.5455 11.0157 21.5455 10.8824ZM23.9318 11.5176L24.8977 10.5176C24.9811 10.4314 25.0853 10.3862 25.2105 10.3821C25.3356 10.378 25.4435 10.4232 25.5341 10.5176C25.6174 10.6039 25.6591 10.7137 25.6591 10.8471C25.6591 10.9804 25.6174 11.0902 25.5341 11.1765L24.5682 12.1882C24.4773 12.2824 24.3712 12.3294 24.25 12.3294C24.1288 12.3294 24.0227 12.2824 23.9318 12.1882C23.8409 12.0941 23.7955 11.9824 23.7955 11.8532C23.7955 11.7239 23.8409 11.6121 23.9318 11.5176ZM25.1818 13.7059H26.5455C26.6742 13.7059 26.7823 13.7511 26.8695 13.8414C26.9568 13.9318 27.0003 14.0434 27 14.1765C26.9997 14.3095 26.9561 14.4213 26.8691 14.512C26.7821 14.6027 26.6742 14.6477 26.5455 14.6471H25.1818C25.053 14.6471 24.9452 14.6019 24.8582 14.5115C24.7712 14.4212 24.7276 14.3095 24.7273 14.1765C24.727 14.0434 24.7706 13.9318 24.8582 13.8414C24.9458 13.7511 25.0536 13.7059 25.1818 13.7059ZM19.4318 12.1765L18.4659 11.1765C18.3826 11.0902 18.3391 10.9824 18.3355 10.8532C18.3318 10.7239 18.3753 10.6121 18.4659 10.5176C18.5492 10.4314 18.6553 10.3882 18.7841 10.3882C18.9129 10.3882 19.0189 10.4314 19.1023 10.5176L20.0795 11.5176C20.1705 11.6118 20.2159 11.7216 20.2159 11.8471C20.2159 11.9725 20.1705 12.0824 20.0795 12.1765C19.9886 12.2706 19.8808 12.3176 19.7559 12.3176C19.6311 12.3176 19.523 12.2706 19.4318 12.1765ZM17.4545 14.6471C17.3258 14.6471 17.2179 14.6019 17.1309 14.5115C17.0439 14.4212 17.0003 14.3095 17 14.1765C16.9997 14.0434 17.0433 13.9318 17.1309 13.8414C17.2185 13.7511 17.3264 13.7059 17.4545 13.7059H18.8182C18.947 13.7059 19.055 13.7511 19.1423 13.8414C19.2295 13.9318 19.273 14.0434 19.2727 14.1765C19.2724 14.3095 19.2288 14.4213 19.1418 14.512C19.0548 14.6027 18.947 14.6477 18.8182 14.6471H17.4545Z"
+                              fill="currentColor"
                             />
                           </g>
                           <defs>
@@ -364,7 +507,8 @@ export const UserDetails = (): JSX.Element => {
                             </clipPath>
                           </defs>
                         </svg>
-                        <span className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary break-words min-w-0 flex-1">
+
+                        <span className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
                           Mohammed Zaki, Father +963933348151
                         </span>
                       </div>

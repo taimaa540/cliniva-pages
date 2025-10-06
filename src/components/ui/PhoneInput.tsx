@@ -46,7 +46,7 @@ const phoneWithoutCode = valueStr.startsWith(countryCallingCode)
   return (
     <div
       dir="ltr"
-      className="w-[360px] h-[48px] flex items-center border border-border-light rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-all"
+      className="w-[min(100%,360px)] h-10 sm:h-10 md:h-12  flex items-center border border-border-light bg-background-secondary rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 transition-all"
     >
       {/* اختيار الدولة */}
       <div className="relative flex items-center gap-2 px-3 border-r h-full !bg-background-secondary">
@@ -61,13 +61,13 @@ const phoneWithoutCode = valueStr.startsWith(countryCallingCode)
         </div>
 
         {/* اختصار الدولة */}
-        <span className="text-sm font-medium text-gray-700 select-none">
+        <span className="text-sm font-lato font-semibold text-gray-700 select-none">
           {country}
         </span>
 
         {/* select مخفي */}
         <select
-          className="absolute inset-0 w-full h-full opacity-0 bg-transparent cursor-pointer"
+          className="absolute inset-0 w-full h-full  font-lato font-semibold opacity-0 bg-transparent cursor-pointer"
           value={country}
           onChange={(e) => {
             const selected = e.target.value as CountryCode;
@@ -94,7 +94,7 @@ const phoneWithoutCode = valueStr.startsWith(countryCallingCode)
       {/* رمز الاتصال + إدخال الرقم */}
       <div className="flex items-center gap-2 px-3 flex-1 !bg-background-secondary">
         {valueStr && (
-          <span className="text-sm text-gray-700 select-none">
+          <span className="text-sm font-lato font-semibold  text-gray-700 select-none">
             {countryCallingCode}
           </span>
         )}
@@ -107,7 +107,7 @@ const phoneWithoutCode = valueStr.startsWith(countryCallingCode)
             onChange?.(cleanVal ? countryCallingCode + cleanVal : "");
           }}
           placeholder={placeholder || t("Enter Phone Number")}
-        className={`w-full h-full outline-none border-none text-sm !bg-background-secondary placeholder:text-text-secondary ${
+        className={`w-full h-full outline-none border-none font-semibold !bg-background-secondary text-[clamp(12px,1.1vw,14px)] placeholder:text-[clamp(12px,1.1vw,14px)]  placeholder:text-text-secondary ${
     local?.startsWith("ar") ? "placeholder-rtl" : "placeholder-ltr"
   }`}
 

@@ -1,29 +1,32 @@
 import { BellIcon, PlusIcon, ChevronDownIcon } from "lucide-react";
-import { Button } from "../components/ui/button";
-import { Card, CardContent } from "../components/ui/card";
-import { Input } from "../components/ui/input";
+import { Button } from "../../components/ui/button"; 
+import {  CardContent } from "../../components/ui/card";
+import { Card } from "../../components/ui/card";
+import { Input } from "../../components/ui/input"; 
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../components/ui/select";
-import { Textarea } from "../components/ui/textarea";
+}  from "@radix-ui/react-select";
+import { Header } from "../CommonComponents/Header";
+import { SideBar } from "../CommonComponents/SideBarPlan2";
+import { Textarea } from "../../components/ui/textarea"; 
 import PhoneInput from "react-phone-input-2";
 import { useState } from "react";
-import DateInput from './DateInput';
-import TimeRangePicker from "./UsersDesktop/timeRangePicker";
-import CustomCheckbox from "./customCheckbox";
+import DateInput from "../CommonComponents/DateInput";
+import TimeRangePicker from "../CommonComponents/timeRangePicker";
+import CustomCheckbox from "../CommonComponents/customCheckbox";
 import { useTranslation } from "react-i18next";
 import TranslateIcon from "@mui/icons-material/Translate";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../components/ui/collapsible";
-import TimeInput from "./TimeInput";
+} from "../../components/ui/collapsible";
 
+import TimeInput from "../CommonComponents/TimeInput";
 const workingDays = [
   { day: "Sunday", checked: true, startTime: "09:00", endTime: "18:00" },
   { day: "Monday", checked: true, startTime: "09:00", endTime: "18:00" },
@@ -58,62 +61,35 @@ export const AddNewClinic = (): JSX.Element => {
       i18n.changeLanguage("en");
     }
   }
+  const [isOpenAppointment, setIsOpen] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const onOpenSidebar = () => setShowSidebar(true);
+  const onCloseSidebar = () => setShowSidebar(false);
   return (
+    <div className="flex h-screen  w-screen">
+      {showSidebar && (
+        <div
+          onClick={onCloseSidebar}
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+        />
+      )}
+      <SideBar
+        isOpenAppointment={isOpenAppointment}
+        setIsOpen={setIsOpen}
+        local={local}
+        handleLanguageClick={handleLanguageClick}
+        handleDarkClick={() => { }}
+        isOpen={showSidebar}
+        onOpenSidebar={onOpenSidebar}
+        onCloseSidebar={onCloseSidebar}
+      />
     <div
       dir={`${local === "ar" ? "rtl" : "ltr"}`}
       className="flex flex-col w-full h-full overflow-heddin items-start gap-4 pl-0 pr-4 py-4"
     >
-      {/* Header */}
-      <header className="flex h-[66px] justify-between pl-1 pr-0 py-0 w-full items-center">
-        <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5">
-          <h2 className="font-lato text-xl text-text-primary font-semibold leading-[116%] tracking-[0]">
-            {t("Medical Facilities")}
-          </h2>
-          <p className="font-lato text-sm text-text-primary font-semibold leading-[125%] tracking-[0]">
-            {t("Add New clinic")}
-          </p>
-        </div>
-
-        <div className="inline-flex gap-3 flex-[0_0_auto] rounded-[28px] items-center">
-          <div className="relative">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="p-2.5 bg-secondary-light rounded-[20px] h-auto"
-            >
-              <BellIcon className="w-5 h-5" />
-            </Button>
-            <div className="absolute top-1 left-4 w-2 h-2 bg-[#fa812d] rounded-full" />
-          </div>
-
-          <div className="relative">
-            <Button
-              variant="ghost"
-              size="icon"
-              className={`p-2.5 ${
-                local === "ar" ? "bg-secondary-dark" : "bg-secondary-light"
-              } rounded-[20px] h-auto`}
-              onClick={handleLanguageClick}
-            >
-              <TranslateIcon className="w-5 h-5" />
-            </Button>
-          </div>
-
-          <div className="w-10 h-[17.5px] relative"></div>
-
-          <div className="items-center gap-3 inline-flex ">
-            <div className="inline-flex items-center w-[40px] h-[40px] gap-2.5 bg-app-primary rounded-3xl" />
-            <div className="flex-col items-start gap-1 inline-flex ">
-              <div className="font-lato font-bold text-base leading-[124%] tracking-[0] text-text-primary">
-                Anahera Jones
-              </div>
-              <div className="font-lato font-regular text-xs leading-[124%] tracking-[0] text-border-medium">
-                Admin
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+            <Header MainTitle="Medical Facilities" SubTitle="Add New clinic" onOpenSidebar={onOpenSidebar}  />
+      
+ 
       {/* Content */}
       <div className="bg-background-tertiary p-[20px] rounded-[16px] w-full overflow-hidden">
         <div className="flex flex-col w-full items-end gap-4 overflow-y-auto scroll-x-hidden h-full">
@@ -496,6 +472,6 @@ export const AddNewClinic = (): JSX.Element => {
           </div>
         </div>
       </div>
-    </div>
+    </div></div>
   );
 };

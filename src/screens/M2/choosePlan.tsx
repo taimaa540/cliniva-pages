@@ -2,19 +2,13 @@ import { ArrowRightIcon, CheckIcon, ArrowLeft } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { Route, Routes, Link } from "react-router-dom";
-import { CompanyPlan } from "./CompanyPlan";
-import { ComplexPlane } from "./ComplexPlane";
-import { ClinicsPlane } from "./ClinicsPlan";
+import { useAppContext } from "../../Context/ContextchooseSidbar"; 
 
 export const ChoosePlan = (): JSX.Element => {
+    const { setSelectedPlan } = useAppContext();
   return (
     <>
 
-      {/* Routes */}
-      <Routes>
-        <Route
-          path="/"
-          element={
             <div className=" w-full h-screen bg-surface-default overflow-scroll">
               <img
                 className="absolute top-[19px] left-[80px] "
@@ -37,8 +31,11 @@ export const ChoosePlan = (): JSX.Element => {
                 src="/Group4.svg"
               />
               <div>
+                <button className="group hover:bg-accent flex gap-4 absolute left-[220px] top-[30px] p-2.5 rounded-[16px]">
+                  <Link to='/Home'>
                 <button className="group hover:bg-accent flex gap-4 relative left-[-100%] md:left-[220px] top-[30px] p-2.5 rounded-[16px]">
                   <ArrowLeft className=" group-hover:animate-arrow-bounce-to-left" />
+                  </Link>
                   <h6>Back to Login Page</h6>
                 </button>
               </div>
@@ -98,7 +95,7 @@ export const ChoosePlan = (): JSX.Element => {
                         </div>
                       </div>
                       <Link to="/CompanyPlane">
-                        <Button className="group flex w-[248px]  h-12 items-center justify-center gap-2 p-[10.5px] relative mb-[-2.50px] bg-secondary-dark rounded-[19px] overflow-hidden h-auto">
+                        <Button    onClick={() => setSelectedPlan("Company")} className="group flex w-[248px]  h-12 items-center justify-center gap-2 p-[10.5px] relative mb-[-2.50px] bg-secondary-dark rounded-[19px] overflow-hidden h-auto">
                           <span className="relative w-fit font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-bg-subtle text-[length:var(--title-16px-bold-font-size)] text-center tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]">
                             Choose this plan
                           </span>
@@ -149,7 +146,7 @@ export const ChoosePlan = (): JSX.Element => {
                         </div>
                       </div>
                       <Link to="/ComplexPlane">
-                        <Button className="group flex w-[248px]  h-12 items-center justify-center gap-2 p-[10.5px] relative mb-[-2.50px] bg-secondary-dark rounded-[19px] overflow-hidden h-auto">
+                        <Button    onClick={() => setSelectedPlan("Complex")} className="group flex w-[248px]  h-12 items-center justify-center gap-2 p-[10.5px] relative mb-[-2.50px] bg-secondary-dark rounded-[19px] overflow-hidden h-auto">
                           <span className="relative w-fit font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-bg-subtle text-[length:var(--title-16px-bold-font-size)] text-center tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]">
                             Choose this plan
                           </span>
@@ -200,7 +197,7 @@ export const ChoosePlan = (): JSX.Element => {
                         </div>
                       </div>
                       <Link to="/ClinicPlane">
-                        <Button className="group flex w-[248px]  h-12 items-center justify-center gap-2 p-[10.5px] relative mb-[-2.50px] bg-secondary-dark rounded-[19px] overflow-hidden h-auto">
+                        <Button   onClick={() => setSelectedPlan("Clinic")} className="group flex w-[248px]  h-12 items-center justify-center gap-2 p-[10.5px] relative mb-[-2.50px] bg-secondary-dark rounded-[19px] overflow-hidden h-auto">
                           <span className="relative w-fit font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-bg-subtle text-[length:var(--title-16px-bold-font-size)] text-center tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]">
                             Choose this plan
                           </span>
@@ -212,12 +209,10 @@ export const ChoosePlan = (): JSX.Element => {
                 </main>
               </div>
             </div>
-          }
-        />
-        <Route path="/CompanyPlane" element={<CompanyPlan/>} />
-        <Route path="/ComplexPlane" element={<ComplexPlane/>}/>
-        <Route path="/ClinicPlane" element={<ClinicsPlane/>}/>
-      </Routes>
+          
+      
+      
+      
     </>
   );
 };

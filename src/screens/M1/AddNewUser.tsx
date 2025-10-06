@@ -15,6 +15,7 @@ import { CountryDropdown } from "react-country-region-selector";
 import en from "react-phone-number-input/locale/en.json";
 import {
   Select,
+  Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
@@ -26,11 +27,12 @@ import {
   TabsList,
   TabsTrigger,
 } from "../../components/ui/tabs";
+import { Header } from "../CommonComponents/Header";
 import FileUpload from "../CommonComponents/fillUpLoad";
 import { useLanguage } from "../../lib/LanguageContext";
 import DateInput from "../CommonComponents/DateInput";
 import PhoneInputCustom from "../CommonComponents/PhoneInput";
-
+import { SideBar } from "../CommonComponents/SideBarPlan2";
 const tabItems = [
   { value: "account", label: "Account information" },
   { value: "personal", label: "Personal information" },
@@ -57,7 +59,8 @@ const documents = [
   },
   { label: "CV / Resume", effectiveDate: "Mar 01, 2027" },
 ];
-
+import { ThemeToggle } from "../../components/theme/ThemeSwitcher";
+import { Link } from "react-router-dom";
 export const AddNewUser = (): JSX.Element => {
   const shortLabels: Record<string, string> = {};
   Object.keys(en).forEach((key) => {
@@ -70,60 +73,39 @@ export const AddNewUser = (): JSX.Element => {
   useEffect(() => {
     i18n.changeLanguage(local);
   }, []);
+  const [isOpenAppointment, setIsOpen] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const onOpenSidebar = () => setShowSidebar(true);
+  const onCloseSidebar = () => setShowSidebar(false);
+  {/*  stats for tabs*/ }
+const [activeTab, setActiveTab] = useState("account"); 
+
+  const [phones, setPhones] = useState<string[]>([""]); // مصفوفة أرقام مبدئية
+
+
   return (
-    <div className="flex flex-col w-full overflow-hidden min-h-screen items-start gap-4 py-4 pl-0 pr-5">
-      <header className="flex h-[50px] justify-between pl-1 pr-0 py-0 w-full items-center">
-        <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5">
-          <h1 className="self-stretch mt-[-1.00px] font-lato font-semibold text-xl text-text-primary leading-[116%] tracking-[0]">
-            {t("Users Management")}
-          </h1>
-          <p className="font-lato font-semibold text-sm text-text-primary leading-[125%] tracking-[0]">
-            {t("Add New User")}
-          </p>
-        </div>
+    <div className="flex h-screen  w-screen">
+      {showSidebar && (
+        <div
+          onClick={onCloseSidebar}
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+        />
+      )}
+      <SideBar
+        isOpenAppointment={isOpenAppointment}
+        setIsOpen={setIsOpen}
+        local={local}
+        handleLanguageClick={handleLanguageClick}
+        handleDarkClick={() => { }}
+        isOpen={showSidebar}
+        onOpenSidebar={onOpenSidebar}
+        onCloseSidebar={onCloseSidebar}
+      />
+      <div className="flex flex-col w-full overflow-hidden min-h-screen items-start gap-4 py-4 pl-0 pr-5">
 
-        <div className="inline-flex gap-3 flex-[0_0_auto] rounded-[28px] items-center">
-          <button className="inline-flex items-start gap-2 p-2.5 flex-[0_0_auto] bg-secondary-light rounded-[20px] relative">
-            <BellIcon className="w-5 h-5" />
-            <div className="flex flex-col w-5 h-5 items-center justify-center gap-2.5 p-1 absolute top-1 left-4">
-              <div className="w-2 h-2 bg-[#fa812d] rounded-[14px]" />
-            </div>
-          </button>
+<Header MainTitle="Users Management" SubTitle="Add New User" onOpenSidebar={onOpenSidebar}  />
 
-          <div className="relative">
-            <Button
-              variant="ghost"
-              size="icon"
-              className={`p-2.5 bg-secondary-light ${
-                local === "ar" ? "bg-[green]" : "bg-secondary-light"
-              } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-              onClick={handleLanguageClick}
-            >
-              <TranslateIcon className="w-5 h-5" />
-            </Button>
-          </div>
-
-          <div className="w-10 h-[17.5px] relative">
-            {/* <DarkModeToggle /> */}
-          </div>
-
-          <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-            <div className="inline-flex items-center w-[40px] h-[40px] gap-2.5 flex-[0_0_auto] bg-app-primary rounded-3xl" />
-            <div className="flex-col items-start gap-1 inline-flex flex-[0_0_auto]">
-              <div
-                className={`w-fit mt-[-1.00px] 
-                    "text-[#2a2b2a]"
-                   font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]`}
-              >
-                Anahera Jones
-              </div>
-              <div className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-tertiary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)]">
-                Admin
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+       
 
       <Card className="flex flex-col h-full items-start gap-5 p-[20px] relative w-full rounded-2xl overflow-hidden bg-background-tertiary">
         <CardContent className="w-full overflow-y-auto scroll-x-hidden ">
@@ -292,15 +274,14 @@ export const AddNewUser = (): JSX.Element => {
                 </form>
               </div>
 
-              <div
-                dir="ltr"
-                className={`mt-auto flex ${
-                  local === "ar" ? "justify-start" : "justify-end"
-                } gap-[12px] w-full h-[40px]`}
-              >
-                <button className="w-[200px] h-[40px] rounded-[50px] border border-[#D5D7DA] shadow-[0px_1px_2px_0px_#0A0D120D] bg-[#FFFFFF] font-inter font-semibold text-base leading-[16px] tracking-[0] text-text-primary">
-                  {t("Cancel")}
-                </button>
+                <div
+                  dir="ltr"
+                  className={`mt-auto flex ${local === "ar" ? "justify-start" : "justify-end"
+                    } gap-[12px] w-full h-[40px]`}
+                >
+                  <button className="w-[200px] h-[40px] rounded-[50px] border border-[#D5D7DA] shadow-[0px_1px_2px_0px_#0A0D120D] bg-[#FFFFFF] font-inter font-semibold text-base leading-[16px] tracking-[0] text-text-primary">
+                    {t("Cancel")}
+                  </button>
 
                 <button className="relative w-[200px] h-[40px] rounded-[50px] border border-secondary-dark shadow-[0px_1px_2px_0px_#0A0D120D] bg-secondary-dark font-inter font-semibold text-base leading-[16px] tracking-[0] text-[#FFFFFF]">
                   {t("Next")}
@@ -536,39 +517,40 @@ export const AddNewUser = (): JSX.Element => {
                     />
                   </svg>
 
-                  {t("Previous")}
-                </button>
+                    {t("Previous")}
+                  </button>
 
-                <button className="relative w-[200px] h-[40px] rounded-[50px] border border-secondary-dark shadow-[0px_1px_2px_0px_#0A0D120D] bg-secondary-dark font-inter font-semibold text-base leading-[16px] tracking-[0] text-[#FFFFFF]">
-                  {t("Next")}
-                  <svg
-                    className="absolute top-[11px] right-[55px]"
-                    width="21"
-                    height="20"
-                    viewBox="0 0 21 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M8.18306 15.4419C7.93898 15.1979 7.93898 14.8021 8.18306 14.5581L12.7411 10L8.18306 5.44194C7.93898 5.19786 7.93898 4.80214 8.18306 4.55806C8.42714 4.31398 8.82286 4.31398 9.06694 4.55806L14.0669 9.55806C14.311 9.80214 14.311 10.1979 14.0669 10.4419L9.06694 15.4419C8.82286 15.686 8.42714 15.686 8.18306 15.4419Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </TabsContent>
+                  <button  onClick={() => setActiveTab("employment")}  className="relative w-[200px] h-[40px] rounded-[50px] border border-secondary-dark shadow-[0px_1px_2px_0px_#0A0D120D] bg-secondary-dark font-inter font-semibold text-base leading-[16px] tracking-[0] text-[#FFFFFF]">
+                    {t("Next")}
+                    <svg
+                      className="absolute top-[11px] right-[55px]"
+                      width="21"
+                      height="20"
+                      viewBox="0 0 21 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M8.18306 15.4419C7.93898 15.1979 7.93898 14.8021 8.18306 14.5581L12.7411 10L8.18306 5.44194C7.93898 5.19786 7.93898 4.80214 8.18306 4.55806C8.42714 4.31398 8.82286 4.31398 9.06694 4.55806L14.0669 9.55806C14.311 9.80214 14.311 10.1979 14.0669 10.4419L9.06694 15.4419C8.82286 15.686 8.42714 15.686 8.18306 15.4419Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </TabsContent>
 
-            <TabsContent
-              value="employment"
-              className="w-full flex flex-col min-h-screen gap-[16px] mt-[20px]"
-            >
-              <Card className="w-full bg-background-primary rounded-[16px] p-[16px]">
-                <CardContent dir={local === "en" ? "ltr" : "rtl"}>
-                  <h2 className="text-primary-default text-[16px] font-lato font-bold leading-[124%] tracking-[0] ">
-                    {t("Job Details")}
-                  </h2>
+
+              <TabsContent
+                value="employment"
+                className="w-full flex flex-col min-h-screen gap-[16px] mt-[20px]"
+              >
+                <Card className="w-full bg-background-primary rounded-[16px] p-[16px]">
+                  <CardContent dir={local === "en" ? "ltr" : "rtl"}>
+                    <h2 className="text-primary-default text-[16px] font-lato font-bold leading-[124%] tracking-[0] ">
+                      {t("Job Details")}
+                    </h2>
 
                   <div className="flex flex-col items-start gap-4 mt-[20px] relative">
                     <div className="flex max-[767px]:flex-col items-center gap-[21.5px] w-full">
@@ -619,35 +601,37 @@ export const AddNewUser = (): JSX.Element => {
                     />
                   </svg>
 
-                  {t("Previous")}
-                </button>
+                    {t("Previous")}
+                  </button>
 
-                <button className="relative w-[200px] h-[40px] rounded-[50px] border border-secondary-dark shadow-[0px_1px_2px_0px_#0A0D120D] bg-secondary-dark font-inter font-semibold text-base leading-[16px] tracking-[0] text-[#FFFFFF]">
-                  {t("Next")}
-                  <svg
-                    className="absolute top-[11px] right-[55px]"
-                    width="21"
-                    height="20"
-                    viewBox="0 0 21 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M8.18306 15.4419C7.93898 15.1979 7.93898 14.8021 8.18306 14.5581L12.7411 10L8.18306 5.44194C7.93898 5.19786 7.93898 4.80214 8.18306 4.55806C8.42714 4.31398 8.82286 4.31398 9.06694 4.55806L14.0669 9.55806C14.311 9.80214 14.311 10.1979 14.0669 10.4419L9.06694 15.4419C8.82286 15.686 8.42714 15.686 8.18306 15.4419Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </TabsContent>
-            <TabsContent value="documents">
-              <Card className="w-full bg-background-primary rounded-[16px] p-[16px]">
-                <CardContent dir={local === "en" ? "ltr" : "rtl"}>
-                  <h2 className="text-primary-default text-[16px] font-lato font-bold leading-[124%] tracking-[0] ">
-                    {t("Documents")}
-                  </h2>
+                  <button onClick={() => setActiveTab("documents")}  className="relative w-[200px] h-[40px] rounded-[50px] border border-secondary-dark shadow-[0px_1px_2px_0px_#0A0D120D] bg-secondary-dark font-inter font-semibold text-base leading-[16px] tracking-[0] text-[#FFFFFF]">
+                    {t("Next")}
+                    <svg
+                      className="absolute top-[11px] right-[55px]"
+                      width="21"
+                      height="20"
+                      viewBox="0 0 21 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M8.18306 15.4419C7.93898 15.1979 7.93898 14.8021 8.18306 14.5581L12.7411 10L8.18306 5.44194C7.93898 5.19786 7.93898 4.80214 8.18306 4.55806C8.42714 4.31398 8.82286 4.31398 9.06694 4.55806L14.0669 9.55806C14.311 9.80214 14.311 10.1979 14.0669 10.4419L9.06694 15.4419C8.82286 15.686 8.42714 15.686 8.18306 15.4419Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </TabsContent>
+
+
+              <TabsContent value="documents">
+                <Card className="w-full bg-background-primary rounded-[16px] p-[16px]">
+                  <CardContent dir={local === "en" ? "ltr" : "rtl"}>
+                    <h2 className="text-primary-default text-[16px] font-lato font-bold leading-[124%] tracking-[0] ">
+                      {t("Documents")}
+                    </h2>
 
                   <div className="flex flex-col items-start gap-4 mt-[20px] relative">
                     {documents.map((doc, index) => (

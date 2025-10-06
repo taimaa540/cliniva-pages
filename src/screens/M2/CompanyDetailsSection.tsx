@@ -5,6 +5,7 @@ import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
 import { ReactNode } from "react";
 import DateInput from "../CommonComponents/DateInput";
+import { Link } from "react-router-dom";
 import ImageUploader from "../CommonComponents/ImageUpload";
 
 const formFields = {
@@ -68,7 +69,9 @@ export const CompanyDetailsSection = ({
       {/* Header */}
       <div className="flex flex-col gap-2">
         <button className="flex items-center gap-2 font-lato text-xs text-text-secondary font-regular leading-[130%] tracking-[0]">
-          <ArrowLeftIcon className="w-4 h-4" />
+                <Link to='/ChossPlan'>
+                            <ArrowLeftIcon className="relative w-4 h-4" />
+                            </Link>
           Back to Choosing Plan Page
         </button>
         <h2 className="font-lato text-xl text-text-primary font-semibold leading-[116%] tracking-[0]">

@@ -18,14 +18,206 @@ const personalInfoData = [
   { label: "Marital Status", value: "Married" },
   { label: "Gender", value: "Male" },
 ];
-
+import { Header } from "../CommonComponents/Header";
+import { ThemeToggle } from "../../components/theme/ThemeSwitcher";
+import Toggle from "../../components/ui/SwitchToggel";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { SideBar } from "../CommonComponents/SideBarPlan2";
+import { Link, Navigate } from "react-router-dom";
+import { Deactivate } from "../CommonComponents/Deactivate";
+import { Activate } from "../CommonComponents/Activate"; 
+import { Delete } from "../CommonComponents/Delete";
 export const PatientDetails = (): JSX.Element => {
   const { local, handleLanguageClick } = useLanguage();
   const { t, i18n } = useTranslation();
   useEffect(() => {
     i18n.changeLanguage(local);
   }, []);
+  const [checked, setChecked] = useState<boolean>(true); // الحالة الحالية
+const [showDialog, setShowDialog] = useState<boolean>(false);
+const [pendingNext, setPendingNext] = useState<boolean | null>(null);
+const [actionType, setActionType] = useState<"activate" | "deactivate" | null>(null);
+const navigate=useNavigate();
+
+  // عندما يضغط المستخدم على الـ Toggle
+function handleToggle(next: boolean) {
+  // إذا كان من Active -> Inactive
+  if (checked && !next) {
+    setPendingNext(next);
+    setActionType("deactivate");
+    setShowDialog(true);
+    return;
+  }
+
+  // إذا كان من Inactive -> Active
+  if (!checked && next) {
+    setPendingNext(next);
+    setActionType("activate");
+    setShowDialog(true);
+    return;
+  }
+
+  // غير هيك غيّر مباشرة
+  setChecked(next);
+}
+
+function confirmDeactivate() {
+  setChecked(pendingNext ?? false);
+  setPendingNext(null);
+  setActionType(null);
+  setShowDialog(false);
+}
+
+function cancelDeactivate() {
+  setPendingNext(null);
+  setActionType(null);
+  setShowDialog(false);
+}
+ {/*DeletDialog*/ }
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+ 
+
+
+  function handleDelete() {
+
+    setShowDeleteDialog(false);
+  }
+
+
+  function cancelDelete() {
+    setShowDeleteDialog(false);
+  }
+  const [isOpenAppointment, setIsOpen] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const onOpenSidebar = () => setShowSidebar(true);
+  const onCloseSidebar = () => setShowSidebar(false);
   return (
+    <div className="flex h-screen  w-screen">
+      {showSidebar && (
+        <div
+          onClick={onCloseSidebar}
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+        />
+      )}
+      <SideBar
+        isOpenAppointment={isOpenAppointment}
+        setIsOpen={setIsOpen}
+        local={local}
+        handleLanguageClick={handleLanguageClick}
+        handleDarkClick={() => { }}
+        isOpen={showSidebar}
+        onOpenSidebar={onOpenSidebar}
+        onCloseSidebar={onCloseSidebar}
+      />
+      <div className="flex flex-col w-full overflow-hidden min-h-screen items-start gap-4 py-4 pl-0 pr-5">
+<Header MainTitle="Patients Management" SubTitle="View Patient Details" onOpenSidebar={onOpenSidebar} />
+
+   
+
+        <Card className="flex flex-col h-full items-start gap-5 p-[20px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-tertiary">
+          <CardContent className="w-full overflow-y-auto scroll-x-hidden pr-[20px] ">
+            <main className="flex flex-col gap-[20px] w-full rounded-2xl">
+              <div className="flex justify-between">
+                <div className="flex gap-[9px] items-center">
+                  <span className="font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">{t('Patient Status')}</span>
+                 <Toggle checked={checked} onChange={handleToggle} />
+
+  {showDialog && actionType === "deactivate" && (
+    <Deactivate
+      open={showDialog}
+      onConfirm={confirmDeactivate}
+      onCancel={cancelDeactivate}
+    >
+      <p>Deactivating a patient will prevent access to services, appointment bookings, and future communications. This action can be reversed later.</p>
+    </Deactivate>
+  )}
+
+{showDialog && actionType === "activate" && (
+  <Activate
+    open={showDialog}
+    onConfirm={confirmDeactivate}
+    onCancel={cancelDeactivate}
+  >
+    <p>Activate the patient will be able to book appointments, receive and access system services.</p>
+  </Activate>
+)}
+                </div>
+                <div className="flex gap-[16px]">
+                  <button  onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  // تمنع حدث النقر من الوصول للـ parent
+                                  setShowDeleteDialog(true); // تفتح الـ dialog
+                             
+
+
+                                }} className="flex items-center justify-center gap-[6px] w-[200px] h-[40px] rounded-[20px] bg-[#E46962] font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
+                    <svg
+                      className="text-surface-primary"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M15.5 5H13V4.5C13 4.10218 12.842 3.72064 12.5607 3.43934C12.2794 3.15804 11.8978 3 11.5 3H8.5C8.10218 3 7.72064 3.15804 7.43934 3.43934C7.15804 3.72064 7 4.10218 7 4.5V5H4.5C4.36739 5 4.24021 5.05268 4.14645 5.14645C4.05268 5.24021 4 5.36739 4 5.5C4 5.63261 4.05268 5.75979 4.14645 5.85355C4.24021 5.94732 4.36739 6 4.5 6H5V15C5 15.2652 5.10536 15.5196 5.29289 15.7071C5.48043 15.8946 5.73478 16 6 16H14C14.2652 16 14.5196 15.8946 14.7071 15.7071C14.8946 15.5196 15 15.2652 15 15V6H15.5C15.6326 6 15.7598 5.94732 15.8536 5.85355C15.9473 5.75979 16 5.63261 16 5.5C16 5.36739 15.9473 5.24021 15.8536 5.14645C15.7598 5.05268 15.6326 5 15.5 5ZM8 4.5C8 4.36739 8.05268 4.24021 8.14645 4.14645C8.24021 4.05268 8.36739 4 8.5 4H11.5C11.6326 4 11.7598 4.05268 11.8536 4.14645C11.9473 4.24021 12 4.36739 12 4.5V5H8V4.5ZM14 15H6V6H14V15ZM9 8.5V12.5C9 12.6326 8.94732 12.7598 8.85355 12.8536C8.75979 12.9473 8.63261 13 8.5 13C8.36739 13 8.24021 12.9473 8.14645 12.8536C8.05268 12.7598 8 12.6326 8 12.5V8.5C8 8.36739 8.05268 8.24021 8.14645 8.14645C8.24021 8.05268 8.36739 8 8.5 8C8.63261 8 8.75979 8.05268 8.85355 8.14645C8.94732 8.24021 9 8.36739 9 8.5ZM12 8.5V12.5C12 12.6326 11.9473 12.7598 11.8536 12.8536C11.7598 12.9473 11.6326 13 11.5 13C11.3674 13 11.2402 12.9473 11.1464 12.8536C11.0527 12.7598 11 12.6326 11 12.5V8.5C11 8.36739 11.0527 8.24021 11.1464 8.14645C11.2402 8.05268 11.3674 8 11.5 8C11.6326 8 11.7598 8.05268 11.8536 8.14645C11.9473 8.24021 12 8.36739 12 8.5Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                    {t("Delete")}
+                  </button>
+                          {showDeleteDialog && (<Delete
+                                open={showDeleteDialog}
+                                title="SRV-00345"
+                                onDelete={handleDelete}
+                                onCancel={cancelDelete}
+                              >
+                                <p>Are you sure you want to delete this User? This action cannot be undone.</p>
+                              </Delete>)}
+                 
+                  <button onClick={()=>{
+                       navigate(`/EditPatientDetails`, { state: { from: "/ViewPatientDetail" } });
+                   
+                  }}
+                   className="flex items-center justify-center gap-[6px] w-[200px] h-[40px] rounded-[20px] bg-secondary-dark font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
+                    <svg
+                      width="21"
+                      height="20"
+                      viewBox="0 0 21 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M13.832 3.99955C14.0071 3.82445 14.215 3.68556 14.4438 3.5908C14.6725 3.49604 14.9177 3.44727 15.1654 3.44727C15.413 3.44727 15.6582 3.49604 15.887 3.5908C16.1157 3.68556 16.3236 3.82445 16.4987 3.99955C16.6738 4.17465 16.8127 4.38252 16.9074 4.61129C17.0022 4.84006 17.051 5.08526 17.051 5.33288C17.051 5.58051 17.0022 5.8257 16.9074 6.05448C16.8127 6.28325 16.6738 6.49112 16.4987 6.66622L7.4987 15.6662L3.83203 16.6662L4.83203 12.9995L13.832 3.99955Z"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    {t("Edit")}
+                  </button>
+                </div>
+              </div>
+              <div className="flex gap-[20px] w-full">
+                <aside
+                  dir={local === "en" ? "ltr" : "rtl"}
+                  className="w-[277px] h-[884px] bg-background-primary rounded-[16px] py-[22px] px-[8px] shadow-[0px_20px_24px_0px_#0A0D121A]"
+                >
+                  <Card className=" w-full">
+                    <CardContent className="flex flex-col w-[245px]">
+                      <section className="flex flex-col items-center justify-center gap-[24px] h-[208px]">
+                        <img alt="" src="./Avatar.png" />
+                        <div>
+                          <h2 className="font-lato font-bold text-lg leading-[120%] tracking-[0] text-text-primary">
+                            Ahmad Hassan
+                          </h2>
+                          <span className="font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-secondary text-center block">
+                            PAT-df4c3
+                          </span>
+                        </div>
+                      </section>
     <div className="flex flex-col w-full overflow-hidden min-h-screen items-start gap-4 py-4 pl-0 pr-5">
       <header className="flex h-[50px] justify-between pl-1 pr-0 py-0 w-full items-center">
         <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5">
@@ -307,14 +499,14 @@ export const PatientDetails = (): JSX.Element => {
                           </defs>
                         </svg>
 
-                        <span className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          Mohammed Zaki, Father +963933348151
-                        </span>
-                      </div>
-                    </section>
-                  </CardContent>
-                </Card>
-              </aside>
+                          <span className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                            Mohammed Zaki, Father +963933348151
+                          </span>
+                        </div>
+                      </section>
+                    </CardContent>
+                  </Card>
+                </aside>
 
               <section className="flex flex-col gap-4 w-full max-w-full min-w-0 flex-1">
                 <Card className="flex flex-col w-full max-w-full bg-background-primary rounded-[16px] p-4 sm:p-4">

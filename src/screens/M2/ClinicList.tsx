@@ -1,8 +1,8 @@
 import { BellIcon, PlusIcon, SearchIcon, Trash2Icon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import { Button } from "../components/ui/button";
-import { Card, CardContent } from "../components/ui/card";
+import { Button } from "../../components/ui/button"; 
+import { Card, CardContent } from "../../components/ui/card";
 import Pagination from "@mui/material/Pagination";
 import {
   Select,
@@ -10,15 +10,24 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../components/ui/select";
+} from "../../components/ui/select";
 import {
   TableCell,
   TableRow,
-} from "../components/ui/table";
+} from "../../components/ui/table";
 import TranslateIcon from "@mui/icons-material/Translate";
-import SwitchWithLabel from "./SwitchLabel";
-
-const clinicData = [
+import { useNavigate } from "react-router-dom";
+import SwitchWithLabel from "../CommonComponents/SwitchLabel";
+import { Header } from "../CommonComponents/Header";
+import { SideBar } from "../CommonComponents/SideBarPlan2";
+import { useContext } from "react";
+import { useAppContext } from "../../Context/ContextchooseSidbar";
+import { Link } from "react-router-dom";
+import { Deactivate } from "../CommonComponents/Deactivate";
+import { Activate } from "../CommonComponents/Activate"; 
+import Toggle from "../../components/ui/SwitchToggel";
+import { Delete } from "../CommonComponents/Delete";
+const clinic = [
   {
     id: "1",
     ClinicName: "Nova Clinic",
@@ -76,6 +85,14 @@ const clinicData = [
     AppointmentsCount: "2",
   },
 ];
+  interface clinicDate {
+  id: string;
+ 
+  ClinicName: string;
+  AppointmentsCount: string;
+  ComplexName: string;
+  PIC: string;
+}
 export const ClinicList = (): JSX.Element => {
   const [status, setStatus] = useState("status");
   const [num, setNum] = useState("10");
@@ -90,64 +107,97 @@ export const ClinicList = (): JSX.Element => {
       i18n.changeLanguage("en");
     }
   }
+  const [checked, setChecked] = useState<boolean>(true); // الحالة الحالية
+const [showDialog, setShowDialog] = useState<boolean>(false);
+const [pendingNext, setPendingNext] = useState<boolean | null>(null);
+const [actionType, setActionType] = useState<"activate" | "deactivate" | null>(null);
+const navigate=useNavigate();
+
+   {/*DeletDialog*/ }
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+
+
+  function handleDelete() {
+    if (selectedId !== null) {
+      setuClinic((prev) => prev.filter(user => user.id !== selectedId));
+    }
+    setShowDeleteDialog(false);
+    setSelectedId(null);
+  }
+
+
+  function cancelDelete() {
+    setShowDeleteDialog(false);
+  }
+
+
+  // عندما يضغط المستخدم على الـ Toggle
+function handleToggle(next: boolean) {
+  // إذا كان من Active -> Inactive
+  if (checked && !next) {
+    setPendingNext(next);
+    setActionType("deactivate");
+    setShowDialog(true);
+    return;
+  }
+
+  // إذا كان من Inactive -> Active
+  if (!checked && next) {
+    setPendingNext(next);
+    setActionType("activate");
+    setShowDialog(true);
+    return;
+  }
+
+  // غير هيك غيّر مباشرة
+  setChecked(next);
+}
+
+function confirmDeactivate() {
+  setChecked(pendingNext ?? false);
+  setPendingNext(null);
+  setActionType(null);
+  setShowDialog(false);
+}
+
+function cancelDeactivate() {
+  setPendingNext(null);
+  setActionType(null);
+  setShowDialog(false);
+}   const [user,setuClinic]=useState < clinicDate[] >(clinic
+  );
+  const [isOpenAppointment, setIsOpen] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const onOpenSidebar = () => setShowSidebar(true);
+  const onCloseSidebar = () => setShowSidebar(false);
+  const { selectedPlan } = useAppContext();
   return (
+    <div className="flex h-screen  w-screen">
+      {showSidebar && (
+        <div
+          onClick={onCloseSidebar}
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+        />
+      )}
+      <SideBar
+        isOpenAppointment={isOpenAppointment}
+        setIsOpen={setIsOpen}
+        local={local}
+        handleLanguageClick={handleLanguageClick}
+        handleDarkClick={() => { }}
+        isOpen={showSidebar}
+        onOpenSidebar={onOpenSidebar}
+        onCloseSidebar={onCloseSidebar}
+      />
     <div
       dir={`${local === "ar" ? "rtl" : "ltr"}`}
       className="flex flex-col w-full h-full overflow-hidden items-start gap-4  py-4
            pl-0 pr-5"
     >
-      <header className="flex h-[50px] justify-between pl-1 pr-0 py-0 self-stretch w-full items-center mt-[16px]">
-        <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5">
-          <h1 className="self-stretch mt-[-1.00px] font-lato font-semibold text-xl text-text-primary leading-[116%] tracking-[0]">
-            {t("Medical Facilities")}
-          </h1>
-          <p className="font-lato font-semibold text-sm text-text-primary leading-[125%] tracking-[0]">
-            {t("Medical clinic List")}
-          </p>
-        </div>
-
-        <div className="inline-flex gap-3 flex-[0_0_auto] rounded-[28px] items-center">
-          <button className="inline-flex items-start gap-2 p-2.5 flex-[0_0_auto] bg-secondary-light rounded-[20px] relative">
-            <BellIcon className="w-5 h-5" />
-            <div className="flex flex-col w-5 h-5 items-center justify-center gap-2.5 p-1 absolute top-1 left-4">
-              <div className="w-2 h-2 bg-[#fa812d] rounded-[14px]" />
-            </div>
-          </button>
-
-          <div className="relative">
-            <Button
-              variant="ghost"
-              size="icon"
-              className={`p-2.5 bg-secondary-light ${
-                local === "ar" ? "bg-[green]" : "bg-secondary-light"
-              } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-              onClick={handleLanguageClick}
-            >
-              <TranslateIcon className="w-5 h-5" />
-            </Button>
-          </div>
-
-          <div className="w-10 h-[17.5px] relative">
-            {/* <DarkModeToggle /> */}
-          </div>
-
-          <div className="items-center gap-3 inline-flex flex-[0_0_auto]">
-            <div className="inline-flex items-center w-[40px] h-[40px] gap-2.5 flex-[0_0_auto] bg-app-primary rounded-3xl" />
-            <div className="flex-col items-start gap-1 inline-flex flex-[0_0_auto]">
-              <div
-                className={`w-fit mt-[-1.00px] 
-                    "text-[#2a2b2a]"
-                   font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]`}
-              >
-                Anahera Jones
-              </div>
-              <div className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-tertiary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)]">
-                Admin
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header MainTitle="Medical Facilities" SubTitle="Medical clinic List" onOpenSidebar={onOpenSidebar}  />
+      
+    
 
       <Card
         className="flex flex-col w-full h-full items-start gap-5 p-[20px] bg-background-tertiary
@@ -187,20 +237,23 @@ export const ClinicList = (): JSX.Element => {
               </Select>
             </div>
 
+
             <div className="inline-flex items-center gap-2.5 flex-[0_0_auto]">
+              <Link to="/AddNewClinic"> 
               <Button className="inline-flex items-center gap-1 px-2.5 py-1.5 flex-[0_0_auto] bg-secondary-dark rounded-[20px] h-auto hover:bg-secondary-dark/90">
                 <PlusIcon className="w-3.5 h-3.5 text-background-primary" />
                 <span className="font-lato font-medium text-xs text-background-primary leading-[105%] tracking-[0]">
                   {t("Add New Clinic")}
                 </span>
-              </Button>
+              </Button></Link>
             </div>
           </div>
 
           <div className="w-full rounded-2xl h-screen  ">
             <table className="bg-surface-default text-center w-full">
               <thead>
-                <tr className="h-[56px] bg-surface-default border-b border-border-light w-full">
+                <tr className="h-[56px] bg-surface-default border-b border-border-light w-full "
+                >
                   <td
                     className={`font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary`}
                   >
@@ -239,11 +292,18 @@ export const ClinicList = (): JSX.Element => {
                 </tr>
               </thead>
               <tbody>
-                {clinicData.map((clinic) => (
-                  <TableRow
-                    key={clinic.id}
-                    className="h-[78px]  border-b border-border-light"
-                  >
+                {clinic.map((clinic) => (
+       <TableRow
+  key={clinic.id}
+  className="h-[78px] border-b border-border-light"
+onClick={() => {
+  if (selectedPlan === 'Company' || selectedPlan === 'Complex') {
+    navigate(`/ElementViewClinic?id=${clinic.id}`, { state: { from: 'ViewListOfClinics' } });
+  } else { navigate(`/ElementViewClinicP3?id=${clinic.id}`, { state: { from: 'ViewListOfClinics' } });
+
+  }
+}}>
+
                     <TableCell className="font-lato font-regular text-xs text-text-primary leading-[130%] tracking-[0]">
                       {t(`${clinic.id}`)}
                     </TableCell>
@@ -260,34 +320,58 @@ export const ClinicList = (): JSX.Element => {
                       {t(`${clinic.AppointmentsCount}`)}
                     </TableCell>
                     <TableCell className="w-[150px]">
-                      <SwitchWithLabel/>
+                        <div onClick={(e) => e.stopPropagation()}>
+  <Toggle checked={checked} onChange={handleToggle} />
+
+  {showDialog && actionType === "deactivate" && (
+    <Deactivate
+      open={showDialog}
+      onConfirm={confirmDeactivate}
+      onCancel={cancelDeactivate}
+    >
+      <p>هل أنت متأكد أنك تريد تغيير الحالة إلى Inactive؟</p>
+    </Deactivate>
+  )}
+
+{showDialog && actionType === "activate" && (
+  <Activate
+    open={showDialog}
+    onConfirm={confirmDeactivate}
+    onCancel={cancelDeactivate}
+  >
+    <p>هل أنت متأكد أنك تريد تغيير الحالة إلى Active؟</p>
+  </Activate>
+)}
+</div>
                     </TableCell>
                     <TableCell>
                       <div className="inline-flex flex-col justify-center gap-1 flex-[0_0_auto] items-start">
                         <div className="inline-flex items-center justify-center gap-1 flex-[0_0_auto]">
                           <Button
-                            variant="ghost"
-                            size="sm"
-                            className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
-                          >
-                            <svg
-                            className="text-text-secondary"
-                              width="19"
-                              height="19"
-                              viewBox="0 0 19 19"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M1.89735 15.0963C1.93564 14.7517 1.95478 14.5794 2.00691 14.4184C2.05316 14.2755 2.11851 14.1396 2.20118 14.0142C2.29436 13.8729 2.41694 13.7503 2.66209 13.5052L13.6673 2.49992C14.5878 1.57945 16.0802 1.57945 17.0007 2.49993C17.9211 3.4204 17.9211 4.91279 17.0007 5.83326L5.99542 16.8385C5.75027 17.0836 5.6277 17.2062 5.48639 17.2994C5.36102 17.3821 5.22506 17.4474 5.08219 17.4937C4.92115 17.5458 4.74887 17.5649 4.40429 17.6032L1.58398 17.9166L1.89735 15.0963Z"
-                                stroke="currentColor"
-                                stroke-width="1.66667"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              />
-                            </svg>
+                                         variant="ghost"
+                    onClick={(e) => {
+    e.stopPropagation(); // عشان ما يروح على view لما تضغط على row
+if (selectedPlan === 'Company' || selectedPlan === 'Complex') {
+    navigate(`/ElementViewClinic/EditClinicDetails?id=${clinic.id}`, { state: { from: '/ViewListOfClinics' } });
+  } else { navigate(`/ElementViewClinicP3/ElementEditClincp3?id=${clinic.id}`, { state: { from: '/ViewListOfClinics' } });
+
+  }
+  }}
+                    size="sm"
+                    className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
+                  >
+                    <img
+                      className="w-[15px] h-[15px] text-on-surface-primary"
+                      alt="edit"
+                      src="./edit-01.svg"
+                    />
                           </Button>
-                          <Button
+                          <Button          onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setShowDeleteDialog(true);
+                  setSelectedId(clinic.id);
+                    }}
                             variant="ghost"
                             size="sm"
                             className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
@@ -304,7 +388,14 @@ export const ClinicList = (): JSX.Element => {
               </tbody>
             </table>
           </div>
-
+       {showDeleteDialog && (<Delete
+                  open={showDeleteDialog}
+                  title="SRV-00345"
+                  onDelete={handleDelete}
+                  onCancel={cancelDelete}
+                >
+                  <p>Are you sure you want to delete this Clinic? This action cannot be undone.</p>
+                </Delete>)}
           <footer
             dir="ltr"
             className="flex items-center justify-between self-stretch w-full flex-[0_0_auto] bg-transparent mt-[20px]"
@@ -364,6 +455,6 @@ export const ClinicList = (): JSX.Element => {
           </footer>
         </CardContent>
       </Card>
-    </div>
+    </div></div>
   );
 };

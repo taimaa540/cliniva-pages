@@ -13,7 +13,7 @@ type ToggleProps = {
 
 const Toggle: React.FC<ToggleProps> = ({
   checked: controlledChecked,
-  defaultChecked = false,
+  defaultChecked = true,
   onChange,
   ariaLabel = "Toggle",
   id,
@@ -39,7 +39,7 @@ const Toggle: React.FC<ToggleProps> = ({
   }
 
   return (
-    <div className={`inline-flex items-center gap-3 ${className}`} dir={dir}>
+    <div className={`inline-flex items-center gap-2 sm:gap-3 ${className}`} dir={dir}>
       {/* Switch */}
       <button
         id={id}
@@ -48,40 +48,49 @@ const Toggle: React.FC<ToggleProps> = ({
         aria-checked={checked}
         aria-label={ariaLabel}
         onClick={handleToggle}
-        className={`relative inline-flex h-4 w-8 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary`}
+        className={`relative inline-flex 
+          h-2.5 w-5 sm:h-3 sm:w-6   /* Responsive sizes */
+          flex-shrink-0 cursor-pointer rounded-full 
+          transition-colors duration-200 ease-in-out 
+          outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary`}
         style={{
           background: checked
-            ? 'var(--secondary-dark, #065f46)' // Active
-            : 'var(--background-tertiary, #e5e7eb)', // Inactive
+            ? "var(--secondary-dark, #065f46)" // Active
+            : "var(--background-tertiary, #e5e7eb)", // Inactive
         }}
         dir={dir}
       >
         {/* Knob */}
-     <span
-  className={`pointer-events-none absolute left-0.4 top-0.4 inline-block h-4 w-4 transform rounded-full bg-white shadow-md ring-0 transition-transform duration-200 ease-in-out ${
-    checked
-      ? dir === "rtl"
-        ? "-translate-x-4"
-        : "translate-x-4"
-      : "translate-x-0"
-  }`}
-  aria-hidden
-/>
+        <span
+          className={`pointer-events-none absolute left-0.25 top-0.25 inline-block 
+            h-3 w-3 sm:h-3 sm:w-3   /* Responsive knob size */
+            transform rounded-full bg-white shadow-md ring-0 
+            transition-transform duration-200 ease-in-out
+            ${
+              checked
+                ? dir === "rtl"
+                  ? "-translate-x-3 sm:-translate-x-4"
+                  : "translate-x-3 sm:translate-x-4"
+                : "translate-x-0"
+            }`}
+          aria-hidden
+        />
       </button>
 
       {/* Label */}
       <span
+        className="select-none text-text-primary 
+          text-xs md:text-sm "  /* Responsive text size */
         style={{
-          fontFamily: 'Lato, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
+          fontFamily:
+            'Lato, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial',
           fontWeight: 400,
-          fontStyle: 'normal',
-          fontSize: '12px',
-          lineHeight: '150%',
-          letterSpacing: '0%',
+          fontStyle: "normal",
+          lineHeight: "150%",
+          letterSpacing: "0%",
         }}
-        className="select-none text-text-primary"
       >
-        {checked ? t("status.active") : t("status.inactive")}
+        {checked ?t("status.active") :  t("status.inactive")}
       </span>
     </div>
   );

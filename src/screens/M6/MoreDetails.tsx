@@ -15,12 +15,16 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../../components/ui/collapsible";
+import { Header } from "../CommonComponents/Header";
+import { ArrowLeftIcon } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ThemeToggle } from "../../components/theme/ThemeSwitcher";
 import { useState } from "react";
 import TranslateIcon from "@mui/icons-material/Translate";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { Label } from "../../components/ui/label";
-
+import { SideBar } from "../CommonComponents/SideBarPlan2";
 export const MoreDetails = (): JSX.Element => {
   const [num, setNum] = useState("1");
   const { local, handleLanguageClick } = useLanguage();
@@ -70,7 +74,34 @@ export const MoreDetails = (): JSX.Element => {
     },
   ];
 
+
+  const [isOpenAppointment, setIsOpen] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const onOpenSidebar = () => setShowSidebar(true);
+  const onCloseSidebar = () => setShowSidebar(false);
   return (
+    <div className="flex h-screen  w-screen">
+      {showSidebar && (
+        <div
+          onClick={onCloseSidebar}
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+        />
+      )}
+      <SideBar
+        isOpenAppointment={isOpenAppointment}
+        setIsOpen={setIsOpen}
+        local={local}
+        handleLanguageClick={handleLanguageClick}
+        handleDarkClick={() => { }}
+        isOpen={showSidebar}
+        onOpenSidebar={onOpenSidebar}
+        onCloseSidebar={onCloseSidebar}
+      />
+      <>
+        <div className="flex flex-col w-full overflow-hidden h-full items-start gap-4 py-4 pl-0 pr-5">
+                    <Header MainTitle="Appointments" SubTitle="Add New Appointmetns" onOpenSidebar={onOpenSidebar} backTo="/Appointments" />
+          
+      
     <>
       <div className="flex flex-col w-full overflow-hidden h-full items-start gap-4 py-4 pl-0 pr-5 max-[767px]:pr-0 ">
         <header className="flex h-[66px] justify-between pl-1 pr-0 py-0 w-full items-center">

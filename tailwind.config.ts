@@ -180,9 +180,12 @@ const config: Config = {
         xs: '475px',
         sm: '640px',
         md: '768px',
+             xxl: '800px',
         lg: '1024px',
-        xl: '1200px',
-        '2xl': '1536px',
+    
+        xl: '1280px',
+      
+      '2xl': '1536px',
       },
       keyframes: {
         'accordion-down': {
@@ -213,14 +216,13 @@ const config: Config = {
   container: {
     center: true,
     padding: '2rem',
-    screens: {
-      xs: '475px',
-      sm: '640px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1280px',
-      '2xl': '1400px',
-    },
+  screens: {
+    sm: "640px",
+    md: "768px",
+    lg: "1024px",
+    xl: "1280px",
+    "2xl": "1536px",
+  },
   },
   plugins: [],
 }

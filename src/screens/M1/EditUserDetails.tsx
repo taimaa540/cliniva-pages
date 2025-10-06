@@ -27,7 +27,7 @@ import { useLanguage } from "../../lib/LanguageContext";
 import { useState } from "react";
 import ImageUploader from "../CommonComponents/ImageUpload";
 import PhoneInputCustom from "../CommonComponents/PhoneInput";
-
+import { ThemeToggle } from "../../components/theme/ThemeSwitcher";
 const accountFields = [
   { label: "User Name", value: "Ammar Al Sawwa", type: "input" },
   { label: "Change Password", value: "ammarsvu91@gmail.com", type: "text" },
@@ -36,7 +36,8 @@ const accountFields = [
   { label: "Medical Complex", value: "TCT Complex", type: "select" },
   { label: "Clinic", value: "X-Ray Clinic", type: "select" },
 ];
-
+import { SideBar } from "../CommonComponents/SideBarPlan2";
+import { Link } from "react-router-dom";
 const addressFields = [
   { value: "2154", placeholder: "Building No." },
   { value: "Abdulaziz Street", placeholder: "Street" },
@@ -64,7 +65,8 @@ const documents = [
   },
   { label: "CV / Resume", effectiveDate: "Mar 01, 2027" },
 ];
-
+import { useLocation } from "react-router-dom";
+import { Header } from "../CommonComponents/Header";
 export const EditUserDetails = (): JSX.Element => {
   const shortLabels: Record<string, string> = {};
   Object.keys(en).forEach((key) => {
@@ -83,55 +85,37 @@ export const EditUserDetails = (): JSX.Element => {
   useEffect(() => {
     i18n.changeLanguage(local);
   }, []);
-
+  const [numbers, setNumbers] = useState<string[]>([]);
+  const [isOpenAppointment, setIsOpen] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const onOpenSidebar = () => setShowSidebar(true);
+  const onCloseSidebar = () => setShowSidebar(false);
+    const location = useLocation();
+      const backTo = location.state?.from || "/UserDesktop";
   return (
-    <div className="flex flex-col w-full overflow-x-hidden min-h-screen items-start gap-4 py-4 pl-0 pr-2 sm:pr-5">
-      <header className="flex flex-col sm:flex-row sm:h-[50px] justify-between pl-1 pr-0 py-0 w-full items-start sm:items-center gap-4 sm:gap-0">
-        <div className="flex flex-col w-full sm:w-[340px] items-start gap-1.5 px-0 py-0.5">
-          <h1 className="self-stretch mt-[-1.00px] font-lato font-semibold text-xl text-text-primary leading-[116%] tracking-[0]">
-            {t("Users Management")}
-          </h1>
-          <p className="self-stretch font-lato font-semibold text-sm text-text-primary leading-[125%] tracking-[0]">
-            {t("Add New User")}
-          </p>
-        </div>
+    <div className="flex h-screen  w-screen">
+      {showSidebar && (
+        <div
+          onClick={onCloseSidebar}
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+        />
+      )}
+      <SideBar
+        isOpenAppointment={isOpenAppointment}
+        setIsOpen={setIsOpen}
+        local={local}
+        handleLanguageClick={handleLanguageClick}
+        handleDarkClick={() => { }}
+        isOpen={showSidebar}
+        onOpenSidebar={onOpenSidebar}
+        onCloseSidebar={onCloseSidebar}
+      />
+      <div className="flex flex-col w-full overflow-hidden min-h-screen items-start gap-4 py-4 pl-0 pr-5">
+<Header MainTitle="Users Management" SubTitle="Edit User Details" onOpenSidebar={onOpenSidebar}  backTo={backTo}/>
 
-        <div className="inline-flex gap-3 flex-[0_0_auto] rounded-[28px] items-center flex-wrap">
-          <button className="inline-flex items-start gap-2 p-2.5 flex-[0_0_auto] bg-secondary-light rounded-[20px] relative">
-            <BellIcon className="w-5 h-5" />
-            <div className="flex flex-col w-5 h-5 items-center justify-center gap-2.5 p-1 absolute top-1 left-4">
-              <div className="w-2 h-2 bg-[#fa812d] rounded-[14px]" />
-            </div>
-          </button>
 
-          <div className="relative">
-            <Button
-              variant="ghost"
-              size="icon"
-              className={`p-2.5 ${
-                local === "ar" ? "bg-[green]" : "bg-secondary-light"
-              } rounded-[20px] h-auto transition-all duration-[1000ms]`}
-              onClick={handleLanguageClick}
-            >
-              <TranslateIcon className="w-5 h-5" />
-            </Button>
-          </div>
 
-          <div className="w-10 h-[17.5px] relative"></div>
 
-          <div className="items-center gap-3 inline-flex flex-[0_0_auto] hidden sm:flex">
-            <div className="inline-flex items-center w-[40px] h-[40px] gap-2.5 flex-[0_0_auto] bg-app-primary rounded-3xl" />
-            <div className="flex-col items-start gap-1 inline-flex flex-[0_0_auto] hidden lg:flex">
-              <div className="w-fit mt-[-1.00px] text-[#2a2b2a] font-title-16px-bold font-[number:var(--title-16px-bold-font-weight)] text-[length:var(--title-16px-bold-font-size)] tracking-[var(--title-16px-bold-letter-spacing)] leading-[var(--title-16px-bold-line-height)] whitespace-nowrap [font-style:var(--title-16px-bold-font-style)]">
-                Anahera Jones
-              </div>
-              <div className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-tertiary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)]">
-                Admin
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
 
       <main className="flex flex-col h-full items-start gap-5 p-4 lg:p-[20px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-tertiary">
         <div className="flex flex-col gap-[20px] w-full overflow-y-auto overflow-x-hidden pr-4 lg:pr-[20px]">
@@ -140,9 +124,11 @@ export const EditUserDetails = (): JSX.Element => {
               Active
             </div>
             <div className="flex flex-col sm:flex-row gap-[16px] w-full sm:w-auto">
+              <Link to={backTo}>
               <button className="w-full sm:w-[180px] lg:w-[200px] h-[40px] rounded-[20px] border border-border-light bg-surface-primary font-lato font-medium text-sm leading-[100%] tracking-[0] text-text-primary">
                 {t("Cancel")}
               </button>
+              </Link>
               <button className="w-full sm:w-[180px] lg:w-[200px] h-[40px] rounded-[20px] bg-secondary-dark font-lato font-medium text-sm leading-[100%] tracking-[0] text-surface-primary">
                 {t("Save")}
               </button>
