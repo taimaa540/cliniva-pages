@@ -1,8 +1,6 @@
-import { ArrowLeftIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import CustomCheckbox from "../CommonComponents/customCheckbox";
 import { useState } from "react";
 import TimeRangePicker from "../CommonComponents/timeRangePicker";
-import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 
 const workingDays = [
@@ -14,27 +12,17 @@ const workingDays = [
   { day: "Friday", checked: false, startTime: "09:00", endTime: "18:00" },
   { day: "Saturday", checked: false, startTime: "09:00", endTime: "18:00" },
 ];
-interface buttonProps {
-  handleNext: () => void;
-  prevStep: () => void;
-}
-export const ClinicWorkSchedule = ({
-  handleNext,
-  prevStep,
-}: buttonProps): JSX.Element => {
+
+export const ClinicWorkScheduleMobile = (): JSX.Element => {
   const [activeDays, setActiveDays] = useState(workingDays.map(() => false));
   const toggleDay = (index: number) => {
     setActiveDays((prev) => prev.map((val, i) => (i === index ? !val : val)));
   };
 
   return (
-    <div className="hidden md:flex flex flex-col w-full h-screen overflow-scroll items-start gap-4 pl-0 pr-4 py-4">
+    <div className="flex flex-col w-full items-start gap-4 pl-0 pr-4 py-4">
       {/* Header */}
       <div className="flex flex-col gap-2">
-        <button className="flex items-center gap-2 font-lato text-xs text-text-secondary font-regular leading-[130%] tracking-[0]">
-          <ArrowLeftIcon className="w-4 h-4" />
-          Back to Choosing Plan Page
-        </button>
         <h2 className="font-lato text-xl text-text-primary font-semibold leading-[116%] tracking-[0]">
           Fill in Clinic Details
         </h2>
@@ -44,7 +32,7 @@ export const ClinicWorkSchedule = ({
       </div>
       {/* Content */}
       <div className="bg-background-secondary p-[24px] rounded-[16px] w-full">
-        <Card className=" w-full h-[500px] bg-background-primary py-[16px] px-[24px] mb-[16px]">
+        <Card className=" w-full h-[500px] bg-background-primary py-[16px] px-[24px] mb-[16px] overflow-scroll">
           <CardContent className="p-0">
             <div className="mb-[15px] font-lato font-bold text-base text-primary-default leading-[124%] tracking-[0]">
               Working Days
@@ -80,28 +68,6 @@ export const ClinicWorkSchedule = ({
           </CardContent>
         </Card>
 
-        <div className=" flex items-center justify-end gap-4">
-          <Button
-            onClick={prevStep}
-            variant="outline"
-            className="w-[200px] h-auto bg-white border-2 border-[#e4e2dd] rounded-[20px] px-4 py-2.5"
-          >
-            <ChevronLeftIcon className="w-5 h-5" />
-            <span className="font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-on-surface-primary text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
-              Previous
-            </span>
-          </Button>
-
-          <Button
-            onClick={handleNext}
-            className="w-[200px] h-10 bg-secondary-dark rounded-[20px] px-4 py-2.5"
-          >
-            <span className="font-lato font-medium text-xs leading-[100%] tracking-[0] text-surface-primary">
-              Save & Continue
-            </span>
-            <ChevronRightIcon className="w-5 h-5" />
-          </Button>
-        </div>
       </div>
     </div>
   );

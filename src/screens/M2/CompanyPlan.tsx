@@ -12,10 +12,19 @@ import { AccountCreationSection } from "./AccountCreationSection";
 import { useState } from "react";
 
 import "react-phone-input-2/lib/style.css";
+import { AccountCreationSectionMobile } from "./AccountCreationSectionMobile";
+import { CompanyDetailsSectionMobile } from "./CompanyDetailsSectionMobile";
+import { ContactInfoSectionMobile } from "./ContactInfoSectionMobile";
+import { LegalDetailsSectionMobile } from "./LegalDetailsSectionMobile";
+import { ComplexDetailsSectionMobile } from "./ComplexDetailsSectionMobile";
+import { ComplexContactDetailsSectionMobile } from "./ComplexContactDetailsSectionMobile";
+import { ComplexWorkScheduleMobile } from "./ComplexWorkScheduleMobile";
+import { ClinicDetailsSectionMobile } from "./ClinicDetailsSectionMobile";
+import { ClinicWorkScheduleMobile } from "./ClinicWorkScheduleMobile";
 
 type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 export const CompanyPlan = (): JSX.Element => {
-  const [currentStep, setCurrentStep] = useState<Step>(1);
+  const [currentStep, setCurrentStep] = useState<number>(1);
   const [showDialog, setShowDialog] = useState(false);
 
   const handleNext = () => {
@@ -28,10 +37,14 @@ export const CompanyPlan = (): JSX.Element => {
   const prevStep = () => {
     if (currentStep > 1) setCurrentStep((prev) => (prev - 1) as Step);
   };
+  const totalSteps = 9;
+  const nextStep = () => {
+    if (currentStep < totalSteps) setCurrentStep(currentStep + 1);
+  };
   return (
     <div className="flex h-screen w-screen overflow-hidden">
-      {/* Left Sidebar */}
-      <div className="w-[280px] h-screen bg-surface-default">
+      {/* Left Sidebar Desktop */}
+      <div className="w-[280px] h-screen bg-surface-default hidden md:flex md:flex-col">
         {/* Logo */}
         <header className="flex flex-col items-start gap-2.5 px-2 py-[9px] mt-4 ml-5 w-full">
           <div className="flex items-center gap-[7px]">
@@ -81,22 +94,20 @@ export const CompanyPlan = (): JSX.Element => {
               Account Setup
             </span>
           </div>
-          <div
-            className="bg-background-tertiary w-[33px] h-[409px] rounded-[109px] absolute top-[145px] left-[17px] z-0"
-          ></div>
+          <div className="bg-background-tertiary w-[33px] h-[409px] rounded-[109px] absolute top-[145px] left-[17px] z-0"></div>
 
           {/* Step 1 */}
-          <div className="mb-2 relative z-1" >
-            <div
-              className="flex items-center gap-[8px] mb-3 relative z-1"
-            >
+          <div className="mb-2 relative z-1">
+            <div className="flex items-center gap-[8px] mb-3 relative z-1">
               <div
                 className={`w-[26px] h-[26px] rounded-full flex items-center justify-center text-sm font-medium ${
                   currentStep === 2
                     ? "bg-[#A5C8F2] text-white"
                     : currentStep === 3
                     ? "bg-[#A5C8F2] text-white"
-                    : currentStep > 3 ? "bg-[#83DFDF] text-white" : "bg-primary-foreground text-text-primary"
+                    : currentStep > 3
+                    ? "bg-[#83DFDF] text-white"
+                    : "bg-primary-foreground text-text-primary"
                 }`}
               >
                 1
@@ -154,7 +165,7 @@ export const CompanyPlan = (): JSX.Element => {
               <div className="flex items-center gap-[20px]">
                 <div
                   className={`w-[10px] h-[10px] rounded-full flex items-center justify-center text-xs font-medium text-white ${
-                   currentStep === 4
+                    currentStep === 4
                       ? "bg-primary-default"
                       : currentStep > 4
                       ? "bg-secondary-dark"
@@ -178,23 +189,23 @@ export const CompanyPlan = (): JSX.Element => {
           </div>
 
           {/* Step 2  */}
-          <div className="mb-2 relative z-1" >
-            <div
-              className="flex items-center gap-[8px] mb-3 relative z-1"
-            >
+          <div className="mb-2 relative z-1">
+            <div className="flex items-center gap-[8px] mb-3 relative z-1">
               <div
                 className={`w-[26px] h-[26px] rounded-full flex items-center justify-center text-sm font-medium ${
                   currentStep === 5
                     ? "bg-[#A5C8F2] text-white"
                     : currentStep === 6
                     ? "bg-[#A5C8F2] text-white"
-                    : currentStep > 6 ? "bg-[#83DFDF] text-white" : "bg-primary-foreground text-text-primary"
+                    : currentStep > 6
+                    ? "bg-[#83DFDF] text-white"
+                    : "bg-primary-foreground text-text-primary"
                 }`}
               >
                 2
               </div>
               <span className={`font-medium text--text-primary`}>
-               Fill in Complex Details
+                Fill in Complex Details
               </span>
             </div>
             <div className="ml-2 space-y-2">
@@ -203,7 +214,7 @@ export const CompanyPlan = (): JSX.Element => {
                   className={`w-[10px] h-[10px] rounded-full ${
                     currentStep === 5
                       ? "bg-primary-default"
-                      : currentStep >5 
+                      : currentStep > 5
                       ? "bg-secondary-dark"
                       : "bg-border-medium"
                   } flex items-center justify-center text-xs font-medium text-white
@@ -246,7 +257,7 @@ export const CompanyPlan = (): JSX.Element => {
               <div className="flex items-center gap-[20px]">
                 <div
                   className={`w-[10px] h-[10px] rounded-full flex items-center justify-center text-xs font-medium text-white ${
-                   currentStep === 7
+                    currentStep === 7
                       ? "bg-primary-default"
                       : currentStep > 7
                       ? "bg-secondary-dark"
@@ -269,23 +280,23 @@ export const CompanyPlan = (): JSX.Element => {
             </div>
           </div>
           {/* Step 3 */}
-          <div className="mb-2 relative z-1" >
-            <div
-              className="flex items-center gap-[8px] mb-3 relative z-1"
-            >
+          <div className="mb-2 relative z-1">
+            <div className="flex items-center gap-[8px] mb-3 relative z-1">
               <div
                 className={`w-[26px] h-[26px] rounded-full flex items-center justify-center text-sm font-medium ${
                   currentStep === 8
                     ? "bg-[#A5C8F2] text-white"
                     : currentStep === 9
                     ? "bg-[#A5C8F2] text-white"
-                    : currentStep > 9 ? "bg-[#83DFDF] text-white" : "bg-primary-foreground text-text-primary"
+                    : currentStep > 9
+                    ? "bg-[#83DFDF] text-white"
+                    : "bg-primary-foreground text-text-primary"
                 }`}
               >
                 2
               </div>
               <span className={`font-medium text--text-primary`}>
-               Fill in Clinic Details
+                Fill in Clinic Details
               </span>
             </div>
             <div className="ml-2 space-y-2">
@@ -312,11 +323,11 @@ export const CompanyPlan = (): JSX.Element => {
                   Clinic Overview
                 </span>
               </div>
-              
+
               <div className="flex items-center gap-[20px]">
                 <div
                   className={`w-[10px] h-[10px] rounded-full flex items-center justify-center text-xs font-medium text-white ${
-                   currentStep === 9
+                    currentStep === 9
                       ? "bg-primary-default"
                       : currentStep > 9
                       ? "bg-secondary-dark"
@@ -340,33 +351,108 @@ export const CompanyPlan = (): JSX.Element => {
           </div>
         </div>
       </div>
+
       {/* Main Content */}
       {currentStep === 1 && <AccountCreationSection handleNext={handleNext} />}
-      {currentStep === 2 && <CompanyDetailsSection title="Company" handleNext={handleNext} prevStep={prevStep} />}
-      {currentStep === 3 && <ContactInfoSection title="Company" handleNext={handleNext} prevStep={prevStep}/>}
-      {currentStep === 4 && <LegalDetailsSection title="Company" handleNext={handleNext} prevStep={prevStep}/>}
-      {currentStep === 5 && <ComplexDetailsSection handleNext={handleNext} prevStep={prevStep}/>}
-      {currentStep === 6 && (
-        <ComplexContactDetailsSection handleNext={handleNext} prevStep={prevStep}/>
+      {currentStep === 2 && (
+        <CompanyDetailsSection
+          title="Company"
+          handleNext={handleNext}
+          prevStep={prevStep}
+        />
       )}
-      {currentStep === 7 && <ComplexWorkSchedule handleNext={handleNext} prevStep={prevStep}/>}
-      {currentStep === 8 && <ClinicDetailsSection handleNext={handleNext} prevStep={prevStep}/>}
-      {currentStep === 9 && <ClinicWorkSchedule handleNext={handleNext} prevStep={prevStep}/>}
-      {/* Next Button */}
+      {currentStep === 3 && (
+        <ContactInfoSection
+          title="Company"
+          handleNext={handleNext}
+          prevStep={prevStep}
+        />
+      )}
+      {currentStep === 4 && (
+        <LegalDetailsSection
+          title="Company"
+          handleNext={handleNext}
+          prevStep={prevStep}
+        />
+      )}
+      {currentStep === 5 && (
+        <ComplexDetailsSection handleNext={handleNext} prevStep={prevStep} />
+      )}
+      {currentStep === 6 && (
+        <ComplexContactDetailsSection
+          handleNext={handleNext}
+          prevStep={prevStep}
+        />
+      )}
+      {currentStep === 7 && (
+        <ComplexWorkSchedule handleNext={handleNext} prevStep={prevStep} />
+      )}
+      {currentStep === 8 && (
+        <ClinicDetailsSection handleNext={handleNext} prevStep={prevStep} />
+      )}
+      {currentStep === 9 && (
+        <ClinicWorkSchedule handleNext={handleNext} prevStep={prevStep} />
+      )}
 
+      {/* Next Button */}
       {showDialog && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className=" bg-white rounded-lg shadow-lg w-[500px] h-[144px] ">
-              <button className="ml-[450px] mt-[16px] p-[5px] rounded-[16px] hover:bg-surface-hover transiton duration-300">
-                <img alt="" src="x-close.svg" />
-              </button>
-              <img alt="" src="./FeaturedIcon.svg" className="m-auto" />
-              <p className=" text-center font-lato font-semibold text-xl leading-[118%] tracking-[0] text-[#181D27] ">
-                Company plan has been successfully set up.
-              </p>
-            </div>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className=" bg-white rounded-lg shadow-lg w-[500px] h-[144px] ">
+            <button className="ml-[450px] mt-[16px] p-[5px] rounded-[16px] hover:bg-surface-hover transiton duration-300">
+              <img alt="" src="x-close.svg" />
+            </button>
+            <img alt="" src="./FeaturedIcon.svg" className="m-auto" />
+            <p className=" text-center font-lato font-semibold text-xl leading-[118%] tracking-[0] text-[#181D27] ">
+              Company plan has been successfully set up.
+            </p>
           </div>
-        )}
+        </div>
+      )}
+
+      {/* Left Sidebar / Content Mobile */}
+      <div className="flex flex-col md:hidden w-full px-4 space-y-4 overflow-y-auto">
+        {/* الخطوة الحالية */}
+        <div className="bg-white p-4 rounded shadow">
+          {currentStep === 1 && <AccountCreationSectionMobile />}
+          {currentStep === 2 && <CompanyDetailsSectionMobile title="Company" />}
+          {currentStep === 3 && <ContactInfoSectionMobile title="Company" />}
+          {currentStep === 4 && <LegalDetailsSectionMobile title="Company" />}
+          {currentStep === 5 && <ComplexDetailsSectionMobile />}
+          {currentStep === 6 && <ComplexContactDetailsSectionMobile />}
+          {currentStep === 7 && <ComplexWorkScheduleMobile />}
+          {currentStep === 8 && <ClinicDetailsSectionMobile />}
+          {currentStep === 9 && <ClinicWorkScheduleMobile />}
+        </div>
+
+        {/* شريط التقدم (اختياري) */}
+        <div className="w-full bg-gray-200 h-2 rounded-full mb-2">
+          <div
+            className="bg-blue-400 h-2 rounded-full transition-all"
+            style={{ width: `${(currentStep / totalSteps) * 100}%` }}
+          ></div>
+        </div>
+
+        {/* أزرار التنقل */}
+        <div className="flex justify-between">
+          <button
+            onClick={prevStep}
+            className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+            disabled={currentStep === 1}
+          >
+            Prev
+          </button>
+          <button
+            onClick={nextStep}
+            className="px-4 py-2 bg-blue-400 text-white rounded disabled:opacity-50"
+          >
+            {currentStep === totalSteps
+              ? "Save"
+              : currentStep === 4 || currentStep === 7
+              ? "Save & Continue"
+              : "Next"}
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

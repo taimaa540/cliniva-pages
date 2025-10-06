@@ -56,7 +56,7 @@ export default function FileUpload({
     <div>
       {!file && (
         <label
-          className={`w-[360px] flex flex-col items-center justify-center border rounded-lg py-[7px] px-[16px] text-center cursor-pointer transition ${
+          className={`max-w-[360px] flex flex-col items-center justify-center border rounded-lg py-[7px] px-[16px] text-center cursor-pointer transition ${
             dragOver ? "border-blue-500 bg-blue-50" : "border-gray-300"
           }`}
           onDragOver={(e) => {

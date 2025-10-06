@@ -1,7 +1,7 @@
 import { ArrowLeftIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
-import CustomCheckbox from "../customCheckbox";
+import CustomCheckbox from "../CommonComponents/customCheckbox";
 import { useState } from "react";
-import TimeRangePicker from "../UsersDesktop/timeRangePicker";
+import TimeRangePicker from "../CommonComponents/timeRangePicker";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 
@@ -28,7 +28,7 @@ export const ComplexWorkSchedule = ({
   };
 
   return (
-    <div className="flex flex-col w-full h-screen overflow-scroll items-start gap-4 pl-0 pr-4 py-4">
+    <div className="hidden md:flex flex flex-col w-full h-screen overflow-scroll items-start gap-4 pl-0 pr-4 py-4">
       {/* Header */}
       <div className="flex flex-col gap-2">
         <button className="flex items-center gap-2 font-lato text-xs text-text-secondary font-regular leading-[130%] tracking-[0]">

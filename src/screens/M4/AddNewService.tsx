@@ -1,8 +1,5 @@
-import {
-  BellIcon,
-  ChevronDownIcon,
-} from "lucide-react";
-import Checkbox from '@mui/material/Checkbox';
+import { BellIcon, ChevronDownIcon } from "lucide-react";
+import Checkbox from "@mui/material/Checkbox";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { useLanguage } from "../../lib/LanguageContext";
@@ -25,7 +22,6 @@ import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { Label } from "../../components/ui/label";
 import { Input } from "../../components/ui/input";
-
 
 export const AddNewService = (): JSX.Element => {
   const { local, handleLanguageClick } = useLanguage();
@@ -150,100 +146,36 @@ export const AddNewService = (): JSX.Element => {
                     </CollapsibleTrigger>
                     <CollapsibleContent className="w-full">
                       <div className="flex flex-col gap-[16px]">
-                        <div className="grid grid-cols-2 gap-x-[32px] gap-y-[24px]">
-                          <h3 className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
-                            {t("Identification")}
-                          </h3>
-                          <h3 className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
-                            {t("Assign")}
-                          </h3>
-                          <div className="flex items-center gap-[32px] w-full">
-                            <Label className={`${local === 'ar' ? "w-[100px]" : "w-[160px]"} font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}>
-                              {t("Services Name")}
-                            </Label>
-                            <Input
-                              placeholder={`${t("Enter")} ${t("Full Name")}`}
-                              className="h-[48px] flex-1 px-4 py-2 rounded bg-surface-default border border-solid border-border-light font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary"
-                            />
-                          </div>
-                          <div className="flex items-center gap-[32px] w-full">
-                            <Label className={`${local === 'ar' ? "w-[100px]" : "w-[160px]"} font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}>
-                              {t("Assign")} {t("Complex")}
-                            </Label>
-                            <Select dir={`${local === 'ar' ? "rtl" : "ltr"}`}>
-                              <SelectTrigger className="flex-1 h-[48px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary">
-                                <SelectValue
-                                  placeholder={`${t("Select")} ${t("Complex")}`}
-                                />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="option 1">
-                                  {t("option")} 1
-                                </SelectItem>
-                                <SelectItem value="option 2">
-                                  {t("option")} 2
-                                </SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          <div className="flex items-center gap-[32px] w-full">
-                            <Label className={`${local === 'ar' ? "w-[100px]" : "w-[160px]"} font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}>
-                              {t("Service Category")}
-                            </Label>
-                            <Select dir={`${local === 'ar' ? "rtl" : "ltr"}`}>
-                              <SelectTrigger className="flex-1 h-[48px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary">
-                                <SelectValue
-                                  placeholder={t("Select Category")}
-                                />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="option 1">
-                                  {t("option")} 1
-                                </SelectItem>
-                                <SelectItem value="option 2">
-                                  {t("option")} 2
-                                </SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          <div className="flex items-center gap-[32px] w-full">
-                            <Label className={`${local === 'ar' ? "w-[100px]" : "w-[160px]"} font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}>
-                              {t("Assign")} {t("Clinics")}
-                            </Label>
-                            <Select dir={`${local === 'ar' ? "rtl" : "ltr"}`}>
-                              <SelectTrigger className="flex-1 h-[48px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary">
-                                <SelectValue
-                                  placeholder={`${t("Select")} ${t("Clinics")}`}
-                                />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="option 1">
-                                  {t("option")} 1
-                                </SelectItem>
-                                <SelectItem value="option 2">
-                                  {t("option")} 2
-                                </SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                          <div className="flex items-start gap-[32px] w-full">
-                            <Label className={`${local === 'ar' ? "w-[100px]" : "w-[160px]"} font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}>
-                              {t("Service Description")}
-                            </Label>
-                            <Textarea
-                              placeholder={`${t("Enter")} ${t("Description")}`}
-                              className="w-full flex-1 h-[170px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light [font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary"
-                            />
-                          </div>
-                          <div>
-                            <div className="flex items-center gap-[32px] w-full">
-                              <Label className={`${local === 'ar' ? "w-[100px]" : "w-[160px]"} font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}>
-                                {t("Assign")} {t("Doctors")}
+                        <div className="grid grid-cols-2 max-[767px]:grid-cols-1 gap-x-[32px] ">
+                          <div className="flex flex-col gap-[24px]">
+                            <h3 className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
+                              {t("Identification")}
+                            </h3>
+                            <div className="flex max-[767px]:flex-col items-center max-[767px]:items-start gap-[32px] max-[767px]:gap-[20px]  w-full">
+                              <Label
+                                className={`${
+                                  local === "ar" ? "w-[100px]" : "w-[160px]"
+                                } font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}
+                              >
+                                {t("Services Name")}
                               </Label>
-                              <Select dir={`${local === 'ar' ? "rtl" : "ltr"}`}>
-                                <SelectTrigger className="flex-1 h-[48px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary">
+                              <Input
+                                placeholder={`${t("Enter")} ${t("Full Name")}`}
+                                className="h-[48px] flex-1 px-4 py-2 rounded bg-surface-default border border-solid border-border-light font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary"
+                              />
+                            </div>
+                            <div className="flex max-[767px]:flex-col items-center max-[767px]:items-start gap-[32px] max-[767px]:gap-[20px]  w-full">
+                              <Label
+                                className={`${
+                                  local === "ar" ? "w-[100px]" : "w-[160px]"
+                                } font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}
+                              >
+                                {t("Service Category")}
+                              </Label>
+                              <Select dir={`${local === "ar" ? "rtl" : "ltr"}`}>
+                                <SelectTrigger className="flex-1 w-full h-[48px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary">
                                   <SelectValue
-                                    placeholder={`${t("Select")} ${t("Doctors")}`}
+                                    placeholder={t("Select Category")}
                                   />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -256,20 +188,126 @@ export const AddNewService = (): JSX.Element => {
                                 </SelectContent>
                               </Select>
                             </div>
-                            <div className="flex flex-col">
-                              <h3 className="my-[16px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
-                                {t("Resources")}
-                              </h3>
-                              <div className="flex items-start gap-[32px] w-full">
-                                <Label className={`${local === 'ar' ? "w-[100px]" : "w-[160px]"} font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}>
-                                  {t("Required Equipment")}
+                            <div className="flex max-[767px]:flex-col items-center max-[767px]:items-start gap-[32px] max-[767px]:gap-[20px]  w-full">
+                              <Label
+                                className={`${
+                                  local === "ar" ? "w-[100px]" : "w-[160px]"
+                                } font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}
+                              >
+                                {t("Service Description")}
+                              </Label>
+                              <Textarea
+                                placeholder={`${t("Enter")} ${t(
+                                  "Description"
+                                )}`}
+                                className="w-full flex-1 h-[170px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light [font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary"
+                              />
+                            </div>
+                          </div>
+                          <div className="flex flex-col gap-[24px] max-[767px]:mt-[20px]">
+                            <h3 className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
+                              {t("Assign")}
+                            </h3>
+                            <div className="flex max-[767px]:flex-col items-center max-[767px]:items-start gap-[32px] max-[767px]:gap-[20px]  w-full">
+                              <Label
+                                className={`${
+                                  local === "ar" ? "w-[100px]" : "w-[160px]"
+                                } font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}
+                              >
+                                {t("Assign")} {t("Complex")}
+                              </Label>
+                              <Select dir={`${local === "ar" ? "rtl" : "ltr"}`}>
+                                <SelectTrigger className="flex-1 w-full h-[48px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary">
+                                  <SelectValue
+                                    placeholder={`${t("Select")} ${t(
+                                      "Complex"
+                                    )}`}
+                                  />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="option 1">
+                                    {t("option")} 1
+                                  </SelectItem>
+                                  <SelectItem value="option 2">
+                                    {t("option")} 2
+                                  </SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <div className="flex max-[767px]:flex-col items-center max-[767px]:items-start gap-[32px] max-[767px]:gap-[20px]  w-full">
+                              <Label
+                                className={`${
+                                  local === "ar" ? "w-[100px]" : "w-[160px]"
+                                } font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}
+                              >
+                                {t("Assign")} {t("Clinics")}
+                              </Label>
+                              <Select dir={`${local === "ar" ? "rtl" : "ltr"}`}>
+                                <SelectTrigger className="flex-1 w-full h-[48px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary">
+                                  <SelectValue
+                                    placeholder={`${t("Select")} ${t(
+                                      "Clinics"
+                                    )}`}
+                                  />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="option 1">
+                                    {t("option")} 1
+                                  </SelectItem>
+                                  <SelectItem value="option 2">
+                                    {t("option")} 2
+                                  </SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <div>
+                              <div className="flex max-[767px]:flex-col items-center max-[767px]:items-start gap-[32px] max-[767px]:gap-[20px]  w-full">
+                                <Label
+                                  className={`${
+                                    local === "ar" ? "w-[100px]" : "w-[160px]"
+                                  } font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}
+                                >
+                                  {t("Assign")} {t("Doctors")}
                                 </Label>
-                                <Textarea
-                                  placeholder={`${t("Enter")} ${t(
-                                    "Required Equipment"
-                                  )}`}
-                                  className="w-full flex-1 h-[170px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light [font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary"
-                                />
+                                <Select
+                                  dir={`${local === "ar" ? "rtl" : "ltr"}`}
+                                >
+                                  <SelectTrigger className="flex-1 w-full h-[48px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary">
+                                    <SelectValue
+                                      placeholder={`${t("Select")} ${t(
+                                        "Doctors"
+                                      )}`}
+                                    />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="option 1">
+                                      {t("option")} 1
+                                    </SelectItem>
+                                    <SelectItem value="option 2">
+                                      {t("option")} 2
+                                    </SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                              <div className="flex flex-col">
+                                <h3 className="my-[16px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
+                                  {t("Resources")}
+                                </h3>
+                                <div className="flex max-[767px]:flex-col items-start gap-[32px] max-[767px]:gap-[20px]  w-full">
+                                  <Label
+                                    className={`${
+                                      local === "ar" ? "w-[100px]" : "w-[160px]"
+                                    } font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary`}
+                                  >
+                                    {t("Required Equipment")}
+                                  </Label>
+                                  <Textarea
+                                    placeholder={`${t("Enter")} ${t(
+                                      "Required Equipment"
+                                    )}`}
+                                    className="w-full flex-1 h-[170px] px-4 py-2 rounded bg-surface-default border border-solid border-border-light [font-lato font-regular text-base leading-[150%] tracking-[0] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[150%] placeholder:tracking-[0] placeholder:text-text-secondary"
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -308,8 +346,8 @@ export const AddNewService = (): JSX.Element => {
                       </Button>
                     </CollapsibleTrigger>
                     <CollapsibleContent className="w-full">
-                      <div className="flex flex-col h-full items-end gap-[16px] w-full">
-                        <table className="w-full text-center">
+                      <div className="w-full overflow-x-auto text-left">
+                        <table className="w-full text-center max-[767px]:min-w-[800px]">
                           <thead>
                             <tr className="h-[56px] bg-background-primary border-b border-border-light w-full">
                               <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
@@ -346,11 +384,11 @@ export const AddNewService = (): JSX.Element => {
                               </td>
                               <td className="align-middle  font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary w-[400px]">
                                 <p className="border border-border-light py-[8px] rounded-[4px] text-center">
-                                  Patient history & symptom assessment 
+                                  Patient history & symptom assessment
                                 </p>
                               </td>
                               <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                                <Checkbox  defaultChecked size="small"/>
+                                <Checkbox defaultChecked size="small" />
                               </td>
                               <td className="align-middle">
                                 <svg
@@ -373,7 +411,7 @@ export const AddNewService = (): JSX.Element => {
                               </td>
                               <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary w-[250px]">
                                 <p className="border border-border-light px-[16px] py-[8px] rounded-[4px] text-center">
-                                  Session Name 
+                                  Session Name
                                 </p>
                               </td>
                               <td className="align-middle  font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
@@ -387,7 +425,7 @@ export const AddNewService = (): JSX.Element => {
                                 </p>
                               </td>
                               <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                                <Checkbox  defaultChecked size="small"/>
+                                <Checkbox defaultChecked size="small" />
                               </td>
                               <td>
                                 <svg
@@ -410,7 +448,7 @@ export const AddNewService = (): JSX.Element => {
                               </td>
                               <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary w-[250px]">
                                 <p className="border border-border-light px-[16px] py-[8px] rounded-[4px] text-center">
-                                  Session Name 
+                                  Session Name
                                 </p>
                               </td>
                               <td className="align-middle  font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
@@ -420,11 +458,11 @@ export const AddNewService = (): JSX.Element => {
                               </td>
                               <td className="align-middle  font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary w-[400px]">
                                 <p className="border border-border-light py-[8px] rounded-[4px] text-center">
-                                  Patient history & symptom assessment 
+                                  Patient history & symptom assessment
                                 </p>
                               </td>
                               <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                                <Checkbox  defaultChecked size="small"/>
+                                <Checkbox defaultChecked size="small" />
                               </td>
                               <td>
                                 <svg
@@ -442,35 +480,41 @@ export const AddNewService = (): JSX.Element => {
                               </td>
                             </tr>
                           </tbody>
+                          <tfoot>
+                            <tr>
+                              <td colSpan={6}>
+                                <svg
+                                  className="ms-auto"
+                                  width="32"
+                                  height="32"
+                                  viewBox="0 0 32 32"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M6 16C6 15.4477 6.3731 15 6.83333 15H25.1667C25.6269 15 26 15.4477 26 16C26 16.5523 25.6269 17 25.1667 17H6.83333C6.3731 17 6 16.5523 6 16Z"
+                                    fill="#00B48D"
+                                  />
+                                  <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M16 6C16.5523 6 17 6.3731 17 6.83333V25.1667C17 25.6269 16.5523 26 16 26C15.4477 26 15 25.6269 15 25.1667V6.83333C15 6.3731 15.4477 6 16 6Z"
+                                    fill="#00B48D"
+                                  />
+                                </svg>
+                              </td>
+                            </tr>
+                          </tfoot>
                         </table>
-                        <svg
-                        className={` ${local === 'ar' ? "ml-[30px]" : "mr-[20px]"}`}
-                          width="32"
-                          height="32"
-                          viewBox="0 0 32 32"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M6 16C6 15.4477 6.3731 15 6.83333 15H25.1667C25.6269 15 26 15.4477 26 16C26 16.5523 25.6269 17 25.1667 17H6.83333C6.3731 17 6 16.5523 6 16Z"
-                            fill="#00B48D"
-                          />
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M16 6C16.5523 6 17 6.3731 17 6.83333V25.1667C17 25.6269 16.5523 26 16 26C15.4477 26 15 25.6269 15 25.1667V6.83333C15 6.3731 15.4477 6 16 6Z"
-                            fill="#00B48D"
-                          />
-                        </svg>
                       </div>
                     </CollapsibleContent>
                   </Collapsible>
                 </CardContent>
               </Card>
 
-              <div className="flex gap-[16px] mt-auto">
+              <div className="flex gap-[16px] mt-auto w-full">
                 <button className=" w-[200px] h-[40px] rounded-[20px] border border-border-light bg-surface-primary  font-lato font-medium text-sm leading-[100%] tracking-[0] text-text-primary">
                   {t("Cancel")}
                 </button>

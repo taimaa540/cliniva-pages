@@ -25,7 +25,7 @@ export const AddCard = ({
       <CardContent className="flex flex-col items-center justify-center gap-2 h-full">
         <div
           hidden={addPatient}
-          className="w-[80px] text-center font-lato font-regular text-[10px] leading-[135%] tracking-[0] text-[#00C8B3]"
+          className="w-[80px] text-center font-lato font-regular text-[10px] max-[767px]:text-[9px] leading-[135%] tracking-[0] text-[#00C8B3]"
         >
           {t("Click To Add New Appointment")}
         </div>

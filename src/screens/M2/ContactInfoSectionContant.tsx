@@ -33,7 +33,7 @@ export const ContactInfoSection = ({
 }: buttonProps): JSX.Element => {
   const [phone, setPhone] = useState("");
   return (
-    <div className="flex flex-col w-full h-screen overflow-scroll items-start gap-4 pl-0 pr-4 py-4">
+    <div className="hidden md:flex flex flex-col w-full h-screen overflow-scroll items-start gap-4 pl-0 pr-4 py-4">
       {/* Header */}
       <div className="flex flex-col gap-2">
         <button className="flex items-center gap-2 font-lato text-xs text-text-secondary font-regular leading-[130%] tracking-[0]">

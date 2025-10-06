@@ -14,7 +14,7 @@ import ImageUploader from "../CommonComponents/ImageUpload";
 import { CountryDropdown } from "react-country-region-selector";
 import en from "react-phone-number-input/locale/en.json";
 import {
-  Select, 
+  Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
@@ -132,7 +132,7 @@ export const AddNewUser = (): JSX.Element => {
             dir={`${local === "ar" ? "rtl" : "ltr"}`}
             defaultValue="account"
           >
-            <TabsList className="flex items-center w-full h-[50px] py-[8px] px-[12px] bg-primary-foreground rounded-[14px] border border-border-light shadow-lg">
+            <TabsList className="flex items-center w-full h-[50px] py-[8px] px-[12px] bg-primary-foreground rounded-[14px] border border-border-light shadow-lg overflow-x-scroll overflow-y-hidden scrollbar-custom">
               {tabItems.map((tab) => (
                 <TabsTrigger
                   key={tab.value}
@@ -150,26 +150,26 @@ export const AddNewUser = (): JSX.Element => {
             >
               <div className=" w-full mt-[20px] bg-background-primary p-[16px] rounded-[16px]">
                 <form className="w-full ">
-                  <div className="flex items-center gap-[32px]">
-                    <label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
-                      {t("User Name")}
-                    </label>
-                    <Input
-                      placeholder={t("Enter User Name")}
-                      className="w-[360px] h-[48px] bg-primary-foreground border border-border-light rounded-[4px] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[124%] placeholder:tracking-[0] placeholder:text-text-secondary"
-                    />
-                  </div>
-                  <div className="flex w-full gap-[25px] mt-[24px]">
+                  <div className="flex max-[767px]:flex-col w-full gap-[25px]  max-[767px]:gap-[0] mt-[24px]">
                     <div className="w-full">
-                      <div className="flex items-center gap-[32px]">
-                        <label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                      <div className="flex max-[767px]:flex-col items-center max-[767px]:items-start gap-[32px] max-[767px]:gap-[10px]">
+                        <label className="w-[160px] max-[991px]:w-[115px] font-lato font-semibold text-base max-[991px]:text-sm leading-[124%] tracking-[0] text-text-primary">
+                          {t("User Name")}
+                        </label>
+                        <Input
+                          placeholder={t("Enter User Name")}
+                          className="w-full flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[124%] placeholder:tracking-[0] placeholder:text-text-secondary"
+                        />
+                      </div>
+                      <div className="flex max-[767px]:flex-col items-center max-[767px]:items-start gap-[32px] max-[767px]:gap-[10px] mt-[24px] w-full">
+                        <label className="w-[160px] max-[991px]:w-[115px] font-lato font-semibold text-base max-[991px]:text-sm leading-[124%] tracking-[0] text-text-primary">
                           {t("Password")}
                         </label>
-                        <div className="relative">
+                        <div className="relative w-full flex-1">
                           <Input
                             type={showPassword ? "text" : "password"}
                             placeholder={t("Enter Password")}
-                            className="w-[360px] h-[48px] bg-primary-foreground border border-border-light rounded-[4px] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[124%] placeholder:tracking-[0] placeholder:text-text-secondary"
+                            className="w-full h-[48px] bg-primary-foreground border border-border-light rounded-[4px] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[124%] placeholder:tracking-[0] placeholder:text-text-secondary"
                           />
                           <button
                             type="button"
@@ -186,12 +186,12 @@ export const AddNewUser = (): JSX.Element => {
                           </button>
                         </div>
                       </div>
-                      <div className="flex items-center gap-[32px] mt-[24px]">
-                        <label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                      <div className="flex max-[767px]:flex-col items-center max-[767px]:items-start gap-[32px] max-[767px]:gap-[10px] mt-[24px]">
+                        <label className="w-[160px] max-[991px]:w-[115px] font-lato font-semibold text-base max-[991px]:text-sm leading-[124%] tracking-[0] text-text-primary">
                           {t("Role")}
                         </label>
                         <Select dir={`${local === "ar" ? "rtl" : "ltr"}`}>
-                          <SelectTrigger className="w-[360px] h-[48px] bg-primary-foreground border border-border-light rounded-[4px] ">
+                          <SelectTrigger className="w-full flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] ">
                             <SelectValue
                               placeholder={t("Assign Roles to User")}
                             />
@@ -205,12 +205,12 @@ export const AddNewUser = (): JSX.Element => {
                           </SelectContent>
                         </Select>
                       </div>
-                      <div className="flex items-center gap-[32px] mt-[24px]">
-                        <label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                      <div className="flex max-[767px]:flex-col items-center max-[767px]:items-start gap-[32px] max-[767px]:gap-[10px] mt-[24px] w-full">
+                        <label className="w-[160px] max-[991px]:w-[115px] font-lato font-semibold text-base max-[991px]:text-sm leading-[124%] tracking-[0] text-text-primary">
                           {t("Medical Complex")}
                         </label>
                         <Select dir={`${local === "ar" ? "rtl" : "ltr"}`}>
-                          <SelectTrigger className="w-[360px] h-[48px] bg-primary-foreground border border-border-light rounded-[4px]">
+                          <SelectTrigger className="w-full flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px]">
                             <SelectValue
                               placeholder={t("Select Medical Complex")}
                             />
@@ -227,15 +227,16 @@ export const AddNewUser = (): JSX.Element => {
                       </div>
                     </div>
                     <div className="w-full">
-                      <div className="flex items-center gap-[32px]">
-                        <label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                      <div className="w-full h-[48px] max-[767px]:hidden"></div>
+                      <div className="flex max-[767px]:flex-col items-center max-[767px]:items-start gap-[32px] max-[767px]:gap-[10px] mt-[24px]">
+                        <label className="w-[160px] max-[991px]:w-[115px] font-lato font-semibold text-base max-[991px]:text-sm leading-[124%] tracking-[0] text-text-primary">
                           {t("Confirm Password")}
                         </label>
-                        <div className="relative ">
+                        <div className="relative w-full flex-1 ">
                           <Input
                             type={showPassword ? "text" : "password"}
                             placeholder={t("Confirm Password")}
-                            className="w-[360px] h-[48px] bg-primary-foreground border border-border-light rounded-[4px] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[124%] placeholder:tracking-[0] placeholder:text-text-secondary "
+                            className="w-full h-[48px] bg-primary-foreground border border-border-light rounded-[4px] placeholder:font-lato placeholder:font-regular placeholder:text-base placeholder:leading-[124%] placeholder:tracking-[0] placeholder:text-text-secondary "
                           />
                           <button
                             type="button"
@@ -252,12 +253,12 @@ export const AddNewUser = (): JSX.Element => {
                           </button>
                         </div>
                       </div>
-                      <div className="flex items-center gap-[32px] mt-[24px]">
-                        <label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                      <div className="flex max-[767px]:flex-col items-center max-[767px]:items-start gap-[32px] max-[767px]:gap-[10px] mt-[24px]">
+                        <label className="w-[160px] max-[991px]:w-[115px] font-lato font-semibold text-base max-[991px]:text-sm leading-[124%] tracking-[0] text-text-primary">
                           {t("User Type")}
                         </label>
                         <Select dir={`${local === "ar" ? "rtl" : "ltr"}`}>
-                          <SelectTrigger className="w-[360px] h-[48px] bg-primary-foreground border border-border-light rounded-[4px]">
+                          <SelectTrigger className="w-full flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px]">
                             <SelectValue placeholder={t("Select User Type")} />
                           </SelectTrigger>
                           <SelectContent>
@@ -268,12 +269,12 @@ export const AddNewUser = (): JSX.Element => {
                           </SelectContent>
                         </Select>
                       </div>
-                      <div className="flex items-center gap-[32px] mt-[24px]">
-                        <label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                      <div className="flex max-[767px]:flex-col items-center max-[767px]:items-start gap-[32px] max-[767px]:gap-[10px] mt-[24px]">
+                        <label className="w-[160px] max-[991px]:w-[115px] font-lato font-semibold text-base max-[991px]:text-sm leading-[124%] tracking-[0] text-text-primary">
                           {t("Clinics")}
                         </label>
                         <Select dir={`${local === "ar" ? "rtl" : "ltr"}`}>
-                          <SelectTrigger className="w-[360px] h-[48px] bg-primary-foreground border border-border-light rounded-[4px]">
+                          <SelectTrigger className="w-full flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px]">
                             <SelectValue placeholder={t("Select Clinic")} />
                           </SelectTrigger>
                           <SelectContent>
@@ -331,67 +332,81 @@ export const AddNewUser = (): JSX.Element => {
                     <h3 className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-primary-default">
                       {t("Profile & Identity Info")}
                     </h3>
-                    <div className="grid grid-cols-2 gap-[22px]">
-                      <div className="flex items-center gap-[32px] w-full">
-                        <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-[22px]">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-[32px] w-full">
+                        <Label className="w-full sm:w-[120px] lg:w-[160px] font-lato font-semibold text-sm lg:text-base leading-[124%] tracking-[0] text-text-primary shrink-0">
                           {t("Profile Picture")}
                         </Label>
                         <ImageUploader />
                       </div>
-                      <div className="flex items-center gap-[32px] w-full">
-                        <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-[32px] w-full">
+                        <Label className="w-full sm:w-[120px] lg:w-[160px] font-lato font-semibold text-sm lg:text-base leading-[124%] tracking-[0] text-text-primary shrink-0">
                           {t("Full Name")}
                         </Label>
                         <Input
                           placeholder={t("Enter Full Name")}
-                          className="flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
+                          className="flex-1 h-[48px] px-3.5 py-2.5 bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
                         />
                       </div>
-                      <div className="flex items-center gap-[32px] w-full">
-                        <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-[32px] w-full">
+                        <Label className="w-full sm:w-[120px] lg:w-[160px] font-lato font-semibold text-sm lg:text-base leading-[124%] tracking-[0] text-text-primary shrink-0">
                           {t("Gender")}
                         </Label>
-                        <input className="w-5 h-5" type="radio" name="Gender" />
-                        <label className="font-lato font-regular text-sm leading-[154%] tracking-[0] text-text-primary">
-                          {t("Male")}
-                        </label>
-                        <input className="w-5 h-5" type="radio" name="Gender" />
-                        <label className="font-lato font-regular text-sm leading-[154%] tracking-[0] text-text-primary">
-                          {t("Female")}
-                        </label>
+                        <div className="flex items-center gap-4 flex-1">
+                          <div className="flex items-center gap-2">
+                            <input
+                              className="w-5 h-5"
+                              type="radio"
+                              name="Gender"
+                            />
+                            <label className="font-lato font-regular text-sm leading-[154%] tracking-[0] text-text-primary">
+                              Male
+                            </label>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <input
+                              className="w-5 h-5"
+                              type="radio"
+                              name="Gender"
+                            />
+                            <label className="font-lato font-regular text-sm leading-[154%] tracking-[0] text-text-primary">
+                              Female
+                            </label>
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-[32px] w-full">
-                        <Label className="w-40 font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-gray-700 text-[length:var(--btn-14px-medium-font-size)] tracking-[var(--btn-14px-medium-letter-spacing)] leading-[var(--btn-14px-medium-line-height)] [font-style:var(--btn-14px-medium-font-style)]">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-[32px] w-full">
+                        <Label className="w-full sm:w-[120px] lg:w-[160px] font-lato font-semibold text-sm lg:text-base leading-[124%] tracking-[0] text-text-primary shrink-0">
                           {t("Date of Birth")} *
                         </Label>
                         <DateInput lang={local} />
                       </div>
-                      <div className="flex items-center gap-[32px] w-full">
-                        <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-[32px] w-full">
+                        <Label className="w-full sm:w-[120px] lg:w-[160px] font-lato font-semibold text-sm lg:text-base leading-[124%] tracking-[0] text-text-primary shrink-0">
                           {t("Nationality")}
                         </Label>
                         <CountryDropdown
                           value={country}
                           onChange={(val) => setCountry(val)}
-                          className="flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
+                          className="flex-1 h-[48px] px-3.5 py-2.5 bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
                           defaultOptionLabel="SY"
                         />
                       </div>
-                      <div className="flex items-center gap-[32px] w-full">
-                        <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-[32px] w-full">
+                        <Label className="w-full sm:w-[120px] lg:w-[160px] font-lato font-semibold text-sm lg:text-base leading-[124%] tracking-[0] text-text-primary shrink-0">
                           {t("Card Number")}
                         </Label>
                         <Input
                           placeholder={t("Enter Card Number")}
-                          className=" flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
+                          className=" flex-1 h-[48px] px-3.5 py-2.5 bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
                         />
                       </div>
-                      <div className="flex items-center gap-[32px] w-full">
-                        <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-[32px] w-full">
+                        <Label className="w-full sm:w-[120px] lg:w-[160px] font-lato font-semibold text-sm lg:text-base leading-[124%] tracking-[0] text-text-primary shrink-0">
                           {t("Marital Status")}
                         </Label>
                         <Select defaultValue={t("Select Marital Status")}>
-                          <SelectTrigger className="flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary">
+                          <SelectTrigger className="flex-1 w-full h-[48px] px-3.5 py-2.5 bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -404,13 +419,13 @@ export const AddNewUser = (): JSX.Element => {
                           </SelectContent>
                         </Select>
                       </div>
-                      <div className="flex items-center gap-[32px] w-full">
-                        <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-[32px] w-full">
+                        <Label className="w-full sm:w-[120px] lg:w-[160px] font-lato font-semibold text-sm lg:text-base leading-[124%] tracking-[0] text-text-primary shrink-0">
                           {t("Number of children")}
                         </Label>
                         <Input
                           placeholder={t("Enter Number of children")}
-                          className="flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
+                          className="flex-1 h-[48px] px-3.5 py-2.5 bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
                         />
                       </div>
                     </div>
@@ -423,36 +438,38 @@ export const AddNewUser = (): JSX.Element => {
                     {t("Contact Info")}
                   </h3>
                   <div className="flex flex-col gap-[16px]">
-                    <div className="grid grid-cols-2 gap-[22px] w-full">
-                      <div className="flex items-center gap-[32px] w-full">
-                        <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-[22px]">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-[32px] w-full">
+                        <Label className="w-full sm:w-[120px] lg:w-[160px] font-lato font-semibold text-sm lg:text-base leading-[124%] tracking-[0] text-text-primary shrink-0">
                           {t("Phone Number")}
                         </Label>
                         <div className="flex-1 min-w-0">
                           <PhoneInputCustom />
                         </div>
                       </div>
-                      <div className="flex items-center gap-[32px] w-full">
-                        <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-[32px] w-full">
+                        <Label className="w-full sm:w-[120px] lg:w-[160px] font-lato font-semibold text-sm lg:text-base leading-[124%] tracking-[0] text-text-primary shrink-0">
                           {t("Email")}
                         </Label>
                         <Input
                           placeholder={t("Enter Email")}
-                          className="flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
+                          className="flex-1 h-[48px] px-3.5 py-2.5 bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
                         />
                       </div>
                     </div>
-                    <div className="flex items-start gap-8 w-full">
-                      <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-[32px] w-full">
+                      <Label className="w-full sm:w-[120px] lg:w-[160px] font-lato font-semibold text-sm lg:text-base leading-[124%] tracking-[0] text-text-primary shrink-0">
                         {t("Address")}
                       </Label>
-                      {addressFields.map((field, index) => (
-                        <Input
-                          placeholder={t(`${field.placeholder}`)}
-                          key={index}
-                          className={`${field.width} flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary`}
-                        />
-                      ))}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                        {addressFields.map((field, index) => (
+                          <Input
+                            placeholder={t(`${field.placeholder}`)}
+                            key={index}
+                            className={`${field.width} flex-1 h-[48px] px-3.5 py-2.5 bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary`}
+                          />
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </CardContent>
@@ -463,29 +480,29 @@ export const AddNewUser = (): JSX.Element => {
                     {t("Emergency Contact Info")}
                   </h3>
                   <div className="flex flex-col gap-[16px]">
-                    <div className="grid grid-cols-2 gap-[22px]">
-                      <div className="flex items-center gap-[32px] w-full">
-                        <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-[22px]">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-[32px] w-full">
+                        <Label className="w-full sm:w-[120px] lg:w-[160px] font-lato font-semibold text-sm lg:text-base leading-[124%] tracking-[0] text-text-primary shrink-0">
                           {t("Emergency Contact")}
                         </Label>
                         <Input
                           placeholder={t("Enter Name")}
-                          className="flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
+                          className="flex-1 h-[48px] px-3.5 py-2.5 bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
                         />
                       </div>
-                      <div className="flex items-center gap-[32px] w-full">
-                        <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-[32px] w-full">
+                        <Label className="w-full sm:w-[120px] lg:w-[160px] font-lato font-semibold text-sm lg:text-base leading-[124%] tracking-[0] text-text-primary shrink-0">
                           {t("Relationship")}
                         </Label>
                         <Input
                           placeholder={t("Enter Relationship")}
-                          className="flex-1 h-[48px] bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
+                          className="flex-1 h-[48px] px-3.5 py-2.5 bg-primary-foreground border border-border-light rounded-[4px] font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary"
                         />
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-[22px]">
-                      <div className="flex items-center gap-[32px] w-full">
-                        <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-[22px]">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-[32px] w-full">
+                        <Label className="w-full sm:w-[120px] lg:w-[160px] font-lato font-semibold text-sm lg:text-base leading-[124%] tracking-[0] text-text-primary shrink-0">
                           {t("Emergency Number")}
                         </Label>
                         <div className="flex-1 min-w-0">
@@ -554,9 +571,9 @@ export const AddNewUser = (): JSX.Element => {
                   </h2>
 
                   <div className="flex flex-col items-start gap-4 mt-[20px] relative">
-                    <div className="flex items-center gap-[21.5px] w-full">
-                      <div className="flex items-center gap-[32px] w-full">
-                        <Label className="w-[160px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                    <div className="flex max-[767px]:flex-col items-center gap-[21.5px] w-full">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-[32px] w-full">
+                        <Label className="w-full sm:w-[120px] lg:w-[160px] font-lato font-semibold text-sm lg:text-base leading-[124%] tracking-[0] text-text-primary shrink-0">
                           {t("Job Title")}
                         </Label>
                         <Input
@@ -564,7 +581,7 @@ export const AddNewUser = (): JSX.Element => {
                           className="bg-primary-foreground border-border-light w-full h-[48px] shadow-[0px_1px_2px_0px_#0A0D120D] rounder-[4px] text-text-secondary font-lato font-semibold text-sm leading-[125%] tracking-[0]"
                         />
                       </div>
-                      <div className="flex items-center gap-[32px] w-full">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-[32px] w-full">
                         <Label className="w-[170px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Date of Hire")}
                         </Label>
@@ -636,16 +653,20 @@ export const AddNewUser = (): JSX.Element => {
                     {documents.map((doc, index) => (
                       <div
                         key={index}
-                        className="flex items-center gap-8 w-full"
+                        className="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8 w-full"
                       >
-                        <Label className="w-[178px] font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                        <Label className="w-full lg:w-[178px] font-lato font-semibold text-sm lg:text-base leading-[124%] tracking-[0] text-text-primary shrink-0">
                           {t(`${doc.label}`)}
                         </Label>
-                        <FileUpload accept=".pdf" maxSizeMB={1} />
-                        <Label className="w-40 font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
-                          {t("Effective Date")}
-                        </Label>
-                        {doc.effectiveDate && <DateInput lang={local} />}
+                        <div className="flex-1 min-w-0">
+                          <FileUpload accept=".pdf" maxSizeMB={1} />
+                        </div>
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 w-full lg:w-auto">
+                          <Label className="w-40 font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                            {t("Effective Date")}
+                          </Label>
+                          {doc.effectiveDate && <DateInput lang={local} />}
+                        </div>
                       </div>
                     ))}
                   </div>

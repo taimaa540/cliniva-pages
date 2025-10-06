@@ -1,22 +1,26 @@
 import { Card, CardContent } from "../../components/ui/card";
 
-
 type MyComponentProps = {
   className?: string; // 👈 نجعلها اختيارية
 };
 export const CardInAll = ({ className }: MyComponentProps): JSX.Element => {
   return (
-    <Card className={`w-full h-[34px] rounded-[6px] border-0 relative z-1 ${className}`}>
+    <Card className={`w-full h-[34px] max-[991px]:h-[68px] rounded-[6px] border-0 relative z-1 ${className}`}>
       <CardContent className="p-[4px] flex flex-col gap-[4px]">
-        <div className="flex gap-[4px]">
+        <div className="flex gap-[4px] max-[767px]:flex-col max-[767px]:items-center">
           <div className="flex items-center gap-[4px]">
-            <img alt="Place image here" src="/23.png" />
-            <div className="font-lato font-regular text-[10px] leading-[135%] tracking-[0] text-background-primary">
+            <img
+              alt="Place image here"
+              src="/23.png"
+              className="max-[767px]:hidden"
+            />
+            <div className="font-lato font-regular text-[10px] max-[767px]:text-[9px] leading-[135%] tracking-[0] text-background-primary">
               Sarah Miller
             </div>
           </div>
           <div className="flex items-center gap-[4px]">
             <svg
+              className="max-[767px]:hidden"
               width="10"
               height="10"
               viewBox="0 0 10 10"
@@ -28,13 +32,14 @@ export const CardInAll = ({ className }: MyComponentProps): JSX.Element => {
                 fill="#FFFDFC"
               />
             </svg>
-            <div className="font-lato font-regular text-[10px] leading-[135%] tracking-[0] text-background-primary">
+            <div className="font-lato font-regular text-[10px] max-[767px]:text-[9px] leading-[135%] tracking-[0] text-background-primary">
               PAT-df4c3
             </div>
           </div>
         </div>
         <div className="flex items-center gap-[4px]">
           <svg
+          className="max-[767px]:hidden"
             width="8"
             height="8"
             viewBox="0 0 8 8"
@@ -56,7 +61,7 @@ export const CardInAll = ({ className }: MyComponentProps): JSX.Element => {
               </clipPath>
             </defs>
           </svg>
-          <div className="font-lato font-regular text-[10px] leading-[135%] tracking-[0] text-background-primary">
+          <div className="font-lato font-regular text-[10px] max-[767px]:text-[9px] max-[767px]:text-center leading-[135%] tracking-[0] text-background-primary">
             Facial Rejuvenation
           </div>
         </div>

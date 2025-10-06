@@ -27,7 +27,7 @@ export default function ImageUploader({ initialImage }: ImageUploaderProps) {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-start">
       {image ? (
         <div className="relative w-16 h-16">
           <img

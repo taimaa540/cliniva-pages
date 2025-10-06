@@ -307,7 +307,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 } */
 
 .PhoneInput {
-  @apply flex items-center outline-none border border-border-light rounded-[4px] px-2 py-1 w-full h-[48px] gap-[8px];
+  @apply flex items-center outline-none border border-border-light rounded-[4px] px-2 py-1 h-[48px] gap-[8px];
 }
 
 /* عنصر اختيار الدولة */
@@ -324,9 +324,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .PhoneInputCountrySelect {
   @apply flex items-center gap-1 cursor-pointer font-semibold text-gray-700;
 }
-
-/* 
+.PhoneInputCountrySelectArrow {
+visibility: hidden;
+}
+/*
 حقل إدخال الرقم */
 .PhoneInputInput {
   @apply flex-1 outline-none px-2 text-gray-800;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  height: 6px;   /* للـ scroll-x */
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
 }

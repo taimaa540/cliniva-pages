@@ -3,11 +3,11 @@ import { Card, CardContent } from "../../components/ui/card";
 export const ScheduledCard = (): JSX.Element => {
   return (
     <Card className="w-full h-[80px] bg-[#69A3E9] rounded-[14px] border-0 mb-[16px] relative z-1">
-      <CardContent className="py-[7px] px-[8px] flex flex-col gap-[12px]">
+      <CardContent className="py-[7px] px-[8px] max-[767px]:px-[4px] flex flex-col gap-[12px] max-[767px]:gap-[5px]">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-[4px]">
-            <img alt="Place image here" src="/25.png" />
-            <div className="font-lato font-semibold text-[11px] leading-[124%] tracking-[0] text-background-primary">
+            <img alt="Place image here" src="/25.png" className="max-[767px]:hidden" />
+            <div className="font-lato font-semibold text-[11px] max-[767px]:text-[9px] leading-[124%] tracking-[0] text-background-primary">
               Sarah Miller
             </div>
           </div>
@@ -38,7 +38,7 @@ export const ScheduledCard = (): JSX.Element => {
                 fill="#FFFDFC"
               />
             </svg>
-            <div className="font-lato font-regular text-[10px] leading-[135%] tracking-[0] text-background-primary">
+            <div className="font-lato font-regular text-[10px] max-[991px]:text-[9px] leading-[135%] tracking-[0] text-background-primary">
               PAT-df4c3
             </div>
           </div>
@@ -59,7 +59,7 @@ export const ScheduledCard = (): JSX.Element => {
                 stroke-linejoin="round"
               />
             </svg>
-            <div className="font-lato font-regular text-[10px] leading-[135%] tracking-[0] text-background-primary">
+            <div className="font-lato font-regular text-[10px] max-[991px]:text-[9px] leading-[135%] tracking-[0] text-background-primary">
               Facial Rejuvenation
             </div>
           </div>

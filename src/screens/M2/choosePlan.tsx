@@ -15,7 +15,7 @@ export const ChoosePlan = (): JSX.Element => {
         <Route
           path="/"
           element={
-            <div className=" w-full h-screen bg-surface-default overflow-hidden">
+            <div className=" w-full h-screen bg-surface-default overflow-scroll">
               <img
                 className="absolute top-[19px] left-[80px] "
                 alt="Union"
@@ -37,26 +37,26 @@ export const ChoosePlan = (): JSX.Element => {
                 src="/Group4.svg"
               />
               <div>
-                <button className="group hover:bg-accent flex gap-4 absolute left-[220px] top-[30px] p-2.5 rounded-[16px]">
+                <button className="group hover:bg-accent flex gap-4 relative left-[-100%] md:left-[220px] top-[30px] p-2.5 rounded-[16px]">
                   <ArrowLeft className=" group-hover:animate-arrow-bounce-to-left" />
                   <h6>Back to Login Page</h6>
                 </button>
               </div>
 
-              <div className="flex flex-col w-[1134px] h-[537px] items-center gap-10 mt-[100px] ml-auto mr-auto">
+              <div className="flex flex-col h-[537px] items-center gap-10 mt-[100px] ml-auto mr-auto">
                 <header className="flex flex-col items-center gap-4 relative self-stretch w-full flex-[0_0_auto]">
-                  <h1 className="text-[48px] font-bold text-primary-default">
+                  <h1 className="text-[26px] text-center md:text-[48px] font-bold text-primary-default">
                     Choose Your Operational Structure
                   </h1>
 
-                  <p className="font-lato font-semibold text-on-surface-tertiary text-[20px] text-center tracking-[0] leading-[114%]">
+                  <p className="font-lato font-semibold text-on-surface-tertiary text-[15px] md:text-[20px] text-center tracking-[0] leading-[114%]">
                     This structure will help us customize your
                     system.&nbsp;&nbsp;You can&apos;t change it later
                   </p>
                 </header>
 
-                <main className="inline-flex items-center justify-center gap-12 relative flex-[0_0_auto]">
-                  <Card className="inline-flex hover:shadow-lg hover:-translate-y-2 transition-all duration-300 ease-in-out flex-col h-[400px] items-center justify-center gap-8 px-[24px] py-[30px] relative flex-[0_0_auto] rounded-[20px] overflow-hidden border border-solid border-[#00b48d]">
+                <main className="flex flex-col md:flex-row items-center justify-center gap-12 relative flex-[0_0_auto]">
+                  <Card className="inline-flex hover:shadow-lg hover:-translate-y-2 transition-all duration-300 ease-in-out flex-col h-[400px] items-center justify-center gap-8 px-[5px] md:px-[24px] py-[20px] md:py-[30px] relative flex-[0_0_auto] rounded-[20px] overflow-hidden border border-solid border-[#00b48d]">
                     <CardContent className="p-0 flex flex-col items-center justify-center gap-8 w-full h-full">
                       <div className="inline-flex flex-col items-center justify-center gap-5 relative flex-[0_0_auto] mt-[-2.50px]">
                         <h3
@@ -107,7 +107,7 @@ export const ChoosePlan = (): JSX.Element => {
                       </Link>
                     </CardContent>
                   </Card>
-                  <Card className="inline-flex hover:shadow-lg hover:-translate-y-2 transition-all duration-300 ease-in-out flex-col h-[400px] items-center justify-center gap-8 px-[24px] py-[30px] relative flex-[0_0_auto] rounded-[20px] overflow-hidden border border-solid border-[#00b48d]">
+                  <Card className="inline-flex hover:shadow-lg hover:-translate-y-2 transition-all duration-300 ease-in-out flex-col h-[400px] items-center justify-center gap-8 px-[5px] md:px-[24px] py-[20px] md:py-[30px] relative flex-[0_0_auto] rounded-[20px] overflow-hidden border border-solid border-[#00b48d]">
                     <CardContent className="p-0 flex flex-col items-center justify-center gap-8 w-full h-full">
                       <div className="inline-flex flex-col items-center justify-center gap-5 relative flex-[0_0_auto] mt-[-2.50px]">
                         <h3
@@ -158,7 +158,7 @@ export const ChoosePlan = (): JSX.Element => {
                       </Link>
                     </CardContent>
                   </Card>
-                  <Card className="inline-flex hover:shadow-lg hover:-translate-y-2 transition-all duration-300 ease-in-out flex-col h-[400px] items-center justify-center gap-8 px-[24px] py-[30px] relative flex-[0_0_auto] rounded-[20px] overflow-hidden border border-solid border-[#00b48d]">
+                  <Card className="inline-flex hover:shadow-lg hover:-translate-y-2 transition-all duration-300 ease-in-out flex-col h-[400px] items-center justify-center gap-8 px-[5px] md:px-[24px] py-[20px] md:py-[30px] relative flex-[0_0_auto] rounded-[20px] overflow-hidden border border-solid border-[#00b48d]">
                     <CardContent className="p-0 flex flex-col items-center justify-center gap-8 w-full h-full">
                       <div className="inline-flex flex-col items-center justify-center gap-5 relative flex-[0_0_auto] mt-[-2.50px]">
                         <h3

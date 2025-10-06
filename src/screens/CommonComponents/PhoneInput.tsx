@@ -21,10 +21,10 @@ export default function PhoneInputCustom() {
     i18n.changeLanguage(local);
   }, [local, i18n]);
   return (
-    <div dir="ltr" className="relative">
+    <div dir="ltr" className="relative w-full">
       {/* Placeholder وهمي */}
       {!phone && !focused && (
-        <span className="absolute left-[105px] top-[10px] text-gray-400 pointer-events-none bg-[white] w-[150px] h-[35px]">
+        <span className="absolute left-[105px] top-[10px] max-[767px]:text-[13px] text-gray-400 pointer-events-none bg-[white] max-w-[150px] h-[35px]">
           {t("Enter Phone Number")}
         </span>
       )}
@@ -58,7 +58,7 @@ export default function PhoneInputCustom() {
         onCountryChange={(c) => c && setCountry(c)} // تغيير الدولة
         countryCallingCodeEditable={false}
         placeholder="أدخل رقمك"
-        className="w-full"
+        className=""
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
       />

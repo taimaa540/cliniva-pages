@@ -10,7 +10,7 @@ export const AddCardInAll = (): JSX.Element => {
     i18n.changeLanguage(local);
   }, []);
   return (
-    <Card className="w-full h-[34px] rounded-[6px] bg-[#E1EDFB] border-0 relative z-1">
+    <Card className="w-full h-[34px] max-[991px]:h-[68px] rounded-[6px] bg-[#E1EDFB] border-0 relative z-1">
       <CardContent className="p-[4px] flex items-center justify-center gap-[4px]">
         <svg
           width="16"
@@ -42,12 +42,12 @@ export const AddCardInAll = (): JSX.Element => {
         </svg>
         <div className=" flex flex-col gap-[2px]">
           <div className="flex items-center gap-[4px]">
-            <img alt="Place image here" src="/23.png" />
-            <div className="font-lato font-bold text-[10px] leading-[135%] tracking-[0] text-primary-default">
+            <img alt="Place image here" src="/23.png" className="max-[767px]:hidden" />
+            <div className="font-lato font-bold text-[10px] max-[767px]:text-[9px] max-[767px]:text-center leading-[135%] tracking-[0] text-primary-default">
               Dr.Leena Naser
             </div>
           </div>
-          <p className="font-lato font-semibold text-[10px] leading-[135%] tracking-[0] text-primary-default">
+          <p className="font-lato font-semibold text-[10px] max-[767px]:text-[9px] max-[767px]:text-center leading-[135%] tracking-[0] text-primary-default">
             {t('Add New Appointment')}
           </p>
         </div>

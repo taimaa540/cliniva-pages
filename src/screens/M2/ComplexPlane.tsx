@@ -1,21 +1,28 @@
 "use client";
 import { UserCircleIcon, PlusIcon } from "lucide-react";
-import { ClinicDetailsSection } from "../ClinicDetailsSection";
-import { ClinicWorkSchedule } from "../ClinicWorkingSchedule/ClinicWorkingScheduleSection";
-import { CompanyDetailsSection } from "../CompanyDetailsSection/CompanyDetailsSection";
-import { ContactInfoSection } from "../CompanyPlanFillInConact/ContactInfoSectionContant";
-import { LegalDetailsSection } from "../CompanyPlanFillInLegal/LegalDetailsSection";
-import { ComplexWorkSchedule } from "../ComplexWorkingSchedule/ComplexWorkingScheduleSection";
-import { AccountCreationSection } from "../CompanyPlan/sections/AccountCreationSection";
+import { ClinicDetailsSection } from "./ClinicDetailsSection";
+import { ClinicWorkSchedule } from "./ClinicWorkingScheduleSection";
+import { CompanyDetailsSection } from "./CompanyDetailsSection";
+import { ContactInfoSection } from "./ContactInfoSectionContant";
+import { LegalDetailsSection } from "./LegalDetailsSection";
+import { ComplexWorkSchedule } from "./ComplexWorkingScheduleSection";
+import { AccountCreationSection } from "./AccountCreationSection";
 import { Input } from "../../components/ui/input";
 import { Card, CardContent } from "../../components/ui/card";
 import { useState } from "react";
 
 import "react-phone-input-2/lib/style.css";
+import { AccountCreationSectionMobile } from "./AccountCreationSectionMobile";
+import { CompanyDetailsSectionMobile } from "./CompanyDetailsSectionMobile";
+import { ContactInfoSectionMobile } from "./ContactInfoSectionMobile";
+import { LegalDetailsSectionMobile } from "./LegalDetailsSectionMobile";
+import { ComplexWorkScheduleMobile } from "./ComplexWorkScheduleMobile";
+import { ClinicDetailsSectionMobile } from "./ClinicDetailsSectionMobile";
+import { ClinicWorkScheduleMobile } from "./ClinicWorkScheduleMobile";
 
 type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 export const ComplexPlane = (): JSX.Element => {
-  const [currentStep, setCurrentStep] = useState<Step>(1);
+  const [currentStep, setCurrentStep] = useState<number>(1);
   const [showDialog, setShowDialog] = useState(false);
 
   const handleNext = () => {
@@ -28,10 +35,15 @@ export const ComplexPlane = (): JSX.Element => {
   const prevStep = () => {
     if (currentStep > 1) setCurrentStep((prev) => (prev - 1) as Step);
   };
+
+  const totalSteps = 7;
+  const nextStep = () => {
+    if (currentStep < totalSteps) setCurrentStep(currentStep + 1);
+  };
   return (
     <div className="flex h-screen w-screen overflow-hidden">
       {/* Left Sidebar */}
-      <div className="w-[280px] h-screen bg-surface-default">
+      <div className="hidden md:flex md:flex-col w-[280px] h-screen bg-surface-default">
         {/* Logo */}
         <header className="flex flex-col items-start gap-2.5 px-2 py-[9px] mt-4 ml-5 w-full">
           <div className="flex items-center gap-[7px]">
@@ -288,7 +300,9 @@ export const ComplexPlane = (): JSX.Element => {
 
               <div className="flex md:flex-row gap-8 items-start w-full mt-[16px]">
                 <div>
-                  <label className="block w-[160px] mb-[8px] ">Department Name</label>
+                  <label className="block w-[160px] mb-[8px] ">
+                    Department Name
+                  </label>
                   <Input
                     className=" bolck w-[360px] h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light "
                     placeholder="Enter Name"
@@ -308,25 +322,30 @@ export const ComplexPlane = (): JSX.Element => {
         </CompanyDetailsSection>
       )}
       {currentStep === 3 && (
-        <ContactInfoSection title="complex" handleNext={handleNext} prevStep={prevStep} />
+        <ContactInfoSection
+          title="complex"
+          handleNext={handleNext}
+          prevStep={prevStep}
+        />
       )}
       {currentStep === 4 && (
-        <LegalDetailsSection title="complex" handleNext={handleNext} prevStep={prevStep} />
+        <LegalDetailsSection
+          title="complex"
+          handleNext={handleNext}
+          prevStep={prevStep}
+        />
       )}
       {currentStep === 5 && (
         <ComplexWorkSchedule handleNext={handleNext} prevStep={prevStep} />
       )}
       {currentStep === 6 && (
-        <ClinicDetailsSection
-          handleNext={handleNext}
-          prevStep={prevStep}
-        />
+        <ClinicDetailsSection handleNext={handleNext} prevStep={prevStep} />
       )}
       {currentStep === 7 && (
         <ClinicWorkSchedule handleNext={handleNext} prevStep={prevStep} />
       )}
-      {/* Next Button */}
 
+      {/* Next Button */}
       {showDialog && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className=" bg-white rounded-lg shadow-lg w-[500px] h-[144px] ">
@@ -340,6 +359,81 @@ export const ComplexPlane = (): JSX.Element => {
           </div>
         </div>
       )}
+
+      {/* Left Sidebar / Content Mobile */}
+      <div className="flex flex-col md:hidden w-full px-4 space-y-4 overflow-y-auto">
+        {/* الخطوة الحالية */}
+        <div className="bg-white p-4 rounded shadow">
+          {currentStep === 1 && <AccountCreationSectionMobile />}
+          {currentStep === 2 && (
+            <CompanyDetailsSectionMobile title="complex">
+              <Card className="w-full bg-background-primary rounded-2xl ">
+                <CardContent className="flex flex-col p-[16px]">
+                  <div className="flex items-center justify-between w-full">
+                    <h2 className="text-base font-bold text-primary-default font-lato leading-[124%] tracking-[0]">
+                      Department
+                    </h2>
+                  </div>
+
+                  <div className="flex flex-col gap-8 items-start w-full mt-[16px]">
+                    <div>
+                      <label className="block w-[160px] mb-[8px] ">
+                        Department Name
+                      </label>
+                      <Input
+                        className=" bolck h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light "
+                        placeholder="Enter Name"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2 w-full">
+                      <label className="block w-[160px] ">Description</label>
+                      <Input
+                        placeholder="Enter Description"
+                        className=" bolck w-full h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light "
+                      />
+                      <PlusIcon className="w-6 h-6 text-secondary-dark cursor-pointer ml-auto" />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </CompanyDetailsSectionMobile>
+          )}
+          {currentStep === 3 && <ContactInfoSectionMobile title="complex" />}
+          {currentStep === 4 && <LegalDetailsSectionMobile title="complex" />}
+          {currentStep === 5 && <ComplexWorkScheduleMobile />}
+          {currentStep === 6 && <ClinicDetailsSectionMobile />}
+          {currentStep === 7 && <ClinicWorkScheduleMobile />}
+        </div>
+
+        {/* شريط التقدم (اختياري) */}
+        <div className="w-full bg-gray-200 h-2 rounded-full mb-2">
+          <div
+            className="bg-blue-400 h-2 rounded-full transition-all"
+            style={{ width: `${(currentStep / totalSteps) * 100}%` }}
+          ></div>
+        </div>
+
+        {/* أزرار التنقل */}
+        <div className="flex justify-between">
+          <button
+            onClick={prevStep}
+            className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+            disabled={currentStep === 1}
+          >
+            Prev
+          </button>
+          <button
+            onClick={nextStep}
+            className="px-4 py-2 bg-blue-400 text-white rounded disabled:opacity-50"
+          >
+            {currentStep === totalSteps
+              ? "Save"
+              : currentStep === 5
+              ? "Save & Continue"
+              : "Next"}
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

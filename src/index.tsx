@@ -12,7 +12,6 @@ import { BrowserRouter } from "react-router-dom";
 import { ComplexList } from "./screens/M2/ComplexList";
 import { SideBarPlan1 } from "./screens/CommonComponents/SideBarPlan1";
 
-import PhoneNumberInput from "./screens/CommonComponents/test";
 import { AddNewComplex } from "./screens/M2/AddNewComplex";
 import { AddNewClinic } from "./screens/M2/AddNewClinic";
 import { ElementViewCompany } from "./screens/M2/ElementVeiwCompany/ElementViewCompany";
@@ -26,8 +25,8 @@ import { SideBarPlan2 } from "./screens/CommonComponents/SideBarPlan2";
 import { SideBarPlan3 } from "./screens/CommonComponents/SideBarPlan3";
 import { EditUserDetails } from "./screens/M1/EditUserDetails";
 import { NoDataSection } from "./screens/M1/NoDataSection";
-import PhoneInputWithShortCode from "./screens/CommonComponents/test";
-import Example from "./screens/CommonComponents/test";
+import Sidebar from "./screens/test";
+import ResponsiveForm from "./screens/test";
 
 function MainApp() {
   return (
@@ -39,7 +38,7 @@ function MainApp() {
       <ThemeProvider defaultTheme="light" storageKey="cliniva-theme">
         <LanguageProvider>
           {/* Theme toggle in top-right corner */}
-          <div className="fixed top-[35px] right-[195px] z-50">
+          <div className="fixed top-[35px] right-[195px] max-[767px]:right-[50px] z-50">
             <ThemeToggle />
           </div>
 
@@ -48,7 +47,7 @@ function MainApp() {
             <main className="flex h-screen w-screen overflow-hidden">
               {/*  */}
               {/* <ChoosePlan /> */}
-              {/* <SideBarPlan1 /> */}
+              <SideBarPlan1 />
               {/* <SideBarPlan2 local="test"/> */}
               {/* <SideBarPlan3 local="test"/> */}
               {/* <NoDataSection/> */}
@@ -78,6 +77,7 @@ function MainApp() {
                 This action cannot be undone. Deleting a doctor will remove them
                 from all lists and make them unavailable for assignment.
               </Delete> */}
+              {/* <ResponsiveForm/> */}
               
             </main>
           </div>

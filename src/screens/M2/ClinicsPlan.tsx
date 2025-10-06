@@ -1,17 +1,22 @@
 "use client";
 import { UserCircleIcon } from "lucide-react";
-import { ClinicWorkSchedule } from "../ClinicWorkingSchedule/ClinicWorkingScheduleSection";
-import { ContactInfoSection } from "../CompanyPlanFillInConact/ContactInfoSectionContant";
-import { LegalDetailsSection } from "../CompanyPlanFillInLegal/LegalDetailsSection";
-import { AccountCreationSection } from "../CompanyPlan/sections/AccountCreationSection";
+import { ClinicWorkSchedule } from "./ClinicWorkingScheduleSection";
+import { ContactInfoSection } from "./ContactInfoSectionContant";
+import { LegalDetailsSection } from "./LegalDetailsSection";
+import { AccountCreationSection } from "./AccountCreationSection";
 import { useState } from "react";
 
 import "react-phone-input-2/lib/style.css";
-import { ClinicOverview } from "./Sections/ClinicOverview";
+import { ClinicOverview } from "./ClinicOverview";
+import { AccountCreationSectionMobile } from "./AccountCreationSectionMobile";
+import { ContactInfoSectionMobile } from "./ContactInfoSectionMobile";
+import { LegalDetailsSectionMobile } from "./LegalDetailsSectionMobile";
+import { ClinicWorkScheduleMobile } from "./ClinicWorkScheduleMobile";
+import { ClinicOverviewMobile } from "./ClinicOverviewMobile";
 
 type Step = 1 | 2 | 3 | 4 | 5 ;
 export const ClinicsPlane = (): JSX.Element => {
-  const [currentStep, setCurrentStep] = useState<Step>(1);
+  const [currentStep, setCurrentStep] = useState<number>(1);
   const [showDialog, setShowDialog] = useState(false);
 
   const handleNext = () => {
@@ -24,10 +29,14 @@ export const ClinicsPlane = (): JSX.Element => {
   const prevStep = () => {
     if (currentStep > 1) setCurrentStep((prev) => (prev - 1) as Step);
   };
+  const totalSteps = 5;
+  const nextStep = () => {
+    if (currentStep < totalSteps) setCurrentStep(currentStep + 1);
+  };
   return (
     <div className="flex h-screen w-screen overflow-hidden">
       {/* Left Sidebar */}
-      <div className="w-[280px] h-screen bg-surface-default">
+      <div className="hidden md:flex md:flex-col w-[280px] h-screen bg-surface-default">
         {/* Logo */}
         <header className="flex flex-col items-start gap-2.5 px-2 py-[9px] mt-4 ml-5 w-full">
           <div className="flex items-center gap-[7px]">
@@ -230,6 +239,43 @@ export const ClinicsPlane = (): JSX.Element => {
           </div>
         </div>
       )}
+
+      {/* Left Sidebar / Content Mobile */}
+      <div className="flex flex-col md:hidden w-full px-4 space-y-4 overflow-y-auto">
+        {/* الخطوة الحالية */}
+        <div className="bg-white p-4 rounded shadow">
+          {currentStep === 1 && <AccountCreationSectionMobile />}
+          {currentStep === 2 && <ClinicOverviewMobile/>}
+          {currentStep === 3 && <ContactInfoSectionMobile title="Clinic" />}
+          {currentStep === 4 && <LegalDetailsSectionMobile title="Clinic" />}
+          {currentStep === 5 && <ClinicWorkScheduleMobile />}
+        </div>
+
+        {/* شريط التقدم (اختياري) */}
+        <div className="w-full bg-gray-200 h-2 rounded-full mb-2">
+          <div
+            className="bg-blue-400 h-2 rounded-full transition-all"
+            style={{ width: `${(currentStep / totalSteps) * 100}%` }}
+          ></div>
+        </div>
+
+        {/* أزرار التنقل */}
+        <div className="flex justify-between">
+          <button
+            onClick={prevStep}
+            className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+            disabled={currentStep === 1}
+          >
+            Prev
+          </button>
+          <button
+            onClick={nextStep}
+            className="px-4 py-2 bg-blue-400 text-white rounded disabled:opacity-50"
+          >
+            {currentStep === totalSteps ? "Save" : "Next"}
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

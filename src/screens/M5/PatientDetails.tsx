@@ -101,8 +101,8 @@ export const PatientDetails = (): JSX.Element => {
       </header>
       <Card className="flex flex-col h-full items-start gap-5 p-[20px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-tertiary">
         <CardContent className="w-full overflow-y-auto scroll-x-hidden pr-[20px] ">
-          <main className="flex flex-col gap-[20px] w-full rounded-2xl">
-            <div className="flex justify-between">
+          <main className="flex flex-col gap-4 sm:gap-5 w-full max-w-full items-end rounded-2xl">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-full sm:justify-between">
               <div className="flex gap-[9px] items-center">
                 <span className="font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">{t('Patient Status')}</span>
                 <SwitchWithLabel />
@@ -143,14 +143,15 @@ export const PatientDetails = (): JSX.Element => {
                 </button>
               </div>
             </div>
-            <div className="flex gap-[20px] w-full">
+
+            <div className="flex flex-col xl:flex-row gap-4 sm:gap-5 w-full max-w-full">
               <aside
                 dir={local === "en" ? "ltr" : "rtl"}
-                className="w-[277px] h-[884px] bg-background-primary rounded-[16px] py-[22px] px-[8px] shadow-[0px_20px_24px_0px_#0A0D121A]"
+                className="w-full xl:w-[300px] xl:max-w-[300px] bg-background-primary rounded-[16px] py-4 sm:py-6 px-3 sm:px-4 shadow-[0px_20px_24px_0px_#0A0D121A]"
               >
-                <Card className=" w-full">
-                  <CardContent className="flex flex-col w-[245px]">
-                    <section className="flex flex-col items-center justify-center gap-[24px] h-[208px]">
+                <Card className="w-full max-w-full">
+                  <CardContent className="flex flex-col w-full p-0">
+                    <section className="flex flex-col items-center justify-center gap-4 sm:gap-6 py-4">
                       <img alt="" src="./Avatar.png" />
                       <div>
                         <h2 className="font-lato font-bold text-lg leading-[120%] tracking-[0] text-text-primary">
@@ -162,17 +163,17 @@ export const PatientDetails = (): JSX.Element => {
                       </div>
                     </section>
 
-                    <Separator className=" w-full h-px " />
+                    <Separator className="w-full h-px my-2" />
 
-                    <section className="flex flex-col gap-[16px] py-[8px] px-[12px]">
+                    <section className="flex flex-col gap-4 py-4 px-2">
                       <h3 className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
                         {t("Profile & Identity Info")}
                       </h3>
-                      <div className="inline-flex flex-col items-start gap-[16px] px-[4px]">
+                      <div className="flex flex-col items-start gap-3 w-full">
                         {personalInfoData.map((item, index) => (
                           <div
                             key={index}
-                            className="grid grid-cols-[110px_1fr] gap-4 items-center"
+                            className="flex flex-col sm:grid sm:grid-cols-[1fr_1fr] gap-1 sm:gap-2 w-full"
                           >
                             <span className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary">
                               {t(`${item.label}`)}
@@ -185,9 +186,9 @@ export const PatientDetails = (): JSX.Element => {
                       </div>
                     </section>
 
-                    <Separator className=" w-full h-px" />
+                    <Separator className="w-full h-px my-2" />
 
-                    <section className="flex flex-col gap-[16px] py-[8px] px-[12px]">
+                    <section className="flex flex-col gap-4 py-4 px-2">
                       <h3 className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
                         {t("Contact Info")}
                       </h3>
@@ -267,9 +268,9 @@ export const PatientDetails = (): JSX.Element => {
                         </span>
                       </div>
                     </section>
-                    <Separator className=" w-full h-px" />
+                    <Separator className="w-full h-px my-2" />
 
-                    <section className="flex flex-col gap-[16px] py-[24px] px-[12px]">
+                    <section className="flex flex-col gap-4 py-4 px-2">
                       <h3 className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-secondary-dark">
                         {t("Emergency Contact Info")}
                       </h3>
@@ -315,19 +316,19 @@ export const PatientDetails = (): JSX.Element => {
                 </Card>
               </aside>
 
-              <section className="flex flex-col gap-[16px] w-full items-start">
-                <Card className="flex flex-col items-start w-full bg-background-primary rounded-[16px] p-[16px]">
+              <section className="flex flex-col gap-4 w-full max-w-full min-w-0 flex-1">
+                <Card className="flex flex-col w-full max-w-full bg-background-primary rounded-[16px] p-4 sm:p-4">
                   <CardContent
                     dir={local === "en" ? "ltr" : "rtl"}
-                    className="w-full"
+                    className="w-full max-w-full p-0"
                   >
                     <h2 className="font-lato font-bold text-base leading-[124%] tracking-[0] text-primary-default">
                       {t("Insurance Info")}
                     </h2>
 
-                    <div className="flex items-start  w-full gap-[85px] mt-[18px]">
+                    <div className="flex items-start w-full max-[767px]:gap-[20px] gap-[85px] mt-[18px] max-[767px]:flex-col">
                       {/* العمود الأول */}
-                      <div className="grid grid-cols-[155px_1fr] gap-[32px]">
+                      <div className="grid grid-cols-[155px_1fr] max-[767px]:grid-cols-1 gap-[32px] max-[767px]:gap-[15px]">
                         <h4 className="font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Member Number")} :
                         </h4>
@@ -368,7 +369,7 @@ export const PatientDetails = (): JSX.Element => {
                       </div>
 
                       {/* العمود الثاني */}
-                      <div className="grid grid-cols-[155px_1fr] gap-x-[32px] gap-y-[42px]">
+                      <div className="grid grid-cols-[155px_1fr] max-[767px]:grid-cols-1 gap-x-[32px] gap-y-[42px] max-[767px]:gap-[15px]">
                         <h4 className="font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
                           {t("Member Type")} :
                         </h4>
@@ -403,7 +404,8 @@ export const PatientDetails = (): JSX.Element => {
                     </div>
                   </CardContent>
                 </Card>
-                <Card className="flex flex-col items-start w-full bg-background-primary rounded-[16px] p-[16px]">
+
+                <Card className="flex flex-col w-full max-w-full bg-background-primary rounded-[16px] p-4 sm:p-4">
                   <CardContent
                     dir={local === "en" ? "ltr" : "rtl"}
                     className="w-full"
@@ -411,9 +413,9 @@ export const PatientDetails = (): JSX.Element => {
                     <h2 className="font-lato font-bold text-base leading-[124%] tracking-[0] text-primary-default">
                       {t("Personal Documents")}
                     </h2>
-                    <div className="mt-[16px] grid grid-cols-2">
-                      <Card className="flex gap-[12px] h-[48px] px-[12px] py-[5px] bg-background-tertiary rounded-[16px]">
-                        <CardContent className="flex w-[38px] h-[38px] items-center justify-center gap-2.5 px-0 py-px relative bg-app-primary rounded-[10px] p-0">
+                    <div className="mt-[16px] grid grid-cols-2 max-[767px]:grid-cols-1">
+                      <Card className="flex gap-[12px] h-[48px] max-[767px]:h-auto px-[12px] py-[5px] bg-background-tertiary rounded-[16px]">
+                        <CardContent className="flex w-[38px] max-[767px]:w-fit h-[38px] items-center justify-center gap-2.5 px-0 py-px relative bg-app-primary rounded-[10px] p-0">
                           <svg
                             width="38"
                             height="38"
@@ -485,7 +487,8 @@ export const PatientDetails = (): JSX.Element => {
                     </div>
                   </CardContent>
                 </Card>
-                <Card className="flex flex-col items-start w-full bg-background-primary rounded-[16px] p-[16px]">
+
+                <Card className="flex flex-col w-full max-w-full bg-background-primary rounded-[16px] p-4 sm:p-4">
                   <CardContent
                     dir={local === "en" ? "ltr" : "rtl"}
                     className="w-full"
@@ -494,7 +497,7 @@ export const PatientDetails = (): JSX.Element => {
                       <h3 className="font-lato font-semibold text-base leading-[124%] tracking-[0] text-primary-default">
                         {t("Record History")}
                       </h3>
-                      <div className="flex justify-between mt-[16px]">
+                      <div className="flex max-[767px]:flex-col max-[767px]:gap-[10px] justify-between mt-[16px]">
                         <div className="grid grid-cols-[155px_1fr] gap-[16px]">
                           <h4 className="font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">{t('Registration Date')}</h4>
                           <h5 className="font-lato font-regular text-sm leading-[125%] tracking-[0] text-text-primary">{t('Nov')} 20,2026</h5>

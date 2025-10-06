@@ -119,7 +119,7 @@ export const Appointments = ({
 
   return (
     <>
-      <div className="flex flex-col w-full overflow-hidden items-start gap-4 py-4 pl-0 pr-5">
+      <div className="flex flex-col w-full overflow-hidden items-start gap-4 py-4 pl-0 pr-5 max-[767px]:pr-0 ">
         <header className="flex h-[66px] justify-between pl-1 pr-0 py-0 w-full items-center">
           <div className="flex flex-col w-[340px] items-start gap-1.5 px-0 py-0.5">
             <h1 className="font-lato font-semibold text-xl leading-[116%] tracking-[0] text-text-primary">
@@ -127,7 +127,7 @@ export const Appointments = ({
             </h1>
           </div>
 
-          <div className="inline-flex gap-3 flex-[0_0_auto] rounded-[28px] items-center">
+          <div className="inline-flex gap-3 max-[767px]:gap-2 flex-[0_0_auto] rounded-[28px] items-center">
             <div className="relative">
               <Button
                 variant="ghost"
@@ -156,7 +156,7 @@ export const Appointments = ({
 
             <div className="items-center gap-3 inline-flex ">
               <div className="inline-flex items-center w-[40px] h-[40px] gap-2.5 bg-app-primary rounded-3xl" />
-              <div className="flex-col items-start gap-1 inline-flex ">
+              <div className="max-[767px]:hidden flex-col items-start gap-1 inline-flex ">
                 <div className="font-lato font-bold text-base leading-[124%] tracking-[0] text-text-primary">
                   Anahera Jones
                 </div>
@@ -170,22 +170,22 @@ export const Appointments = ({
         <div
           className={` ${
             showRightSidebar
-              ? "grid grid-cols-4 gap-[8px] w-full h-full overflow-y-auto scroll-x-hidden"
+              ? "grid grid-cols-4 gap-[8px] max-[991px]:grid-cols-3 max-[767px]:grid-cols-1 w-full h-full overflow-y-auto scroll-x-hidden"
               : "w-full h-full overflow-y-auto scroll-x-hidden"
           }`}
         >
           {showRightSidebar && (
             <Card
               dir={`${local === "ar" ? "rtl" : "ltr"}`}
-              className="relative h-full rounded-2xl bg-background-tertiary col-span-3"
+              className="relative h-full rounded-2xl bg-background-tertiary col-span-3 max-[991px]:col-span-2 w-full"
             >
               <CardContent className="w-full h-full pt-[20px] pl-[6px] pr-[8px]">
-                <header className="flex justify-between w-full">
-                  <div className="flex gap-[10px] items-center">
+                <header className="flex justify-between w-full max-[767px]:flex-col max-[991px]:gap-[5px]">
+                  <div className="flex gap-[10px] max-[991px]:gap-[5px] items-center">
                     <span className="py-[9px] px-[10px] bg-secondary-light rounded-[20px] font-lato font-medium text-[11px] leading-[105%] tracking-[0] text-text-primary">
                       {t("Today")}
                     </span>
-                    <select className="bg-transparent font-lato font-semibold text-base leading-[124%] tracking-[0] text-text-primary">
+                    <select className="bg-transparent font-lato font-semibold text-base max-[767px]:text-sm max-[991px]:text-xs leading-[124%] tracking-[0] text-text-primary">
                       <option value="September 2025">
                         {t("September")} 2025
                       </option>
@@ -209,16 +209,16 @@ export const Appointments = ({
                       <input
                         type="search"
                         placeholder={t("Search patient")}
-                        className="placeholder:text-[11px] text-[11px] bg-background-primary pl-[30px] py-[8px] rounded-[16px] w-[165px] h-[30px] border-0 px-4 py-2 rounded outline-none focus:border-0"
+                        className="placeholder:text-[11px] max-[991px]:placeholder:text-[9px] text-[11px] max-[991px]:text-[9px] bg-background-primary pl-[30px] py-[8px] rounded-[16px] w-[165px] max-[991px]:w-[115px] border-0 px-4 py-2 rounded outline-none focus:border-0 "
                       />
                     </form>
                   </div>
-                  <div className="flex gap-[16px]">
-                    <div className="flex gap-[8px]">
+                  <div className="flex gap-[16px] max-[991px]:gap-[5px]">
+                    <div className="flex gap-[8px] max-[991px]:gap-[5px]">
                       <select
                         value={selected}
                         onChange={(e) => setSelected(e.target.value)}
-                        className="py-[9px] px-[12px] rounded-[20px] bg-secondary-light font-lato font-medium text-[11px] leading-[105%] tracking-[0] text-text-primary outline-none"
+                        className="py-[9px] px-[12px] max-[991px]:p-0 rounded-[20px] bg-secondary-light font-lato font-medium text-[11px] max-[991px]:text-[9px] leading-[105%] tracking-[0] text-text-primary outline-none"
                       >
                         <option value="Noor Clinic">
                           {t("Clinic")} : {t("Noor Clinic")}
@@ -229,7 +229,7 @@ export const Appointments = ({
                       </select>
                       <select
                         defaultValue="All Doctors"
-                        className="py-[9px] px-[12px] rounded-[20px] bg-secondary-light font-lato font-medium text-[11px] leading-[105%] tracking-[0] text-text-primary outline-none"
+                        className="py-[9px] px-[12px] max-[991px]:p-0 rounded-[20px] bg-secondary-light font-lato font-medium text-[11px] max-[991px]:text-[9px] leading-[105%] tracking-[0] text-text-primary outline-none"
                       >
                         <option value="Doctor:All Doctors">
                           {t("Doctor")} : {t("All Doctors")}
@@ -239,8 +239,11 @@ export const Appointments = ({
                         </option>
                       </select>
                     </div>
-                    <div dir="ltr" className="flex gap-[8px]">
-                      <div className="w-[30px] h-[30px] rounded-[15px] bg-secondary-dark flex items-center justify-center">
+                    <div
+                      dir="ltr"
+                      className="flex gap-[8px] max-[991px]:gap-[4px]"
+                    >
+                      <div className="w-[30px] max-[991px]:w-[25px] h-[30px] max-[991px]:h-[25px] rounded-[15px] bg-secondary-dark flex items-center justify-center">
                         <svg
                           width="16"
                           height="16"
@@ -256,7 +259,7 @@ export const Appointments = ({
                           />
                         </svg>
                       </div>
-                      <div className="w-[30px] h-[30px] rounded-[15px] bg-secondary-dark flex items-center justify-center">
+                      <div className="w-[30px] max-[991px]:w-[25px] h-[30px] max-[991px]:h-[25px] rounded-[15px] bg-secondary-dark flex items-center justify-center">
                         <svg
                           width="16"
                           height="16"
@@ -277,7 +280,7 @@ export const Appointments = ({
                 </header>
 
                 {selected === "Noor Clinic" && (
-                  <div className="relative mt-[16px] grid grid-cols-[1fr_2fr_2fr_2fr_2fr_2fr] gap-y-[16px] gap-x-[8px] items-center">
+                  <div className="relative mt-[16px] grid grid-cols-[1fr_2fr_2fr_2fr_2fr_2fr] max-[991px]:grid-cols-[1fr_2fr_2fr_2fr_2fr] max-[767px]:grid-cols-[20%_25%_25%_25%] max-[767px]:gap-x-[4px] gap-y-[16px] gap-x-[8px] items-center">
                     <div className="h-[60px] bg-background-primary font-lato font-bold text-xs leading-[130%] tracking-[0] text-[#4D5260] rounded-[12px] flex items-center justify-center">
                       {t("Time/Date")}
                     </div>
@@ -308,7 +311,7 @@ export const Appointments = ({
                       </p>
                       <hr className="bg-border-light h-[750px] w-[1px] absolute top-[76px] left-[50%] z-0" />
                     </div>
-                    <div className="relative h-[60px] bg-background-primary rounded-[12px] flex flex-col items-center justify-center gap-[4px]">
+                    <div className="max-[767px]:hidden relative h-[60px] bg-background-primary rounded-[12px] flex flex-col items-center justify-center gap-[4px]">
                       <h6 className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary">
                         {t("Tue")}
                       </h6>
@@ -317,7 +320,7 @@ export const Appointments = ({
                       </p>
                       <hr className="bg-border-light h-[525px] w-[1px] absolute top-[76px] left-[50%] z-0" />
                     </div>
-                    <div className="relative h-[60px] bg-background-primary rounded-[12px] flex flex-col items-center justify-center gap-[4px]">
+                    <div className="max-[991px]:hidden relative h-[60px] bg-background-primary rounded-[12px] flex flex-col items-center justify-center gap-[4px]">
                       <h6 className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary">
                         {t("Wed")}
                       </h6>
@@ -332,8 +335,12 @@ export const Appointments = ({
                     <CompletedCard />
                     <ScheduledCard />
                     <ScheduledCard />
-                    <ScheduledCard />
-                    <ScheduledCard />
+                    <div className="max-[767px]:hidden">
+                      <ScheduledCard />
+                    </div>
+                    <div className="max-[991px]:hidden">
+                      <ScheduledCard />
+                    </div>
                     <span className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary flex items-center justify-center">
                       10:00 {t("AM")}
                     </span>
@@ -354,16 +361,24 @@ export const Appointments = ({
                       }
                     />
                     <ScheduledCard />
-                    <ScheduledCard />
-                    <ScheduledCard />
+                    <div className="max-[767px]:hidden">
+                      <ScheduledCard />
+                    </div>
+                    <div className="max-[991px]:hidden">
+                      <ScheduledCard />
+                    </div>
                     <span className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary flex items-center justify-center">
                       11:00 {t("AM")}
                     </span>
                     <MissedCard />
                     <ScheduledCard />
                     <ScheduledCard />
-                    <ScheduledCard />
-                    <ScheduledCard />
+                    <div className="max-[767px]:hidden">
+                      <ScheduledCard />
+                    </div>
+                    <div className="max-[991px]:hidden">
+                      <ScheduledCard />
+                    </div>
                     <span className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary flex items-center justify-center">
                       12:00 {t("AM")}
                     </span>
@@ -398,44 +413,52 @@ export const Appointments = ({
                         })
                       }
                     />
-                    <AddCard
-                      addPatient={addPatient.addPatient4}
-                      handelAddClick={() =>
-                        setAddPatient({
-                          addPatient1: false,
-                          addPatient2: false,
-                          addPatient3: false,
-                          addPatient4: true,
-                          addPatient5: false,
-                          addPatient6: false,
-                          addPatient7: false,
-                          addPatient8: false,
-                        })
-                      }
-                    />
-                    <AddCard
-                      addPatient={addPatient.addPatient5}
-                      handelAddClick={() =>
-                        setAddPatient({
-                          addPatient1: false,
-                          addPatient2: false,
-                          addPatient3: false,
-                          addPatient4: false,
-                          addPatient5: true,
-                          addPatient6: false,
-                          addPatient7: false,
-                          addPatient8: false,
-                        })
-                      }
-                    />
+                    <div className="max-[767px]:hidden">
+                      <AddCard
+                        addPatient={addPatient.addPatient4}
+                        handelAddClick={() =>
+                          setAddPatient({
+                            addPatient1: false,
+                            addPatient2: false,
+                            addPatient3: false,
+                            addPatient4: true,
+                            addPatient5: false,
+                            addPatient6: false,
+                            addPatient7: false,
+                            addPatient8: false,
+                          })
+                        }
+                      />
+                    </div>
+                    <div className="max-[991px]:hidden">
+                      <AddCard
+                        addPatient={addPatient.addPatient5}
+                        handelAddClick={() =>
+                          setAddPatient({
+                            addPatient1: false,
+                            addPatient2: false,
+                            addPatient3: false,
+                            addPatient4: false,
+                            addPatient5: true,
+                            addPatient6: false,
+                            addPatient7: false,
+                            addPatient8: false,
+                          })
+                        }
+                      />
+                    </div>
                     <span className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary flex items-center justify-center">
                       1:00 {t("PM")}
                     </span>
                     <ScheduledCard />
                     <ScheduledCard />
                     <ScheduledCard />
-                    <ScheduledCard />
-                    <ScheduledCard />
+                    <div className="max-[767px]:hidden">
+                      <ScheduledCard />
+                    </div>
+                    <div className="max-[991px]:hidden">
+                      <ScheduledCard />
+                    </div>
                     <span className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary flex items-center justify-center">
                       2:00 {t("PM")}
                     </span>
@@ -470,8 +493,8 @@ export const Appointments = ({
                         })
                       }
                     />
-                    <div></div>
-                    <div></div>
+                    <div className="max-[767px]:hidden"></div>
+                    <div className="max-[991px]:hidden"></div>
                     <span className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary flex items-center justify-center">
                       3:00 {t("PM")}
                     </span>
@@ -497,8 +520,8 @@ export const Appointments = ({
                   </div>
                 )}
                 {selected === "All Clinics" && (
-                  <div className="relative mt-[16px] grid grid-cols-[1fr_2fr_2fr_2fr_2fr_2fr] gap-y-[16px] gap-x-[8px] items-center">
-                    <div className="h-[60px] bg-background-primary font-lato font-bold text-xs leading-[130%] tracking-[0] text-[#4D5260] rounded-[12px] flex items-center justify-center">
+                  <div className="relative mt-[16px] grid grid-cols-[1fr_2fr_2fr_2fr_2fr_2fr] max-[991px]:grid-cols-[1fr_2fr_2fr_2fr_2fr] max-[767px]:grid-cols-[20%_25%_25%_25%] max-[767px]:gap-x-[4px] gap-y-[16px] gap-x-[8px] items-center">
+                    <div className="h-[60px] bg-background-primary font-lato font-bold text-xs max-[767px]:text-[10px] leading-[130%] tracking-[0] text-[#4D5260] rounded-[12px] flex items-center justify-center">
                       {t("Time/Date")}
                     </div>
                     <div className="relative h-[60px] bg-background-primary rounded-[12px] flex flex-col items-center justify-center gap-[4px]">
@@ -508,7 +531,7 @@ export const Appointments = ({
                       <p className="font-lato font-semibold text-xl leading-[116%] tracking-[0] text-[white] bg-primary-default rounded-[50px] p-[4px]">
                         18
                       </p>
-                      <hr className="bg-border-light h-[882px] w-[1px] absolute top-[76px] left-[50%] z-0" />
+                      <hr className="bg-border-light h-[882px] max-[767px]:h-[1562px] max-[991px]:h-[1252px] w-[1px] absolute top-[76px] left-[50%] z-0" />
                     </div>
                     <div className="relative h-[60px] bg-background-primary rounded-[12px] flex flex-col items-center justify-center gap-[4px]">
                       <h6 className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary">
@@ -517,34 +540,34 @@ export const Appointments = ({
                       <p className="font-lato font-semibold text-xl leading-[116%] tracking-[0] text-text-primary">
                         19
                       </p>
-                      <hr className="bg-border-light h-[882px] w-[1px] absolute top-[76px] left-[50%] z-0" />
+                      <hr className="bg-border-light h-[882px] max-[767px]:h-[1562px] max-[991px]:h-[1252px] w-[1px] absolute top-[76px] left-[50%] z-0" />
                     </div>
-                    <div className="relative h-[60px] bg-background-primary rounded-[12px] flex flex-col items-center justify-center gap-[4px]">
+                    <div className=" relative h-[60px] bg-background-primary rounded-[12px] flex flex-col items-center justify-center gap-[4px]">
                       <h6 className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary">
                         {t("Mon")}
                       </h6>
                       <p className="font-lato font-semibold text-xl leading-[116%] tracking-[0] text-text-primary">
                         20
                       </p>
-                      <hr className="bg-border-light h-[882px] w-[1px] absolute top-[76px] left-[50%] z-0" />
+                      <hr className="bg-border-light h-[882px] max-[767px]:h-[1562px] max-[991px]:h-[1252px] w-[1px] absolute top-[76px] left-[50%] z-0" />
                     </div>
-                    <div className="relative h-[60px] bg-background-primary rounded-[12px] flex flex-col items-center justify-center gap-[4px]">
+                    <div className="max-[767px]:hidden relative h-[60px] bg-background-primary rounded-[12px] flex flex-col items-center justify-center gap-[4px]">
                       <h6 className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary">
                         {t("Tue")}
                       </h6>
                       <p className="font-lato font-semibold text-xl leading-[116%] tracking-[0] text-text-primary">
                         21
                       </p>
-                      <hr className="bg-border-light h-[882px] w-[1px] absolute top-[76px] left-[50%] z-0" />
+                      <hr className="bg-border-light h-[882px] max-[991px]:h-[1252px] w-[1px] absolute top-[76px] left-[50%] z-0" />
                     </div>
-                    <div className="relative h-[60px] bg-background-primary rounded-[12px] flex flex-col items-center justify-center gap-[4px]">
+                    <div className="max-[991px]:hidden relative h-[60px] bg-background-primary rounded-[12px] flex flex-col items-center justify-center gap-[4px]">
                       <h6 className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary">
                         {t("Wed")}
                       </h6>
                       <p className="font-lato font-semibold text-xl leading-[116%] tracking-[0] text-text-primary">
                         22
                       </p>
-                      <hr className="bg-border-light h-[882px] w-[1px] absolute top-[76px] left-[50%] z-0" />
+                      <hr className="bg-border-light h-[882px] max-[991px]:h-[1252px] w-[1px] absolute top-[76px] left-[50%] z-0" />
                     </div>
                     <span className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary flex items-center justify-center">
                       9:00 {t("AM")}
@@ -567,13 +590,13 @@ export const Appointments = ({
                       <CardInAll className="bg-[#69A3E9]" />
                       <AddCardInAll />
                     </div>
-                    <div className="p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
+                    <div className="max-[767px]:hidden p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
                       <CardInAll className="bg-[#69A3E9]" />
                       <CardInAll className="bg-[#69A3E9]" />
                       <AddCardInAll />
                       <AddCardInAll />
                     </div>
-                    <div className="p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
+                    <div className="max-[991px]:hidden p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
                       <CardInAll className="bg-[#69A3E9]" />
                       <CardInAll className="bg-[#69A3E9]" />
                       <AddCardInAll />
@@ -600,13 +623,13 @@ export const Appointments = ({
                       <AddCardInAll />
                       <AddCardInAll />
                     </div>
-                    <div className="p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
+                    <div className="max-[767px]:hidden p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
                       <CardInAll className="bg-[#69A3E9]" />
                       <CardInAll className="bg-[#69A3E9]" />
                       <CardInAll className="bg-[#69A3E9]" />
                       <CardInAll className="bg-[#69A3E9]" />
                     </div>
-                    <div className="p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
+                    <div className="max-[991px]:hidden p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
                       <AddCardInAll />
                       <AddCardInAll />
                       <AddCardInAll />
@@ -633,13 +656,13 @@ export const Appointments = ({
                       <AddCardInAll />
                       <AddCardInAll />
                     </div>
-                    <div className="p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
+                    <div className="max-[767px]:hidden p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
                       <CardInAll className="bg-[#69A3E9]" />
                       <CardInAll className="bg-[#69A3E9]" />
                       <CardInAll className="bg-[#69A3E9]" />
                       <CardInAll className="bg-[#69A3E9]" />
                     </div>
-                    <div className="p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
+                    <div className="max-[991px]:hidden p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
                       <CardInAll className="bg-[#69A3E9]" />
                       <CardInAll className="bg-[#69A3E9]" />
                       <AddCardInAll />
@@ -666,13 +689,13 @@ export const Appointments = ({
                       <AddCardInAll />
                       <AddCardInAll />
                     </div>
-                    <div className="p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
+                    <div className="max-[767px]:hidden p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
                       <CardInAll className="bg-[#69A3E9]" />
                       <CardInAll className="bg-[#69A3E9]" />
                       <CardInAll className="bg-[#69A3E9]" />
                       <CardInAll className="bg-[#69A3E9]" />
                     </div>
-                    <div className="p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
+                    <div className="max-[991px]:hidden p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
                       <AddCardInAll />
                       <AddCardInAll />
                       <AddCardInAll />
@@ -699,13 +722,13 @@ export const Appointments = ({
                       <AddCardInAll />
                       <AddCardInAll />
                     </div>
-                    <div className="p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
+                    <div className="max-[767px]:hidden p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
                       <CardInAll className="bg-[#69A3E9]" />
                       <CardInAll className="bg-[#69A3E9]" />
                       <CardInAll className="bg-[#69A3E9]" />
                       <CardInAll className="bg-[#69A3E9]" />
                     </div>
-                    <div className="p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
+                    <div className="max-[991px]:hidden p-[4px] flex flex-col gap-[6px] border border-border-light rounded-[8px]">
                       <AddCardInAll />
                       <AddCardInAll />
                       <AddCardInAll />
@@ -716,7 +739,7 @@ export const Appointments = ({
 
                 <div
                   onClick={() => setShowRightSidebar(!showRightSidebar)}
-                  className={`w-[24px] h-[24px] flex items-center justify-center absolute rounded-[20px] text-[#B8B1A9] top-[500px] right-[0px] ${
+                  className={`max-[767px]:hidden w-[24px] h-[24px] flex items-center justify-center absolute rounded-[20px] text-[#B8B1A9] top-[500px] right-[0px] ${
                     showRightSidebar ? "" : "rotate-180"
                   }  hover:bg-[#D4D4D4] hover:text-[#141B34] transition duration-2000`}
                 >
@@ -735,7 +758,7 @@ export const Appointments = ({
                 </div>
                 <div
                   onClick={() => setShowLeftSidebar(!showLeftSidebar)}
-                  className={`w-[24px] h-[24px] flex items-center justify-center absolute rounded-[20px] text-[#B8B1A9] top-[500px] left-[0px] ${
+                  className={`max-[991px]:hidden w-[24px] h-[24px] flex items-center justify-center absolute rounded-[20px] text-[#B8B1A9] top-[500px] left-[0px] ${
                     showLeftSidebar ? "" : "rotate-180"
                   }  hover:bg-[#D4D4D4] hover:text-[#141B34] transition duration-2000`}
                 >
@@ -1149,7 +1172,7 @@ export const Appointments = ({
                       <p className="font-lato font-semibold text-xl leading-[116%] tracking-[0] text-[white] bg-primary-default rounded-[50px] p-[4px]">
                         18
                       </p>
-                      <hr className="bg-border-light h-[882px] w-[1px] absolute top-[76px] left-[50%] z-0" />
+                      <hr className="bg-border-light h-[882px] max-[991px]:h-[1520px] w-[1px] absolute top-[76px] left-[50%] z-0" />
                     </div>
                     <div className="relative h-[60px] bg-background-primary rounded-[12px] flex flex-col items-center justify-center gap-[4px]">
                       <h6 className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary">
@@ -1158,7 +1181,7 @@ export const Appointments = ({
                       <p className="font-lato font-semibold text-xl leading-[116%] tracking-[0] text-text-primary">
                         19
                       </p>
-                      <hr className="bg-border-light h-[882px] w-[1px] absolute top-[76px] left-[50%] z-0" />
+                      <hr className="bg-border-light h-[882px] max-[991px]:h-[1520px] w-[1px] absolute top-[76px] left-[50%] z-0" />
                     </div>
                     <div className="relative h-[60px] bg-background-primary rounded-[12px] flex flex-col items-center justify-center gap-[4px]">
                       <h6 className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary">
@@ -1167,7 +1190,7 @@ export const Appointments = ({
                       <p className="font-lato font-semibold text-xl leading-[116%] tracking-[0] text-text-primary">
                         20
                       </p>
-                      <hr className="bg-border-light h-[882px] w-[1px] absolute top-[76px] left-[50%] z-0" />
+                      <hr className="bg-border-light h-[882px] max-[991px]:h-[1520px] w-[1px] absolute top-[76px] left-[50%] z-0" />
                     </div>
                     <div className="relative h-[60px] bg-background-primary rounded-[12px] flex flex-col items-center justify-center gap-[4px]">
                       <h6 className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary">
@@ -1176,7 +1199,7 @@ export const Appointments = ({
                       <p className="font-lato font-semibold text-xl leading-[116%] tracking-[0] text-text-primary">
                         21
                       </p>
-                      <hr className="bg-border-light h-[882px] w-[1px] absolute top-[76px] left-[50%] z-0" />
+                      <hr className="bg-border-light h-[882px] max-[991px]:h-[1520px] w-[1px] absolute top-[76px] left-[50%] z-0" />
                     </div>
                     <div className="relative h-[60px] bg-background-primary rounded-[12px] flex flex-col items-center justify-center gap-[4px]">
                       <h6 className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary">
@@ -1185,7 +1208,7 @@ export const Appointments = ({
                       <p className="font-lato font-semibold text-xl leading-[116%] tracking-[0] text-text-primary">
                         22
                       </p>
-                      <hr className="bg-border-light h-[882px] w-[1px] absolute top-[76px] left-[50%] z-0" />
+                      <hr className="bg-border-light h-[882px] max-[991px]:h-[1520px] w-[1px] absolute top-[76px] left-[50%] z-0" />
                     </div>
                     <div className="relative h-[60px] bg-background-primary rounded-[12px] flex flex-col items-center justify-center gap-[4px]">
                       <h6 className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary">
@@ -1194,7 +1217,7 @@ export const Appointments = ({
                       <p className="font-lato font-semibold text-xl leading-[116%] tracking-[0] text-text-primary">
                         23
                       </p>
-                      <hr className="bg-border-light h-[882px] w-[1px] absolute top-[76px] left-[50%] z-0" />
+                      <hr className="bg-border-light h-[882px] max-[991px]:h-[1520px] w-[1px] absolute top-[76px] left-[50%] z-0" />
                     </div>
                     <div className="relative h-[60px] bg-background-primary rounded-[12px] flex flex-col items-center justify-center gap-[4px]">
                       <h6 className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary">
@@ -1203,7 +1226,7 @@ export const Appointments = ({
                       <p className="font-lato font-semibold text-xl leading-[116%] tracking-[0] text-text-primary">
                         24
                       </p>
-                      <hr className="bg-border-light h-[882px] w-[1px] absolute top-[76px] left-[50%] z-0" />
+                      <hr className="bg-border-light h-[882px] max-[991px]:h-[1520px] w-[1px] absolute top-[76px] left-[50%] z-0" />
                     </div>
                     <span className="font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-secondary flex items-center justify-center">
                       9:00 {t("AM")}
@@ -1453,7 +1476,7 @@ export const Appointments = ({
                 </div>
                 <div
                   onClick={() => setShowLeftSidebar(!showLeftSidebar)}
-                  className={`w-[24px] h-[24px] flex items-center justify-center absolute rounded-[20px] text-[#B8B1A9] top-[500px] left-[0] ${
+                  className={`max-[991px]:hidden w-[24px] h-[24px] flex items-center justify-center absolute rounded-[20px] text-[#B8B1A9] top-[500px] left-[0] ${
                     showLeftSidebar ? "" : "rotate-180"
                   }  hover:bg-[#D4D4D4] hover:text-[#141B34] transition duration-2000`}
                 >
@@ -1476,7 +1499,7 @@ export const Appointments = ({
           <Card
             hidden={!showRightSidebar}
             dir={`${local === "ar" ? "rtl" : "ltr"}`}
-            className="col-span-1"
+            className="col-span-1 "
           >
             <CardContent className="h-full">
               <div className="grid grid-cols-3 gap-[9px]">
@@ -1493,7 +1516,7 @@ export const Appointments = ({
                 onOpenChange={() =>
                   setOpen({ ...open, services: !open.services })
                 }
-                className="w-full bg-[#EEF6FF] p-[16px] rounded-[12px] mt-[16px]"
+                className="w-full max-[767px]:hidden bg-[#EEF6FF] p-[16px] rounded-[12px] mt-[16px]"
               >
                 <CollapsibleTrigger asChild>
                   <Button
@@ -1665,8 +1688,8 @@ export const Appointments = ({
                           </div>
                         </div>
 
-                        <div className="flex items-start gap-[20px] w-full">
-                          <div className="flex items-center justify-between w-full">
+                        <div className="flex items-start gap-[20px] max-[991px]:gap-[10px] w-full">
+                          <div className="flex items-center justify-between max-[991px]:gap-[10px] w-full">
                             <svg
                               width="20"
                               height="20"
@@ -1773,7 +1796,7 @@ export const Appointments = ({
                       key={appointment.id}
                       className="w-full bg-[white] rounded-[12px] py-[16px] px-[6.5px] mb-[8px]"
                     >
-                      <CardContent className="flex items-center gap-[12px]">
+                      <CardContent className="flex items-center gap-[12px] max-[991px]:gap-[7px]">
                         <img alt="Place image here" src="/26.png" />
                         <div className="flex flex-col items-start gap-1">
                           <div className="font-lato font-semibold text-sm leading-[125%] tracking-[0] text-text-primary">
@@ -1799,7 +1822,7 @@ export const Appointments = ({
                           </div>
                         </div>
 
-                        <div className="flex flex-col items-end gap-2 ">
+                        <div className="flex flex-col items-start gap-2 ">
                           <div className="font-lato font-semibold text-[11px] leading-[124%] tracking-[0] text-primary-default">
                             {appointment.date}
                           </div>
