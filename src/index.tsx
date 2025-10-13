@@ -31,11 +31,7 @@ import { ViewDoctorList } from "./screens/Moudule3/ViewDoctorList/ViewDoctorList
 import { ViewListOfSpicialities } from "./screens/Moudule3/ViewListOfSpecialities/ViewListOfSpecialities";
 import { ViewStaffMembersList } from "./screens/Moudule3/ViewStaffMembersList/ViewStaffMembersList";
 
-import {
-  Routes,
-  Route,
-  Outlet,
-} from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 import { StaffMemberDetails } from "./screens/Moudule3/SrtaffMemberDetails/StaffMemberDetails";
 import { EditDoctorDetails } from "./screens/Moudule3/EditDoctorsDetails/EditDoctorsDetails";
 
@@ -104,9 +100,7 @@ function MainApp() {
                     {/* M2.BackIcon*/}
 
                     {/* M2 */}
-
                     <Route path="" element={<LoginPage />} />
-
                     <Route path="chooseplan" element={<ChoosePlan />} />
                     <Route path="CompanyPlane" element={<CompanyPlan />} />
                     <Route path="ComplexPlane" element={<ComplexPlane />} />
@@ -244,8 +238,7 @@ function MainApp() {
                           setShowLeftSidebar={setShowLeftSidebar}
                         />
                       }
-                    ></Route>
-
+                    />
                     <Route path="MoreDetails" element={<MoreDetails />} />
                   </Route>
                 </Routes>

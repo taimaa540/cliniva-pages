@@ -170,7 +170,7 @@
   @apply flex items-center outline-none border border-border-light rounded-[4px] px-2 py-1 h-[48px] gap-[8px];
 }
 .PhoneInputCountry {
-  @apply flex items-center gap-2 flex-none border-r border-border-light pr-2;
+  @apply flex items-center w-[75px] gap-2 flex-none border-r border-border-light pr-2;
 }
 
 /* العلم */
@@ -188,12 +188,12 @@ visibility: hidden;
 /*
 حقل إدخال الرقم */
 .PhoneInputInput {
-  @apply max-w-[280px] h-full flex-1 outline-none bg-background-secondary px-2 text-gray-800;
+  @apply w-full h-full flex-1 outline-none bg-background-secondary px-2 text-gray-800;
 }
 .PhoneInputCountrySelect span {
-  font-size: 14px !important; /* صغّر أو كبّر الرقم حسب ما بدك */
-  font-weight: 600;           /* نفس تأثير font-semibold */
-  color: #1e293b;             /* text-slate-800 مثل Tailwind */
+  font-size: 14px !important; 
+  font-weight: 600;           
+  color: #1e293b;             
 }
 input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(47%) sepia(4%) saturate(300%) hue-rotate(180deg);

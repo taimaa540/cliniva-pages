@@ -65,12 +65,12 @@ export const AccountCreationSection = ({
 
       <Card className=" w-full h-full  bg-background-secondary rounded-[16px] overflow-hidden border-0">
         <CardContent className="p-5">
-          <div className="grid grid-cols-2 gap-[32px] w-full max-w-[1161px]">
+          <div className="grid lg:grid-cols-2 gap-[32px] w-full max-w-[1161px]">
             {formFields.map((field) => (
               <div key={field.id} className="flex items-center gap-8">
                 <Label
                   htmlFor={field.id}
-                  className="w-[160px] font-lato font-medium text-on-surface-primary text-base tracking-[0] leading-[100%]"
+                  className="w-[200px] font-lato font-medium text-on-surface-primary text-base tracking-[0] leading-[100%]"
                 >
                   {field.label}
                 </Label>
@@ -80,7 +80,7 @@ export const AccountCreationSection = ({
                       id={field.id}
                       type={showPassword ? "text" : "password"}
                       placeholder={field.placeholder}
-                      className="w-[360px] h-12 px-4 py-2 ml-[42px] bg-surface-primary rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
+                      className="w-full h-12 px-4 py-2 bg-surface-primary rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
                     />
                     <button
                       type="button"
@@ -94,7 +94,7 @@ export const AccountCreationSection = ({
                   <Input
                     id={field.id}
                     placeholder={field.placeholder}
-                    className="w-[360px] h-12 px-4 py-2 bg-surface-primary rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
+                    className="w-full h-12 px-4 py-2 bg-surface-primary rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
                   />
                 )}
               </div>

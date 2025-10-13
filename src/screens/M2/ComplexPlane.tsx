@@ -25,7 +25,7 @@ type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 export const ComplexPlane = (): JSX.Element => {
   const [currentStep, setCurrentStep] = useState<number>(1);
   const navigate = useNavigate();
-  
+
   const [showDialog, setShowDialog] = useState(false);
   useEffect(() => {
     if (showDialog) {
@@ -42,7 +42,6 @@ export const ComplexPlane = (): JSX.Element => {
       setShowDialog(true); // آخر خطوة → إظهار الـ Dialog
     }
   };
-
 
   const prevStep = () => {
     if (currentStep > 1) setCurrentStep((prev) => (prev - 1) as Step);
@@ -322,11 +321,13 @@ export const ComplexPlane = (): JSX.Element => {
                 </div>
                 <div className="flex flex-col gap-2 w-full">
                   <label className="block w-[160px] ">Description</label>
-                  <Input
-                    placeholder="Enter Description"
-                    className=" bolck w-full h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light "
-                  />
-                  <PlusIcon className="w-6 h-6 text-secondary-dark cursor-pointer relative left-[750px]" />
+                  <div className="flex flex-col items-end gap-2 w-full">
+                    <Input
+                      placeholder="Enter Description"
+                      className=" bolck w-full h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light "
+                    />
+                    <PlusIcon className="w-6 h-6 text-secondary-dark cursor-pointer" />
+                  </div>
                 </div>
               </div>
             </CardContent>
@@ -361,9 +362,7 @@ export const ComplexPlane = (): JSX.Element => {
       {showDialog && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className=" bg-white rounded-lg shadow-lg w-[500px] h-[144px] ">
-            <button className="ml-[450px] mt-[16px] p-[5px] rounded-[16px] hover:bg-surface-hover transiton duration-300">
-     
-            </button>
+            <button className="ml-[450px] mt-[16px] p-[5px] rounded-[16px] hover:bg-surface-hover transiton duration-300"></button>
             <img alt="" src="./FeaturedIcon.svg" className="m-auto" />
             <p className=" text-center font-lato font-semibold text-xl leading-[118%] tracking-[0] text-[#181D27] ">
               Complex plan has been successfully set up.

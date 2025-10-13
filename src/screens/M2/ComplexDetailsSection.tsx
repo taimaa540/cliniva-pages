@@ -24,9 +24,9 @@ export const ComplexDetailsSection = ({
       {/* Header */}
       <div className="flex flex-col gap-2">
         <button className="flex items-center gap-2 font-lato text-xs text-text-secondary font-regular leading-[130%] tracking-[0]">
-           <Link to='/ChossPlan'>
-                  <ArrowLeftIcon className="relative w-4 h-4" />
-                  </Link>
+          <Link to="/ChossPlan">
+            <ArrowLeftIcon className="relative w-4 h-4" />
+          </Link>
           Back to Choosing Plan Page
         </button>
         <h2 className="font-lato text-xl text-text-primary font-semibold leading-[116%] tracking-[0]">
@@ -39,20 +39,20 @@ export const ComplexDetailsSection = ({
       {/* Content */}
       <div className="bg-background-secondary p-[24px] rounded-[16px] w-full">
         <div className="flex flex-col w-full items-start gap-4 ">
-          <Card className="w-full h-[252px] rounded-2xl bg-background-primary">
+          <Card className="w-full rounded-2xl bg-background-primary">
             <CardContent className="p-[16px]">
               <div className="flex w-full items-center justify-between mb-4">
                 <h2 className="text-primary-default text-[16px] font-lato font-bold leading-[124%] tracking-[0] ">
                   Complex Info
                 </h2>
               </div>
-              <div className="flex gap-[25px] ">
-                <div>
+              <div className="flex flex-col lg:flex-row gap-[25px] ">
+                <div className="flex-1">
                   <div className="flex items-center gap-8">
                     <div className="w-40 font-semibold text-[16px] text-text-primary font-lato leading-[124%] tracking-[0]">
                       Complex Name
                     </div>
-                    <div className="flex flex-col w-[360px] gap-4">
+                    <div className="flex flex-col w-full gap-4">
                       <Input
                         className="h-12 px-4 py-2 rounded border border-solid border-border-light [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base"
                         placeholder="Enter Complex Name"
@@ -63,15 +63,15 @@ export const ComplexDetailsSection = ({
                     <div className="w-40 font-lato font-semibold text-[16px] text-text-primary leading-[124%] tracking-[0] ">
                       Description
                     </div>
-                    <div className="flex flex-col w-[360px] relative">
+                    <div className="flex flex-col w-full relative">
                       <Textarea
-                        className="w-fill h-[112px] px-4 py-2 rounded border border-solid border-border-light [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
+                        className="h-[112px] px-4 py-2 rounded border border-solid border-border-light [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
                         placeholder="Enter Description"
                       />
                     </div>
                   </div>
                 </div>
-                <div>
+                <div className="flex-1">
                   <div className="flex items-center gap-8">
                     <div className="w-40 font-semibold text-[16px] text-text-primary font-lato leading-[124%] tracking-[0]">
                       Year of Establishment
@@ -82,7 +82,7 @@ export const ComplexDetailsSection = ({
                     <div className="w-40 font-semibold text-[16px] text-text-primary font-lato leading-[124%] tracking-[0]">
                       PIC Name
                     </div>
-                    <div className="flex flex-col w-[360px] gap-4">
+                    <div className="flex flex-col w-full gap-4">
                       <Input
                         className="h-12 px-4 py-2 rounded border border-solid border-border-light [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base"
                         placeholder="PIC Name"
@@ -93,7 +93,7 @@ export const ComplexDetailsSection = ({
               </div>
             </CardContent>
           </Card>
-          <Card className="w-full h-[192px] py-[16px] px-[24px] mb-[16px] bg-background-primary">
+          <Card className="w-full py-[16px] px-[24px] mb-[16px] bg-background-primary">
             <CardContent className="flex flex-col">
               <div className="flex items-center justify-between w-full">
                 <h2 className="text-base font-bold text-primary-default font-lato leading-[124%] tracking-[0]">
@@ -102,22 +102,24 @@ export const ComplexDetailsSection = ({
               </div>
 
               <div className="flex md:flex-row gap-8 items-start w-full mt-[16px]">
-                <div>
+                <div className="flex-1">
                   <label className="block w-[160px] mb-[8px] ">
                     Department Name
                   </label>
                   <Input
-                    className=" bolck w-[360px] h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light "
+                    className=" bolck w-full h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light "
                     placeholder="Enter Name"
                   />
                 </div>
-                <div className="flex flex-col gap-2 w-full">
+                <div className="flex-1 flex flex-col gap-2 w-full">
                   <label className="block w-[160px] ">Description</label>
-                  <Input
-                    placeholder="Enter Description"
-                    className=" bolck w-full h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light "
-                  />
-                  <PlusIcon className="w-6 h-6 text-secondary-dark cursor-pointer relative left-[750px] " />
+                  <div className="flex flex-col items-end gap-2">
+                    <Input
+                      placeholder="Enter Description"
+                      className=" bolck w-full h-[48px] rounded-[4px] py-[8px] px-[16px] border border-border-light "
+                    />
+                    <PlusIcon className="w-6 h-6 text-secondary-dark cursor-pointer" />
+                  </div>
                 </div>
               </div>
             </CardContent>

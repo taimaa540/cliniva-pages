@@ -4,14 +4,14 @@ import {
   ChevronLeftIcon,
   PlusIcon,
 } from "lucide-react";
-import { Button } from "../components/ui/button";
+import { Button } from "../../components/ui/button";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "../../components/ui/card";
-import { Input } from "../../components/ui/input"; 
+import { Input } from "../../components/ui/input";
 import {
   Select,
   SelectContent,
@@ -26,6 +26,7 @@ import PhoneInput from "react-phone-input-2";
 import { useState } from "react";
 import DateInput from "../CommonComponents/DateInput";
 import { Link } from "react-router-dom";
+import PhoneInputCustom from "../CommonComponents/PhoneInput";
 
 const formSections = [
   {
@@ -139,9 +140,9 @@ export const ClinicDetailsSection = ({
       {/* Header */}
       <div className="flex flex-col gap-2">
         <button className="flex items-center gap-2 font-lato text-xs text-text-secondary font-regular leading-[130%] tracking-[0]">
-               <Link to='/ChossPlan'>
-                      <ArrowLeftIcon className="relative w-4 h-4" />
-                      </Link>
+          <Link to="/ChossPlan">
+            <ArrowLeftIcon className="relative w-4 h-4" />
+          </Link>
           Back to Choosing Plan Page
         </button>
         <h2 className="font-lato text-xl text-text-primary font-semibold leading-[116%] tracking-[0]">
@@ -166,7 +167,7 @@ export const ClinicDetailsSection = ({
               </CardHeader>
               <CardContent className="p-[16px]">
                 {section.id === "clinic-info" && (
-                  <div className="grid grid-cols-2 gap-8">
+                  <div className="grid lg:grid-cols-2 gap-8">
                     <div className="space-y-4">
                       <div className="flex items-center gap-8">
                         <div className="w-40 font-lato font-medium text-base text-text-primary leading-[100%] tracking-[0]">
@@ -181,7 +182,9 @@ export const ClinicDetailsSection = ({
                         <div className="w-40 font-lato font-medium text-base text-text-primary leading-[100%] tracking-[0]">
                           Year of Establishment
                         </div>
-                        <DateInput lang="" />
+                        <div className="flex-1">
+                          <DateInput lang="" />
+                        </div>
                       </div>
                       <div className="flex items-center gap-8">
                         <div className="w-40 font-lato font-medium text-base text-text-primary leading-[100%] tracking-[0]">
@@ -212,9 +215,9 @@ export const ClinicDetailsSection = ({
                         <div className="w-40 font-lato font-medium text-base text-text-primary leading-[100%] tracking-[0]">
                           Description
                         </div>
-                        <div className="relative">
+                        <div className="relative flex-1">
                           <Textarea
-                            className="w-[360px] text-text-secondary placeholder-text-secondary h-28 px-4 py-2 bg-transparent rounded border border-border-light resize-none"
+                            className="w-full text-text-secondary placeholder-text-secondary h-28 px-4 py-2 bg-transparent rounded border border-border-light resize-none"
                             placeholder="Enter Description"
                           />
                         </div>
@@ -225,7 +228,7 @@ export const ClinicDetailsSection = ({
                         </div>
                         <input
                           type="time"
-                          className="block text-text-secondary w-[360px] px-4 py-2 bg-transparent rounded border border-solid border-border-light"
+                          className="block flex-1 text-text-secondary w-full px-4 py-2 bg-transparent rounded border border-solid border-border-light"
                         />
                       </div>
                     </div>
@@ -233,7 +236,7 @@ export const ClinicDetailsSection = ({
                 )}
 
                 {section.id === "capacity" && (
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-wrap items-center gap-4">
                     <div className="flex w-[366px] items-center justify-between">
                       <div className="w-[124px] font-lato font-semibold text-base treacking-[0] leading-[124%] text-text-primary ">
                         Staff Capacity
@@ -257,7 +260,7 @@ export const ClinicDetailsSection = ({
                         Patients Capacity
                       </div>
                       <Input
-                        className="w-[220px] h-12 px-4 py-2  rounded border border-[#e4e2dd]"
+                        className="w-[220px] h-12 px-4 py-2 rounded border border-[#e4e2dd]"
                         placeholder="Patient Capacity"
                       />
                     </div>
@@ -294,34 +297,22 @@ export const ClinicDetailsSection = ({
                 )}
 
                 {section.id === "contact" && (
-                  <div className="flex items-start justify-between">
-                    <div className="flex flex-col w-[552px] items-end gap-2">
+                  <div className="flex flex-col xl:flex-row items-start gap-8">
+                    <div className="flex flex-col items-end gap-2">
                       <div className="flex items-center gap-8 w-full">
                         <div className="w-40 font-lato font-medium text-base treacking-[0] leading-[100%] text-text-primary">
                           Phone Number
                         </div>
-                        <PhoneInput
-                          country={"sa"} // الدولة الافتراضية
-                          value={phone}
-                          onChange={setPhone}
-                          enableAreaCodes={true}
-                          inputStyle={{
-                            width: "400px",
-                            height: "48px",
-                            borderRadius: "4px",
-                            border: "1px solid #E4E2DD",
-                            backgroundColor: "transparent",
-                          }}
-                        />
+                        <PhoneInputCustom />
                       </div>
                       <PlusIcon className="w-8 h-8 text-secondary-dark" />
                     </div>
-                    <div className="inline-flex items-center gap-8">
+                    <div className="flex-1 flex items-center gap-8 w-full">
                       <div className="w-40 font-lato font-medium text-base treacking-[0] leading-[100%] text-text-primary">
                         Email
                       </div>
                       <Input
-                        className="w-[360px] px-4 py-2  rounded border border-[#e4e2dd]"
+                        className="flex-1 w-full px-4 py-2 rounded border border-[#e4e2dd]"
                         placeholder="Enter Email"
                       />
                     </div>

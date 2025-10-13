@@ -16,7 +16,6 @@ import {
   PaginationContent,
   PaginationItem,
   PaginationLink,
-
 } from "../../../components/ui/pagination";
 import { Badge } from "../../../components/ui/badge";
 import { useState } from "react";
@@ -137,7 +136,7 @@ const userData = [
     Specialities: "Surgeon",
     AssignedComplex: "Nova Complex",
     status: "Active",
-  }
+  },
 ];
 import { useNavigate } from "react-router-dom";
 import { Header } from "../../CommonComponents/Header";
@@ -151,7 +150,7 @@ export const ViewDoctorList = (): JSX.Element => {
   useEffect(() => {
     i18n.changeLanguage(local);
   }, []);
-const navigate=useNavigate();
+  const navigate = useNavigate();
   const [isOpenAppointment, setIsOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const onOpenSidebar = () => setShowSidebar(true);
@@ -169,25 +168,29 @@ const navigate=useNavigate();
         setIsOpen={setIsOpen}
         local={local}
         handleLanguageClick={handleLanguageClick}
-        handleDarkClick={() => { }}
+        handleDarkClick={() => {}}
         isOpen={showSidebar}
         onOpenSidebar={onOpenSidebar}
         onCloseSidebar={onCloseSidebar}
       />
 
       <div className="flex flex-col w-full overflow-hidden h-full items-start gap-4 py-4 pl-0 pr-5">
-                           <Header MainTitle="Doctors" SubTitle="View Doctors List" onOpenSidebar={onOpenSidebar}  />
-
-   
-
-
+        <Header
+          MainTitle="Doctors"
+          SubTitle="View Doctors List"
+          onOpenSidebar={onOpenSidebar}
+        />
         <Card className="flex flex-col h-full items-start gap-5 p-[20px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-secondary">
           <CardContent className="w-full h-full flex flex-col">
             <div
-              className={`w-full h-[866px] ${local === "ar" ? "pl-[20px]" : "pr-[20px]"
-                } `}
+              className={`w-full h-[866px] ${
+                local === "ar" ? "pl-[20px]" : "pr-[20px]"
+              } `}
             >
-              <div className="flex justify-between w-full items-center mb-[20px]" dir={local === 'ar' ? 'rtl' : 'ltr'}>
+              <div
+                className="flex justify-between w-full items-center mb-[20px]"
+                dir={local === "ar" ? "rtl" : "ltr"}
+              >
                 <div className="inline-flex items-center gap-2.5 ">
                   <form className="relative flex  items-center">
                     <SearchIcon className=" w-[min(100%,16px)] h-[min(100%,16px)] absolute top-[13px] left-[8px]" />
@@ -201,9 +204,8 @@ const navigate=useNavigate();
                     />
                   </form>
 
-
-
-                  <Select dir={local === 'ar' ? 'rtl' : 'ltr'}
+                  <Select
+                    dir={local === "ar" ? "rtl" : "ltr"}
                     value={status}
                     onValueChange={(value) => setStatus(value)}
                   >
@@ -227,7 +229,6 @@ const navigate=useNavigate();
                     </SelectContent>
                   </Select>
                 </div>
-
               </div>
               <div
                 className="flex flex-col flex-grow rounded-lg items-start gap-5 pt-4 pr-[10px] relative w-full overflow-hidden"
@@ -271,16 +272,27 @@ const navigate=useNavigate();
                           <tr
                             key={index}
                             className="h-[78px] bg-background-primary hover:bg-secondary-light border-b border-border-light whitespace-nowrap"
-                                 onClick={
-                    (e)=>{
-                      navigate(`/ViewDoctorList/ViewDoctorDetails?id=${user.id}`)
-                    }                  }
+                            onClick={(e) => {
+                              navigate(
+                                `/ViewDoctorList/ViewDoctorDetails?id=${user.id}`
+                              );
+                            }}
                           >
-                            <td className="px-2 font-lato font-normal  text-[clamp(12px,2vw,12px)]">{user.id}</td>
-                            <td className="px-2 font-lato text-[clamp(12px,2vw,12px)] ">{user.userId}</td>
-                            <td className="px-2 font-lato font-normal text-[clamp(12px,2vw,12px)] ">{user.DoctorsName}</td>
-                            <td className="px-2 font-lato font-normal  text-[clamp(12px,2vw,12px)] ">{user.Specialities}</td>
-                            <td className="px-2 font-lato font-normal text-[clamp(12px,2vw,12px)]">{user.AssignedComplex}</td>
+                            <td className="px-2 font-lato font-normal  text-[clamp(12px,2vw,12px)]">
+                              {user.id}
+                            </td>
+                            <td className="px-2 font-lato text-[clamp(12px,2vw,12px)] ">
+                              {user.userId}
+                            </td>
+                            <td className="px-2 font-lato font-normal text-[clamp(12px,2vw,12px)] ">
+                              {user.DoctorsName}
+                            </td>
+                            <td className="px-2 font-lato font-normal  text-[clamp(12px,2vw,12px)] ">
+                              {user.Specialities}
+                            </td>
+                            <td className="px-2 font-lato font-normal text-[clamp(12px,2vw,12px)]">
+                              {user.AssignedComplex}
+                            </td>
                             <td className="px-2 w-[160px]">
                               <Badge className="bg-secondary-light text-secondary-dark rounded-[20px] w-[92px] justify-center">
                                 {t("Active")}
@@ -288,16 +300,27 @@ const navigate=useNavigate();
                             </td>
                             <td className="px-2">
                               <Link to="/ViewDoctorList/ViewDoctorDetails/EditDoctorDetials">
-                                <Button variant="ghost" size="sm" className="p-2.5 rounded-lg" 
-                                
-                                                  onClick={(e) => {
-    e.stopPropagation(); // عشان ما يروح على view لما تضغط على row
-    navigate("/ViewDoctorList/ViewDoctorDetails/EditDoctorDetials", { state: { from: `/ViewDoctorList?=id${user.id}` } });
-  }}
-                         
-
-                                  >
-                                  <img src="./edit-01.svg" alt="edit" className="w-[15px] h-[15px]" />
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="p-2.5 rounded-lg"
+                                  onClick={(e) => {
+                                    e.stopPropagation(); // عشان ما يروح على view لما تضغط على row
+                                    navigate(
+                                      "/ViewDoctorList/ViewDoctorDetails/EditDoctorDetials",
+                                      {
+                                        state: {
+                                          from: `/ViewDoctorList?=id${user.id}`,
+                                        },
+                                      }
+                                    );
+                                  }}
+                                >
+                                  <img
+                                    src="./edit-01.svg"
+                                    alt="edit"
+                                    className="w-[15px] h-[15px]"
+                                  />
                                 </Button>
                               </Link>
                             </td>
@@ -306,9 +329,12 @@ const navigate=useNavigate();
                       </tbody>
                     </table>
                   </div>
-
-                </div></div>
-              <div className="flex items-center justify-between p-4" dir={local === "ar" ? "rtl" : "ltr"}>
+                </div>
+              </div>
+              <div
+                className="flex items-center justify-between p-4"
+                dir={local === "ar" ? "rtl" : "ltr"}
+              >
                 <div className="flex items-center gap-2.5 flex-wrap">
                   <span className="text-[clamp(10px,2vw,12px)] text-on-surface-secondary">
                     {t("Showing")}
@@ -330,11 +356,9 @@ const navigate=useNavigate();
 
                 {/* الحاوية الجديدة مع overflow-x-auto */}
                 <div className="max-w-full overflow-x-auto">
-
                   {/* نسخة الموبايل (تظهر فقط تحت sm) */}
                   <Pagination className="flex sm:hidden justify-center">
                     <PaginationContent className="flex-nowrap gap-2">
-
                       {/* previous */}
                       <PaginationItem>
                         <Button
@@ -343,12 +367,28 @@ const navigate=useNavigate();
                           className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full border-[#f1f1f1]"
                         >
                           {local === "en" ? (
-                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                              <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="#333" />
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                            >
+                              <path
+                                d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z"
+                                fill="#333"
+                              />
                             </svg>
                           ) : (
-                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                              <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="#333" />
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                            >
+                              <path
+                                d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z"
+                                fill="#333"
+                              />
                             </svg>
                           )}
                         </Button>
@@ -372,12 +412,28 @@ const navigate=useNavigate();
                           className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full border-[#f1f1f1]"
                         >
                           {local === "en" ? (
-                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                              <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="#333" />
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                            >
+                              <path
+                                d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z"
+                                fill="#333"
+                              />
                             </svg>
                           ) : (
-                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                              <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="#333" />
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                            >
+                              <path
+                                d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z"
+                                fill="#333"
+                              />
                             </svg>
                           )}
                         </Button>
@@ -388,7 +444,6 @@ const navigate=useNavigate();
                   {/* نسخة الديسكتوب (الكاملة) */}
                   <Pagination className="hidden sm:flex justify-end">
                     <PaginationContent className="flex-nowrap gap-0.5 sm:gap-1 md:gap-2">
-
                       <PaginationItem className="shrink-0">
                         <Button
                           variant="outline"
@@ -396,14 +451,36 @@ const navigate=useNavigate();
                           className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full border-[#f1f1f1]"
                         >
                           {local === "en" ? (
-                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                              <path d="M11.726 12L12.666 11.06L9.61268 8L12.666 4.94L11.726 4L7.72602 8L11.726 12Z" fill="#333" />
-                              <path d="M7.33344 12L8.27344 11.06L5.2201 8L8.27344 4.94L7.33344 4L3.33344 8L7.33344 12Z" fill="#333" />
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                            >
+                              <path
+                                d="M11.726 12L12.666 11.06L9.61268 8L12.666 4.94L11.726 4L7.72602 8L11.726 12Z"
+                                fill="#333"
+                              />
+                              <path
+                                d="M7.33344 12L8.27344 11.06L5.2201 8L8.27344 4.94L7.33344 4L3.33344 8L7.33344 12Z"
+                                fill="#333"
+                              />
                             </svg>
                           ) : (
-                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                              <path d="M4.27398 4L3.33398 4.94L6.38732 8L3.33398 11.06L4.27398 12L8.27398 8L4.27398 4Z" fill="#333" />
-                              <path d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z" fill="#333" />
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                            >
+                              <path
+                                d="M4.27398 4L3.33398 4.94L6.38732 8L3.33398 11.06L4.27398 12L8.27398 8L4.27398 4Z"
+                                fill="#333"
+                              />
+                              <path
+                                d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z"
+                                fill="#333"
+                              />
                             </svg>
                           )}
                         </Button>
@@ -416,12 +493,28 @@ const navigate=useNavigate();
                           className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full border-[#f1f1f1]"
                         >
                           {local === "en" ? (
-                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                              <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="#333" />
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                            >
+                              <path
+                                d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z"
+                                fill="#333"
+                              />
                             </svg>
                           ) : (
-                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                              <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="#333" />
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                            >
+                              <path
+                                d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z"
+                                fill="#333"
+                              />
                             </svg>
                           )}
                         </Button>
@@ -467,12 +560,28 @@ const navigate=useNavigate();
                           className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full border-[#f1f1f1]"
                         >
                           {local === "en" ? (
-                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                              <path d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z" fill="#333" />
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                            >
+                              <path
+                                d="M6.94 4L6 4.94L9.05333 8L6 11.06L6.94 12L10.94 8L6.94 4Z"
+                                fill="#333"
+                              />
                             </svg>
                           ) : (
-                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                              <path d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z" fill="#333" />
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                            >
+                              <path
+                                d="M10.06 12L11 11.06L7.94667 8L11 4.94L10.06 4L6.06 8L10.06 12Z"
+                                fill="#333"
+                              />
                             </svg>
                           )}
                         </Button>
@@ -485,30 +594,48 @@ const navigate=useNavigate();
                           className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full border-[#f1f1f1]"
                         >
                           {local === "en" ? (
-                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                              <path d="M4.27398 4L3.33398 4.94L6.38732 8L3.33398 11.06L4.27398 12L8.27398 8L4.27398 4Z" fill="#333" />
-                              <path d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z" fill="#333" />
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                            >
+                              <path
+                                d="M4.27398 4L3.33398 4.94L6.38732 8L3.33398 11.06L4.27398 12L8.27398 8L4.27398 4Z"
+                                fill="#333"
+                              />
+                              <path
+                                d="M8.66656 4L7.72656 4.94L10.7799 8L7.72656 11.06L8.66656 12L12.6666 8L8.66656 4Z"
+                                fill="#333"
+                              />
                             </svg>
                           ) : (
-                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
-                              <path d="M11.726 12L12.666 11.06L9.61268 8L12.666 4.94L11.726 4L7.72602 8L11.726 12Z" fill="#333" />
-                              <path d="M7.33344 12L8.27344 11.06L5.2201 8L8.27344 4.94L7.33344 4L3.33344 8L7.33344 12Z" fill="#333" />
+                            <svg
+                              width="12"
+                              height="12"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                            >
+                              <path
+                                d="M11.726 12L12.666 11.06L9.61268 8L12.666 4.94L11.726 4L7.72602 8L11.726 12Z"
+                                fill="#333"
+                              />
+                              <path
+                                d="M7.33344 12L8.27344 11.06L5.2201 8L8.27344 4.94L7.33344 4L3.33344 8L7.33344 12Z"
+                                fill="#333"
+                              />
                             </svg>
                           )}
                         </Button>
                       </PaginationItem>
-
                     </PaginationContent>
                   </Pagination>
                 </div>
-
               </div>
-
             </div>
           </CardContent>
-        </Card>    </div>
-
-
+        </Card>{" "}
+      </div>
     </div>
   );
 };

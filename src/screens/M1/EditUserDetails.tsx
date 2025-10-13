@@ -1,4 +1,4 @@
-import { BellIcon, CalendarIcon, ChevronDownIcon } from "lucide-react";
+import { CalendarIcon, ChevronDownIcon } from "lucide-react";
 import { CountryDropdown } from "react-country-region-selector";
 
 import { Button } from "../../components/ui/button";
@@ -11,7 +11,6 @@ import {
   CollapsibleTrigger,
 } from "../../components/ui/collapsible";
 import en from "react-phone-number-input/locale/en.json";
-import TranslateIcon from "@mui/icons-material/Translate";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import FileUpload from "../CommonComponents/fillUpLoad";
@@ -27,7 +26,6 @@ import { useLanguage } from "../../lib/LanguageContext";
 import { useState } from "react";
 import ImageUploader from "../CommonComponents/ImageUpload";
 import PhoneInputCustom from "../CommonComponents/PhoneInput";
-import { ThemeToggle } from "../../components/theme/ThemeSwitcher";
 const accountFields = [
   { label: "User Name", value: "Ammar Al Sawwa", type: "input" },
   { label: "Change Password", value: "ammarsvu91@gmail.com", type: "text" },
@@ -85,7 +83,6 @@ export const EditUserDetails = (): JSX.Element => {
   useEffect(() => {
     i18n.changeLanguage(local);
   }, []);
-  const [numbers, setNumbers] = useState<string[]>([]);
   const [isOpenAppointment, setIsOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const onOpenSidebar = () => setShowSidebar(true);
@@ -570,6 +567,7 @@ export const EditUserDetails = (): JSX.Element => {
           </Card>
         </div>
       </main>
+    </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { BellIcon, PlusIcon, SearchIcon, Trash2Icon } from "lucide-react";
+import {  PlusIcon, SearchIcon, Trash2Icon } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import Pagination from "@mui/material/Pagination";
@@ -12,13 +12,10 @@ import {
   SelectValue,
 } from "../../components/ui/select";
 import { SideBar } from "../CommonComponents/SideBarPlan2";
-import { ThemeToggle } from "../../components/theme/ThemeSwitcher";
 import { useState } from "react";
-import TranslateIcon from "@mui/icons-material/Translate";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import { Delete } from "../CommonComponents/Delete";
-import SwitchWithLabel from "../CommonComponents/SwitchLabel";
 interface user {
   id: string;
   userId: string;
@@ -27,7 +24,6 @@ interface user {
   userType: string;
   status: string;
 }
-
 import { useNavigate } from "react-router-dom";
 import { Deactivate } from "../CommonComponents/Deactivate";
 import { Activate } from "../CommonComponents/Activate";
@@ -45,91 +41,92 @@ export const UserListSection = (): JSX.Element => {
   const [checked, setChecked] = useState<boolean>(true); // الحالة الحالية
   const [showDialog, setShowDialog] = useState<boolean>(false);
   const [pendingNext, setPendingNext] = useState<boolean | null>(null);
-  const [actionType, setActionType] = useState<"activate" | "deactivate" | null>(null);
+  const [actionType, setActionType] = useState<
+    "activate" | "deactivate" | null
+  >(null);
 
-       const [user,setuser]=useState < user[] >([
-  {
-    id: "001",
-    userId: "US-001",
-    userName: "Ammar Al Sawwa",
-    role: "Admin",
-    userType: "Staff",
-    status: "Active",
-  },
-  {
-    id: "002",
-    userId: "US-002",
-    userName: "Ahmed Afuni",
-    role: "Admin",
-    userType: "Staff",
-    status: "Active",
-  },
-  {
-    id: "003",
-    userId: "US-003",
-    userName: "Muaz Tair",
-    role: "Doctor",
-    userType: "Doctor",
-    status: "Inactive",
-  },
-  {
-    id: "004",
-    userId: "US-004",
-    userName: "Mohamed Tobal",
-    role: "Receptionist",
-    userType: "Staff",
-    status: "Active",
-  },
-  {
-    id: "005",
-    userId: "US-005",
-    userName: "Mohammed Gareeb",
-    role: "Receptionist",
-    userType: "Staff",
-    status: "Active",
-  },
-  {
-    id: "006",
-    userId: "US-006",
-    userName: "Fatemah Jamal",
-    role: "Doctor",
-    userType: "Doctor",
-    status: "Inactive",
-  },
-  {
-    id: "007",
-    userId: "US-007",
-    userName: "Rola Ahmed",
-    role: "Doctor",
-    userType: "Doctor",
-    status: "Inactive",
-  },
-  {
-    id: "008",
-    userId: "US-008",
-    userName: "Fateh Ahmed",
-    role: "Doctor",
-    userType: "Doctor",
-    status: "Inactive",
-  },
-  {
-    id: "009",
-    userId: "US-009",
-    userName: "Jamal Said",
-    role: "Doctor",
-    userType: "Doctor",
-    status: "Inactive",
-  },
-  {
-    id: "010",
-    userId: "US-010",
-    userName: "Nour Sarah",
-    role: "Doctor",
-    userType: "Doctor",
-    status: "Inactive",
-  },
-      ] );
-
+  const [user, setuser] = useState<user[]>([
+    {
+      id: "001",
+      userId: "US-001",
+      userName: "Ammar Al Sawwa",
+      role: "Admin",
+      userType: "Staff",
+      status: "Active",
+    },
+    {
+      id: "002",
+      userId: "US-002",
+      userName: "Ahmed Afuni",
+      role: "Admin",
+      userType: "Staff",
+      status: "Active",
+    },
+    {
+      id: "003",
+      userId: "US-003",
+      userName: "Muaz Tair",
+      role: "Doctor",
+      userType: "Doctor",
+      status: "Inactive",
+    },
+    {
+      id: "004",
+      userId: "US-004",
+      userName: "Mohamed Tobal",
+      role: "Receptionist",
+      userType: "Staff",
+      status: "Active",
+    },
+    {
+      id: "005",
+      userId: "US-005",
+      userName: "Mohammed Gareeb",
+      role: "Receptionist",
+      userType: "Staff",
+      status: "Active",
+    },
+    {
+      id: "006",
+      userId: "US-006",
+      userName: "Fatemah Jamal",
+      role: "Doctor",
+      userType: "Doctor",
+      status: "Inactive",
+    },
+    {
+      id: "007",
+      userId: "US-007",
+      userName: "Rola Ahmed",
+      role: "Doctor",
+      userType: "Doctor",
+      status: "Inactive",
+    },
+    {
+      id: "008",
+      userId: "US-008",
+      userName: "Fateh Ahmed",
+      role: "Doctor",
+      userType: "Doctor",
+      status: "Inactive",
+    },
+    {
+      id: "009",
+      userId: "US-009",
+      userName: "Jamal Said",
+      role: "Doctor",
+      userType: "Doctor",
+      status: "Inactive",
+    },
+    {
+      id: "010",
+      userId: "US-010",
+      userName: "Nour Sarah",
+      role: "Doctor",
+      userType: "Doctor",
+      status: "Inactive",
+    },
+  ]);
 
   // عندما يضغط المستخدم على الـ Toggle
   function handleToggle(next: boolean) {
@@ -166,33 +163,36 @@ export const UserListSection = (): JSX.Element => {
     setShowDialog(false);
   }
 
-
-
-  {/*DeletDialog*/ }
+  {
+    /*DeletDialog*/
+  }
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
-
   function handleDelete() {
     if (selectedId !== null) {
-      setuser((prev) => prev.filter(user => user.id !== selectedId));
+      setuser((prev) => prev.filter((user) => user.id !== selectedId));
     }
     setShowDeleteDialog(false);
     setSelectedId(null);
   }
 
-
   function cancelDelete() {
     setShowDeleteDialog(false);
   }
-{/*</delete>*/ }
+  {
+    /*</delete>*/
+  }
   const navigate = useNavigate();
   const [isOpenAppointment, setIsOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const onOpenSidebar = () => setShowSidebar(true);
   const onCloseSidebar = () => setShowSidebar(false);
-
-
+  const [page, setPage] = useState(1);
+  const totalPages = 6;
+  const handleChange = (_: unknown, value: number) => {
+    setPage(value);
+  };
 
   return (
     <div className="flex h-screen  w-screen">
@@ -207,20 +207,18 @@ export const UserListSection = (): JSX.Element => {
         setIsOpen={setIsOpen}
         local={local}
         handleLanguageClick={handleLanguageClick}
-        handleDarkClick={() => { }}
+        handleDarkClick={() => {}}
         isOpen={showSidebar}
         onOpenSidebar={onOpenSidebar}
         onCloseSidebar={onCloseSidebar}
       />
 
-      <>
-        <div className="flex flex-col w-full overflow-hidden h-full items-start gap-4 py-4 pl-0 pr-5">
-
-          <Header MainTitle="Users Management" SubTitle="" onOpenSidebar={onOpenSidebar} />
-
-
-
-
+      <div className="flex flex-col w-full overflow-hidden h-full items-start gap-4 py-4 pl-0 pr-5">
+        <Header
+          MainTitle="Users Management"
+          SubTitle=""
+          onOpenSidebar={onOpenSidebar}
+        />
 
         <Card className="flex flex-col h-full items-start gap-5 p-[20px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-secondary">
           <CardContent className="w-full overflow-y-auto scroll-x-hidden h-full ">
@@ -296,277 +294,194 @@ export const UserListSection = (): JSX.Element => {
                   </Link>
                 </div>
               </div>
-              
-              <div className="min-w-[600px] overflow-x-auto">
-                <table className="w-full text-center ">
-                  <thead>
-                    <tr className="h-[56px] bg-background-primary border-b border-border-light w-full">
-                      <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                        {t("No.")}
-                      </td>
-                      <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                        {t("User ID")}
-                      </td>
-                      <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                        {t("User Name")}
-                      </td>
-                      <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                        {t("Role")}
-                      </td>
-                      <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                        {t("User Type")}
-                      </td>
-                      <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                        {t("Status")}
-                      </td>
-                      <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                        {t("Action")}
-                      </td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {userData.map((user) => (
-                      <Link to="/UserDetails" className="contents h-[78px]">
-                        <tr
-                          key={user.id}
-                          className="h-[78px] bg-background-primary hover:bg-gray-100 border-b border-border-light w-full"
-                        >
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {user.id}
-                          </td>
-                          <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {user.userId}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {user.userName}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {user.role}
-                          </td>
-                          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                            {user.userType}
-                          </td>
-                          <td className="align-middle w-[160px]">
-                            <SwitchWithLabel />
-                          </td>
-                          <td className="align-middle">
-                            <div className="inline-flex flex-col justify-center gap-1 flex-[0_0_auto] items-start">
-                              <div className="inline-flex items-center justify-center gap-1 flex-[0_0_auto]">
-                                <Link to="/EditUserDEtails">
-                                  <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
-                                  >
-                                    <img
-                                      className={`w-[15px] h-[15px]text-on-surface-primary`}
-                                      alt="edit"
-                                      src="./edit-01.svg"
-                                    />
-                                  </Button>
-                                </Link>
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
-                                >
-                                  <Trash2Icon
-                                    className={`w-[20px] h-[20px]
-                                 "text-on-surface-primary"
-                              `}
-                                  />
-                                </Button>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </Link>
-                    ))}
-                  </tbody>
-                </table>
 
-                <footer
-                  dir="ltr"
-                  className=" flex items-center justify-between self-stretch w-full flex-[0_0_auto] bg-transparent mt-[10px]"
+              <div className="min-w-[600px] overflow-x-auto">
+                <div
+                  className="flex flex-col flex-grow rounded-lg items-start gap-5 pt-4 pr-[10px] relative w-full overflow-hidden"
+                  dir={local === "ar" ? "rtl" : "ltr"}
                 >
-                  <div
-                    dir={`${local === "ar" ? "rtl" : "ltr"}`}
-                    className="inline-flex gap-2.5 flex-[0_0_auto] items-center"
-                  >
-                    <span className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)]">
-                      {t("Showing")}
-                    </span>
-                  <div className="inline-flex items-center gap-2.5 ">
-                    <Link to="/AddNewUser">
-                      <Button className="inline-flex items-center gap-1 px-2.5 py-1.5 bg-secondary-dark rounded-[20px] h-[40px] w-[146px]">
-                        <PlusIcon className="w-3.5 h-3.5 text-background-primary" />
-                        <span className="font-lato font-medium text-sm text-background-primary leading-[100%] tracking-[0] ">
-                          {t("Add New User")}
-                        </span>
-                      </Button>
-                    </Link>
+                  {/* حاوية سكرول أفقي */}
+                  <div className="w-full overflow-x-auto">
+                    {/* حاوية سكرول رأسي */}
+                    <div
+                      className=" rounded-lg"
+                      style={{ height: "calc(100vh - 78px - 200px)" }}
+                    >
+                      <table className="w-full text-center">
+                        <thead>
+                          <tr className="h-[56px] bg-background-primary border-b border-border-light w-full">
+                            <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                              {t("No.")}
+                            </td>
+                            <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                              {t("User ID")}
+                            </td>
+                            <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                              {t("User Name")}
+                            </td>
+                            <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                              {t("Role")}
+                            </td>
+                            <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                              {t("User Type")}
+                            </td>
+                            <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                              {t("Status")}
+                            </td>
+                            <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                              {t("Action")}
+                            </td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {user.length === 0 ? (
+                            <tr>
+                              <td colSpan={7} className="py-20 text-center">
+                                <div className="flex flex-col items-center justify-center">
+                                  <img
+                                    className="w-[423px] h-[282px]"
+                                    alt="No data"
+                                    src="/noData.png"
+                                  />
+                                  <div className="font-lato font-semibold text-xl leading-[116%] tracking-[0] text-text-primary mt-4">
+                                    {t("No data to show")}
+                                  </div>
+                                </div>
+                              </td>
+                            </tr>
+                          ) : (
+                            user.map((user) => (
+                              <tr
+                                key={user.id}
+                                onClick={() =>
+                                  navigate(`/ViewUserDetails?=id${user.id}`)
+                                }
+                                className="h-[78px] bg-background-primary hover:bg-secondary-light border-b border-border-light whitespace-nowrap"
+                              >
+                                <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                                  {user.id}
+                                </td>
+                                <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary">
+                                  {user.userId}
+                                </td>
+                                <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                                  {user.userName}
+                                </td>
+                                <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                                  {user.role}
+                                </td>
+                                <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                                  {user.userType}
+                                </td>
+                                <td className="align-middle w-[160px]">
+                                  <div onClick={(e) => e.stopPropagation()}>
+                                    <Toggle
+                                      checked={checked}
+                                      onChange={handleToggle}
+                                    />
+
+                                    {showDialog &&
+                                      actionType === "deactivate" && (
+                                        <Deactivate
+                                          open={showDialog}
+                                          onConfirm={confirmDeactivate}
+                                          onCancel={cancelDeactivate}
+                                        >
+                                          <p>
+                                            Are you sure you want to change this
+                                            user’s status from Active to
+                                            Inactive?
+                                          </p>
+                                          <p>
+                                            Inactive users will no longer be
+                                            able to access the system until
+                                            reactivated.
+                                          </p>
+                                        </Deactivate>
+                                      )}
+
+                                    {showDialog &&
+                                      actionType === "activate" && (
+                                        <Activate
+                                          open={showDialog}
+                                          onConfirm={confirmDeactivate}
+                                          onCancel={cancelDeactivate}
+                                        >
+                                          <p>
+                                            Activate the patient will be able to
+                                            book appointments, receive
+                                            notifications, and access system
+                                            services.
+                                          </p>
+                                        </Activate>
+                                      )}
+                                  </div>
+                                </td>
+                                <td className="align-middle">
+                                  <div className="inline-flex flex-col justify-center gap-1 flex-[0_0_auto] items-start">
+                                    <div className="inline-flex items-center justify-center gap-1 flex-[0_0_auto]">
+                                      <Button
+                                        variant="ghost"
+                                        onClick={(e) => {
+                                          e.stopPropagation(); // عشان ما يروح على view لما تضغط على row
+                                          navigate("/EditUserDetails", {
+                                            state: {
+                                              from: `/UserDesktop?=id${user.id}`,
+                                            },
+                                          });
+                                        }}
+                                        size="sm"
+                                        className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
+                                      >
+                                        <img
+                                          className="w-[15px] h-[15px] text-on-surface-primary"
+                                          alt="edit"
+                                          src="./edit-01.svg"
+                                        />
+                                      </Button>
+
+                                      <div>
+                                        <Button
+                                          onClick={(e) => {
+                                            e.preventDefault();
+                                            e.stopPropagation();
+                                            setShowDeleteDialog(true);
+                                            setSelectedId(user.id);
+                                          }}
+                                          variant="ghost"
+                                          size="sm"
+                                          className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
+                                        >
+                                          <Trash2Icon className="w-[20px] h-[20px] text-on-surface-primary" />
+                                        </Button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                            ))
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
-
-                <div className="flex flex-col h-full items-center gap-[183px] w-full">
-                  <table className="w-full text-center">
-                    <thead>
-                      <tr className="h-[56px] bg-background-primary border-b border-border-light w-full">
-                        <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {t("No.")}
-                        </td>
-                        <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {t("User ID")}
-                        </td>
-                        <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {t("User Name")}
-                        </td>
-                        <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {t("Role")}
-                        </td>
-                        <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {t("User Type")}
-                        </td>
-                        <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {t("Status")}
-                        </td>
-                        <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {t("Action")}
-                        </td>
-                      </tr>
-                    </thead>
-                    <tbody>
-
-
-    {user.length === 0 ? (
-      <tr>
-        <td colSpan={7} className="py-20 text-center">
-          <div className="flex flex-col items-center justify-center">
-            <img
-              className="w-[423px] h-[282px]"
-              alt="No data"
-              src="/noData.png"
-            />
-            <div className="font-lato font-semibold text-xl leading-[116%] tracking-[0] text-text-primary mt-4">
-              {t("No data to show")}
-            </div>
-          </div>
-        </td>
-      </tr>
-    ) :
-
-                 (
-      user.map((user) => (
-        <tr
-          key={user.id}
-            onClick={() => navigate(`/ViewUserDetails?=id${user.id}`)}  
-            
-          className="h-[78px] bg-background-primary hover:bg-secondary-light border-b border-border-light whitespace-nowrap"
-        >
-          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-            {user.id}
-          </td>
-          <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary">
-            {user.userId}
-          </td>
-          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-            {user.userName}
-          </td>
-          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-            {user.role}
-          </td>
-          <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-            {user.userType}
-          </td>
-          <td className="align-middle w-[160px]">
-            <div onClick={(e) => e.stopPropagation()}>
-              <Toggle checked={checked} onChange={handleToggle} />
-
-              {showDialog && actionType === "deactivate" && (
-                <Deactivate
-                  open={showDialog}
-                  onConfirm={confirmDeactivate}
-                  onCancel={cancelDeactivate}
-                >
-                  <p>Are you sure you want to change this user’s status from Active to Inactive?</p>
-                  <p>Inactive users will no longer be able to access the system until reactivated.</p>
-                </Deactivate>
-              )}
-
-              {showDialog && actionType === "activate" && (
-                <Activate
-                  open={showDialog}
-                  onConfirm={confirmDeactivate}
-                  onCancel={cancelDeactivate}
-                >
-                  <p>Activate the patient will be able to book appointments, receive notifications, and access system services.</p>
-                </Activate>
-              )}
-            </div>
-          </td>
-          <td className="align-middle">
-            <div className="inline-flex flex-col justify-center gap-1 flex-[0_0_auto] items-start">
-              <div className="inline-flex items-center justify-center gap-1 flex-[0_0_auto]">
-            
-                  
-                  <Button
-                    variant="ghost"
-                    onClick={(e) => {
-    e.stopPropagation(); // عشان ما يروح على view لما تضغط على row
-    navigate("/EditUserDetails", { state: { from: `/UserDesktop?=id${user.id}` } });
-  }}
-                    size="sm"
-                    className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
+                {showDeleteDialog && (
+                  <Delete
+                    open={showDeleteDialog}
+                    title="SRV-00345"
+                    onDelete={handleDelete}
+                    onCancel={cancelDelete}
                   >
-                    <img
-                      className="w-[15px] h-[15px] text-on-surface-primary"
-                      alt="edit"
-                      src="./edit-01.svg"
-                    />
-                  </Button>
-                
-                <div>
-                  <Button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setShowDeleteDialog(true);
-                  setSelectedId(user.id);
-                    }}
-                    variant="ghost"
-                    size="sm"
-                    className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
-                  >
-                    <Trash2Icon
-                      className="w-[20px] h-[20px] text-on-surface-primary"
-                    />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </td>
-        </tr>
-      )))}
-
-
-
-
-
-                      
-                    </tbody>
-                  </table>
-                </div>
-                {showDeleteDialog && (<Delete
-                  open={showDeleteDialog}
-                  title="SRV-00345"
-                  onDelete={handleDelete}
-                  onCancel={cancelDelete}
-                >
-                  <p>Are you sure you want to delete this User? This action cannot be undone.</p>
-                </Delete>)}
+                    <p>
+                      Are you sure you want to delete this User? This action
+                      cannot be undone.
+                    </p>
+                  </Delete>
+                )}
                 <footer
                   dir="ltr"
-                  className="flex items-center justify-between self-stretch w-full flex-[0_0_auto] bg-transparent mt-[10px]"
+                  className="flex flex-wrap items-center justify-between self-stretch w-full bg-transparent mt-[10px]"
                 >
                   <div
                     dir={`${local === "ar" ? "rtl" : "ltr"}`}
@@ -598,10 +513,6 @@ export const UserListSection = (): JSX.Element => {
                       {t("out of")} 512
                     </span>
                   </div>
-                    <span className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)]">
-                      {t("out of")} 512
-                    </span>
-                  </div>
 
                   <Pagination
                     count={6}
@@ -609,6 +520,13 @@ export const UserListSection = (): JSX.Element => {
                     siblingCount={0}
                     boundaryCount={1}
                     sx={{
+                      // ✅ هنا نتحكم بالظهور حسب حجم الشاشة
+                      display: {
+                        xs: "none", // يخفيه على الشاشات الصغيرة
+                        sm: "none", // يخفيه على الشاشات الصغيرة جدًا أيضًا
+                        md: "flex", // يظهر فقط من الشاشات المتوسطة فما فوق
+                      },
+                      justifyContent: "center",
                       "& .MuiPaginationItem-root": {
                         backgroundColor: "#E2F6EC",
                         borderColor: "#E2F6EC",
@@ -627,12 +545,51 @@ export const UserListSection = (): JSX.Element => {
                       },
                     }}
                   />
+
+                  <Pagination
+                    count={totalPages}
+                    page={page}
+                    onChange={handleChange}
+                    variant="outlined"
+                    siblingCount={0}
+                    boundaryCount={0}
+                    sx={{
+                      // ✅ التحكم بالظهور حسب حجم الشاشة
+                      display: {
+                        xs: "flex", // يظهر على الشاشات الصغيرة
+                        sm: "flex",
+                        md: "none", // يختفي على الشاشات المتوسطة والكبيرة
+                      },
+                      justifyContent: "center",
+                      "& .MuiPaginationItem-root": {
+                        display: "none",
+                        backgroundColor: "#E2F6EC",
+                        borderColor: "#E2F6EC",
+                        color: "#333",
+                        "&:hover": {
+                          backgroundColor: "#cceede",
+                        },
+                      },
+                      "& .MuiPaginationItem-previousNext": {
+                        display: "inline-flex",
+                      },
+                      "& .Mui-selected": {
+                        display: "inline-flex",
+                        backgroundColor: "#00B48D !important",
+                        borderColor: "#00B48D",
+                        color: "#fff",
+                        "&:hover": {
+                          backgroundColor: "#00A57F",
+                        },
+                      },
+                    }}
+                  />
                 </footer>
               </div>
             </div>
           </CardContent>
         </Card>
       </div>
-    </>
+    </div>
   );
 };

@@ -1,15 +1,16 @@
 import { ArrowLeftIcon, ChevronRightIcon, ChevronLeftIcon } from "lucide-react";
-import { Button } from "../../../components/ui/button";
+import { Button } from "../../components/ui/button";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "../../components/ui/card";
-import { Input } from "../../components/ui/input"; 
-import { Textarea } from "../../components/ui/textarea"; 
+import { Input } from "../../components/ui/input";
+import { Textarea } from "../../components/ui/textarea";
 import DateInput from "../CommonComponents/DateInput";
 import { Link } from "react-router-dom";
+import ImageUploader from "../CommonComponents/ImageUpload";
 const formSections = [
   {
     id: "clinic-info",
@@ -89,9 +90,9 @@ export const ClinicOverview = ({
       {/* Header */}
       <div className="flex flex-col gap-2">
         <button className="flex items-center gap-2 font-lato text-xs text-text-secondary font-regular leading-[130%] tracking-[0]">
-          <Link to='/ChossPlan'>
-                            <ArrowLeftIcon className="relative w-4 h-4" />
-                            </Link>
+          <Link to="/ChossPlan">
+            <ArrowLeftIcon className="relative w-4 h-4" />
+          </Link>
           Back to Choosing Plan Page
         </button>
         <h2 className="font-lato text-xl text-text-primary font-semibold leading-[116%] tracking-[0]">
@@ -116,13 +117,13 @@ export const ClinicOverview = ({
               </CardHeader>
               <CardContent className="p-[16px]">
                 {section.id === "clinic-info" && (
-                  <div className="grid grid-cols-2 gap-8">
+                  <div className="grid lg:grid-cols-2 gap-8">
                     <div className="space-y-4">
                       <div className="flex items-center gap-8">
                         <div className="w-40 font-semibold text-[16px] text-text-primary font-lato leading-[124%] tracking-[0]">
                           Logo
                         </div>
-                        <img alt="add photo" src="./addImage.svg" />
+                        <ImageUploader/>
                       </div>
                       <div className="flex items-center gap-8">
                         <div className="w-40 font-lato font-medium text-base text-text-primary leading-[100%] tracking-[0]">
@@ -137,7 +138,9 @@ export const ClinicOverview = ({
                         <div className="w-40 font-lato font-medium text-base text-text-primary leading-[100%] tracking-[0]">
                           Year of Establishment
                         </div>
-                        <DateInput  />
+                        <div className="flex-1">
+                          <DateInput />
+                        </div>
                       </div>
                     </div>
                     <div className="space-y-4">
@@ -145,9 +148,9 @@ export const ClinicOverview = ({
                         <div className="w-40 font-lato font-medium text-base text-text-primary leading-[100%] tracking-[0]">
                           Description
                         </div>
-                        <div className="relative">
+                        <div className="relative flex-1">
                           <Textarea
-                            className="w-[360px] text-text-secondary placeholder-text-secondary h-28 px-4 py-2 bg-surface-primary rounded border border-border-light resize-none"
+                            className="w-full text-text-secondary placeholder-text-secondary h-28 px-4 py-2 bg-surface-primary rounded border border-border-light resize-none"
                             placeholder="Enter Description"
                           />
                         </div>
@@ -166,7 +169,7 @@ export const ClinicOverview = ({
                 )}
 
                 {section.id === "capacity" && (
-                  <div className="flex items-center gap-4">
+                  <div className="flex flex-wrap items-center gap-4">
                     <div className="flex w-[366px] items-center justify-between">
                       <div className="w-[124px] font-lato font-semibold text-base treacking-[0] leading-[124%] text-text-primary ">
                         Staff Capacity

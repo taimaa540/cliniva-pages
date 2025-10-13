@@ -74,7 +74,6 @@ const navigationItems = [
   },
 ];
 
-
 const sessions = [
   {
     no: 1,
@@ -105,7 +104,8 @@ const sessions = [
     description: "Patient history & symptom assessment",
     activeAppt: 45,
     apptRequired: true,
-  }, {
+  },
+  {
     no: 3,
     name: "Session Name",
     duration: "00:50",
@@ -114,7 +114,8 @@ const sessions = [
     description: "Patient history & symptom assessment",
     activeAppt: 45,
     apptRequired: true,
-  }, {
+  },
+  {
     no: 3,
     name: "Session Name",
     duration: "00:50",
@@ -123,7 +124,8 @@ const sessions = [
     description: "Patient history & symptom assessment",
     activeAppt: 45,
     apptRequired: true,
-  }, {
+  },
+  {
     no: 3,
     name: "Session Name",
     duration: "00:50",
@@ -135,7 +137,6 @@ const sessions = [
   },
 ];
 
-
 const doctorsAndStaff = [
   {
     number: 1,
@@ -143,8 +144,7 @@ const doctorsAndStaff = [
     name: "Dr. Sarah Fadel",
     userType: "Endocrinology",
     ActiveAppt: 56,
-    status: "Active"
-
+    status: "Active",
   },
   {
     number: 2,
@@ -163,30 +163,30 @@ const doctorsAndStaff = [
     ActiveAppt: 56,
     status: "Active",
     avatar: null,
-  }, {
+  },
+  {
     number: 1,
     userId: "emp-t9a3e",
     name: "Dr. Sarah Fadel",
     userType: "Endocrinology",
     ActiveAppt: 56,
-    status: "Active"
-
-  }, {
+    status: "Active",
+  },
+  {
     number: 1,
     userId: "emp-t9a3e",
     name: "Dr. Sarah Fadel",
     userType: "Endocrinology",
     ActiveAppt: 56,
-    status: "Active"
-
-  }, {
+    status: "Active",
+  },
+  {
     number: 1,
     userId: "emp-t9a3e",
     name: "Dr. Sarah Fadel",
     userType: "Endocrinology",
     ActiveAppt: 56,
-    status: "Active"
-
+    status: "Active",
   },
 ];
 import { Deactivate } from "../../CommonComponents/Deactivate";
@@ -202,64 +202,62 @@ export const ViewServiceDetails = (): JSX.Element => {
     i18n.changeLanguage(local);
   }, []);
 
-const [checked, setChecked] = useState<boolean>(true); // الحالة الحالية
-const [showDialog, setShowDialog] = useState<boolean>(false);
-const [pendingNext, setPendingNext] = useState<boolean | null>(null);
-const [actionType, setActionType] = useState<"activate" | "deactivate" | null>(null);
-
+  const [checked, setChecked] = useState<boolean>(true); // الحالة الحالية
+  const [showDialog, setShowDialog] = useState<boolean>(false);
+  const [pendingNext, setPendingNext] = useState<boolean | null>(null);
+  const [actionType, setActionType] = useState<
+    "activate" | "deactivate" | null
+  >(null);
 
   // عندما يضغط المستخدم على الـ Toggle
-function handleToggles(next: boolean) {
-  // إذا كان من Active -> Inactive
-  if (checked && !next) {
-    setPendingNext(next);
-    setActionType("deactivate");
-    setShowDialog(true);
-    return;
+  function handleToggles(next: boolean) {
+    // إذا كان من Active -> Inactive
+    if (checked && !next) {
+      setPendingNext(next);
+      setActionType("deactivate");
+      setShowDialog(true);
+      return;
+    }
+
+    // إذا كان من Inactive -> Active
+    if (!checked && next) {
+      setPendingNext(next);
+      setActionType("activate");
+      setShowDialog(true);
+      return;
+    }
+
+    // غير هيك غيّر مباشرة
+    setChecked(next);
   }
 
-  // إذا كان من Inactive -> Active
-  if (!checked && next) {
-    setPendingNext(next);
-    setActionType("activate");
-    setShowDialog(true);
-    return;
+  function confirmDeactivate() {
+    setChecked(pendingNext ?? false);
+    setPendingNext(null);
+    setActionType(null);
+    setShowDialog(false);
   }
 
-  // غير هيك غيّر مباشرة
-  setChecked(next);
-}
-
-function confirmDeactivate() {
-  setChecked(pendingNext ?? false);
-  setPendingNext(null);
-  setActionType(null);
-  setShowDialog(false);
-}
-
-function cancelDeactivate() {
-  setPendingNext(null);
-  setActionType(null);
-  setShowDialog(false);
-}
-
+  function cancelDeactivate() {
+    setPendingNext(null);
+    setActionType(null);
+    setShowDialog(false);
+  }
 
   const [isOpen, setIsOpen1] = useState({
     clinicInfo: true,
     Utilization: true,
     Sessions: true,
-    doctorsStaff: true
-
+    doctorsStaff: true,
   });
   const handleToggle = (key: keyof typeof isOpen, open: boolean) => {
-    setIsOpen1(prev => ({
+    setIsOpen1((prev) => ({
       ...prev,
-      [key]: open
-    }))
+      [key]: open,
+    }));
   };
 
-
-const navigate=useNavigate();
+  const navigate = useNavigate();
   const [isOpenAppointment, setIsOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const onOpenSidebar = () => setShowSidebar(true);
@@ -277,32 +275,42 @@ const navigate=useNavigate();
         setIsOpen={setIsOpen}
         local={local}
         handleLanguageClick={handleLanguageClick}
-        handleDarkClick={() => { }}
+        handleDarkClick={() => {}}
         isOpen={showSidebar}
         onOpenSidebar={onOpenSidebar}
         onCloseSidebar={onCloseSidebar}
       />
 
       <div className="flex flex-col w-full overflow-hidden min-h-screen items-start gap-4 py-4 pl-0 pr-5">
-
-<Header MainTitle="Services Management" SubTitle="View Service Details" onOpenSidebar={onOpenSidebar}  backTo="/ServicesList"/>
-
+        <Header
+          MainTitle="Services Management"
+          SubTitle="View Service Details"
+          onOpenSidebar={onOpenSidebar}
+          backTo="/ServicesList"
+        />
 
         <Card className="flex flex-col  h-full items-start gap-5 p-[5px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-tertiary">
           <CardContent className="w-full overflow-y-auto scroll-x-hidden pr-[20px] ">
             <div className="flex justify-end">
               <Link to="/EditServiceDetials">
-                <Button onClick={()=>navigate("/EditServiceDetials",{state:{from:"/ViewServiceDetails"}} )}  className="w-[200px] h-10 bg-secondary-dark text-text-inverse rounded-[20px]   font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-[length:var(--btn-14px-medium-font-size)] leading-[var(--btn-14px-medium-line-height)] tracking-[var(--btn-14px-medium-letter-spacing)] [font-style:var(--btn-14px-medium-font-style)] h-auto self-end">
-                  <Edit2Icon className={" font-lato w-4 h-4 mr-1 text-text-inverse"} />
+                <Button
+                  onClick={() =>
+                    navigate("/EditServiceDetials", {
+                      state: { from: "/ViewServiceDetails" },
+                    })
+                  }
+                  className="w-[200px] h-10 bg-secondary-dark text-text-inverse rounded-[20px]   font-btn-14px-medium font-[number:var(--btn-14px-medium-font-weight)] text-[length:var(--btn-14px-medium-font-size)] leading-[var(--btn-14px-medium-line-height)] tracking-[var(--btn-14px-medium-letter-spacing)] [font-style:var(--btn-14px-medium-font-style)] h-auto self-end"
+                >
+                  <Edit2Icon
+                    className={" font-lato w-4 h-4 mr-1 text-text-inverse"}
+                  />
                   <h1 className="font-lato">{t("Edit")}</h1>
-                </Button></Link>
+                </Button>
+              </Link>
             </div>
 
-
-
-
-
-            <ReusableCollapsible dir={local === 'ar' ? 'rtl' : 'ltr'}
+            <ReusableCollapsible
+              dir={local === "ar" ? "rtl" : "ltr"}
               title={
                 <div className="flex flex-col lg:flex-row gap-0 lg:gap-[113px] w-full">
                   {/* Left Title */}
@@ -315,7 +323,6 @@ const navigate=useNavigate();
                     {t("Assign")}
                   </div>
                 </div>
-
               }
               initiallyOpen={isOpen.clinicInfo}
               onOpenChange={(open) => handleToggle("clinicInfo", open)}
@@ -323,12 +330,13 @@ const navigate=useNavigate();
                 <div className="relative w-full bg-surface-default rounded-2xl p-6 pt-0">
                   {/* Wrapper: Flex column on small screens, row on large */}
                   <div className="flex  flex-col lg:flex-row  gap-0 lg:gap-[113px]">
-
                     {/* Left Column */}
                     <div className="flex flex-col   gap-4 min-w-0 w-full lg:w-[500px]">
                       {/* Services Name */}
                       <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[150px_1fr] sm:gap-4  gap-4 items-start">
-                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Services Name")}</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
+                          {t("Services Name")}
+                        </div>
                         <div className="text-text-primary font-title-14px-semibold text-[clamp(12px,2vw,14px)]  font-semibold break-words">
                           Comprehensive Diabetes Checkup
                         </div>
@@ -336,68 +344,91 @@ const navigate=useNavigate();
 
                       {/* Services ID + Status */}
                       <div className="flex flex-col sm:grid sm:grid-cols-[150px_1fr] sm:gap-4 gap-4 items-start">
-                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Services ID")}</div>
-               <div className="flex flex-wrap items-center gap-2">
-  <div className="text-text-primary font-title-14px-semibold text-[clamp(12px,2vw,14px)] font-semibold">
-    SRV-00345
-  </div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
+                          {t("Services ID")}
+                        </div>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <div className="text-text-primary font-title-14px-semibold text-[clamp(12px,2vw,14px)] font-semibold">
+                            SRV-00345
+                          </div>
 
-  <div className="flex items-center gap-2">
-    <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]">
-      {t("Status")}:
-    </div>
+                          <div className="flex items-center gap-2">
+                            <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]">
+                              {t("Status")}:
+                            </div>
 
-    <div className="flex items-center justify-center bg-hitbox">
-      <div onClick={(e) => e.stopPropagation()}>
-        <Toggle checked={checked} onChange={handleToggles} />
+                            <div className="flex items-center justify-center bg-hitbox">
+                              <div onClick={(e) => e.stopPropagation()}>
+                                <Toggle
+                                  checked={checked}
+                                  onChange={handleToggles}
+                                />
 
-        {showDialog && actionType === "deactivate" && (
-          <Deactivate
-            open={showDialog}
-            onConfirm={confirmDeactivate}
-            onCancel={cancelDeactivate}
-          >
-            <p>Inactive services will no longer appear in selection menus or be assignable to patients.</p>
-          </Deactivate>
-        )}
+                                {showDialog && actionType === "deactivate" && (
+                                  <Deactivate
+                                    open={showDialog}
+                                    onConfirm={confirmDeactivate}
+                                    onCancel={cancelDeactivate}
+                                  >
+                                    <p>
+                                      Inactive services will no longer appear in
+                                      selection menus or be assignable to
+                                      patients.
+                                    </p>
+                                  </Deactivate>
+                                )}
 
-        {showDialog && actionType === "activate" && (
-          <Activate
-            open={showDialog}
-            onConfirm={confirmDeactivate}
-            onCancel={cancelDeactivate}
-          >
-            <p>Active services will be visible in selection menus and can be assigned to patients.</p>
-          </Activate>
-        )}
-      </div>
-    </div>
-  </div>
-</div>
-
-    </div>
+                                {showDialog && actionType === "activate" && (
+                                  <Activate
+                                    open={showDialog}
+                                    onConfirm={confirmDeactivate}
+                                    onCancel={cancelDeactivate}
+                                  >
+                                    <p>
+                                      Active services will be visible in
+                                      selection menus and can be assigned to
+                                      patients.
+                                    </p>
+                                  </Activate>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       {/* Service Category */}
                       <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[150px_1fr] sm:gap-4 gap-4 items-start">
-                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Service Category")}</div>
-                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  ">{t("Medical Examination")}</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
+                          {t("Service Category")}
+                        </div>
+                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  ">
+                          {t("Medical Examination")}
+                        </div>
                       </div>
 
                       {/* Service Description */}
-                   
-                
-                       <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[150px_1fr] sm:gap-4 gap-4 items-start">
-                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Service Description")}</div>
+
+                      <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[150px_1fr] sm:gap-4 gap-4 items-start">
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
+                          {t("Service Description")}
+                        </div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
-                          Full diagnostic evaluation for diabetes including lab tests, physical exam, and consultation.
+                          Full diagnostic evaluation for diabetes including lab
+                          tests, physical exam, and consultation.
                         </div>
                       </div>
-  </div>
+                    </div>
                     {/* Right Column */}
                     <div className="flex flex-col gap-4 min-w-0 w-full lg:w-[500px] items-start">
-                      <div className=" w-36  block lg:hidden text-primary-default mt-3 "> {t("Assign")}</div>
+                      <div className=" w-36  block lg:hidden text-primary-default mt-3 ">
+                        {" "}
+                        {t("Assign")}
+                      </div>
                       {/* Assign Complex */}
                       <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[150px_1fr] sm:gap-4 gap-4 items-start">
-                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Assign Complex")}</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
+                          {t("Assign Complex")}
+                        </div>
                         <div className="text-text-primary font-title-14px-semibold text-[clamp(12px,2vw,14px)]  font-semibold break-words">
                           Arab Interface tech Main Complex
                         </div>
@@ -405,7 +436,9 @@ const navigate=useNavigate();
 
                       {/* Assign Clinics */}
                       <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[150px_1fr] sm:gap-4 gap-4 items-start">
-                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Assign Clinics")}</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
+                          {t("Assign Clinics")}
+                        </div>
                         <div className="text-text-primary font-title-14px-semibold text-[clamp(12px,2vw,14px)]  font-semibold break-words">
                           Internal Medicine, Family Medicine
                         </div>
@@ -413,35 +446,30 @@ const navigate=useNavigate();
 
                       {/* Resources */}
                       <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[150px_1fr] sm:gap-4  font-lato gap-4 items-start">
-                        <div className="text-primary-default font-semibold text-[clamp(14px,2vw,16px)] ">{t("Resources")}</div>
+                        <div className="text-primary-default font-semibold text-[clamp(14px,2vw,16px)] ">
+                          {t("Resources")}
+                        </div>
                         <div></div> {/* فارغ إذا ما في محتوى */}
                       </div>
 
                       {/* Required Equipment */}
                       <div className="flex flex-col gap-1 sm:grid sm:grid-cols-[150px_1fr] sm:gap-4 gap-4 items-start">
-                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Required Equipment")}</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
+                          {t("Required Equipment")}
+                        </div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
-                          Full diagnostic evaluation for diabetes including lab tests, physical exam, and consultation.
+                          Full diagnostic evaluation for diabetes including lab
+                          tests, physical exam, and consultation.
                         </div>
                       </div>
                     </div>
-                
+                  </div>
                 </div>
-                
-                
-                </div>
-
               }
             />
 
-
-
-
-
-
-
-
-            <ReusableCollapsible dir={local === 'ar' ? 'rtl' : 'ltr'}
+            <ReusableCollapsible
+              dir={local === "ar" ? "rtl" : "ltr"}
               title={
                 <div className="flex flex-col lg:flex-row gap-0 lg:gap-[113px] w-full">
                   {/* Left Title */}
@@ -460,76 +488,118 @@ const navigate=useNavigate();
               content={
                 <div className="self-stretch w-full h-auto bg-surface-default rounded-2xl p-6 pt-0">
                   <div className="flex flex-col lg:flex-row gap-0 lg:gap-[113px]">
-
                     {/* Left Column - Utilization Metrics */}
                     <div className="flex flex-col gap-4 w-full lg:w-[500px]">
                       {/* Total Patients Served */}
                       <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
-                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Total Patients Served")}</div>
-                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">327 Patients</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
+                          {t("Total Patients Served")}
+                        </div>
+                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
+                          327 Patients
+                        </div>
                       </div>
 
                       {/* Completed Sessions */}
                       <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
-                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Completed Sessions")}</div>
-                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">945 Sessions</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
+                          {t("Completed Sessions")}
+                        </div>
+                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
+                          945 Sessions
+                        </div>
                       </div>
 
                       {/* Average Duration */}
                       <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
-                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Average Duration")}</div>
-                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">25 mins</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
+                          {t("Average Duration")}
+                        </div>
+                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
+                          25 mins
+                        </div>
                       </div>
 
                       {/* No-Show Rate */}
                       <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
-                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("No-Show Rate (%)")}</div>
-                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">8.6%</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
+                          {t("No-Show Rate (%)")}
+                        </div>
+                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
+                          8.6%
+                        </div>
                       </div>
 
                       {/* Rebooking Rate */}
                       <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
-                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Rebooking Rate (%)")}</div>
-                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">72.4%</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
+                          {t("Rebooking Rate (%)")}
+                        </div>
+                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
+                          72.4%
+                        </div>
                       </div>
                     </div>
 
                     {/* Right Column - Operational Details */}
                     <div className="flex flex-col gap-4 w-full lg:w-[500px]">
-                      <div className=" w-36  block lg:hidden text-primary-default mt-3"> {t("Operational Details")}</div>
+                      <div className=" w-36  block lg:hidden text-primary-default mt-3">
+                        {" "}
+                        {t("Operational Details")}
+                      </div>
                       {/* Last Performed Date */}
                       <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
-                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Last Performed Date")}</div>
-                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">June 28-2025</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
+                          {t("Last Performed Date")}
+                        </div>
+                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
+                          June 28-2025
+                        </div>
                       </div>
 
                       {/* Most Frequent Doctor */}
                       <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
-                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Most Frequent Doctor")}</div>
-                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">Dr. Sarah Fadel</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
+                          {t("Most Frequent Doctor")}
+                        </div>
+                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
+                          Dr. Sarah Fadel
+                        </div>
                       </div>
 
                       {/* Most Frequent Clinic */}
                       <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
-                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Most Frequent Clinic")}</div>
-                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">Internal Medicine Clinic</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
+                          {t("Most Frequent Clinic")}
+                        </div>
+                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
+                          Internal Medicine Clinic
+                        </div>
                       </div>
 
                       {/* Timestamps */}
                       <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
-                        <div className="text-primary-default font-semibold font-lato text-[clamp(14px,2vw,16px)] ">{t("Timestamps")}</div>
+                        <div className="text-primary-default font-semibold font-lato text-[clamp(14px,2vw,16px)] ">
+                          {t("Timestamps")}
+                        </div>
                         <div></div>
                       </div>
 
                       {/* Creation Date */}
                       <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
-                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Creation Date")}</div>
-                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">June 28-2025</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
+                          {t("Creation Date")}
+                        </div>
+                        <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
+                          June 28-2025
+                        </div>
                       </div>
 
                       {/* Last Update */}
                       <div className="flex flex-col sm:grid sm:grid-cols-[180px_1fr] sm:gap-4 gap-4 gap-4 items-start">
-                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">{t("Last Update")}</div>
+                        <div className="text-text-primary font-lato font-semibold text-[clamp(14px,2vw,16px)] ">
+                          {t("Last Update")}
+                        </div>
                         <div className="text-text-primary font-semibold text-[clamp(12px,2vw,14px)]  break-words">
                           June 28-2025&nbsp;&nbsp;10:43 AM
                         </div>
@@ -537,12 +607,8 @@ const navigate=useNavigate();
                     </div>
                   </div>
                 </div>
-
               }
             />
-
-
-
 
             <ReusableCollapsible
               dir={local === "ar" ? "rtl" : "ltr"}
@@ -636,29 +702,6 @@ const navigate=useNavigate();
               }
             />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <ReusableCollapsible
               dir={local === "ar" ? "rtl" : "ltr"}
               title={t("Assign Doctors List")}
@@ -729,24 +772,11 @@ const navigate=useNavigate();
                     </div>
                   </div>
                 </div>
-
               }
             />
-
-
-
-
-
-
-
-
-
-
-
           </CardContent>
         </Card>
-      </div></div>
+      </div>
+    </div>
   );
 };
-
-

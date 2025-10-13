@@ -84,14 +84,14 @@ export const CompanyDetailsSection = ({
       {/* Content */}
       <div className="bg-background-secondary p-[24px] rounded-[16px] w-full">
         <div className="flex flex-col w-full items-start gap-4 ">
-          <Card className="w-full h-[208px] bg-background-primary rounded-2xl">
+          <Card className="w-full bg-background-primary rounded-2xl">
             <CardContent className="p-[16px]">
               <div className="flex w-full items-center justify-between mb-4">
                 <h2 className="text-primary-default text-[16px] font-lato font-bold leading-[124%] tracking-[0] ">
                   Company Info
                 </h2>
               </div>
-              <div className="grid grid-cols-2 gap-8 ">
+              <div className="grid lg:grid-cols-2 gap-8 ">
                 <div className="space-y-3">
                   {formFields.companyInfo.slice(0, 1).map((field, index) => (
                     <div key={index} className="flex items-center gap-8">
@@ -103,7 +103,7 @@ export const CompanyDetailsSection = ({
                   ))}
 
                   {formFields.companyInfo.slice(2, 3).map((field, index) => (
-                    <div key={index + 2} className="flex items-center gap-8">
+                    <div key={index + 2} className="flex gap-8">
                       <div className="w-40 font-semibold text-[16px] text-text-primary font-lato leading-[124%] tracking-[0]">
                         {field.label}
                       </div>
@@ -118,7 +118,7 @@ export const CompanyDetailsSection = ({
                       <div className="w-40 mt-[10px] font-semibold text-[16px] text-text-primary font-lato leading-[124%] tracking-[0]">
                         {field.label}
                       </div>
-                      <div className="flex flex-col w-[360px] gap-4">
+                      <div className="flex flex-col w-full gap-4">
                         {field.fields?.map((inputField, inputIndex) => (
                           <Input
                             key={inputIndex}
@@ -133,7 +133,7 @@ export const CompanyDetailsSection = ({
               </div>
             </CardContent>
           </Card>
-          <Card className="w-full h-[248px] bg-background-primary rounded-2xl">
+          <Card className="w-full bg-background-primary rounded-2xl">
             <CardContent className="p-4">
               <div className="flex w-full items-center gap-4 mb-8">
                 <h2 className="text-primary-default text-[16px] font-lato font-bold leading-[124%] tracking-[0]">
@@ -141,7 +141,7 @@ export const CompanyDetailsSection = ({
                 </h2>
               </div>
 
-              <div className="grid grid-cols-2 gap-8 h-full">
+              <div className="grid lg:grid-cols-2 gap-8 h-full">
                 <div className="space-y-6">
                   {formFields.companyOverview
                     .slice(0, 1)
@@ -150,7 +150,7 @@ export const CompanyDetailsSection = ({
                         <div className="w-40 font-lato font-semibold text-[16px] text-text-primary leading-[124%] tracking-[0] ">
                           {field.label}
                         </div>
-                        <div className="flex flex-col w-[360px] relative">
+                        <div className="flex flex-col w-full relative">
                           <Textarea
                             className="w-fill h-auto px-4 py-2 rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
                             placeholder={field.placeholder}
@@ -166,7 +166,7 @@ export const CompanyDetailsSection = ({
                         <div className="w-40 font-lato font-semibold text-[16px] text-text-primary leading-[124%] tracking-[0]">
                           {field.label}
                         </div>
-                        <div className="flex flex-col w-[360px] relative">
+                        <div className="flex flex-col w-full relative">
                           <Textarea
                             className="w-fill h-auto px-4 py-2 rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
                             placeholder={field.placeholder}
@@ -184,7 +184,7 @@ export const CompanyDetailsSection = ({
                         <div className="w-40 font-lato font-semibold text-[16px] text-text-primary leading-[124%] tracking-[0]">
                           {field.label}
                         </div>
-                        <div className="flex flex-col w-[360px] relative">
+                        <div className="flex flex-col w-full relative">
                           <Textarea
                             className="w-fill h-auto px-4 py-2  rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-gray-600 text-base resize-none"
                             placeholder={field.placeholder}
@@ -203,7 +203,7 @@ export const CompanyDetailsSection = ({
                         <div className="w-40 font-lato font-semibold text-[16px] text-text-primary leading-[124%] tracking-[0]">
                           {field.label}
                         </div>
-                        <div className="flex w-[360px] gap-4">
+                        <div className="flex w-full gap-4">
                           <Input
                             className="flex-1 h-12 px-4 py-2 rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base"
                             placeholder={field.placeholder}

@@ -6,50 +6,25 @@ import { useLanguage } from "../../lib/LanguageContext";
 import { useTranslation } from "react-i18next";
 
 const countryNames: Record<string, string> = {};
-interface PhoneInputCustomProps {
-  value: string[]; // مصفوفة أرقام
-  onChange?: (value: string[]) => void;
-}
-export default function PhoneInputCustom({ value, onChange }: PhoneInputCustomProps) {
+
+export default function PhoneInputCustom() {
   const { local } = useLanguage();
   const { t, i18n } = useTranslation();
   const [country, setCountry] = useState<string>("SA");
   const [phone, setPhone] = useState<string | undefined>(undefined);
   const [focused, setFocused] = useState(false);
-  const [placeholder, setPlaceholder] = useState("Enter Number"); // default للموبايل
   const defaultCountry: CountryCode = "SA";
 
   const getFirstTwo = (code: string) =>
     countryNames[code]?.slice(0, 2).toUpperCase() || code;
-  const handleChange = (index: number, newValue?: string) => {
-    const updated = [...value];
-    updated[index] = newValue || "";
-    onChange?.(updated);
-  };
   useEffect(() => {
     i18n.changeLanguage(local);
   }, [local, i18n]);
-
-  // ✅ تحديث الـ placeholder حسب حجم الشاشة
-  useEffect(() => {
-    const updatePlaceholder = () => {
-      if (window.innerWidth < 640) {
-        setPlaceholder("Enter Number"); // موبايل
-      } else {
-        setPlaceholder("Enter Phone Number"); // شاشات أكبر
-      }
-    };
-
-    updatePlaceholder(); // تشغيل أول مرة
-    window.addEventListener("resize", updatePlaceholder);
-    return () => window.removeEventListener("resize", updatePlaceholder);
-  }, []);
-
   return (
-    <div dir="ltr" className="relative">
+    <div dir="ltr" className="relative w-full">
       {/* Placeholder وهمي */}
       {!phone && !focused && (
-        <span className="absolute left-[105px] top-[10px] text-gray-400 pointer-events-none bg-[white] w-[150px] h-[35px]">
+        <span className="absolute left-[105px] top-[10px] max-[767px]:text-[13px] text-gray-400 pointer-events-none bg-[white] max-w-[150px] h-[35px]">
           {t("Enter Phone Number")}
         </span>
       )}
@@ -70,7 +45,7 @@ export default function PhoneInputCustom({ value, onChange }: PhoneInputCustomPr
       </svg>
 
       {/* أول حرفين من اسم الدولة */}
-      <span className="font-semibold bg-background-secondary absolute top-[12px] left-[40px]">
+      <span className="font-semibold absolute top-[12px] left-[40px]">
         {getFirstTwo(country)}
       </span>
 
@@ -83,7 +58,7 @@ export default function PhoneInputCustom({ value, onChange }: PhoneInputCustomPr
         onCountryChange={(c) => c && setCountry(c)} // تغيير الدولة
         countryCallingCodeEditable={false}
         placeholder="أدخل رقمك"
-        className="w-full"
+        className=""
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
       />

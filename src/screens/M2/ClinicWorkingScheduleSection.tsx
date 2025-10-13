@@ -61,7 +61,7 @@ export const ClinicWorkSchedule = ({
                       onChange={() => toggleDay(index)}
                     />
                     <label
-                      className={`${"text-[#2a2b2a]"} tracking-[0.07px] leading-6 [font-family:'Lato',Helvetica] font-normal text-sm whitespace-nowrap`}
+                      className={`${"text-[#2a2b2a]"} tracking-[0.07px] leading-6 font-lato font-normal text-sm whitespace-nowrap`}
                     >
                       {workDay.day}
                     </label>

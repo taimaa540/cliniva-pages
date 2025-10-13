@@ -15,7 +15,6 @@ import { CountryDropdown } from "react-country-region-selector";
 import en from "react-phone-number-input/locale/en.json";
 import {
   Select,
-  Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
@@ -660,6 +659,7 @@ const [activeTab, setActiveTab] = useState("account");
           </Tabs>
         </CardContent>
       </Card>
+    </div>
     </div>
   );
 };

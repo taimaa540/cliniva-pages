@@ -10,9 +10,9 @@ import {
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
-import PhoneInput from "react-phone-input-2";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import PhoneInputCustom from "../CommonComponents/PhoneInput";
+import "react-phone-number-input/style.css";
 const addressFields = [
   { placeholder: "Building Number" },
   { placeholder: "Street Name" },
@@ -31,13 +31,12 @@ export const ContactInfoSection = ({
   prevStep,
   title,
 }: buttonProps): JSX.Element => {
-  const [phone, setPhone] = useState("");
   return (
     <div className="hidden md:flex flex flex-col w-full h-screen overflow-scroll items-start gap-4 pl-0 pr-4 py-4">
       {/* Header */}
       <div className="flex flex-col gap-2">
         <button className="flex items-center gap-2 font-lato text-xs text-text-secondary font-regular leading-[130%] tracking-[0]">
-          <Link to='/ChossPlan'>
+          <Link to="/ChossPlan">
             <ArrowLeftIcon className="relative w-4 h-4" />
           </Link>
           Back to Choosing Plan Page
@@ -51,44 +50,33 @@ export const ContactInfoSection = ({
       </div>
       {/* Content */}
       <div className=" bg-background-secondary p-[24px] rounded-[16px] w-full">
-        <Card className=" w-full h-[312px] py-[16px] px-[24px] mb-[16px] bg-background-primary">
+        <Card className=" w-full py-[16px] px-[24px] mb-[16px] bg-background-primary">
           <CardContent className="p-0">
-            <div className="flex w-[1129px] items-center justify-between">
+            <div className="flex items-center justify-between">
               <div className="text-primary-default font-lato font-bold text-base leading-[124%] tracking-[0]">
                 Contact Info
               </div>
             </div>
 
-            <div className="flex flex-col w-[1129px] items-start gap-6">
-              <div className="flex items-start justify-between relative self-stretch w-full flex-[0_0_auto]">
-                <div className="flex flex-col w-[552px] items-end gap-2 relative">
+            <div className="flex flex-col items-start gap-6">
+              <div className="flex flex-col xl:flex-row items-start gap-8 relative self-stretch w-full flex-[0_0_auto]">
+                <div className="flex flex-col flex-1 items-end gap-2 relative">
                   <div className="flex items-center gap-8 relative self-stretch w-full flex-[0_0_auto]">
                     <div className="flex w-40 items-center gap-2.5 relative">
                       <PhoneIcon className="relative w-6 h-6" />
                       <div className="relative w-[162px] mr-[-36.00px] font-title-16px-semibold font-[number:var(--title-16px-semibold-font-weight)] text-on-surface-primary text-[length:var(--title-16px-semibold-font-size)] tracking-[var(--title-16px-semibold-letter-spacing)] leading-[var(--title-16px-semibold-line-height)] [font-style:var(--title-16px-semibold-font-style)]">
-                        PhoneIcon Number
+                        Phone Number
                       </div>
                     </div>
-                    <PhoneInput
-                      country={"sa"} // الدولة الافتراضية                    
-                      value={phone}
-                      onChange={setPhone}
-                      enableAreaCodes={true}
-                      inputStyle={{
-                        width: "360px",
-                        height: "48px",
-                        borderRadius: "4px",
-                        border: "1px solid #E4E2DD",
-                      }}
-                    />
+                    <PhoneInputCustom />
                   </div>
                   <button>
                     <PlusIcon className="relative w-8 h-8 text-secondary-dark" />
                   </button>
                 </div>
 
-                <div className="inline-flex justify-center relative flex-[0_0_auto] h-12 items-center gap-8">
-                  <div className="relative w-[162px] h-6">
+                <div className="flex flex-1 relative h-12 items-center gap-8">
+                  <div className="relative w-[250px] h-6">
                     <svg
                       width="24"
                       height="24"
@@ -109,13 +97,13 @@ export const ContactInfoSection = ({
 
                   <Input
                     placeholder="Enter Email"
-                    className="w-[360px] px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
+                    className="w-full px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] font-lato font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
                   />
                 </div>
               </div>
 
-              <div className="flex items-center justify-between relative self-stretch w-full flex-[0_0_auto]">
-                <div className="inline-flex justify-center relative flex-[0_0_auto] h-12 items-center gap-8">
+              <div className="flex flex-col flex-wrap xl:flex-row items-start gap-8 relative self-stretch w-full">
+                <div className="flex flex-1 justify-center relative h-12 items-center gap-8">
                   <div className="flex w-40 items-center gap-2 relative">
                     <GlobeIcon className="relative w-6 h-6" />
                     <div className="relative w-[134px] mr-[-6.00px] text-[length:var(--title-16px-semibold-font-size)] leading-[var(--title-16px-semibold-line-height)] font-title-16px-semibold font-[number:var(--title-16px-semibold-font-weight)] text-on-surface-primary tracking-[var(--title-16px-semibold-letter-spacing)] [font-style:var(--title-16px-semibold-font-style)]">
@@ -125,12 +113,12 @@ export const ContactInfoSection = ({
 
                   <Input
                     placeholder="Website"
-                    className="w-[360px] px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
+                    className="w-full px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
                   />
                 </div>
 
-                <div className="inline-flex justify-center relative flex-[0_0_auto] h-12 items-center gap-8">
-                  <div className="inline-flex items-center gap-2 relative flex-[0_0_auto]">
+                <div className="flex flex-1 justify-center relative h-12 items-center gap-6">
+                  <div className="inline-flex items-center gap-2 relative ">
                     <div className="relative w-6 h-6">
                       <svg
                         width="24"
@@ -152,12 +140,12 @@ export const ContactInfoSection = ({
 
                   <Input
                     placeholder="Pick Google Maps Location"
-                    className="w-[360px] px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
+                    className="flex-1 w-full px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] font-lato font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
                   />
                 </div>
               </div>
 
-              <div className="flex items-center gap-8 relative self-stretch w-full flex-[0_0_auto]">
+              <div className="flex flex-col lg:flex-row items-start gap-8 relative self-stretch w-full ">
                 <div className="flex w-40 items-start gap-2 relative">
                   <MapPinIcon className="relative w-6 h-6" />
                   <div className="relative w-[134px] mt-[-1.00px] mr-[-6.00px] text-[length:var(--title-16px-semibold-font-size)] leading-[var(--title-16px-semibold-line-height)] font-title-16px-semibold font-[number:var(--title-16px-semibold-font-weight)] text-on-surface-primary tracking-[var(--title-16px-semibold-letter-spacing)] [font-style:var(--title-16px-semibold-font-style)]">
@@ -165,7 +153,7 @@ export const ContactInfoSection = ({
                   </div>
                 </div>
 
-                <div className="w-[937px] items-start justify-between flex relative">
+                <div className="w-full items-start justify-between flex flex-wrap relative">
                   {addressFields.map((field, index) => (
                     <Input
                       key={index}
@@ -179,17 +167,17 @@ export const ContactInfoSection = ({
           </CardContent>
         </Card>
 
-        <Card className="w-full h-[188px] py-[16px] px-[24px] bg-background-primary">
+        <Card className="w-full py-[16px] px-[24px] bg-background-primary">
           <CardContent className="p-0">
-            <div className="flex w-[1129px] items-center gap-4 ">
+            <div className="flex items-center gap-4 ">
               <div className="text-primary-default font-lato font-bold text-base leading-[124%] tracking-[0]">
                 Social Media Accounts
               </div>
             </div>
 
             <div className="mt-[16px]">
-              <div className="flex w-[552px] h-12 items-center gap-8">
-                <div className="flex ">
+              <div className="flex flex-col lg:flex-row items-start gap-8">
+                <div className="flex flex-1 ">
                   <div className="flex w-40 items-center gap-2.5 relative">
                     <svg
                       width="24"
@@ -220,16 +208,16 @@ export const ContactInfoSection = ({
                         stroke-linejoin="round"
                       />
                     </svg>
-                    <div className="relative w-[126px] [font-family:'Lato',Helvetica] font-medium text-on-surface-primary text-base tracking-[0] leading-4">
+                    <div className="relative w-[126px] font-lato font-medium text-on-surface-primary text-base tracking-[0] leading-4">
                       LinkedIn
                     </div>
                   </div>
                   <Input
                     placeholder="Enter LinkedIn Account"
-                    className="w-[360px] h-[48px] px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
+                    className=" w-full h-[48px] px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
                   />
                 </div>
-                <div className="flex ">
+                <div className="flex flex-1">
                   <div className="flex w-40 items-center gap-2.5 relative">
                     <svg
                       width="24"
@@ -252,12 +240,12 @@ export const ContactInfoSection = ({
                   </div>
                   <Input
                     placeholder="Enter Twitter Account"
-                    className="w-[360px] h-[48px] px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
+                    className="w-full h-[48px] px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
                   />
                 </div>
               </div>
-              <div className="flex w-[552px] h-12 items-center gap-8 mt-[24px]">
-                <div className="flex ">
+              <div className="flex flex-col lg:flex-row items-start gap-8 mt-[24px]">
+                <div className="flex flex-1">
                   <div className="flex w-40 items-center gap-2.5 relative">
                     <svg
                       width="24"
@@ -279,10 +267,10 @@ export const ContactInfoSection = ({
                   </div>
                   <Input
                     placeholder="Enter Facebook Account"
-                    className="w-[360px] h-[48px] px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
+                    className="w-full h-[48px] px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
                   />
                 </div>
-                <div className="flex ">
+                <div className="flex flex-1">
                   <div className="flex w-40 items-center gap-2.5 relative">
                     <svg
                       width="24"
@@ -311,7 +299,7 @@ export const ContactInfoSection = ({
                   </div>
                   <Input
                     placeholder="Enter Instagram Account"
-                    className="w-[360px] h-[48px] px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
+                    className="w-full h-[48px] px-4 py-2 bg-white rounded border border-solid border-[#e4e2dd] [font-family:'Lato',Helvetica] font-normal text-on-surface-secondary text-base tracking-[0] leading-6"
                   />
                 </div>
               </div>

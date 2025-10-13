@@ -19,7 +19,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import SwitchWithLabel from "../CommonComponents/SwitchLabel";
 import { Header } from "../CommonComponents/Header";
-import { Deactivate } from "../CommonComponents/Deactivate"; 
+import { Deactivate } from "../CommonComponents/Deactivate";
 import { Activate } from "../CommonComponents/Activate";
 import Toggle from "../../components/ui/SwitchToggel";
 import { Delete } from "../CommonComponents/Delete";
@@ -109,48 +109,51 @@ export const ServicesList = (): JSX.Element => {
     i18n.changeLanguage(local);
   }, []);
   const navigate = useNavigate();
-const [checked, setChecked] = useState<boolean>(true); // الحالة الحالية
-const [showDialog, setShowDialog] = useState<boolean>(false);
-const [pendingNext, setPendingNext] = useState<boolean | null>(null);
-const [actionType, setActionType] = useState<"activate" | "deactivate" | null>(null);
-
+  const [checked, setChecked] = useState<boolean>(true); // الحالة الحالية
+  const [showDialog, setShowDialog] = useState<boolean>(false);
+  const [pendingNext, setPendingNext] = useState<boolean | null>(null);
+  const [actionType, setActionType] = useState<
+    "activate" | "deactivate" | null
+  >(null);
 
   // عندما يضغط المستخدم على الـ Toggle
-function handleToggle(next: boolean) {
-  // إذا كان من Active -> Inactive
-  if (checked && !next) {
-    setPendingNext(next);
-    setActionType("deactivate");
-    setShowDialog(true);
-    return;
+  function handleToggle(next: boolean) {
+    // إذا كان من Active -> Inactive
+    if (checked && !next) {
+      setPendingNext(next);
+      setActionType("deactivate");
+      setShowDialog(true);
+      return;
+    }
+
+    // إذا كان من Inactive -> Active
+    if (!checked && next) {
+      setPendingNext(next);
+      setActionType("activate");
+      setShowDialog(true);
+      return;
+    }
+
+    // غير هيك غيّر مباشرة
+    setChecked(next);
   }
 
-  // إذا كان من Inactive -> Active
-  if (!checked && next) {
-    setPendingNext(next);
-    setActionType("activate");
-    setShowDialog(true);
-    return;
+  function confirmDeactivate() {
+    setChecked(pendingNext ?? false);
+    setPendingNext(null);
+    setActionType(null);
+    setShowDialog(false);
   }
 
-  // غير هيك غيّر مباشرة
-  setChecked(next);
-}
+  function cancelDeactivate() {
+    setPendingNext(null);
+    setActionType(null);
+    setShowDialog(false);
+  }
 
-function confirmDeactivate() {
-  setChecked(pendingNext ?? false);
-  setPendingNext(null);
-  setActionType(null);
-  setShowDialog(false);
-}
-
-function cancelDeactivate() {
-  setPendingNext(null);
-  setActionType(null);
-  setShowDialog(false);
-}
-
-{/*DeletDialog*/ }
+  {
+    /*DeletDialog*/
+  }
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   function handleDelete() {
@@ -163,11 +166,16 @@ function cancelDeactivate() {
     setShowDeleteDialog(false);
   }
 
-
   const [isOpenAppointment, setIsOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const onOpenSidebar = () => setShowSidebar(true);
   const onCloseSidebar = () => setShowSidebar(false);
+  const [page, setPage] = useState(1);
+  const totalPages = 6;
+
+  const handleChange = (_: unknown, value: number) => {
+    setPage(value);
+  };
   return (
     <div className="flex h-screen  w-screen">
       {showSidebar && (
@@ -181,20 +189,19 @@ function cancelDeactivate() {
         setIsOpen={setIsOpen}
         local={local}
         handleLanguageClick={handleLanguageClick}
-        handleDarkClick={() => { }}
+        handleDarkClick={() => {}}
         isOpen={showSidebar}
         onOpenSidebar={onOpenSidebar}
         onCloseSidebar={onCloseSidebar}
       />
-      <>
-        <div className="flex flex-col w-full overflow-hidden h-full items-start gap-4 py-4 pl-0 pr-5">
-                <Header MainTitle="Services Management" SubTitle="View Services List" onOpenSidebar={onOpenSidebar}  />
-
-   
-
-
+      <div className="flex flex-col w-full overflow-hidden h-full items-start gap-4 py-4 pl-0 pr-5">
+        <Header
+          MainTitle="Services Management"
+          SubTitle="View Services List"
+          onOpenSidebar={onOpenSidebar}
+        />
         <Card className="flex flex-col h-full items-start gap-5 p-[20px] pr-0 relative w-full rounded-2xl overflow-hidden bg-background-secondary">
-          <CardContent className="w-full overflow-y-auto scroll-x-hidden h-full ">
+          <CardContent className="w-full h-full ">
             <div
               className={`w-full h-[866px] ${
                 local === "ar" ? "pl-[20px]" : "pr-[20px]"
@@ -250,133 +257,156 @@ function cancelDeactivate() {
                   </Link>
                 </div>
               </div>
-
-              <div className="min-w-[900px] overflow-x-auto">
-                <table className="w-full text-center">
-                  <thead>
-                    <tr className="h-[56px] bg-background-primary border-b border-border-light w-full">
-                      <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                        {t("No.")}
-                      </td>
-                      <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                        {t("Service ID")}
-                      </td>
-                      <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                        {t("Services Name")}
-                      </td>
-                      <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                        {t("Service Category")}
-                      </td>
-                      <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                        {t("Sessions Number")}
-                      </td>
-                      <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                        {t("Assigned Clinics")}
-                      </td>
-                      <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                        {t("Clinics Location")}
-                      </td>
-                      <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                        {t("Status")}
-                      </td>
-                      <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                        {t("Actions")}
-                      </td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {serviceData.map((service) => (
-                      <tr
-                        key={service.id}
-                        className="h-[78px] bg-background-primary hover:bg-gray-100 border-b border-border-light w-full"
-                      >
-                        <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {service.id}
-                        </td>
-                        <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {service.serviceId}
-                        </td>
-                        <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {service.serviceName}
-                        </td>
-                        <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {service.serviceCategory}
-                        </td>
-                        <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {service.sessionsNumber}
-                        </td>
-                        <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {service.assignedClinics}
-                        </td>
-                        <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
-                          {service.clinicslocation}
-                        </td>
-                        <td className="align-middle w-[160px]">
-                          <SwitchWithLabel />
-                        </td>
-                        <td className="align-middle">
-                          <div className="inline-flex flex-col justify-center gap-1 flex-[0_0_auto] items-start">
-                            <div className="inline-flex items-center justify-center gap-1 flex-[0_0_auto]">
-                              <Button
-                              onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    navigate("/EditServiceDetails");
-                  }}
-                                variant="ghost"
-                                size="sm"
-                                className="inline-flex items-center justify-center gap-2 p-2.5 flex-[0_0_auto] rounded-lg overflow-hidden h-auto"
-                              >
-                                <img
-                                  className={`w-[15px] h-[15px]text-on-surface-primary`}
-                                  alt="edit"
-                                  src="./edit-01.svg"
-                                />
-                              </Button>
-
-                <Button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setShowDeleteDialog(true);
-                  }}
-                  variant="ghost"
-                  size="sm"
-                  className="inline-flex items-center justify-center gap-2 p-2.5 rounded-lg h-auto"
-                >
-                  <Trash2Icon className="w-[20px] h-[20px] text-on-surface-primary" />
-                </Button>
-              </div>
-            </div>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-
-
-
-           
- {showDeleteDialog  && ( <Delete
-                                  open={showDeleteDialog}
-                                  title="SRV-00345"
-                                  onDelete={handleDelete}
-                                  onCancel={cancelDelete}
-                                >
-                                  <p>Are you sure you want to delete this User? This action cannot be undone.</p>
-                                </Delete>)}
-                <footer
-                  dir="ltr"
-                  className="flex items-center justify-between self-stretch w-full flex-[0_0_auto] bg-transparent mt-[10px]"
-                >
+              <div
+                className="flex flex-col flex-grow rounded-lg items-start gap-5 pt-4 pr-[10px] relative w-full overflow-hidden"
+                dir={local === "ar" ? "rtl" : "ltr"}
+              >
+                {/* حاوية سكرول أفقي */}
+                <div className="w-full overflow-x-auto">
                   <div
-                    dir={`${local === "ar" ? "rtl" : "ltr"}`}
-                    className="inline-flex gap-2.5 flex-[0_0_auto] items-center"
+                    className=" rounded-lg"
+                    style={{ height: "calc(100vh - 78px - 200px)" }}
                   >
-                    <span className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)]">
-                      {t("Showing")}
-                    </span>
+                    <table className="table-auto w-full min-w-[800px] text-center border-collapse">
+                      <thead className="sticky top-0 z-10 bg-background-primary border-b border-border-light">
+                        <tr className="h-[56px] bg-background-primary border-b border-border-light w-full">
+                          <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                            {t("No.")}
+                          </td>
+                          <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                            {t("Service ID")}
+                          </td>
+                          <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                            {t("Services Name")}
+                          </td>
+                          <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                            {t("Service Category")}
+                          </td>
+                          <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                            {t("Sessions Number")}
+                          </td>
+                          <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                            {t("Assigned Clinics")}
+                          </td>
+                          <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                            {t("Clinics Location")}
+                          </td>
+                          <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                            {t("Status")}
+                          </td>
+                          <td className="font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                            {t("Actions")}
+                          </td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {serviceData.map((service) => (
+                          <tr
+                            key={service.id}
+                            className="h-[78px] bg-background-primary hover:bg-gray-100 border-b border-border-light w-full"
+                            onClick={() =>
+                              (window.location.href = `/ViewServiceDetails?id=${service.id}`)
+                            }
+                          >
+                            <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                              {service.id}
+                            </td>
+                            <td className="align-middle font-lato font-regular text-xs leading-[130%] tracking-[0] text-text-primary">
+                              {service.serviceId}
+                            </td>
+                            <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                              {service.serviceName}
+                            </td>
+                            <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                              {service.serviceCategory}
+                            </td>
+                            <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                              {service.sessionsNumber}
+                            </td>
+                            <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                              {service.assignedClinics}
+                            </td>
+                            <td className="align-middle font-lato font-semibold text-xs leading-[130%] tracking-[0] text-text-primary">
+                              {service.clinicslocation}
+                            </td>
+                            <td className="align-middle w-[160px]">
+                              <SwitchWithLabel />
+                            </td>
+                            <td className="align-middle">
+                              <div className="inline-flex flex-col justify-center gap-1 flex-[0_0_auto] items-start">
+                                <div className="inline-flex items-center justify-center gap-1 flex-[0_0_auto]">
+                                  <Link to="/EditServiceDetials">
+                                    <Button
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        navigate(
+                                          `/EditServiceDetials?id=${service.id}`,
+                                          {
+                                            state: {
+                                              from: "/ServicesList",
+                                            },
+                                          }
+                                        );
+                                      }}
+                                      variant="ghost"
+                                      size="sm"
+                                      className="inline-flex items-center justify-center gap-2 p-2.5 rounded-lg overflow-hidden h-auto"
+                                    >
+                                      <img
+                                        className="w-[15px] h-[15px] text-on-surface-primary"
+                                        alt="edit"
+                                        src="./edit-01.svg"
+                                      />
+                                    </Button>
+                                  </Link>
+
+                                  <Button
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      e.stopPropagation();
+                                      setShowDeleteDialog(true);
+                                    }}
+                                    variant="ghost"
+                                    size="sm"
+                                    className="inline-flex items-center justify-center gap-2 p-2.5 rounded-lg h-auto"
+                                  >
+                                    <Trash2Icon className="w-[20px] h-[20px] text-on-surface-primary" />
+                                  </Button>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              {showDeleteDialog && (
+                <Delete
+                  open={showDeleteDialog}
+                  title="SRV-00345"
+                  onDelete={handleDelete}
+                  onCancel={cancelDelete}
+                >
+                  <p>
+                    Are you sure you want to delete this User? This action
+                    cannot be undone.
+                  </p>
+                </Delete>
+              )}
+              <footer
+                dir="ltr"
+                className="flex items-center justify-between self-stretch w-full flex-[0_0_auto] bg-transparent mt-[10px]"
+              >
+                <div
+                  dir={`${local === "ar" ? "rtl" : "ltr"}`}
+                  className="inline-flex gap-2.5 flex-[0_0_auto] items-center"
+                >
+                  <span className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)]">
+                    {t("Showing")}
+                  </span>
 
                   <Select value={num} onValueChange={(value) => setNum(value)}>
                     <SelectTrigger className="inline-flex items-center gap-1 pl-2 pr-1.5 py-1.5 flex-[0_0_auto] bg-secondary-light rounded-[20px] border-0 h-auto">
@@ -393,10 +423,10 @@ function cancelDeactivate() {
                     </SelectContent>
                   </Select>
 
-                    <span className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)]">
-                      {t("out of")} 512
-                    </span>
-                  </div>
+                  <span className="w-fit font-title-11px-regular font-[number:var(--title-11px-regular-font-weight)] text-on-surface-secondary text-[length:var(--title-11px-regular-font-size)] tracking-[var(--title-11px-regular-letter-spacing)] leading-[var(--title-11px-regular-line-height)] whitespace-nowrap [font-style:var(--title-11px-regular-font-style)]">
+                    {t("out of")} 512
+                  </span>
+                </div>
 
                 <Pagination
                   count={6}
@@ -404,6 +434,13 @@ function cancelDeactivate() {
                   siblingCount={0}
                   boundaryCount={1}
                   sx={{
+                    // ✅ هنا نتحكم بالظهور حسب حجم الشاشة
+                    display: {
+                      xs: "none", // يخفيه على الشاشات الصغيرة
+                      sm: "none", // يخفيه على الشاشات الصغيرة جدًا أيضًا
+                      md: "flex", // يظهر فقط من الشاشات المتوسطة فما فوق
+                    },
+                    justifyContent: "center",
                     "& .MuiPaginationItem-root": {
                       backgroundColor: "#E2F6EC",
                       borderColor: "#E2F6EC",
@@ -422,11 +459,50 @@ function cancelDeactivate() {
                     },
                   }}
                 />
+
+                <Pagination
+                  count={totalPages}
+                  page={page}
+                  onChange={handleChange}
+                  variant="outlined"
+                  siblingCount={0}
+                  boundaryCount={0}
+                  sx={{
+                    // ✅ التحكم بالظهور حسب حجم الشاشة
+                    display: {
+                      xs: "flex", // يظهر على الشاشات الصغيرة
+                      sm: "flex",
+                      md: "none", // يختفي على الشاشات المتوسطة والكبيرة
+                    },
+                    justifyContent: "center",
+                    "& .MuiPaginationItem-root": {
+                      display: "none",
+                      backgroundColor: "#E2F6EC",
+                      borderColor: "#E2F6EC",
+                      color: "#333",
+                      "&:hover": {
+                        backgroundColor: "#cceede",
+                      },
+                    },
+                    "& .MuiPaginationItem-previousNext": {
+                      display: "inline-flex",
+                    },
+                    "& .Mui-selected": {
+                      display: "inline-flex",
+                      backgroundColor: "#00B48D !important",
+                      borderColor: "#00B48D",
+                      color: "#fff",
+                      "&:hover": {
+                        backgroundColor: "#00A57F",
+                      },
+                    },
+                  }}
+                />
               </footer>
             </div>
           </CardContent>
         </Card>
       </div>
-    </>
+    </div>
   );
 };

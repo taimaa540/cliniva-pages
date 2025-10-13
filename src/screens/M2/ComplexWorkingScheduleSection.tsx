@@ -32,7 +32,7 @@ export const ComplexWorkSchedule = ({
       {/* Header */}
       <div className="flex flex-col gap-2">
         <button className="flex items-center gap-2 font-lato text-xs text-text-secondary font-regular leading-[130%] tracking-[0]">
-          <Link to='/ChossPlan'>
+          <Link to="/ChossPlan">
             <ArrowLeftIcon className="relative w-4 h-4" />
           </Link>
           Back to Choosing Plan Page
